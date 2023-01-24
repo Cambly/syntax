@@ -17,13 +17,13 @@
   },
   "devDependencies": {
     "@cambly/syntax-tsconfig": "workspace:*",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "eslint": "^8.32.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.35.0",
     "@cambly/eslint-config-syntax": "workspace:*",
     "react": "^18.2.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4"
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
   },
   "publishConfig": {
     "access": "public"

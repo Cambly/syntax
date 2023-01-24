@@ -3,28 +3,34 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "start-storybook -p 6006",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build": "build-storybook --docs",
     "preview-storybook": "serve storybook-static",
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "@cambly/syntax-core": "workspace:0.0.0",
+    "@cambly/syntax-divider": "workspace:0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cambly/syntax-tsconfig": "workspace:0.0.0",
-    "@storybook/addon-actions": "^6.5.15",
-    "@storybook/addon-docs": "^6.5.15",
-    "@storybook/addon-essentials": "^6.5.15",
-    "@storybook/addon-links": "^6.5.15",
-    "@storybook/builder-vite": "^0.3.0",
-    "@storybook/react": "^6.5.15",
-    "@vitejs/plugin-react": "^3.0.1",
     "@cambly/eslint-config-syntax": "workspace:0.0.0",
-    "serve": "^14.1.2",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.4"
+    "@cambly/syntax-tsconfig": "workspace:0.0.0",
+    "@storybook/addon-a11y": "^6.5.16",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-docs": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/addons": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.2",
+    "@storybook/react": "^6.5.16",
+    "@storybook/theming": "^6.5.16",
+    "@vitejs/plugin-react": "^3.1.0",
+    "react-docgen-typescript": "^2.2.2",
+    "serve": "^14.2.0",
+    "storybook-addon-designs": "^6.3.1",
+    "storybook-dark-mode": "^2.1.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4"
   }
 }

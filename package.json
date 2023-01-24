@@ -13,8 +13,8 @@
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:0.0.0",
     "@changesets/cli": "^2.26.0",
-    "eslint": "^8.32.0",
-    "prettier": "^2.8.3",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4",
     "turbo": "latest"
   },
   "packageManager": "pnpm@7.26.0"
