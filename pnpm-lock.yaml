@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@cambly/eslint-config-syntax': workspace:0.0.0
+      '@cambly/eslint-config-syntax': workspace:1.0.0
       '@changesets/cli': ^2.26.0
       eslint: ^8.35.0
       prettier: ^2.8.4
@@ -18,9 +18,9 @@ importers:
 
   apps/storybook:
     specifiers:
-      '@cambly/eslint-config-syntax': workspace:0.0.0
-      '@cambly/syntax-divider': workspace:0.0.0
-      '@cambly/syntax-tsconfig': workspace:0.0.0
+      '@cambly/eslint-config-syntax': workspace:1.0.0
+      '@cambly/syntax-divider': workspace:1.0.0
+      '@cambly/syntax-tsconfig': workspace:1.0.0
       '@storybook/addon-a11y': ^7.0.0-beta.62
       '@storybook/addon-actions': ^7.0.0-beta.62
       '@storybook/addon-docs': ^7.0.0-beta.62

@@ -11,7 +11,7 @@
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@cambly/eslint-config-syntax": "workspace:0.0.0",
+    "@cambly/eslint-config-syntax": "workspace:1.0.0",
     "@changesets/cli": "^2.26.0",
     "eslint": "^8.35.0",
     "prettier": "^2.8.4",
