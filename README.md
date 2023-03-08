@@ -1,32 +1,21 @@
 # Syntax - Cambly's design system
 
-# Setup
+## Setup
 
-## Install nvm
+### Install nvm
 
 ```bash
+# Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-```
-
-## Install node
-
-```bash
+# Install node
 nvm install
-```
-
-## Install dependencies
-
-```bash
+# Install dependencies
 npm install -g pnpm
 pnpm install
-```
-
-## Run the dev server
-
-```bash
+# Run the dev server
 pnpm dev
 ```
 
-# Acknowledgements
+## Acknowledgements
 
 - Originally forked from [vercel/turbo/examples/design-system](https://github.com/vercel/turbo/tree/main/examples/design-system)
