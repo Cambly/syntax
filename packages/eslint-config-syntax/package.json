@@ -1,0 +1,15 @@
+{
+  "name": "@cambly/eslint-config-syntax",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-react": "7.32.1",
+    "eslint-config-turbo": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
