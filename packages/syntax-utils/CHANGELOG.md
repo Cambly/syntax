@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 1.0.1
+
+### Patch Changes
+
+- 630346e: Fix ESLint version change
+
 ## 1.0.0
 
 ### Major Changes
