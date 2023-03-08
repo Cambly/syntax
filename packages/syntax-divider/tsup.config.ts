@@ -8,6 +8,7 @@ export default defineConfig({
   entry: ["src/index.tsx"],
   format: ["cjs", "esm"],
   external: ["react", "react-dom"],
+  sourcemap: true,
   dts: true,
   // ESBuild does not support CSS Modules yet
   // https://github.com/egoist/tsup/issues/536#issuecomment-1302012400

@@ -1,7 +1,6 @@
 import path from "path";
-import type { StorybookViteConfig } from "@storybook/builder-vite";
-
-const config: StorybookViteConfig = {
+import type { StorybookConfig } from "@storybook/react-vite";
+const config: StorybookConfig = {
   stories: ["../../../packages/**/*.stories.tsx"],
   addons: [
     {
@@ -13,9 +12,11 @@ const config: StorybookViteConfig = {
     "storybook-addon-designs",
     "@storybook/addon-a11y",
   ],
-  framework: "@storybook/react",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
   core: {
-    builder: "@storybook/builder-vite",
     disableTelemetry: true,
   },
   typescript: {
@@ -24,6 +25,9 @@ const config: StorybookViteConfig = {
   async viteFinal(config) {
     return {
       ...config,
+      define: {
+        "process.env": {},
+      },
       resolve: {
         alias: [
           {
@@ -38,5 +42,4 @@ const config: StorybookViteConfig = {
     };
   },
 };
-
 export default config;

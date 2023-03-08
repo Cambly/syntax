@@ -16,11 +16,12 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@cambly/eslint-config-syntax": "workspace:*",
     "@cambly/syntax-tsconfig": "workspace:*",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "bundle-require": "^4.0.1",
     "eslint": "^8.35.0",
-    "@cambly/eslint-config-syntax": "workspace:*",
     "react": "^18.2.0",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5"
