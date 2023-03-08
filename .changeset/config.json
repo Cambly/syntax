@@ -5,7 +5,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": true,
   "fixed": [],
-  "ignore": ["@syntax/storybook"],
+  "ignore": [],
   "linked": [],
   "updateInternalDependencies": "patch"
 }
