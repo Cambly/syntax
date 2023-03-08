@@ -10,7 +10,7 @@ export default defineConfig({
   external: ["react", "react-dom"],
   sourcemap: true,
   dts: true,
-  // ESBuild does not support CSS Modules yet
+  // ESBuild does not yet support CSS Modules
   // https://github.com/egoist/tsup/issues/536#issuecomment-1302012400
   esbuildPlugins: [
     {

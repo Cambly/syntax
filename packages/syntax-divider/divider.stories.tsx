@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Divider } from "./src/Divider";
 
 export default {
@@ -17,8 +17,6 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Divider>;
+} as Meta<typeof Divider>;
 
-export const Default: ComponentStory<typeof Divider> = (args) => (
-  <Divider {...args} />
-);
+export const Default: StoryFn<typeof Divider> = (args) => <Divider {...args} />;
