@@ -36,11 +36,16 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
+      - name: Setup git user
+        run: |
+          git config --global user.email "camblybot.github@gmail.com"
+          git config --global user.name "camblybot"
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           publish: pnpm run release
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOMATION_GITHUB_SECRET }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
