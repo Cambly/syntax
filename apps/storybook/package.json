@@ -9,13 +9,13 @@
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "@cambly/syntax-divider": "workspace:1.0.0",
+    "@cambly/syntax-divider": "workspace:1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cambly/eslint-config-syntax": "workspace:1.0.0",
-    "@cambly/syntax-tsconfig": "workspace:1.0.0",
+    "@cambly/eslint-config-syntax": "workspace:1.0.1",
+    "@cambly/syntax-tsconfig": "workspace:1.0.1",
     "@storybook/addon-a11y": "^7.0.0-beta.62",
     "@storybook/addon-actions": "^7.0.0-beta.62",
     "@storybook/addon-docs": "^7.0.0-beta.62",
