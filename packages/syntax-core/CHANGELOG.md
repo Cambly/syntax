@@ -1,4 +1,4 @@
-# @cambly/syntax-divider
+# @cambly/syntax-core
 
 ## 1.0.4
 

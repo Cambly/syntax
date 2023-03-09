@@ -31,10 +31,10 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
-            find: "@cambly/syntax-divider",
+            find: "@cambly/syntax-core",
             replacement: path.resolve(
               __dirname,
-              "../../../packages/syntax-divider/",
+              "../../../packages/syntax-core/",
             ),
           },
         ],
