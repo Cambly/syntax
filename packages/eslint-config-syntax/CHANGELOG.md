@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.0.3
+
+### Patch Changes
+
+- d16a113: Fix release pipeline
+
 ## 1.0.2
 
 ### Patch Changes

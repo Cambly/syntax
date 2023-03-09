@@ -1,5 +1,13 @@
 # @syntax/storybook
 
+## 0.0.2
+
+### Patch Changes
+
+- d16a113: Fix release pipeline
+- Updated dependencies [d16a113]
+  - @cambly/syntax-divider@1.0.3
+
 ## 0.0.1
 
 ### Patch Changes
