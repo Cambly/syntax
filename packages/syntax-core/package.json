@@ -1,5 +1,5 @@
 {
-  "name": "@cambly/syntax-divider",
+  "name": "@cambly/syntax-core",
   "version": "1.0.4",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

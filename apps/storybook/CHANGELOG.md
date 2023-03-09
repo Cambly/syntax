@@ -6,7 +6,7 @@
 
 - 81cd1b2: Fix release pipeline
 - Updated dependencies [81cd1b2]
-  - @cambly/syntax-divider@1.0.4
+  - @cambly/syntax-core@1.0.4
 
 ## 0.0.2
 
@@ -14,7 +14,7 @@
 
 - d16a113: Fix release pipeline
 - Updated dependencies [d16a113]
-  - @cambly/syntax-divider@1.0.3
+  - @cambly/syntax-core@1.0.3
 
 ## 0.0.1
 
@@ -24,4 +24,4 @@
 - 044234a: Fix release pipeline
 - Updated dependencies [8e0a7d5]
 - Updated dependencies [044234a]
-  - @cambly/syntax-divider@1.0.2
+  - @cambly/syntax-core@1.0.2
