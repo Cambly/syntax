@@ -1,5 +1,11 @@
 # @cambly/syntax-divider
 
+## 1.0.4
+
+### Patch Changes
+
+- 81cd1b2: Fix release pipeline
+
 ## 1.0.3
 
 ### Patch Changes
