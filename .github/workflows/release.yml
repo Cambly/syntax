@@ -44,6 +44,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          version: pnpm version-packages
           publish: pnpm run release
           setupGitUser: false
         env:
