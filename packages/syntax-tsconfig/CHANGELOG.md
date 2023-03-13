@@ -1,5 +1,11 @@
 # @cambly/syntax-tsconfig
 
+## 1.0.5
+
+### Patch Changes
+
+- 36d3d67: Internal: setup testing infrastructure & ESLint
+
 ## 1.0.4
 
 ### Patch Changes
