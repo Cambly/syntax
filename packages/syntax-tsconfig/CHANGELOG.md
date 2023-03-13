@@ -1,5 +1,11 @@
 # @cambly/syntax-tsconfig
 
+## 1.1.0
+
+### Minor Changes
+
+- 8bfcca9: Avatar: Add component
+
 ## 1.0.5
 
 ### Patch Changes
