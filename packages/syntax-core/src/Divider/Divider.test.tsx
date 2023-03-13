@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import { Divider } from "./Divider";
+import Divider from "./Divider";
 import { expect } from "vitest";
 
 describe("divider", () => {
