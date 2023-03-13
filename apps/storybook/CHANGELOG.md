@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.1.0
+
+### Minor Changes
+
+- 8bfcca9: Avatar: Add component
+
+### Patch Changes
+
+- Updated dependencies [8bfcca9]
+  - @cambly/syntax-core@1.1.0
+
 ## 0.0.4
 
 ### Patch Changes
