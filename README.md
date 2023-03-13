@@ -2,8 +2,6 @@
 
 ## Setup
 
-### Install nvm
-
 ```bash
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -15,6 +13,13 @@ pnpm install
 # Run the dev server
 pnpm dev
 ```
+
+## Contribute
+
+1. [Fork the syntax repo](https://github.com/Cambly/syntax/fork)
+2. Create a new branch
+3. Make your changes
+4. Open a pull request
 
 ## Acknowledgements
 
