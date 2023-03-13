@@ -1,0 +1,9 @@
+{
+  "extends": "@cambly/syntax-tsconfig/node18.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true
+  }
+}

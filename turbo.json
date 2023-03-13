@@ -9,7 +9,12 @@
       "outputs": ["coverage/**"],
       "dependsOn": []
     },
-    "lint": {},
+    "test:watch": {
+      "cache": false
+    },
+    "lint": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true
