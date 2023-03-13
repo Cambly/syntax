@@ -45,3 +45,7 @@ jobs:
         run: pnpm run lint
         env:
           NODE_OPTIONS: --max-old-space-size=8192
+      - name: Test
+        run: pnpm run test
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
