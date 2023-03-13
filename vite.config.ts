@@ -6,12 +6,14 @@ import path from "path";
 import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: path.join(__dirname, "./test/setup.ts"),
-    css: true,
-  },
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [react()],
+    test: {
+      globals: true,
+      environment: "jsdom",
+      setupFiles: path.join(__dirname, "./test/setup.ts"),
+      css: true,
+    },
+  };
 });
