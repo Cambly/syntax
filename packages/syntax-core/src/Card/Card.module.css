@@ -1,0 +1,11 @@
+.card {
+  border-radius: 24px;
+  padding: 36px;
+  background-color: #fff;
+}
+
+@media (max-width: 384px) {
+  .div {
+    padding: 28px;
+  }
+}
