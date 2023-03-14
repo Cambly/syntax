@@ -24,7 +24,7 @@ const Avatar = ({
    *
    * @defaultValue `md`
    */
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "md" | "lg" | "xl" | "xxl";
 }): JSX.Element => {
   return (
     <img
