@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.2.0
+
+### Minor Changes
+
+- 3236cd2: Add Card component
+
 ## 1.1.1
 
 ### Patch Changes
