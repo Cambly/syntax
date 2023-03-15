@@ -1,9 +1,4 @@
 import React from "react";
+import "@cambly/syntax-design-tokens/dist/css/variables.css";
 
-export const decorators = [
-  (Story) => (
-    <div style={{ margin: "3em" }}>
-      <Story />
-    </div>
-  ),
-];
+export const decorators = [(Story) => <Story />];

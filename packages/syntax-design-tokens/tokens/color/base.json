@@ -1,0 +1,56 @@
+{
+  "color": {
+    "base": {
+      "black": { "value": "0000000" },
+      "destructive": {
+        "100": { "value": "#fef3f5" },
+        "200": { "value": "#fad6de" },
+        "300": { "value": "#f2a2b2" },
+        "700": { "value": "#d32a4b" },
+        "800": { "value": "#81162c" },
+        "900": { "value": "#55101d" }
+      },
+      "gray": {
+        "10": {
+          "value": "#cbcbcb50",
+          "comment": "Used as the default color for dividers and inner strokes"
+        },
+        "100": { "value": "#f7f7f7" },
+        "200": {
+          "value": "#f0f0f0",
+          "comment": "Used for light mode backgrounds when showing card content on top"
+        },
+        "30": {
+          "value": "#00000050",
+          "comment": "For IconButton background when on top of an image"
+        },
+        "300": {
+          "value": "#d0d0d0",
+          "comment": "Used for component outlines, eg: select and textfield"
+        },
+        "700": {
+          "value": "#767676",
+          "comment": "For secondary text in light mode"
+        },
+        "80": {
+          "value": "#00000080",
+          "comment": "Used as the background for modals"
+        },
+        "800": { "value": "#353535" },
+        "900": {
+          "value": "#191919",
+          "comment": "Default text color, Classroom background"
+        }
+      },
+      "primary": {
+        "100": { "value": "#eff6fa" },
+        "200": { "value": "#c1dbe7" },
+        "300": { "value": "#84b7d0" },
+        "700": { "value": "#236482" },
+        "800": { "value": "#274858" },
+        "900": { "value": "#1b303b" }
+      },
+      "white": { "value": "#ffffff" }
+    }
+  }
+}

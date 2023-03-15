@@ -1,6 +1,5 @@
 .divider {
-  /* gray10 */
-  background-color: #cbcbcb50;
+  background-color: var(--color-base-gray-10);
   border-radius: 50px;
   border: none;
   height: 1px;
