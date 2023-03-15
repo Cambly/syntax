@@ -1,5 +1,6 @@
 .divider {
-  background-color: #f0f0f0;
+  /* gray10 */
+  background-color: #cbcbcb50;
   border-radius: 50px;
   border: none;
   height: 1px;
