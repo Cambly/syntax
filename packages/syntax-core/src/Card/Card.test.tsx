@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import Card from "./Card";
 
-describe("Card", () => {
+describe("card", () => {
   it("should render children successfully", () => {
     const screen = render(
       <Card>
