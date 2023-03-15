@@ -14,6 +14,8 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "stylelint": "stylelint \"**/*.css\"",
+    "stylelint:fix": "npm run stylelint --fix",
     "test": "vitest run",
     "test:watch": "vitest"
   },
