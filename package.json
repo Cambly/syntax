@@ -8,6 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "release": "turbo run build && changeset publish && pnpm install --no-frozen-lockfile",
+    "stylelint": "turbo run stylelint",
     "test:watch": "turbo run test:watch",
     "test": "turbo run test",
     "version-packages": "changeset version && pnpm install --no-frozen-lockfile"
@@ -21,6 +22,9 @@
     "eslint": "^8.35.0",
     "jsdom": "^21.1.0",
     "prettier": "^2.8.4",
+    "stylelint": "15.2.0",
+    "stylelint-config-css-modules": "4.2.0",
+    "stylelint-config-standard": "30.0.1",
     "turbo": "latest",
     "vite": "^4.1.4",
     "vitest": "^0.29.2"
