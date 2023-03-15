@@ -20,13 +20,15 @@ export default {
 } as Meta<typeof Card>;
 
 export const Default: StoryObj<typeof Card> = {
-  args: { children: (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <h1>Headline</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.{" "}
-      </p>
-    </div>
-  ) },
+  args: {
+    children: (
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <h1>Headline</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+        </p>
+      </div>
+    ),
+  },
 };
