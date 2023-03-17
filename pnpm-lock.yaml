@@ -37,8 +37,8 @@ importers:
   apps/storybook:
     specifiers:
       '@cambly/eslint-config-syntax': workspace:1.1.0
-      '@cambly/syntax-core': workspace:1.2.0
-      '@cambly/syntax-design-tokens': workspace:0.0.1
+      '@cambly/syntax-core': workspace:1.3.0
+      '@cambly/syntax-design-tokens': workspace:0.1.0
       '@cambly/syntax-tsconfig': workspace:1.1.0
       '@storybook/addon-a11y': ^7.0.0-beta.62
       '@storybook/addon-actions': ^7.0.0-beta.62
@@ -109,7 +109,7 @@ importers:
   packages/syntax-core:
     specifiers:
       '@cambly/eslint-config-syntax': workspace:*
-      '@cambly/syntax-design-tokens': workspace:0.0.1
+      '@cambly/syntax-design-tokens': workspace:0.1.0
       '@cambly/syntax-tsconfig': workspace:*
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11

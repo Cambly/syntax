@@ -1,6 +1,6 @@
 {
   "name": "@cambly/syntax-design-tokens",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./build/js/index.js",
   "types": "./build/js/index.d.ts",
   "sideEffects": false,
