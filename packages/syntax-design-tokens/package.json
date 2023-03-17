@@ -1,0 +1,23 @@
+{
+  "name": "@cambly/syntax-design-tokens",
+  "version": "0.0.1",
+  "main": "./build/js/index.js",
+  "types": "./build/js/index.d.ts",
+  "sideEffects": false,
+  "license": "Apache-2.0",
+  "files": [
+    "build/**"
+  ],
+  "scripts": {
+    "build": "rm -rf dist;style-dictionary build",
+    "dev": "pnpm run build && chokidar  \"tokens/**/*.json\" -c \"pnpm run build\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "style-dictionary": "^3.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

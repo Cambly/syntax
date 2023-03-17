@@ -37,6 +37,13 @@ const config: StorybookConfig = {
               "../../../packages/syntax-core/",
             ),
           },
+          {
+            find: "@cambly/syntax-design-tokens",
+            replacement: path.resolve(
+              __dirname,
+              "../../../packages/syntax-design-tokens/",
+            ),
+          },
         ],
       },
     };
