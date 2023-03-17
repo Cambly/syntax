@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 1.3.0
+
+### Minor Changes
+
+- 5c32953: Add design tokens to Syntax
+
+### Patch Changes
+
+- Updated dependencies [5c32953]
+  - @cambly/syntax-design-tokens@0.1.0
+
 ## 1.2.0
 
 ### Minor Changes
