@@ -1,12 +1,12 @@
 {
   "name": "@cambly/syntax-design-tokens",
   "version": "0.1.0",
-  "main": "./build/js/index.js",
-  "types": "./build/js/index.d.ts",
+  "main": "./dist/js/index.js",
+  "types": "./dist/js/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
   "files": [
-    "build/**"
+    "dist/**"
   ],
   "scripts": {
     "build": "rm -rf dist;style-dictionary build",
