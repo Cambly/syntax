@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.5.0
+
+### Minor Changes
+
+- e2ccb78: Do not include CSS import in JS
+
 ## 1.4.0
 
 ### Minor Changes
