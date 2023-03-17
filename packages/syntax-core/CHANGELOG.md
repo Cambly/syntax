@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 1.4.0
+
+### Minor Changes
+
+- cc58bf7: Fix exported files for @cambly/syntax-design-tokens
+
+### Patch Changes
+
+- Updated dependencies [cc58bf7]
+  - @cambly/syntax-design-tokens@0.2.0
+
 ## 1.3.0
 
 ### Minor Changes
