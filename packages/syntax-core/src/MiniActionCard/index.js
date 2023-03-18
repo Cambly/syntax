@@ -1,1 +1,1 @@
-export {default} "./MiniActionCard"
+export {default} "./MiniActionCard";
