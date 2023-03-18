@@ -28,7 +28,7 @@ export const Default: StoryObj<typeof MiniActionCard> = {
         }}
       >
         <img src={image} alt="book icon" style={{ width: "50%" }} />
-        <button>Pick a course</button>
+        <button type="button">Pick a course</button>
       </div>
     ),
   },
