@@ -17,8 +17,17 @@ export default {
 export const Default: StoryObj<typeof MiniActionCard> = {
   args: {
     children: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px" }}>
-        <img src={image} alt="book icon" style={{width: "50%"}}/>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          gap: "24px",
+        }}
+      >
+        <img src={image} alt="book icon" style={{ width: "50%" }} />
         <button>Pick a course</button>
       </div>
     ),
