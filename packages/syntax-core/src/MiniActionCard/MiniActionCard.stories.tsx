@@ -27,6 +27,7 @@ export const Default: StoryObj<typeof MiniActionCard> = {
           gap: "24px",
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
         <img src={image} alt="" style={{ width: "50%" }} />
         <button type="button">Pick a course</button>
       </div>
