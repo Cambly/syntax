@@ -1,0 +1,19 @@
+.miniActionCard {
+  border-radius: 24px;
+  padding: 20px;
+  width: 169px;
+  height: 156px;
+  background-color: #fff;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 28px;
+  background-color: #fff;
+}
+
+@media (min-width: 480px) {
+  .miniActionCard {
+    width: 232px;
+  }
+}
