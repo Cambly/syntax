@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.4.0
+
+### Minor Changes
+
+- 589bad4: Add MiniActionCard component
+
+### Patch Changes
+
+- Updated dependencies [589bad4]
+  - @cambly/syntax-core@1.6.0
+
 ## 0.3.1
 
 ### Patch Changes

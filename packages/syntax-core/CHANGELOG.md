@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.6.0
+
+### Minor Changes
+
+- 589bad4: Add MiniActionCard component
+
 ## 1.5.0
 
 ### Minor Changes
