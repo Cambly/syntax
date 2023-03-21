@@ -12,7 +12,7 @@
       },
       "gray": {
         "10": {
-          "value": "#cbcbcb50",
+          "value": "rgba(203, 203, 203, 0.5)",
           "comment": "Used as the default color for dividers and inner strokes"
         },
         "100": { "value": "#f7f7f7" },
@@ -21,7 +21,7 @@
           "comment": "Used for light mode backgrounds when showing card content on top"
         },
         "30": {
-          "value": "#00000050",
+          "value": "rgba(0, 0, 0, 0.3)",
           "comment": "For IconButton background when on top of an image"
         },
         "300": {
@@ -33,7 +33,7 @@
           "comment": "For secondary text in light mode"
         },
         "80": {
-          "value": "#00000080",
+          "value": "rgba(0, 0, 0, 0.8)",
           "comment": "Used as the background for modals"
         },
         "800": { "value": "#353535" },
