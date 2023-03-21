@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.3.0
+
+### Minor Changes
+
+- b017a45: Updates gray10, gray30 and gray80 colors
+
 ## 0.2.0
 
 ### Minor Changes
