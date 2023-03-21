@@ -17,9 +17,9 @@ export default {
         Color.PRIMARY,
         Color.SECONDARY,
         Color.TERTIARY,
-        Color.DANGER_PRIMARY,
-        Color.DANGER_SECONDARY,
-        Color.DANGER_TERTIARY,
+        Color.DESTRUCTIVE_PRIMARY,
+        Color.DESTRUCTIVE_SECONDARY,
+        Color.DESTRUCTIVE_TERTIARY,
         Color.SUCCESS,
         Color.BRANDED,
       ],
@@ -61,14 +61,14 @@ export const Secondary: StoryObj<typeof Button> = {
 export const Tertiary: StoryObj<typeof Button> = {
   args: { ...Default.args, color: Color.TERTIARY },
 };
-export const DangerPrimary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DANGER_PRIMARY },
+export const DestructivePrimary: StoryObj<typeof Button> = {
+  args: { ...Default.args, color: Color.DESTRUCTIVE_PRIMARY },
 };
-export const DangerSecondary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DANGER_SECONDARY },
+export const DestructiveSecondary: StoryObj<typeof Button> = {
+  args: { ...Default.args, color: Color.DESTRUCTIVE_SECONDARY },
 };
-export const DangerTertiary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DANGER_TERTIARY },
+export const DestructiveTertiary: StoryObj<typeof Button> = {
+  args: { ...Default.args, color: Color.DESTRUCTIVE_TERTIARY },
 };
 export const Branded: StoryObj<typeof Button> = {
   args: { ...Default.args, color: Color.BRANDED },
