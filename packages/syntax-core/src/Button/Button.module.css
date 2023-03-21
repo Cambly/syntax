@@ -1,0 +1,143 @@
+.button {
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonGap {
+  gap: 4px;
+}
+
+.button:hover {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
+.button:active {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  transform: scale(0.97);
+  transition-duration: 0.2s;
+}
+
+.button:disabled {
+  filter: opacity(30%);
+  background-image: none;
+  transform: none;
+  cursor: auto;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.sm {
+  min-width: 52px;
+  height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+}
+
+.md {
+  min-width: 72px;
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 12px;
+}
+
+.lg {
+  min-width: 88px;
+  height: 48px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 16px;
+}
+
+.smIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 16px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 16px !important;
+}
+
+.mdIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 20px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 20px !important;
+}
+
+.lgIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 24px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 24px !important;
+}
+
+.textContainer {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+@keyframes syntaxButtonLoadingRotate {
+  0% {
+    transform-origin: 50% 50%;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: syntaxButtonLoadingRotate 1.4s linear infinite;
+}
+
+.loadingCircle {
+  stroke: currentcolor;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+}
+
+/** TODO Change with `Typography` component when available */
+.buttonText {
+  color: inherit;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.buttonTextSmall {
+  font-size: 12px;
+}
+
+.buttonTextMedium {
+  font-size: 14px;
+}
+
+.buttonTextLarge {
+  font-size: 16px;
+}

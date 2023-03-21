@@ -50,7 +50,20 @@
         "800": { "value": "#274858" },
         "900": { "value": "#1b303b" }
       },
+      "success": {
+        "100": { "value": "#eff7f1" },
+        "200": { "value": "#bddcc6" },
+        "300": { "value": "#81ba92" },
+        "700": { "value": "#397b4d" },
+        "800": { "value": "#2d4936" },
+        "900": { "value": "#1e3124" }
+      },
       "white": { "value": "#ffffff" }
+    },
+    "extended": {
+      "yellow": {
+        "700": { "value": "#FFC929" }
+      }
     }
   }
 }

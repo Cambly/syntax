@@ -9,6 +9,7 @@ const config: StorybookConfig = {
         actions: false,
       },
     },
+    "@storybook/addon-actions",
     "storybook-addon-designs",
     "@storybook/addon-a11y",
   ],

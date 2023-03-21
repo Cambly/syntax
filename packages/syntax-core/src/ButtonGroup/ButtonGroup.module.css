@@ -1,0 +1,24 @@
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.smallGap {
+  gap: 8px;
+}
+
+.mediumGap {
+  gap: 12px;
+}
+
+.largeGap {
+  gap: 16px;
+}

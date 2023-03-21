@@ -1,0 +1,45 @@
+/* Regular Colors */
+.primary700Color {
+  color: var(--color-base-primary-700);
+}
+
+.destructive700Color {
+  color: var(--color-base-destructive-700);
+}
+
+.gray900Color {
+  color: var(--color-base-gray-900);
+}
+
+.whiteColor {
+  color: var(--color-base-white);
+}
+
+/* Background Colors */
+.primary100BackgroundColor {
+  background-color: var(--color-base-primary-100);
+}
+
+.destructive700Background {
+  background-color: var(--color-base-destructive-700);
+}
+
+.destructive100BackgroundColor {
+  background-color: var(--color-base-destructive-100);
+}
+
+.success700BackgroundColor {
+  background-color: var(--color-base-success-700);
+}
+
+.whiteBackgroundColor {
+  background-color: var(--color-base-white);
+}
+
+.yellow700BackgroundColor {
+  background-color: var(--color-extended-yellow-700);
+}
+
+.primary700BackgroundColor {
+  background-color: var(--color-base-primary-700);
+}
