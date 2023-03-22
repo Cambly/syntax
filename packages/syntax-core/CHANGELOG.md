@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.10.0
+
+### Minor Changes
+
+- ce63a02: ButtonGroup: make props optional + add test for disabled button
+
 ## 1.9.0
 
 ### Minor Changes
