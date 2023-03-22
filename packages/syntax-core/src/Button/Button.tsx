@@ -100,9 +100,9 @@ const Button = ({
 }): ReactElement => {
   const contextProps = useContext(ButtonGroupContext);
 
-  const size = contextProps?.size || sizeProp;
-  const disabled = contextProps?.disabled || disabledProp;
-  const fullWidth = contextProps?.fullWidth || fullWidthProp;
+  const size = contextProps?.size ?? sizeProp;
+  const disabled = contextProps?.disabled ?? disabledProp;
+  const fullWidth = contextProps?.fullWidth ?? fullWidthProp;
 
   return (
     <button
