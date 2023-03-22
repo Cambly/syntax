@@ -25,6 +25,9 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
+/**
+ * Button is a clickable element that is used to perform an action.
+ */
 const Button = ({
   text,
   loadingText,
@@ -56,7 +59,9 @@ const Button = ({
   /**
    * The size of the button
    *
-   * @defaultValue "medium"
+   * `sm`: 32px, `md`: 40px, `lg`: 48px
+   *
+   * @defaultValue "md"
    */
   size?: (typeof Size)[number];
   /**

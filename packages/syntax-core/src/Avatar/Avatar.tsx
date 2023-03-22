@@ -20,7 +20,8 @@ const Avatar = ({
   accessibilityLabel: string;
   /**
    * Size of the avatar.
-   * sm: 24px, md: 40px, lg: 72px, xl: 128px.
+   *
+   * `sm`: 24px, `md`: 40px, `lg`: 72px, `xl`: 128px
    *
    * @defaultValue `md`
    */
