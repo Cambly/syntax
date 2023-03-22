@@ -1,6 +1,5 @@
 import { StoryObj, Meta } from "@storybook/react";
 import ButtonGroup from "./ButtonGroup";
-import { Color, Orientation, Size } from "../constants";
 import Button from "../Button/Button";
 
 export default {
@@ -14,14 +13,14 @@ export default {
   },
   argTypes: {
     orientation: {
-      options: [Orientation.HORIZONTAL, Orientation.VERTICAL],
+      options: ["horizontal", "vertical"],
       control: { type: "radio" },
     },
     fullWidth: {
       control: "boolean",
     },
     size: {
-      options: [Size.SMALL, Size.MEDIUM, Size.LARGE],
+      options: ["sm", "md", "lg"],
       control: { type: "radio" },
     },
     disabled: {
@@ -38,8 +37,8 @@ function handleClick() {
 export const Default: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args}>
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -47,8 +46,8 @@ export const Default: StoryObj<typeof ButtonGroup> = {
 export const Small: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="sm">
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -56,8 +55,8 @@ export const Small: StoryObj<typeof ButtonGroup> = {
 export const Medium: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="md">
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -65,8 +64,8 @@ export const Medium: StoryObj<typeof ButtonGroup> = {
 export const Large: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="lg">
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -74,8 +73,8 @@ export const Large: StoryObj<typeof ButtonGroup> = {
 export const FullWidth: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} fullWidth>
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -83,8 +82,8 @@ export const FullWidth: StoryObj<typeof ButtonGroup> = {
 export const Vertical: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} orientation="vertical">
-      <Button color={Color.SECONDARY} text="Secondary" onClick={handleClick} />
-      <Button color={Color.PRIMARY} text="Primary" onClick={handleClick} />
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };

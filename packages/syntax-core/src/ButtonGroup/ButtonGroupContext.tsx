@@ -1,8 +1,8 @@
-import { SizeValue } from "../constants";
+import { Size } from "../constants";
 import React from "react";
 
 interface ButtonGroupContextType {
-  size?: SizeValue;
+  size?: (typeof Size)[number];
   disabled?: boolean;
   fullWidth?: boolean;
 }

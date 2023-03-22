@@ -2,34 +2,34 @@ import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
 import React, { useContext, ReactElement } from "react";
-import { Color, ColorValue, Size, SizeValue } from "../constants";
+import { Color, Size } from "../constants";
 import ButtonGroupContext from "../ButtonGroup/ButtonGroupContext";
 import styles from "./Button.module.css";
 
 const textVariant = {
   // Replace with `Typography` once it lands in `syntax-core`
-  [Size.SMALL]: styles.buttonTextSmall,
-  [Size.MEDIUM]: styles.buttonTextMedium,
-  [Size.LARGE]: styles.buttonTextLarge,
+  ["sm"]: styles.buttonTextSmall,
+  ["md"]: styles.buttonTextMedium,
+  ["lg"]: styles.buttonTextLarge,
 } as const;
 
 const loadingIconSize = {
-  [Size.SMALL]: 16,
-  [Size.MEDIUM]: 20,
-  [Size.LARGE]: 24,
+  ["sm"]: 16,
+  ["md"]: 20,
+  ["lg"]: 24,
 };
 
 const iconSize = {
-  [Size.SMALL]: styles.smIcon,
-  [Size.MEDIUM]: styles.mdIcon,
-  [Size.LARGE]: styles.lgIcon,
+  ["sm"]: styles.smIcon,
+  ["md"]: styles.mdIcon,
+  ["lg"]: styles.lgIcon,
 };
 
 const Button = ({
   text,
   loadingText,
-  color = Color.PRIMARY,
-  size: sizeProp = Size.MEDIUM,
+  color = "primary",
+  size: sizeProp = "md",
   accessibilityLabel,
   disabled: disabledProp = false,
   loading = false,
@@ -52,13 +52,13 @@ const Button = ({
    *
    * @defaultValue "primary"
    */
-  color?: ColorValue;
+  color?: (typeof Color)[number];
   /**
    * The size of the button
    *
    * @defaultValue "medium"
    */
-  size?: SizeValue;
+  size?: (typeof Size)[number];
   /**
    * The label to be used for accessibility
    */
@@ -118,7 +118,7 @@ const Button = ({
         styles[size],
         {
           [styles.fullWidth]: fullWidth,
-          [styles.buttonGap]: size === Size.LARGE || size === Size.MEDIUM,
+          [styles.buttonGap]: size === "lg" || size === "md",
         },
       )}
     >

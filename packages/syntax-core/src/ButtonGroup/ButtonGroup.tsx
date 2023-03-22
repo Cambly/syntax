@@ -1,13 +1,13 @@
 import { useMemo, ReactElement, ReactNode } from "react";
 import styles from "./ButtonGroup.module.css";
-import { Size, Orientation, SizeValue } from "../constants";
+import { Size } from "../constants";
 import ButtonGroupContext from "./ButtonGroupContext";
 import classNames from "classnames";
 
 const gap = {
-  [Size.SMALL]: styles.smallGap,
-  [Size.MEDIUM]: styles.mediumGap,
-  [Size.LARGE]: styles.largeGap,
+  ["sm"]: styles.smallGap,
+  ["md"]: styles.mediumGap,
+  ["lg"]: styles.largeGap,
 } as const;
 
 /**
@@ -16,8 +16,8 @@ const gap = {
 const ButtonGroup = ({
   disabled = false,
   fullWidth = false,
-  orientation = Orientation.HORIZONTAL,
-  size = Size.MEDIUM,
+  orientation = "horizontal",
+  size = "md",
   children,
 }: {
   /**
@@ -43,7 +43,7 @@ const ButtonGroup = ({
    *
    * @defaultValue "medium"
    */
-  size?: SizeValue;
+  size?: (typeof Size)[number];
   /**
    * Buttons to be rendered inside the button group
    */
@@ -55,8 +55,8 @@ const ButtonGroup = ({
   );
 
   const classnames = classNames(styles.buttonGroup, gap[size], {
-    [styles.horizontal]: orientation === Orientation.HORIZONTAL,
-    [styles.vertical]: orientation === Orientation.VERTICAL,
+    [styles.horizontal]: orientation === "horizontal",
+    [styles.vertical]: orientation === "vertical",
   });
 
   return (
