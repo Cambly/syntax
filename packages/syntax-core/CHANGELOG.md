@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.9.0
+
+### Minor Changes
+
+- b341715: Button: fix disabled prop
+
 ## 1.8.0
 
 ### Minor Changes
