@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.7.1
+
+### Patch Changes
+
+- 0ee6d33: Auto approve camblybot pull requests
+
 ## 1.7.0
 
 ### Minor Changes
