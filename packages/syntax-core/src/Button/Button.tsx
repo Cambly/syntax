@@ -122,7 +122,9 @@ const Button = ({
         },
       )}
     >
-      {!loading && StartIcon && <StartIcon className={iconSize[size]} />}
+      {!loading && StartIcon && (
+        <StartIcon className={classNames(styles.icon, iconSize[size])} />
+      )}
       {((loading && loadingText) || (!loading && text)) && (
         <div className={styles.textContainer}>
           {/* Replace with `Typography` once it lands in `syntax-core` */}
@@ -131,7 +133,9 @@ const Button = ({
           </div>
         </div>
       )}
-      {!loading && EndIcon && <EndIcon className={iconSize[size]} />}
+      {!loading && EndIcon && (
+        <EndIcon className={classNames(styles.icon, iconSize[size])} />
+      )}
       {loading && (
         <svg
           className={classNames(styles.loading, foregroundColor(color))}
