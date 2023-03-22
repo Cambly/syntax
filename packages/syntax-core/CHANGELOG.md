@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.11.0
+
+### Minor Changes
+
+- 284ba0a: Internal: use array constants to show value on hover
+
 ## 1.10.0
 
 ### Minor Changes
