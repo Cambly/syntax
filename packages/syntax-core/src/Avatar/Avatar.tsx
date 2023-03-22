@@ -10,17 +10,17 @@ const Avatar = ({
   size = "md",
 }: {
   /**
-   * The URL of the image to display as the avatar.
+   * URL of the image to display as the avatar.
    */
   src: string;
   /**
-   * The alt text to use for the image.
+   * Alt text to use for the image.
    * This should describe the image to people using screen readers.
    */
   accessibilityLabel: string;
   /**
-   * The size of the avatar.
-   * xs: 24px, sm: 32px, md: 48px, lg: 64px, xl: 120px.
+   * Size of the avatar.
+   * sm: 24px, md: 40px, lg: 72px, xl: 128px.
    *
    * @defaultValue `md`
    */

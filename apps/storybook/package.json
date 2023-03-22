@@ -17,6 +17,10 @@
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:1.1.0",
     "@cambly/syntax-tsconfig": "workspace:1.1.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
     "@storybook/addon-a11y": "^7.0.0-beta.62",
     "@storybook/addon-actions": "^7.0.0-beta.62",
     "@storybook/addon-docs": "^7.0.0-beta.62",
