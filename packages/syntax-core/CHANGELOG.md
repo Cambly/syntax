@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies [b017a45]
+  - @cambly/syntax-design-tokens@0.3.0
+
 ## 1.6.0
 
 ### Minor Changes

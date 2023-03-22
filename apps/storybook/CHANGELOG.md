@@ -1,5 +1,13 @@
 # @syntax/storybook
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [b017a45]
+  - @cambly/syntax-design-tokens@0.3.0
+  - @cambly/syntax-core@1.6.1
+
 ## 0.4.0
 
 ### Minor Changes
