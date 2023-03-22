@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 1.7.0
+
+### Minor Changes
+
+- 13ae97a: Add Button and ButtonGroup
+
+### Patch Changes
+
+- Updated dependencies [13ae97a]
+  - @cambly/syntax-design-tokens@0.4.0
+
 ## 1.6.1
 
 ### Patch Changes

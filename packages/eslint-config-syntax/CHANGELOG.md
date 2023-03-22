@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.2.0
+
+### Minor Changes
+
+- 13ae97a: Add Button and ButtonGroup
+
 ## 1.1.0
 
 ### Minor Changes

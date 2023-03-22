@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.4.0
+
+### Minor Changes
+
+- 13ae97a: Add Button and ButtonGroup
+
 ## 0.3.0
 
 ### Minor Changes
