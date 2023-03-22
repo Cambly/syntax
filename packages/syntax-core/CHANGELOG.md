@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.8.0
+
+### Minor Changes
+
+- 62944f6: Properly export Button and ButtonGroup
+
 ## 1.7.1
 
 ### Patch Changes
