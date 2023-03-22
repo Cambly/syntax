@@ -1,20 +1,20 @@
-import { Color, ColorValue } from "../constants";
+import { Color } from "../constants";
 import styles from "./colors.module.css";
 
-export default function backgroundColor(color: ColorValue): string {
+export default function backgroundColor(color: (typeof Color)[number]): string {
   switch (color) {
-    case Color.SECONDARY:
+    case "secondary":
       return styles.primary100BackgroundColor;
-    case Color.DESTRUCTIVE_PRIMARY:
+    case "destructive-primary":
       return styles.destructive700Background;
-    case Color.DESTRUCTIVE_SECONDARY:
+    case "destructive-secondary":
       return styles.destructive100BackgroundColor;
-    case Color.SUCCESS:
+    case "success":
       return styles.success700BackgroundColor;
-    case Color.TERTIARY:
-    case Color.DESTRUCTIVE_TERTIARY:
+    case "tertiary":
+    case "destructive-tertiary":
       return styles.whiteBackgroundColor;
-    case Color.BRANDED:
+    case "branded":
       return styles.yellow700BackgroundColor;
     default:
       return styles.primary700BackgroundColor;

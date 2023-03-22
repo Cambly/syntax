@@ -1,6 +1,5 @@
 import { StoryObj, Meta } from "@storybook/react";
 import Button from "./Button";
-import { Color, Size } from "../constants";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export default {
@@ -15,19 +14,19 @@ export default {
   argTypes: {
     color: {
       options: [
-        Color.PRIMARY,
-        Color.SECONDARY,
-        Color.TERTIARY,
-        Color.DESTRUCTIVE_PRIMARY,
-        Color.DESTRUCTIVE_SECONDARY,
-        Color.DESTRUCTIVE_TERTIARY,
-        Color.SUCCESS,
-        Color.BRANDED,
+        "primary",
+        "secondary",
+        "tertiary",
+        "destructive-primary",
+        "destructive-secondary",
+        "destructive-tertiary",
+        "success",
+        "branded",
       ],
       control: { type: "radio" },
     },
     size: {
-      options: [Size.SMALL, Size.MEDIUM, Size.LARGE],
+      options: ["sm", "md", "lg"],
       control: { type: "radio" },
     },
     disabled: {
@@ -57,22 +56,22 @@ export const Large: StoryObj<typeof Button> = {
   args: { ...Default.args, size: "lg" },
 };
 export const Secondary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.SECONDARY },
+  args: { ...Default.args, color: "secondary" },
 };
 export const Tertiary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.TERTIARY },
+  args: { ...Default.args, color: "tertiary" },
 };
 export const DestructivePrimary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DESTRUCTIVE_PRIMARY },
+  args: { ...Default.args, color: "destructive-primary" },
 };
 export const DestructiveSecondary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DESTRUCTIVE_SECONDARY },
+  args: { ...Default.args, color: "destructive-secondary" },
 };
 export const DestructiveTertiary: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.DESTRUCTIVE_TERTIARY },
+  args: { ...Default.args, color: "destructive-tertiary" },
 };
 export const Branded: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: Color.BRANDED },
+  args: { ...Default.args, color: "branded" },
 };
 export const Loading: StoryObj<typeof Button> = {
   args: { ...Default.args, loading: true, loadingText: "Connecting…" },

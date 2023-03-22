@@ -1,15 +1,15 @@
-import { Color, ColorValue } from "../constants";
+import { Color } from "../constants";
 import styles from "./colors.module.css";
 
-export default function foregroundColor(color: ColorValue): string {
+export default function foregroundColor(color: (typeof Color)[number]): string {
   switch (color) {
-    case Color.SECONDARY:
-    case Color.TERTIARY:
+    case "secondary":
+    case "tertiary":
       return styles.primary700Color;
-    case Color.DESTRUCTIVE_SECONDARY:
-    case Color.DESTRUCTIVE_TERTIARY:
+    case "destructive-secondary":
+    case "destructive-tertiary":
       return styles.destructive700Color;
-    case Color.BRANDED:
+    case "branded":
       return styles.gray900Color;
     default:
       return styles.whiteColor;
