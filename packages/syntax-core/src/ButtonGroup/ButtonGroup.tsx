@@ -25,25 +25,25 @@ const ButtonGroup = ({
    *
    * @defaultValue false
    */
-  disabled: boolean;
+  disabled?: boolean;
   /**
    * If `true`, all buttons will be full width.
    *
    * @defaultValue false
    */
-  fullWidth: boolean;
+  fullWidth?: boolean;
   /**
    * The orientation of the button group
    *
    * @defaultValue "horizontal"
    */
-  orientation: "horizontal" | "vertical";
+  orientation?: "horizontal" | "vertical";
   /**
    * The size of the button group
    *
    * @defaultValue "medium"
    */
-  size: SizeValue;
+  size?: SizeValue;
   /**
    * Buttons to be rendered inside the button group
    */
