@@ -1,0 +1,80 @@
+.iconButton {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: none;
+  border-radius: 50%;
+}
+
+.iconButton:hover {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.iconButton:focus-visible {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
+.iconButton:active {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  transform: scale(0.97);
+  transition-duration: 0.2s;
+}
+
+.iconButton:disabled {
+  filter: opacity(30%);
+  background-image: none;
+  transform: none;
+  cursor: auto;
+}
+
+.sm {
+  height: 32px;
+  width: 32px;
+}
+
+.md {
+  height: 40px;
+  width: 40px;
+}
+
+.lg {
+  height: 48px;
+  width: 48px;
+}
+
+.smIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 16px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 16px !important;
+}
+
+.mdIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 20px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 20px !important;
+}
+
+.lgIcon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 24px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 24px !important;
+}
