@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.12.0
+
+### Minor Changes
+
+- 5086d6d: Add IconButton component
+
 ## 1.11.0
 
 ### Minor Changes
