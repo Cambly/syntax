@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.6.0
+
+### Minor Changes
+
+- 5086d6d: Add IconButton component
+
+### Patch Changes
+
+- Updated dependencies [5086d6d]
+  - @cambly/syntax-core@1.12.0
+
 ## 0.5.5
 
 ### Patch Changes
