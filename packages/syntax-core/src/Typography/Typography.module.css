@@ -67,6 +67,10 @@
   font-weight: 600;
 }
 
+.heavy {
+  font-weight: 860;
+}
+
 .underline {
   text-decoration: underline;
 }

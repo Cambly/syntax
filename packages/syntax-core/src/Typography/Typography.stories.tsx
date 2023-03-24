@@ -48,7 +48,7 @@ export default {
       control: "boolean",
     },
     weight: {
-      options: ["regular", "semiBold", "bold"],
+      options: ["regular", "semiBold", "bold", "heavy"],
       control: { type: "radio" },
     },
   },
@@ -77,11 +77,11 @@ export const Sizes: StoryObj<typeof Typography> = {
       <Typography {...args} size={600} weight="bold">
         Size 600 Bold
       </Typography>
-      <Typography {...args} size={700} weight="bold">
-        Size 700 Bold
+      <Typography {...args} size={700} weight="heavy">
+        Size 700 Heavy
       </Typography>
-      <Typography {...args} size={800} weight="bold">
-        Size 800 Bold
+      <Typography {...args} size={800} weight="heavy">
+        Size 800 Heavy
       </Typography>
     </>
   ),

@@ -47,8 +47,9 @@ const Heading = ({
    */
   size?: 500 | 600 | 700 | 800;
 }): ReactElement => {
+  const weight = [700, 800].includes(size) ? "heavy" : "bold";
   return (
-    <Typography align={align} as={as} color={color} size={size} weight="bold">
+    <Typography align={align} as={as} color={color} size={size} weight={weight}>
       {children}
     </Typography>
   );
