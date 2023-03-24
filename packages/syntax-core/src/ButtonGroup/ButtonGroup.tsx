@@ -41,7 +41,9 @@ const ButtonGroup = ({
   /**
    * The size of the button group
    *
-   * `sm`: 32px, `md`: 40px, `lg`: 48px
+   * * `sm`: 32px
+   * * `md`: 40px
+   * * `lg`: 48px
    *
    * @defaultValue "md"
    */
