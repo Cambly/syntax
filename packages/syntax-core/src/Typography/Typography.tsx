@@ -57,7 +57,7 @@ const Typography = ({
   /**
    * The color of the text.
    *
-   * @defaultValue "primary"
+   * @defaultValue "gray900"
    */
   color?: (typeof Color)[number];
   /**
