@@ -30,6 +30,9 @@ export default {
       ],
       control: { type: "radio" },
     },
+    children: {
+      control: "text",
+    },
     inline: {
       control: "boolean",
     },
@@ -56,7 +59,9 @@ export default {
 } as Meta<typeof Typography>;
 
 export const Default: StoryObj<typeof Typography> = {
-  render: (args) => <Typography {...args}>Default text</Typography>,
+  render: (args) => (
+    <Typography {...args}>{args.children ?? "Default text"}</Typography>
+  ),
 };
 
 export const Sizes: StoryObj<typeof Typography> = {
