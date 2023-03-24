@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.13.0
+
+### Minor Changes
+
+- 6c1dd9b: Add Typography and Heading components
+
 ## 1.12.0
 
 ### Minor Changes
