@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.14.0
+
+### Minor Changes
+
+- 3309cdb: Properly export Heading and Typography
+
 ## 1.13.0
 
 ### Minor Changes
