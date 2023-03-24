@@ -3,8 +3,10 @@ import Button from "./Button/Button";
 import ButtonGroup from "./ButtonGroup/ButtonGroup";
 import Card from "./Card/Card";
 import Divider from "./Divider/Divider";
+import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
+import Typography from "./Typography/Typography";
 
 export {
   Avatar,
@@ -12,6 +14,8 @@ export {
   ButtonGroup,
   Card,
   Divider,
+  Heading,
   IconButton,
   MiniActionCard,
+  Typography,
 };
