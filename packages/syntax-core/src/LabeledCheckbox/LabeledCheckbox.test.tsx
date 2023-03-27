@@ -1,7 +1,6 @@
-import { screen, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 import LabeledCheckbox from "./LabeledCheckbox";
-import { expect, vi } from "vitest";
+import { expect } from "vitest";
 
 describe("checkbox", () => {
   it("renders successfully", () => {
