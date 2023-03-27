@@ -1,11 +1,11 @@
 import { screen, render } from "@testing-library/react";
-import Checkbox from "./Checkbox";
+import LabeledCheckbox from "./LabeledCheckbox";
 import { expect } from "vitest";
 
 describe("checkbox", () => {
   it("renders successfully", () => {
     const { baseElement } = render(
-      <Checkbox
+      <LabeledCheckbox
         checked
         onClick={() => {
           /* empty */

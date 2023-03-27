@@ -1,3 +1,6 @@
 {
+  "css.lint.validProperties": [
+    "composes"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

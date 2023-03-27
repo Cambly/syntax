@@ -1,0 +1,92 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputOverlay {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.uncheckedBox {
+  border: 2px solid #236482;
+  background-color: #fff;
+}
+
+.checkedBox {
+  background: #236482;
+  color: #fff;
+}
+
+.sm {
+  height: 16px;
+  width: 16px;
+  border-radius: 6px;
+}
+
+.md {
+  height: 24px;
+  width: 24px;
+  border-radius: 8px;
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.smallIconContainer {
+  height: 8px;
+  width: 12px;
+}
+
+.mediumIconContainer {
+  height: 10px;
+  width: 15px;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+
+/** TODO Change with `Typography` component when available */
+.labelText {
+  color: inherit;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.labelTextSmall {
+  font-size: 12px;
+}
+
+.labelTextMedium {
+  font-size: 14px;
+}
