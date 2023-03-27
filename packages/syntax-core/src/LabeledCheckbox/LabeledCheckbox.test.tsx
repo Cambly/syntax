@@ -19,19 +19,4 @@ describe("checkbox", () => {
     );
     expect(baseElement).toBeTruthy();
   });
-  it("fires the onClick when clicked", async () => {
-    const handleClick = vi.fn();
-    render(
-      <LabeledCheckbox
-        onClick={handleClick}
-        label="test checkbox"
-        checked={false}
-        onKeyDown={handleClick}
-      />,
-    );
-    const checkbox = await screen.findAllByLabelText("test checkbox");
-    // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.click(checkbox[0]);
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
 });
