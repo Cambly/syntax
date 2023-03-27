@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef } from "react";
-import styles from "./LabeledCheckbox.module.css";
 import classNames from "classnames";
+import styles from "./LabeledCheckbox.module.css";
 
 const iconSize = {
   sm: styles.smallIconContainer,
@@ -44,7 +44,7 @@ const Checkbox = ({
    * @defaultValue "md"
    * The size of the checkbox and icon
    */
-  size: "md" | "sm";
+  size?: "md" | "sm";
   /**
    * The text accompanying the checkbox
    */
@@ -53,7 +53,7 @@ const Checkbox = ({
    * @defaultValue false
    * Whether or not there is an error with the input
    */
-  error: boolean;
+  error?: boolean;
 }): ReactElement => {
   // const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
