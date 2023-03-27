@@ -36,6 +36,14 @@
   color: #fff;
 }
 
+.uncheckedError {
+  border-color: #D32A4B;
+}
+
+.checkedError {
+  background-color: #D32A4B;
+}
+
 .sm {
   height: 16px;
   width: 16px;
@@ -75,12 +83,17 @@
   align-items:center;
 }
 
+
 /** TODO Change with `Typography` component when available */
 .labelText {
   color: inherit;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   font-weight: 500;
+}
+
+.errorText {
+  color: #D32A4B;
 }
 
 .labelTextSmall {

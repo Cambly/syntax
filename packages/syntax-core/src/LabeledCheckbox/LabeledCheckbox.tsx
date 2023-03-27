@@ -61,6 +61,8 @@ const Checkbox = ({
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
     [styles.uncheckedBox]: !checked,
     [styles.checkedBox]: checked,
+    [styles.uncheckedError]: !checked && error,
+    [styles.checkedError]: checked && error,
   });
   return (
     <div className={styles.mainContainer}>
@@ -101,7 +103,7 @@ const Checkbox = ({
             </div>
           </div>
         ) : (
-          <div className={checkboxStyling} />
+          <div className={classNames(checkboxStyling)} />
         )}
       </div>
       <div
@@ -109,6 +111,7 @@ const Checkbox = ({
           styles.label,
           styles.labelText,
           textVariant[size],
+          { [styles.errorText]: error },
         )}
       >
         {label}

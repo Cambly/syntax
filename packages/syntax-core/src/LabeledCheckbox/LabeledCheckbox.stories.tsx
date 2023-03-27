@@ -23,6 +23,7 @@ export default {
     },
     onClick: { action: "clicked" },
     onKeyDown: { action: "hit space" },
+    error: { control: "boolean" },
   },
   tags: ["autodocs"],
 } as Meta<typeof LabledCheckbox>;
