@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useId } from "react";
+import React, { ReactElement, useState } from "react";
 import classNames from "classnames";
 import styles from "./LabeledCheckbox.module.css";
 import Typography from "../Typography/Typography";
@@ -8,10 +8,10 @@ const typographySize = {
   md: 200,
 } as const;
 
-// const iconWidth = {
-//   sm:
-//   md:
-// }
+const iconWidth = {
+  sm: 12,
+  md: 20,
+};
 
 /**
  * Checkbox is a clickable element that will show if an option has been selected or not
@@ -61,13 +61,11 @@ const Checkbox = ({
     [styles.checkedError]: checked && error,
     [styles.focusedCheckbox]: isFocused,
   });
-  const id = useId();
 
   return (
-    <div className={styles.mainContainer}>
+    <label className={classNames(styles.mainContainer)}>
       <div className={styles.checkboxContainer}>
         <input
-          id={id}
           type="checkbox"
           className={classNames(styles.inputOverlay, styles[size])}
           checked={checked}
@@ -84,7 +82,7 @@ const Checkbox = ({
         />
         <div className={checkboxStyling}>
           {checked && (
-            <svg aria-hidden="true" viewBox="0 0 24 24" width="12">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
               <path
                 fill="#fff"
                 d="m9 16.2-3.5-3.5a.9839.9839 0 0 0-1.4 0c-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4a.9839.9839 0 0 0-1.4 0L9 16.2z"
@@ -93,15 +91,13 @@ const Checkbox = ({
           )}
         </div>
       </div>
-      <label htmlFor={id} className={classNames(styles.label)}>
-        <Typography
-          size={typographySize[size]}
-          color={error ? "destructive-primary" : "gray800"}
-        >
-          {label}
-        </Typography>
-      </label>
-    </div>
+      <Typography
+        size={typographySize[size]}
+        color={error ? "destructive-primary" : "gray800"}
+      >
+        {label}
+      </Typography>
+    </label>
   );
 };
 
