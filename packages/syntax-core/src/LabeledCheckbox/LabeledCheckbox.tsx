@@ -64,6 +64,7 @@ const Checkbox = ({
     [styles.uncheckedError]: !checked && error,
     [styles.checkedError]: checked && error,
   });
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.checkboxContainer}>
