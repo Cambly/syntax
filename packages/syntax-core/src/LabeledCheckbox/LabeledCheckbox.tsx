@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef } from "react";
 import classNames from "classnames";
 import styles from "./LabeledCheckbox.module.css";
 import Typography from "../Typography/Typography";
