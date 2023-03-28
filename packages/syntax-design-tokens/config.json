@@ -51,6 +51,23 @@
         }
       ]
     },
+    "compose": {
+      "transformGroup": "compose",
+      "buildPath": "dist/compose/",
+      "files": [
+        {
+          "destination": "StyleDictionaryColor.kt",
+          "format": "compose/object",
+          "className": "StyleDictionaryColor",
+          "packageName": "StyleDictionaryColor",
+          "filter": {
+            "attributes": {
+              "category": "color"
+            }
+          }
+        }
+      ]
+    },
     "ios-swift": {
       "transformGroup": "ios-swift",
       "buildPath": "dist/ios-swift/",
