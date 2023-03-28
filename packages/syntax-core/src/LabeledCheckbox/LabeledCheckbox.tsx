@@ -50,14 +50,14 @@ const Checkbox = ({
    */
   error?: boolean;
 }): ReactElement => {
-  const [isFocused, setIsFocused] = useState(false);
+  // const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
     [styles.uncheckedBox]: !checked,
     [styles.checkedBox]: checked,
     [styles.uncheckedError]: !checked && error,
     [styles.checkedError]: checked && error,
-    [styles.focusedCheckbox]: isFocused,
+    // [styles.focusedCheckbox]: isFocused,
   });
 
   return (
@@ -78,12 +78,12 @@ const Checkbox = ({
             }
           }}
           disabled={disabled}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
+          // onFocus={() => {
+          //   setIsFocused(true);
+          // }}
+          // onBlur={() => {
+          //   setIsFocused(false);
+          // }}
         />
         <div className={checkboxStyling}>
           {checked && (
