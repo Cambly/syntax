@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import React, { ReactElement, useState, useId } from "react";
 import classNames from "classnames";
 import styles from "./LabeledCheckbox.module.css";
 import Typography from "../Typography/Typography";
@@ -32,7 +32,7 @@ const Checkbox = ({
   /**
    * The callback to be called when the checkbox value changes
    */
-  onChange: () => void;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * Whether or not the box is disabled
    * @defaultValue false
@@ -53,40 +53,34 @@ const Checkbox = ({
    */
   error?: boolean;
 }): ReactElement => {
-  // const [isFocused, setIsFocused] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
     [styles.uncheckedBox]: !checked,
     [styles.checkedBox]: checked,
     [styles.uncheckedError]: !checked && error,
     [styles.checkedError]: checked && error,
-    // [styles.focusedCheckbox]: isFocused,
+    [styles.focusedCheckbox]: isFocused,
   });
+  const id = useId();
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.checkboxContainer}>
         <input
-          name="checkbox1"
+          id={id}
           type="checkbox"
           className={classNames(styles.inputOverlay, styles[size])}
           checked={checked}
           aria-checked={checked}
           tabIndex={0}
-          ref={inputRef}
-          onChange={() => onChange()}
-          onKeyDown={(e) => {
-            if (e.key === "Space") {
-              onChange();
-            }
-          }}
+          onChange={onChange}
           disabled={disabled}
-          // onFocus={() => {
-          //   setIsFocused(true);
-          // }}
-          // onBlur={() => {
-          //   setIsFocused(false);
-          // }}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
         />
         <div className={checkboxStyling}>
           {checked && (
@@ -99,14 +93,14 @@ const Checkbox = ({
           )}
         </div>
       </div>
-      <div className={classNames(styles.label)}>
+      <label htmlFor={id} className={classNames(styles.label)}>
         <Typography
           size={typographySize[size]}
           color={error ? "destructive-primary" : "gray800"}
         >
           {label}
         </Typography>
-      </div>
+      </label>
     </div>
   );
 };
