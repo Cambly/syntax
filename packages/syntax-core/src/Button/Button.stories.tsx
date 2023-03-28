@@ -3,7 +3,7 @@ import Button from "./Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export default {
-  title: "Button",
+  title: "Components/Button",
   component: Button,
   parameters: {
     design: {
