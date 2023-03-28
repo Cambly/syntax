@@ -1,0 +1,84 @@
+.typography {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+/* Sizes */
+.size100 {
+  font-size: 12px;
+}
+
+.size200 {
+  font-size: 14px;
+}
+
+.size300 {
+  font-size: 16px;
+}
+
+.size500 {
+  font-size: 20px;
+}
+
+.size600 {
+  font-size: 28px;
+}
+
+.size700 {
+  font-size: 40px;
+}
+
+.size800 {
+  font-size: 64px;
+}
+
+/* Align */
+.center {
+  text-align: center;
+}
+
+.forceLeft {
+  text-align: left;
+}
+
+.forceRight {
+  text-align: right;
+}
+
+.start {
+  text-align: start;
+}
+
+.end {
+  text-align: end;
+}
+
+/* Boldness */
+.bold {
+  font-weight: 700;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.semiBold {
+  font-weight: 600;
+}
+
+.heavy {
+  font-weight: 860;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.inline {
+  display: inline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

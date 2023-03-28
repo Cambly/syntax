@@ -33,7 +33,9 @@ const IconButton = ({
   /**
    * The size of the button
    *
-   * `sm`: 32px, `md`: 40px, `lg`: 48px
+   * * `sm`: 32px
+   * * `md`: 40px
+   * * `lg`: 48px
    *
    * @defaultValue "md"
    */
