@@ -25,10 +25,8 @@ const Checkbox = ({
    */
   checked: boolean;
   /**
-   * The callback to be called when the button is clicked
+   * The callback to be called when the checkbox value changes
    */
-  // onClick: React.ChangeEventHandler<HTMLInputElement>;
-  // onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
   onChange: () => void;
   /**
    * Whether or not the box is disabled
