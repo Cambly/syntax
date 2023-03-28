@@ -1,13 +1,14 @@
 import { StoryObj, Meta } from "@storybook/react";
-import LabledCheckbox from "./LabeledCheckbox";
+import LabeledCheckbox from "./LabeledCheckbox";
+import React, { useState } from "react";
 
 export default {
-  title: "LabledCheckbox",
-  component: LabledCheckbox,
+  title: "LabeledCheckbox",
+  component: LabeledCheckbox,
   parameters: {
     design: {
       type: "figma",
-      url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1206-4420&t=yFh7Ijhf6PU7Lin3-0",
+      url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1349-3060&t=xav9res3baecfNQE-0",
     },
   },
   argTypes: {
@@ -26,8 +27,30 @@ export default {
     error: { control: "boolean" },
   },
   tags: ["autodocs"],
-} as Meta<typeof LabledCheckbox>;
+} as Meta<typeof LabeledCheckbox>;
 
-export const Default: StoryObj<typeof LabledCheckbox> = {
+export const Default: StoryObj<typeof LabeledCheckbox> = {
   args: { label: "checkbox label" },
+};
+
+const CheckboxInteractive = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleChange = () => {
+    setIsChecked(!isChecked);
+  };
+  return (
+    <LabeledCheckbox
+      checked={isChecked}
+      onChange={handleChange}
+      label="checkbox label"
+    />
+  );
+};
+
+export const Interactive: StoryObj<typeof LabeledCheckbox> = {
+  render: () => (
+    <>
+      <CheckboxInteractive />
+    </>
+  ),
 };

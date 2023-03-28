@@ -8,10 +8,7 @@ describe("checkbox", () => {
       <LabeledCheckbox
         checked
         label="test"
-        onClick={() => {
-          /* empty */
-        }}
-        onKeyDown={() => {
+        onChange={() => {
           /* empty */
         }}
       />,

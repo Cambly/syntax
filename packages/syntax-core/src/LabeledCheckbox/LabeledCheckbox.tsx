@@ -1,16 +1,11 @@
-import React, { ReactElement, useRef } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./LabeledCheckbox.module.css";
+import Typography from "../Typography/Typography";
 
-const iconSize = {
-  sm: styles.smallIconContainer,
-  md: styles.mediumIconContainer,
-};
-
-const textVariant = {
-  // Replace with `Typography` once it lands in `syntax-core`
-  ["sm"]: styles.labelTextSmall,
-  ["md"]: styles.labelTextMedium,
+const typographySize = {
+  sm: 100,
+  md: 200,
 } as const;
 
 /**
@@ -19,30 +14,30 @@ const textVariant = {
 const Checkbox = ({
   checked = false,
   disabled = false,
-  onClick,
-  onKeyDown,
   size = "md",
   label,
   error = false,
+  onChange,
 }: {
   /**
-   * @defaultValue false
    * Whether or not the box has been clicked
+   * @defaultValue false
    */
   checked: boolean;
   /**
    * The callback to be called when the button is clicked
    */
-  onClick: React.ChangeEventHandler<HTMLInputElement>;
-  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
+  // onClick: React.ChangeEventHandler<HTMLInputElement>;
+  // onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
+  onChange: () => void;
   /**
-   * @defaultValue false
    * Whether or not the box is disabled
+   * @defaultValue false
    */
   disabled?: boolean;
   /**
-   * @defaultValue "md"
    * The size of the checkbox and icon
+   * @defaultValue "md"
    */
   size?: "md" | "sm";
   /**
@@ -50,19 +45,19 @@ const Checkbox = ({
    */
   label: string;
   /**
-   * @defaultValue false
    * Whether or not there is an error with the input
+   * @defaultValue false
    */
   error?: boolean;
 }): ReactElement => {
-  // const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const focusedCheckbox = classNames({ [styles.focusedCheckbox]: isFocused });
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
     [styles.uncheckedBox]: !checked,
     [styles.checkedBox]: checked,
     [styles.uncheckedError]: !checked && error,
     [styles.checkedError]: checked && error,
+    [styles.focusedCheckbox]: isFocused,
   });
 
   return (
@@ -76,46 +71,38 @@ const Checkbox = ({
           aria-checked={checked}
           tabIndex={0}
           ref={inputRef}
-          onChange={onClick}
+          onChange={() => onChange()}
           onKeyDown={(e) => {
             if (e.key === "Space") {
-              onKeyDown(e);
+              onChange();
             }
           }}
           disabled={disabled}
-          // onFocus={() => {
-          // onBlur={() => setIsFocused(false)}
-          //   setIsFocused(true);
-          // }}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
         />
-        {checked ? (
-          <div className={checkboxStyling}>
-            <div className={classNames(styles.iconContainer, iconSize[size])}>
-              <svg
-                className={styles.icon}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-              >
-                <path
-                  fill="#fff"
-                  d="M5.313 10c-.14 0-.278-.028-.417-.083a1.187 1.187 0 0 1-.396-.271L.854 6a1.083 1.083 0 0 1-.323-.823c.007-.326.122-.6.344-.823.222-.222.493-.333.813-.333.319 0 .59.11.812.333l2.854 2.854L12.208.354c.223-.222.49-.333.802-.333.313 0 .58.11.803.333.222.222.333.49.333.802 0 .313-.111.58-.334.802L6.125 9.646a1.187 1.187 0 0 1-.396.27 1.115 1.115 0 0 1-.416.084Z"
-                />
-              </svg>
-            </div>
-          </div>
-        ) : (
-          <div className={classNames(checkboxStyling)} />
-        )}
+        <div className={checkboxStyling}>
+          {checked && (
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="12">
+              <path
+                fill="#fff"
+                d="m9 16.2-3.5-3.5a.9839.9839 0 0 0-1.4 0c-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4a.9839.9839 0 0 0-1.4 0L9 16.2z"
+              ></path>
+            </svg>
+          )}
+        </div>
       </div>
-      <div
-        className={classNames(
-          styles.label,
-          styles.labelText,
-          textVariant[size],
-          { [styles.errorText]: error },
-        )}
-      >
-        {label}
+      <div className={classNames(styles.label)}>
+        <Typography
+          size={typographySize[size]}
+          color={error ? "destructive-primary" : "gray800"}
+        >
+          {label}
+        </Typography>
       </div>
     </div>
   );

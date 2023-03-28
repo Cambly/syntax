@@ -17,6 +17,11 @@
   margin: 0;
 }
 
+.focusedCheckbox {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
 .checkbox {
   position: relative;
   cursor: pointer;
@@ -27,21 +32,21 @@
 }
 
 .uncheckedBox {
-  border: 2px solid #236482;
+  border: 2px solid var(--color-base-primary-700);
   background-color: #fff;
 }
 
 .checkedBox {
-  background: #236482;
+  background: var(--color-base-primary-700);
   color: #fff;
 }
 
 .uncheckedError {
-  border-color: #D32A4B;
+  border-color: var(--color-base-destructive-700);
 }
 
 .checkedError {
-  background-color: #D32A4B;
+  background-color: var(--color-base-destructive-700);
 }
 
 .sm {
@@ -56,50 +61,14 @@
   border-radius: 8px;
 }
 
-.icon {
-  height: 100%;
-  width: 100%;
-}
-
 .iconContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.smallIconContainer {
-  height: 8px;
-  width: 12px;
-}
-
-.mediumIconContainer {
-  height: 10px;
-  width: 15px;
-}
-
 .label {
   display: flex;
   flex-direction: row;
-  align-items:center;
-}
-
-
-/** TODO Change with `Typography` component when available */
-.labelText {
-  color: inherit;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
-  font-weight: 500;
-}
-
-.errorText {
-  color: #D32A4B;
-}
-
-.labelTextSmall {
-  font-size: 12px;
-}
-
-.labelTextMedium {
-  font-size: 14px;
+  align-items: center;
 }
