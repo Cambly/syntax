@@ -4,7 +4,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Star from "@mui/icons-material/Star";
 
 export default {
-  title: "IconButton",
+  title: "Components/IconButton",
   component: IconButton,
   parameters: {
     design: {
