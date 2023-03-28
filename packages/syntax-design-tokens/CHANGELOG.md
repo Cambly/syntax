@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.5.0
+
+### Minor Changes
+
+- 3eaf92a: Colors: add remaining colors
+
 ## 0.4.0
 
 ### Minor Changes
