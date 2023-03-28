@@ -4,50 +4,50 @@ importers:
 
   .:
     devDependencies:
-      '@changesets/cli':
-        specifier: ^2.26.0
-        version: 2.26.0
-      '@testing-library/jest-dom':
-        specifier: ^5.16.5
-        version: 5.16.5
-      '@testing-library/react':
-        specifier: ^14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/user-event':
-        specifier: ^14.4.3
-        version: 14.4.3(@testing-library/dom@9.0.1)
-      '@vitejs/plugin-react':
-        specifier: ^3.1.0
-        version: 3.1.0(vite@4.1.4)
-      eslint:
-        specifier: ^8.35.0
-        version: 8.35.0
-      jsdom:
-        specifier: ^21.1.0
-        version: 21.1.0
-      prettier:
-        specifier: ^2.8.4
-        version: 2.8.4
-      stylelint:
-        specifier: 15.2.0
-        version: 15.2.0
-      stylelint-config-css-modules:
-        specifier: 4.2.0
-        version: 4.2.0(stylelint@15.2.0)
-      stylelint-config-standard:
-        specifier: 30.0.1
-        version: 30.0.1(stylelint@15.2.0)
-      turbo:
-        specifier: ^1.8.6
-        version: 1.8.6
-      vite:
-        specifier: ^4.1.4
-        version: 4.1.4(@types/node@18.14.6)
-      vitest:
-        specifier: ^0.29.2
-        version: 0.29.2(jsdom@21.1.0)
+      '@changesets/cli': 2.26.0
+      '@testing-library/jest-dom': 5.16.5
+      '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
+      '@testing-library/user-event': 14.4.3_@testing-library+dom@9.0.1
+      '@vitejs/plugin-react': 3.1.0_vite@4.1.4
+      eslint: 8.35.0
+      jsdom: 21.1.0
+      prettier: 2.8.4
+      stylelint: 15.2.0
+      stylelint-config-css-modules: 4.2.0_stylelint@15.2.0
+      stylelint-config-standard: 30.0.1_stylelint@15.2.0
+      turbo: 1.8.6
+      vite: 4.1.4
+      vitest: 0.29.2_jsdom@21.1.0
 
   apps/storybook:
+    specifiers:
+      '@cambly/eslint-config-syntax': workspace:1.2.0
+      '@cambly/syntax-core': workspace:1.15.0
+      '@cambly/syntax-design-tokens': workspace:0.5.0
+      '@cambly/syntax-tsconfig': workspace:1.2.0
+      '@emotion/react': ^11.10.6
+      '@emotion/styled': ^11.10.6
+      '@mui/icons-material': ^5.11.11
+      '@mui/material': ^5.11.14
+      '@storybook/addon-a11y': ^7.0.0-beta.62
+      '@storybook/addon-actions': ^7.0.0-beta.62
+      '@storybook/addon-docs': ^7.0.0-beta.62
+      '@storybook/addon-essentials': ^7.0.0-beta.62
+      '@storybook/addon-links': ^7.0.0-beta.62
+      '@storybook/addons': ^7.0.0-beta.62
+      '@storybook/react': ^7.0.0-beta.62
+      '@storybook/react-vite': ^7.0.0-beta.62
+      '@storybook/theming': ^7.0.0-beta.62
+      '@vitejs/plugin-react': ^3.1.0
+      react: ^18.2.0
+      react-docgen-typescript: ^2.2.2
+      react-dom: ^18.2.0
+      serve: ^14.2.0
+      storybook: ^7.0.0-beta.62
+      storybook-addon-designs: 7.0.0-beta.2
+      storybook-dark-mode: ^2.1.1
+      typescript: ^4.9.5
+      vite: ^4.1.4
     dependencies:
       '@cambly/syntax-core':
         specifier: workspace:1.14.0
@@ -134,6 +134,7 @@ importers:
 
   packages/eslint-config-syntax:
     dependencies:
+<<<<<<< HEAD
       eslint-config-next:
         specifier: latest
         version: 13.2.4(eslint@8.35.0)(typescript@4.9.5)
@@ -146,6 +147,12 @@ importers:
       eslint-plugin-react:
         specifier: 7.32.1
         version: 7.32.1(eslint@8.35.0)
+=======
+      eslint-config-next: 13.2.4_ycpbpc6yetojsgtrx3mwntkhsu
+      eslint-config-prettier: 8.7.0_eslint@8.35.0
+      eslint-config-turbo: 1.8.6_eslint@8.35.0
+      eslint-plugin-react: 7.32.1_eslint@8.35.0
+>>>>>>> main
     devDependencies:
       '@cambly/syntax-tsconfig':
         specifier: workspace:*
@@ -161,6 +168,22 @@ importers:
         version: 0.0.54(eslint@8.35.0)(typescript@4.9.5)
 
   packages/syntax-core:
+<<<<<<< HEAD
+=======
+    specifiers:
+      '@cambly/eslint-config-syntax': workspace:*
+      '@cambly/syntax-design-tokens': workspace:0.5.0
+      '@cambly/syntax-tsconfig': workspace:*
+      '@types/react': ^18.0.28
+      '@types/react-dom': ^18.0.11
+      classnames: ^2.3.2
+      eslint: ^8.35.0
+      postcss: ^8.4.21
+      postcss-modules: ^6.0.0
+      react: ^18.2.0
+      tsup: ^6.6.3
+      typescript: ^4.9.5
+>>>>>>> main
     dependencies:
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.4.0
@@ -6012,13 +6035,21 @@ packages:
       eslint: 8.35.0
     dev: false
 
+<<<<<<< HEAD
   /eslint-config-turbo@1.8.6(eslint@8.35.0):
+=======
+  /eslint-config-turbo/1.8.6_eslint@8.35.0:
+>>>>>>> main
     resolution: {integrity: sha512-LSMqrHmFeQcYRuBnzrzw+B2bJ3+o8wxPkRwfK0Y+SSLsq2F/niRJ2kqB8j4uOSCfxybHHpFEB2CgUpQiiyfeoQ==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
       eslint: 8.35.0
+<<<<<<< HEAD
       eslint-plugin-turbo: 1.8.6(eslint@8.35.0)
+=======
+      eslint-plugin-turbo: 1.8.6_eslint@8.35.0
+>>>>>>> main
     dev: false
 
   /eslint-import-resolver-node@0.3.7:
@@ -6185,7 +6216,11 @@ packages:
       - typescript
     dev: true
 
+<<<<<<< HEAD
   /eslint-plugin-turbo@1.8.6(eslint@8.35.0):
+=======
+  /eslint-plugin-turbo/1.8.6_eslint@8.35.0:
+>>>>>>> main
     resolution: {integrity: sha512-LieXzur+4XtIsLst8GdupTMhvGn2ebFetG3AVErh2jHBy1EobPHbatjcdNZQMy5EsdG35axQVB8KFF3jo4u+OQ==}
     peerDependencies:
       eslint: '>6.6.0'
@@ -10575,7 +10610,11 @@ packages:
       yargs: 17.7.1
     dev: true
 
+<<<<<<< HEAD
   /turbo-darwin-64@1.8.6:
+=======
+  /turbo-darwin-64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-VlXkQR0TEBAEyBRsvAXBax+fj1EdPKPliwBaCnRLiDUcA/8wYlKte/Kk6ubmj9E0n7U/B4keCxxHiJZqW/5Rqg==}
     cpu: [x64]
     os: [darwin]
@@ -10583,7 +10622,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-darwin-arm64@1.8.6:
+=======
+  /turbo-darwin-arm64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-w4L2QLj90ex68UXxTPoqtZPl8mWzc6a1RtPjQhoxAWtZf9T2WXi813dCzYEbVUVC09/DOW/VxZRN7sb2r0KP9A==}
     cpu: [arm64]
     os: [darwin]
@@ -10591,7 +10634,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-linux-64@1.8.6:
+=======
+  /turbo-linux-64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-eV245jefIhMAZskqQKalFwreC5UEdQcuHcBiWcgUk0py76fbwB7+1HfH5cmeJlb3a1sB6f3H0HHmGPmb34feCA==}
     cpu: [x64]
     os: [linux]
@@ -10599,7 +10646,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-linux-arm64@1.8.6:
+=======
+  /turbo-linux-arm64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-Kiw3nyEvNU6Bpil4zE5FwhasPAOi59R4YdCmjJp0Sen6V9u+/Jij6SWwaoUdATORJLiYQBbhontWBH55B53VDw==}
     cpu: [arm64]
     os: [linux]
@@ -10607,7 +10658,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-windows-64@1.8.6:
+=======
+  /turbo-windows-64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-34BkAG9r4nE00xeMeVahaF82h8R6SO+IIOcD60fNr2p+Ch+YcQa+DbEWA/KUj3coUTIiNP5XnRCLRUYADdlxjQ==}
     cpu: [x64]
     os: [win32]
@@ -10615,7 +10670,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-windows-arm64@1.8.6:
+=======
+  /turbo-windows-arm64/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-4jWUaI7Lmonp2I3x81GruiCYd0aQsG/xDOYhuv9+j2yIgB/UHJFz/P8PWp/nziwPtGpRd/AheDlPzzyd9lWoqw==}
     cpu: [arm64]
     os: [win32]
@@ -10623,7 +10682,11 @@ packages:
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo@1.8.6:
+=======
+  /turbo/1.8.6:
+>>>>>>> main
     resolution: {integrity: sha512-6IOOaa8ytgjnSCTnp3LKAd2uGBZ/Kmx8ZPlI/YMWuKMUqvkXKLbh+w76ApMgMm+faUqti+QujVWovCu2kY6KuQ==}
     hasBin: true
     requiresBuild: true

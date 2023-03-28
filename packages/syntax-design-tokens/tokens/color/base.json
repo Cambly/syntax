@@ -42,6 +42,14 @@
           "comment": "Default text color, Classroom background"
         }
       },
+      "orange": {
+        "100": { "value": "#FDF2F0" },
+        "200": { "value": "#F6CDC4" },
+        "300": { "value": "#EC9987" },
+        "700": { "value": "#C34124" },
+        "800": { "value": "#732818" },
+        "900": { "value": "#4D1A10" }
+      },
       "primary": {
         "100": { "value": "#eff6fa" },
         "200": { "value": "#c1dbe7" },
@@ -58,12 +66,23 @@
         "800": { "value": "#2d4936" },
         "900": { "value": "#1e3124" }
       },
-      "white": { "value": "#ffffff" }
-    },
-    "extended": {
+      "purple": {
+        "100": { "value": "#F9F5FA" },
+        "200": { "value": "#E8DCEB" },
+        "300": { "value": "#CDB4D3" },
+        "700": { "value": "#8B5F95" },
+        "800": { "value": "#523B58" },
+        "900": { "value": "#37273B" }
+      },
       "yellow": {
-        "700": { "value": "#FFC929" }
-      }
+        "100": { "value": "#FDF5D9" },
+        "200": { "value": "#FBE8A3" },
+        "300": { "value": "#F8D663" },
+        "700": { "value": "#FFC929" },
+        "800": { "value": "#765F1C" },
+        "900": { "value": "#3B3009" }
+      },
+      "white": { "value": "#ffffff" }
     }
   }
 }
