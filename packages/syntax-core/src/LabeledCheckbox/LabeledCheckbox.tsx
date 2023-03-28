@@ -8,6 +8,11 @@ const typographySize = {
   md: 200,
 } as const;
 
+// const iconWidth = {
+//   sm:
+//   md:
+// }
+
 /**
  * Checkbox is a clickable element that will show if an option has been selected or not
  */

@@ -25,7 +25,7 @@
     "stylelint": "15.2.0",
     "stylelint-config-css-modules": "4.2.0",
     "stylelint-config-standard": "30.0.1",
-    "turbo": "^1.8.6",
+    "turbo": "",
     "vite": "^4.1.4",
     "vitest": "^0.29.2"
   },
