@@ -61,15 +61,3 @@
   width: 24px;
   border-radius: 8px;
 }
-
-.iconContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}

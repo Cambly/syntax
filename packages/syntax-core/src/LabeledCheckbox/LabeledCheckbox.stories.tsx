@@ -23,7 +23,6 @@ export default {
       control: "boolean",
     },
     onClick: { action: "clicked" },
-    onKeyDown: { action: "hit space" },
     error: { control: "boolean" },
   },
   tags: ["autodocs"],
@@ -48,9 +47,5 @@ const CheckboxInteractive = () => {
 };
 
 export const Interactive: StoryObj<typeof LabeledCheckbox> = {
-  render: () => (
-    <>
-      <CheckboxInteractive />
-    </>
-  ),
+  render: () => <CheckboxInteractive />,
 };
