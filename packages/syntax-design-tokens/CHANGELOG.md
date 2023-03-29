@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.6.0
+
+### Minor Changes
+
+- 423400b: Add kotlin/compose output for design tokens
+
 ## 0.5.0
 
 ### Minor Changes
