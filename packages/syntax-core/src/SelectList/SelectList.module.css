@@ -4,19 +4,29 @@
   gap: 6px;
 }
 
+.outerTextContainer {
+  padding-inline-start: 4px;
+}
+
+.selectWrapper {
+  display: flex;
+}
+
 .selectBox {
-  appearance: none;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.divSelect {
   width: 100%;
   padding: 0 12px;
   display: flex;
   align-items: center;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
   border: 1px solid #767676;
-}
-
-.placeholderSelection {
-  color: var(--color-base-gray-700);
+  justify-content: space-between;
 }
 
 .smBox {
@@ -45,4 +55,10 @@
 
 .lgFont {
   font-size: 16px;
+}
+
+.selectError {
+  color: var(--color-base-destructive-700);
+  border-color: var(--color-base-destructive-700);
+  background-color: var(--color-base-destructive-100);
 }
