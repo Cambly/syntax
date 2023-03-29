@@ -44,6 +44,7 @@ const SelectList = ({
   selectedValue = "",
   onChange,
   error = false,
+  disabled = false,
 }: {
   /**
    * Text showing in select box if no option has been chosen
@@ -80,7 +81,14 @@ const SelectList = ({
    * The callback to be called when an option is selected
    */
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  /**
+   * true if there is an error with the selection
+   */
   error?: boolean;
+  /**
+   * true if the select dropdown is disabled
+   */
+  disabled?: boolean;
 }): ReactElement => {
   const divSelectBox = classNames(styles.divSelect, selectBoxSize[size], {
     [styles.selectError]: error,
@@ -90,7 +98,11 @@ const SelectList = ({
     {},
   );
   return (
-    <div className={styles.selectContainer}>
+    <div
+      className={classNames(styles.selectContainer, {
+        [styles.opacityOverlay]: disabled,
+      })}
+    >
       <div className={styles.outerTextContainer}>
         <Typography
           size={100}
@@ -101,6 +113,7 @@ const SelectList = ({
       </div>
       <div className={styles.selectWrapper}>
         <select
+          disabled={disabled}
           required
           className={classNames(styles.selectBox, selectBoxSize[size])}
           onChange={onChange}
