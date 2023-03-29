@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useId, useState } from "react";
 import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import Typography from "../Typography/Typography";
@@ -99,22 +99,24 @@ const SelectList = ({
     (result, curr) => ({ ...result, [curr.value]: curr.label }),
     {},
   );
+  const id = useId();
   return (
     <div
       className={classNames(styles.selectContainer, {
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <div className={styles.outerTextContainer}>
+      <label htmlFor={id} className={styles.outerTextContainer}>
         <Typography
           size={100}
           color={error ? "destructive-primary" : "gray700"}
         >
           {label}
         </Typography>
-      </div>
+      </label>
       <div className={styles.selectWrapper}>
         <select
+          id={id}
           disabled={disabled}
           required
           className={classNames(styles.selectBox, selectBoxSize[size])}
