@@ -1,0 +1,48 @@
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.selectBox {
+  appearance: none;
+  width: 100%;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  border: 1px solid #767676;
+}
+
+.placeholderSelection {
+  color: var(--color-base-gray-700);
+}
+
+.smBox {
+  height: 32px;
+  border-radius: 12px;
+  padding: 0 10px;
+}
+
+.mdBox {
+  height: 40px;
+  border-radius: 12px;
+}
+
+.lgBox {
+  height: 48px;
+  border-radius: 16px;
+}
+
+.smFont {
+  font-size: 12px;
+}
+
+.mdFont {
+  font-size: 14px;
+}
+
+.lgFont {
+  font-size: 16px;
+}
