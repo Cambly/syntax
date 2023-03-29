@@ -37,6 +37,11 @@
   justify-content: space-between;
 }
 
+.focusedDivSelect {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
 .smBox {
   height: 32px;
   border-radius: 12px;

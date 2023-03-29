@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import Typography from "../Typography/Typography";
@@ -90,8 +90,10 @@ const SelectList = ({
    */
   disabled?: boolean;
 }): ReactElement => {
+  const [isFocused, setIsFocused] = useState(false);
   const divSelectBox = classNames(styles.divSelect, selectBoxSize[size], {
     [styles.selectError]: error,
+    [styles.focusedDivSelect]: isFocused,
   });
   const valueToLabel: Record<string, string> = options.reduce(
     (result, curr) => ({ ...result, [curr.value]: curr.label }),
@@ -117,20 +119,16 @@ const SelectList = ({
           required
           className={classNames(styles.selectBox, selectBoxSize[size])}
           onChange={onChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         >
-          <option
-            disabled
-            selected={selectedValue === ""}
-            aria-selected={selectedValue === ""}
-            value=""
-          >
+          <option disabled aria-selected={selectedValue === ""} value="">
             {placeholderText}
           </option>
           {options.map((o) => (
             <option
               key={o.value}
               value={o.value}
-              selected={selectedValue === o.value}
               aria-selected={selectedValue === o.value}
             >
               {o.label}
