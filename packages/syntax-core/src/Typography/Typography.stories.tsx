@@ -2,7 +2,7 @@ import { StoryObj, Meta } from "@storybook/react";
 import Typography from "./Typography";
 
 export default {
-  title: "Typography",
+  title: "Components/Typography",
   component: Typography,
   parameters: {
     design: {

@@ -1,6 +1,6 @@
 {
   "name": "@cambly/syntax-core",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cambly/syntax-design-tokens": "workspace:0.5.0"
+    "@cambly/syntax-design-tokens": "workspace:0.6.0"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",

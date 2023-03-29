@@ -1,5 +1,18 @@
 # @cambly/syntax-core
 
+## 1.16.0
+
+### Minor Changes
+
+- 17b074d: Adding labeled checkbox component
+
+## 1.15.1
+
+### Patch Changes
+
+- Updated dependencies [423400b]
+  - @cambly/syntax-design-tokens@0.6.0
+
 ## 1.15.0
 
 ### Minor Changes

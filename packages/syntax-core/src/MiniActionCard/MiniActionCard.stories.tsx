@@ -3,7 +3,7 @@ import MiniActionCard from "./MiniActionCard";
 import image from "../../../../apps/storybook/assets/images/book.svg";
 
 export default {
-  title: "MiniActionCard",
+  title: "Components/MiniActionCard",
   component: MiniActionCard,
   parameters: {
     design: {
