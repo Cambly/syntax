@@ -118,7 +118,12 @@ const SelectList = ({
           className={classNames(styles.selectBox, selectBoxSize[size])}
           onChange={onChange}
         >
-          <option disabled selected={selectedValue === ""} value="">
+          <option
+            disabled
+            selected={selectedValue === ""}
+            aria-selected={selectedValue === ""}
+            value=""
+          >
             {placeholderText}
           </option>
           {options.map((o) => (
@@ -126,6 +131,7 @@ const SelectList = ({
               key={o.value}
               value={o.value}
               selected={selectedValue === o.value}
+              aria-selected={selectedValue === o.value}
             >
               {o.label}
             </option>
