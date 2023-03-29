@@ -1,0 +1,63 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputOverlay {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  margin: 0;
+}
+
+.focusedCheckbox {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.uncheckedBox {
+  border: 2px solid var(--color-base-primary-700);
+  background-color: #fff;
+}
+
+.checkedBox {
+  background: var(--color-base-primary-700);
+  color: #fff;
+}
+
+.uncheckedError {
+  border-color: var(--color-base-destructive-700);
+}
+
+.checkedError {
+  background-color: var(--color-base-destructive-700);
+}
+
+.sm {
+  height: 16px;
+  width: 16px;
+  border-radius: 6px;
+}
+
+.md {
+  height: 24px;
+  width: 24px;
+  border-radius: 8px;
+}
