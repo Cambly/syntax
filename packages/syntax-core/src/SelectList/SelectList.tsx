@@ -91,7 +91,7 @@ const SelectList = ({
         >
           {selectedValue === "" && (
             <option disabled aria-selected value="" selected>
-              <Typography>{placeholderText}</Typography>
+              {placeholderText}
             </option>
           )}
           {children}
