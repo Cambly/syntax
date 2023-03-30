@@ -56,8 +56,10 @@ const Checkbox = ({
   const [isFocused, setIsFocused] = useState(false);
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
     [styles.uncheckedBox]: !checked,
+    [styles.uncheckedErrorBorder]: !checked && error,
+    [styles.uncheckedBorder]: !checked && !error,
     [styles.checkedBox]: checked,
-    [styles.uncheckedError]: !checked && error,
+    [styles.checkedNonError]: checked && !error,
     [styles.checkedError]: checked && error,
     [styles.focusedCheckbox]: isFocused,
   });
