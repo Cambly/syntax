@@ -91,15 +91,20 @@ const SelectList = ({
   disabled?: boolean;
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState(placeholderText);
   const divSelectBox = classNames(styles.divSelect, selectBoxSize[size], {
     [styles.selectError]: error,
     [styles.focusedDivSelect]: isFocused,
   });
-  const valueToLabel: Record<string, string> = options.reduce(
-    (result, curr) => ({ ...result, [curr.value]: curr.label }),
-    {},
-  );
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectElement = e.nativeEvent.target as HTMLSelectElement;
+    const index = selectElement.selectedIndex;
+    const { innerText } = selectElement[index];
+    setSelectedLabel(innerText);
+    onChange(e);
+  };
   const id = useId();
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -120,7 +125,7 @@ const SelectList = ({
           disabled={disabled}
           required
           className={classNames(styles.selectBox, selectBoxSize[size])}
-          onChange={onChange}
+          onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         >
@@ -142,7 +147,7 @@ const SelectList = ({
             size={fontSize[size]}
             color={fontColor(error, selectedValue)}
           >
-            {valueToLabel[selectedValue] || placeholderText}
+            {selectedLabel}
           </Typography>
           <svg
             focusable="false"

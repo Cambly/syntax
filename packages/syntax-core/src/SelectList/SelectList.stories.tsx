@@ -44,15 +44,15 @@ export const Default: StoryObj<typeof SelectList> = {
 };
 
 const SelectListInteractive = (): ReactElement => {
-  const [selection, setSelection] = useState("");
+  const [selectionValue, setSelectionValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelection(e.target.value);
+    setSelectionValue(e.target.value);
   };
   return (
     <SelectList
       label="Label"
       helperText="Helper text"
-      selectedValue={selection}
+      selectedValue={selectionValue}
       placeholderText="Placeholder"
       onChange={onChange}
       options={options}
