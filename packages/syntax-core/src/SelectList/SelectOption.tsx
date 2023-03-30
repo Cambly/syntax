@@ -9,7 +9,11 @@ const SelectOption = ({
   label: string;
   disabled?: boolean;
 }): ReactElement => (
-  <option value={value} disabled={disabled}>
+  <option
+    data-testid={`select-option-${value}`}
+    value={value}
+    disabled={disabled}
+  >
     {label}
   </option>
 );

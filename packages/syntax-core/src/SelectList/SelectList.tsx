@@ -82,6 +82,7 @@ const SelectList = ({
       <div className={styles.selectWrapper}>
         <select
           id={id}
+          data-testid="test-select-id"
           disabled={disabled}
           className={classNames(styles.selectBox, styles[size], {
             [styles.unselected]: !selectedValue && !error,

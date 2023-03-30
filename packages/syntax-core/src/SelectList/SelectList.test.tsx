@@ -1,21 +1,8 @@
-import { render } from "@testing-library/react";
+/* eslint-disable testing-library/no-await-sync-events */
+import { render, screen } from "@testing-library/react";
 import SelectList from "./SelectList";
-import { expect } from "vitest";
-import SelectOption from "./SelectOption";
-
-const options = [
-  { label: "Option 1", value: "opt1" },
-  { label: "Option 2", value: "opt2" },
-  { label: "Option 3", value: "opt3" },
-];
-
-const Options = () => (
-  <>
-    {options.map((o) => (
-      <SelectOption key={o.value} value={o.value} label={o.label} />
-    ))}
-  </>
-);
+import { expect, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 
 describe("select", () => {
   it("renders successfully", () => {
@@ -27,12 +14,15 @@ describe("select", () => {
         }}
         placeholderText="placeholder"
       >
-        <Options />
+        <>
+          <SelectList.Option value="1" label="1" />
+          <SelectList.Option value="2" label="2" />
+        </>
       </SelectList>,
     );
     expect(baseElement).toBeTruthy();
   });
-  it("fires the onChange when option is clicked", async () => {
+  it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();
     render(
       <SelectList
@@ -41,12 +31,40 @@ describe("select", () => {
         placeholderText="placeholder"
         label="Select"
       >
-        <Options />
+        <>
+          <SelectList.Option value="1" label="1" />
+          <SelectList.Option value="2" label="2" />
+          <SelectList.Option value="3" label="3" />
+        </>
       </SelectList>,
     );
-    const selectDropdown = await screen.findByLabel("Select");
-    // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.click(checkbox);
-    expect(handleChange).toHaveBeenCalledTimes(1);
+    await userEvent.selectOptions(screen.getByTestId("test-select-id"), "1");
+    await userEvent.selectOptions(screen.getByTestId("test-select-id"), "2");
+    expect(handleChange).toHaveBeenCalledTimes(2);
+  });
+  it("changes updates selections when selecting multiple options  ", async () => {
+    render(
+      <SelectList
+        selectedValue=""
+        onChange={() => {
+          /* empty */
+        }}
+        placeholderText="placeholder"
+        label="Select"
+      >
+        <>
+          <SelectList.Option value="1" label="1" />
+          <SelectList.Option value="2" label="2" />
+          <SelectList.Option value="3" label="3" />
+        </>
+      </SelectList>,
+    );
+    await userEvent.selectOptions(screen.getByTestId("test-select-id"), "1");
+    const option1 = screen.getByTestId<HTMLOptionElement>("select-option-1");
+    expect(option1.selected).toBeTruthy();
+    await userEvent.selectOptions(screen.getByTestId("test-select-id"), "2");
+    const option2 = screen.getByTestId<HTMLOptionElement>("select-option-2");
+    expect(option2.selected).toBeTruthy();
+    expect(option1.selected).toBeFalsy();
   });
 });
