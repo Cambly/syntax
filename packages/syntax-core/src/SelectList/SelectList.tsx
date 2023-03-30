@@ -1,4 +1,4 @@
-import React, { ReactElement, useId, useState } from "react";
+import React, { ReactElement, ReactNode, useId } from "react";
 import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import Typography from "../Typography/Typography";
@@ -14,30 +14,15 @@ const selectBoxSize = {
   lg: styles.lgBox,
 } as const;
 
-const fontSize = {
-  sm: 100,
-  md: 200,
-  lg: 300,
-} as const;
-
 const iconSize = {
   sm: 20,
   md: 24,
   lg: 24,
 } as const;
 
-const fontColor = (error: boolean, selected: string) => {
-  if (error) {
-    return "destructive-primary";
-  } else if (selected) {
-    return "gray800";
-  }
-  return "gray700";
-};
-
 const SelectList = ({
   placeholderText,
-  options,
+  // options,
   size = "md",
   label,
   helperText,
@@ -45,6 +30,7 @@ const SelectList = ({
   onChange,
   error = false,
   disabled = false,
+  children,
 }: {
   /**
    * Text showing in select box if no option has been chosen
@@ -55,7 +41,7 @@ const SelectList = ({
    * Array of objects {label: string, value: string}
    *
    */
-  options: OptionData[];
+  // options: OptionData[];
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -89,22 +75,12 @@ const SelectList = ({
    * true if the select dropdown is disabled
    */
   disabled?: boolean;
+  /**
+   * One or more SelectList.Option components.
+   */
+  children: ReactNode;
 }): ReactElement => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [selectedLabel, setSelectedLabel] = useState(placeholderText);
-  const divSelectBox = classNames(styles.divSelect, selectBoxSize[size], {
-    [styles.selectError]: error,
-    [styles.focusedDivSelect]: isFocused,
-  });
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectElement = e.nativeEvent.target as HTMLSelectElement;
-    const index = selectElement.selectedIndex;
-    const { innerText } = selectElement[index];
-    setSelectedLabel(innerText);
-    onChange(e);
-  };
   const id = useId();
-
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -124,31 +100,20 @@ const SelectList = ({
           id={id}
           disabled={disabled}
           required
-          className={classNames(styles.selectBox, selectBoxSize[size])}
-          onChange={handleChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          className={classNames(styles.selectBox, selectBoxSize[size], {
+            [styles.gray700Font]: !selectedValue,
+            [styles.selectError]: error,
+          })}
+          onChange={onChange}
         >
-          <option disabled aria-selected={selectedValue === ""} value="">
-            {placeholderText}
-          </option>
-          {options.map((o) => (
-            <option
-              key={o.value}
-              value={o.value}
-              aria-selected={selectedValue === o.value}
-            >
-              {o.label}
+          {selectedValue === "" && (
+            <option disabled aria-selected value="" selected>
+              <Typography>{placeholderText}</Typography>
             </option>
-          ))}
+          )}
+          {children}
         </select>
-        <div className={divSelectBox}>
-          <Typography
-            size={fontSize[size]}
-            color={fontColor(error, selectedValue)}
-          >
-            {selectedLabel}
-          </Typography>
+        <div className={styles.arrowIcon}>
           <svg
             focusable="false"
             aria-hidden="true"

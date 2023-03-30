@@ -14,32 +14,43 @@
 
 .selectWrapper {
   display: flex;
+  position: relative;
 }
 
 .selectBox {
-  width: 100%;
-  z-index: 1;
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.selectBox:disabled {
-  cursor: auto;
-}
-
-.divSelect {
   width: 100%;
   padding: 0 12px;
   display: flex;
   align-items: center;
   border: 1px solid #767676;
   justify-content: space-between;
+  cursor: pointer;
+  appearance: none;
+  composes: typography from "../Typography/Typography.module.css";
+  color: var(--color-base-gray-800);
 }
 
-.focusedDivSelect {
+.selectBox:focus-visible {
   box-shadow: 0 0 0 4px #000;
   outline: solid 2px #fff;
+}
+
+.gray700Font {
+  color: var(--color-base-gray-700);
+}
+
+.arrowIcon {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-inline-end: 8px;
+  pointer-events: none;
+}
+
+.selectBox:disabled {
+  cursor: auto;
 }
 
 .smBox {

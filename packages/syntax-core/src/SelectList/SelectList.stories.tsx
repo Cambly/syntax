@@ -1,6 +1,7 @@
 import { StoryObj, Meta } from "@storybook/react";
 import SelectList from "./SelectList";
 import React, { useState, ReactElement } from "react";
+import SelectOption from "./SelectOption";
 
 export default {
   title: "SelectList",
@@ -34,12 +35,20 @@ const options = [
   { label: "option 3", value: "opt3" },
 ];
 
+const Options = () => (
+  <>
+    {options.map((o) => (
+      <SelectOption key={o.value} value={o.value} label={o.label} />
+    ))}
+  </>
+);
+
 export const Default: StoryObj<typeof SelectList> = {
   args: {
-    options,
     placeholderText: "Placeholder",
     helperText: "Helper text",
     label: "Label",
+    children: <Options />,
   },
 };
 
@@ -55,8 +64,9 @@ const SelectListInteractive = (): ReactElement => {
       selectedValue={selectionValue}
       placeholderText="Placeholder"
       onChange={onChange}
-      options={options}
-    />
+    >
+      <Options />
+    </SelectList>
   );
 };
 
