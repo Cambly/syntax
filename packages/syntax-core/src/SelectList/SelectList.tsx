@@ -3,11 +3,6 @@ import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import Typography from "../Typography/Typography";
 
-export interface OptionData {
-  label: string;
-  value: string;
-}
-
 const iconSize = {
   sm: 20,
   md: 24,
