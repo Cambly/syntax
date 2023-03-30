@@ -53,32 +53,20 @@
   cursor: auto;
 }
 
-.smBox {
+.sm {
   height: 32px;
   border-radius: 12px;
   padding: 0 10px;
 }
 
-.mdBox {
+.md {
   height: 40px;
   border-radius: 12px;
 }
 
-.lgBox {
+.lg {
   height: 48px;
   border-radius: 16px;
-}
-
-.smFont {
-  font-size: 12px;
-}
-
-.mdFont {
-  font-size: 14px;
-}
-
-.lgFont {
-  font-size: 16px;
 }
 
 .selectError {

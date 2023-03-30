@@ -8,12 +8,6 @@ export interface OptionData {
   value: string;
 }
 
-const selectBoxSize = {
-  sm: styles.smBox,
-  md: styles.mdBox,
-  lg: styles.lgBox,
-} as const;
-
 const iconSize = {
   sm: 20,
   md: 24,
@@ -21,27 +15,49 @@ const iconSize = {
 } as const;
 
 const SelectList = ({
-  placeholderText,
-  // options,
-  size = "md",
-  label,
-  helperText,
-  selectedValue = "",
-  onChange,
-  error = false,
-  disabled = false,
   children,
+  disabled = false,
+  error = false,
+  helperText,
+  label,
+  onChange,
+  placeholderText,
+  selectedValue = "",
+  size = "md",
 }: {
+  /**
+   * One or more SelectList.Option components.
+   */
+  children: ReactNode;
+  /**
+   * true if the select dropdown is disabled
+   */
+  disabled?: boolean;
+  /**
+   * true if there is an error with the selection
+   */
+  error?: boolean;
+  /**
+   * Text shown below select box
+   */
+  helperText?: string;
+  /**
+   * Text shown above select box
+   */
+  label?: string;
+  /**
+   * The callback to be called when an option is selected
+   */
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
   /**
    * Text showing in select box if no option has been chosen
    *
    */
   placeholderText: string;
   /**
-   * Array of objects {label: string, value: string}
-   *
+   * Value of the currently selected option
    */
-  // options: OptionData[];
+  selectedValue: string;
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -51,34 +67,6 @@ const SelectList = ({
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
-  /**
-   * Text shown above select box
-   */
-  label?: string;
-  /**
-   * Text shown below select box
-   */
-  helperText?: string;
-  /**
-   * Value of the currently selected option
-   */
-  selectedValue: string;
-  /**
-   * The callback to be called when an option is selected
-   */
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  /**
-   * true if there is an error with the selection
-   */
-  error?: boolean;
-  /**
-   * true if the select dropdown is disabled
-   */
-  disabled?: boolean;
-  /**
-   * One or more SelectList.Option components.
-   */
-  children: ReactNode;
 }): ReactElement => {
   const id = useId();
   return (
@@ -100,7 +88,7 @@ const SelectList = ({
           id={id}
           disabled={disabled}
           required
-          className={classNames(styles.selectBox, selectBoxSize[size], {
+          className={classNames(styles.selectBox, styles[size], {
             [styles.gray700Font]: !selectedValue,
             [styles.selectError]: error,
           })}
