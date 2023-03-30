@@ -1,7 +1,7 @@
 .selectContainer {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .opacityOverlay {
@@ -27,7 +27,6 @@
   cursor: pointer;
   appearance: none;
   composes: typography from "../Typography/Typography.module.css";
-  color: var(--color-base-gray-800);
 }
 
 .selectBox:focus-visible {
@@ -35,8 +34,12 @@
   outline: solid 2px #fff;
 }
 
-.gray700Font {
+.unselected {
   color: var(--color-base-gray-700);
+}
+
+.selected {
+  color: var(--color-base-gray-800);
 }
 
 .arrowIcon {
@@ -56,7 +59,6 @@
 .sm {
   height: 32px;
   border-radius: 12px;
-  padding: 0 10px;
 }
 
 .md {

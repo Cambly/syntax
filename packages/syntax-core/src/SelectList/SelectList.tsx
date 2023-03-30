@@ -82,9 +82,9 @@ const SelectList = ({
         <select
           id={id}
           disabled={disabled}
-          required
           className={classNames(styles.selectBox, styles[size], {
-            [styles.gray700Font]: !selectedValue,
+            [styles.unselected]: !selectedValue && !error,
+            [styles.selected]: selectedValue && !error,
             [styles.selectError]: error,
           })}
           onChange={onChange}
