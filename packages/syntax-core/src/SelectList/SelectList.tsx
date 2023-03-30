@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode, useId } from "react";
 import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import Typography from "../Typography/Typography";
+import SelectOption from "./SelectOption";
 
 const iconSize = {
   sm: 20,
@@ -123,3 +124,5 @@ const SelectList = ({
 };
 
 export default SelectList;
+
+SelectList.Option = SelectOption;
