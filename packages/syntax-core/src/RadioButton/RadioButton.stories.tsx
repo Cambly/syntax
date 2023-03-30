@@ -22,7 +22,6 @@ export default {
     disabled: {
       control: "boolean",
     },
-    onClick: { action: "clicked" },
     error: { control: "boolean" },
     label: { control: "string" },
   },
@@ -34,16 +33,25 @@ export const Default: StoryObj<typeof RadioButton> = {
 };
 
 const RadioButtonInteractive = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  const handleChange = () => {
-    setIsChecked(!isChecked);
+  const [selectedOption, setSelectedOption] = useState("");
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(event.target.value);
   };
   return (
-    <RadioButton
-      checked={isChecked}
-      onChange={handleChange}
-      label="radiobutton label"
-    />
+    <form style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+      <RadioButton
+        checked={selectedOption === "male"}
+        value="male"
+        onChange={handleChange}
+        label="Male"
+      />
+      <RadioButton
+        checked={selectedOption === "female"}
+        value="female"
+        onChange={handleChange}
+        label="Female"
+      />
+    </form>
   );
 };
 

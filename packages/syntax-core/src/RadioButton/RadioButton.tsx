@@ -1,4 +1,4 @@
-import React, { ReactElement, useId } from "react";
+import React, { ReactElement } from "react";
 import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";
@@ -8,13 +8,22 @@ import Typography from "../Typography/Typography";
  * Radio Button (Base) This is a single lonely radio button with accompanying text
  */
 const RadioButton = ({
+  label,
+  onChange,
   checked = false,
   error = false,
   size = "md",
   disabled = false,
-  label,
-  onChange,
+  value = "",
 }: {
+  /**
+   * Always add a label tag for best accessibility practices
+   */
+  label: string;
+  /**
+   * The callback to be called when the button is clicked
+   */
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * @defaultValue false
    * Whether or not the box has been clicked
@@ -36,13 +45,9 @@ const RadioButton = ({
    */
   disabled?: boolean;
   /**
-   * Always add a label tag for best accessibility practices
+   * Value of the selected radio option
    */
-  label: string;
-  /**
-   * The callback to be called when the button is clicked
-   */
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value?: string;
 }): ReactElement => {
   const checkedStyles = classnames(styles.outer, styles[size], {
     [styles.errorOuter]: error,
@@ -50,9 +55,13 @@ const RadioButton = ({
   const uncheckedStyles = classnames(styles.background, styles[size], {
     [styles.errorBackground]: error,
   });
+  const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
+    [styles.smHeight]: size === "sm",
+    [styles.mdHeight]: size === "md",
+  });
 
   return (
-    <label className={styles.baseRadioButtonSingle}>
+    <label className={baseRadioButtonSingle}>
       <input
         type="radio"
         className={styles.radioStyleOverride}
@@ -61,6 +70,7 @@ const RadioButton = ({
         tabIndex={0}
         onChange={onChange}
         disabled={disabled}
+        value={value || label}
       />
       {checked ? (
         <div className={checkedStyles}>

@@ -18,14 +18,9 @@ describe("radioButton", () => {
 
   it("fires onChange when clicked", async () => {
     const handleChange = vi.fn();
-    render(
-      <RadioButton
-        checked
-        label="Radio Button Label"
-        onChange={handleChange}
-      />,
-    );
+    render(<RadioButton label="Radio Button Label" onChange={handleChange} />);
     const radioButton = await screen.findByLabelText("Radio Button Label");
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
@@ -34,21 +29,17 @@ describe("radioButton", () => {
     const handleChange = vi.fn();
     render(
       <RadioButton
-        checked
+        checked={true}
         label="Radio Button Label"
         onChange={handleChange}
       />,
     );
     const radioButton = await screen.findByLabelText("Radio Button Label");
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
-    expect(handleChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        target: expect.objectContaining({
-          checked: true,
-        }),
-      }),
-    );
+    // NB: radio buttons do nothing if they're already checked
+    // but got clicked on
+    expect(handleChange).not.toHaveBeenCalled();
   });
 
   it("successfully grabs input unchecked status when clicked", async () => {
@@ -61,6 +52,7 @@ describe("radioButton", () => {
       />,
     );
     const radioButton = await screen.findByLabelText("Radio Button Label");
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
