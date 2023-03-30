@@ -50,14 +50,16 @@ const RadioButton = ({
   value?: string;
 }): ReactElement => {
   const checkedStyles = classnames(styles.outer, styles[size], {
-    [styles.errorOuter]: error,
+    [styles.errorOuterBackgroundColor]: error,
+    [styles.outerBackgroundColor]: !error,
   });
   const uncheckedStyles = classnames(styles.background, styles[size], {
-    [styles.errorBackground]: error,
+    [styles.errorBorderColor]: error,
+    [styles.borderColor]: !error,
   });
   const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
-    [styles.smHeight]: size === "sm",
-    [styles.mdHeight]: size === "md",
+    [styles.smBase]: size === "sm",
+    [styles.mdBase]: size === "md",
   });
 
   return (
