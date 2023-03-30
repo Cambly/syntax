@@ -4,27 +4,22 @@ import classnames from "classnames";
 import styles from "./RadioButton.module.css";
 import Typography from "../Typography/Typography";
 
-const typographySize = {
-  sm: 100,
-  md: 200,
-};
-
 /**
  * Radio Button (Base) This is a single lonely radio button with accompanying text
  */
 const RadioButton = ({
   checked = false,
+  error = false,
+  size = "md",
   disabled = false,
   label,
-  size = "md",
-  error = false,
   onChange,
 }: {
   /**
    * @defaultValue false
    * Whether or not the box has been clicked
    */
-  checked: boolean;
+  checked?: boolean;
   /**
    * @defaultValue false
    * Whether to show error color schema
@@ -34,20 +29,20 @@ const RadioButton = ({
    * @defaultValue "md"
    * Size of the components
    */
-  size?: string;
-  /**
-   * The callback to be called when the button is clicked
-   */
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  /**
-   * Always add a label tag for best accessibility practices
-   */
-  label: string;
+  size?: "md" | "sm";
   /**
    * @defaultValue false
    * Whether or not the box is disabled
    */
   disabled?: boolean;
+  /**
+   * Always add a label tag for best accessibility practices
+   */
+  label: string;
+  /**
+   * The callback to be called when the button is clicked
+   */
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }): ReactElement => {
   const checkedStyles = classnames(styles.outer, styles[size], {
     [styles.errorOuter]: error,
@@ -56,13 +51,11 @@ const RadioButton = ({
     [styles.errorBackground]: error,
   });
 
-  const id = useId();
   return (
     <label className={styles.baseRadioButtonSingle}>
       <input
-        id={id}
         type="radio"
-        className={`${styles.radioStyleOverride}`}
+        className={styles.radioStyleOverride}
         checked={checked}
         aria-checked={checked}
         tabIndex={0}
@@ -77,7 +70,7 @@ const RadioButton = ({
         <div className={uncheckedStyles} />
       )}
       <Typography
-        size={typographySize[size]}
+        size={size === "md" ? 200 : 100}
         color={error ? "destructive-primary" : "gray800"}
       >
         {label}
