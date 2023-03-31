@@ -35,7 +35,8 @@ const SelectList = ({
    */
   error?: boolean;
   /**
-   * Text shown below select box if there is an input error
+   * Text shown below select box if there is an input error.
+   * Should only have a value if error = true
    */
   errorText?: string;
   /**
