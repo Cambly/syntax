@@ -4,60 +4,74 @@ import SelectList from "./SelectList";
 import { expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
+const SelectDropdown = ({
+  numberOfOptions,
+  onChange,
+}: {
+  numberOfOptions: number;
+  onChange: () => void;
+}) => {
+  const options = [];
+  for (let i = 1; i <= numberOfOptions; i++) {
+    options.push({ value: String(i), label: String(i) });
+  }
+  return (
+    <SelectList
+      selectedValue=""
+      onChange={onChange}
+      placeholderText="placeholder"
+      label="Select"
+    >
+      <>
+        {options.map((o) => (
+          <SelectList.Option key={o.value} value={o.value} label={o.value} />
+        ))}
+      </>
+    </SelectList>
+  );
+};
+
 describe("select", () => {
   it("renders successfully", () => {
     const { baseElement } = render(
-      <SelectList
-        selectedValue=""
+      <SelectDropdown
         onChange={() => {
           /* empty */
         }}
-        placeholderText="placeholder"
-      >
-        <>
-          <SelectList.Option value="1" label="1" />
-          <SelectList.Option value="2" label="2" />
-        </>
-      </SelectList>,
+        numberOfOptions={1}
+      />,
     );
     expect(baseElement).toBeTruthy();
   });
+  it("should display the correct number of options", () => {
+    const numberOfOptions = 4;
+    render(
+      <SelectDropdown
+        onChange={() => {
+          /* empty */
+        }}
+        numberOfOptions={numberOfOptions}
+      />,
+    );
+
+    // Expect one additional option because of the placeholder option
+    expect(screen.getAllByRole("option").length).toBe(numberOfOptions + 1);
+  });
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();
-    render(
-      <SelectList
-        selectedValue=""
-        onChange={handleChange}
-        placeholderText="placeholder"
-        label="Select"
-      >
-        <>
-          <SelectList.Option value="1" label="1" />
-          <SelectList.Option value="2" label="2" />
-          <SelectList.Option value="3" label="3" />
-        </>
-      </SelectList>,
-    );
+    render(<SelectDropdown onChange={handleChange} numberOfOptions={3} />);
     await userEvent.selectOptions(screen.getByTestId("test-select-id"), "1");
     await userEvent.selectOptions(screen.getByTestId("test-select-id"), "2");
     expect(handleChange).toHaveBeenCalledTimes(2);
   });
-  it("changes updates selections when selecting multiple options  ", async () => {
+  it("updates selections when selecting multiple options  ", async () => {
     render(
-      <SelectList
-        selectedValue=""
+      <SelectDropdown
         onChange={() => {
           /* empty */
         }}
-        placeholderText="placeholder"
-        label="Select"
-      >
-        <>
-          <SelectList.Option value="1" label="1" />
-          <SelectList.Option value="2" label="2" />
-          <SelectList.Option value="3" label="3" />
-        </>
-      </SelectList>,
+        numberOfOptions={3}
+      />,
     );
     await userEvent.selectOptions(screen.getByTestId("test-select-id"), "1");
     const option1 = screen.getByTestId<HTMLOptionElement>("select-option-1");
