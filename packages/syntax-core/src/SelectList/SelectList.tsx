@@ -14,6 +14,7 @@ const SelectList = ({
   children,
   disabled = false,
   error = false,
+  errorText,
   helperText,
   label,
   onChange,
@@ -33,6 +34,10 @@ const SelectList = ({
    * true if there is an error with the selection
    */
   error?: boolean;
+  /**
+   * Text shown below select box if there is an input error
+   */
+  errorText?: string;
   /**
    * Text shown below select box
    */
@@ -65,6 +70,7 @@ const SelectList = ({
   size?: "sm" | "md" | "lg";
 }): ReactElement => {
   const id = useId();
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -117,7 +123,7 @@ const SelectList = ({
           size={100}
           color={error ? "destructive-primary" : "gray700"}
         >
-          {helperText}
+          {errorText ?? helperText}
         </Typography>
       </div>
     </div>
