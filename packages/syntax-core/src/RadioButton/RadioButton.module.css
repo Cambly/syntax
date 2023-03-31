@@ -1,13 +1,8 @@
-.md {
-  height: 24px;
-  width: 24px;
-  border-radius: 12px;
-}
-
-.sm {
-  height: 16px;
-  width: 16px;
-  border-radius: 8px;
+.baseRadioButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 }
 
 .smBase {
@@ -19,29 +14,41 @@
   gap: 8px;
 }
 
-.baseRadioButton {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-}
-
-.labelTypography {
-  font-style: normal;
-  font-weight: 510;
-  font-size: 14px;
-  line-height: 17px;
-}
-
 .radioStyleOverride {
   opacity: 0;
+}
+
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.sm {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+}
+
+.md {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+}
+
+.errorOuterBackgroundColor {
+  background-color: var(--color-base-destructive-700);
+}
+
+.outerBackgroundColor {
+  background-color: var(--color-base-primary-700);
 }
 
 .background {
   position: absolute;
   box-sizing: border-box;
   border: 2px solid;
-  border-radius: 12px;
 }
 
 .errorBorderColor {
@@ -52,31 +59,18 @@
   border-color: var(--color-base-primary-700);
 }
 
-.mdInner {
-  background-color: #fff;
-  border-radius: 5px;
-  height: 10px;
-  width: 10px;
+.circle {
+  border-radius: 50%;
 }
 
 .smInner {
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: var(--color-base-white);
   height: 6px;
   width: 6px;
 }
 
-.outer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
-
-.errorOuterBackgroundColor {
-  background-color: var(--color-base-destructive-700);
-}
-
-.outerBackgroundColor {
-  background-color: var(--color-base-primary-700);
+.mdInner {
+  background-color: var(--color-base-white);
+  height: 10px;
+  width: 10px;
 }

@@ -49,6 +49,10 @@ const RadioButton = ({
    */
   value?: string;
 }): ReactElement => {
+  const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
+    [styles.smBase]: size === "sm",
+    [styles.mdBase]: size === "md",
+  });
   const checkedStyles = classnames(styles.outer, styles[size], {
     [styles.errorOuterBackgroundColor]: error,
     [styles.outerBackgroundColor]: !error,
@@ -57,9 +61,9 @@ const RadioButton = ({
     [styles.errorBorderColor]: error,
     [styles.borderColor]: !error,
   });
-  const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
-    [styles.smBase]: size === "sm",
-    [styles.mdBase]: size === "md",
+  const innerCircleStyle = classnames(styles.circle, {
+    [styles.smInner]: size === "sm",
+    [styles.mdInner]: size === "md",
   });
 
   return (
@@ -72,11 +76,11 @@ const RadioButton = ({
         tabIndex={0}
         onChange={onChange}
         disabled={disabled}
-        value={value || label}
+        value={value ?? label}
       />
       {checked ? (
         <div className={checkedStyles}>
-          <div className={size === "md" ? styles.mdInner : styles.smInner} />
+          <div className={innerCircleStyle} />
         </div>
       ) : (
         <div className={uncheckedStyles} />
