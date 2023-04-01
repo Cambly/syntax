@@ -6,7 +6,7 @@ export default function backgroundColor(color: (typeof Color)[number]): string {
     case "secondary":
       return styles.primary100BackgroundColor;
     case "destructive-primary":
-      return styles.destructive700Background;
+      return styles.destructive700BackgroundColor;
     case "destructive-secondary":
       return styles.destructive100BackgroundColor;
     case "success":

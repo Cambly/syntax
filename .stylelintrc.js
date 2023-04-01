@@ -17,7 +17,7 @@ module.exports = {
     "no-unknown-animations": true,
     "number-max-precision": 2,
     "selector-class-pattern": [
-      "^[a-z][a-zA-Z0-9]+$",
+      "(^[a-z][a-zA-Z0-9]+$)|(^margin.*$)",
       {
         message: "Selector should be written in lower camelCase",
       },
@@ -38,6 +38,12 @@ module.exports = {
     ],
     "selector-max-universal": 0,
     "shorthand-property-no-redundant-values": true,
+    "value-keyword-case": [
+      "lower",
+      {
+        ignoreProperties: ["composes"],
+      },
+    ],
   },
   reportDescriptionlessDisables: true,
   reportInvalidScopeDisables: true,
