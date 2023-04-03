@@ -8,12 +8,12 @@ import Typography from "../Typography/Typography";
  * RadioButton is a radio button with accompanying text
  */
 const RadioButton = ({
+  checked = false,
+  disabled = false,
+  error = false,
   label,
   onChange,
-  checked = false,
-  error = false,
   size = "md",
-  disabled = false,
   value = "",
 }: {
   /**
