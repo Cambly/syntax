@@ -1,10 +1,10 @@
 import { StoryObj, Meta } from "@storybook/react";
-import LabeledCheckbox from "./LabeledCheckbox";
+import Checkbox from "./Checkbox";
 import React, { useState } from "react";
 
 export default {
-  title: "LabeledCheckbox",
-  component: LabeledCheckbox,
+  title: "Checkbox",
+  component: Checkbox,
   parameters: {
     design: {
       type: "figma",
@@ -26,9 +26,9 @@ export default {
     error: { control: "boolean" },
   },
   tags: ["autodocs"],
-} as Meta<typeof LabeledCheckbox>;
+} as Meta<typeof Checkbox>;
 
-export const Default: StoryObj<typeof LabeledCheckbox> = {
+export const Default: StoryObj<typeof Checkbox> = {
   args: { label: "checkbox label" },
 };
 
@@ -38,7 +38,7 @@ const CheckboxInteractive = () => {
     setIsChecked(!isChecked);
   };
   return (
-    <LabeledCheckbox
+    <Checkbox
       checked={isChecked}
       onChange={handleChange}
       label="checkbox label"
@@ -46,6 +46,6 @@ const CheckboxInteractive = () => {
   );
 };
 
-export const Interactive: StoryObj<typeof LabeledCheckbox> = {
+export const Interactive: StoryObj<typeof Checkbox> = {
   render: () => <CheckboxInteractive />,
 };

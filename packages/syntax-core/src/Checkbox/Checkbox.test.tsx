@@ -1,12 +1,12 @@
 import { screen, render } from "@testing-library/react";
-import LabeledCheckbox from "./LabeledCheckbox";
+import Checkbox from "./Checkbox";
 import { expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 describe("checkbox", () => {
   it("renders successfully", () => {
     const { baseElement } = render(
-      <LabeledCheckbox
+      <Checkbox
         checked
         label="test"
         onChange={() => {
@@ -19,7 +19,7 @@ describe("checkbox", () => {
   it("fires the onClick when clicked", async () => {
     const handleChange = vi.fn();
     render(
-      <LabeledCheckbox
+      <Checkbox
         checked
         label="Continue to the next step"
         onChange={handleChange}
@@ -33,7 +33,7 @@ describe("checkbox", () => {
   it("successfully grabs input checked status when clicked", async () => {
     const handleChange = vi.fn();
     render(
-      <LabeledCheckbox
+      <Checkbox
         checked
         label="Continue to the next step"
         onChange={handleChange}
@@ -54,7 +54,7 @@ describe("checkbox", () => {
   it("successfully grabs input unchecked status when clicked", async () => {
     const handleChange = vi.fn();
     render(
-      <LabeledCheckbox
+      <Checkbox
         checked={false}
         label="Continue to the next step"
         onChange={handleChange}
