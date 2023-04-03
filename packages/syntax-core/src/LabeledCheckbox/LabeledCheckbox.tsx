@@ -19,10 +19,11 @@ const iconWidth = {
 const Checkbox = ({
   checked = false,
   disabled = false,
-  size = "md",
-  label,
   error = false,
+  id,
+  label,
   onChange,
+  size = "md",
 }: {
   /**
    * Whether or not the box has been clicked
@@ -30,28 +31,32 @@ const Checkbox = ({
    */
   checked: boolean;
   /**
-   * The callback to be called when the checkbox value changes
-   */
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  /**
    * Whether or not the box is disabled
    * @defaultValue false
    */
   disabled?: boolean;
   /**
-   * The size of the checkbox and icon
-   * @defaultValue "md"
+   * Whether or not there is an error with the input
+   * @defaultValue false
    */
-  size?: "md" | "sm";
+  error?: boolean;
+  /**
+   * Unique identifier for the checkbox
+   */
+  id: string;
   /**
    * The text accompanying the checkbox
    */
   label: string;
   /**
-   * Whether or not there is an error with the input
-   * @defaultValue false
+   * The callback to be called when the checkbox value changes
    */
-  error?: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  /**
+   * The size of the checkbox and icon
+   * @defaultValue "md"
+   */
+  size?: "md" | "sm";
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
   const checkboxStyling = classNames(styles.checkbox, styles[size], {
@@ -79,6 +84,7 @@ const Checkbox = ({
           onBlur={() => {
             setIsFocused(false);
           }}
+          id={id}
         />
         <div className={checkboxStyling}>
           {checked && (

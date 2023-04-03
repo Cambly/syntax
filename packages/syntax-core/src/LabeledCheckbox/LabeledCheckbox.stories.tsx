@@ -42,6 +42,7 @@ const CheckboxInteractive = () => {
       checked={isChecked}
       onChange={handleChange}
       label="checkbox label"
+      id="testId"
     />
   );
 };

@@ -7,6 +7,7 @@ describe("checkbox", () => {
   it("renders successfully", () => {
     const { baseElement } = render(
       <LabeledCheckbox
+        id="testid"
         checked
         label="test"
         onChange={() => {
@@ -20,6 +21,7 @@ describe("checkbox", () => {
     const handleChange = vi.fn();
     render(
       <LabeledCheckbox
+        id="testid"
         checked
         label="Continue to the next step"
         onChange={handleChange}
@@ -34,6 +36,7 @@ describe("checkbox", () => {
     const handleChange = vi.fn();
     render(
       <LabeledCheckbox
+        id="testid"
         checked
         label="Continue to the next step"
         onChange={handleChange}
@@ -55,6 +58,7 @@ describe("checkbox", () => {
     const handleChange = vi.fn();
     render(
       <LabeledCheckbox
+        id="testid"
         checked={false}
         label="Continue to the next step"
         onChange={handleChange}
