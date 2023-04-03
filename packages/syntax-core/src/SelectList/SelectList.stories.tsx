@@ -37,8 +37,8 @@ const options = [
 
 const Options = () => (
   <>
-    {options.map((o) => (
-      <SelectOption key={o.value} value={o.value} label={o.label} />
+    {options.map(({ label, value }) => (
+      <SelectOption key={value} value={value} label={label} />
     ))}
   </>
 );
@@ -47,6 +47,17 @@ export const Default: StoryObj<typeof SelectList> = {
   args: {
     placeholderText: "Placeholder",
     helperText: "Helper text",
+    label: "Label",
+    children: <Options />,
+  },
+};
+
+export const Error: StoryObj<typeof SelectList> = {
+  args: {
+    placeholderText: "Placeholder",
+    helperText: "Helper text",
+    errorText: "Select dropdown error message",
+    error: true,
     label: "Label",
     children: <Options />,
   },
