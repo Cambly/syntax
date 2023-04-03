@@ -10,7 +10,7 @@ const SelectOption = ({
   disabled?: boolean;
 }): ReactElement => (
   <option
-    data-testid={`select-option-${value}`}
+    data-testid={`syntax-select-${value}`}
     value={value}
     disabled={disabled}
   >
