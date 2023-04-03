@@ -33,21 +33,27 @@
 }
 
 .uncheckedBox {
-  border: 2px solid var(--color-base-primary-700);
-  background-color: #fff;
+  border: 2px solid;
 }
 
-.checkedBox {
-  background: var(--color-base-primary-700);
-  color: #fff;
+.uncheckedBorder {
+  border-color: var(--color-base-primary-700);
 }
 
-.uncheckedError {
+.uncheckedErrorBorder {
   border-color: var(--color-base-destructive-700);
 }
 
+.checkedBox {
+  color: #fff;
+}
+
+.checkedNonError {
+  background: var(--color-base-primary-700);
+}
+
 .checkedError {
-  background-color: var(--color-base-destructive-700);
+  background: var(--color-base-destructive-700);
 }
 
 .sm {
