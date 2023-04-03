@@ -1,6 +1,10 @@
 import React, { ReactElement, ReactNode, useId } from "react";
 import styles from "./SelectList.module.css";
 import classNames from "classnames";
+import {
+  ColorBaseDestructive700,
+  ColorBaseGray800,
+} from "@cambly/syntax-design-tokens/dist/js/index.js";
 import Typography from "../Typography/Typography";
 import SelectOption from "./SelectOption";
 
@@ -28,6 +32,7 @@ const SelectList = ({
   children: ReactNode;
   /**
    * true if the select dropdown is disabled
+   * @defaultValue false
    */
   disabled?: boolean;
   /**
@@ -46,7 +51,7 @@ const SelectList = ({
   /**
    * Text shown above select box
    */
-  label?: string;
+  label: string;
   /**
    * The callback to be called when an option is selected
    */
@@ -55,7 +60,7 @@ const SelectList = ({
    * Text showing in select box if no option has been chosen
    *
    */
-  placeholderText: string;
+  placeholderText?: string;
   /**
    * Value of the currently selected option
    */
@@ -89,7 +94,7 @@ const SelectList = ({
       <div className={styles.selectWrapper}>
         <select
           id={id}
-          data-testid="test-select-id"
+          data-testid="syntax-select"
           disabled={disabled}
           className={classNames(styles.selectBox, styles[size], {
             [styles.unselected]: !selectedValue && !error,
@@ -113,7 +118,7 @@ const SelectList = ({
             width={iconSize[size]}
           >
             <path
-              fill={error ? "#d32a4b" : "#353535"}
+              fill={error ? ColorBaseDestructive700 : ColorBaseGray800}
               d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
             ></path>
           </svg>
