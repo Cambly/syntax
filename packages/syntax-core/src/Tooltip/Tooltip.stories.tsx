@@ -37,7 +37,7 @@ export const Default: StoryObj<typeof Tooltip> = {
 
 const TooltipInteractive = () => (
   <form style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-    <Tooltip text={"example text"} icon={Star} direction="belowRight" />
+    <Tooltip text={"example text"} icon={<Star />} direction="belowRight" />
     <Tooltip
       text={"example text"}
       link="www.example.com"
@@ -46,7 +46,7 @@ const TooltipInteractive = () => (
     />
     <Tooltip
       text={"example text"}
-      icon={Star}
+      icon={<Star />}
       link="www.example.com"
       direction="belowRight"
       children={<div>Hover over me</div>}

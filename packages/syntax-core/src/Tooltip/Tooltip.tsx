@@ -2,14 +2,15 @@ import React, { ReactElement, ReactNode } from "react";
 import classnames from "classnames";
 
 import styles from "./Tooltip.module.css";
+import Typography from "../Typography/Typography";
 
 /**
  * Tooltip add hover w/ optional icon
  */
 const Tooltip = ({
   text,
+  url,
   icon,
-  link = "",
   direction = "belowRight",
   children,
 }: {
@@ -18,36 +19,34 @@ const Tooltip = ({
    */
   text: string;
   /**
-   * The icon to show that the tooltip wraps around. Otherwise it will wrap round the div
+   * An optional link to direct users to
    */
-  icon?: React.ComponentType<{ className: string }>;
+  url?: string;
   /**
-   * @defaultValue ""
-   * Show linke below tooltip text
+   * The icon the tooltip wraps around. Otherwise it will wrap around the children div
    */
-  link?: string;
+  icon?: ReactElement;
   /**
    * @defaultValue belowRight
    * Where to show tooltip text on hover
    */
-  direction?: "belowLeft" | "belowRight" | "aboveLeft" | "aboveRight";
+  direction?: "belowRight" | "belowLeft" | "aboveRight" | "aboveLeft";
   /**
    * @defaultValue
    */
   children?: ReactNode;
 }): ReactElement => {
-  //   const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
-  //     [styles.smBase]: size === "sm",
-  //     [styles.mdBase]: size === "md",
+  // const uncheckedStyles = classnames(styles.background, styles[size], {
+  //     [styles.errorBorderColor]: error,
+  //     [styles.borderColor]: !error,
   //   });
-
   return (
     <div className={styles.tooltip}>
-      <>
-        {children}
-        {icon}
-        <span className={styles.tooltiptext}>Tooltip text</span>
-      </>
+      Hover over me
+      {icon}
+      <span className={styles.tooltiptext}>
+        <Typography color="white">{text}</Typography>
+      </span>
     </div>
   );
 };
