@@ -4,7 +4,7 @@ import React, { useState, ReactElement } from "react";
 import SelectOption from "./SelectOption";
 
 export default {
-  title: "SelectList",
+  title: "Components/SelectList",
   component: SelectList,
   parameters: {
     design: {
