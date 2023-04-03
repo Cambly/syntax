@@ -3,7 +3,7 @@ import RadioButton from "./RadioButton";
 import React, { useState } from "react";
 
 export default {
-  title: "RadioButton",
+  title: "Components/RadioButton",
   component: RadioButton,
   parameters: {
     design: {
@@ -23,7 +23,7 @@ export default {
       control: "boolean",
     },
     error: { control: "boolean" },
-    label: { control: "string" },
+    label: { control: "text" },
   },
   tags: ["autodocs"],
 } as Meta<typeof RadioButton>;
@@ -38,7 +38,7 @@ const RadioButtonInteractive = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <form style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+    <form style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
       <RadioButton
         checked={selectedOption === "male"}
         value="male"

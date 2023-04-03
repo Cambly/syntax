@@ -1,11 +1,11 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";
 import Typography from "../Typography/Typography";
 
 /**
- * Radio Button (Base) This is a single lonely radio button with accompanying text
+ * RadioButton is a radio button with accompanying text
  */
 const RadioButton = ({
   label,
@@ -25,23 +25,30 @@ const RadioButton = ({
    */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   /**
+   * Whether or not the box is checked
+   *
    * @defaultValue false
-   * Whether or not the box has been clicked
    */
   checked?: boolean;
   /**
-   * @defaultValue false
    * Whether to show error color schema
+   *
+   * @defaultValue false
    */
   error?: boolean;
   /**
-   * @defaultValue "md"
    * Size of the components
+   *
+   * * `sm`: 16px
+   * * `md`: 24px
+   *
+   * @defaultValue "md"
    */
-  size?: "md" | "sm";
+  size?: "sm" | "md";
   /**
-   * @defaultValue false
    * Whether or not the box is disabled
+   *
+   * @defaultValue false
    */
   disabled?: boolean;
   /**
@@ -49,41 +56,55 @@ const RadioButton = ({
    */
   value?: string;
 }): ReactElement => {
-  const baseRadioButtonSingle = classnames(styles.baseRadioButton, {
-    [styles.smBase]: size === "sm",
-    [styles.mdBase]: size === "md",
-  });
-  const checkedStyles = classnames(styles.outer, styles[size], {
-    [styles.errorOuterBackgroundColor]: error,
-    [styles.outerBackgroundColor]: !error,
-  });
-  const uncheckedStyles = classnames(styles.background, styles[size], {
-    [styles.errorBorderColor]: error,
-    [styles.borderColor]: !error,
-  });
-  const innerCircleStyle = classnames(styles.circle, {
-    [styles.smInner]: size === "sm",
-    [styles.mdInner]: size === "md",
-  });
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <label className={baseRadioButtonSingle}>
+    <label
+      className={classnames(styles.radioButton, {
+        [styles.smBase]: size === "sm",
+        [styles.mdBase]: size === "md",
+      })}
+    >
       <input
         type="radio"
-        className={styles.radioStyleOverride}
+        className={classnames(styles.radioStyleOverride, {
+          [styles.smOverride]: size === "sm",
+          [styles.mdOverride]: size === "md",
+        })}
         checked={checked}
-        aria-checked={checked}
-        tabIndex={0}
         onChange={onChange}
         disabled={disabled}
         value={value ?? label}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
       />
       {checked ? (
-        <div className={checkedStyles}>
-          <div className={innerCircleStyle} />
+        <div
+          className={classnames(styles.outer, styles[size], {
+            [styles.errorOuterBackgroundColor]: error,
+            [styles.outerBackgroundColor]: !error,
+            [styles.focusedRadioButton]: isFocused,
+          })}
+        >
+          <div
+            className={classnames(styles.circle, {
+              [styles.smInner]: size === "sm",
+              [styles.mdInner]: size === "md",
+            })}
+          />
         </div>
       ) : (
-        <div className={uncheckedStyles} />
+        <div
+          className={classnames(styles.background, styles[size], {
+            [styles.errorBorderColor]: error,
+            [styles.borderColor]: !error,
+            [styles.focusedRadioButton]: isFocused,
+          })}
+        />
       )}
       <Typography
         size={size === "md" ? 200 : 100}

@@ -1,12 +1,18 @@
-.baseRadioButton {
+.radioButton {
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
 }
 
+.focusedRadioButton {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
 .smBase {
   height: 16px;
+  gap: 4px;
 }
 
 .mdBase {
@@ -16,6 +22,17 @@
 
 .radioStyleOverride {
   opacity: 0;
+  margin: 0;
+}
+
+.smOverride {
+  width: 16px;
+  height: 16px;
+}
+
+.mdOverride {
+  width: 24px;
+  height: 24px;
 }
 
 .outer {
