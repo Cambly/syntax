@@ -26,9 +26,7 @@
   justify-content: space-between;
   cursor: pointer;
   appearance: none;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
-  margin: 0;
+  composes: typopgraphy from "../Typography/Typography.module.css";
 }
 
 .selectBox:focus-visible {
