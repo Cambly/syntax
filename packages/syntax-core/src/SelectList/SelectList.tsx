@@ -52,10 +52,10 @@ const SelectList = ({
    */
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   /**
-   * Text showing in select box if no option has been chosen
-   *
+   * Text showing in select box if no option has been chosen.
+   * We should always have a placeholder unless there is a default option selected
    */
-  placeholderText: string;
+  placeholderText?: string;
   /**
    * Value of the currently selected option
    */
@@ -98,8 +98,13 @@ const SelectList = ({
           })}
           onChange={onChange}
         >
-          {selectedValue === "" && (
-            <option disabled aria-selected value="" selected>
+          {placeholderText && (
+            <option
+              disabled
+              aria-selected
+              value=""
+              selected={!!placeholderText}
+            >
               {placeholderText}
             </option>
           )}

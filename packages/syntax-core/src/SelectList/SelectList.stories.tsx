@@ -45,20 +45,20 @@ const Options = () => (
 
 export const Default: StoryObj<typeof SelectList> = {
   args: {
-    placeholderText: "Placeholder",
+    children: <Options />,
     helperText: "Helper text",
     label: "Label",
-    children: <Options />,
+    placeholderText: "Placeholder",
   },
 };
 
 export const Error: StoryObj<typeof SelectList> = {
   args: {
-    placeholderText: "Placeholder",
-    helperText: "Helper text",
-    errorText: "Select dropdown error message",
-    label: "Label",
     children: <Options />,
+    errorText: "Select dropdown error message",
+    helperText: "Helper text",
+    label: "Label",
+    placeholderText: "Placeholder",
   },
 };
 
