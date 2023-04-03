@@ -71,7 +71,9 @@ const SelectList = ({
   size?: "sm" | "md" | "lg";
 }): ReactElement => {
   const id = useId();
-  const testingThis = errorText ? ColorBaseDestructive700 : ColorBaseGray800;
+  const testingThis: string = errorText
+    ? ColorBaseDestructive700
+    : ColorBaseGray800;
   return (
     <div
       className={classNames(styles.selectContainer, {
