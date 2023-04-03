@@ -55,7 +55,7 @@ const SelectList = ({
    * Text showing in select box if no option has been chosen
    *
    */
-  placeholderText?: string;
+  placeholderText: string;
   /**
    * Value of the currently selected option
    */
