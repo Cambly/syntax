@@ -98,12 +98,7 @@ const SelectList = ({
           onChange={onChange}
         >
           {placeholderText && (
-            <option
-              disabled
-              aria-selected
-              value=""
-              selected={!!placeholderText}
-            >
+            <option disabled aria-selected value="">
               {placeholderText}
             </option>
           )}
