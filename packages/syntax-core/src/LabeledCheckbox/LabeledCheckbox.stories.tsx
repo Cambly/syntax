@@ -3,7 +3,7 @@ import LabeledCheckbox from "./LabeledCheckbox";
 import React, { useState } from "react";
 
 export default {
-  title: "LabeledCheckbox",
+  title: "Components/LabeledCheckbox",
   component: LabeledCheckbox,
   parameters: {
     design: {
