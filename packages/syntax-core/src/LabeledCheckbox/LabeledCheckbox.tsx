@@ -54,13 +54,15 @@ const Checkbox = ({
   error?: boolean;
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
-  const checkboxStyling = classNames(styles.checkbox, styles[size], {
-    [styles.uncheckedBox]: !checked,
-    [styles.uncheckedErrorBorder]: !checked && error,
-    [styles.uncheckedBorder]: !checked && !error,
-    [styles.checkedBox]: checked,
-    [styles.checkedNonError]: checked && !error,
-    [styles.checkedError]: checked && error,
+  const checkboxStyling = classNames(styles.checkbox, styles[size]);
+  const uncheckedStyling = classNames(checkboxStyling, styles.uncheckedBox, {
+    [styles.uncheckedBorder]: !error,
+    [styles.uncheckedErrorBorder]: error,
+    [styles.focusedCheckbox]: isFocused,
+  });
+  const checkedStyling = classNames(checkboxStyling, styles.checkedBox, {
+    [styles.checkedNonError]: !error,
+    [styles.checkedError]: error,
     [styles.focusedCheckbox]: isFocused,
   });
 
@@ -82,7 +84,7 @@ const Checkbox = ({
             setIsFocused(false);
           }}
         />
-        <div className={checkboxStyling}>
+        <div className={checked ? checkedStyling : uncheckedStyling}>
           {checked && (
             <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
               <path
