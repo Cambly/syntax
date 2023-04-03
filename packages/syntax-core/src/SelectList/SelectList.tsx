@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode, useId } from "react";
-import styles from "./SelectList.module.css";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -7,6 +6,7 @@ import {
 } from "@cambly/syntax-design-tokens/dist/js/index.js";
 import Typography from "../Typography/Typography";
 import SelectOption from "./SelectOption";
+import styles from "./SelectList.module.css";
 
 const iconSize = {
   sm: 20,
