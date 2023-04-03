@@ -17,7 +17,6 @@ const iconSize = {
 const SelectList = ({
   children,
   disabled = false,
-  error = false,
   errorText,
   helperText,
   label,
@@ -35,10 +34,6 @@ const SelectList = ({
    * @defaultValue false
    */
   disabled?: boolean;
-  /**
-   * true if there is an error with the selection
-   */
-  error?: boolean;
   /**
    * Text shown below select box if there is an input error.
    * Should only have a value if error = true
@@ -64,7 +59,7 @@ const SelectList = ({
   /**
    * Value of the currently selected option
    */
-  selectedValue: string;
+  selectedValue?: string;
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -86,7 +81,7 @@ const SelectList = ({
       <label htmlFor={id} className={styles.outerTextContainer}>
         <Typography
           size={100}
-          color={error ? "destructive-primary" : "gray700"}
+          color={errorText ? "destructive-primary" : "gray700"}
         >
           {label}
         </Typography>
@@ -97,9 +92,9 @@ const SelectList = ({
           data-testid="syntax-select"
           disabled={disabled}
           className={classNames(styles.selectBox, styles[size], {
-            [styles.unselected]: !selectedValue && !error,
-            [styles.selected]: selectedValue && !error,
-            [styles.selectError]: error,
+            [styles.unselected]: !selectedValue && !errorText,
+            [styles.selected]: selectedValue && !errorText,
+            [styles.selectError]: errorText,
           })}
           onChange={onChange}
         >
@@ -118,7 +113,7 @@ const SelectList = ({
             width={iconSize[size]}
           >
             <path
-              fill={error ? ColorBaseDestructive700 : ColorBaseGray800}
+              fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
               d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
             ></path>
           </svg>
@@ -127,7 +122,7 @@ const SelectList = ({
       <div className={styles.outerTextContainer}>
         <Typography
           size={100}
-          color={error ? "destructive-primary" : "gray700"}
+          color={errorText ? "destructive-primary" : "gray700"}
         >
           {errorText ?? helperText}
         </Typography>

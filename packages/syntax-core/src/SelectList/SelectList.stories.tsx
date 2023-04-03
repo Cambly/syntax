@@ -57,7 +57,6 @@ export const Error: StoryObj<typeof SelectList> = {
     placeholderText: "Placeholder",
     helperText: "Helper text",
     errorText: "Select dropdown error message",
-    error: true,
     label: "Label",
     children: <Options />,
   },
