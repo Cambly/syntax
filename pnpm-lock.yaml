@@ -30,14 +30,14 @@ importers:
       stylelint: 15.2.0
       stylelint-config-css-modules: 4.2.0_stylelint@15.2.0
       stylelint-config-standard: 30.0.1_stylelint@15.2.0
-      turbo: 1.8.7
+      turbo: 1.8.8
       vite: 4.1.4
       vitest: 0.29.2_jsdom@21.1.0
 
   apps/storybook:
     specifiers:
       '@cambly/eslint-config-syntax': workspace:1.2.0
-      '@cambly/syntax-core': workspace:1.16.0
+      '@cambly/syntax-core': workspace:1.17.0
       '@cambly/syntax-design-tokens': workspace:0.6.0
       '@cambly/syntax-tsconfig': workspace:1.2.0
       '@emotion/react': ^11.10.6
@@ -106,7 +106,7 @@ importers:
     dependencies:
       eslint-config-next: 13.2.4_ycpbpc6yetojsgtrx3mwntkhsu
       eslint-config-prettier: 8.7.0_eslint@8.35.0
-      eslint-config-turbo: 1.8.7_eslint@8.35.0
+      eslint-config-turbo: 1.8.8_eslint@8.35.0
       eslint-plugin-react: 7.32.1_eslint@8.35.0
     devDependencies:
       '@cambly/syntax-tsconfig': link:../syntax-tsconfig
@@ -2813,7 +2813,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.62
       '@storybook/csf-tools': 7.0.0-beta.62
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.6
+      '@storybook/mdx2-csf': 1.0.0-next.8
       '@storybook/node-logger': 7.0.0-beta.62
       '@storybook/postinstall': 7.0.0-beta.62
       '@storybook/preview-api': 7.0.0-beta.62
@@ -2878,7 +2878,7 @@ packages:
     dependencies:
       '@storybook/client-logger': 7.0.0-beta.62
       '@storybook/core-events': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/manager-api': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
       '@storybook/preview-api': 7.0.0-beta.62
@@ -3050,7 +3050,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.62
       '@storybook/components': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/docs-tools': 7.0.0-beta.62
       '@storybook/global': 5.0.0
       '@storybook/manager-api': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
@@ -3121,7 +3121,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.62
       '@storybook/core-common': 7.0.0-beta.62
       '@storybook/csf-plugin': 7.0.0-beta.62
-      '@storybook/mdx2-csf': 1.0.0-next.6
+      '@storybook/mdx2-csf': 1.0.0-next.8
       '@storybook/node-logger': 7.0.0-beta.62
       '@storybook/preview': 7.0.0-beta.62
       '@storybook/preview-api': 7.0.0-beta.62
@@ -3241,7 +3241,7 @@ packages:
       '@babel/core': 7.21.0
       '@babel/preset-env': 7.20.2_@babel+core@7.21.0
       '@babel/types': 7.21.2
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/csf-tools': 7.0.0-beta.62
       '@storybook/node-logger': 7.0.0-beta.62
       '@storybook/types': 7.0.0-beta.62
@@ -3280,7 +3280,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/theming': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
       '@storybook/types': 7.0.0-beta.62
@@ -3343,9 +3343,9 @@ packages:
       '@storybook/builder-manager': 7.0.0-beta.62
       '@storybook/core-common': 7.0.0-beta.62
       '@storybook/core-events': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/csf-tools': 7.0.0-beta.62
-      '@storybook/docs-mdx': 0.0.1-next.6
+      '@storybook/docs-mdx': 0.0.1-next.7
       '@storybook/global': 5.0.0
       '@storybook/manager': 7.0.0-beta.62
       '@storybook/node-logger': 7.0.0-beta.62
@@ -3404,7 +3404,7 @@ packages:
       '@babel/parser': 7.21.2
       '@babel/traverse': 7.21.2
       '@babel/types': 7.21.2
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/types': 7.0.0-beta.62
       fs-extra: 11.1.0
       recast: 0.23.1
@@ -3419,14 +3419,14 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /@storybook/csf/0.0.2-next.10:
-    resolution: {integrity: sha512-m2PFgBP/xRIF85VrDhvesn9ktaD2pN3VUjvMqkAL/cINp/3qXsCyI81uw7N5VEOkQAbWrY2FcydnvEPDEdE8fA==}
+  /@storybook/csf/0.0.2-next.11:
+    resolution: {integrity: sha512-xGt0YSVxZb43sKmEf1GIQD8xEbo+c+S6khDEL7Qu/pYA0gh5z3WUuhOlovnelYj/YJod+XRsfVvk23AaRfUJ4Q==}
     dependencies:
       type-fest: 2.19.0
     dev: true
 
-  /@storybook/docs-mdx/0.0.1-next.6:
-    resolution: {integrity: sha512-DjoSIXADmLJtdroXAjUotFiZlcZ2usWhqrS7aeOtZs0DVR0Ws5WQjnwtpDUXt8gryTSd+OZJ0cNsDcqg4JDEvQ==}
+  /@storybook/docs-mdx/0.0.1-next.7:
+    resolution: {integrity: sha512-JbgBf/EMBtx65iXtB3pOiX3818UeL9jZ+KAY241OAPqJVXjMQ5KaVOdg/57MSmd508HDIGx7CiImOMEmWwQ9/g==}
     dev: true
 
   /@storybook/docs-tools/7.0.0-beta.62:
@@ -3456,7 +3456,7 @@ packages:
       '@storybook/channels': 7.0.0-beta.62
       '@storybook/client-logger': 7.0.0-beta.62
       '@storybook/core-events': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/router': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 7.0.0-beta.62_biqbaboplfbrettd7655fr4n2y
@@ -3476,8 +3476,8 @@ packages:
     resolution: {integrity: sha512-TQKKuVpXG10EfCqKASTfH0Wdd+WEUTt04jFjKgXQ5Hwq+PuQ+Ff/FmODyOIHwYYWEtIacW1wZr1CiVeT8LtqFQ==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.6:
-    resolution: {integrity: sha512-m6plojocU/rmrqWd26yvm8D+oHZPZ6PtSSFmZIgpNDEPVmc8s4fBD6LXOAB5MiPI5f8KLUr2HVhOMZ97o5pDTw==}
+  /@storybook/mdx2-csf/1.0.0-next.8:
+    resolution: {integrity: sha512-t2O5s/HHTH5evZVHgVtCWTZgMZ/CaqDu3xVGgjVbKeTvpPAbi0Waab5SSX8T9PG5jNDei/x+jpAVCcNMOHoWzg==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.62:
@@ -3500,7 +3500,7 @@ packages:
       '@storybook/channels': 7.0.0-beta.62
       '@storybook/client-logger': 7.0.0-beta.62
       '@storybook/core-events': 7.0.0-beta.62
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/types': 7.0.0-beta.62
       '@types/qs': 6.9.7
@@ -5946,13 +5946,13 @@ packages:
       eslint: 8.35.0
     dev: false
 
-  /eslint-config-turbo/1.8.7_eslint@8.35.0:
-    resolution: {integrity: sha512-kqK63y8e/cV2DJMbC5tPyfJgV+LxQxfik19qC+wtuiicb+3yRdjTbv+M5z+UCPHpCVWi33x9FxuOXn83jAlOkw==}
+  /eslint-config-turbo/1.8.8_eslint@8.35.0:
+    resolution: {integrity: sha512-+yT22sHOT5iC1sbBXfLIdXfbZuiv9bAyOXsxTxFCWelTeFFnANqmuKB3x274CFvf7WRuZ/vYP/VMjzU9xnFnxA==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
       eslint: 8.35.0
-      eslint-plugin-turbo: 1.8.7_eslint@8.35.0
+      eslint-plugin-turbo: 1.8.8_eslint@8.35.0
     dev: false
 
   /eslint-import-resolver-node/0.3.7:
@@ -6118,8 +6118,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-turbo/1.8.7_eslint@8.35.0:
-    resolution: {integrity: sha512-6pkvcU+aynbC7gtSiV8rUAVtxWQsn74HdOt6STBWGLBw1fZy4O6hkU77Xi6gh8gtdvTrYMEP+nBl8ZV0erRZbg==}
+  /eslint-plugin-turbo/1.8.8_eslint@8.35.0:
+    resolution: {integrity: sha512-zqyTIvveOY4YU5jviDWw9GXHd4RiKmfEgwsjBrV/a965w0PpDwJgEUoSMB/C/dU310Sv9mF3DSdEjxjJLaw6rA==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
@@ -10560,65 +10560,65 @@ packages:
       yargs: 17.7.1
     dev: true
 
-  /turbo-darwin-64/1.8.7:
-    resolution: {integrity: sha512-QOa7SI1sv8IH9biO4qThmyz0w2WNlQMJ8CmJ9NmyujlqQYdcP3r2JJY6GlJkUk2PdX9YV3mBVrOePicBy3gcjA==}
+  /turbo-darwin-64/1.8.8:
+    resolution: {integrity: sha512-18cSeIm7aeEvIxGyq7PVoFyEnPpWDM/0CpZvXKHpQ6qMTkfNt517qVqUTAwsIYqNS8xazcKAqkNbvU1V49n65Q==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64/1.8.7:
-    resolution: {integrity: sha512-q2pvkuZBoP1iljSZC+vtIObkgFZeo9kDdOJvj+bloLIEkkksBWNGvgabVWBAzJyNnoUHCQVxKPIstEhfmzW3eA==}
+  /turbo-darwin-arm64/1.8.8:
+    resolution: {integrity: sha512-ruGRI9nHxojIGLQv1TPgN7ud4HO4V8mFBwSgO6oDoZTNuk5ybWybItGR+yu6fni5vJoyMHXOYA2srnxvOc7hjQ==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64/1.8.7:
-    resolution: {integrity: sha512-xlNS6cFCLDcQeuHFINn+p4Z5H880v3/KSdYKiuIpxAwijhLq5ZTTpGQegNiOXrct3cotKUI7lWgDPn6Y2G/A8Q==}
+  /turbo-linux-64/1.8.8:
+    resolution: {integrity: sha512-N/GkHTHeIQogXB1/6ZWfxHx+ubYeb8Jlq3b/3jnU4zLucpZzTQ8XkXIAfJG/TL3Q7ON7xQ8yGOyGLhHL7MpFRg==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64/1.8.7:
-    resolution: {integrity: sha512-lmQ09jHGOyMqmA66a/Hcm6Ox9ZqVFIIFFZHEiO1L4dRtl2PNCzzgp+DoNP1VEvVOgRTxy71MU5Z3APOLjmC05A==}
+  /turbo-linux-arm64/1.8.8:
+    resolution: {integrity: sha512-hKqLbBHgUkYf2Ww8uBL9UYdBFQ5677a7QXdsFhONXoACbDUPvpK4BKlz3NN7G4NZ+g9dGju+OJJjQP0VXRHb5w==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64/1.8.7:
-    resolution: {integrity: sha512-XcHNYAzCWESpqULDU0USXidfOXmkoLzYzTrUWhmXUdTNL4pcUysFn+CHKbiYU8nSBFcZacJnHQ/kEjduqRoJ9g==}
+  /turbo-windows-64/1.8.8:
+    resolution: {integrity: sha512-2ndjDJyzkNslXxLt+PQuU21AHJWc8f6MnLypXy3KsN4EyX/uKKGZS0QJWz27PeHg0JS75PVvhfFV+L9t9i+Yyg==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64/1.8.7:
-    resolution: {integrity: sha512-Ly1mksTC94lrK3/MxKKBmyf4roVYoeo43Rj+kv9qtx20+2Fzf3Iclw8H5/eGucnOOoxeinfdz4tjzhAHdNRwfA==}
+  /turbo-windows-arm64/1.8.8:
+    resolution: {integrity: sha512-xCA3oxgmW9OMqpI34AAmKfOVsfDljhD5YBwgs0ZDsn5h3kCHhC4x9W5dDk1oyQ4F5EXSH3xVym5/xl1J6WRpUg==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo/1.8.7:
-    resolution: {integrity: sha512-0EtA4OfLSPpcErAQBKArDueQ/EoYPiPlRAWidHV8l030aVFY3B05dDd3CcfTM41IFSSgqk9n4R8DgesC8fVrDA==}
+  /turbo/1.8.8:
+    resolution: {integrity: sha512-qYJ5NjoTX+591/x09KgsDOPVDUJfU9GoS+6jszQQlLp1AHrf1wRFA3Yps8U+/HTG03q0M4qouOfOLtRQP4QypA==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.8.7
-      turbo-darwin-arm64: 1.8.7
-      turbo-linux-64: 1.8.7
-      turbo-linux-arm64: 1.8.7
-      turbo-windows-64: 1.8.7
-      turbo-windows-arm64: 1.8.7
+      turbo-darwin-64: 1.8.8
+      turbo-darwin-arm64: 1.8.8
+      turbo-linux-64: 1.8.8
+      turbo-linux-arm64: 1.8.8
+      turbo-windows-64: 1.8.8
+      turbo-windows-arm64: 1.8.8
     dev: true
 
   /type-check/0.3.2:
