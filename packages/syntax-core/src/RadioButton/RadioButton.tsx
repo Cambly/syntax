@@ -17,6 +17,24 @@ const RadioButton = ({
   value = "",
 }: {
   /**
+   * Whether or not the box is checked
+   *
+   * @defaultValue false
+   */
+  checked?: boolean;
+  /**
+   * Whether or not the box is disabled
+   *
+   * @defaultValue false
+   */
+  disabled?: boolean;
+  /**
+   * Whether to show error color schema
+   *
+   * @defaultValue false
+   */
+  error?: boolean;
+  /**
    * Always add a label tag for best accessibility practices
    */
   label: string;
@@ -24,18 +42,6 @@ const RadioButton = ({
    * The callback to be called when the button is clicked
    */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  /**
-   * Whether or not the box is checked
-   *
-   * @defaultValue false
-   */
-  checked?: boolean;
-  /**
-   * Whether to show error color schema
-   *
-   * @defaultValue false
-   */
-  error?: boolean;
   /**
    * Size of the components
    *
@@ -45,12 +51,6 @@ const RadioButton = ({
    * @defaultValue "md"
    */
   size?: "sm" | "md";
-  /**
-   * Whether or not the box is disabled
-   *
-   * @defaultValue false
-   */
-  disabled?: boolean;
   /**
    * Value of the selected radio option
    */
