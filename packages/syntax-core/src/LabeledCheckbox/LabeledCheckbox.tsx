@@ -26,6 +26,7 @@ const Checkbox = ({
 }: {
   /**
    * Whether or not the box has been clicked
+   *
    * @defaultValue false
    */
   checked: boolean;
@@ -35,20 +36,26 @@ const Checkbox = ({
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * Whether or not the box is disabled
+   *
    * @defaultValue false
    */
   disabled?: boolean;
   /**
    * The size of the checkbox and icon
+   *
+   * * `sm`: 16px
+   * * `md`: 24px
+   *
    * @defaultValue "md"
    */
-  size?: "md" | "sm";
+  size?: "sm" | "md";
   /**
    * The text accompanying the checkbox
    */
   label: string;
   /**
    * Whether or not there is an error with the input
+   *
    * @defaultValue false
    */
   error?: boolean;
@@ -73,8 +80,6 @@ const Checkbox = ({
           type="checkbox"
           className={classNames(styles.inputOverlay, styles[size])}
           checked={checked}
-          aria-checked={checked}
-          tabIndex={0}
           onChange={onChange}
           disabled={disabled}
           onFocus={() => {

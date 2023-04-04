@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 1.19.0
+
+### Minor Changes
+
+- a7863fc: Introduce Box component
+
+## 1.18.0
+
+### Minor Changes
+
+- 969e0cc: add radio button
+
 ## 1.17.0
 
 ### Minor Changes

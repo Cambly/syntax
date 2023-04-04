@@ -7,6 +7,7 @@ import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import LabeledCheckbox from "./LabeledCheckbox/LabeledCheckbox";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
+import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
 import Typography from "./Typography/Typography";
 
@@ -20,6 +21,7 @@ export {
   IconButton,
   LabeledCheckbox,
   MiniActionCard,
+  RadioButton,
   SelectList,
   Typography,
 };
