@@ -99,6 +99,10 @@
   margin-bottom: 48px;
 }
 
+.marginBottomauto {
+  margin-bottom: auto;
+}
+
 /* Margin end */
 .marginEnd-12 {
   margin-inline-end: -48px;
@@ -198,6 +202,10 @@
 
 .marginEnd12 {
   margin-inline-end: 48px;
+}
+
+.marginEndauto {
+  margin-inline-end: auto;
 }
 
 /* Margin start */
@@ -301,6 +309,10 @@
   margin-inline-start: 48px;
 }
 
+.marginStartauto {
+  margin-inline-start: auto;
+}
+
 /* Margin top */
 .marginTop-12 {
   margin-top: -48px;
@@ -400,6 +412,10 @@
 
 .marginTop12 {
   margin-top: 48px;
+}
+
+.marginTopauto {
+  margin-top: auto;
 }
 
 /* Margin (small and up) */
@@ -504,6 +520,10 @@
     composes: marginBottom12;
   }
 
+  .marginBottomautoSmall {
+    composes: marginBottomauto;
+  }
+
   .marginEnd-12Small {
     composes: marginEnd-12;
   }
@@ -602,6 +622,10 @@
 
   .marginEnd12Small {
     composes: marginEnd12;
+  }
+
+  .marginEndautoSmall {
+    composes: marginEndauto;
   }
 
   .marginStart-12Small {
@@ -704,6 +728,10 @@
     composes: marginStart12;
   }
 
+  .marginStartautoSmall {
+    composes: marginStartauto;
+  }
+
   .marginTop-12Small {
     composes: marginTop-12;
   }
@@ -802,6 +830,10 @@
 
   .marginTop12Small {
     composes: marginTop12;
+  }
+
+  .marginTopautoSmall {
+    composes: marginTopauto;
   }
 }
 
@@ -907,6 +939,10 @@
     composes: marginBottom12;
   }
 
+  .marginBottomautoLarge {
+    composes: marginBottomauto;
+  }
+
   .marginEnd-12Large {
     composes: marginEnd-12;
   }
@@ -1005,6 +1041,10 @@
 
   .marginEnd12Large {
     composes: marginEnd12;
+  }
+
+  .marginEndautoLarge {
+    composes: marginEndauto;
   }
 
   .marginStart-12Large {
@@ -1107,6 +1147,10 @@
     composes: marginStart12;
   }
 
+  .marginStartautoLarge {
+    composes: marginStartauto;
+  }
+
   .marginTop-12Large {
     composes: marginTop-12;
   }
@@ -1205,5 +1249,9 @@
 
   .marginTop12Large {
     composes: marginTop12;
+  }
+
+  .marginTopautoLarge {
+    composes: marginTopauto;
   }
 }
