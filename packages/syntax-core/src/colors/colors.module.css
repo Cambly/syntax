@@ -1,6 +1,6 @@
 /* Regular Colors */
-.primary700Color {
-  color: var(--color-base-primary-700);
+.inheritColor {
+  color: inherit;
 }
 
 .destructive700Color {
@@ -15,39 +15,199 @@
   color: var(--color-base-gray-900);
 }
 
+.primary700Color {
+  color: var(--color-base-primary-700);
+}
+
 .whiteColor {
   color: var(--color-base-white);
 }
 
-.inheritColor {
-  color: inherit;
-}
-
 /* Background Colors */
-.primary100BackgroundColor {
-  background-color: var(--color-base-primary-100);
-}
-
-.destructive700Background {
-  background-color: var(--color-base-destructive-700);
+.blackBackgroundColor {
+  background-color: var(--color-base-black);
 }
 
 .destructive100BackgroundColor {
   background-color: var(--color-base-destructive-100);
 }
 
+.destructive200BackgroundColor {
+  background-color: var(--color-base-destructive-200);
+}
+
+.destructive300BackgroundColor {
+  background-color: var(--color-base-destructive-300);
+}
+
+.destructive700BackgroundColor {
+  background-color: var(--color-base-destructive-700);
+}
+
+.destructive800BackgroundColor {
+  background-color: var(--color-base-destructive-800);
+}
+
+.destructive900BackgroundColor {
+  background-color: var(--color-base-destructive-900);
+}
+
+.gray10BackgroundColor {
+  background-color: var(--color-base-gray-10);
+}
+
+.gray30BackgroundColor {
+  background-color: var(--color-base-gray-30);
+}
+
+.gray80BackgroundColor {
+  background-color: var(--color-base-gray-80);
+}
+
+.gray100BackgroundColor {
+  background-color: var(--color-base-gray-100);
+}
+
+.gray200BackgroundColor {
+  background-color: var(--color-base-gray-200);
+}
+
+.gray300BackgroundColor {
+  background-color: var(--color-base-gray-300);
+}
+
+.gray700BackgroundColor {
+  background-color: var(--color-base-gray-700);
+}
+
+.gray800BackgroundColor {
+  background-color: var(--color-base-gray-800);
+}
+
+.gray900BackgroundColor {
+  background-color: var(--color-base-gray-900);
+}
+
+.orange100BackgroundColor {
+  background-color: var(--color-base-orange-100);
+}
+
+.orange200BackgroundColor {
+  background-color: var(--color-base-orange-200);
+}
+
+.orange300BackgroundColor {
+  background-color: var(--color-base-orange-300);
+}
+
+.orange700BackgroundColor {
+  background-color: var(--color-base-orange-700);
+}
+
+.orange800BackgroundColor {
+  background-color: var(--color-base-orange-800);
+}
+
+.orange900BackgroundColor {
+  background-color: var(--color-base-orange-900);
+}
+
+.primary100BackgroundColor {
+  background-color: var(--color-base-primary-100);
+}
+
+.primary200BackgroundColor {
+  background-color: var(--color-base-primary-200);
+}
+
+.primary300BackgroundColor {
+  background-color: var(--color-base-primary-300);
+}
+
+.primary700BackgroundColor {
+  background-color: var(--color-base-primary-700);
+}
+
+.primary800BackgroundColor {
+  background-color: var(--color-base-primary-800);
+}
+
+.primary900BackgroundColor {
+  background-color: var(--color-base-primary-900);
+}
+
+.success100BackgroundColor {
+  background-color: var(--color-base-success-100);
+}
+
+.success200BackgroundColor {
+  background-color: var(--color-base-success-200);
+}
+
+.success300BackgroundColor {
+  background-color: var(--color-base-success-300);
+}
+
 .success700BackgroundColor {
   background-color: var(--color-base-success-700);
+}
+
+.success800BackgroundColor {
+  background-color: var(--color-base-success-800);
+}
+
+.success900BackgroundColor {
+  background-color: var(--color-base-success-900);
+}
+
+.purple100BackgroundColor {
+  background-color: var(--color-base-purple-100);
+}
+
+.purple200BackgroundColor {
+  background-color: var(--color-base-purple-200);
+}
+
+.purple300BackgroundColor {
+  background-color: var(--color-base-purple-300);
+}
+
+.purple700BackgroundColor {
+  background-color: var(--color-base-purple-700);
+}
+
+.purple800BackgroundColor {
+  background-color: var(--color-base-purple-800);
+}
+
+.purple900BackgroundColor {
+  background-color: var(--color-base-purple-900);
 }
 
 .whiteBackgroundColor {
   background-color: var(--color-base-white);
 }
 
+.yellow100BackgroundColor {
+  background-color: var(--color-base-yellow-100);
+}
+
+.yellow200BackgroundColor {
+  background-color: var(--color-base-yellow-200);
+}
+
+.yellow300BackgroundColor {
+  background-color: var(--color-base-yellow-300);
+}
+
 .yellow700BackgroundColor {
   background-color: var(--color-base-yellow-700);
 }
 
-.primary700BackgroundColor {
-  background-color: var(--color-base-primary-700);
+.yellow800BackgroundColor {
+  background-color: var(--color-base-yellow-800);
+}
+
+.yellow900BackgroundColor {
+  background-color: var(--color-base-yellow-900);
 }
