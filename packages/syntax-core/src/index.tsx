@@ -8,6 +8,7 @@ import IconButton from "./IconButton/IconButton";
 import Checkbox from "./Checkbox/Checkbox";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Typography from "./Typography/Typography";
+import RadioButton from "./RadioButton/RadioButton";
 
 export {
   Avatar,
@@ -19,5 +20,6 @@ export {
   IconButton,
   Checkbox,
   MiniActionCard,
+  RadioButton,
   Typography,
 };

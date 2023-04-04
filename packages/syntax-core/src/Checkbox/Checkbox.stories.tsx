@@ -3,7 +3,7 @@ import Checkbox from "./Checkbox";
 import React, { useState } from "react";
 
 export default {
-  title: "Checkbox",
+  title: "Components/Checkbox",
   component: Checkbox,
   parameters: {
     design: {
