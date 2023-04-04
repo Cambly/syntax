@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import classNames from "classnames";
-import styles from "./LabeledCheckbox.module.css";
+import styles from "./Checkbox.module.css";
 import Typography from "../Typography/Typography";
 
 const typographySize = {
