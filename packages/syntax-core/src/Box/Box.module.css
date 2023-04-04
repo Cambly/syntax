@@ -374,6 +374,10 @@
 }
 
 /* Position */
+.absolute {
+  position: absolute;
+}
+
 .fixed {
   position: fixed;
 }
@@ -382,6 +386,6 @@
   position: relative;
 }
 
-.absolute {
-  position: absolute;
+.sticky {
+  position: sticky;
 }
