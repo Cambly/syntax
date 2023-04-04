@@ -421,837 +421,837 @@
 /* Margin (small and up) */
 @media (min-width: 480px) {
   .marginBottom-12Small {
-    composes: marginBottom-12;
+    margin-bottom: -48px;
   }
 
   .marginBottom-11Small {
-    composes: marginBottom-11;
+    margin-bottom: -44px;
   }
 
   .marginBottom-10Small {
-    composes: marginBottom-10;
+    margin-bottom: -40px;
   }
 
   .marginBottom-9Small {
-    composes: marginBottom-9;
+    margin-bottom: -36px;
   }
 
   .marginBottom-8Small {
-    composes: marginBottom-8;
+    margin-bottom: -32px;
   }
 
   .marginBottom-7Small {
-    composes: marginBottom-7;
+    margin-bottom: -28px;
   }
 
   .marginBottom-6Small {
-    composes: marginBottom-6;
+    margin-bottom: -24px;
   }
 
   .marginBottom-5Small {
-    composes: marginBottom-5;
+    margin-bottom: -20px;
   }
 
   .marginBottom-4Small {
-    composes: marginBottom-4;
+    margin-bottom: -16px;
   }
 
   .marginBottom-3Small {
-    composes: marginBottom-3;
+    margin-bottom: -12px;
   }
 
   .marginBottom-2Small {
-    composes: marginBottom-2;
+    margin-bottom: -8px;
   }
 
   .marginBottom-1Small {
-    composes: marginBottom-1;
+    margin-bottom: -4px;
   }
 
   .marginBottom0Small {
-    composes: marginBottom0;
+    margin-bottom: 0;
   }
 
   .marginBottom1Small {
-    composes: marginBottom1;
+    margin-bottom: 4px;
   }
 
   .marginBottom2Small {
-    composes: marginBottom2;
+    margin-bottom: 8px;
   }
 
   .marginBottom3Small {
-    composes: marginBottom3;
+    margin-bottom: 12px;
   }
 
   .marginBottom4Small {
-    composes: marginBottom4;
+    margin-bottom: 16px;
   }
 
   .marginBottom5Small {
-    composes: marginBottom5;
+    margin-bottom: 20px;
   }
 
   .marginBottom6Small {
-    composes: marginBottom6;
+    margin-bottom: 24px;
   }
 
   .marginBottom7Small {
-    composes: marginBottom7;
+    margin-bottom: 28px;
   }
 
   .marginBottom8Small {
-    composes: marginBottom8;
+    margin-bottom: 32px;
   }
 
   .marginBottom9Small {
-    composes: marginBottom9;
+    margin-bottom: 36px;
   }
 
   .marginBottom10Small {
-    composes: marginBottom10;
+    margin-bottom: 40px;
   }
 
   .marginBottom11Small {
-    composes: marginBottom11;
+    margin-bottom: 44px;
   }
 
   .marginBottom12Small {
-    composes: marginBottom12;
+    margin-bottom: 48px;
   }
 
   .marginBottomautoSmall {
-    composes: marginBottomauto;
+    margin-bottom: auto;
   }
 
   .marginEnd-12Small {
-    composes: marginEnd-12;
+    margin-inline-end: -48px;
   }
 
   .marginEnd-11Small {
-    composes: marginEnd-11;
+    margin-inline-end: -44px;
   }
 
   .marginEnd-10Small {
-    composes: marginEnd-10;
+    margin-inline-end: -40px;
   }
 
   .marginEnd-9Small {
-    composes: marginEnd-9;
+    margin-inline-end: -36px;
   }
 
   .marginEnd-8Small {
-    composes: marginEnd-8;
+    margin-inline-end: -32px;
   }
 
   .marginEnd-7Small {
-    composes: marginEnd-7;
+    margin-inline-end: -28px;
   }
 
   .marginEnd-6Small {
-    composes: marginEnd-6;
+    margin-inline-end: -24px;
   }
 
   .marginEnd-5Small {
-    composes: marginEnd-5;
+    margin-inline-end: -20px;
   }
 
   .marginEnd-4Small {
-    composes: marginEnd-4;
+    margin-inline-end: -16px;
   }
 
   .marginEnd-3Small {
-    composes: marginEnd-3;
+    margin-inline-end: -12px;
   }
 
   .marginEnd-2Small {
-    composes: marginEnd-2;
+    margin-inline-end: -8px;
   }
 
   .marginEnd-1Small {
-    composes: marginEnd-1;
+    margin-inline-end: -4px;
   }
 
   .marginEnd0Small {
-    composes: marginEnd0;
+    margin-inline-end: 0;
   }
 
   .marginEnd1Small {
-    composes: marginEnd1;
+    margin-inline-end: 4px;
   }
 
   .marginEnd2Small {
-    composes: marginEnd2;
+    margin-inline-end: 8px;
   }
 
   .marginEnd3Small {
-    composes: marginEnd3;
+    margin-inline-end: 12px;
   }
 
   .marginEnd4Small {
-    composes: marginEnd4;
+    margin-inline-end: 16px;
   }
 
   .marginEnd5Small {
-    composes: marginEnd5;
+    margin-inline-end: 20px;
   }
 
   .marginEnd6Small {
-    composes: marginEnd6;
+    margin-inline-end: 24px;
   }
 
   .marginEnd7Small {
-    composes: marginEnd7;
+    margin-inline-end: 28px;
   }
 
   .marginEnd8Small {
-    composes: marginEnd8;
+    margin-inline-end: 32px;
   }
 
   .marginEnd9Small {
-    composes: marginEnd9;
+    margin-inline-end: 36px;
   }
 
   .marginEnd10Small {
-    composes: marginEnd10;
+    margin-inline-end: 40px;
   }
 
   .marginEnd11Small {
-    composes: marginEnd11;
+    margin-inline-end: 44px;
   }
 
   .marginEnd12Small {
-    composes: marginEnd12;
+    margin-inline-end: 48px;
   }
 
   .marginEndautoSmall {
-    composes: marginEndauto;
+    margin-inline-end: auto;
   }
 
   .marginStart-12Small {
-    composes: marginStart-12;
+    margin-inline-start: -48px;
   }
 
   .marginStart-11Small {
-    composes: marginStart-11;
+    margin-inline-start: -44px;
   }
 
   .marginStart-10Small {
-    composes: marginStart-10;
+    margin-inline-start: -40px;
   }
 
   .marginStart-9Small {
-    composes: marginStart-9;
+    margin-inline-start: -36px;
   }
 
   .marginStart-8Small {
-    composes: marginStart-8;
+    margin-inline-start: -32px;
   }
 
   .marginStart-7Small {
-    composes: marginStart-7;
+    margin-inline-start: -28px;
   }
 
   .marginStart-6Small {
-    composes: marginStart-6;
+    margin-inline-start: -24px;
   }
 
   .marginStart-5Small {
-    composes: marginStart-5;
+    margin-inline-start: -20px;
   }
 
   .marginStart-4Small {
-    composes: marginStart-4;
+    margin-inline-start: -16px;
   }
 
   .marginStart-3Small {
-    composes: marginStart-3;
+    margin-inline-start: -12px;
   }
 
   .marginStart-2Small {
-    composes: marginStart-2;
+    margin-inline-start: -8px;
   }
 
   .marginStart-1Small {
-    composes: marginStart-1;
+    margin-inline-start: -4px;
   }
 
   .marginStart0Small {
-    composes: marginStart0;
+    margin-inline-start: 0;
   }
 
   .marginStart1Small {
-    composes: marginStart1;
+    margin-inline-start: 4px;
   }
 
   .marginStart2Small {
-    composes: marginStart2;
+    margin-inline-start: 8px;
   }
 
   .marginStart3Small {
-    composes: marginStart3;
+    margin-inline-start: 12px;
   }
 
   .marginStart4Small {
-    composes: marginStart4;
+    margin-inline-start: 16px;
   }
 
   .marginStart5Small {
-    composes: marginStart5;
+    margin-inline-start: 20px;
   }
 
   .marginStart6Small {
-    composes: marginStart6;
+    margin-inline-start: 24px;
   }
 
   .marginStart7Small {
-    composes: marginStart7;
+    margin-inline-start: 28px;
   }
 
   .marginStart8Small {
-    composes: marginStart8;
+    margin-inline-start: 32px;
   }
 
   .marginStart9Small {
-    composes: marginStart9;
+    margin-inline-start: 36px;
   }
 
   .marginStart10Small {
-    composes: marginStart10;
+    margin-inline-start: 40px;
   }
 
   .marginStart11Small {
-    composes: marginStart11;
+    margin-inline-start: 44px;
   }
 
   .marginStart12Small {
-    composes: marginStart12;
+    margin-inline-start: 48px;
   }
 
   .marginStartautoSmall {
-    composes: marginStartauto;
+    margin-inline-start: auto;
   }
 
   .marginTop-12Small {
-    composes: marginTop-12;
+    margin-top: -48px;
   }
 
   .marginTop-11Small {
-    composes: marginTop-11;
+    margin-top: -44px;
   }
 
   .marginTop-10Small {
-    composes: marginTop-10;
+    margin-top: -40px;
   }
 
   .marginTop-9Small {
-    composes: marginTop-9;
+    margin-top: -36px;
   }
 
   .marginTop-8Small {
-    composes: marginTop-8;
+    margin-top: -32px;
   }
 
   .marginTop-7Small {
-    composes: marginTop-7;
+    margin-top: -28px;
   }
 
   .marginTop-6Small {
-    composes: marginTop-6;
+    margin-top: -24px;
   }
 
   .marginTop-5Small {
-    composes: marginTop-5;
+    margin-top: -20px;
   }
 
   .marginTop-4Small {
-    composes: marginTop-4;
+    margin-top: -16px;
   }
 
   .marginTop-3Small {
-    composes: marginTop-3;
+    margin-top: -12px;
   }
 
   .marginTop-2Small {
-    composes: marginTop-2;
+    margin-top: -8px;
   }
 
   .marginTop-1Small {
-    composes: marginTop-1;
+    margin-top: -4px;
   }
 
   .marginTop0Small {
-    composes: marginTop0;
+    margin-top: 0;
   }
 
   .marginTop1Small {
-    composes: marginTop1;
+    margin-top: 4px;
   }
 
   .marginTop2Small {
-    composes: marginTop2;
+    margin-top: 8px;
   }
 
   .marginTop3Small {
-    composes: marginTop3;
+    margin-top: 12px;
   }
 
   .marginTop4Small {
-    composes: marginTop4;
+    margin-top: 16px;
   }
 
   .marginTop5Small {
-    composes: marginTop5;
+    margin-top: 20px;
   }
 
   .marginTop6Small {
-    composes: marginTop6;
+    margin-top: 24px;
   }
 
   .marginTop7Small {
-    composes: marginTop7;
+    margin-top: 28px;
   }
 
   .marginTop8Small {
-    composes: marginTop8;
+    margin-top: 32px;
   }
 
   .marginTop9Small {
-    composes: marginTop9;
+    margin-top: 36px;
   }
 
   .marginTop10Small {
-    composes: marginTop10;
+    margin-top: 40px;
   }
 
   .marginTop11Small {
-    composes: marginTop11;
+    margin-top: 44px;
   }
 
   .marginTop12Small {
-    composes: marginTop12;
+    margin-top: 48px;
   }
 
   .marginTopautoSmall {
-    composes: marginTopauto;
+    margin-top: auto;
   }
 }
 
 /* Margin (large and up) */
 @media (min-width: 960px) {
   .marginBottom-12Large {
-    composes: marginBottom-12;
+    margin-bottom: -48px;
   }
 
   .marginBottom-11Large {
-    composes: marginBottom-11;
+    margin-bottom: -44px;
   }
 
   .marginBottom-10Large {
-    composes: marginBottom-10;
+    margin-bottom: -40px;
   }
 
   .marginBottom-9Large {
-    composes: marginBottom-9;
+    margin-bottom: -36px;
   }
 
   .marginBottom-8Large {
-    composes: marginBottom-8;
+    margin-bottom: -32px;
   }
 
   .marginBottom-7Large {
-    composes: marginBottom-7;
+    margin-bottom: -28px;
   }
 
   .marginBottom-6Large {
-    composes: marginBottom-6;
+    margin-bottom: -24px;
   }
 
   .marginBottom-5Large {
-    composes: marginBottom-5;
+    margin-bottom: -20px;
   }
 
   .marginBottom-4Large {
-    composes: marginBottom-4;
+    margin-bottom: -16px;
   }
 
   .marginBottom-3Large {
-    composes: marginBottom-3;
+    margin-bottom: -12px;
   }
 
   .marginBottom-2Large {
-    composes: marginBottom-2;
+    margin-bottom: -8px;
   }
 
   .marginBottom-1Large {
-    composes: marginBottom-1;
+    margin-bottom: -4px;
   }
 
   .marginBottom0Large {
-    composes: marginBottom0;
+    margin-bottom: 0;
   }
 
   .marginBottom1Large {
-    composes: marginBottom1;
+    margin-bottom: 4px;
   }
 
   .marginBottom2Large {
-    composes: marginBottom2;
+    margin-bottom: 8px;
   }
 
   .marginBottom3Large {
-    composes: marginBottom3;
+    margin-bottom: 12px;
   }
 
   .marginBottom4Large {
-    composes: marginBottom4;
+    margin-bottom: 16px;
   }
 
   .marginBottom5Large {
-    composes: marginBottom5;
+    margin-bottom: 20px;
   }
 
   .marginBottom6Large {
-    composes: marginBottom6;
+    margin-bottom: 24px;
   }
 
   .marginBottom7Large {
-    composes: marginBottom7;
+    margin-bottom: 28px;
   }
 
   .marginBottom8Large {
-    composes: marginBottom8;
+    margin-bottom: 32px;
   }
 
   .marginBottom9Large {
-    composes: marginBottom9;
+    margin-bottom: 36px;
   }
 
   .marginBottom10Large {
-    composes: marginBottom10;
+    margin-bottom: 40px;
   }
 
   .marginBottom11Large {
-    composes: marginBottom11;
+    margin-bottom: 44px;
   }
 
   .marginBottom12Large {
-    composes: marginBottom12;
+    margin-bottom: 48px;
   }
 
   .marginBottomautoLarge {
-    composes: marginBottomauto;
+    margin-bottom: auto;
   }
 
   .marginEnd-12Large {
-    composes: marginEnd-12;
+    margin-inline-end: -48px;
   }
 
   .marginEnd-11Large {
-    composes: marginEnd-11;
+    margin-inline-end: -44px;
   }
 
   .marginEnd-10Large {
-    composes: marginEnd-10;
+    margin-inline-end: -40px;
   }
 
   .marginEnd-9Large {
-    composes: marginEnd-9;
+    margin-inline-end: -36px;
   }
 
   .marginEnd-8Large {
-    composes: marginEnd-8;
+    margin-inline-end: -32px;
   }
 
   .marginEnd-7Large {
-    composes: marginEnd-7;
+    margin-inline-end: -28px;
   }
 
   .marginEnd-6Large {
-    composes: marginEnd-6;
+    margin-inline-end: -24px;
   }
 
   .marginEnd-5Large {
-    composes: marginEnd-5;
+    margin-inline-end: -20px;
   }
 
   .marginEnd-4Large {
-    composes: marginEnd-4;
+    margin-inline-end: -16px;
   }
 
   .marginEnd-3Large {
-    composes: marginEnd-3;
+    margin-inline-end: -12px;
   }
 
   .marginEnd-2Large {
-    composes: marginEnd-2;
+    margin-inline-end: -8px;
   }
 
   .marginEnd-1Large {
-    composes: marginEnd-1;
+    margin-inline-end: -4px;
   }
 
   .marginEnd0Large {
-    composes: marginEnd0;
+    margin-inline-end: 0;
   }
 
   .marginEnd1Large {
-    composes: marginEnd1;
+    margin-inline-end: 4px;
   }
 
   .marginEnd2Large {
-    composes: marginEnd2;
+    margin-inline-end: 8px;
   }
 
   .marginEnd3Large {
-    composes: marginEnd3;
+    margin-inline-end: 12px;
   }
 
   .marginEnd4Large {
-    composes: marginEnd4;
+    margin-inline-end: 16px;
   }
 
   .marginEnd5Large {
-    composes: marginEnd5;
+    margin-inline-end: 20px;
   }
 
   .marginEnd6Large {
-    composes: marginEnd6;
+    margin-inline-end: 24px;
   }
 
   .marginEnd7Large {
-    composes: marginEnd7;
+    margin-inline-end: 28px;
   }
 
   .marginEnd8Large {
-    composes: marginEnd8;
+    margin-inline-end: 32px;
   }
 
   .marginEnd9Large {
-    composes: marginEnd9;
+    margin-inline-end: 36px;
   }
 
   .marginEnd10Large {
-    composes: marginEnd10;
+    margin-inline-end: 40px;
   }
 
   .marginEnd11Large {
-    composes: marginEnd11;
+    margin-inline-end: 44px;
   }
 
   .marginEnd12Large {
-    composes: marginEnd12;
+    margin-inline-end: 48px;
   }
 
   .marginEndautoLarge {
-    composes: marginEndauto;
+    margin-inline-end: auto;
   }
 
   .marginStart-12Large {
-    composes: marginStart-12;
+    margin-inline-start: -48px;
   }
 
   .marginStart-11Large {
-    composes: marginStart-11;
+    margin-inline-start: -44px;
   }
 
   .marginStart-10Large {
-    composes: marginStart-10;
+    margin-inline-start: -40px;
   }
 
   .marginStart-9Large {
-    composes: marginStart-9;
+    margin-inline-start: -36px;
   }
 
   .marginStart-8Large {
-    composes: marginStart-8;
+    margin-inline-start: -32px;
   }
 
   .marginStart-7Large {
-    composes: marginStart-7;
+    margin-inline-start: -28px;
   }
 
   .marginStart-6Large {
-    composes: marginStart-6;
+    margin-inline-start: -24px;
   }
 
   .marginStart-5Large {
-    composes: marginStart-5;
+    margin-inline-start: -20px;
   }
 
   .marginStart-4Large {
-    composes: marginStart-4;
+    margin-inline-start: -16px;
   }
 
   .marginStart-3Large {
-    composes: marginStart-3;
+    margin-inline-start: -12px;
   }
 
   .marginStart-2Large {
-    composes: marginStart-2;
+    margin-inline-start: -8px;
   }
 
   .marginStart-1Large {
-    composes: marginStart-1;
+    margin-inline-start: -4px;
   }
 
   .marginStart0Large {
-    composes: marginStart0;
+    margin-inline-start: 0;
   }
 
   .marginStart1Large {
-    composes: marginStart1;
+    margin-inline-start: 4px;
   }
 
   .marginStart2Large {
-    composes: marginStart2;
+    margin-inline-start: 8px;
   }
 
   .marginStart3Large {
-    composes: marginStart3;
+    margin-inline-start: 12px;
   }
 
   .marginStart4Large {
-    composes: marginStart4;
+    margin-inline-start: 16px;
   }
 
   .marginStart5Large {
-    composes: marginStart5;
+    margin-inline-start: 20px;
   }
 
   .marginStart6Large {
-    composes: marginStart6;
+    margin-inline-start: 24px;
   }
 
   .marginStart7Large {
-    composes: marginStart7;
+    margin-inline-start: 28px;
   }
 
   .marginStart8Large {
-    composes: marginStart8;
+    margin-inline-start: 32px;
   }
 
   .marginStart9Large {
-    composes: marginStart9;
+    margin-inline-start: 36px;
   }
 
   .marginStart10Large {
-    composes: marginStart10;
+    margin-inline-start: 40px;
   }
 
   .marginStart11Large {
-    composes: marginStart11;
+    margin-inline-start: 44px;
   }
 
   .marginStart12Large {
-    composes: marginStart12;
+    margin-inline-start: 48px;
   }
 
   .marginStartautoLarge {
-    composes: marginStartauto;
+    margin-inline-start: auto;
   }
 
   .marginTop-12Large {
-    composes: marginTop-12;
+    margin-top: -48px;
   }
 
   .marginTop-11Large {
-    composes: marginTop-11;
+    margin-top: -44px;
   }
 
   .marginTop-10Large {
-    composes: marginTop-10;
+    margin-top: -40px;
   }
 
   .marginTop-9Large {
-    composes: marginTop-9;
+    margin-top: -36px;
   }
 
   .marginTop-8Large {
-    composes: marginTop-8;
+    margin-top: -32px;
   }
 
   .marginTop-7Large {
-    composes: marginTop-7;
+    margin-top: -28px;
   }
 
   .marginTop-6Large {
-    composes: marginTop-6;
+    margin-top: -24px;
   }
 
   .marginTop-5Large {
-    composes: marginTop-5;
+    margin-top: -20px;
   }
 
   .marginTop-4Large {
-    composes: marginTop-4;
+    margin-top: -16px;
   }
 
   .marginTop-3Large {
-    composes: marginTop-3;
+    margin-top: -12px;
   }
 
   .marginTop-2Large {
-    composes: marginTop-2;
+    margin-top: -8px;
   }
 
   .marginTop-1Large {
-    composes: marginTop-1;
+    margin-top: -4px;
   }
 
   .marginTop0Large {
-    composes: marginTop0;
+    margin-top: 0;
   }
 
   .marginTop1Large {
-    composes: marginTop1;
+    margin-top: 4px;
   }
 
   .marginTop2Large {
-    composes: marginTop2;
+    margin-top: 8px;
   }
 
   .marginTop3Large {
-    composes: marginTop3;
+    margin-top: 12px;
   }
 
   .marginTop4Large {
-    composes: marginTop4;
+    margin-top: 16px;
   }
 
   .marginTop5Large {
-    composes: marginTop5;
+    margin-top: 20px;
   }
 
   .marginTop6Large {
-    composes: marginTop6;
+    margin-top: 24px;
   }
 
   .marginTop7Large {
-    composes: marginTop7;
+    margin-top: 28px;
   }
 
   .marginTop8Large {
-    composes: marginTop8;
+    margin-top: 32px;
   }
 
   .marginTop9Large {
-    composes: marginTop9;
+    margin-top: 36px;
   }
 
   .marginTop10Large {
-    composes: marginTop10;
+    margin-top: 40px;
   }
 
   .marginTop11Large {
-    composes: marginTop11;
+    margin-top: 44px;
   }
 
   .marginTop12Large {
-    composes: marginTop12;
+    margin-top: 48px;
   }
 
   .marginTopautoLarge {
-    composes: marginTopauto;
+    margin-top: auto;
   }
 }

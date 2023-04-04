@@ -132,213 +132,265 @@
 /* Padding (small and up) */
 @media (min-width: 480px) {
   .paddingX0Small {
-    composes: paddingX0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .paddingX1Small {
-    composes: paddingX1;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .paddingX2Small {
-    composes: paddingX2;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .paddingX3Small {
-    composes: paddingX3;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .paddingX4Small {
-    composes: paddingX4;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .paddingX5Small {
-    composes: paddingX5;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .paddingX6Small {
-    composes: paddingX6;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .paddingX7Small {
-    composes: paddingX7;
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
   .paddingX8Small {
-    composes: paddingX8;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .paddingX9Small {
-    composes: paddingX9;
+    padding-left: 36px;
+    padding-right: 36px;
   }
 
   .paddingX10Small {
-    composes: paddingX10;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .paddingX11Small {
-    composes: paddingX11;
+    padding-left: 44px;
+    padding-right: 44px;
   }
 
   .paddingX12Small {
-    composes: paddingX12;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 
   .paddingY0Small {
-    composes: paddingY0;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .paddingY1Small {
-    composes: paddingY1;
+    padding-bottom: 4px;
+    padding-top: 4px;
   }
 
   .paddingY2Small {
-    composes: paddingY2;
+    padding-bottom: 8px;
+    padding-top: 8px;
   }
 
   .paddingY3Small {
-    composes: paddingY3;
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 
   .paddingY4Small {
-    composes: paddingY4;
+    padding-bottom: 16px;
+    padding-top: 16px;
   }
 
   .paddingY5Small {
-    composes: paddingY5;
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
 
   .paddingY6Small {
-    composes: paddingY6;
+    padding-bottom: 24px;
+    padding-top: 24px;
   }
 
   .paddingY7Small {
-    composes: paddingY7;
+    padding-bottom: 28px;
+    padding-top: 28px;
   }
 
   .paddingY8Small {
-    composes: paddingY8;
+    padding-bottom: 32px;
+    padding-top: 32px;
   }
 
   .paddingY9Small {
-    composes: paddingY9;
+    padding-bottom: 36px;
+    padding-top: 36px;
   }
 
   .paddingY10Small {
-    composes: paddingY10;
+    padding-bottom: 40px;
+    padding-top: 40px;
   }
 
   .paddingY11Small {
-    composes: paddingY11;
+    padding-bottom: 44px;
+    padding-top: 44px;
   }
 
   .paddingY12Small {
-    composes: paddingY12;
+    padding-bottom: 48px;
+    padding-top: 48px;
   }
 }
 
 /* Padding (large and up) */
 @media (min-width: 960px) {
   .paddingX0Large {
-    composes: paddingX0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .paddingX1Large {
-    composes: paddingX1;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .paddingX2Large {
-    composes: paddingX2;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .paddingX3Large {
-    composes: paddingX3;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .paddingX4Large {
-    composes: paddingX4;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .paddingX5Large {
-    composes: paddingX5;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .paddingX6Large {
-    composes: paddingX6;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .paddingX7Large {
-    composes: paddingX7;
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
   .paddingX8Large {
-    composes: paddingX8;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .paddingX9Large {
-    composes: paddingX9;
+    padding-left: 36px;
+    padding-right: 36px;
   }
 
   .paddingX10Large {
-    composes: paddingX10;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .paddingX11Large {
-    composes: paddingX11;
+    padding-left: 44px;
+    padding-right: 44px;
   }
 
   .paddingX12Large {
-    composes: paddingX12;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 
   .paddingY0Large {
-    composes: paddingY0;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .paddingY1Large {
-    composes: paddingY1;
+    padding-bottom: 4px;
+    padding-top: 4px;
   }
 
   .paddingY2Large {
-    composes: paddingY2;
+    padding-bottom: 8px;
+    padding-top: 8px;
   }
 
   .paddingY3Large {
-    composes: paddingY3;
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 
   .paddingY4Large {
-    composes: paddingY4;
+    padding-bottom: 16px;
+    padding-top: 16px;
   }
 
   .paddingY5Large {
-    composes: paddingY5;
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
 
   .paddingY6Large {
-    composes: paddingY6;
+    padding-bottom: 24px;
+    padding-top: 24px;
   }
 
   .paddingY7Large {
-    composes: paddingY7;
+    padding-bottom: 28px;
+    padding-top: 28px;
   }
 
   .paddingY8Large {
-    composes: paddingY8;
+    padding-bottom: 32px;
+    padding-top: 32px;
   }
 
   .paddingY9Large {
-    composes: paddingY9;
+    padding-bottom: 36px;
+    padding-top: 36px;
   }
 
   .paddingY10Large {
-    composes: paddingY10;
+    padding-bottom: 40px;
+    padding-top: 40px;
   }
 
   .paddingY11Large {
-    composes: paddingY11;
+    padding-bottom: 44px;
+    padding-top: 44px;
   }
 
   .paddingY12Large {
-    composes: paddingY12;
+    padding-bottom: 48px;
+    padding-top: 48px;
   }
 }

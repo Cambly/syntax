@@ -250,6 +250,23 @@ export const Padding: StoryObj<typeof Box> = {
   ),
 };
 
+export const Responsive: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Box padding={2}>
+        <Typography>Box visible on every screen width</Typography>
+      </Box>
+      <Box padding={2} display="none" smDisplay="block">
+        <Typography>Box visible on small screens (480px) and up</Typography>
+      </Box>
+
+      <Box padding={2} display="none" lgDisplay="block">
+        <Typography>Box visible on small screens (960px) and up</Typography>
+      </Box>
+    </>
+  ),
+};
+
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap">
