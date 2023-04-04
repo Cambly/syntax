@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 1.17.0
+
+### Minor Changes
+
+- ca63ba6: Update figma file and fix checkbox style overwriting
+
+## 1.16.1
+
+### Patch Changes
+
+- d1cf2f8: Update Button.module.css
+
 ## 1.16.0
 
 ### Minor Changes
