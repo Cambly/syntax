@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.3.0
+
+### Minor Changes
+
+- a317552: Add select list dropdown component
+
 ## 2.2.0
 
 ### Minor Changes
