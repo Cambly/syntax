@@ -8,8 +8,9 @@ import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import Checkbox from "./Checkbox/Checkbox";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
-import Typography from "./Typography/Typography";
 import RadioButton from "./RadioButton/RadioButton";
+import SelectList from "./SelectList/SelectList";
+import Typography from "./Typography/Typography";
 
 export {
   Avatar,
@@ -23,5 +24,6 @@ export {
   Checkbox,
   MiniActionCard,
   RadioButton,
+  SelectList,
   Typography,
 };

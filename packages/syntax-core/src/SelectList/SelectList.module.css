@@ -1,0 +1,81 @@
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opacityOverlay {
+  opacity: 0.3;
+}
+
+.outerTextContainer {
+  padding-inline-start: 4px;
+  padding-inline-end: 4px;
+}
+
+.selectWrapper {
+  display: flex;
+  position: relative;
+}
+
+.selectBox {
+  width: 100%;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-base-gray-700);
+  justify-content: space-between;
+  cursor: pointer;
+  appearance: none;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.selectBox:focus-visible {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}
+
+.unselected {
+  color: var(--color-base-gray-700);
+}
+
+.selected {
+  color: var(--color-base-gray-800);
+}
+
+.arrowIcon {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-inline-end: 8px;
+  pointer-events: none;
+}
+
+.selectBox:disabled {
+  cursor: auto;
+}
+
+.sm {
+  height: 32px;
+  border-radius: 12px;
+}
+
+.md {
+  height: 40px;
+  border-radius: 12px;
+}
+
+.lg {
+  height: 48px;
+  border-radius: 16px;
+}
+
+.selectError {
+  color: var(--color-base-destructive-700);
+  border-color: var(--color-base-destructive-700);
+  background-color: var(--color-base-destructive-100);
+}
