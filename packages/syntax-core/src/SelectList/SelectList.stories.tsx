@@ -21,9 +21,6 @@ export default {
     disabled: {
       control: "boolean",
     },
-    error: {
-      control: "boolean",
-    },
     onChange: { action: "clicked" },
   },
   tags: ["autodocs"],
