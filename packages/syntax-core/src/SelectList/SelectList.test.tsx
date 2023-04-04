@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable testing-library/no-await-sync-events */
 import { render, screen } from "@testing-library/react";
 import SelectList from "./SelectList";
 import { expect, vi } from "vitest";
@@ -61,18 +59,22 @@ describe("select", () => {
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();
     render(<SelectDropdown onChange={handleChange} numberOfOptions={3} />);
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(screen.getByTestId(selectTestId), "1");
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         target: expect.objectContaining({
           value: "1",
         }),
       }),
     );
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(screen.getByTestId(selectTestId), "2");
     expect(handleChange).toHaveBeenCalledTimes(2);
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         target: expect.objectContaining({
           value: "2",
         }),
@@ -88,9 +90,11 @@ describe("select", () => {
         numberOfOptions={3}
       />,
     );
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(screen.getByTestId(selectTestId), "1");
     const option1 = screen.getByTestId<HTMLOptionElement>("syntax-select-1");
     expect(option1.selected).toBeTruthy();
+    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(screen.getByTestId(selectTestId), "2");
     const option2 = screen.getByTestId<HTMLOptionElement>("syntax-select-2");
     expect(option2.selected).toBeTruthy();
