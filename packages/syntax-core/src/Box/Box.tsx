@@ -23,7 +23,7 @@ type As =
   | "summary";
 type Dimension = number | string;
 type Direction = "row" | "column";
-type Display = "flex" | "block" | "inlineBlock" | "visuallyHidden";
+type Display = "none" | "flex" | "block" | "inlineBlock" | "visuallyHidden";
 type Gap = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type JustifyContent =
   | "start"
@@ -434,47 +434,69 @@ export default function Box(props: {
       smDisplay && styles[`${smDisplay}Small`],
       lgDisplay && styles[`${lgDisplay}Large`],
       flexWrap && styles.flexWrap,
-      gap && styles[`gap${gap}`],
-      margin && !marginBottom && marginStyles[`marginBottom${margin}`],
-      margin && !marginEnd && marginStyles[`marginEnd${margin}`],
-      margin && !marginStart && marginStyles[`marginStart${margin}`],
-      margin && !marginTop && marginStyles[`marginTop${margin}`],
-      marginBottom && marginStyles[`marginBottom${marginBottom}`],
-      marginEnd && marginStyles[`marginEnd${marginEnd}`],
-      marginStart && marginStyles[`marginStart${marginStart}`],
-      marginTop && marginStyles[`marginTop${marginTop}`],
-      smMargin &&
+      gap != null && styles[`gap${gap}`],
+      margin != null && !marginBottom && marginStyles[`marginBottom${margin}`],
+      margin != null && !marginEnd && marginStyles[`marginEnd${margin}`],
+      margin != null && !marginStart && marginStyles[`marginStart${margin}`],
+      margin != null && !marginTop && marginStyles[`marginTop${margin}`],
+      marginBottom != null && marginStyles[`marginBottom${marginBottom}`],
+      marginEnd != null && marginStyles[`marginEnd${marginEnd}`],
+      marginStart != null && marginStyles[`marginStart${marginStart}`],
+      marginTop != null && marginStyles[`marginTop${marginTop}`],
+      smMargin != null &&
         !smMarginBottom &&
         marginStyles[`marginBottom${smMargin}Small`],
-      smMargin && !smMarginEnd && marginStyles[`marginEnd${smMargin}Small`],
-      smMargin && !smMarginStart && marginStyles[`marginStart${smMargin}Small`],
-      smMargin && !smMarginTop && marginStyles[`marginTop${smMargin}Small`],
-      smMarginBottom && marginStyles[`marginBottom${smMarginBottom}Small`],
-      smMarginEnd && marginStyles[`marginEnd${smMarginEnd}Small`],
-      smMarginStart && marginStyles[`marginStart${smMarginStart}Small`],
-      smMarginTop && marginStyles[`marginTop${smMarginTop}Small`],
-      lgMargin &&
+      smMargin != null &&
+        !smMarginEnd &&
+        marginStyles[`marginEnd${smMargin}Small`],
+      smMargin != null &&
+        !smMarginStart &&
+        marginStyles[`marginStart${smMargin}Small`],
+      smMargin != null &&
+        !smMarginTop &&
+        marginStyles[`marginTop${smMargin}Small`],
+      smMarginBottom != null &&
+        marginStyles[`marginBottom${smMarginBottom}Small`],
+      smMarginEnd != null && marginStyles[`marginEnd${smMarginEnd}Small`],
+      smMarginStart != null && marginStyles[`marginStart${smMarginStart}Small`],
+      smMarginTop != null && marginStyles[`marginTop${smMarginTop}Small`],
+      lgMargin != null &&
         !lgMarginBottom &&
         marginStyles[`marginBottom${lgMargin}Large`],
-      lgMargin && !lgMarginEnd && marginStyles[`marginEnd${lgMargin}Large`],
-      lgMargin && !lgMarginStart && marginStyles[`marginStart${lgMargin}Large`],
-      lgMargin && !lgMarginTop && marginStyles[`marginTop${lgMargin}Large`],
-      lgMarginBottom && marginStyles[`marginBottom${lgMarginBottom}Large`],
-      lgMarginEnd && marginStyles[`marginEnd${lgMarginEnd}Large`],
-      lgMarginStart && marginStyles[`marginStart${lgMarginStart}Large`],
-      lgMarginTop && marginStyles[`marginTop${lgMarginTop}Large`],
-      padding && !paddingX && paddingStyles[`paddingX${padding}`],
-      padding && !paddingY && paddingStyles[`paddingY${padding}`],
-      paddingX && paddingStyles[`paddingX${paddingX}`],
-      paddingY && paddingStyles[`paddingY${paddingY}`],
-      smPadding && !smPaddingX && paddingStyles[`paddingX${smPadding}Small`],
-      smPadding && !smPaddingY && paddingStyles[`paddingY${smPadding}Small`],
-      smPaddingX && paddingStyles[`paddingX${smPaddingX}Small`],
-      smPaddingY && paddingStyles[`paddingY${smPaddingY}Small`],
-      lgPadding && !lgPaddingX && paddingStyles[`paddingX${lgPadding}Large`],
-      lgPadding && !lgPaddingX && paddingStyles[`paddingY${lgPadding}Large`],
-      lgPaddingX && paddingStyles[`paddingX${lgPaddingX}Large`],
-      lgPaddingY && paddingStyles[`paddingY${lgPaddingY}Large`],
+      lgMargin != null &&
+        !lgMarginEnd &&
+        marginStyles[`marginEnd${lgMargin}Large`],
+      lgMargin != null &&
+        !lgMarginStart &&
+        marginStyles[`marginStart${lgMargin}Large`],
+      lgMargin != null &&
+        !lgMarginTop &&
+        marginStyles[`marginTop${lgMargin}Large`],
+      lgMarginBottom != null &&
+        marginStyles[`marginBottom${lgMarginBottom}Large`],
+      lgMarginEnd != null && marginStyles[`marginEnd${lgMarginEnd}Large`],
+      lgMarginStart != null && marginStyles[`marginStart${lgMarginStart}Large`],
+      lgMarginTop != null && marginStyles[`marginTop${lgMarginTop}Large`],
+      padding != null && !paddingX && paddingStyles[`paddingX${padding}`],
+      padding != null && !paddingY && paddingStyles[`paddingY${padding}`],
+      paddingX != null && paddingStyles[`paddingX${paddingX}`],
+      paddingY != null && paddingStyles[`paddingY${paddingY}`],
+      smPadding != null &&
+        !smPaddingX &&
+        paddingStyles[`paddingX${smPadding}Small`],
+      smPadding != null &&
+        !smPaddingY &&
+        paddingStyles[`paddingY${smPadding}Small`],
+      smPaddingX != null && paddingStyles[`paddingX${smPaddingX}Small`],
+      smPaddingY != null && paddingStyles[`paddingY${smPaddingY}Small`],
+      lgPadding != null &&
+        !lgPaddingX &&
+        paddingStyles[`paddingX${lgPadding}Large`],
+      lgPadding != null &&
+        !lgPaddingX &&
+        paddingStyles[`paddingY${lgPadding}Large`],
+      lgPaddingX != null && paddingStyles[`paddingX${lgPaddingX}Large`],
+      lgPaddingY != null && paddingStyles[`paddingY${lgPaddingY}Large`],
       justifyContent && styles[`justifyContent${justifyContent}`],
       smJustifyContent && styles[`justifyContent${smJustifyContent}Small`],
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],

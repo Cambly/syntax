@@ -30,46 +30,46 @@
 /* Align items (small and up) */
 @media (min-width: 480px) {
   .alignItemscenterSmall {
-    composes: alignItemscenter;
+    align-items: center;
   }
 
   .alignItemsstartSmall {
-    composes: alignItemsstart;
+    align-items: flex-start;
   }
 
   .alignItemsendSmall {
-    composes: alignItemsend;
+    align-items: flex-end;
   }
 
   .alignItemsstretchSmall {
-    composes: alignItemsstretch;
+    align-items: stretch;
   }
 
   .alignItemsbaselineSmall {
-    composes: alignItemsbaseline;
+    align-items: baseline;
   }
 }
 
 /* Align items (large and up) */
 @media (min-width: 960px) {
   .alignItemscenterLarge {
-    composes: alignItemscenter;
+    align-items: center;
   }
 
   .alignItemsstartLarge {
-    composes: alignItemsstart;
+    align-items: flex-start;
   }
 
   .alignItemsendLarge {
-    composes: alignItemsend;
+    align-items: flex-end;
   }
 
   .alignItemsstretchLarge {
-    composes: alignItemsstretch;
+    align-items: stretch;
   }
 
   .alignItemsbaselineLarge {
-    composes: alignItemsbaseline;
+    align-items: baseline;
   }
 }
 
@@ -132,6 +132,10 @@
   display: inline-block;
 }
 
+.none {
+  display: none;
+}
+
 .visuallyHidden {
   position: absolute;
   width: 1px;
@@ -147,38 +151,62 @@
 /* Display (small and up) */
 @media (min-width: 480px) {
   .blockSmall {
-    composes: block;
+    display: block;
   }
 
   .flexSmall {
-    composes: flex;
+    display: flex;
   }
 
   .inlineBlockSmall {
-    composes: inlineBlock;
+    display: inline-block;
+  }
+
+  .noneSmall {
+    display: none;
   }
 
   .visuallyHiddenSmall {
-    composes: visuallyHidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin-bottom: -1px;
+    border: 0;
+    padding-left: 0;
+    padding-right: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
   }
 }
 
 /* Display (large and up) */
 @media (min-width: 960px) {
   .blockLarge {
-    composes: block;
+    display: block;
   }
 
   .flexLarge {
-    composes: flex;
+    display: flex;
   }
 
   .inlineBlockLarge {
-    composes: inlineBlock;
+    display: inline-block;
+  }
+
+  .noneLarge {
+    display: none;
   }
 
   .visuallyHiddenLarge {
-    composes: visuallyHidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin-bottom: -1px;
+    border: 0;
+    padding-left: 0;
+    padding-right: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
   }
 }
 
@@ -194,22 +222,22 @@
 /* Direction (small and up) */
 @media (min-width: 480px) {
   .columnSmall {
-    composes: column;
+    flex-direction: column;
   }
 
   .rowSmall {
-    composes: row;
+    flex-direction: row;
   }
 }
 
 /* Direction (large and up) */
 @media (min-width: 960px) {
   .columnLarge {
-    composes: column;
+    flex-direction: column;
   }
 
   .rowLarge {
-    composes: row;
+    flex-direction: row;
   }
 }
 
@@ -294,54 +322,54 @@
 /* Justify content (small and up) */
 @media (min-width: 480px) {
   .justifyContentcenterSmall {
-    composes: justifyContentcenter;
+    justify-content: center;
   }
 
   .justifyContentstartSmall {
-    composes: justifyContentstart;
+    justify-content: flex-start;
   }
 
   .justifyContentendSmall {
-    composes: justifyContentend;
+    justify-content: flex-end;
   }
 
   .justifyContentbetweenSmall {
-    composes: justifyContentbetween;
+    justify-content: space-between;
   }
 
   .justifyContentaroundSmall {
-    composes: justifyContentaround;
+    justify-content: space-around;
   }
 
   .justifyContentevenlySmall {
-    composes: justifyContentevenly;
+    justify-content: space-evenly;
   }
 }
 
 /* Justify content (large and up) */
 @media (min-width: 960px) {
   .justifyContentcenterLarge {
-    composes: justifyContentcenter;
+    justify-content: center;
   }
 
   .justifyContentstartLarge {
-    composes: justifyContentstart;
+    justify-content: flex-start;
   }
 
   .justifyContentendLarge {
-    composes: justifyContentend;
+    justify-content: flex-end;
   }
 
   .justifyContentbetweenLarge {
-    composes: justifyContentbetween;
+    justify-content: space-between;
   }
 
   .justifyContentaroundLarge {
-    composes: justifyContentaround;
+    justify-content: space-around;
   }
 
   .justifyContentevenlyLarge {
-    composes: justifyContentevenly;
+    justify-content: space-evenly;
   }
 }
 
