@@ -5,7 +5,7 @@ import Card from "./Card/Card";
 import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
-import LabeledCheckbox from "./LabeledCheckbox/LabeledCheckbox";
+import Checkbox from "./Checkbox/Checkbox";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Typography from "./Typography/Typography";
 import RadioButton from "./RadioButton/RadioButton";
@@ -18,7 +18,7 @@ export {
   Divider,
   Heading,
   IconButton,
-  LabeledCheckbox,
+  Checkbox,
   MiniActionCard,
   RadioButton,
   Typography,
