@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.4.0
+
+### Minor Changes
+
+- 9d63eb3: Box: add postion sticky
+
 ## 2.3.0
 
 ### Minor Changes
