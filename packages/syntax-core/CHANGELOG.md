@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.2.0
+
+### Minor Changes
+
+- b51af4b: Fix box mediaquery props
+
 ## 2.1.0
 
 ### Minor Changes
