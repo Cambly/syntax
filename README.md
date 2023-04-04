@@ -1,4 +1,4 @@
-# Syntax - Cambly's design system
+# Syntax - Cambly's design system &middot; [![NPM Version](https://img.shields.io/npm/v/@cambly/syntax-core.svg)](https://www.npmjs.com/package/@cambly/syntax-core) [![License](https://img.shields.io/npm/l/@cambly/syntax-core?style=flat)](https://github.com/Cambly/syntax/blob/main/LICENSE)
 
 ## Setup
 
