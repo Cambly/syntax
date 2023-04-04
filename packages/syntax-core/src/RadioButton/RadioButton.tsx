@@ -3,6 +3,7 @@ import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";
 import Typography from "../Typography/Typography";
+import useFocusVisible from "../useFocusVisible";
 
 /**
  * RadioButton is a radio button with accompanying text
@@ -57,6 +58,7 @@ const RadioButton = ({
   value?: string;
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
+  const { isFocusVisible } = useFocusVisible();
 
   return (
     <label
@@ -87,7 +89,7 @@ const RadioButton = ({
           className={classnames(styles.outer, styles[size], {
             [styles.errorOuterBackgroundColor]: error,
             [styles.outerBackgroundColor]: !error,
-            [styles.focusedRadioButton]: isFocused,
+            [styles.focusedRadioButton]: isFocused && isFocusVisible && checked,
           })}
         >
           <div
@@ -102,7 +104,7 @@ const RadioButton = ({
           className={classnames(styles.background, styles[size], {
             [styles.errorBorderColor]: error,
             [styles.borderColor]: !error,
-            [styles.focusedRadioButton]: isFocused,
+            [styles.focusedRadioButton]: isFocused && isFocusVisible && checked,
           })}
         />
       )}
