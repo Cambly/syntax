@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 1.19.0
+
+### Minor Changes
+
+- a7863fc: Introduce Box component
+
 ## 1.18.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.7.0
+
+### Minor Changes
+
+- a7863fc: Introduce Box component
+
+### Patch Changes
+
+- Updated dependencies [a7863fc]
+  - @cambly/syntax-core@1.19.0
+
 ## 0.6.8
 
 ### Patch Changes
