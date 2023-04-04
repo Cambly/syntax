@@ -293,7 +293,7 @@ export default function Box(props: {
    *
    * @defaultValue "static"
    */
-  position?: "static" | "absolute" | "relative" | "fixed";
+  position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
   /**
    * Border radius of the box.
    *
