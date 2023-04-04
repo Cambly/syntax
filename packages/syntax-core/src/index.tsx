@@ -1,4 +1,5 @@
 import Avatar from "./Avatar/Avatar";
+import Box from "./Box/Box";
 import Button from "./Button/Button";
 import ButtonGroup from "./ButtonGroup/ButtonGroup";
 import Card from "./Card/Card";
@@ -12,6 +13,7 @@ import RadioButton from "./RadioButton/RadioButton";
 
 export {
   Avatar,
+  Box,
   Button,
   ButtonGroup,
   Card,
