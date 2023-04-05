@@ -3,7 +3,7 @@ import classNames from "classnames";
 import {
   ColorBaseDestructive700,
   ColorBaseGray800,
-} from "@cambly/syntax-design-tokens/dist/js/index.js";
+} from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import styles from "./SelectList.module.css";
 import SelectOption from "./SelectOption";

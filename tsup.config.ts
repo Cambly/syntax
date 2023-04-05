@@ -8,6 +8,7 @@ export default defineConfig({
   entry: ["src/index.tsx"],
   format: ["cjs", "esm"],
   external: ["react", "react-dom"],
+  noExternal: ["@cambly/syntax-design-tokens"],
   sourcemap: true,
   dts: true,
   // ESBuild does not yet support CSS Modules
