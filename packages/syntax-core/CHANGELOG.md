@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.5.0
+
+### Minor Changes
+
+- 87e4338: Internal: inline design system tokens to avoid unexpected token 'exports' error
+
 ## 2.4.0
 
 ### Minor Changes
