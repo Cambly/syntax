@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.7.0
+
+### Minor Changes
+
+- f1e92cc: update styling for radio button
+
 ## 2.6.0
 
 ### Minor Changes
