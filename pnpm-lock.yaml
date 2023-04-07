@@ -37,7 +37,7 @@ importers:
   apps/storybook:
     specifiers:
       '@cambly/eslint-config-syntax': workspace:1.2.0
-      '@cambly/syntax-core': workspace:2.5.0
+      '@cambly/syntax-core': workspace:2.6.0
       '@cambly/syntax-design-tokens': workspace:0.6.0
       '@cambly/syntax-tsconfig': workspace:1.2.0
       '@emotion/react': ^11.10.6
@@ -104,7 +104,7 @@ importers:
       eslint-plugin-testing-library: ^5.10.2
       eslint-plugin-vitest: ^0.0.54
     dependencies:
-      eslint-config-next: 13.2.4_hm2lnsmqyh3w2437rbu5kd45la
+      eslint-config-next: 13.3.0_hm2lnsmqyh3w2437rbu5kd45la
       eslint-config-prettier: 8.7.0_eslint@8.35.0
       eslint-config-turbo: 1.8.8_eslint@8.35.0
       eslint-plugin-react: 7.32.1_eslint@8.35.0
@@ -2625,8 +2625,8 @@ packages:
       tar-fs: 2.1.1
     dev: true
 
-  /@next/eslint-plugin-next/13.2.4:
-    resolution: {integrity: sha512-ck1lI+7r1mMJpqLNa3LJ5pxCfOB1lfJncKmRJeJxcJqcngaFwylreLP7da6Rrjr6u2gVRTfmnkSkjc80IiQCwQ==}
+  /@next/eslint-plugin-next/13.3.0:
+    resolution: {integrity: sha512-wuGN5qSEjSgcq9fVkH0Y/qIPFjnZtW3ZPwfjJOn7l/rrf6y8J24h/lo61kwqunTyzZJm/ETGfGVU9PUs8cnzEA==}
     dependencies:
       glob: 7.1.7
     dev: false
@@ -5912,8 +5912,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-next/13.2.4_hm2lnsmqyh3w2437rbu5kd45la:
-    resolution: {integrity: sha512-lunIBhsoeqw6/Lfkd6zPt25w1bn0znLA/JCL+au1HoEpSb4/PpsOYsYtgV/q+YPsoKIOzFyU5xnb04iZnXjUvg==}
+  /eslint-config-next/13.3.0_hm2lnsmqyh3w2437rbu5kd45la:
+    resolution: {integrity: sha512-6YEwmFBX0VjBd3ODGW9df0Is0FLaRFdMN8eAahQG9CN6LjQ28J8AFr19ngxqMSg7Qv6Uca/3VeeBosJh1bzu0w==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -5921,7 +5921,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 13.2.4
+      '@next/eslint-plugin-next': 13.3.0
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/parser': 5.54.1_hm2lnsmqyh3w2437rbu5kd45la
       eslint: 8.35.0

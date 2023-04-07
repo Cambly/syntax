@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.6.0
+
+### Minor Changes
+
+- 05cd207: Box: add rounding=circle
+
 ## 2.5.0
 
 ### Minor Changes
