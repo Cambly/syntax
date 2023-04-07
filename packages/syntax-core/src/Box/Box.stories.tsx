@@ -270,11 +270,11 @@ export const Responsive: StoryObj<typeof Box> = {
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap">
-      {(["sm", "md", "lg", "xl", "pill"] as const).map((rounding) => (
+      {(["sm", "md", "lg", "xl", "circle", "pill"] as const).map((rounding) => (
         <Box
           key={rounding}
           rounding={rounding}
-          width={100}
+          width={rounding === "pill" ? 200 : 100}
           height={100}
           color="gray300"
           display="flex"

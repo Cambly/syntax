@@ -115,6 +115,10 @@
   border-radius: 32px;
 }
 
+.roundingcircle {
+  border-radius: 50%;
+}
+
 .roundingpill {
   border-radius: 999px;
 }
