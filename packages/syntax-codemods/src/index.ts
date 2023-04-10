@@ -22,7 +22,9 @@ const {
 
 async function init() {
   const availableCodemods = (
-    await fs.readdir("./dist/transforms", { withFileTypes: true })
+    await fs.readdir(path.join(__dirname, "transforms"), {
+      withFileTypes: true,
+    })
   )
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".js"))
     .map((dirent) => dirent.name.replace(".js", ""));

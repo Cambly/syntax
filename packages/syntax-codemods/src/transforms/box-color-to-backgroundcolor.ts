@@ -8,7 +8,6 @@ export default function transformer(fileInfo: FileInfo, api: API) {
 
   const syntaxImportCollection = src.find(j.ImportDeclaration, {
     source: {
-      type: "Literal",
       value: "@cambly/syntax-core",
     },
   });

@@ -25,19 +25,22 @@ const getTestMetadata = async (
   return { input, outputCode };
 };
 
+const fixtureDir = join(__dirname, "..", "__fixtures__");
+const subDirPath = join(fixtureDir, "box-color-to-backgroundcolor");
+
 describe("box-color-to-backgroundcolor", () => {
-  it("transforms correctly - base", async () => {
-    const fixtureDir = join(__dirname, "..", "__fixtures__");
-    const subDirPath = join(fixtureDir, "box-color-to-backgroundcolor");
+  it.each(["base", "full"])(`transforms correctly - %s`, async (file) => {
     const { input, outputCode } = await getTestMetadata(
       subDirPath,
-      "base",
+      file,
       "tsx",
     );
 
+    const jscodeshiftWithParser = jscodeshift.withParser("tsx");
+
     const output = transform(input, {
-      j: jscodeshift.withParser("tsx"),
-      jscodeshift,
+      j: jscodeshiftWithParser,
+      jscodeshift: jscodeshiftWithParser,
       stats: () => {
         /* empty */
       },
@@ -46,6 +49,6 @@ describe("box-color-to-backgroundcolor", () => {
       },
     });
 
-    expect(format(String(output))).toEqual(outputCode);
+    expect(format(String(output))).toEqual(format(outputCode));
   });
 });
