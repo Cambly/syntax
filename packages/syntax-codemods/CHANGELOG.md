@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 0.3.0
+
+### Minor Changes
+
+- 97d8c0b: Codemods: fix import & add test
+
 ## 0.2.0
 
 ### Minor Changes
