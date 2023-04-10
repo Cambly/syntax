@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 0.2.0
+
+### Minor Changes
+
+- fc8f321: Codemods: make jscodeshift a dependency
+
 ## 0.1.0
 
 ### Minor Changes
