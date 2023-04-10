@@ -107,9 +107,17 @@ const Button = ({
 }): ReactElement => {
   const contextProps = useContext(ButtonGroupContext);
 
-  const size = contextProps?.size ?? sizeProp;
-  const disabled = contextProps?.disabled ?? disabledProp;
-  const fullWidth = contextProps?.fullWidth ?? fullWidthProp;
+  /**
+   * Using logical OR (||) here instead of nullish coalescing (??)
+   * because we want to be able set the prop to true to enable the prop
+   * See: [When should I use ??  vs ||](https://stackoverflow.com/questions/61480993/when-should-i-use-nullish-coalescing-vs-logical-or)
+   */
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const size = contextProps?.size || sizeProp;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const disabled = contextProps?.disabled || disabledProp;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const fullWidth = contextProps?.fullWidth || fullWidthProp;
 
   return (
     <button
