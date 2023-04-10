@@ -90,7 +90,7 @@ export default function Box(props: {
   /**
    * The background color of the box.
    */
-  color?: (typeof allColors)[number];
+  backgroundColor?: (typeof allColors)[number];
   /**
    * The children to be rendered inside the box.
    */
@@ -369,7 +369,7 @@ export default function Box(props: {
     smAlignItems,
     lgAlignItems,
     alignSelf,
-    color,
+    backgroundColor,
     direction,
     smDirection,
     lgDirection,
@@ -427,7 +427,7 @@ export default function Box(props: {
       smAlignItems && styles[`alignItems${smAlignItems}Small`],
       lgAlignItems && styles[`alignItems${lgAlignItems}Large`],
       alignSelf && styles[`alignSelf${alignSelf}`],
-      color && colorStyles[`${color}BackgroundColor`],
+      backgroundColor && colorStyles[`${backgroundColor}BackgroundColor`],
       direction && styles[direction],
       smDirection && styles[`${smDirection}Small`],
       lgDirection && styles[`${lgDirection}Large`],

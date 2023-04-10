@@ -40,9 +40,12 @@ export default {
         "summary",
       ],
     },
-    color: {
+    backgroundColor: {
       control: { type: "select" },
       options: allColors,
+    },
+    dangerouslySetInlineStyle: {
+      control: { type: "object" },
     },
     flexWrap: {
       options: ["wrap", "nowrap"],
@@ -124,12 +127,15 @@ export default {
     maxWidth: {
       control: "text",
     },
+    rounding: {
+      options: ["none", "sm", "md", "lg", "xl", "circle", "pill"],
+      control: { type: "select" },
+    },
     children: {
       control: "text",
     },
-    // Filter dangerous and responsive props from the table to keep the table readable
+    // Filter responsive props from the table to keep the table readable
     ...[
-      "dangerouslySetInlineStyle",
       "lgAlignItems",
       "lgDirection",
       "lgDisplay",
@@ -170,14 +176,14 @@ export const Default: StoryObj<typeof Box> = {
   ),
 };
 
-export const Color: StoryObj<typeof Box> = {
+export const BackgroundColor: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" flexWrap="wrap" gap={4}>
       {allColors.map((color) => {
         const [number] = color.match(/\d\d\d/g) ?? [];
 
         return (
-          <Box key={color} color={color} width={120} padding={2}>
+          <Box key={color} backgroundColor={color} width={240} padding={2}>
             <Typography
               color={
                 ["gray10", "gray30", "white"].includes(color) ||
@@ -186,7 +192,7 @@ export const Color: StoryObj<typeof Box> = {
                   : "white"
               }
             >
-              {color}
+              backgroundColor=&quot;{color}&quot;
             </Typography>
           </Box>
         );
@@ -200,11 +206,11 @@ export const Display: StoryObj<typeof Box> = {
     <>
       <Typography weight="bold">Display: flex</Typography>
       <Box display="flex" marginTop={2}>
-        <Box color="gray700" width="50%" padding={4}>
-          <Typography color="white">Column 1</Typography>
+        <Box backgroundColor="gray700" width="50%" padding={4}>
+          <Typography color="white">width=&quot;50%&quot;</Typography>
         </Box>
-        <Box color="gray300" width="50%" padding={4}>
-          <Typography>Column 2</Typography>
+        <Box backgroundColor="gray300" width="50%" padding={4}>
+          <Typography>width=&quot;50%&quot;</Typography>
         </Box>
       </Box>
     </>
@@ -215,15 +221,17 @@ export const Margin: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap" alignItems="start">
       {([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const).map((margin) => (
-        <Box key={margin} color="gray300">
+        <Box key={margin} backgroundColor="gray300">
           <Box
+            backgroundColor="white"
             margin={margin}
-            color="white"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
-            <Typography color="gray200">{margin}</Typography>
+            <Typography color="gray200" tooltip={`${margin * 4}px`}>
+              margin=&quot;{margin}&quot;
+            </Typography>
           </Box>
         </Box>
       ))}
@@ -238,12 +246,14 @@ export const Padding: StoryObj<typeof Box> = {
         <Box
           key={padding}
           padding={padding}
-          color="gray300"
+          backgroundColor="gray300"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Typography>{padding}</Typography>
+          <Typography tooltip={`${padding * 4}px`}>
+            padding=&quot;{padding}&quot;
+          </Typography>
         </Box>
       ))}
     </Box>
@@ -252,20 +262,48 @@ export const Padding: StoryObj<typeof Box> = {
 
 export const Responsive: StoryObj<typeof Box> = {
   render: () => (
-    <>
+    <Box display="flex" gap={2} direction="column">
       <Box padding={2}>
-        <Typography>Box visible on every screen width</Typography>
+        <Typography>
+          Visible on every screen width:
+          <code>
+            <pre>&lt;Box /&gt;</pre>
+          </code>
+        </Typography>
       </Box>
       <Box padding={2} display="none" smDisplay="block">
-        <Typography>Box visible on small screens (480px) and up</Typography>
+        <Typography>
+          Visible on small screens (480px) and up:
+          <code>
+            <pre>
+              &lt;Box display=&quot;none&quot; smDisplay=&quot;block&quot;&gt;
+            </pre>
+          </code>
+        </Typography>
       </Box>
 
       <Box padding={2} display="none" lgDisplay="block">
-        <Typography>Box visible on small screens (960px) and up</Typography>
+        <Typography>
+          Visible on small screens (960px) and up:
+          <code>
+            <pre>
+              &lt;Box display=&quot;none&quot; lgDisplay=&quot;block&quot;&gt;
+            </pre>
+          </code>
+        </Typography>
       </Box>
-    </>
+    </Box>
   ),
 };
+
+const roundingLookup = {
+  sm: "8px",
+  md: "12px",
+  lg: "16px",
+  xl: "32px",
+  circle: "50",
+  pill: "999px",
+} as const;
 
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
@@ -274,14 +312,16 @@ export const Rounding: StoryObj<typeof Box> = {
         <Box
           key={rounding}
           rounding={rounding}
-          width={rounding === "pill" ? 200 : 100}
-          height={100}
-          color="gray300"
+          width={rounding === "pill" ? 250 : 150}
+          height={150}
+          backgroundColor="gray300"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Typography>{rounding}</Typography>
+          <Typography tooltip={`${roundingLookup[rounding]}`}>
+            rounding=&quot;{rounding}&quot;
+          </Typography>
         </Box>
       ))}
     </Box>

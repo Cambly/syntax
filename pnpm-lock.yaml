@@ -8,6 +8,7 @@ importers:
       '@testing-library/jest-dom': ^5.16.5
       '@testing-library/react': ^14.0.0
       '@testing-library/user-event': ^14.4.3
+      '@types/prettier': ^2.7.2
       '@vitejs/plugin-react': ^3.1.0
       eslint: ^8.35.0
       jsdom: ^21.1.0
@@ -23,6 +24,7 @@ importers:
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
       '@testing-library/user-event': 14.4.3_@testing-library+dom@9.0.1
+      '@types/prettier': 2.7.2
       '@vitejs/plugin-react': 3.1.0_vite@4.1.4
       eslint: 8.35.0
       jsdom: 21.1.0
@@ -113,6 +115,24 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.54.1_65sy3ptfeu2nwstjmwf7b2d754
       eslint-plugin-testing-library: 5.10.2_hm2lnsmqyh3w2437rbu5kd45la
       eslint-plugin-vitest: 0.0.54_hm2lnsmqyh3w2437rbu5kd45la
+
+  packages/syntax-codemods:
+    specifiers:
+      '@cambly/eslint-config-syntax': workspace:*
+      '@cambly/syntax-tsconfig': workspace:*
+      '@types/jscodeshift': ^0.11.0
+      eslint: ^8.35.0
+      jscodeshift: 0.14.0
+      tsup: 6.7.0
+      typescript: 5.0.3
+    devDependencies:
+      '@cambly/eslint-config-syntax': link:../eslint-config-syntax
+      '@cambly/syntax-tsconfig': link:../syntax-tsconfig
+      '@types/jscodeshift': 0.11.6
+      eslint: 8.35.0
+      jscodeshift: 0.14.0_@babel+preset-env@7.20.2
+      tsup: 6.7.0_typescript@5.0.3
+      typescript: 5.0.3
 
   packages/syntax-core:
     specifiers:
@@ -3892,6 +3912,13 @@ packages:
       pretty-format: 29.5.0
     dev: true
 
+  /@types/jscodeshift/0.11.6:
+    resolution: {integrity: sha512-3lJ4DajWkk4MZ1F7q+1C7jE0z0xOtbu0VU/Kg3wdPq2DUvJjySSlu3B5Q/bICrTxugLhONBO7inRUWsymOID/A==}
+    dependencies:
+      ast-types: 0.14.2
+      recast: 0.20.5
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -3965,6 +3992,10 @@ packages:
     resolution: {integrity: sha512-LNkp3c4ML9EQj2dgslp4i80Jxj72YK3HjYzrTn6ftUVylW1zaKFGqrMlNIyqBmPWmIhZ/Y5r0Y4T49Hk1IuDUg==}
     dependencies:
       postcss: 8.4.21
+    dev: true
+
+  /@types/prettier/2.7.2:
+    resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
     dev: true
 
   /@types/pretty-hrtime/1.0.1:
@@ -9247,6 +9278,16 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: true
+
+  /recast/0.20.5:
+    resolution: {integrity: sha512-E5qICoPoNL4yU0H0NoBDntNB0Q5oMSNh9usFctYniLBluTthi3RsQVBXIJNbApOlvSwW/RGxIuokPcAc59J5fQ==}
+    engines: {node: '>= 4'}
+    dependencies:
+      ast-types: 0.14.2
+      esprima: 4.0.1
+      source-map: 0.6.1
+      tslib: 2.5.0
     dev: true
 
   /recast/0.21.5:
