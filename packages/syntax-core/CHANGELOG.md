@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.9.0
+
+### Minor Changes
+
+- eef42f5: Update border stylings for secondary + destructive-secondary
+
 ## 2.8.0
 
 ### Minor Changes
