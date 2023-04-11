@@ -43,12 +43,14 @@ const RadioButtonInteractive = () => {
         checked={selectedOption === "male"}
         value="male"
         onChange={handleChange}
+        name="gender"
         label="Male"
       />
       <RadioButton
         checked={selectedOption === "female"}
         value="female"
         onChange={handleChange}
+        name="gender"
         label="Female"
       />
     </form>

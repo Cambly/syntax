@@ -82,6 +82,7 @@ function setupGlobalFocusEvents() {
   // a preceding user event (e.g. screen reader focus). Overriding the focus
   // method on HTMLElement.prototype is a bit hacky, but works.
   // $FlowExpectedError[method-unbinding]
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { focus } = HTMLElement.prototype;
   // $FlowIssue[cannot-write]
   HTMLElement.prototype.focus = function focusElement(...args) {
