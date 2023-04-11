@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 2.10.0
+
+### Minor Changes
+
+- 446958f: update turbo
+
 ## 2.9.0
 
 ### Minor Changes
