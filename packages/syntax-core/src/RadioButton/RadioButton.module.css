@@ -1,13 +1,8 @@
-.radioButton {
+.radioBaseContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-}
-
-.focusedRadioButton {
-  box-shadow: 0 0 0 4px #000;
-  outline: solid 2px #fff;
 }
 
 .smBase {
@@ -35,11 +30,9 @@
   height: 24px;
 }
 
-.outer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.background {
   position: absolute;
+  box-sizing: border-box;
 }
 
 .sm {
@@ -54,18 +47,16 @@
   border-radius: 12px;
 }
 
-.errorOuterBackgroundColor {
-  background-color: var(--color-base-destructive-700);
-}
-
-.outerBackgroundColor {
-  background-color: var(--color-base-primary-700);
-}
-
-.background {
-  position: absolute;
-  box-sizing: border-box;
+.neutralBorder {
   border: 2px solid;
+}
+
+.smCheckedBorder {
+  border: 5px solid;
+}
+
+.mdCheckedBorder {
+  border: 8px solid;
 }
 
 .errorBorderColor {
@@ -76,18 +67,7 @@
   border-color: var(--color-base-primary-700);
 }
 
-.circle {
-  border-radius: 50%;
-}
-
-.smInner {
-  background-color: var(--color-base-white);
-  height: 6px;
-  width: 6px;
-}
-
-.mdInner {
-  background-color: var(--color-base-white);
-  height: 10px;
-  width: 10px;
+.focusedRadioButton {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
 }

@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 3.0.0
+
+### Major Changes
+
+- da9c2a5: useFocusVisible, add in new required params (value, name) for radioButton
+
+## 2.10.0
+
+### Minor Changes
+
+- 446958f: update turbo
+
 ## 2.9.0
 
 ### Minor Changes
