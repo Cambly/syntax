@@ -1,0 +1,4 @@
+.accessibilityOutlineFocus {
+  box-shadow: 0 0 0 4px #000;
+  outline: solid 2px #fff;
+}

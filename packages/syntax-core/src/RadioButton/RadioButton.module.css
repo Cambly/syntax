@@ -66,8 +66,3 @@
 .borderColor {
   border-color: var(--color-base-primary-700);
 }
-
-.focusedRadioButton {
-  box-shadow: 0 0 0 4px #000;
-  outline: solid 2px #fff;
-}

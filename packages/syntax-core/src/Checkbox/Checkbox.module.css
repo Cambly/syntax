@@ -18,11 +18,6 @@
   margin: 0;
 }
 
-.focusedCheckbox {
-  box-shadow: 0 0 0 4px #000;
-  outline: solid 2px #fff;
-}
-
 .checkbox {
   position: relative;
   cursor: pointer;

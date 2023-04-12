@@ -32,11 +32,6 @@
   margin: 0;
 }
 
-.selectBox:focus-visible {
-  box-shadow: 0 0 0 4px #000;
-  outline: solid 2px #fff;
-}
-
 .unselected {
   color: var(--color-base-gray-700);
 }
