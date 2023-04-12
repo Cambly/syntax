@@ -78,10 +78,7 @@ const SelectList = ({
       })}
     >
       <label htmlFor={id} className={styles.outerTextContainer}>
-        <Typography
-          size={100}
-          color={errorText ? "destructive-primary" : "gray700"}
-        >
+        <Typography size={100} color="gray700">
           {label}
         </Typography>
       </label>
@@ -98,7 +95,7 @@ const SelectList = ({
           onChange={onChange}
         >
           {placeholderText && (
-            <option disabled value="">
+            <option disabled value="" selected>
               {placeholderText}
             </option>
           )}
