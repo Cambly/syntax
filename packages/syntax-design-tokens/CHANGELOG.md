@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.6.1
+
+### Patch Changes
+
+- 8689a7d: Add description to package.json files
+
 ## 0.6.0
 
 ### Minor Changes

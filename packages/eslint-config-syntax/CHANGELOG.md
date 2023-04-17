@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.2.1
+
+### Patch Changes
+
+- 8689a7d: Add description to package.json files
+
 ## 1.2.0
 
 ### Minor Changes
