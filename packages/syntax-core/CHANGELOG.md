@@ -1,5 +1,13 @@
 # @cambly/syntax-core
 
+## 3.0.1
+
+### Patch Changes
+
+- 8689a7d: Add description to package.json files
+- Updated dependencies [8689a7d]
+  - @cambly/syntax-design-tokens@0.6.1
+
 ## 3.0.0
 
 ### Major Changes
