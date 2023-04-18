@@ -1,5 +1,13 @@
 # @cambly/syntax-core
 
+## 3.1.0
+
+### Minor Changes
+
+- 279e56e: Box: convert rounding 'circle' and 'pill' to 'full'
+
+  Codemod: `npx @cambly/syntax-codemods -c box-rounding-to-full -p .`
+
 ## 3.0.1
 
 ### Patch Changes
