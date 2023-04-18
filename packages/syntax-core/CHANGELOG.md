@@ -1,5 +1,27 @@
 # @cambly/syntax-core
 
+## 3.2.0
+
+### Minor Changes
+
+- c02dc1a: Update label color in error state and default to placeholder
+
+## 3.1.0
+
+### Minor Changes
+
+- 279e56e: Box: convert rounding 'circle' and 'pill' to 'full'
+
+  Codemod: `npx @cambly/syntax-codemods -c box-rounding-to-full -p .`
+
+## 3.0.1
+
+### Patch Changes
+
+- 8689a7d: Add description to package.json files
+- Updated dependencies [8689a7d]
+  - @cambly/syntax-design-tokens@0.6.1
+
 ## 3.0.0
 
 ### Major Changes

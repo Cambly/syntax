@@ -88,10 +88,7 @@ const SelectList = ({
           [styles.visuallyHidden]: labelHidden,
         })}
       >
-        <Typography
-          size={100}
-          color={errorText ? "destructive-primary" : "gray700"}
-        >
+        <Typography size={100} color="gray700">
           {label}
         </Typography>
       </label>
@@ -106,9 +103,12 @@ const SelectList = ({
             [styles.selectError]: errorText,
           })}
           onChange={onChange}
+          value={
+            placeholderText && !selectedValue ? placeholderText : selectedValue
+          }
         >
           {placeholderText && (
-            <option disabled value="">
+            <option disabled value={placeholderText}>
               {placeholderText}
             </option>
           )}

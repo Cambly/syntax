@@ -128,7 +128,7 @@ export default {
       control: "text",
     },
     rounding: {
-      options: ["none", "sm", "md", "lg", "xl", "circle", "pill"],
+      options: ["none", "sm", "md", "lg", "xl", "full"],
       control: { type: "select" },
     },
     children: {
@@ -301,18 +301,17 @@ const roundingLookup = {
   md: "12px",
   lg: "16px",
   xl: "32px",
-  circle: "50",
-  pill: "999px",
+  full: "999px",
 } as const;
 
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap">
-      {(["sm", "md", "lg", "xl", "circle", "pill"] as const).map((rounding) => (
+      {(["sm", "md", "lg", "xl", "full"] as const).map((rounding) => (
         <Box
           key={rounding}
           rounding={rounding}
-          width={rounding === "pill" ? 250 : 150}
+          width={rounding === "full" ? 250 : 150}
           height={150}
           backgroundColor="gray300"
           display="flex"
