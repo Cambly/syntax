@@ -89,13 +89,21 @@ describe("select", () => {
         numberOfOptions={3}
       />,
     );
+    const firstSelectionValue = "1";
+    const secondSelectionValue = "2";
     // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.selectOptions(screen.getByTestId(selectTestId), "1");
-    expect(handleChange).toHaveBeenCalledWith("1");
+    await userEvent.selectOptions(
+      screen.getByTestId(selectTestId),
+      firstSelectionValue,
+    );
+    expect(handleChange).toHaveBeenCalledWith(firstSelectionValue);
     // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.selectOptions(screen.getByTestId(selectTestId), "2");
+    await userEvent.selectOptions(
+      screen.getByTestId(selectTestId),
+      secondSelectionValue,
+    );
     expect(handleChange).toHaveBeenCalledTimes(2);
-    expect(handleChange).toHaveBeenCalledWith("2");
+    expect(handleChange).toHaveBeenCalledWith(secondSelectionValue);
   });
   it("updates selections when selecting multiple options", async () => {
     render(
@@ -106,13 +114,25 @@ describe("select", () => {
         numberOfOptions={3}
       />,
     );
+    const firstSelectionValue = "1";
+    const secondSelectionValue = "2";
     // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.selectOptions(screen.getByTestId(selectTestId), "1");
-    const option1 = screen.getByTestId<HTMLOptionElement>("syntax-select-1");
+    await userEvent.selectOptions(
+      screen.getByTestId(selectTestId),
+      firstSelectionValue,
+    );
+    const option1 = screen.getByTestId<HTMLOptionElement>(
+      `${selectTestId}-${firstSelectionValue}`,
+    );
     expect(option1.selected).toBeTruthy();
     // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.selectOptions(screen.getByTestId(selectTestId), "2");
-    const option2 = screen.getByTestId<HTMLOptionElement>("syntax-select-2");
+    await userEvent.selectOptions(
+      screen.getByTestId(selectTestId),
+      secondSelectionValue,
+    );
+    const option2 = screen.getByTestId<HTMLOptionElement>(
+      `${selectTestId}-${secondSelectionValue}`,
+    );
     expect(option2.selected).toBeTruthy();
     expect(option1.selected).toBeFalsy();
   });
