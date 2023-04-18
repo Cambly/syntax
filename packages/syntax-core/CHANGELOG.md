@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 3.2.0
+
+### Minor Changes
+
+- c02dc1a: Update label color in error state and default to placeholder
+
 ## 3.1.0
 
 ### Minor Changes
