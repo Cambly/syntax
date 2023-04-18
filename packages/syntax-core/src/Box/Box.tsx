@@ -302,12 +302,11 @@ export default function Box(props: {
    * * `md`: 12px
    * * `lg`: 16px
    * * `xl`: 32px
-   * * `circle`: 50%
-   * * `pill`: 999px
+   * * `full`: 999px
    *
    * @defaultValue "none"
    */
-  rounding?: "xl" | "lg" | "md" | "sm" | "circle" | "pill" | "none";
+  rounding?: "xl" | "lg" | "md" | "sm" | "full" | "none";
   /**
    * The alignment of the box on the cross axis on sm (480px) or larger viewports.
    */
