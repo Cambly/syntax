@@ -93,9 +93,12 @@ const SelectList = ({
             [styles.selectError]: errorText,
           })}
           onChange={onChange}
+          value={
+            placeholderText && !selectedValue ? placeholderText : selectedValue
+          }
         >
           {placeholderText && (
-            <option disabled value="" selected>
+            <option disabled value={placeholderText}>
               {placeholderText}
             </option>
           )}
