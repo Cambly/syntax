@@ -32,7 +32,7 @@ const SelectDropdown = ({
 }: {
   selectedValue?: string;
   numberOfOptions: number;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) => {
   const options = Array.from({ length: numberOfOptions }, (item, idx) => ({
     value: String(idx),
