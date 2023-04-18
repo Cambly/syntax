@@ -97,7 +97,8 @@ const SelectList = ({
             [styles.selected]: selectedValue && !errorText,
             [styles.selectError]: errorText,
             [focusStyles.accessibilityOutlineFocus]:
-              isFocused && isFocusVisible,
+              isFocused && isFocusVisible, // for focus keyboard
+            [styles.seletBoxMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
           })}
           onChange={onChange}
           value={
