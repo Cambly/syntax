@@ -20,6 +20,7 @@ const SelectList = ({
   errorText,
   helperText,
   label,
+  labelHidden = false,
   onChange,
   placeholderText,
   selectedValue = "",
@@ -47,6 +48,10 @@ const SelectList = ({
    * Text shown above select box
    */
   label: string;
+  /**
+   * Whether or not we want the label to show
+   */
+  labelHidden?: boolean;
   /**
    * The callback to be called when an option is selected
    */
@@ -77,7 +82,12 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <label htmlFor={id} className={styles.outerTextContainer}>
+      <label
+        htmlFor={id}
+        className={classNames(styles.outerTextContainer, {
+          [styles.visuallyHidden]: labelHidden,
+        })}
+      >
         <Typography
           size={100}
           color={errorText ? "destructive-primary" : "gray700"}
