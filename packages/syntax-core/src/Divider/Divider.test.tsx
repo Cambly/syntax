@@ -8,6 +8,11 @@ describe("divider", () => {
     expect(baseElement).toBeTruthy();
   });
 
+  it("allow key to be set on Divider", () => {
+    const { baseElement } = render(<Divider key="divider-key" />);
+    expect(baseElement).toBeTruthy();
+  });
+
   it("renders an role=separator element", async () => {
     render(<Divider />);
     const separator = await screen.findAllByRole("separator");
