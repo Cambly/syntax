@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 3.3.0
+
+### Minor Changes
+
+- ff956e7: Divider: allow 'key' as a prop
+
 ## 3.2.0
 
 ### Minor Changes
