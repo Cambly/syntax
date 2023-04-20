@@ -18,10 +18,6 @@
   position: relative;
 }
 
-.visuallyHidden {
-  display: none;
-}
-
 .selectBox {
   width: 100%;
   padding: 0 12px;

@@ -7,6 +7,7 @@ import {
 import Typography from "../Typography/Typography";
 import styles from "./SelectList.module.css";
 import SelectOption from "./SelectOption";
+import Box from "../Box/Box";
 
 const iconSize = {
   sm: 20,
@@ -20,7 +21,7 @@ const SelectList = ({
   errorText,
   helperText,
   label,
-  hideLabel = false,
+  labelDisplay = "visible",
   onChange,
   placeholderText,
   selectedValue = "",
@@ -45,13 +46,14 @@ const SelectList = ({
    */
   helperText?: string;
   /**
-   * Whether or not we want the label to show
-   */
-  hideLabel?: boolean;
-  /**
-   * Text shown above select box
+   * Text shown above select box or for screen readers
    */
   label: string;
+  /**
+   *  "visible": label displays above select dropdown
+   *  "hidden": label hidden from display
+   */
+  labelDisplay?: "visible" | "hidden";
   /**
    * The callback to be called when an option is selected
    */
@@ -82,16 +84,13 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <label
-        htmlFor={id}
-        className={classNames(styles.outerTextContainer, {
-          [styles.visuallyHidden]: hideLabel,
-        })}
-      >
-        <Typography size={100} color="gray700">
-          {label}
-        </Typography>
-      </label>
+      <Box display={labelDisplay === "hidden" ? "visuallyHidden" : undefined}>
+        <label htmlFor={id} className={styles.outerTextContainer}>
+          <Typography size={100} color="gray700">
+            {label}
+          </Typography>
+        </label>
+      </Box>
       <div className={styles.selectWrapper}>
         <select
           id={id}
