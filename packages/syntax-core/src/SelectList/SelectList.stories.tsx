@@ -21,6 +21,10 @@ export default {
     disabled: {
       control: "boolean",
     },
+    labelDisplay: {
+      options: ["visible", "hidden"],
+      control: { type: "radio" },
+    },
     onChange: { action: "clicked" },
   },
   tags: ["autodocs"],
