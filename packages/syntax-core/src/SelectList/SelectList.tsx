@@ -84,7 +84,7 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <Box display={labelDisplay === "hidden" ? "visuallyHidden" : undefined}>
+      <Box display={labelDisplay === "hidden" ? "visuallyHidden" : "flex"}>
         <label htmlFor={id} className={styles.outerTextContainer}>
           <Typography size={100} color="gray700">
             {label}
