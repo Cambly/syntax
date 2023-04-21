@@ -1,9 +1,8 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { useContext, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Color, Size } from "../constants";
-import ButtonGroupContext from "../ButtonGroup/ButtonGroupContext";
 import styles from "./Button.module.css";
 
 const textVariant = {
@@ -32,11 +31,11 @@ const Button = ({
   text,
   loadingText,
   color = "primary",
-  size: sizeProp = "md",
+  size = "md",
   accessibilityLabel,
-  disabled: disabledProp = false,
+  disabled = false,
   loading = false,
-  fullWidth: fullWidthProp = false,
+  fullWidth = false,
   startIcon: StartIcon,
   endIcon: EndIcon,
   onClick,
@@ -105,20 +104,6 @@ const Button = ({
    */
   tooltip?: string;
 }): ReactElement => {
-  const contextProps = useContext(ButtonGroupContext);
-
-  /**
-   * Using logical OR (||) here instead of nullish coalescing (??)
-   * because we want to be able set the prop to true to enable the prop
-   * See: [When should I use ??  vs ||](https://stackoverflow.com/questions/61480993/when-should-i-use-nullish-coalescing-vs-logical-or)
-   */
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const size = contextProps?.size || sizeProp;
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const disabled = contextProps?.disabled || disabledProp;
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const fullWidth = contextProps?.fullWidth || fullWidthProp;
-
   return (
     <button
       aria-label={accessibilityLabel}

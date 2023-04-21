@@ -16,15 +16,9 @@ export default {
       options: ["horizontal", "vertical"],
       control: { type: "radio" },
     },
-    fullWidth: {
-      control: "boolean",
-    },
     size: {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
-    },
-    disabled: {
-      control: "boolean",
     },
   },
   tags: ["autodocs"],
@@ -37,8 +31,18 @@ function handleClick() {
 export const Default: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args}>
-      <Button color="secondary" text="Secondary" onClick={handleClick} />
-      <Button color="primary" text="Primary" onClick={handleClick} />
+      <Button
+        color="secondary"
+        size={args.size}
+        text="Secondary"
+        onClick={handleClick}
+      />
+      <Button
+        color="primary"
+        size={args.size}
+        text="Primary"
+        onClick={handleClick}
+      />
     </ButtonGroup>
   ),
 };
@@ -46,8 +50,13 @@ export const Default: StoryObj<typeof ButtonGroup> = {
 export const Small: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="sm">
-      <Button color="secondary" text="Secondary" onClick={handleClick} />
-      <Button color="primary" text="Primary" onClick={handleClick} />
+      <Button
+        size="sm"
+        color="secondary"
+        text="Secondary"
+        onClick={handleClick}
+      />
+      <Button size="sm" color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -55,8 +64,13 @@ export const Small: StoryObj<typeof ButtonGroup> = {
 export const Medium: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="md">
-      <Button color="secondary" text="Secondary" onClick={handleClick} />
-      <Button color="primary" text="Primary" onClick={handleClick} />
+      <Button
+        size="md"
+        color="secondary"
+        text="Secondary"
+        onClick={handleClick}
+      />
+      <Button size="md" color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };
@@ -64,17 +78,13 @@ export const Medium: StoryObj<typeof ButtonGroup> = {
 export const Large: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
     <ButtonGroup {...args} size="lg">
-      <Button color="secondary" text="Secondary" onClick={handleClick} />
-      <Button color="primary" text="Primary" onClick={handleClick} />
-    </ButtonGroup>
-  ),
-};
-
-export const FullWidth: StoryObj<typeof ButtonGroup> = {
-  render: (args) => (
-    <ButtonGroup {...args} fullWidth>
-      <Button color="secondary" text="Secondary" onClick={handleClick} />
-      <Button color="primary" text="Primary" onClick={handleClick} />
+      <Button
+        size="lg"
+        color="secondary"
+        text="Secondary"
+        onClick={handleClick}
+      />
+      <Button size="lg" color="primary" text="Primary" onClick={handleClick} />
     </ButtonGroup>
   ),
 };

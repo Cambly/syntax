@@ -1,7 +1,6 @@
-import { useMemo, ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import styles from "./ButtonGroup.module.css";
 import { Size } from "../constants";
-import ButtonGroupContext from "./ButtonGroupContext";
 import classNames from "classnames";
 
 const gap = {
@@ -11,27 +10,13 @@ const gap = {
 } as const;
 
 /**
- * Group buttons to render them in a row or column with consistent spacing in between each button
+ * Group buttons to render them in a row or column with consistent spacing between each button
  */
 const ButtonGroup = ({
-  disabled = false,
-  fullWidth = false,
   orientation = "horizontal",
   size = "md",
   children,
 }: {
-  /**
-   * If `true`, all buttons will be disabled.
-   *
-   * @defaultValue false
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, all buttons will be full width.
-   *
-   * @defaultValue false
-   */
-  fullWidth?: boolean;
   /**
    * The orientation of the button group
    *
@@ -39,11 +24,11 @@ const ButtonGroup = ({
    */
   orientation?: "horizontal" | "vertical";
   /**
-   * The size of the button group
+   * The size of the button group defines the spacing between each button
    *
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
+   * * `sm`: 8px
+   * * `md`: 12px
+   * * `lg`: 16px
    *
    * @defaultValue "md"
    */
@@ -53,21 +38,12 @@ const ButtonGroup = ({
    */
   children?: ReactNode;
 }): ReactElement => {
-  const context = useMemo(
-    () => ({ disabled, fullWidth, size }),
-    [disabled, fullWidth, size],
-  );
-
   const classnames = classNames(styles.buttonGroup, gap[size], {
     [styles.horizontal]: orientation === "horizontal",
     [styles.vertical]: orientation === "vertical",
   });
 
-  return (
-    <ButtonGroupContext.Provider value={context}>
-      <div className={classnames}>{children}</div>
-    </ButtonGroupContext.Provider>
-  );
+  return <div className={classnames}>{children}</div>;
 };
 
 export default ButtonGroup;

@@ -1,10 +1,9 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { ReactElement, useContext } from "react";
+import React, { ReactElement } from "react";
 import { Color, Size } from "../constants";
 import styles from "./IconButton.module.css";
-import ButtonGroupContext from "../ButtonGroup/ButtonGroupContext";
 
 const iconSize = {
   ["sm"]: styles.smIcon,
@@ -18,9 +17,9 @@ const iconSize = {
 const IconButton = ({
   accessibilityLabel,
   color = "primary",
-  disabled: disabledProp = false,
+  disabled = false,
   icon: Icon,
-  size: sizeProp = "md",
+  size = "md",
   tooltip,
   onClick,
 }: {
@@ -63,11 +62,6 @@ const IconButton = ({
    */
   tooltip?: string;
 }): ReactElement => {
-  const contextProps = useContext(ButtonGroupContext);
-
-  const size = contextProps?.size || sizeProp;
-  const disabled = contextProps?.disabled || disabledProp;
-
   return (
     <button
       aria-label={accessibilityLabel}
