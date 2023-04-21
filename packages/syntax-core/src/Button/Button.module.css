@@ -98,6 +98,7 @@
 }
 
 .textContainer {
+  flex-shrink: 0;
   padding-left: 4px;
   padding-right: 4px;
 }
