@@ -52,6 +52,8 @@ const SelectList = ({
   /**
    *  "visible": label displays above select dropdown
    *  "hidden": label hidden from display
+   *
+   * @defaultValue visible
    */
   labelDisplay?: "visible" | "hidden";
   /**
