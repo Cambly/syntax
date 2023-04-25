@@ -2,4 +2,4 @@
 "@cambly/syntax-core": minor
 ---
 
-button: Horizontally align text
+box: Add flexShrink
