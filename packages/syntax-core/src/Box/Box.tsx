@@ -124,6 +124,11 @@ export default function Box(props: {
    */
   display?: Display;
   /**
+   *  If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink
+   *
+   */
+  flexShrink?: number;
+  /**
    * By default, flex items will all try to fit onto one line. But if you specify `flexWrap="wrap"`, the flex items will wrap onto multiple lines.
    *
    * @defaultValue `nowrap`
@@ -375,6 +380,7 @@ export default function Box(props: {
     display,
     smDisplay,
     lgDisplay,
+    flexShrink,
     flexWrap,
     gap,
     justifyContent,
@@ -504,6 +510,7 @@ export default function Box(props: {
       rounding && rounding !== "none" && styles[`rounding${rounding}`],
     ),
     style: {
+      flexShrink,
       height,
       maxHeight,
       maxWidth,
