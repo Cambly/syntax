@@ -130,6 +130,12 @@ export default function Box(props: {
    */
   flexWrap?: "wrap" | "nowrap";
   /**
+   *  If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink
+   *
+   * @defaultValue `nowrap`
+   */
+  flexShrink?: number;
+  /**
    * The gap between the children of the box.
    */
   gap?: Gap;
@@ -376,6 +382,7 @@ export default function Box(props: {
     smDisplay,
     lgDisplay,
     flexWrap,
+    flexShrink,
     gap,
     justifyContent,
     smJustifyContent,
@@ -510,6 +517,7 @@ export default function Box(props: {
       minHeight,
       minWidth,
       width,
+      flexShrink,
       ...(dangerouslySetInlineStyle?.__style ?? {}),
     },
   };
