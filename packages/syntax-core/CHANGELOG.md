@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.1.0
+
+### Minor Changes
+
+- 80d6501: box: Add flexShrink
+
 ## 4.0.0
 
 ### Major Changes
