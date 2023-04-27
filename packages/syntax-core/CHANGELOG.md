@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.2.0
+
+### Minor Changes
+
+- f90bf67: consolidate focus styling, added it to checkbox, select
+
 ## 4.1.0
 
 ### Minor Changes
