@@ -82,11 +82,7 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <label
-        htmlFor={id}
-        className={styles.outerTextContainer}
-        onClick={(e) => e.preventDefault()}
-      >
+      <label htmlFor={id} className={styles.outerTextContainer}>
         <Typography size={100} color="gray700">
           {label}
         </Typography>
