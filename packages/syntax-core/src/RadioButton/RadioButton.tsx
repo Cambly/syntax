@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";
+import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 
@@ -68,7 +69,7 @@ const RadioButton = ({
   const sharedStyles = classnames(styles.background, styles[size], {
     [styles.errorBorderColor]: error,
     [styles.borderColor]: !error,
-    [styles.focusedRadioButton]: isFocused && isFocusVisible,
+    [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible,
   });
 
   return (

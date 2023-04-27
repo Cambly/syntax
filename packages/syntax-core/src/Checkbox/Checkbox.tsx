@@ -1,6 +1,8 @@
 import React, { ReactElement, useState } from "react";
 import classNames from "classnames";
+import useFocusVisible from "../useFocusVisible";
 import styles from "./Checkbox.module.css";
+import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 
 const typographySize = {
@@ -61,16 +63,18 @@ const Checkbox = ({
   error?: boolean;
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
+  const { isFocusVisible } = useFocusVisible();
+
   const checkboxStyling = classNames(styles.checkbox, styles[size]);
   const uncheckedStyling = classNames(checkboxStyling, styles.uncheckedBox, {
     [styles.uncheckedBorder]: !error,
     [styles.uncheckedErrorBorder]: error,
-    [styles.focusedCheckbox]: isFocused,
+    [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible,
   });
   const checkedStyling = classNames(checkboxStyling, styles.checkedBox, {
     [styles.checkedNonError]: !error,
     [styles.checkedError]: error,
-    [styles.focusedCheckbox]: isFocused,
+    [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible,
   });
 
   return (

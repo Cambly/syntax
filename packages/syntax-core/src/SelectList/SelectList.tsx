@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useId } from "react";
+import React, { ReactElement, ReactNode, useId, useState } from "react";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -6,7 +6,9 @@ import {
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import styles from "./SelectList.module.css";
+import focusStyles from "../Focus.module.css";
 import SelectOption from "./SelectOption";
+import useFocusVisible from "../useFocusVisible";
 
 const iconSize = {
   sm: 20,
@@ -71,6 +73,9 @@ const SelectList = ({
   size?: "sm" | "md" | "lg";
 }): ReactElement => {
   const id = useId();
+  const { isFocusVisible } = useFocusVisible();
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -91,11 +96,16 @@ const SelectList = ({
             [styles.unselected]: !selectedValue && !errorText,
             [styles.selected]: selectedValue && !errorText,
             [styles.selectError]: errorText,
+            [focusStyles.accessibilityOutlineFocus]:
+              isFocused && isFocusVisible, // for focus keyboard
+            [styles.seletBoxMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
           })}
           onChange={onChange}
           value={
             placeholderText && !selectedValue ? placeholderText : selectedValue
           }
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         >
           {placeholderText && (
             <option disabled value={placeholderText}>

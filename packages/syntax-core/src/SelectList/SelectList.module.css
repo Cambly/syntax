@@ -32,9 +32,9 @@
   margin: 0;
 }
 
-.selectBox:focus-visible {
-  box-shadow: 0 0 0 4px #000;
-  outline: solid 2px #fff;
+.seletBoxMouseFocusStyling {
+  border: 1px solid var(--color-base-primary-700);
+  box-shadow: 0 0 0 1px var(--color-base-primary-700);
 }
 
 .unselected {
