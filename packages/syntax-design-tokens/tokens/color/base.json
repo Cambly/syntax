@@ -24,6 +24,10 @@
           "value": "rgba(0, 0, 0, 0.3)",
           "comment": "For IconButton background when on top of an image"
         },
+        "60": {
+          "value": "rgba(0, 0, 0, 0.6)",
+          "comment": "Used for icon background in classroom video grid"
+        },
         "300": {
           "value": "#d0d0d0",
           "comment": "Used for component outlines, eg: select and textfield"
