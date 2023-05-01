@@ -30,6 +30,7 @@ const Typography = ({
   children,
   color = "gray900",
   inline = false,
+  lineClamp,
   size = 200,
   tooltip,
   transform = "none",
@@ -66,6 +67,12 @@ const Typography = ({
    * @defaultValue false
    */
   inline?: boolean;
+  /**
+   * The number of lines we should truncate the text at
+   *
+   * @defaultValue null
+   */
+  lineClamp?: number;
   /**
    * Size of the text.
    *
@@ -116,7 +123,11 @@ const Typography = ({
         styles[`size${size}`],
         transform === "uppercase" && styles.uppercase,
         underline && styles.underline,
+        lineClamp != null && styles.lineClamp,
       )}
+      style={{
+        WebkitLineClamp: lineClamp,
+      }}
       title={tooltip}
     >
       {children}
