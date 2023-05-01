@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.7.0
+
+### Minor Changes
+
+- 24af6f8: Add gray60 color
+
 ## 0.6.1
 
 ### Patch Changes

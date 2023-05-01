@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 4.3.0
+
+### Minor Changes
+
+- 24af6f8: Add gray60 color
+
+### Patch Changes
+
+- Updated dependencies [24af6f8]
+  - @cambly/syntax-design-tokens@0.7.0
+
 ## 4.2.0
 
 ### Minor Changes
