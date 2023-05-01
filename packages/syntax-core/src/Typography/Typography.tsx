@@ -30,7 +30,7 @@ const Typography = ({
   children,
   color = "gray900",
   inline = false,
-  lineClamp,
+  lineClamp = undefined,
   size = 200,
   tooltip,
   transform = "none",
@@ -72,7 +72,7 @@ const Typography = ({
    *
    * @defaultValue null
    */
-  lineClamp?: number;
+  lineClamp?: number | undefined;
   /**
    * Size of the text.
    *
