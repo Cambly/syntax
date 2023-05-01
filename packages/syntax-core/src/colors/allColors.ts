@@ -10,6 +10,7 @@ const colors = [
   "gray100",
   "gray200",
   "gray30",
+  "gray60",
   "gray300",
   "gray700",
   "gray80",

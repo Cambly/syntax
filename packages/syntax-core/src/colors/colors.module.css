@@ -60,6 +60,10 @@
   background-color: var(--color-base-gray-30);
 }
 
+.gray60BackgroundColor {
+  background-color: var(--color-base-gray-60);
+}
+
 .gray80BackgroundColor {
   background-color: var(--color-base-gray-80);
 }
