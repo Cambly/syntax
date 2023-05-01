@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@cambly/syntax-design-tokens": "workspace:0.6.1",
-    "@floating-ui/react": "^0.23.1"
+    "@floating-ui/react": "^0.24.0"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",
