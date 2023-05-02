@@ -1,10 +1,20 @@
 .tooltip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #444;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  word-wrap: break-word;
+}
+
+.uncontrolledTooltip {
   background-color: #444;
   color: #fff;
   padding: 4px 8px;
   border-radius: 4px;
-  box-sizing: border-box;
-  width: 100px;
-  height: 500px;
-  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

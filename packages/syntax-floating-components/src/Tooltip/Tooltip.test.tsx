@@ -38,7 +38,7 @@ describe("tooltip", () => {
 
     window.ResizeObserver = ResizeObserver;
     // eslint-disable-next-line testing-library/no-await-sync-events
-    await userEvent.click(button);
+    await userEvent.hover(button);
     expect(screen.getByText("My tooltip")).toBeInTheDocument();
   });
 });

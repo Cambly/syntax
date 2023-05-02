@@ -7,19 +7,15 @@ import {
   shift,
   useHover,
   useFocus,
-  useDelayGroup,
   useDelayGroupContext,
   useDismiss,
   useRole,
   useInteractions,
   useMergeRefs,
-  FloatingPortal,
   FloatingArrow,
   arrow,
-  useTransitionStyles,
 } from "@floating-ui/react";
 import type { Placement, Strategy } from "@floating-ui/react";
-import classNames from "classnames";
 
 interface TooltipOptions {
   initialOpen?: boolean;
@@ -166,19 +162,17 @@ export const TooltipContent = React.forwardRef<
   if (!context.open) return null;
 
   return (
-    <FloatingPortal>
-      <div
-        {...context.getFloatingProps(props)}
-        ref={ref}
-        className={props.className}
-        style={{
-          ...context.floatingStyles,
-          ...props.style,
-        }}
-      >
-        {props.children}
-        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
-      </div>
-    </FloatingPortal>
+    <div
+      {...context.getFloatingProps(props)}
+      ref={ref}
+      className={props.className}
+      style={{
+        ...context.floatingStyles,
+        ...props.style,
+      }}
+    >
+      {props.children}
+      <FloatingArrow ref={context.arrowRef} context={floatingContext} />
+    </div>
   );
 });
