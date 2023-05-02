@@ -82,3 +82,11 @@
 .uppercase {
   text-transform: uppercase;
 }
+
+.lineClamp {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  word-break: break-word;
+}
