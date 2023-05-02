@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.5.0
+
+### Minor Changes
+
+- 6ca7254: Add lineClamp to Typography
+
 ## 4.4.0
 
 ### Minor Changes
