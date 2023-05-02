@@ -69,8 +69,6 @@ const Typography = ({
   inline?: boolean;
   /**
    * The number of lines we should truncate the text at
-   *
-   * @defaultValue null
    */
   lineClamp?: number | undefined;
   /**
