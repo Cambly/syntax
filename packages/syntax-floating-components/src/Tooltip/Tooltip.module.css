@@ -1,10 +1,10 @@
 .tooltip {
   background-color: #444;
   color: #fff;
-  font-size: 90%;
   padding: 4px 8px;
   border-radius: 4px;
   box-sizing: border-box;
-  width: max-content;
-  max-width: calc(100vw - 10px);
+  width: 100px;
+  height: 500px;
+  overflow-wrap: break-word;
 }

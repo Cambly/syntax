@@ -7,34 +7,48 @@ import {
   shift,
   useHover,
   useFocus,
+  useDelayGroup,
+  useDelayGroupContext,
   useDismiss,
   useRole,
   useInteractions,
   useMergeRefs,
   FloatingPortal,
+  FloatingArrow,
+  arrow,
+  useTransitionStyles,
 } from "@floating-ui/react";
-import type { Placement } from "@floating-ui/react";
+import type { Placement, Strategy } from "@floating-ui/react";
+import classNames from "classnames";
 
 interface TooltipOptions {
   initialOpen?: boolean;
-  placement?: Placement;
+  noRest?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  placement?: Placement;
+  strategy?: Strategy;
 }
 
 export function useTooltip({
   initialOpen = false,
-  placement = "top",
+  noRest = true,
   open: controlledOpen,
   onOpenChange: setControlledOpen,
-}: TooltipOptions = {}) {
+  placement = "right",
+  strategy = "absolute",
+}: TooltipOptions) {
+  const { delay, isInstantPhase } = useDelayGroupContext();
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
+
+  const arrowRef = React.useRef(null);
 
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
 
   const data = useFloating({
     placement,
+    strategy,
     open,
     onOpenChange: setOpen,
     whileElementsMounted: autoUpdate,
@@ -44,6 +58,7 @@ export function useTooltip({
         fallbackAxisSideDirection: "start",
       }),
       shift({ padding: 4 }),
+      arrow({ element: arrowRef }),
     ],
   });
 
@@ -52,6 +67,8 @@ export function useTooltip({
   const hover = useHover(context, {
     move: false,
     enabled: controlledOpen == null,
+    restMs: isInstantPhase || noRest ? 0 : 150,
+    delay,
   });
   const focus = useFocus(context, {
     enabled: controlledOpen == null,
@@ -67,6 +84,7 @@ export function useTooltip({
       setOpen,
       ...interactions,
       ...data,
+      arrowRef,
     }),
     [open, setOpen, interactions, data],
   );
@@ -142,7 +160,7 @@ export const TooltipContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLProps<HTMLDivElement>
 >(function TooltipContent(props, propRef) {
-  const context = useTooltipContext();
+  const { context: floatingContext, ...context } = useTooltipContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
   if (!context.open) return null;
@@ -150,15 +168,17 @@ export const TooltipContent = React.forwardRef<
   return (
     <FloatingPortal>
       <div
+        {...context.getFloatingProps(props)}
         ref={ref}
+        className={props.className}
         style={{
-          position: context.strategy,
-          top: context.y ?? 0,
-          left: context.x ?? 0,
+          ...context.floatingStyles,
           ...props.style,
         }}
-        {...context.getFloatingProps(props)}
-      />
+      >
+        {props.children}
+        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
+      </div>
     </FloatingPortal>
   );
 });

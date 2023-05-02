@@ -3,7 +3,9 @@ import { StoryObj, Meta } from "@storybook/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import styles from "./Tooltip.module.css";
 import type { Placement } from "@floating-ui/react";
+import { FloatingDelayGroup } from "@floating-ui/react";
 import image from "../../../../apps/storybook/assets/images/book.svg";
+import classNames from "classnames";
 
 export default {
   title: "Floating-Components/Tooltip",
@@ -26,7 +28,7 @@ export default {
     },
     placement: {
       control: { type: "select" },
-      defaultValue: "top",
+      defaultValue: "right",
       options: [
         "top",
         "top-start",
@@ -42,7 +44,7 @@ export default {
         "left-end",
       ],
       table: {
-        defaultValue: { summary: "top" },
+        defaultValue: { summary: "right" },
       },
     },
     initialOpen: {
@@ -58,21 +60,45 @@ export default {
 const UnControlledTooltip = ({ args }: any) => {
   const imgRef = useRef(null);
   return (
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    <Tooltip placement={args.placement as Placement}>
-      <TooltipTrigger asChild>
-        <img
-          ref={imgRef}
-          src={image as string}
-          alt=""
-          style={{ width: "50px", height: "50px" }}
-        />
-      </TooltipTrigger>
-      <TooltipContent className={styles.tooltip}>
+    <div
+      style={{
+        padding: "8px",
+        overflowY: "auto",
+        border: "2px solid black",
+        width: 100,
+        height: "320px",
+      }}
+    >
+      <div
+        style={{
+          height: "300px",
+          width: "1px",
+        }}
+      />
+      <FloatingDelayGroup delay={200}>
         {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access*/}
-        {args.tooltipText || "This is a book"}
-      </TooltipContent>
-    </Tooltip>
+        <Tooltip placement={args.placement as Placement}>
+          <TooltipTrigger asChild>
+            <img
+              ref={imgRef}
+              src={image as string}
+              alt=""
+              style={{ width: "50px", height: "50px" }}
+            />
+          </TooltipTrigger>
+          <TooltipContent className={styles.tooltip}>
+            {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access*/}
+            {args.tooltipText || "This is a book and a really long sentence."}
+          </TooltipContent>
+        </Tooltip>
+      </FloatingDelayGroup>
+      <div
+        style={{
+          height: "300px",
+          width: "1px",
+        }}
+      />
+    </div>
   );
 };
 
@@ -83,7 +109,7 @@ export const Default: StoryObj<typeof Tooltip> = {
 export const ControlledTooltip = () => {
   const [open, setOpen] = useState(false);
   return (
-    <Tooltip open={open} onOpenChange={setOpen} placement="bottom">
+    <Tooltip open={open} onOpenChange={setOpen} placement="right">
       <TooltipTrigger onClick={() => setOpen((v) => !v)}>
         My trigger
       </TooltipTrigger>
