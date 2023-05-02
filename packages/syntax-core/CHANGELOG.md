@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.4.0
+
+### Minor Changes
+
+- ec4a39c: Box: pass through 'role' prop
+
 ## 4.3.0
 
 ### Minor Changes
