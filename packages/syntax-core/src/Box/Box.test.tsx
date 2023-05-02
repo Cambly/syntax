@@ -11,7 +11,12 @@ describe("box", () => {
 
   it("passes trough certain props", () => {
     render(
-      <Box aria-labelledby="other-element" data-testid="testId" id="id">
+      <Box
+        aria-labelledby="other-element"
+        data-testid="testId"
+        id="id"
+        role="dialog"
+      >
         Test
       </Box>,
     );
@@ -19,6 +24,8 @@ describe("box", () => {
     const box = screen.getByTestId("testId");
     expect(box).toBeInTheDocument();
     expect(box.getAttribute("aria-labelledby")).toBe("other-element");
+    expect(box.getAttribute("data-testid")).toBe("testId");
+    expect(box.getAttribute("role")).toBe("dialog");
     expect(box.getAttribute("id")).toBe("id");
   });
 
