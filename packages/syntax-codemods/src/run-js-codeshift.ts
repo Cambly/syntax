@@ -2,7 +2,7 @@ import Runner from "jscodeshift/src/Runner";
 
 export default function runJscodeshift(
   transformerPath: string,
-  flags: Record<string, any>,
+  flags: Record<string, unknown>,
   files: string[],
 ) {
   return Runner.run(transformerPath, files, {

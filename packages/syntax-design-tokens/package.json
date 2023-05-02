@@ -15,8 +15,8 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "chokidar-cli": "^3.0.0",
-    "style-dictionary": "^3.7.2"
+    "chokidar-cli": "3.0.0",
+    "style-dictionary": "3.8.0"
   },
   "publishConfig": {
     "access": "public"
