@@ -39,7 +39,7 @@ importers:
   apps/storybook:
     specifiers:
       '@cambly/eslint-config-syntax': workspace:1.2.1
-      '@cambly/syntax-core': workspace:4.3.0
+      '@cambly/syntax-core': workspace:4.4.0
       '@cambly/syntax-design-tokens': workspace:0.7.0
       '@cambly/syntax-tsconfig': workspace:1.2.1
       '@emotion/react': ^11.10.6
