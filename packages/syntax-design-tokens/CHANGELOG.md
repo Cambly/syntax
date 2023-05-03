@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.8.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
 ## 0.7.0
 
 ### Minor Changes

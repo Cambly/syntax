@@ -1,5 +1,11 @@
 # @cambly/syntax-tsconfig
 
+## 1.3.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
 ## 1.2.1
 
 ### Patch Changes

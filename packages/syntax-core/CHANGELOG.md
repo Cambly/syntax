@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 4.6.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
+### Patch Changes
+
+- Updated dependencies [e6c3e09]
+  - @cambly/syntax-design-tokens@0.8.0
+
 ## 4.5.0
 
 ### Minor Changes
