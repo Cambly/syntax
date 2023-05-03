@@ -78,7 +78,7 @@ describe("select", () => {
     );
 
     // Expect one additional option because of the placeholder option
-    expect(screen.getAllByRole("option").length).toBe(numberOfOptions + 1);
+    expect(screen.getAllByRole("option")).toHaveLength(numberOfOptions + 1);
   });
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();

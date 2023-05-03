@@ -14,8 +14,10 @@ const changeHandlers = new Set<Handler>();
 let hasEventBeforeFocus = false;
 
 const isMac =
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   typeof window !== "undefined" && window.navigator != null
-    ? /^Mac/.test(window.navigator.platform)
+    ? // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
+      /^Mac/.test(window.navigator.platform)
     : false;
 
 function isValidKey(e: KeyboardEvent) {
