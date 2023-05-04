@@ -49,6 +49,6 @@ describe("box-rounding-to-full", () => {
       },
     });
 
-    expect(format(String(output))).toEqual(format(outputCode));
+    expect(format(String(output))).toStrictEqual(format(outputCode));
   });
 });

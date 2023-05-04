@@ -1,6 +1,6 @@
 {
   "name": "@cambly/syntax-codemods",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Cambly design system codemods",
   "bin": "./dist/index.js",
   "main": "./dist/index.js",
@@ -15,7 +15,7 @@
     "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -25,10 +25,10 @@
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",
     "@cambly/syntax-tsconfig": "workspace:*",
-    "@types/jscodeshift": "^0.11.0",
-    "eslint": "^8.35.0",
+    "@types/jscodeshift": "0.11.6",
+    "eslint": "8.39.0",
     "tsup": "6.7.0",
-    "typescript": "5.0.3"
+    "typescript": "5.0.4"
   },
   "publishConfig": {
     "access": "public"

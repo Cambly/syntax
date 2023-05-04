@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactElement, ReactNode } from "react";
+import { type AriaRole, ReactElement, ReactNode } from "react";
 import styles from "./Box.module.css";
 import marginStyles from "./margin.module.css";
 import paddingStyles from "./padding.module.css";
@@ -300,6 +300,12 @@ export default function Box(props: {
    */
   position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
   /**
+   * The role attribute of the box.
+   *
+   * See [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) for the list of valid roles.
+   */
+  role?: AriaRole;
+  /**
    * Border radius of the box.
    *
    * * `none`: 0px
@@ -526,6 +532,7 @@ export default function Box(props: {
   >((acc, [key]) => {
     if (
       key === "id" ||
+      key === "role" ||
       key.startsWith("aria-") ||
       key.startsWith("data-testid")
     ) {

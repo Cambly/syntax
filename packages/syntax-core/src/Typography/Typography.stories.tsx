@@ -36,6 +36,9 @@ export default {
     inline: {
       control: "boolean",
     },
+    lineClamp: {
+      control: { type: "number", min: 0, max: 10, step: 1 },
+    },
     size: {
       options: [100, 200, 300, 500, 600, 700, 800],
       control: { type: "radio" },

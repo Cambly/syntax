@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-core",
   "description": "Cambly design system core components",
-  "version": "4.2.0",
+  "version": "4.6.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -14,27 +14,27 @@
     "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "stylelint": "stylelint \"**/*.css\"",
     "stylelint:fix": "npm run stylelint --fix",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cambly/syntax-design-tokens": "workspace:0.6.1"
+    "@cambly/syntax-design-tokens": "workspace:0.8.0"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",
     "@cambly/syntax-tsconfig": "workspace:*",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "classnames": "^2.3.2",
-    "eslint": "^8.35.0",
-    "postcss": "^8.4.21",
-    "postcss-modules": "^6.0.0",
-    "react": "^18.2.0",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "classnames": "2.3.2",
+    "eslint": "8.39.0",
+    "postcss": "8.4.23",
+    "postcss-modules": "6.0.0",
+    "react": "18.2.0",
     "tsup": "6.7.0",
-    "typescript": "5.0.3"
+    "typescript": "5.0.4"
   },
   "publishConfig": {
     "access": "public"

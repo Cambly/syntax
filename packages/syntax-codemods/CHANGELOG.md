@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 0.5.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
 ## 0.4.0
 
 ### Minor Changes

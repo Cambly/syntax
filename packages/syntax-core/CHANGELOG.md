@@ -1,5 +1,39 @@
 # @cambly/syntax-core
 
+## 4.6.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
+### Patch Changes
+
+- Updated dependencies [e6c3e09]
+  - @cambly/syntax-design-tokens@0.8.0
+
+## 4.5.0
+
+### Minor Changes
+
+- 6ca7254: Add lineClamp to Typography
+
+## 4.4.0
+
+### Minor Changes
+
+- ec4a39c: Box: pass through 'role' prop
+
+## 4.3.0
+
+### Minor Changes
+
+- 24af6f8: Add gray60 color
+
+### Patch Changes
+
+- Updated dependencies [24af6f8]
+  - @cambly/syntax-design-tokens@0.7.0
+
 ## 4.2.0
 
 ### Minor Changes

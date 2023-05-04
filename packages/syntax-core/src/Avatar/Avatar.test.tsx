@@ -13,6 +13,6 @@ describe("avatar", () => {
   it("renders an image with the correct label", async () => {
     render(<Avatar accessibilityLabel="Joseph Liotta" src="image.png" />);
     const image = await screen.findByAltText("Joseph Liotta");
-    expect(image instanceof HTMLImageElement).toEqual(true);
+    expect(image instanceof HTMLImageElement).toBeTruthy();
   });
 });

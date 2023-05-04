@@ -1,5 +1,39 @@
 # @syntax/storybook
 
+## 0.8.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
+### Patch Changes
+
+- Updated dependencies [e6c3e09]
+  - @cambly/syntax-design-tokens@0.8.0
+  - @cambly/syntax-core@4.6.0
+
+## 0.7.22
+
+### Patch Changes
+
+- Updated dependencies [6ca7254]
+  - @cambly/syntax-core@4.5.0
+
+## 0.7.21
+
+### Patch Changes
+
+- Updated dependencies [ec4a39c]
+  - @cambly/syntax-core@4.4.0
+
+## 0.7.20
+
+### Patch Changes
+
+- Updated dependencies [24af6f8]
+  - @cambly/syntax-design-tokens@0.7.0
+  - @cambly/syntax-core@4.3.0
+
 ## 0.7.19
 
 ### Patch Changes
