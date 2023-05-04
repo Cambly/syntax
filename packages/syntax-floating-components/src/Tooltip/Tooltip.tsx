@@ -7,7 +7,6 @@ import {
   shift,
   useHover,
   useFocus,
-  useDelayGroupContext,
   useDismiss,
   useRole,
   useInteractions,
@@ -16,25 +15,25 @@ import {
   arrow,
 } from "@floating-ui/react";
 import type { Placement, Strategy } from "@floating-ui/react";
+import styles from "./Tooltip.module.css";
 
-interface TooltipOptions {
+type TooltipOptions = {
+  delay?: number;
   initialOpen?: boolean;
-  noRest?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   placement?: Placement;
   strategy?: Strategy;
-}
+};
 
 export function useTooltip({
+  delay = 0,
   initialOpen = false,
-  noRest = true,
   open: controlledOpen,
   onOpenChange: setControlledOpen,
   placement = "right",
   strategy = "absolute",
 }: TooltipOptions) {
-  const { delay, isInstantPhase } = useDelayGroupContext();
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
   const arrowRef = React.useRef(null);
@@ -49,7 +48,7 @@ export function useTooltip({
     onOpenChange: setOpen,
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(4),
+      offset(8),
       flip({
         fallbackAxisSideDirection: "start",
       }),
@@ -63,7 +62,6 @@ export function useTooltip({
   const hover = useHover(context, {
     move: false,
     enabled: controlledOpen == null,
-    restMs: isInstantPhase || noRest ? 0 : 150,
     delay,
   });
   const focus = useFocus(context, {
@@ -90,7 +88,7 @@ type ContextType = ReturnType<typeof useTooltip> | null;
 
 const TooltipContext = React.createContext<ContextType>(null);
 
-export const useTooltipContext = () => {
+const useTooltipContext = () => {
   const context = React.useContext(TooltipContext);
 
   if (context == null) {
@@ -116,8 +114,8 @@ export function Tooltip({
 
 export const TooltipTrigger = React.forwardRef<
   HTMLElement,
-  React.HTMLProps<HTMLElement> & { asChild?: boolean }
->(function TooltipTrigger({ children, asChild = false, ...props }, propRef) {
+  React.HTMLProps<HTMLElement>
+>(function TooltipTrigger({ children, ...props }, propRef) {
   const context = useTooltipContext();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
   const childrenRef = (children as any).ref;
@@ -127,8 +125,7 @@ export const TooltipTrigger = React.forwardRef<
     childrenRef,
   ] as React.Ref<unknown>[]);
 
-  // `asChild` allows the user to pass any element as the anchor
-  if (asChild && React.isValidElement(children)) {
+  if (React.isValidElement(children)) {
     return React.cloneElement(
       children,
       context.getReferenceProps({
@@ -138,18 +135,11 @@ export const TooltipTrigger = React.forwardRef<
         "data-state": context.open ? "open" : "closed",
       } as React.HTMLProps<Element> | undefined),
     );
+  } else {
+    throw new Error(
+      "TooltipTrigger must be wrapped around a valid React element",
+    );
   }
-
-  return (
-    <button
-      ref={ref}
-      // The user can style the trigger based on the state
-      data-state={context.open ? "open" : "closed"}
-      {...context.getReferenceProps(props)}
-    >
-      {children}
-    </button>
-  );
 });
 
 export const TooltipContent = React.forwardRef<
@@ -165,10 +155,9 @@ export const TooltipContent = React.forwardRef<
     <div
       {...context.getFloatingProps(props)}
       ref={ref}
-      className={props.className}
+      className={styles.tooltipContent}
       style={{
         ...context.floatingStyles,
-        ...props.style,
       }}
     >
       {props.children}

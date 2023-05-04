@@ -1,20 +1,9 @@
-.tooltip {
+.tooltipContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #444;
-  color: #fff;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 4px;
-  word-wrap: break-word;
-}
-
-.uncontrolledTooltip {
-  background-color: #444;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  word-wrap: break-word;
+  align-items: flex-start;
+  background-color: var(--color-base-gray-900);
+  color: var(--color-base-white);
+  padding: 8px 12px;
+  border-radius: 8px;
 }

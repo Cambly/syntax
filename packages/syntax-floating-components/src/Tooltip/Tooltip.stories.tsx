@@ -1,10 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { StoryObj, Meta } from "@storybook/react";
+import { Typography } from "@cambly/syntax-core";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
-import styles from "./Tooltip.module.css";
-import type { Placement, Strategy } from "@floating-ui/react";
-import { FloatingDelayGroup, shift } from "@floating-ui/react";
-import image from "../../../../apps/storybook/assets/images/book.svg";
+import image from "../../../../apps/storybook/assets/images/info-icon.svg";
 
 export default {
   title: "Floating-Components/Tooltip",
@@ -16,14 +14,20 @@ export default {
     },
   },
   argTypes: {
-    children: {
-      control: { type: null },
-    },
     initialOpen: {
-      control: { type: null },
+      control: { type: "radio" },
+      defaultValue: true,
+      options: [false, true],
     },
     open: {
-      control: { type: null },
+      table: { disable: true },
+      description:
+        "Value of the 'open' state when controlled (disabled for story)",
+    },
+    onOpenChange: {
+      table: { disable: true },
+      description:
+        "Function to change the value of 'open' when tooltip is interacted (diabled for story)",
     },
     placement: {
       control: { type: "select" },
@@ -49,27 +53,61 @@ export default {
     strategy: {
       control: { type: "select" },
       options: ["absolute", "fixed"],
+      defaultValue: "absolute",
       table: {
         defaultValue: { summary: "absolute" },
       },
     },
-    tooltipText: {
+    children: {
       control: { type: "text" },
+      description: "The string value to show on the tooltip content",
+      defaultValue: "This is a button",
       table: {
-        defaultValue: { summary: "This is a book" },
+        type: { summary: "string" },
+        defaultValue: { summary: "This is a button" },
       },
     },
   },
   tags: ["autodocs"],
-} as Meta<any>;
+} as Meta<typeof Tooltip>;
 
-const ControlledTooltip = ({ args }: any) => {
+export const Default: StoryObj<typeof Tooltip> = {
+  args: {
+    delay: 0,
+    placement: "right",
+    initialOpen: true,
+    strategy: "absolute",
+    children: "This is a book",
+  },
+  render: ({ delay, placement, initialOpen, strategy, children }) => (
+    <Tooltip
+      delay={delay}
+      placement={placement}
+      initialOpen={initialOpen}
+      strategy={strategy}
+    >
+      <TooltipTrigger>
+        <img
+          src={image as string}
+          alt="info icon"
+          style={{ width: "20px", height: "20px" }}
+        />
+      </TooltipTrigger>
+      <TooltipContent>
+        <Typography size={100} color="white">
+          {children}
+        </Typography>
+      </TooltipContent>
+    </Tooltip>
+  ),
+};
+
+export const ControlledTooltip = () => {
   const [open, setOpen] = useState(false);
-  const imgRef = useRef(null);
   const scrollableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollableRef && scrollableRef.current) {
+    if (scrollableRef.current) {
       scrollableRef.current.scrollTop =
         scrollableRef.current.scrollHeight / 2 -
         scrollableRef.current.offsetHeight / 2;
@@ -80,81 +118,40 @@ const ControlledTooltip = ({ args }: any) => {
     <div
       ref={scrollableRef}
       style={{
-        padding: "8px",
         overflowY: "auto",
-        width: "250px",
+        width: "400px",
         height: "300px",
       }}
     >
       <div
         style={{
-          height: "300px",
-          width: "1px",
+          marginTop: "300px",
+          marginBottom: "300px",
+          display: "flex",
+          justifyContent: "center",
         }}
-      />
-      <div style={{ paddingLeft: "100px" }}>
-        <FloatingDelayGroup delay={200}>
-          {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access*/}
-          <Tooltip
-            open={open}
-            onOpenChange={setOpen}
-            placement={args.placement as Placement}
-            strategy={args.strategy as Strategy}
-          >
-            <TooltipTrigger onClick={() => setOpen((v) => !v)} asChild>
-              <img
-                ref={imgRef}
-                src={image as string}
-                alt=""
-                style={{ width: "50px", height: "50px" }}
-              />
-            </TooltipTrigger>
-            <TooltipContent className={styles.tooltip}>
-              <div
-                style={{
-                  width: "80%",
-                  wordWrap: "break-word",
-                  textAlign: "center",
-                }}
-              >
-                {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access*/}
-                {args.tooltipText ||
-                  "This is a book and a really long sentence."}
-              </div>
-              <a
-                href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
-                style={{
-                  textUnderlinePosition: "under",
-                  color: "white",
-                  paddingTop: "8px",
-                }}
-              >
-                Learn more
-              </a>
-            </TooltipContent>
-          </Tooltip>
-        </FloatingDelayGroup>
+      >
+        <Tooltip open={open} onOpenChange={setOpen}>
+          <TooltipTrigger>
+            <button onClick={() => setOpen((v) => !v)}>My Trigger</button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <Typography size={100} color="white">
+              This is a book and a really long sentence.
+            </Typography>
+            <a
+              href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
+              style={{
+                textUnderlinePosition: "under",
+                color: "white",
+                paddingTop: "8px",
+              }}
+            >
+              Learn more
+            </a>
+          </TooltipContent>
+        </Tooltip>
       </div>
-
-      <div
-        style={{
-          height: "300px",
-          width: "1px",
-        }}
-      />
     </div>
   );
 };
-
-export const Default: StoryObj<typeof Tooltip> = {
-  render: (args) => <ControlledTooltip args={{ ...args }} />,
-};
-
-export const UncontrolledTooltip = () => (
-  <Tooltip placement="bottom">
-    <TooltipTrigger>My trigger</TooltipTrigger>
-    <TooltipContent className={styles.uncontrolledTooltip}>
-      This is a tooltip
-    </TooltipContent>
-  </Tooltip>
-);
