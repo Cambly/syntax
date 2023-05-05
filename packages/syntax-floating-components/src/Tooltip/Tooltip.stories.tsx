@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { StoryObj, Meta } from "@storybook/react";
-import { Typography } from "@cambly/syntax-core";
+import Typography from "../../../syntax-core/src/Typography/Typography";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import image from "../../../../apps/storybook/assets/images/info-icon.svg";
 
@@ -145,6 +145,9 @@ export const ControlledTooltip = () => {
                 textUnderlinePosition: "under",
                 color: "white",
                 paddingTop: "8px",
+                fontSize: "12px",
+                fontWeight: 510,
+                lineHeight: "14px",
               }}
             >
               Learn more
