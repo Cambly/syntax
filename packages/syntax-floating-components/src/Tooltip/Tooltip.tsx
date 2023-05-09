@@ -117,7 +117,7 @@ export const TooltipTrigger = React.forwardRef<
   React.HTMLProps<HTMLElement>
 >(function TooltipTrigger({ children, ...props }, propRef) {
   const context = useTooltipContext();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
   const childrenRef = (children as any).ref;
   const ref = useMergeRefs([
     context.refs.setReference,
