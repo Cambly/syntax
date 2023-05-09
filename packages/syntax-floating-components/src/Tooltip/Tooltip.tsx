@@ -18,11 +18,37 @@ import type { Placement, Strategy } from "@floating-ui/react";
 import styles from "./Tooltip.module.css";
 
 type TooltipOptions = {
+  /**
+   * How long a user hovers before tooltip shows (in ms)
+   *
+   * @defaultValue 0
+   */
   delay?: number;
+  /**
+   * Whether an (uncontrolled) tooltip should open on load
+   *
+   * @defaultValue false
+   */
   initialOpen?: boolean;
+  /**
+   * Value of 'open' state of the tooltip content if controlled
+   */
   open?: boolean;
+  /**
+   * Function to set value of 'open' state of the tooltip content if controlled (setOpen)
+   */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Location of the tooltip content relative to anchor element
+   *
+   * @defaultValue "right"
+   */
   placement?: Placement;
+  /**
+   * Placement strategy, either "fixed" or "absolute"
+   *
+   * @defaultValue "absolute"
+   */
   strategy?: Strategy;
 };
 
