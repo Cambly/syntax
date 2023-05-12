@@ -14,7 +14,7 @@ import {
   FloatingArrow,
   arrow,
 } from "@floating-ui/react";
-import type { Placement, Strategy } from "@floating-ui/react";
+import type { Side, Strategy } from "@floating-ui/react";
 import styles from "./Tooltip.module.css";
 
 type TooltipOptions = {
@@ -35,15 +35,19 @@ type TooltipOptions = {
    */
   open?: boolean;
   /**
-   * Function to set value of 'open' state of the tooltip content if controlled (setOpen)
+   * Function to set value of 'open' state to true if controlled
    */
-  onOpenChange?: (open: boolean) => void;
+  onOpen?: (open: boolean) => void;
+  /**
+   * Function to set value of 'open' state to false if controlled
+   */
+  onClose?: (close: boolean) => void;
   /**
    * Location of the tooltip content relative to anchor element
    *
    * @defaultValue "right"
    */
-  placement?: Placement;
+  placement?: Side;
   /**
    * Placement strategy, either "fixed" or "absolute"
    *
@@ -56,16 +60,24 @@ export function useTooltip({
   delay = 0,
   initialOpen = false,
   open: controlledOpen,
-  onOpenChange: setControlledOpen,
   placement = "right",
   strategy = "absolute",
+  onOpen = undefined,
+  onClose = undefined,
 }: TooltipOptions) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
   const arrowRef = React.useRef(null);
 
   const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;
+  let setOpen: (open: boolean) => void;
+  if (onOpen && controlledOpen == true) {
+    setOpen = onOpen;
+  } else if (onClose && controlledOpen == false) {
+    setOpen = onClose;
+  } else {
+    setOpen = setUncontrolledOpen;
+  }
 
   const data = useFloating({
     placement,

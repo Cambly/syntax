@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { StoryObj, Meta } from "@storybook/react";
-import Typography from "../../../syntax-core/src/Typography/Typography";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+import Typography from "../../../syntax-core/src/Typography/Typography";
 import image from "../../../../apps/storybook/assets/images/info-icon.svg";
 
 export default {
@@ -32,20 +32,7 @@ export default {
     placement: {
       control: { type: "select" },
       defaultValue: "right",
-      options: [
-        "top",
-        "top-start",
-        "top-end",
-        "right",
-        "right-start",
-        "right-end",
-        "bottom",
-        "bottom-start",
-        "bottom-end",
-        "left",
-        "left-start",
-        "left-end",
-      ],
+      options: ["top", "right", "bottom", "left"],
       table: {
         defaultValue: { summary: "right" },
       },
@@ -61,11 +48,6 @@ export default {
     children: {
       control: { type: "text" },
       description: "The string value to show on the tooltip content",
-      defaultValue: "This is a button",
-      table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "This is a button" },
-      },
     },
   },
   tags: ["autodocs"],
@@ -77,25 +59,42 @@ export const Default: StoryObj<typeof Tooltip> = {
     placement: "right",
     initialOpen: true,
     strategy: "absolute",
-    children: "This is a book",
+    children: "This is a tooltip",
   },
   render: ({ delay, placement, initialOpen, strategy, children }) => (
-    <Tooltip
-      delay={delay}
-      placement={placement}
-      initialOpen={initialOpen}
-      strategy={strategy}
-    >
+    <div style={{ margin: "100px" }}>
+      <Tooltip
+        delay={delay}
+        placement={placement}
+        initialOpen={initialOpen}
+        strategy={strategy}
+      >
+        <TooltipTrigger>
+          <img
+            src={image as string}
+            alt="info icon"
+            style={{ width: "20px", height: "20px" }}
+          />
+        </TooltipTrigger>
+        <TooltipContent>
+          <Typography size={100} color="white">
+            {children}
+          </Typography>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  ),
+};
+
+export const UncontrolledButtonTooltip = {
+  render: () => (
+    <Tooltip>
       <TooltipTrigger>
-        <img
-          src={image as string}
-          alt="info icon"
-          style={{ width: "20px", height: "20px" }}
-        />
+        <button>My trigger</button>
       </TooltipTrigger>
       <TooltipContent>
         <Typography size={100} color="white">
-          {children}
+          This is a button
         </Typography>
       </TooltipContent>
     </Tooltip>
@@ -131,27 +130,26 @@ export const ControlledTooltip = () => {
           justifyContent: "center",
         }}
       >
-        <Tooltip open={open} onOpenChange={setOpen}>
+        <Tooltip
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+        >
           <TooltipTrigger>
             <button onClick={() => setOpen((v) => !v)}>My Trigger</button>
           </TooltipTrigger>
           <TooltipContent>
             <Typography size={100} color="white">
-              This is a book and a really long sentence.
+              This is a button and a really long sentence.
             </Typography>
-            <a
-              href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
-              style={{
-                textUnderlinePosition: "under",
-                color: "white",
-                paddingTop: "8px",
-                fontSize: "12px",
-                fontWeight: 510,
-                lineHeight: "14px",
-              }}
-            >
-              Learn more
-            </a>
+            <Typography size={100}>
+              <a
+                href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
+                style={{ textUnderlinePosition: "under", color: "white" }}
+              >
+                Learn more
+              </a>
+            </Typography>
           </TooltipContent>
         </Tooltip>
       </div>
