@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.7.0
+
+### Minor Changes
+
+- db98e57: Box: allow refs to be forwarded
+
 ## 4.6.0
 
 ### Minor Changes
