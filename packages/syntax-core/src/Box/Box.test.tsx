@@ -1,6 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import Box from "./Box";
 import { expect } from "vitest";
+import { createRef } from "react";
 
 describe("box", () => {
   it("renders successfully", () => {
@@ -104,5 +105,12 @@ describe("box", () => {
     const box = screen.getByTestId("testId");
     expect(box).toBeInTheDocument();
     expect(box.getAttribute("style")).toMatchInlineSnapshot('"opacity: 0.9;"');
+  });
+
+  it("allows for a ref to be set on Box", () => {
+    const ref = createRef<HTMLDivElement>();
+    render(<Box data-testid="test" ref={ref} />);
+    expect(ref.current instanceof HTMLDivElement).toBeTruthy();
+    expect(ref.current?.getAttribute("data-testid")).toStrictEqual("test");
   });
 });
