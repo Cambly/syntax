@@ -1,4 +1,4 @@
-import styles from "./Card.module.css";
+import Box from "../Box/Box";
 
 /**
  * Card is a basic container component to apply consistent styling and render child components.
@@ -10,6 +10,10 @@ const Card = ({
    * The child components to render within Card.
    */
   children: JSX.Element;
-}): JSX.Element => <div className={styles.card}>{children}</div>;
+}): JSX.Element => (
+  <Box rounding="xl" padding={7} smPadding={9} backgroundColor="white">
+    {children}
+  </Box>
+);
 
 export default Card;
