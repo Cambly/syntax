@@ -1,5 +1,8 @@
 import { StoryObj, Meta } from "@storybook/react";
 import Card from "./Card";
+import Box from "../Box/Box";
+import Heading from "../Heading/Heading";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/Card",
@@ -14,15 +17,17 @@ export default {
 } as Meta<typeof Card>;
 
 export const Default: StoryObj<typeof Card> = {
-  args: {
-    children: (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <h1>Headline</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    ),
-  },
+  render: ({ ...args }) => (
+    <Box backgroundColor="gray700" padding={6}>
+      <Card {...args}>
+        <Box display="flex" direction="column" gap={6}>
+          <Heading>Headline</Heading>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Typography>
+        </Box>
+      </Card>
+    </Box>
+  ),
 };
