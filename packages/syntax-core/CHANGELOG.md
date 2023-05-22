@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 4.8.0
+
+### Minor Changes
+
+- bf8fc7e: Card: update to use Box + fix border radius
+
+## 4.7.0
+
+### Minor Changes
+
+- db98e57: Box: allow refs to be forwarded
+
 ## 4.6.0
 
 ### Minor Changes
