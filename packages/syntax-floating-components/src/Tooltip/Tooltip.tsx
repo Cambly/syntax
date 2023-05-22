@@ -14,12 +14,7 @@ import {
   FloatingArrow,
   arrow,
 } from "@floating-ui/react";
-import type {
-  Side,
-  Strategy,
-  UseFloatingReturn,
-  ReferenceType,
-} from "@floating-ui/react";
+import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 import styles from "./Tooltip.module.css";
 
 type TooltipOptions = {
@@ -61,7 +56,7 @@ type TooltipOptions = {
   strategy?: Strategy;
 };
 
-type UseTooltipType = UseFloatingReturn<ReferenceType> & {
+type UseTooltipType = UseFloatingReturn & {
   getReferenceProps: (
     userProps?: React.HTMLProps<Element> | undefined,
   ) => Record<string, unknown>;

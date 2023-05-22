@@ -20,7 +20,7 @@ module.exports = {
         "plugin:@typescript-eslint/strict",
       ],
       rules: {
-        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
         "@typescript-eslint/consistent-type-imports": [
           "error",
           { fixStyle: "inline-type-imports" },
