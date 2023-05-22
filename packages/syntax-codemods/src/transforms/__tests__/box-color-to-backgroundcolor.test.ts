@@ -49,6 +49,14 @@ describe("box-color-to-backgroundcolor", () => {
       },
     });
 
-    expect(format(String(output))).toStrictEqual(format(outputCode));
+    expect(
+      format(String(output), {
+        parser: "babel",
+      }),
+    ).toStrictEqual(
+      format(outputCode, {
+        parser: "babel",
+      }),
+    );
   });
 });

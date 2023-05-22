@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { ReactElement } from "react";
-import { Color, Size } from "../constants";
+import React, { type ReactElement } from "react";
+import { type Color, type Size } from "../constants";
 import styles from "./IconButton.module.css";
 
 const iconSize = {

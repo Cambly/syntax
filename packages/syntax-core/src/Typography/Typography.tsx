@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import { ReactElement, ReactNode } from "react";
-import { Color } from "../constants";
+import { type ReactElement, type ReactNode } from "react";
+import { type Color } from "../constants";
 import styles from "./Typography.module.css";
 import colorStyles from "../colors/colors.module.css";
 

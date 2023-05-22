@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import React, { ReactElement } from "react";
+import React, { type ReactElement } from "react";
 
 import { Box, Typography } from "@cambly/syntax-core";
 

@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react";
 import Avatar from "./Avatar";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
 
