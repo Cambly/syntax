@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.8.1
+
+### Patch Changes
+
+- 28689b5: Internal: enable a few more TypeScript ESLint rules
+
 ## 4.8.0
 
 ### Minor Changes

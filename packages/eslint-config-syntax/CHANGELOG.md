@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.3.1
+
+### Patch Changes
+
+- 28689b5: Internal: enable a few more TypeScript ESLint rules
+
 ## 1.3.0
 
 ### Minor Changes
