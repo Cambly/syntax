@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { type ReactElement, useState } from "react";
 import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";

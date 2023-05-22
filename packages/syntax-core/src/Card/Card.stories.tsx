@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react";
 import Card from "./Card";
 import Box from "../Box/Box";
 import Heading from "../Heading/Heading";
