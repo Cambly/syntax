@@ -5709,13 +5709,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-<<<<<<< HEAD
-  /eslint-config-next/13.4.0_iacogk7kkaymxepzhgcbytyi7q:
-    resolution: {integrity: sha512-FkO3QRyUEKAHM4ie0xAcxo7fQ8gWevuLqgf6/g1Y6zWybqSa4FNeJr4hqqTbP25xIRgUUIPILBlx9RSH4C6+gQ==}
-=======
   /eslint-config-next/13.4.3_iacogk7kkaymxepzhgcbytyi7q:
     resolution: {integrity: sha512-1lXwdFi29fKxzeugof/TUE7lpHyJQt5+U4LaUHyvQfHjvsWO77vFNicJv5sX6k0VDVSbnfz0lw+avxI+CinbMg==}
->>>>>>> main
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -5723,11 +5718,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-<<<<<<< HEAD
-      '@next/eslint-plugin-next': 13.4.0
-=======
       '@next/eslint-plugin-next': 13.4.3
->>>>>>> main
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/parser': 5.59.2_iacogk7kkaymxepzhgcbytyi7q
       eslint: 8.39.0
