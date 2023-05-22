@@ -89,7 +89,7 @@ type ButtonType = {
   tooltip?: string;
 };
 
-const Button = forwardRef<ReactElement, ButtonType>(
+const Button = forwardRef<HTMLButtonElement, ButtonType>(
   (
     {
       text,

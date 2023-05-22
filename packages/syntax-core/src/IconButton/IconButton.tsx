@@ -55,7 +55,7 @@ type IconButtonType = {
 /**
  * IconButton is a clickable element that is used to perform an action.
  */
-const IconButton = forwardRef<ReactElement, IconButtonType>(
+const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
   (
     {
       accessibilityLabel,
