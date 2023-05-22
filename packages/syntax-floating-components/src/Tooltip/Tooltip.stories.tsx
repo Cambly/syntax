@@ -75,7 +75,7 @@ export const Default: StoryObj<typeof Tooltip> = {
           <IconButton
             accessibilityLabel="Info Icon Button"
             icon={InfoOutlinedIcon}
-            onClick={() => console.log("blah")}
+            onClick={() => alert("Default button pressed")}
             color="tertiary"
             size="lg"
           />
@@ -94,7 +94,10 @@ export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
   render: () => (
     <Tooltip>
       <TooltipTrigger>
-        <Button text="My trigger" onClick={() => console.log("blah")} />
+        <Button
+          text="My trigger"
+          onClick={() => alert("UncontrolledButtonTooltip pressed")}
+        />
       </TooltipTrigger>
       <TooltipContent>
         <Typography size={100} color="white">
