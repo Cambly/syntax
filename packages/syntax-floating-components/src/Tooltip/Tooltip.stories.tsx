@@ -2,7 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { StoryObj, Meta } from "@storybook/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import Typography from "../../../syntax-core/src/Typography/Typography";
-import image from "../../../../apps/storybook/assets/images/info-icon.svg";
+import Button from "../../../syntax-core/src/Button/Button";
+import IconButton from "../../../syntax-core/src/IconButton/IconButton";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default {
   title: "Floating-Components/Tooltip",
@@ -70,10 +72,12 @@ export const Default: StoryObj<typeof Tooltip> = {
         strategy={strategy}
       >
         <TooltipTrigger>
-          <img
-            src={image as string}
-            alt="info icon"
-            style={{ width: "20px", height: "20px" }}
+          <IconButton
+            accessibilityLabel="Info Icon Button"
+            icon={InfoOutlinedIcon}
+            onClick={() => console.log("blah")}
+            color="tertiary"
+            size="lg"
           />
         </TooltipTrigger>
         <TooltipContent>
@@ -86,11 +90,11 @@ export const Default: StoryObj<typeof Tooltip> = {
   ),
 };
 
-export const UncontrolledButtonTooltip = {
+export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
   render: () => (
     <Tooltip>
       <TooltipTrigger>
-        <button>My trigger</button>
+        <Button text="My trigger" onClick={() => console.log("blah")} />
       </TooltipTrigger>
       <TooltipContent>
         <Typography size={100} color="white">
@@ -104,6 +108,7 @@ export const UncontrolledButtonTooltip = {
 export const ControlledTooltip = () => {
   const [open, setOpen] = useState(false);
   const scrollableRef = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (scrollableRef.current) {
@@ -136,7 +141,11 @@ export const ControlledTooltip = () => {
           onClose={() => setOpen(false)}
         >
           <TooltipTrigger>
-            <button onClick={() => setOpen((v) => !v)}>My Trigger</button>
+            <Button
+              ref={ref}
+              text="My trigger"
+              onClick={() => setOpen((v) => !v)}
+            />
           </TooltipTrigger>
           <TooltipContent>
             <Typography size={100} color="white">

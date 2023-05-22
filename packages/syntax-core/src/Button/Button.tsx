@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { ReactElement } from "react";
+import React, { forwardRef } from "react";
 import { Color, Size } from "../constants";
 import styles from "./Button.module.css";
 
@@ -24,23 +24,7 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-/**
- * Button is a clickable element that is used to perform an action.
- */
-const Button = ({
-  text,
-  loadingText,
-  color = "primary",
-  size = "md",
-  accessibilityLabel,
-  disabled = false,
-  loading = false,
-  fullWidth = false,
-  startIcon: StartIcon,
-  endIcon: EndIcon,
-  onClick,
-  tooltip,
-}: {
+type ButtonType = {
   /**
    * The text to be displayed inside the button
    */
@@ -103,61 +87,82 @@ const Button = ({
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
-}): ReactElement => {
-  return (
-    <button
-      aria-label={accessibilityLabel}
-      type="button"
-      title={tooltip}
-      disabled={disabled || loading}
-      onClick={onClick}
-      className={classNames(
-        styles.button,
-        foregroundColor(color),
-        backgroundColor(color),
-        styles[size],
-        {
-          [styles.fullWidth]: fullWidth,
-          [styles.buttonGap]: size === "lg" || size === "md",
-          [styles.secondaryBorder]: color === "secondary",
-          [styles.secondaryDestructiveBorder]:
-            color === "destructive-secondary",
-        },
-      )}
-    >
-      {!loading && StartIcon && (
-        <StartIcon className={classNames(styles.icon, iconSize[size])} />
-      )}
-      {((loading && loadingText) || (!loading && text)) && (
-        <div className={styles.textContainer}>
-          {/* Replace with `Typography` once it lands in `syntax-core` */}
-          <div className={classNames(styles.buttonText, textVariant[size])}>
-            {loading ? loadingText : text}
-          </div>
-        </div>
-      )}
-      {!loading && EndIcon && (
-        <EndIcon className={classNames(styles.icon, iconSize[size])} />
-      )}
-      {loading && (
-        <svg
-          className={classNames(styles.loading, foregroundColor(color))}
-          viewBox="22 22 44 44"
-          width={loadingIconSize[size]}
-          height={loadingIconSize[size]}
-        >
-          <circle
-            className={styles.loadingCircle}
-            cx="44"
-            cy="44"
-            r="20.2"
-            fill="none"
-            strokeWidth="3.6"
-          />
-        </svg>
-      )}
-    </button>
-  );
 };
+
+const Button = forwardRef<HTMLButtonElement, ButtonType>(
+  (
+    {
+      text,
+      loadingText,
+      color = "primary",
+      size = "md",
+      accessibilityLabel,
+      disabled = false,
+      loading = false,
+      fullWidth = false,
+      startIcon: StartIcon,
+      endIcon: EndIcon,
+      onClick,
+      tooltip,
+    },
+    ref,
+  ) => {
+    return (
+      <button
+        ref={ref}
+        aria-label={accessibilityLabel}
+        type="button"
+        title={tooltip}
+        disabled={disabled || loading}
+        onClick={onClick}
+        className={classNames(
+          styles.button,
+          foregroundColor(color),
+          backgroundColor(color),
+          styles[size],
+          {
+            [styles.fullWidth]: fullWidth,
+            [styles.buttonGap]: size === "lg" || size === "md",
+            [styles.secondaryBorder]: color === "secondary",
+            [styles.secondaryDestructiveBorder]:
+              color === "destructive-secondary",
+          },
+        )}
+      >
+        {!loading && StartIcon && (
+          <StartIcon className={classNames(styles.icon, iconSize[size])} />
+        )}
+        {((loading && loadingText) || (!loading && text)) && (
+          <div className={styles.textContainer}>
+            {/* Replace with `Typography` once it lands in `syntax-core` */}
+            <div className={classNames(styles.buttonText, textVariant[size])}>
+              {loading ? loadingText : text}
+            </div>
+          </div>
+        )}
+        {!loading && EndIcon && (
+          <EndIcon className={classNames(styles.icon, iconSize[size])} />
+        )}
+        {loading && (
+          <svg
+            className={classNames(styles.loading, foregroundColor(color))}
+            viewBox="22 22 44 44"
+            width={loadingIconSize[size]}
+            height={loadingIconSize[size]}
+          >
+            <circle
+              className={styles.loadingCircle}
+              cx="44"
+              cy="44"
+              r="20.2"
+              fill="none"
+              strokeWidth="3.6"
+            />
+          </svg>
+        )}
+      </button>
+    );
+  },
+);
 
 export default Button;
