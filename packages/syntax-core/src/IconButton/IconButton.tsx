@@ -11,7 +11,7 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-type IconButtonType = {
+interface IconButtonType {
   /**
    * The color of the button
    *
@@ -50,7 +50,7 @@ type IconButtonType = {
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
-};
+}
 
 /**
  * IconButton is a clickable element that is used to perform an action.
@@ -88,5 +88,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
     );
   },
 );
+
+IconButton.displayName = "IconButton";
 
 export default IconButton;
