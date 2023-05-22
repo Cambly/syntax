@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { StoryObj, Meta } from "@storybook/react";
+import { useState, useRef, useEffect, type ReactElement } from "react";
+import type { StoryObj, Meta } from "@storybook/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import Typography from "../../../syntax-core/src/Typography/Typography";
 import Button from "../../../syntax-core/src/Button/Button";
@@ -108,7 +108,7 @@ export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
   ),
 };
 
-export const ControlledTooltip = () => {
+export const ControlledTooltip = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const scrollableRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);

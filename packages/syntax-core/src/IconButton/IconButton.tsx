@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { forwardRef, type ReactElement } from "react";
+import React, { forwardRef } from "react";
 import { type Color, type Size } from "../constants";
 import styles from "./IconButton.module.css";
 

@@ -14,7 +14,12 @@ import {
   FloatingArrow,
   arrow,
 } from "@floating-ui/react";
-import type { Side, Strategy } from "@floating-ui/react";
+import type {
+  Side,
+  Strategy,
+  UseFloatingReturn,
+  ReferenceType,
+} from "@floating-ui/react";
 import styles from "./Tooltip.module.css";
 
 type TooltipOptions = {
@@ -56,6 +61,21 @@ type TooltipOptions = {
   strategy?: Strategy;
 };
 
+type UseTooltipType = UseFloatingReturn<ReferenceType> & {
+  getReferenceProps: (
+    userProps?: React.HTMLProps<Element> | undefined,
+  ) => Record<string, unknown>;
+  getFloatingProps: (
+    userProps?: React.HTMLProps<HTMLElement> | undefined,
+  ) => Record<string | number | symbol, unknown>;
+  getItemProps: (
+    userProps?: React.HTMLProps<HTMLElement> | undefined,
+  ) => Record<string | number | symbol, unknown>;
+  arrowRef: React.MutableRefObject<null>;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
+
 export function useTooltip({
   delay = 0,
   initialOpen = false,
@@ -64,7 +84,7 @@ export function useTooltip({
   strategy = "absolute",
   onOpen = undefined,
   onClose = undefined,
-}: TooltipOptions) {
+}: TooltipOptions): UseTooltipType {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
   const arrowRef = React.useRef(null);
@@ -139,7 +159,7 @@ const useTooltipContext = () => {
 export function Tooltip({
   children,
   ...options
-}: { children: React.ReactNode } & TooltipOptions) {
+}: { children: React.ReactNode } & TooltipOptions): JSX.Element {
   // This can accept any props as options, e.g. `placement`,
   // or other positioning options.
   const tooltip = useTooltip(options);
