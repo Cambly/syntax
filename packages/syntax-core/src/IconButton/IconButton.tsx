@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { forwardRef } from "react";
-import { Color, Size } from "../constants";
+import React, { forwardRef, type ReactElement } from "react";
+import { type Color, type Size } from "../constants";
 import styles from "./IconButton.module.css";
 
 const iconSize = {
@@ -55,7 +55,7 @@ type IconButtonType = {
 /**
  * IconButton is a clickable element that is used to perform an action.
  */
-const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
+const IconButton = forwardRef<ReactElement, IconButtonType>(
   (
     {
       accessibilityLabel,

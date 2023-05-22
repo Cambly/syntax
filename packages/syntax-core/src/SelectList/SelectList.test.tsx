@@ -4,27 +4,6 @@ import { expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 
-const InteractiveSelectDropdown = ({
-  numberOfOptions,
-  handleChange,
-}: {
-  numberOfOptions: number;
-  handleChange: (value: string) => void;
-}) => {
-  const [selectedValue, setSelectedValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    handleChange(e.target.value);
-    setSelectedValue(e.target.value);
-  };
-  return (
-    <SelectDropdown
-      onChange={onChange}
-      selectedValue={selectedValue}
-      numberOfOptions={numberOfOptions}
-    />
-  );
-};
-
 const SelectDropdown = ({
   numberOfOptions,
   onChange,
@@ -49,6 +28,27 @@ const SelectDropdown = ({
         <SelectList.Option key={value} value={value} label={label} />
       ))}
     </SelectList>
+  );
+};
+
+const InteractiveSelectDropdown = ({
+  numberOfOptions,
+  handleChange,
+}: {
+  numberOfOptions: number;
+  handleChange: (value: string) => void;
+}) => {
+  const [selectedValue, setSelectedValue] = useState("");
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    handleChange(e.target.value);
+    setSelectedValue(e.target.value);
+  };
+  return (
+    <SelectDropdown
+      onChange={onChange}
+      selectedValue={selectedValue}
+      numberOfOptions={numberOfOptions}
+    />
   );
 };
 

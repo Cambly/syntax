@@ -1,9 +1,9 @@
 import classNames from "classnames";
-import { type AriaRole, ReactElement, ReactNode } from "react";
+import { type AriaRole, type ReactElement, type ReactNode } from "react";
 import styles from "./Box.module.css";
 import marginStyles from "./margin.module.css";
 import paddingStyles from "./padding.module.css";
-import allColors from "../colors/allColors";
+import type allColors from "../colors/allColors";
 import colorStyles from "../colors/colors.module.css";
 import { forwardRef } from "react";
 

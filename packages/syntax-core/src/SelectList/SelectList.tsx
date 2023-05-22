@@ -1,4 +1,9 @@
-import React, { ReactElement, ReactNode, useId, useState } from "react";
+import React, {
+  type ReactElement,
+  type ReactNode,
+  useId,
+  useState,
+} from "react";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,

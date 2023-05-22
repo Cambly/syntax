@@ -1,6 +1,6 @@
-import { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import styles from "./ButtonGroup.module.css";
-import { Size } from "../constants";
+import { type Size } from "../constants";
 import classNames from "classnames";
 
 const gap = {

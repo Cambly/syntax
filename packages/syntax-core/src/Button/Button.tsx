@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { forwardRef } from "react";
-import { Color, Size } from "../constants";
+import React, { forwardRef, type ReactElement } from "react";
+import { type Color, type Size } from "../constants";
 import styles from "./Button.module.css";
 
 const textVariant = {
@@ -89,7 +89,7 @@ type ButtonType = {
   tooltip?: string;
 };
 
-const Button = forwardRef<HTMLButtonElement, ButtonType>(
+const Button = forwardRef<ReactElement, ButtonType>(
   (
     {
       text,

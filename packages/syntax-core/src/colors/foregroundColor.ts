@@ -1,4 +1,4 @@
-import { Color } from "../constants";
+import { type Color } from "../constants";
 import styles from "./colors.module.css";
 
 export default function foregroundColor(color: (typeof Color)[number]): string {

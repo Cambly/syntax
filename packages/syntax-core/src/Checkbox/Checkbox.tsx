@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { type ReactElement, useState } from "react";
 import classNames from "classnames";
 import useFocusVisible from "../useFocusVisible";
 import styles from "./Checkbox.module.css";
