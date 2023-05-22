@@ -24,7 +24,7 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-interface ButtonType {
+type ButtonType = {
   /**
    * The text to be displayed inside the button
    */
@@ -87,7 +87,7 @@ interface ButtonType {
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
-}
+};
 
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
   (

@@ -11,7 +11,7 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-interface IconButtonType {
+type IconButtonType = {
   /**
    * The color of the button
    *
@@ -50,7 +50,7 @@ interface IconButtonType {
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
-}
+};
 
 /**
  * IconButton is a clickable element that is used to perform an action.
