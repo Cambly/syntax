@@ -23,6 +23,10 @@
   color: var(--color-base-white);
 }
 
+.blackColor {
+  color: var(--color-base-black);
+}
+
 /* Background Colors */
 .blackBackgroundColor {
   background-color: var(--color-base-black);
