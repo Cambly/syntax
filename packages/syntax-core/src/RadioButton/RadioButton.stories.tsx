@@ -40,18 +40,25 @@ const RadioButtonInteractive = () => {
   return (
     <form style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
       <RadioButton
-        checked={selectedOption === "male"}
-        value="male"
+        checked={selectedOption === "mage"}
+        value="mage"
         onChange={handleChange}
-        name="gender"
-        label="Male"
+        name="rpg_class"
+        label="Mage"
       />
       <RadioButton
-        checked={selectedOption === "female"}
-        value="female"
+        checked={selectedOption === "warrior"}
+        value="warrior"
         onChange={handleChange}
-        name="gender"
-        label="Female"
+        name="rpg_class"
+        label="Warrior"
+      />
+      <RadioButton
+        checked={selectedOption === "archer"}
+        value="archer"
+        onChange={handleChange}
+        name="rpg_class"
+        label="Archer"
       />
     </form>
   );

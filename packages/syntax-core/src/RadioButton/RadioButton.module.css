@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .smBase {
