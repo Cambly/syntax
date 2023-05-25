@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.8.2
+
+### Patch Changes
+
+- 2e37bbc: radiobutton position scrolling bug and don't use gender as example
+
 ## 4.8.1
 
 ### Patch Changes
