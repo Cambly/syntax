@@ -6,6 +6,8 @@ import Typography from "../Typography/Typography";
 
 import { type BadgeColor } from "../constants";
 
+import styles from "./Badge.module.css";
+
 /**
  * Badge is a component to display short text and give additional context to features and other components.
  */
@@ -24,21 +26,15 @@ const Badge = ({
    */
   color?: (typeof BadgeColor)[number];
 }): JSX.Element => (
-  <span
+  <div
     className={classNames(
+      styles.badge,
       badgeBackgroundColor(color),
       badgeForegroundColor(color),
     )}
-    style={{
-      display: "inline",
-      borderRadius: "100px",
-      padding: "4px 9px",
-    }}
   >
-    <Typography color="inherit" inline>
-      {text}
-    </Typography>
-  </span>
+    <Typography color="inherit">{text}</Typography>
+  </div>
 );
 
 export default Badge;
