@@ -13,6 +13,7 @@ import {
   useMergeRefs,
   FloatingArrow,
   arrow,
+  size,
 } from "@floating-ui/react";
 import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 import styles from "./Tooltip.module.css";
@@ -107,6 +108,14 @@ export function useTooltip({
       }),
       shift({ padding: 4 }),
       arrow({ element: arrowRef }),
+      size({
+        apply({ availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            maxWidth: `240px`,
+            maxHeight: `${availableHeight}px`,
+          });
+        },
+      }),
     ],
   });
 

@@ -64,7 +64,7 @@ export const Default: StoryObj<typeof Tooltip> = {
     children: "This is a tooltip",
   },
   render: ({ delay, placement, initialOpen, strategy, children }) => (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "240px" }}>
       <Tooltip
         delay={delay}
         placement={placement}
