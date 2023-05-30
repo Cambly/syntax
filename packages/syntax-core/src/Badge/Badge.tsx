@@ -1,19 +1,22 @@
-import classNames from "classnames";
-import badgeBackgroundColor from "../colors/badgeBackgroundColor";
-import badgeForegroundColor from "../colors/badgeForegroundColor";
-
 import Typography from "../Typography/Typography";
+import Box from "../Box/Box";
 
-import { type BadgeColor } from "../constants";
-
-import styles from "./Badge.module.css";
+const BadgeColor = [
+  "gray900",
+  "destructive700",
+  "orange700",
+  "yellow700",
+  "success700",
+  "primary700",
+  "purple700",
+] as const;
 
 /**
  * Badge is a component to display short text and give additional context to features and other components.
  */
 const Badge = ({
   text,
-  color = "primary",
+  color = "primary700",
 }: {
   /**
    * The text to display inside the badge
@@ -22,19 +25,25 @@ const Badge = ({
   /**
    * The color of the badge
    *
-   * @defaultValue "primary"
+   * @defaultValue "primary700"
    */
   color?: (typeof BadgeColor)[number];
 }): JSX.Element => (
-  <div
-    className={classNames(
-      styles.badge,
-      badgeBackgroundColor(color),
-      badgeForegroundColor(color),
-    )}
+  <Box
+    display="inlineBlock"
+    paddingX={2}
+    paddingY={1}
+    rounding="full"
+    backgroundColor={color}
   >
-    <Typography color="inherit">{text}</Typography>
-  </div>
+    <Typography
+      color={color === "yellow700" ? "gray900" : "white"}
+      size={100}
+      weight="bold"
+    >
+      {text}
+    </Typography>
+  </Box>
 );
 
 export default Badge;

@@ -14,11 +14,11 @@ export default {
     color: {
       options: [
         "gray900",
-        "destructive-primary",
+        "destructive700",
         "orange700",
-        "yellow800",
-        "success",
-        "primary",
+        "yellow700",
+        "success700",
+        "primary700",
         "purple700",
       ],
       control: { type: "radio" },
