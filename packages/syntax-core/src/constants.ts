@@ -15,13 +15,4 @@ export const Color = [
   "inherit",
 ] as const;
 
-export const BadgeColor = [
-  "gray900",
-  "destructive-primary",
-  "orange700",
-  "yellow700",
-  "success",
-  "primary",
-  "purple700",
-];
 export const Size = ["sm", "md", "lg"] as const;
