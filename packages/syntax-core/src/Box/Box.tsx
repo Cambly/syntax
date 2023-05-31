@@ -126,10 +126,15 @@ export default forwardRef<
      */
     display?: Display;
     /**
-     *  If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink
+     * Sets the flex behavior of a flex item.
      *
+     * * `none`: The item will not grow or shrink
+     * * `shrink`: The item will shrink if necessary (default browser behavior)
+     * * `grow`: The item will grow if necessary
+     *
+     * @defaultValue `shrink`
      */
-    flexShrink?: number;
+    flex?: "none" | "shrink" | "grow";
     /**
      * By default, flex items will all try to fit onto one line. But if you specify `flexWrap="wrap"`, the flex items will wrap onto multiple lines.
      *
@@ -389,7 +394,7 @@ export default forwardRef<
     display,
     smDisplay,
     lgDisplay,
-    flexShrink,
+    flex,
     flexWrap,
     gap,
     justifyContent,
@@ -448,6 +453,7 @@ export default forwardRef<
       display && styles[display],
       smDisplay && styles[`${smDisplay}Small`],
       lgDisplay && styles[`${lgDisplay}Large`],
+      flex && (flex === "none" || flex === "grow") && styles[`flex${flex}`],
       flexWrap && styles.flexWrap,
       gap != null && styles[`gap${gap}`],
       margin != null && !marginBottom && marginStyles[`marginBottom${margin}`],
@@ -519,7 +525,6 @@ export default forwardRef<
       rounding && rounding !== "none" && styles[`rounding${rounding}`],
     ),
     style: {
-      flexShrink,
       height,
       maxHeight,
       maxWidth,
