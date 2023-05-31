@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 4.9.0
+
+### Minor Changes
+
+- 58b2255: badge: add component
+
 ## 4.8.2
 
 ### Patch Changes
