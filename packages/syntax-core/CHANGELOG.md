@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.0.0
+
+### Major Changes
+
+- d388f47: Box: remove flexShrink property and introduce flex property instead
+
 ## 4.9.0
 
 ### Minor Changes
