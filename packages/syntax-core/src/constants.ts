@@ -14,4 +14,5 @@ export const Color = [
   "white",
   "inherit",
 ] as const;
+
 export const Size = ["sm", "md", "lg"] as const;
