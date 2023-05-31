@@ -58,4 +58,17 @@ describe("iconButton", () => {
     await userEvent.click(button[0]);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("sets the data-testid", () => {
+    const handleClick = vi.fn();
+    render(
+      <IconButton
+        data-testid="iconbutton-test-id"
+        onClick={handleClick}
+        icon={Star}
+        accessibilityLabel="Continue to the next step"
+      />,
+    );
+    expect(screen.getByTestId("iconbutton-test-id")).toBeInTheDocument();
+  });
 });
