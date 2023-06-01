@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.1.0
+
+### Minor Changes
+
+- c1bcc1b: Add data-testid
+
 ## 5.0.0
 
 ### Major Changes
