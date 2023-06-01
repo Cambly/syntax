@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { ReactElement } from "react";
-import { Color, Size } from "../constants";
+import React, { forwardRef } from "react";
+import { type Color, type Size } from "../constants";
 import styles from "./IconButton.module.css";
 
 const iconSize = {
@@ -11,24 +11,17 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-/**
- * IconButton is a clickable element that is used to perform an action.
- */
-const IconButton = ({
-  accessibilityLabel,
-  color = "primary",
-  disabled = false,
-  icon: Icon,
-  size = "md",
-  tooltip,
-  onClick,
-}: {
+type IconButtonType = {
   /**
    * The color of the button
    *
    * @defaultValue "primary"
    */
   color?: (typeof Color)[number];
+  /**
+   * Test id for the button
+   */
+  "data-testid"?: string;
   /**
    * The size of the button
    *
@@ -61,24 +54,47 @@ const IconButton = ({
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
-}): ReactElement => {
-  return (
-    <button
-      aria-label={accessibilityLabel}
-      type="button"
-      title={tooltip}
-      disabled={disabled}
-      onClick={onClick}
-      className={classNames(
-        styles.iconButton,
-        foregroundColor(color),
-        backgroundColor(color),
-        styles[size],
-      )}
-    >
-      <Icon className={iconSize[size]} />
-    </button>
-  );
 };
+
+/**
+ * IconButton is a clickable element that is used to perform an action.
+ */
+const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
+  (
+    {
+      accessibilityLabel,
+      color = "primary",
+      "data-testid": dataTestId,
+      disabled = false,
+      icon: Icon,
+      size = "md",
+      tooltip,
+      onClick,
+    },
+    ref,
+  ) => {
+    return (
+      <button
+        aria-label={accessibilityLabel}
+        data-testid={dataTestId}
+        type="button"
+        title={tooltip}
+        disabled={disabled}
+        onClick={onClick}
+        className={classNames(
+          styles.iconButton,
+          foregroundColor(color),
+          backgroundColor(color),
+          styles[size],
+        )}
+        ref={ref}
+      >
+        <Icon className={iconSize[size]} />
+      </button>
+    );
+  },
+);
+
+IconButton.displayName = "IconButton";
 
 export default IconButton;

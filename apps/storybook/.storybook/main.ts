@@ -50,6 +50,13 @@ const config: StorybookConfig = {
               "../../../packages/syntax-design-tokens/",
             ),
           },
+          {
+            find: "@cambly/syntax-floating-components",
+            replacement: path.resolve(
+              __dirname,
+              "../../../packages/syntax-floating-components/",
+            ),
+          },
         ],
       },
     };

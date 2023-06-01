@@ -1,6 +1,6 @@
-import { StoryObj, Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react";
 import SelectList from "./SelectList";
-import React, { useState, ReactElement } from "react";
+import React, { useState, type ReactElement } from "react";
 import SelectOption from "./SelectOption";
 
 export default {

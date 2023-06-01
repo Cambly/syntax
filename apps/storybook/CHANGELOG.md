@@ -1,5 +1,87 @@
 # @syntax/storybook
 
+## 0.8.8
+
+### Patch Changes
+
+- Updated dependencies [c1bcc1b]
+  - @cambly/syntax-core@5.1.0
+
+## 0.8.7
+
+### Patch Changes
+
+- Updated dependencies [d388f47]
+  - @cambly/syntax-core@5.0.0
+
+## 0.8.6
+
+### Patch Changes
+
+- Updated dependencies [58b2255]
+  - @cambly/syntax-core@4.9.0
+
+## 0.8.5
+
+### Patch Changes
+
+- Updated dependencies [2e37bbc]
+  - @cambly/syntax-core@4.8.2
+
+## 0.8.4
+
+### Patch Changes
+
+- Updated dependencies [0a9b39b]
+  - @cambly/syntax-floating-components@0.1.0
+
+## 0.8.3
+
+### Patch Changes
+
+- Updated dependencies [28689b5]
+  - @cambly/syntax-core@4.8.1
+
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies [bf8fc7e]
+  - @cambly/syntax-core@4.8.0
+
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [db98e57]
+  - @cambly/syntax-core@4.7.0
+
+## 0.8.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
+### Patch Changes
+
+- Updated dependencies [e6c3e09]
+  - @cambly/syntax-design-tokens@0.8.0
+  - @cambly/syntax-core@4.6.0
+
+## 0.7.22
+
+### Patch Changes
+
+- Updated dependencies [6ca7254]
+  - @cambly/syntax-core@4.5.0
+
+## 0.7.21
+
+### Patch Changes
+
+- Updated dependencies [ec4a39c]
+  - @cambly/syntax-core@4.4.0
+
 ## 0.7.20
 
 ### Patch Changes

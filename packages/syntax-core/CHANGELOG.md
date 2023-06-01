@@ -1,5 +1,70 @@
 # @cambly/syntax-core
 
+## 5.1.0
+
+### Minor Changes
+
+- c1bcc1b: Add data-testid
+
+## 5.0.0
+
+### Major Changes
+
+- d388f47: Box: remove flexShrink property and introduce flex property instead
+
+## 4.9.0
+
+### Minor Changes
+
+- 58b2255: badge: add component
+
+## 4.8.2
+
+### Patch Changes
+
+- 2e37bbc: radiobutton position scrolling bug and don't use gender as example
+
+## 4.8.1
+
+### Patch Changes
+
+- 28689b5: Internal: enable a few more TypeScript ESLint rules
+
+## 4.8.0
+
+### Minor Changes
+
+- bf8fc7e: Card: update to use Box + fix border radius
+
+## 4.7.0
+
+### Minor Changes
+
+- db98e57: Box: allow refs to be forwarded
+
+## 4.6.0
+
+### Minor Changes
+
+- e6c3e09: Update all dependencies to the latest versio
+
+### Patch Changes
+
+- Updated dependencies [e6c3e09]
+  - @cambly/syntax-design-tokens@0.8.0
+
+## 4.5.0
+
+### Minor Changes
+
+- 6ca7254: Add lineClamp to Typography
+
+## 4.4.0
+
+### Minor Changes
+
+- ec4a39c: Box: pass through 'role' prop
+
 ## 4.3.0
 
 ### Minor Changes

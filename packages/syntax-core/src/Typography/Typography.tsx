@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import { ReactElement, ReactNode } from "react";
-import { Color } from "../constants";
+import { type ReactElement, type ReactNode } from "react";
+import { type Color } from "../constants";
 import styles from "./Typography.module.css";
 import colorStyles from "../colors/colors.module.css";
 
@@ -30,6 +30,7 @@ const Typography = ({
   children,
   color = "gray900",
   inline = false,
+  lineClamp = undefined,
   size = 200,
   tooltip,
   transform = "none",
@@ -66,6 +67,10 @@ const Typography = ({
    * @defaultValue false
    */
   inline?: boolean;
+  /**
+   * The number of lines we should truncate the text at
+   */
+  lineClamp?: number | undefined;
   /**
    * Size of the text.
    *
@@ -116,7 +121,11 @@ const Typography = ({
         styles[`size${size}`],
         transform === "uppercase" && styles.uppercase,
         underline && styles.underline,
+        lineClamp != null && styles.lineClamp,
       )}
+      style={{
+        WebkitLineClamp: lineClamp,
+      }}
       title={tooltip}
     >
       {children}

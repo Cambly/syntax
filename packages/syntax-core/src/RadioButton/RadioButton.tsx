@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { type ReactElement, useState } from "react";
 import classnames from "classnames";
 
 import styles from "./RadioButton.module.css";
@@ -11,6 +11,7 @@ import useFocusVisible from "../useFocusVisible";
  */
 const RadioButton = ({
   checked = false,
+  "data-testid": dataTestId,
   disabled = false,
   error = false,
   id,
@@ -26,6 +27,10 @@ const RadioButton = ({
    * @defaultValue false
    */
   checked?: boolean;
+  /**
+   * Test id for the radio button
+   */
+  "data-testid"?: string;
   /**
    * Whether or not the radio button is disabled
    *
@@ -85,6 +90,7 @@ const RadioButton = ({
       })}
     >
       <input
+        data-testid={dataTestId}
         type="radio"
         id={id}
         name={name}

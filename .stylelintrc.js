@@ -14,6 +14,7 @@ module.exports = {
     ],
     "length-zero-no-unit": true,
     "max-nesting-depth": 0,
+    "media-feature-range-notation": null,
     "no-unknown-animations": true,
     "number-max-precision": 2,
     "selector-class-pattern": [

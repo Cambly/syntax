@@ -1,7 +1,9 @@
-import { StoryObj, Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react";
 import allColors from "../colors/allColors";
 import Box from "./Box";
 import Typography from "../Typography/Typography";
+import Button from "../Button/Button";
+import Heading from "../Heading/Heading";
 
 export default {
   title: "Components/Box",
@@ -46,6 +48,10 @@ export default {
     },
     dangerouslySetInlineStyle: {
       control: { type: "object" },
+    },
+    flex: {
+      control: { type: "radio" },
+      options: ["grow", "shrink", "none"],
     },
     flexWrap: {
       options: ["wrap", "nowrap"],
@@ -323,6 +329,66 @@ export const Rounding: StoryObj<typeof Box> = {
           </Typography>
         </Box>
       ))}
+    </Box>
+  ),
+};
+
+export const Flex: StoryObj<typeof Box> = {
+  render: () => (
+    <Box display="flex" direction="column" gap={4}>
+      <Box>
+        <Heading>Default</Heading>
+
+        <Box display="flex" gap={2}>
+          <Box>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </Typography>
+          </Box>
+
+          <Box>
+            <Button
+              onClick={() => {
+                /* empty */
+              }}
+              text="Go back"
+            ></Button>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box>
+        <Heading>
+          flex=&quot;none&quot; on Box wrapping the &lt;Button /&gt;;
+        </Heading>
+
+        <Box display="flex" gap={2}>
+          <Box>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </Typography>
+          </Box>
+
+          <Box flex="none">
+            <Button
+              onClick={() => {
+                /* empty */
+              }}
+              text="Go back"
+            ></Button>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   ),
 };

@@ -4,6 +4,39 @@ import { expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 
+const SelectDropdown = ({
+  numberOfOptions,
+  onChange,
+  selectedValue = "",
+}: {
+  selectedValue?: string;
+  numberOfOptions: number;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+}) => {
+  const options = Array.from({ length: numberOfOptions }, (item, idx) => ({
+    value: String(idx),
+    label: String(idx),
+  }));
+  return (
+    <SelectList
+      data-testid="syntax-select"
+      selectedValue={selectedValue}
+      onChange={onChange}
+      placeholderText="placeholder"
+      label="Select"
+    >
+      {options.map(({ label, value }) => (
+        <SelectList.Option
+          key={value}
+          value={value}
+          label={label}
+          data-testid={`syntax-select-${value}`}
+        />
+      ))}
+    </SelectList>
+  );
+};
+
 const InteractiveSelectDropdown = ({
   numberOfOptions,
   handleChange,
@@ -24,35 +57,6 @@ const InteractiveSelectDropdown = ({
     />
   );
 };
-
-const SelectDropdown = ({
-  numberOfOptions,
-  onChange,
-  selectedValue = "",
-}: {
-  selectedValue?: string;
-  numberOfOptions: number;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-}) => {
-  const options = Array.from({ length: numberOfOptions }, (item, idx) => ({
-    value: String(idx),
-    label: String(idx),
-  }));
-  return (
-    <SelectList
-      selectedValue={selectedValue}
-      onChange={onChange}
-      placeholderText="placeholder"
-      label="Select"
-    >
-      {options.map(({ label, value }) => (
-        <SelectList.Option key={value} value={value} label={label} />
-      ))}
-    </SelectList>
-  );
-};
-
-const selectTestId = "syntax-select";
 
 describe("select", () => {
   it("renders successfully", () => {
@@ -78,7 +82,7 @@ describe("select", () => {
     );
 
     // Expect one additional option because of the placeholder option
-    expect(screen.getAllByRole("option").length).toBe(numberOfOptions + 1);
+    expect(screen.getAllByRole("option")).toHaveLength(numberOfOptions + 1);
   });
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();
@@ -93,13 +97,13 @@ describe("select", () => {
     const secondSelectionValue = "2";
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
-      screen.getByTestId(selectTestId),
+      screen.getByTestId("syntax-select"),
       firstSelectionValue,
     );
     expect(handleChange).toHaveBeenCalledWith(firstSelectionValue);
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
-      screen.getByTestId(selectTestId),
+      screen.getByTestId("syntax-select"),
       secondSelectionValue,
     );
     expect(handleChange).toHaveBeenCalledTimes(2);
@@ -118,20 +122,20 @@ describe("select", () => {
     const secondSelectionValue = "2";
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
-      screen.getByTestId(selectTestId),
+      screen.getByTestId("syntax-select"),
       firstSelectionValue,
     );
     const option1 = screen.getByTestId<HTMLOptionElement>(
-      `${selectTestId}-${firstSelectionValue}`,
+      `${"syntax-select"}-${firstSelectionValue}`,
     );
     expect(option1.selected).toBeTruthy();
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
-      screen.getByTestId(selectTestId),
+      screen.getByTestId("syntax-select"),
       secondSelectionValue,
     );
     const option2 = screen.getByTestId<HTMLOptionElement>(
-      `${selectTestId}-${secondSelectionValue}`,
+      `${"syntax-select"}-${secondSelectionValue}`,
     );
     expect(option2.selected).toBeTruthy();
     expect(option1.selected).toBeFalsy();

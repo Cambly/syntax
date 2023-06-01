@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
-import { Color } from "../constants";
+import { type ReactElement, type ReactNode } from "react";
+import { type Color } from "../constants";
 import Typography from "../Typography/Typography";
 /**
  * Heading enforces a consistent style & accessibility best practices for headings.

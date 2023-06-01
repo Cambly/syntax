@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-design-tokens",
   "description": "Cambly design system tokens",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "./dist/js/index.js",
   "types": "./dist/js/index.d.ts",
   "sideEffects": false,
@@ -15,8 +15,8 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "chokidar-cli": "^3.0.0",
-    "style-dictionary": "^3.7.2"
+    "chokidar-cli": "3.0.0",
+    "style-dictionary": "3.8.0"
   },
   "publishConfig": {
     "access": "public"

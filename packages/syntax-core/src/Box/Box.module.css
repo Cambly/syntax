@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+.flexnone {
+  flex: 0 0 auto;
+}
+
+.flexgrow {
+  flex: 1 1 auto;
+}
+
 .flexWrap {
   flex-wrap: wrap;
 }
