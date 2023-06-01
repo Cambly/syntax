@@ -11,6 +11,7 @@ import useFocusVisible from "../useFocusVisible";
  */
 const RadioButton = ({
   checked = false,
+  "data-testid": dataTestId,
   disabled = false,
   error = false,
   label,
@@ -25,6 +26,10 @@ const RadioButton = ({
    * @defaultValue false
    */
   checked?: boolean;
+  /**
+   * Test id for the radio button
+   */
+  "data-testid"?: string;
   /**
    * Whether or not the radio button is disabled
    *
@@ -80,6 +85,7 @@ const RadioButton = ({
       })}
     >
       <input
+        data-testid={dataTestId}
         type="radio"
         name={name}
         className={classnames(styles.radioStyleOverride, {

@@ -70,4 +70,17 @@ describe("button", () => {
     await userEvent.click(button[0]);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("sets the data-testid", () => {
+    const handleClick = vi.fn();
+    render(
+      <Button
+        data-testid="button-test-id"
+        onClick={handleClick}
+        text="Continue"
+        accessibilityLabel="Continue to the next step"
+      />,
+    );
+    expect(screen.getByTestId("button-test-id")).toBeInTheDocument();
+  });
 });

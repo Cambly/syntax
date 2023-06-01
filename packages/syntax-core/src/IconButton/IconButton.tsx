@@ -19,6 +19,10 @@ type IconButtonType = {
    */
   color?: (typeof Color)[number];
   /**
+   * Test id for the button
+   */
+  "data-testid"?: string;
+  /**
    * The size of the button
    *
    * * `sm`: 32px
@@ -60,6 +64,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
     {
       accessibilityLabel,
       color = "primary",
+      "data-testid": dataTestId,
       disabled = false,
       icon: Icon,
       size = "md",
@@ -71,6 +76,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
     return (
       <button
         aria-label={accessibilityLabel}
+        data-testid={dataTestId}
         type="button"
         title={tooltip}
         disabled={disabled}

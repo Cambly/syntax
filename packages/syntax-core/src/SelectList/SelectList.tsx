@@ -23,6 +23,7 @@ const iconSize = {
 
 const SelectList = ({
   children,
+  "data-testid": dataTestId,
   disabled = false,
   errorText,
   helperText,
@@ -36,6 +37,10 @@ const SelectList = ({
    * One or more SelectList.Option components.
    */
   children: ReactNode;
+  /**
+   * Test id for the select element
+   */
+  "data-testid"?: string;
   /**
    * true if the select dropdown is disabled
    * @defaultValue false
@@ -95,7 +100,7 @@ const SelectList = ({
       <div className={styles.selectWrapper}>
         <select
           id={id}
-          data-testid="syntax-select"
+          data-testid={dataTestId}
           disabled={disabled}
           className={classNames(styles.selectBox, styles[size], {
             [styles.unselected]: !selectedValue && !errorText,

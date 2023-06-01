@@ -20,6 +20,7 @@ const iconWidth = {
  */
 const Checkbox = ({
   checked = false,
+  "data-testid": dataTestId,
   disabled = false,
   size = "md",
   label,
@@ -32,6 +33,10 @@ const Checkbox = ({
    * @defaultValue false
    */
   checked: boolean;
+  /**
+   * Test id for the checkbox
+   */
+  "data-testid"?: string;
   /**
    * The callback to be called when the checkbox value changes
    */
@@ -81,6 +86,7 @@ const Checkbox = ({
     <label className={classNames(styles.mainContainer)}>
       <div className={styles.checkboxContainer}>
         <input
+          data-testid={dataTestId}
           type="checkbox"
           className={classNames(styles.inputOverlay, styles[size])}
           checked={checked}

@@ -26,6 +26,10 @@ const iconSize = {
 
 type ButtonType = {
   /**
+   * Test id for the button
+   */
+  "data-testid"?: string;
+  /**
    * The text to be displayed inside the button
    */
   text: string;
@@ -92,6 +96,7 @@ type ButtonType = {
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
   (
     {
+      "data-testid": dataTestId,
       text,
       loadingText,
       color = "primary",
@@ -109,6 +114,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
   ) => {
     return (
       <button
+        data-testid={dataTestId}
         ref={ref}
         aria-label={accessibilityLabel}
         type="button"

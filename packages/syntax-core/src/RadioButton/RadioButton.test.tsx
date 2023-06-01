@@ -8,6 +8,8 @@ describe("radioButton", () => {
     const { baseElement } = render(
       <RadioButton
         label="Radio Button Label"
+        name="radio-button"
+        value="radio-button-value"
         onChange={() => {
           /* empty */
         }}
@@ -18,7 +20,14 @@ describe("radioButton", () => {
 
   it("fires onChange when clicked", async () => {
     const handleChange = vi.fn();
-    render(<RadioButton label="Radio Button Label" onChange={handleChange} />);
+    render(
+      <RadioButton
+        label="Radio Button Label"
+        name="radio-button"
+        value="radio-button-value"
+        onChange={handleChange}
+      />,
+    );
     const radioButton = await screen.findByLabelText("Radio Button Label");
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
@@ -30,6 +39,8 @@ describe("radioButton", () => {
     render(
       <RadioButton
         checked={true}
+        name="radio-button"
+        value="radio-button-value"
         label="Radio Button Label"
         onChange={handleChange}
       />,
@@ -47,6 +58,8 @@ describe("radioButton", () => {
     render(
       <RadioButton
         checked={false}
+        name="radio-button"
+        value="radio-button-value"
         label="Radio Button Label"
         onChange={handleChange}
       />,
@@ -62,5 +75,20 @@ describe("radioButton", () => {
         }),
       }),
     );
+  });
+
+  it("sets the data-testid", () => {
+    const handleChange = vi.fn();
+    render(
+      <RadioButton
+        checked={false}
+        data-testid="radiobutton-test-id"
+        name="radio-button"
+        value="radio-button-value"
+        label="Radio Button Label"
+        onChange={handleChange}
+      />,
+    );
+    expect(screen.getByTestId("radiobutton-test-id")).toBeInTheDocument();
   });
 });

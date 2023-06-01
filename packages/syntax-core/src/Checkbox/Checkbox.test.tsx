@@ -30,6 +30,18 @@ describe("checkbox", () => {
     await userEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+  it("sets the data-testid correctly", () => {
+    const handleChange = vi.fn();
+    render(
+      <Checkbox
+        data-testid="checkbox-test-id"
+        checked
+        label="test"
+        onChange={handleChange}
+      />,
+    );
+    expect(screen.getByTestId("checkbox-test-id")).toBeInTheDocument();
+  });
   it("successfully grabs input checked status when clicked", async () => {
     const handleChange = vi.fn();
     render(
