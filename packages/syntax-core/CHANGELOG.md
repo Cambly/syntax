@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.2.0
+
+### Minor Changes
+
+- fd315b0: Add id for radio button
+
 ## 5.1.0
 
 ### Minor Changes
