@@ -14,6 +14,7 @@ const RadioButton = ({
   "data-testid": dataTestId,
   disabled = false,
   error = false,
+  id,
   label,
   name,
   onChange,
@@ -42,6 +43,10 @@ const RadioButton = ({
    * @defaultValue false
    */
   error?: boolean;
+  /**
+   * Id for the the radio button
+   */
+  id?: string;
   /**
    * Value to show end user
    */
@@ -87,6 +92,7 @@ const RadioButton = ({
       <input
         data-testid={dataTestId}
         type="radio"
+        id={id}
         name={name}
         className={classnames(styles.radioStyleOverride, {
           [styles.smOverride]: size === "sm",
@@ -113,12 +119,14 @@ const RadioButton = ({
       ) : (
         <div className={classnames(sharedStyles, styles.neutralBorder)} />
       )}
-      <Typography
-        size={size === "md" ? 200 : 100}
-        color={error ? "destructive-primary" : "gray800"}
-      >
-        {label}
-      </Typography>
+      {label && (
+        <Typography
+          size={size === "md" ? 200 : 100}
+          color={error ? "destructive-primary" : "gray800"}
+        >
+          {label}
+        </Typography>
+      )}
     </label>
   );
 };
