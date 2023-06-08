@@ -87,6 +87,10 @@ type ButtonType = {
    * The tooltip to be displayed when the user hovers over the button
    */
   tooltip?: string;
+  /**
+   * The type you want to set for the primitive <button/>
+   */
+  type?: "button" | "submit" | "reset";
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
@@ -104,6 +108,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
       endIcon: EndIcon,
       onClick,
       tooltip,
+      type = "button",
     },
     ref,
   ) => {
@@ -111,7 +116,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
       <button
         ref={ref}
         aria-label={accessibilityLabel}
-        type="button"
+        type={type}
         title={tooltip}
         disabled={disabled || loading}
         onClick={onClick}

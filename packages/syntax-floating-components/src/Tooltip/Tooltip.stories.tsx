@@ -80,11 +80,7 @@ export const Default: StoryObj<typeof Tooltip> = {
             size="lg"
           />
         </TooltipTrigger>
-        <TooltipContent>
-          <Typography size={100} color="white">
-            {children}
-          </Typography>
-        </TooltipContent>
+        <TooltipContent>{children}</TooltipContent>
       </Tooltip>
     </div>
   ),
@@ -99,11 +95,7 @@ export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
           onClick={() => alert("UncontrolledButtonTooltip pressed")}
         />
       </TooltipTrigger>
-      <TooltipContent>
-        <Typography size={100} color="white">
-          This is a button
-        </Typography>
-      </TooltipContent>
+      <TooltipContent>This is a button</TooltipContent>
     </Tooltip>
   ),
 };
@@ -151,17 +143,15 @@ export const ControlledTooltip = (): ReactElement => {
             />
           </TooltipTrigger>
           <TooltipContent>
-            <Typography size={100} color="white">
+            <span style={{ display: "block" }}>
               This is a button and a really long sentence.
-            </Typography>
-            <Typography size={100}>
-              <a
-                href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
-                style={{ textUnderlinePosition: "under", color: "white" }}
-              >
-                Learn more
-              </a>
-            </Typography>
+            </span>
+            <a
+              href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
+              style={{ textUnderlinePosition: "under", color: "white" }}
+            >
+              Learn more
+            </a>
           </TooltipContent>
         </Tooltip>
       </div>
