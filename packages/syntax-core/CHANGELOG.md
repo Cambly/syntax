@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.3.1
+
+### Patch Changes
+
+- 062b0f9: added prop 'type' to Button and added wrapped TooltipContent w/ Typography with size 100 and color white
+
 ## 5.3.0
 
 ### Minor Changes
