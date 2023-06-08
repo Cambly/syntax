@@ -140,4 +140,54 @@ describe("select", () => {
     expect(option2.selected).toBeTruthy();
     expect(option1.selected).toBeFalsy();
   });
+
+  it("renders error text when the error text is set", () => {
+    render(
+      <div data-testid="syntax-select-container">
+        <SelectList
+          data-testid="syntax-select"
+          selectedValue=""
+          onChange={vi.fn()}
+          helperText="helper text"
+          errorText={"error text"}
+          label="Select"
+        >
+          <SelectList.Option
+            key={"key"}
+            value={"value"}
+            label={"label"}
+            data-testid={`syntax-select-label`}
+          />
+        </SelectList>
+      </div>,
+    );
+    expect(screen.getByTestId("syntax-select-container").textContent).toContain(
+      "error text",
+    );
+  });
+
+  it("renders helper text when the error text is an empty string", () => {
+    render(
+      <div data-testid="syntax-select-container">
+        <SelectList
+          data-testid="syntax-select"
+          selectedValue=""
+          onChange={vi.fn()}
+          helperText="helper text"
+          errorText={""}
+          label="Select"
+        >
+          <SelectList.Option
+            key={"key"}
+            value={"value"}
+            label={"label"}
+            data-testid={`syntax-select-label`}
+          />
+        </SelectList>
+      </div>,
+    );
+    expect(screen.getByTestId("syntax-select-container").textContent).toContain(
+      "helper text",
+    );
+  });
 });

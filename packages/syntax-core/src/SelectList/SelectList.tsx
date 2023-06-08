@@ -143,7 +143,7 @@ const SelectList = ({
           size={100}
           color={errorText ? "destructive-primary" : "gray700"}
         >
-          {errorText ?? helperText}
+          {errorText ? errorText : helperText}
         </Typography>
       </div>
     </div>
