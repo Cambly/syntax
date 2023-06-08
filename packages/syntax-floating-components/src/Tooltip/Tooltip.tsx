@@ -16,6 +16,7 @@ import {
   size,
 } from "@floating-ui/react";
 import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
+import Typography from "../../../syntax-core/src/Typography/Typography";
 import styles from "./Tooltip.module.css";
 
 type TooltipOptions = {
@@ -222,7 +223,9 @@ export const TooltipContent = React.forwardRef<
         ...context.floatingStyles,
       }}
     >
-      {props.children}
+      <Typography size={100} color="white">
+        {props.children}
+      </Typography>
       <FloatingArrow ref={context.arrowRef} context={floatingContext} />
     </div>
   );
