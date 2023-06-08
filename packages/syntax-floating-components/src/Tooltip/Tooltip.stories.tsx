@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
-import Typography from "../../../syntax-core/src/Typography/Typography";
 import Button from "../../../syntax-core/src/Button/Button";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
