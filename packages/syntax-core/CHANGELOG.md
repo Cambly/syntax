@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.3.0
+
+### Minor Changes
+
+- 18374d5: SelectList: render helper text when error text is an empty string
+
 ## 5.2.0
 
 ### Minor Changes
