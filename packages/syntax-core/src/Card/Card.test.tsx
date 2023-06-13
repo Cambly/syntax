@@ -14,6 +14,7 @@ describe("card", () => {
     expect(screen.getByText(/title/)).toBeInTheDocument();
     expect(screen.getByText(/text/)).toBeInTheDocument();
   });
+
   it("should have the right width for sm", () => {
     render(
       <Card size="sm" data-testid="card-sm">
@@ -28,20 +29,7 @@ describe("card", () => {
       maxWidth: "352px",
     });
   });
-  it("should have the right width for md", () => {
-    render(
-      <Card size="md" data-testid="card-md">
-        <>
-          <h1>title</h1>
-          <p>text</p>
-        </>
-      </Card>,
-    );
-    expect(screen.getByTestId("card-md")).toHaveStyle({
-      width: "100%",
-      maxWidth: "400px",
-    });
-  });
+
   it("should have the right width for lg", () => {
     render(
       <Card size="lg" data-testid="card-lg">

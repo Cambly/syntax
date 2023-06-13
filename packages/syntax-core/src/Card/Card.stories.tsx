@@ -15,7 +15,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["sm", "md", "lg"],
+      options: ["sm", "lg"],
       control: { type: "radio" },
     },
   },
@@ -42,10 +42,6 @@ export const Default: StoryObj<typeof Card> = {
 
 export const Small: StoryObj<typeof Card> = {
   render: ({ ...args }) => <CardContainer size="sm" {...args} />,
-};
-
-export const Medium: StoryObj<typeof Card> = {
-  render: ({ ...args }) => <CardContainer size="md" {...args} />,
 };
 
 export const Large: StoryObj<typeof Card> = {

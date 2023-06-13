@@ -1,5 +1,7 @@
 import Box from "../Box/Box";
-import { type Size } from "../constants";
+
+// note: only sm + lg size currently, when design decides on the medium size, we can use the "size" constant
+const CardSizes = ["sm", "lg"] as const;
 
 /**
  * Card is a basic container component to apply consistent styling and render child components.
@@ -18,12 +20,11 @@ type CardType = {
    * The size of the card
    *
    * `sm`: 352px
-   * `md`: 400px
    * `lg`: 744px
    *
    * @defaultValue sm
    */
-  size?: (typeof Size)[number];
+  size?: (typeof CardSizes)[number];
 };
 
 const Card = ({
@@ -33,7 +34,6 @@ const Card = ({
 }: CardType): JSX.Element => {
   const sizeWidth = {
     sm: 352,
-    md: 400,
     lg: 744,
   } as const;
 
