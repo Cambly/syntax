@@ -22,18 +22,32 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Card>;
 
+const CardContainer = ({ ...args }): JSX.Element => (
+  <Box backgroundColor="gray700" padding={6}>
+    <Card {...args}>
+      <Box display="flex" direction="column" gap={6}>
+        <Heading>Headline</Heading>
+        <Typography>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Typography>
+      </Box>
+    </Card>
+  </Box>
+);
+
 export const Default: StoryObj<typeof Card> = {
-  render: ({ ...args }) => (
-    <Box backgroundColor="gray700" padding={6}>
-      <Card {...args}>
-        <Box display="flex" direction="column" gap={6}>
-          <Heading>Headline</Heading>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Typography>
-        </Box>
-      </Card>
-    </Box>
-  ),
+  render: ({ ...args }) => <CardContainer {...args} />,
+};
+
+export const Small: StoryObj<typeof Card> = {
+  render: ({ ...args }) => <CardContainer size="sm" {...args} />,
+};
+
+export const Medium: StoryObj<typeof Card> = {
+  render: ({ ...args }) => <CardContainer size="md" {...args} />,
+};
+
+export const Large: StoryObj<typeof Card> = {
+  render: ({ ...args }) => <CardContainer size="lg" {...args} />,
 };
