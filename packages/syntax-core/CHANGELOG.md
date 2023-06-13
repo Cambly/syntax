@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.4.0
+
+### Minor Changes
+
+- dc1f10c: Add Sizes to cards + tests/stories
+
 ## 5.3.1
 
 ### Patch Changes
