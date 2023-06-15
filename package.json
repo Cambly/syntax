@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "start": "turbo run dev --no-cache --continue",
     "build": "turbo run build",
     "changeset": "changeset",
     "clean": "turbo run clean && rm -rf node_modules",
