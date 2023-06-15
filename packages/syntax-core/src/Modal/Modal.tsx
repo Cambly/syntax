@@ -17,6 +17,11 @@ function XIcon({ color = "#000" }: { color?: string }) {
     </svg>
   );
 }
+
+// Note: Only sm + lg size currently. design thinks there should only be two sizes.
+// If there IS a md size at some point, we should use the "size" const.
+const ModalSizes = ["sm", "lg"] as const;
+
 type ModalType = {
   /**
    * The children inside for the inside of a Modal.
@@ -43,6 +48,15 @@ type ModalType = {
    */
   footer?: JSX.Element;
   /**
+   * The size of the card
+   *
+   * `sm`: 400px
+   * `lg`: 600px
+   *
+   * @defaultValue sm
+   */
+  size?: (typeof ModalSizes)[number];
+  /**
    * The z-index for the modal.
    * Typically used if there are other things on the page with higher z-index and you need this overlayed on top.
    * If two(2) buttons, put primary button first.
@@ -50,6 +64,10 @@ type ModalType = {
    * @defaultValue 1
    */
   zIndex?: number;
+  /**
+   * Test id for the button
+   */
+  "data-testid"?: string;
 };
 
 /**
@@ -64,8 +82,15 @@ export default function Modal({
   image,
   onDismiss,
   footer,
+  size = "sm",
   zIndex = 1,
+  "data-testid": dataTestId,
 }: ModalType): ReactElement {
+  const sizeWidth = {
+    sm: 400,
+    lg: 600,
+  } as const;
+
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
@@ -77,12 +102,14 @@ export default function Modal({
             onKeyDown={(e) => e.key === "Escape" && onDismiss()}
           >
             <Box
+              data-testid={dataTestId}
               backgroundColor="white"
               rounding="xl"
               display="flex"
               direction="column"
               minWidth={240}
-              maxWidth={400}
+              maxWidth={sizeWidth[size]}
+              width="100%"
               dangerouslySetInlineStyle={{ __style: { overflow: "hidden" } }}
             >
               <Box position="relative">

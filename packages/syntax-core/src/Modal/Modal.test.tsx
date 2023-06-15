@@ -138,7 +138,44 @@ describe("modal", () => {
         <p>text</p>
       </Modal>,
     );
-    const image = await screen.findAllByTestId("trap-focus");
-    expect(image).toHaveLength(1);
+    const focusTrap = await screen.findAllByTestId("trap-focus");
+    expect(focusTrap).toHaveLength(1);
+  });
+
+  it("should have the right width for sm", () => {
+    render(
+      <Modal
+        data-testid="modal-sm"
+        header="title"
+        onDismiss={() => {
+          /* empty */
+        }}
+      >
+        <p>text</p>
+      </Modal>,
+    );
+    expect(screen.getByTestId("modal-sm")).toHaveStyle({
+      width: "100%",
+      maxWidth: "400px",
+    });
+  });
+
+  it("should have the right width for lg", () => {
+    render(
+      <Modal
+        data-testid="modal-lg"
+        size="lg"
+        header="title"
+        onDismiss={() => {
+          /* empty */
+        }}
+      >
+        <p>text</p>
+      </Modal>,
+    );
+    expect(screen.getByTestId("modal-lg")).toHaveStyle({
+      width: "100%",
+      maxWidth: "600px",
+    });
   });
 });

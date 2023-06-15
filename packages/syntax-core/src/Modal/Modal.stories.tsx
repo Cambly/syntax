@@ -32,6 +32,11 @@ export default {
       control: { type: "number" },
     },
     image: {},
+    size: {
+      options: ["sm", "lg"],
+      control: { type: "radio" },
+    },
+    "data-testid": { control: { type: "text" } },
   },
   tags: ["autodocs"],
 } as Meta<typeof Modal>;
