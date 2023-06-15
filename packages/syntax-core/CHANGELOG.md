@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.5.0
+
+### Minor Changes
+
+- 5954c94: SelectList: Remove label as required prop
+
 ## 5.4.0
 
 ### Minor Changes
