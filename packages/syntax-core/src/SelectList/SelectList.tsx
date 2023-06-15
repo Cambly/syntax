@@ -58,7 +58,7 @@ const SelectList = ({
   /**
    * Text shown above select box
    */
-  label: string;
+  label?: string;
   /**
    * The callback to be called when an option is selected
    */
@@ -92,11 +92,13 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <label htmlFor={id} className={styles.outerTextContainer}>
-        <Typography size={100} color="gray700">
-          {label}
-        </Typography>
-      </label>
+      {label && (
+        <label htmlFor={id} className={styles.outerTextContainer}>
+          <Typography size={100} color="gray700">
+            {label}
+          </Typography>
+        </label>
+      )}
       <div className={styles.selectWrapper}>
         <select
           id={id}
