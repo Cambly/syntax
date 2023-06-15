@@ -11,6 +11,7 @@ function Layer({
 }): ReactPortal | ReactElement | null {
   return createPortal(
     <Box
+      data-testid="layer"
       position="fixed"
       dangerouslySetInlineStyle={{
         __style: { zIndex, top: "0", bottom: "0", left: "0", right: "0" },

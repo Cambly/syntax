@@ -22,9 +22,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
