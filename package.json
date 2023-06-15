@@ -11,7 +11,8 @@
     "stylelint": "turbo run stylelint",
     "test:watch": "turbo run test:watch",
     "test": "turbo run test",
-    "version-packages": "changeset version && pnpm install --no-frozen-lockfile"
+    "version-packages": "changeset version && pnpm install --no-frozen-lockfile",
+    "generate": "node './generate-component/index.js' $1"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",
