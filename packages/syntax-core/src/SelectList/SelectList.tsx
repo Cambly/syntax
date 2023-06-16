@@ -140,14 +140,16 @@ const SelectList = ({
           </svg>
         </div>
       </div>
-      <div className={styles.outerTextContainer}>
-        <Typography
-          size={100}
-          color={errorText ? "destructive-primary" : "gray700"}
-        >
-          {errorText ? errorText : helperText}
-        </Typography>
-      </div>
+      {(helperText || errorText) && (
+        <div className={styles.outerTextContainer}>
+          <Typography
+            size={100}
+            color={errorText ? "destructive-primary" : "gray700"}
+          >
+            {errorText ? errorText : helperText}
+          </Typography>
+        </div>
+      )}
     </div>
   );
 };
