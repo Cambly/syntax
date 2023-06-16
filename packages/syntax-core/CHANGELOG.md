@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.6.0
+
+### Minor Changes
+
+- a9b3b53: SelectList: Handle conditional div so div is centered
+
 ## 5.5.0
 
 ### Minor Changes
