@@ -16,7 +16,6 @@ pnpm start
 
 ## Generate a new React Component
 
-```
 1. Run `pnpm generate ComponentName`
 1. Update newly generated files.
 1. (Don't forget to StartCase your ComponentName)
@@ -32,4 +31,7 @@ pnpm start
 ## Acknowledgements
 
 - Originally forked from [vercel/turbo/examples/design-system](https://github.com/vercel/turbo/tree/main/examples/design-system)
+
+```
+
 ```

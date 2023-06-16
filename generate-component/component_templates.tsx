@@ -1,4 +1,4 @@
-exports.component = (name) => `
+export const component = (name) => `
 import Box from "../Box/Box";
 
 export type ${name}Type = {
@@ -24,7 +24,7 @@ export default ${name};
 `;
 
 // component.stories.jsx
-exports.story = (name) => `
+export const story = (name) => `
 import { type StoryObj, type Meta } from "@storybook/react";
 import ${name} from './${name}';
 
@@ -50,7 +50,7 @@ export const Default: StoryObj<typeof ${name}> = {
 `;
 
 // component.test.tsx
-exports.test = (name) => `
+export const test = (name) => `
 import { screen, render } from '@testing-library/react';
 import ${name} from './${name}';
 
