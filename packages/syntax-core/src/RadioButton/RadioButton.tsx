@@ -89,6 +89,16 @@ const RadioButton = ({
         [styles.mdBase]: size === "md",
       })}
     >
+      {checked ? (
+        <div
+          className={classnames(sharedStyles, {
+            [styles.mdCheckedBorder]: size === "md",
+            [styles.smCheckedBorder]: size === "sm",
+          })}
+        />
+      ) : (
+        <div className={classnames(sharedStyles, styles.neutralBorder)} />
+      )}
       <input
         data-testid={dataTestId}
         type="radio"
@@ -109,16 +119,6 @@ const RadioButton = ({
           setIsFocused(false);
         }}
       />
-      {checked ? (
-        <div
-          className={classnames(sharedStyles, {
-            [styles.mdCheckedBorder]: size === "md",
-            [styles.smCheckedBorder]: size === "sm",
-          })}
-        />
-      ) : (
-        <div className={classnames(sharedStyles, styles.neutralBorder)} />
-      )}
       {label && (
         <Typography
           size={size === "md" ? 200 : 100}
