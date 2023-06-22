@@ -22,12 +22,8 @@ export default {
     header: {
       control: { type: "text" },
     },
-    children: {
-      control: { type: "text" },
-    },
-    footer: {
-      control: {},
-    },
+    children: {},
+    footer: {},
     zIndex: {
       control: { type: "number" },
     },

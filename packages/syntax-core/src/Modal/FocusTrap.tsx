@@ -61,7 +61,7 @@ export default function FocusTrap({
       // This prevents stack overflow when multiple FocusTraps are rendered
       if (
         event.target instanceof Element &&
-        event.target.closest('[data-testid="trap-focus"]') !== null
+        event.target.closest('[data-testid="syntax-focus-trap"]') !== null
       ) {
         return;
       }
