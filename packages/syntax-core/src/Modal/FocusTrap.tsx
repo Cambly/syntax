@@ -29,7 +29,7 @@ const focusElement = (el: HTMLElement) => {
 };
 
 /**
- * FocusTrap is used by components like Modal and OverlayPanel to ensure that only elements within children components can be focused.
+ * FocusTrap is used by components like Modal to ensure that only elements within children components can be focused.
  */
 export default function FocusTrap({
   children,
@@ -87,7 +87,7 @@ export default function FocusTrap({
   }, [elRef, previouslyFocusedElRef]);
 
   return (
-    <div data-testid="trap-focus" ref={elRef}>
+    <div data-testid="syntax-focus-trap" ref={elRef}>
       {children}
     </div>
   );

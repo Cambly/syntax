@@ -1,4 +1,6 @@
 import { type ReactElement } from "react";
+import classnames from "classnames";
+
 import Heading from "../Heading/Heading";
 import Box from "../Box/Box";
 
@@ -20,11 +22,14 @@ function XIcon({ color = "#000" }: { color?: string }) {
 
 // Note: Only sm + lg size currently. design thinks there should only be two sizes.
 // If there IS a md size at some point, we should use the "size" const.
-const ModalSizes = ["sm", "lg"] as const;
+const sizeWidth = {
+  sm: 400,
+  lg: 600,
+} as const;
 
 type ModalType = {
   /**
-   * The children inside for the inside of a Modal.
+   * The modal's main content.
    */
   children: JSX.Element;
   /**
@@ -45,35 +50,43 @@ type ModalType = {
   /**
    * The footer for the bottom area of the Modal.
    * Typically used for rendering buttons.
+   * If two(2) buttons, put primary button _second_.
    */
   footer?: JSX.Element;
   /**
+   * The accessibilty text on the close button.
+   * (Sets the aria-label of the button)
+   *
+   *
+   * @defaultValue close modal
+   */
+  accessibilityCloseLabel?: string;
+  /**
    * The size of the card
    *
-   * `sm`: 400px
-   * `lg`: 600px
+   * * `sm`: 400px
+   * * `lg`: 600px
+   *
    *
    * @defaultValue sm
    */
-  size?: (typeof ModalSizes)[number];
+
+  size?: keyof typeof sizeWidth;
   /**
    * The z-index for the modal.
    * Typically used if there are other things on the page with higher z-index and you need this overlayed on top.
-   * If two(2) buttons, put primary button first.
    *
-   * @defaultValue 1
+   * @defaultValue 0
    */
   zIndex?: number;
   /**
-   * Test id for the button
+   * Test id for the modal
    */
   "data-testid"?: string;
 };
 
 /**
  * Modal is a dialog that appears on top of the main content and locks user interaction within the modal.
- *
- *
  */
 
 export default function Modal({
@@ -82,15 +95,11 @@ export default function Modal({
   image,
   onDismiss,
   footer,
+  accessibilityCloseLabel = "close modal",
   size = "sm",
-  zIndex = 1,
+  zIndex = 0,
   "data-testid": dataTestId,
 }: ModalType): ReactElement {
-  const sizeWidth = {
-    sm: 400,
-    lg: 600,
-  } as const;
-
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
@@ -114,17 +123,12 @@ export default function Modal({
             >
               <Box position="relative">
                 <button
+                  aria-label={accessibilityCloseLabel}
                   type="button"
-                  className={styles.closeButton}
+                  className={classnames(styles.closeButton, {
+                    [styles.closeButtonWithImage]: !!image,
+                  })}
                   onClick={onDismiss}
-                  style={
-                    image
-                      ? {
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(0, 0, 0, 0.3)",
-                        }
-                      : {}
-                  }
                 >
                   <XIcon color={image ? "#fff" : "#000"} />
                 </button>
@@ -134,7 +138,7 @@ export default function Modal({
                 <Heading as="h1" size={500}>
                   {header}
                 </Heading>
-                <div className={styles.content}>{children}</div>
+                <Box marginBottom={4}>{children}</Box>
                 {footer && (
                   <Box
                     display="flex"

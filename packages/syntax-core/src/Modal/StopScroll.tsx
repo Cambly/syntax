@@ -1,6 +1,8 @@
 import { useEffect, type ReactElement } from "react";
 
-function StopScroll(props: { children: ReactElement }): ReactElement {
+export default function StopScroll(props: {
+  children: ReactElement;
+}): ReactElement {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
@@ -11,5 +13,3 @@ function StopScroll(props: { children: ReactElement }): ReactElement {
 
   return props.children;
 }
-
-export default StopScroll;

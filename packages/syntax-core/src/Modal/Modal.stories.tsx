@@ -26,7 +26,7 @@ export default {
       control: { type: "text" },
     },
     footer: {
-      control: { type: "text" },
+      control: {},
     },
     zIndex: {
       control: { type: "number" },
@@ -41,15 +41,14 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Modal>;
 
-const ModalTemplate = ({ ...args }): JSX.Element => (
-  <Modal header="Header Text" onDismiss={action("onDismiss")} {...args}>
-    <Typography size={100}>
-      Confirmation of the action the user is about to take. This description can
-      be up to 4 lines long and will lorem ipsum until then dolor sit amet,
-      consectetur.
-    </Typography>
-  </Modal>
-);
+const ModalTemplate = ({ ...args }): JSX.Element => {
+  const { children } = args;
+  return (
+    <Modal header="Header Text" onDismiss={action("onDismiss")} {...args}>
+      <Typography size={100}>{children}</Typography>
+    </Modal>
+  );
+};
 
 const ModalController = ({ ...args }): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +69,13 @@ const ModalController = ({ ...args }): JSX.Element => {
 export const Default: StoryObj<typeof Modal> = {
   args: {
     header: "One Button Modal Text",
+    children: (
+      <p>
+        Confirmation of the action the user is about to take. This description
+        can be up to 4 lines long and will lorem ipsum until then dolor sit
+        amet, consectetur.
+      </p>
+    ),
     footer: <Button text="Confirm" onClick={action("confirm")} />,
   },
   render: (args) => <ModalController {...args} />,
@@ -77,16 +83,17 @@ export const Default: StoryObj<typeof Modal> = {
 
 export const WithImage: StoryObj<typeof Modal> = {
   args: {
+    ...Default.args,
     header: "With Image",
     image: <img src="https://placehold.co/400x200" alt="placeholder image" />,
     footer: (
       <>
-        <Button text="Confirm" onClick={action("primary on click")} />
         <Button
           text="Cancel"
           color="secondary"
           onClick={action("secondary on click")}
         />
+        <Button text="Confirm" onClick={action("primary on click")} />
       </>
     ),
   },
@@ -95,15 +102,16 @@ export const WithImage: StoryObj<typeof Modal> = {
 
 export const TwoButtons: StoryObj<typeof Modal> = {
   args: {
+    ...Default.args,
     header: "Two Button Modal Header",
     footer: (
       <>
-        <Button text="Confirm" onClick={action("primary on click")} />
         <Button
           text="Cancel"
           color="secondary"
           onClick={action("secondary on click")}
         />
+        <Button text="Confirm" onClick={action("primary on click")} />
       </>
     ),
   },
@@ -112,18 +120,19 @@ export const TwoButtons: StoryObj<typeof Modal> = {
 
 export const TwoButtonsDanger: StoryObj<typeof Modal> = {
   args: {
+    ...Default.args,
     header: "Two Button Danger Modal Header",
     footer: (
       <>
         <Button
-          text="Confirm"
-          color="destructive-primary"
-          onClick={action("primary on click")}
-        />
-        <Button
           text="Cancel"
           color="destructive-secondary"
           onClick={action("secondary on click")}
+        />
+        <Button
+          text="Confirm"
+          color="destructive-primary"
+          onClick={action("primary on click")}
         />
       </>
     ),
@@ -133,6 +142,7 @@ export const TwoButtonsDanger: StoryObj<typeof Modal> = {
 
 export const NoButtons: StoryObj<typeof Modal> = {
   args: {
+    ...Default.args,
     header: "No Button Modal Header",
     footer: undefined,
   },

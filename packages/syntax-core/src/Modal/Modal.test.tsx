@@ -4,7 +4,7 @@ import { expect, vi } from "vitest";
 import Modal from "./Modal";
 
 describe("modal", () => {
-  it("should render successfully", () => {
+  it("renders successfully", () => {
     const { baseElement } = render(
       <Modal
         header="title"
@@ -18,7 +18,7 @@ describe("modal", () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it("should render children successfully", async () => {
+  it("renders children successfully", () => {
     render(
       <Modal
         header="title"
@@ -26,31 +26,29 @@ describe("modal", () => {
           /* empty */
         }}
       >
-        <p>text</p>
+        <p data-testid="modal-content-text">text</p>
       </Modal>,
     );
-    const text = await screen.findAllByText("text");
+    const text = screen.getAllByTestId("modal-content-text");
     expect(text).toHaveLength(1);
   });
 
-  it("should fire onDismiss when X is clicked", async () => {
+  it("fires onDismiss when X is clicked", async () => {
     const handleOnDismiss = vi.fn();
 
-    const { baseElement } = render(
+    render(
       <Modal header="title" onDismiss={handleOnDismiss}>
         <p>text</p>
       </Modal>,
     );
 
-    // disabling because closeButton can't be accessed by react-testing-lib methods
-    // eslint-disable-next-line testing-library/no-node-access
-    const closeButton = baseElement.querySelector("button") as Element;
+    const closeButton = screen.getByLabelText("close modal");
     // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(closeButton);
     expect(handleOnDismiss).toHaveBeenCalledOnce();
   });
 
-  it("should render header text successfully", async () => {
+  it("renders header text successfully", async () => {
     render(
       <Modal
         header="title"
@@ -58,30 +56,30 @@ describe("modal", () => {
           /* empty */
         }}
       >
-        <p>text</p>
+        <p data-testid="modal-content-text">text</p>
       </Modal>,
     );
     const header = await screen.findAllByText("title");
     expect(header).toHaveLength(1);
   });
 
-  it("should render footer buttons successfully", async () => {
+  it("renders footer buttons successfully", async () => {
     render(
       <Modal
         header="title"
         onDismiss={() => {
           /* empty */
         }}
-        footer={<button>confirm</button>}
+        footer={<button data-testid="modal-confirm-button">confirm</button>}
       >
         <p>text</p>
       </Modal>,
     );
-    const button = await screen.findAllByText("confirm");
+    const button = await screen.findAllByTestId("modal-confirm-button");
     expect(button).toHaveLength(1);
   });
 
-  it("should render image successfully", async () => {
+  it("renders image successfully", async () => {
     render(
       <Modal
         header="title"
@@ -97,7 +95,7 @@ describe("modal", () => {
     expect(image).toHaveLength(1);
   });
 
-  it("should render Layer succesfully", async () => {
+  it("renders Layer succesfully", async () => {
     render(
       <Modal
         header="title"
@@ -108,12 +106,11 @@ describe("modal", () => {
         <p>text</p>
       </Modal>,
     );
-    // screen.debug();
-    const layer = await screen.findAllByTestId("layer");
+    const layer = await screen.findAllByTestId("syntax-layer");
     expect(layer).toHaveLength(1);
   });
 
-  it("should render StopScroll succesfully", () => {
+  it("renders StopScroll succesfully", () => {
     const { baseElement } = render(
       <Modal
         header="title"
@@ -127,7 +124,7 @@ describe("modal", () => {
     expect(baseElement).toHaveStyle({ overflow: "hidden" });
   });
 
-  it("should render FocusTrap succesfully", async () => {
+  it("renders FocusTrap succesfully", async () => {
     render(
       <Modal
         header="title"
@@ -138,11 +135,11 @@ describe("modal", () => {
         <p>text</p>
       </Modal>,
     );
-    const focusTrap = await screen.findAllByTestId("trap-focus");
+    const focusTrap = await screen.findAllByTestId("syntax-focus-trap");
     expect(focusTrap).toHaveLength(1);
   });
 
-  it("should have the right width for sm", () => {
+  it("has the right width for sm", () => {
     render(
       <Modal
         data-testid="modal-sm"
@@ -160,7 +157,7 @@ describe("modal", () => {
     });
   });
 
-  it("should have the right width for lg", () => {
+  it("has the right width for lg", () => {
     render(
       <Modal
         data-testid="modal-lg"
