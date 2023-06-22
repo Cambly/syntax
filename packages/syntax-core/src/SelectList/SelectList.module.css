@@ -32,7 +32,7 @@
   margin: 0;
 }
 
-.seletBoxMouseFocusStyling {
+.selectMouseFocusStyling {
   border: 1px solid var(--color-base-primary-700);
   box-shadow: 0 0 0 1px var(--color-base-primary-700);
 }
