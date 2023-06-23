@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.6.1
+
+### Patch Changes
+
+- a237fd5: fix radio button behavior when z-index is customized such as in a modal
+
 ## 5.6.0
 
 ### Minor Changes
