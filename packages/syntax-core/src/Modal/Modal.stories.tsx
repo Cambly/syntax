@@ -46,22 +46,6 @@ const ModalTemplate = ({ ...args }): JSX.Element => {
   );
 };
 
-const ModalController = ({ ...args }): JSX.Element => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <Button
-        onClick={() => {
-          setIsOpen(true);
-        }}
-        text={"Click here to open Modal"}
-      />
-      {isOpen && <ModalTemplate onDismiss={() => setIsOpen(false)} {...args} />}
-    </>
-  );
-};
-
 export const Default: StoryObj<typeof Modal> = {
   args: {
     header: "One Button Modal Text",
@@ -72,9 +56,37 @@ export const Default: StoryObj<typeof Modal> = {
         amet, consectetur.
       </p>
     ),
-    footer: <Button text="Confirm" onClick={action("confirm")} />,
   },
-  render: (args) => <ModalController {...args} />,
+  render: function DefaultExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <Button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
+        />
+        {isOpen && (
+          <ModalTemplate
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            header={args.header || "One Button Modal Text"}
+            footer={
+              <Button
+                text="Confirm"
+                onClick={() => {
+                  action("confirm");
+                  setIsOpen(false);
+                }}
+              />
+            }
+          />
+        )}
+      </>
+    );
+  },
 };
 
 export const WithImage: StoryObj<typeof Modal> = {
@@ -82,58 +94,142 @@ export const WithImage: StoryObj<typeof Modal> = {
     ...Default.args,
     header: "With Image",
     image: <img src="https://placehold.co/400x200" alt="placeholder image" />,
-    footer: (
+  },
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
       <>
         <Button
-          text="Cancel"
-          color="secondary"
-          onClick={action("secondary on click")}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
         />
-        <Button text="Confirm" onClick={action("primary on click")} />
+        {isOpen && (
+          <ModalTemplate
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            header={args.header}
+            footer={
+              <>
+                <Button
+                  text="Cancel"
+                  color="secondary"
+                  onClick={() => {
+                    action("cancel");
+                    setIsOpen(false);
+                  }}
+                />
+                <Button
+                  text="Confirm"
+                  onClick={() => {
+                    action("confirm");
+                    setIsOpen(false);
+                  }}
+                />
+              </>
+            }
+          />
+        )}
       </>
-    ),
+    );
   },
-  render: (args) => <ModalController {...args} />,
 };
 
 export const TwoButtons: StoryObj<typeof Modal> = {
   args: {
     ...Default.args,
     header: "Two Button Modal Header",
-    footer: (
+  },
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
       <>
         <Button
-          text="Cancel"
-          color="secondary"
-          onClick={action("secondary on click")}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
         />
-        <Button text="Confirm" onClick={action("primary on click")} />
+        {isOpen && (
+          <ModalTemplate
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            header={args.header}
+            footer={
+              <>
+                <Button
+                  text="Cancel"
+                  color="secondary"
+                  onClick={() => {
+                    action("cancel");
+                    setIsOpen(false);
+                  }}
+                />
+                <Button
+                  text="Confirm"
+                  onClick={() => {
+                    action("confirm");
+                    setIsOpen(false);
+                  }}
+                />
+              </>
+            }
+          />
+        )}
       </>
-    ),
+    );
   },
-  render: (args) => <ModalController {...args} />,
 };
 
 export const TwoButtonsDanger: StoryObj<typeof Modal> = {
   args: {
     ...Default.args,
     header: "Two Button Danger Modal Header",
-    footer: (
+  },
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
       <>
         <Button
-          text="Cancel"
-          color="destructive-secondary"
-          onClick={action("secondary on click")}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
         />
-        <Button
-          text="Confirm"
-          color="destructive-primary"
-          onClick={action("primary on click")}
-        />
+        {isOpen && (
+          <ModalTemplate
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            header={args.header}
+            footer={
+              <>
+                <Button
+                  text="Cancel"
+                  color="destructive-secondary"
+                  onClick={() => {
+                    action("cancel");
+                    setIsOpen(false);
+                  }}
+                />
+                <Button
+                  text="Confirm"
+                  color="destructive-primary"
+                  onClick={() => {
+                    action("confirm");
+                    setIsOpen(false);
+                  }}
+                />
+              </>
+            }
+          />
+        )}
       </>
-    ),
+    );
   },
-  render: (args) => <ModalController {...args} />,
 };
 
 export const NoButtons: StoryObj<typeof Modal> = {
@@ -142,5 +238,25 @@ export const NoButtons: StoryObj<typeof Modal> = {
     header: "No Button Modal Header",
     footer: undefined,
   },
-  render: (args) => <ModalController {...args} />,
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <Button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
+        />
+        {isOpen && (
+          <ModalTemplate
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            header={args.header}
+          />
+        )}
+      </>
+    );
+  },
 };

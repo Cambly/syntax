@@ -59,8 +59,10 @@ describe("modal", () => {
         <p data-testid="modal-content-text">text</p>
       </Modal>,
     );
-    const header = await screen.findAllByText("title");
-    expect(header).toHaveLength(1);
+
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "title",
+    );
   });
 
   it("renders footer buttons successfully", async () => {
@@ -137,6 +139,56 @@ describe("modal", () => {
     );
     const focusTrap = await screen.findAllByTestId("syntax-focus-trap");
     expect(focusTrap).toHaveLength(1);
+  });
+
+  it("focuses within the Modal correctly", async () => {
+    render(
+      <>
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+          accessibilityCloseLabel="close-button"
+        >
+          <>
+            <p>text</p>
+            <button data-testid="should-focus" />
+          </>
+        </Modal>
+        ,
+      </>,
+    );
+    // eslint-disable-next-line testing-library/no-await-sync-events
+    await userEvent.tab();
+    const button = screen.getByTestId("should-focus");
+    expect(button).toHaveFocus();
+  });
+
+  it("should not tab outside the Modal", async () => {
+    render(
+      <>
+        <button data-testid="dont-focus" />
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+          accessibilityCloseLabel="close-button"
+        >
+          <p>text</p>
+        </Modal>
+        ,
+      </>,
+    );
+
+    const closeButton = screen.getByLabelText("close-button");
+    // first tab tabs back to "body", second tab stays inside the modal and doesn't go to the `dont-focus` button
+    // eslint-disable-next-line testing-library/no-await-sync-events
+    await userEvent.tab();
+    // eslint-disable-next-line testing-library/no-await-sync-events
+    await userEvent.tab();
+    expect(closeButton).toHaveFocus();
   });
 
   it("has the right width for sm", () => {
