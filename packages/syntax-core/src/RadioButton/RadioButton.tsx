@@ -84,10 +84,14 @@ const RadioButton = ({
 
   return (
     <label
-      className={classnames(styles.radioBaseContainer, {
-        [styles.smBase]: size === "sm",
-        [styles.mdBase]: size === "md",
-      })}
+      className={classnames(
+        styles.radioBaseContainer,
+        styles[`state${disabled ? "Disabled" : "Enabled"}`],
+        {
+          [styles.smBase]: size === "sm",
+          [styles.mdBase]: size === "md",
+        },
+      )}
     >
       {checked ? (
         <div

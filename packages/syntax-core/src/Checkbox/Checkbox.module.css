@@ -13,18 +13,24 @@
 .inputOverlay {
   opacity: 0;
   position: absolute;
-  z-index: 1;
-  cursor: pointer;
   margin: 0;
 }
 
 .checkbox {
   position: relative;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+
+.stateDisabled {
+  cursor: auto;
+  opacity: 0.3;
+}
+
+.stateEnabled {
+  cursor: pointer;
 }
 
 .uncheckedBox {

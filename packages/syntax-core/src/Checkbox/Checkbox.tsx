@@ -83,7 +83,12 @@ const Checkbox = ({
   });
 
   return (
-    <label className={classNames(styles.mainContainer)}>
+    <label
+      className={classNames(
+        styles.mainContainer,
+        styles[`state${disabled ? "Disabled" : "Enabled"}`],
+      )}
+    >
       <div className={styles.checkboxContainer}>
         <input
           data-testid={dataTestId}

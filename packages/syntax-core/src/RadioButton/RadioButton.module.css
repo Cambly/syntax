@@ -1,19 +1,30 @@
 .radioBaseContainer {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   align-items: center;
-  cursor: pointer;
   position: relative;
+}
+
+.radioBaseContainer:focus-within {
+  outline: 2px solid var(--color-base-primary-700);
+}
+
+.stateDisabled {
+  cursor: auto;
+  opacity: 0.3;
+}
+
+.stateEnabled {
+  cursor: pointer;
 }
 
 .smBase {
   height: 16px;
-  gap: 4px;
 }
 
 .mdBase {
   height: 32px;
-  gap: 16px;
 }
 
 .radioStyleOverride {
