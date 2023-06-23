@@ -48,7 +48,7 @@ describe("modal", () => {
     expect(handleOnDismiss).toHaveBeenCalledOnce();
   });
 
-  it("renders header text successfully", async () => {
+  it("renders header text successfully", () => {
     render(
       <Modal
         header="title"
