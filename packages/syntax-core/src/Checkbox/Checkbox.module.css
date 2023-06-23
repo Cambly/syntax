@@ -5,13 +5,9 @@
   align-items: center;
 }
 
-.checkboxContainer {
-  display: flex;
-  flex-direction: row;
-}
-
 .inputOverlay {
   opacity: 0;
+  pointer-events: none;
   position: absolute;
   margin: 0;
 }
