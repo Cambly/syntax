@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.8.0
+
+### Minor Changes
+
+- 60892ef: Checkbox/RadioButton: update disabled states
+
 ## 5.7.0
 
 ### Minor Changes
