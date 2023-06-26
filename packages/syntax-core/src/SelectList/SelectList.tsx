@@ -29,6 +29,7 @@ const SelectList = ({
   helperText,
   label,
   onChange,
+  onClick,
   placeholderText,
   selectedValue = "",
   size = "md",
@@ -46,6 +47,10 @@ const SelectList = ({
    * @defaultValue false
    */
   disabled?: boolean;
+  /**
+   * Callback to be called when select is clicked
+   */
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
   /**
    * Text shown below select box if there is an input error.
    */
@@ -112,7 +117,7 @@ const SelectList = ({
             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
           })}
           onChange={onChange}
-          onClick={(e) => e.stopPropagation()}
+          onClick={onClick}
           value={
             placeholderText && !selectedValue ? placeholderText : selectedValue
           }
