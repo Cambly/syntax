@@ -48,7 +48,6 @@ const SelectList = ({
   disabled?: boolean;
   /**
    * Text shown below select box if there is an input error.
-   * Should only have a value if error = true
    */
   errorText?: string;
   /**
@@ -110,9 +109,10 @@ const SelectList = ({
             [styles.selectError]: errorText,
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
-            [styles.seletBoxMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+            [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
           })}
           onChange={onChange}
+          onClick={(e) => e.stopPropagation()}
           value={
             placeholderText && !selectedValue ? placeholderText : selectedValue
           }
