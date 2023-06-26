@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.7.0
+
+### Minor Changes
+
+- 4533f54: SelectList: stopPropagation onClick
+
 ## 5.6.1
 
 ### Patch Changes
