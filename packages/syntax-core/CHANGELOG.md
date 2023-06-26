@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.10.0
+
+### Minor Changes
+
+- 3cfc786: SelectList: pass through onClick
+
 ## 5.9.0
 
 ### Minor Changes
