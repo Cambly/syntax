@@ -6,12 +6,15 @@
   position: relative;
 }
 
-.stateDisabled {
-  cursor: auto;
+.disabled {
   opacity: 0.3;
 }
 
-.stateEnabled {
+.cursorDisabled {
+  cursor: auto;
+}
+
+.cursorEnabled {
   cursor: pointer;
 }
 
@@ -26,7 +29,6 @@
 .radioStyleOverride {
   margin: 0;
   opacity: 0;
-  pointer-events: none;
 }
 
 .smOverride {

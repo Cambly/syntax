@@ -86,7 +86,10 @@ const Checkbox = ({
     <label
       className={classNames(
         styles.mainContainer,
-        styles[`state${disabled ? "Disabled" : "Enabled"}`],
+        styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        {
+          [styles.disabled]: disabled,
+        },
       )}
     >
       <div className={checked ? checkedStyling : uncheckedStyling}>
@@ -102,7 +105,11 @@ const Checkbox = ({
       <input
         data-testid={dataTestId}
         type="checkbox"
-        className={classNames(styles.inputOverlay, styles[size])}
+        className={classNames(
+          styles.inputOverlay,
+          styles[size],
+          styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        )}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
