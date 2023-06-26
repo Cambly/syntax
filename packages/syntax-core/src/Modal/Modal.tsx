@@ -70,7 +70,6 @@ type ModalType = {
    *
    * @defaultValue sm
    */
-
   size?: keyof typeof sizeWidth;
   /**
    * The z-index for the modal.
@@ -88,7 +87,6 @@ type ModalType = {
 /**
  * Modal is a dialog that appears on top of the main content and locks user interaction within the modal.
  */
-
 export default function Modal({
   header,
   children,
@@ -97,7 +95,7 @@ export default function Modal({
   footer,
   accessibilityCloseLabel = "close modal",
   size = "sm",
-  zIndex = 0,
+  zIndex = 1,
   "data-testid": dataTestId,
 }: ModalType): ReactElement {
   return (

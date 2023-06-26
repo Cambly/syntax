@@ -4,7 +4,7 @@ import Box from "../Box/Box";
 
 export default function Layer({
   children,
-  zIndex = 0,
+  zIndex = 1,
 }: {
   children: ReactElement;
   zIndex?: number;
