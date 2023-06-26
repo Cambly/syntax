@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 5.9.0
+
+### Minor Changes
+
+- f13655f: Modal: Add modal to syntax.
+
 ## 5.8.0
 
 ### Minor Changes
