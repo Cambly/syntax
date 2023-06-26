@@ -5,26 +5,30 @@
   align-items: center;
 }
 
-.checkboxContainer {
-  display: flex;
-  flex-direction: row;
-}
-
 .inputOverlay {
   opacity: 0;
   position: absolute;
-  z-index: 1;
-  cursor: pointer;
   margin: 0;
 }
 
 .checkbox {
   position: relative;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.cursorDisabled {
+  cursor: auto;
+}
+
+.cursorEnabled {
+  cursor: pointer;
 }
 
 .uncheckedBox {

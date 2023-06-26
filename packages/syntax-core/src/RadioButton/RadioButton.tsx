@@ -84,10 +84,15 @@ const RadioButton = ({
 
   return (
     <label
-      className={classnames(styles.radioBaseContainer, {
-        [styles.smBase]: size === "sm",
-        [styles.mdBase]: size === "md",
-      })}
+      className={classnames(
+        styles.radioBaseContainer,
+        styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        {
+          [styles.disabled]: disabled,
+          [styles.smBase]: size === "sm",
+          [styles.mdBase]: size === "md",
+        },
+      )}
     >
       {checked ? (
         <div
@@ -104,10 +109,14 @@ const RadioButton = ({
         type="radio"
         id={id}
         name={name}
-        className={classnames(styles.radioStyleOverride, {
-          [styles.smOverride]: size === "sm",
-          [styles.mdOverride]: size === "md",
-        })}
+        className={classnames(
+          styles.radioStyleOverride,
+          styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+          {
+            [styles.smOverride]: size === "sm",
+            [styles.mdOverride]: size === "md",
+          },
+        )}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
