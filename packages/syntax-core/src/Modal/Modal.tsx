@@ -132,7 +132,7 @@ export default function Modal({
                 </button>
               </Box>
               {image && <Box maxHeight={200}>{image}</Box>}
-              <Box display="flex" gap={3} direction="column" padding={10}>
+              <Box display="flex" gap={3} direction="column" padding={9}>
                 <Heading as="h1" size={500}>
                   {header}
                 </Heading>

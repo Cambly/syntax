@@ -50,11 +50,11 @@ export const Default: StoryObj<typeof Modal> = {
   args: {
     header: "One Button Modal Text",
     children: (
-      <p>
+      <Typography size={200}>
         Confirmation of the action the user is about to take. This description
         can be up to 4 lines long and will lorem ipsum until then dolor sit
         amet, consectetur.
-      </p>
+      </Typography>
     ),
   },
   render: function DefaultExample({ ...args }): JSX.Element {
