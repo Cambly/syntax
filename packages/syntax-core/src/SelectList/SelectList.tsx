@@ -62,7 +62,7 @@ const SelectList = ({
   /**
    * Text shown above select box
    */
-  label?: string;
+  label: string;
   /**
    * The callback to be called when an option is selected
    */
