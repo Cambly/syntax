@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.0.0
+
+### Major Changes
+
+- 7352b8d: SelectList: make label required
+
 ## 5.10.0
 
 ### Minor Changes
