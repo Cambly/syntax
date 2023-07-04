@@ -70,6 +70,22 @@ describe("button", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
+  it("fires the onSubmit event on a form when button of type submit is clicked", async () => {
+    const handleSubmit = vi.fn();
+    render(
+      <form onSubmit={handleSubmit}>
+        <Button
+          type="submit"
+          text="Continue"
+          accessibilityLabel="Continue to the next step"
+        />
+      </form>,
+    );
+    const button = await screen.findByLabelText("Continue to the next step");
+    await userEvent.click(button);
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
+
   it("sets the data-testid", () => {
     const handleClick = vi.fn();
     render(
