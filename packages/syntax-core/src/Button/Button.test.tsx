@@ -66,7 +66,6 @@ describe("button", () => {
       />,
     );
     const button = await screen.findAllByLabelText("Continue to the next step");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(button[0]);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });

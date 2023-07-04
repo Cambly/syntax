@@ -26,7 +26,6 @@ describe("checkbox", () => {
       />,
     );
     const checkbox = await screen.findByLabelText("Continue to the next step");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
@@ -52,7 +51,6 @@ describe("checkbox", () => {
       />,
     );
     const checkbox = await screen.findByLabelText("Continue to the next step");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -73,7 +71,6 @@ describe("checkbox", () => {
       />,
     );
     const checkbox = await screen.findByLabelText("Continue to the next step");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
