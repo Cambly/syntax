@@ -1,5 +1,12 @@
 # @cambly/eslint-config-syntax
 
+## 1.3.2
+
+### Patch Changes
+
+- f1f5b2f: Fix testing-library/no-await-sync-events
+- f1f5b2f: Fix tests
+
 ## 1.3.1
 
 ### Patch Changes

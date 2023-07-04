@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.0.1
+
+### Patch Changes
+
+- f1f5b2f: Fix tests
+
 ## 6.0.0
 
 ### Major Changes
