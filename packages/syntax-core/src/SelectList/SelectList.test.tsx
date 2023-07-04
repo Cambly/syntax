@@ -101,7 +101,6 @@ describe("select", () => {
         numberOfOptions={3}
       />,
     );
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(screen.getByTestId("syntax-select"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -116,13 +115,11 @@ describe("select", () => {
     );
     const firstSelectionValue = "1";
     const secondSelectionValue = "2";
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       firstSelectionValue,
     );
     expect(handleChange).toHaveBeenCalledWith(firstSelectionValue);
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       secondSelectionValue,
@@ -141,7 +138,6 @@ describe("select", () => {
     );
     const firstSelectionValue = "1";
     const secondSelectionValue = "2";
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       firstSelectionValue,
@@ -150,7 +146,6 @@ describe("select", () => {
       `${"syntax-select"}-${firstSelectionValue}`,
     );
     expect(option1.selected).toBeTruthy();
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       secondSelectionValue,

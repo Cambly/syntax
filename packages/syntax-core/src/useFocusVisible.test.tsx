@@ -25,7 +25,6 @@ describe("useFocusVisible", () => {
     render(<TestInput />);
     const checkboxInput = screen.getByTestId("syntax-custom-checkbox-input");
     const isFocusVisible = screen.getByTestId("syntax-is-focus-visible");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(checkboxInput);
     expect(isFocusVisible).toHaveTextContent("false");
   });
@@ -33,7 +32,6 @@ describe("useFocusVisible", () => {
   it("focus when a user uses a keyboard to select the component", async () => {
     render(<TestInput />);
     const isFocusVisible = screen.getByTestId("syntax-is-focus-visible");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.keyboard("{Tab}");
     expect(isFocusVisible).toHaveTextContent("true");
   });

@@ -29,7 +29,6 @@ describe("radioButton", () => {
       />,
     );
     const radioButton = await screen.findByLabelText("Radio Button Label");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
@@ -46,7 +45,6 @@ describe("radioButton", () => {
       />,
     );
     const radioButton = await screen.findByLabelText("Radio Button Label");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
     // NB: radio buttons do nothing if they're already checked
     // but got clicked on
@@ -65,7 +63,6 @@ describe("radioButton", () => {
       />,
     );
     const radioButton = await screen.findByLabelText("Radio Button Label");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(radioButton);
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
