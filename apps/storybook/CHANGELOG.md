@@ -1,5 +1,13 @@
 # @syntax/storybook
 
+## 0.8.21
+
+### Patch Changes
+
+- Updated dependencies [f1f5b2f]
+  - @cambly/syntax-floating-components@0.1.3
+  - @cambly/syntax-core@6.0.1
+
 ## 0.8.20
 
 ### Patch Changes

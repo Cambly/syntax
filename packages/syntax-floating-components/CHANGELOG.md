@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.1.3
+
+### Patch Changes
+
+- f1f5b2f: Fix tests
+
 ## 0.1.2
 
 ### Patch Changes
