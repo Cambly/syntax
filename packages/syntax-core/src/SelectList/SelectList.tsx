@@ -21,7 +21,10 @@ const iconSize = {
   lg: 24,
 } as const;
 
-const SelectList = ({
+/**
+ * [SelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
+ */
+export default function SelectList({
   children,
   "data-testid": dataTestId,
   disabled = false,
@@ -85,7 +88,7 @@ const SelectList = ({
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
-}): ReactElement => {
+}): ReactElement {
   const id = useId();
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
@@ -157,8 +160,6 @@ const SelectList = ({
       )}
     </div>
   );
-};
-
-export default SelectList;
+}
 
 SelectList.Option = SelectOption;
