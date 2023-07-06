@@ -22,7 +22,7 @@ function textColor(color: (typeof Color)[number]): string {
 }
 
 /**
- * Typography is a component that renders text.
+ * [Typography](https://cambly-syntax.vercel.app/?path=/docs/components-typography--docs) is a component that renders text.
  */
 const Typography = ({
   align = "start",

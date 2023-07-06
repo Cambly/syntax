@@ -16,7 +16,7 @@ const iconWidth = {
 };
 
 /**
- * Checkbox is a clickable element that will show if an option has been selected or not
+ * [Checkbox](https://cambly-syntax.vercel.app/?path=/docs/components-checkbox--docs) is a clickable element that will show if an option has been selected or not.
  */
 const Checkbox = ({
   checked = false,

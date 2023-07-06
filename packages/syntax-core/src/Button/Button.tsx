@@ -97,6 +97,9 @@ type ButtonType = {
   type?: "button" | "submit" | "reset";
 };
 
+/**
+ * [Button](https://cambly-syntax.vercel.app/?path=/docs/components-button--docs) is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+ */
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
   (
     {

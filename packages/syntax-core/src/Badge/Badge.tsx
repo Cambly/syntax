@@ -12,7 +12,7 @@ const BadgeColor = [
 ] as const;
 
 /**
- * Badge is a component to display short text and give additional context to features and other components.
+ * [Badge](https://cambly-syntax.vercel.app/?path=/docs/components-badge--docs) is a component to display short text and give additional context to features and other components.
  */
 const Badge = ({
   text,

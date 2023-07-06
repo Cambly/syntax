@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./Avatar.module.css";
 
 /**
- * Avatar is a circular image that represents a user.
+ * [Avatar](https://cambly-syntax.vercel.app/?path=/docs/components-avatar--docs) is a circular image that represents a user.
  */
 const Avatar = ({
   src,

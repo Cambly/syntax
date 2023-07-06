@@ -7,7 +7,7 @@ import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 
 /**
- * RadioButton is a radio button with accompanying text
+ * [RadioButton](https://cambly-syntax.vercel.app/?path=/docs/components-radiobutton--docs) is a radio button with accompanying text
  */
 const RadioButton = ({
   checked = false,

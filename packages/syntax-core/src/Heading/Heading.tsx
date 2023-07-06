@@ -1,8 +1,9 @@
 import { type ReactElement, type ReactNode } from "react";
 import { type Color } from "../constants";
 import Typography from "../Typography/Typography";
+
 /**
- * Heading enforces a consistent style & accessibility best practices for headings.
+ * [Heading](https://cambly-syntax.vercel.app/?path=/docs/components-heading--docs) enforces a consistent style & accessibility best practices for headings.
  */
 const Heading = ({
   align = "start",

@@ -57,7 +57,7 @@ type IconButtonType = {
 };
 
 /**
- * IconButton is a clickable element that is used to perform an action.
+ * [IconButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a clickable element that is used to perform an action.
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
   (

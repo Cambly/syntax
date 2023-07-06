@@ -85,7 +85,7 @@ type ModalType = {
 };
 
 /**
- * Modal is a dialog that appears on top of the main content and locks user interaction within the modal.
+ * [Modal](https://cambly-syntax.vercel.app/?path=/docs/components-modal--docs) is a dialog that appears on top of the main content and locks user interaction within the modal.
  */
 export default function Modal({
   header,

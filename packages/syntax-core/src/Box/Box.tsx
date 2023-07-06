@@ -62,13 +62,13 @@ type Margin =
 type Padding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 /**
- * Box is primitive design component and is used by lots of other components. It keeps details like spacing, borders and colors consistent across all of Syntax.
+ * [Box](https://cambly-syntax.vercel.app/?path=/docs/components-box--docs) is primitive design component and is used by lots of other components. It keeps details like spacing, borders and colors consistent across all of Syntax.
  *
  * Passthrough props:
  *  * `aria-*`
  *  * `data-testid`
  */
-export default forwardRef<
+const Box = forwardRef<
   HTMLDivElement,
   {
     /**
@@ -557,3 +557,5 @@ export default forwardRef<
     </BoxElement>
   );
 });
+
+export default Box;

@@ -3,10 +3,6 @@ import Box from "../Box/Box";
 // note: only sm + lg size currently, when design decides on the medium size, we can use the "size" constant
 const CardSizes = ["sm", "lg"] as const;
 
-/**
- * Card is a basic container component to apply consistent styling and render child components.
- */
-
 type CardType = {
   /**
    * Test id for the button
@@ -27,11 +23,14 @@ type CardType = {
   size?: (typeof CardSizes)[number];
 };
 
-const Card = ({
+/**
+ * [Card](https://cambly-syntax.vercel.app/?path=/docs/components-card--docs) is a basic container component to apply consistent styling and render child components.
+ */
+export default function Card({
   children,
   size = "sm",
   "data-testid": dataTestId,
-}: CardType): JSX.Element => {
+}: CardType): JSX.Element {
   const sizeWidth = {
     sm: 352,
     lg: 744,
@@ -50,6 +49,4 @@ const Card = ({
       {children}
     </Box>
   );
-};
-
-export default Card;
+}
