@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.1.4
+
+### Patch Changes
+
+- ad32c4b: Add individual links to components
+
 ## 0.1.3
 
 ### Patch Changes
