@@ -1,0 +1,48 @@
+.textfield {
+  appearance: none;
+  border: 1px solid var(--color-base-gray-700);
+  box-sizing: border-box;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.textfield:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.textfield:disabled {
+  cursor: auto;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.sm {
+  height: 32px;
+  border-radius: 12px;
+}
+
+.md {
+  height: 40px;
+  border-radius: 12px;
+}
+
+.lg {
+  height: 48px;
+  border-radius: 16px;
+}
+
+.inputError {
+  color: var(--color-base-destructive-700);
+  border-color: var(--color-base-destructive-700);
+  background-color: var(--color-base-destructive-100);
+}
+
+.inputError::placeholder {
+  color: var(--color-base-destructive-700);
+}
