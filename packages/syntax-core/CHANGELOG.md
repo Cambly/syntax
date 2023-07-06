@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.0.3
+
+### Patch Changes
+
+- 39bab26: link to changesets documentation in readme
+
 ## 6.0.2
 
 ### Patch Changes
