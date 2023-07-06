@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.0.2
+
+### Patch Changes
+
+- ad32c4b: Add individual links to components
+
 ## 6.0.1
 
 ### Patch Changes
