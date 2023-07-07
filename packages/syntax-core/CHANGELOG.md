@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.1.0
+
+### Minor Changes
+
+- 2969ba6: TextField: add component
+
 ## 6.0.3
 
 ### Patch Changes
