@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.1.1
+
+### Patch Changes
+
+- 29203a7: Change root monorepo package.json to force usage of pnpm at specific ^version
+
 ## 6.1.0
 
 ### Minor Changes
