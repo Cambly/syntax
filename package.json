@@ -7,7 +7,6 @@
     "dev": "turbo run dev --no-cache --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use \\`pnpm\\` to install, not \\`npm\\`. See README.md for instructions')\"",
     "release": "turbo run build && changeset publish && pnpm install --no-frozen-lockfile",
     "stylelint": "turbo run stylelint",
     "test:watch": "turbo run test:watch",
@@ -32,6 +31,7 @@
     "vitest": "0.32.4"
   },
   "engines": {
+    "npm": "please-use-pnpm",
     "pnpm": "^8.6.0"
   }
 }
