@@ -86,7 +86,7 @@ type ButtonType = {
   /**
    * The callback to be called when the button is clicked
    */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /**
    * The tooltip to be displayed when the user hovers over the button
    */
