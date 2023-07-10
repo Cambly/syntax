@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.2.0
+
+### Minor Changes
+
+- 2357772: Button / IconButton: make onClick optional
+
 ## 6.1.1
 
 ### Patch Changes
