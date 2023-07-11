@@ -90,11 +90,11 @@ const Typography = ({
    */
   tooltip?: string;
   /**
-   * Whether the text should be transformed to uppercase.
+   * Whether the text should be transformed to uppercase or capitalized.
    *
    * @defaultValue "none"
    */
-  transform?: "none" | "uppercase";
+  transform?: "none" | "uppercase" | "capitalize";
   /**
    * Whether the text has an underline.
    *
@@ -120,6 +120,7 @@ const Typography = ({
         inline && styles.inline,
         styles[`size${size}`],
         transform === "uppercase" && styles.uppercase,
+        transform === "capitalize" && styles.capitalize,
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,
       )}

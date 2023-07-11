@@ -79,6 +79,10 @@
   display: inline;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
