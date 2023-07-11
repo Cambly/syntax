@@ -32,6 +32,6 @@
   },
   "engines": {
     "npm": "please-use-pnpm",
-    "pnpm": "^8.6.0"
+    "pnpm": "^8.6.6"
   }
 }
