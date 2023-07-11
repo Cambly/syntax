@@ -1,5 +1,17 @@
 # @syntax/storybook
 
+## 0.9.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
+### Patch Changes
+
+- Updated dependencies [8be2304]
+  - @cambly/syntax-floating-components@0.2.0
+  - @cambly/syntax-core@6.3.0
+
 ## 0.8.26
 
 ### Patch Changes

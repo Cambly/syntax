@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.2.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
 ## 0.1.4
 
 ### Patch Changes
