@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.3.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
 ## 6.2.0
 
 ### Minor Changes

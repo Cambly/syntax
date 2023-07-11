@@ -57,13 +57,13 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:6.2.0
+        specifier: workspace:6.3.0
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.8.0
         version: link:../../packages/syntax-design-tokens
       '@cambly/syntax-floating-components':
-        specifier: workspace:^0.1.4
+        specifier: workspace:^0.2.0
         version: link:../../packages/syntax-floating-components
       react:
         specifier: 18.2.0
