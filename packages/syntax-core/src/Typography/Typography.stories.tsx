@@ -47,7 +47,7 @@ export default {
       control: "text",
     },
     transform: {
-      options: ["none", "uppercase"],
+      options: ["none", "uppercase", "capitalize"],
       defaultValue: "none",
     },
     underline: {
@@ -138,6 +138,14 @@ export const Uppercase: StoryObj<typeof Typography> = {
   render: (args) => (
     <Typography {...args} transform="uppercase">
       Uppercase
+    </Typography>
+  ),
+};
+
+export const Capitalize: StoryObj<typeof Typography> = {
+  render: (args) => (
+    <Typography {...args} transform="capitalize">
+      this text is capitalized
     </Typography>
   ),
 };
