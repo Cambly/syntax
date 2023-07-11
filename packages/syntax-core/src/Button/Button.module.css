@@ -130,23 +130,3 @@
   stroke-dashoffset: 0;
   transform-origin: center;
 }
-
-/** TODO Change with `Typography` component when available */
-.buttonText {
-  color: inherit;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
-  font-weight: 500;
-}
-
-.buttonTextSmall {
-  font-size: 12px;
-}
-
-.buttonTextMedium {
-  font-size: 14px;
-}
-
-.buttonTextLarge {
-  font-size: 16px;
-}

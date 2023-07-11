@@ -1,28 +1,16 @@
-import classNames from "classnames";
-import backgroundColor from "../colors//backgroundColor";
-import foregroundColor from "../colors/foregroundColor";
 import React, { forwardRef } from "react";
+import classNames from "classnames";
+
+import backgroundColor from "../colors//backgroundColor";
+import foregroundColor, {
+  foregroundTypographyColor,
+} from "../colors/foregroundColor";
 import { type Color, type Size } from "../constants";
+import Typography from "../Typography/Typography";
+import Box from "../Box/Box";
+
+import { textVariant, iconSize, loadingIconSize } from "./ButtonConstants";
 import styles from "./Button.module.css";
-
-const textVariant = {
-  // Replace with `Typography` once it lands in `syntax-core`
-  ["sm"]: styles.buttonTextSmall,
-  ["md"]: styles.buttonTextMedium,
-  ["lg"]: styles.buttonTextLarge,
-} as const;
-
-const loadingIconSize = {
-  ["sm"]: 16,
-  ["md"]: 20,
-  ["lg"]: 24,
-};
-
-const iconSize = {
-  ["sm"]: styles.smIcon,
-  ["md"]: styles.mdIcon,
-  ["lg"]: styles.lgIcon,
-};
 
 type ButtonType = {
   /**
@@ -144,12 +132,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
           <StartIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {((loading && loadingText) || (!loading && text)) && (
-          <div className={styles.textContainer}>
-            {/* Replace with `Typography` once it lands in `syntax-core` */}
-            <div className={classNames(styles.buttonText, textVariant[size])}>
+          <Box paddingX={1}>
+            <Typography
+              size={textVariant[size]}
+              color={foregroundTypographyColor(color)}
+            >
               {loading ? loadingText : text}
-            </div>
-          </div>
+            </Typography>
+          </Box>
         )}
         {!loading && EndIcon && (
           <EndIcon className={classNames(styles.icon, iconSize[size])} />
