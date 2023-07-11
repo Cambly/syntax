@@ -37,7 +37,7 @@
 }
 
 .iconButton:disabled {
-  filter: opacity(30%);
+  filter: opacity(50%);
   background-image: none;
   transform: none;
   cursor: auto;
