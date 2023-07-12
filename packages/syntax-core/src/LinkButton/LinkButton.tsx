@@ -29,7 +29,17 @@ function A({
   );
 }
 
-const LinkButton = ({
+/**
+ * LinkButton is a "variation" of Button that should look identical to Button, but should be used to render links instead.
+ * It uses the wrapper prop to allow for usage inside Next.js or react-router (Examples below).
+ *
+ * ```
+ * import Link from "next/link";
+ *
+ * <LinkButton wrapper={Link} text="Get Started" />
+ * ```
+ */
+export default function LinkButton({
   text,
   color = "primary",
   size = "md",
@@ -39,6 +49,8 @@ const LinkButton = ({
   wrapper: Wrapper = A,
   href,
   openInNewWindow = false,
+  nextPrefetch,
+  nextReplace,
 }: {
   /**
    * Test id for the button
@@ -85,6 +97,8 @@ const LinkButton = ({
     children: ReactNode;
     href: string;
     openInNewWindow: boolean;
+    nextReplace?: boolean;
+    nextPrefetch?: boolean;
   }>;
   /**
    * The link or url that the button should redirect to.
@@ -94,9 +108,30 @@ const LinkButton = ({
    * If `true`, the link will open in a new window/tab.
    */
   openInNewWindow?: boolean;
-}): JSX.Element => {
+  /**
+   * Only used when wrapper is Next.js Link.
+   * Docs: https://nextjs.org/docs/pages/api-reference/components/link#replace
+   *
+   * If "true", When true, next/link will replace the current history state instead of adding a new URL into the browser’s history stack.
+   */
+  nextReplace?: boolean;
+  /**
+   * Only used when wrapper is Next.js Link.
+   * Docs: https://nextjs.org/docs/pages/api-reference/components/link#prefetch
+   *
+   * Defaults to "true" already in next/link.
+   * When true, next/link will prefetch the page (denoted by the href) in the background. This is useful for improving the performance of client-side navigations. Any <Link /> in the viewport (initially or through scroll) will be preloaded.
+   * Prefetch can be disabled by passing prefetch={false}.
+   */
+  nextPrefetch?: boolean;
+}): JSX.Element {
   return (
-    <Wrapper href={href} openInNewWindow={openInNewWindow}>
+    <Wrapper
+      href={href}
+      openInNewWindow={openInNewWindow}
+      nextPrefetch={nextPrefetch}
+      nextReplace={nextReplace}
+    >
       <div
         className={classNames(
           styles.linkButton,
@@ -129,6 +164,4 @@ const LinkButton = ({
       </div>
     </Wrapper>
   );
-};
-
-export default LinkButton;
+}
