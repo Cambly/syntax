@@ -3,7 +3,7 @@ import backgroundColor from "../colors/backgroundColor";
 import foregroundColor, {
   foregroundTypographyColor,
 } from "../colors/foregroundColor";
-import React, { type ReactElement, type ReactNode } from "react";
+import React from "react";
 import { type Color, type Size } from "../constants";
 import Typography from "../Typography/Typography";
 
@@ -12,45 +12,41 @@ import { textVariant, iconSize } from "../Button/ButtonConstants";
 
 import styles from "./LinkButton.module.css";
 
-function A({
-  children,
-  href,
-  openInNewWindow,
-}: {
-  children: ReactNode;
-  href: string;
-  openInNewWindow: boolean;
-}): ReactElement {
-  const target = openInNewWindow ? "_blank" : "";
-  return (
-    <a href={href} target={target}>
-      {children}
-    </a>
-  );
-}
-
 /**
  * LinkButton is a "variation" of Button that should look identical to Button, but should be used to render links instead.
- * It uses the wrapper prop to allow for usage inside Next.js or react-router (Examples below).
+ * It needs to be wrapped with the appropriate wrapper for react-router, next/link, or a tag.
+ * The wrapper will most likely need a style={{textDecoration: "none"}} to remove the default underline styling.
+ *
+ * ```
+ * <a href="/english/resources" target="_blank" style={{textDecoration: "none"}}>
+ *    <LinkButton text="Resources" />
+ * </a>
+ * ```
  *
  * ```
  * import Link from "next/link";
  *
- * <LinkButton wrapper={Link} text="Get Started" />
+ * <Link href="/english/resources" style={{textDecoration: "none"}}>
+ *    <LinkButton text="Resources" />
+ * </Link>
+ * ```
+ *
+ * ```
+ * import Link from "react-router-dom";
+ *
+ * <Link href="/english/resources" style={{textDecoration: "none"}}>
+ *    <LinkButton text="Resources" />
+ * </Link>
  * ```
  */
 export default function LinkButton({
   text,
+  "data-testid": dataTestId,
   color = "primary",
   size = "md",
   fullWidth = false,
   startIcon: StartIcon,
   endIcon: EndIcon,
-  wrapper: Wrapper = A,
-  href,
-  openInNewWindow = false,
-  nextPrefetch,
-  nextReplace,
 }: {
   /**
    * Test id for the button
@@ -93,75 +89,38 @@ export default function LinkButton({
   /**
    * The custom wrapper for LinkButton, This wrapper is used to change the default "a" tag to something like Next.js Link or react-router-dom's Link.
    */
-  wrapper?: React.ComponentType<{
-    children: ReactNode;
-    href: string;
-    openInNewWindow: boolean;
-    nextReplace?: boolean;
-    nextPrefetch?: boolean;
-  }>;
-  /**
-   * The link or url that the button should redirect to.
-   */
-  href: string;
-  /**
-   * If `true`, the link will open in a new window/tab.
-   */
-  openInNewWindow?: boolean;
-  /**
-   * Only used when wrapper is Next.js Link.
-   * Docs: https://nextjs.org/docs/pages/api-reference/components/link#replace
-   *
-   * If "true", When true, next/link will replace the current history state instead of adding a new URL into the browser’s history stack.
-   */
-  nextReplace?: boolean;
-  /**
-   * Only used when wrapper is Next.js Link.
-   * Docs: https://nextjs.org/docs/pages/api-reference/components/link#prefetch
-   *
-   * Defaults to "true" already in next/link.
-   * When true, next/link will prefetch the page (denoted by the href) in the background. This is useful for improving the performance of client-side navigations. Any <Link /> in the viewport (initially or through scroll) will be preloaded.
-   * Prefetch can be disabled by passing prefetch={false}.
-   */
-  nextPrefetch?: boolean;
 }): JSX.Element {
   return (
-    <Wrapper
-      href={href}
-      openInNewWindow={openInNewWindow}
-      nextPrefetch={nextPrefetch}
-      nextReplace={nextReplace}
+    <div
+      data-testid={dataTestId}
+      className={classNames(
+        styles.linkButton,
+        buttonStyles.button,
+        foregroundColor(color),
+        backgroundColor(color),
+        buttonStyles[size],
+        {
+          [buttonStyles.fullWidth]: fullWidth,
+          [styles.fitContent]: !fullWidth,
+          [buttonStyles.buttonGap]: size === "lg" || size === "md",
+          [buttonStyles.secondaryBorder]: color === "secondary",
+          [buttonStyles.secondaryDestructiveBorder]:
+            color === "destructive-secondary",
+        },
+      )}
     >
-      <div
-        className={classNames(
-          styles.linkButton,
-          buttonStyles.button,
-          foregroundColor(color),
-          backgroundColor(color),
-          buttonStyles[size],
-          {
-            [buttonStyles.fullWidth]: fullWidth,
-            [styles.fitContent]: !fullWidth,
-            [buttonStyles.buttonGap]: size === "lg" || size === "md",
-            [buttonStyles.secondaryBorder]: color === "secondary",
-            [buttonStyles.secondaryDestructiveBorder]:
-              color === "destructive-secondary",
-          },
-        )}
+      {StartIcon && (
+        <StartIcon className={classNames(styles.icon, iconSize[size])} />
+      )}
+      <Typography
+        color={foregroundTypographyColor(color)}
+        size={textVariant[size]}
       >
-        {StartIcon && (
-          <StartIcon className={classNames(styles.icon, iconSize[size])} />
-        )}
-        <Typography
-          color={foregroundTypographyColor(color)}
-          size={textVariant[size]}
-        >
-          {text}
-        </Typography>
-        {EndIcon && (
-          <EndIcon className={classNames(styles.icon, iconSize[size])} />
-        )}
-      </div>
-    </Wrapper>
+        {text}
+      </Typography>
+      {EndIcon && (
+        <EndIcon className={classNames(styles.icon, iconSize[size])} />
+      )}
+    </div>
   );
 }

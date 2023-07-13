@@ -25,7 +25,7 @@ export function foregroundTypographyColor(
       return "primary";
     case "destructive-secondary":
     case "destructive-tertiary":
-      return "white";
+      return "destructive-primary";
     case "branded":
       return "gray900";
     default:
