@@ -13,6 +13,7 @@ export default {
   argTypes: {
     color: {
       options: [
+        "gray200",
         "gray900",
         "destructive700",
         "orange700",
