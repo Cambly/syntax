@@ -8,6 +8,7 @@ import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import Checkbox from "./Checkbox/Checkbox";
+import CheckboxGroup from "./CheckboxGroup/CheckboxGroup";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
@@ -26,6 +27,7 @@ export {
   Heading,
   IconButton,
   Checkbox,
+  CheckboxGroup,
   MiniActionCard,
   Modal,
   RadioButton,
