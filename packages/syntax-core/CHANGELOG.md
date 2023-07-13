@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.4.0
+
+### Minor Changes
+
+- b1ac6a4: Badge: add "gray200" as possible color
+
 ## 6.3.0
 
 ### Minor Changes
