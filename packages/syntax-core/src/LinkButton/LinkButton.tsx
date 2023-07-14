@@ -18,12 +18,14 @@ import styles from "./LinkButton.module.css";
 export default function LinkButton({
   text,
   href,
+  target,
   "data-testid": dataTestId,
   color = "primary",
   size = "md",
   fullWidth = false,
   startIcon: StartIcon,
   endIcon: EndIcon,
+  onClick,
 }: {
   /**
    * Test id for the button
@@ -37,7 +39,7 @@ export default function LinkButton({
    * The link that the LinkButton should route to.
    *
    */
-  href: string;
+  href?: string;
   /**
    * The target attribute specifies where to open the linked document:
    *
@@ -90,6 +92,7 @@ export default function LinkButton({
     <a
       href={href}
       data-testid={dataTestId}
+      target={target}
       className={classNames(
         styles.linkButton,
         buttonStyles.button,
@@ -105,6 +108,7 @@ export default function LinkButton({
             color === "destructive-secondary",
         },
       )}
+      onClick={onClick}
     >
       {StartIcon && (
         <StartIcon className={classNames(buttonStyles.icon, iconSize[size])} />

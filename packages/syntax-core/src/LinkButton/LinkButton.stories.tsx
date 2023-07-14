@@ -16,6 +16,12 @@ export default {
       text: {
         control: { type: "text" },
       },
+      href: {
+        control: { type: "text" },
+      },
+      target: {
+        control: { type: "text" },
+      },
       options: [
         "primary",
         "secondary",
@@ -36,12 +42,6 @@ export default {
       control: "boolean",
     },
     onClick: { action: "clicked" },
-    href: {
-      control: { type: "text" },
-    },
-    openInNewWindow: {
-      control: "boolean",
-    },
   },
   tags: ["autodocs"],
 } as Meta<typeof LinkButton>;
@@ -50,6 +50,7 @@ export const Default: StoryObj<typeof LinkButton> = {
   args: {
     text: "Call to action",
     href: "www.google.com",
+    target: "_blank",
   },
   render: ({ ...args }) => <LinkButton {...args} />,
 };

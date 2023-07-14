@@ -42,6 +42,21 @@ describe("button", () => {
     expect(button).toHaveLength(1);
   });
 
+  it("correctly applies fullWidth when set", async () => {
+    render(
+      <Button
+        onClick={() => {
+          /* empty */
+        }}
+        text="Continue"
+        data-testid="button-test-id"
+        fullWidth
+      />,
+    );
+    const button = await screen.findByTestId("button-test-id");
+    expect(button).toHaveStyle({ width: "100%" });
+  });
+
   it("sets an accessibility label", async () => {
     render(
       <Button
