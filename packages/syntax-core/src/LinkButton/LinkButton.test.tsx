@@ -65,7 +65,6 @@ describe("linkButton", () => {
       />,
     );
     const linkButton = screen.getByTestId("linkButton-test-id");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(linkButton);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });

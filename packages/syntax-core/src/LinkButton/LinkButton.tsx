@@ -41,7 +41,7 @@ export default function LinkButton({
    */
   href?: string;
   /**
-   * The target attribute specifies where to open the linked document:
+   * The target attribute specifies where to open the linked document.
    *
    */
   target?: "_blank" | "_self" | "_parent" | "_top";
@@ -86,7 +86,7 @@ export default function LinkButton({
   /**
    * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
-  onClick?: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }): JSX.Element {
   return (
     <a
