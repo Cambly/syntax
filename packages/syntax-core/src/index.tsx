@@ -4,10 +4,11 @@ import Box from "./Box/Box";
 import Button from "./Button/Button";
 import ButtonGroup from "./ButtonGroup/ButtonGroup";
 import Card from "./Card/Card";
+import Checkbox from "./Checkbox/Checkbox";
 import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
-import Checkbox from "./Checkbox/Checkbox";
+import LinkButton from "./LinkButton/LinkButton";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
@@ -26,6 +27,7 @@ export {
   Heading,
   IconButton,
   Checkbox,
+  LinkButton,
   MiniActionCard,
   Modal,
   RadioButton,
