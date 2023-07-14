@@ -1,5 +1,68 @@
 # @syntax/storybook
 
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [b1ac6a4]
+  - @cambly/syntax-core@6.4.0
+
+## 0.9.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
+### Patch Changes
+
+- Updated dependencies [8be2304]
+  - @cambly/syntax-floating-components@0.2.0
+  - @cambly/syntax-core@6.3.0
+
+## 0.8.26
+
+### Patch Changes
+
+- Updated dependencies [2357772]
+  - @cambly/syntax-core@6.2.0
+
+## 0.8.25
+
+### Patch Changes
+
+- Updated dependencies [29203a7]
+  - @cambly/syntax-core@6.1.1
+
+## 0.8.24
+
+### Patch Changes
+
+- Updated dependencies [2969ba6]
+  - @cambly/syntax-core@6.1.0
+
+## 0.8.23
+
+### Patch Changes
+
+- Updated dependencies [39bab26]
+  - @cambly/syntax-core@6.0.3
+
+## 0.8.22
+
+### Patch Changes
+
+- Updated dependencies [ad32c4b]
+  - @cambly/syntax-floating-components@0.1.4
+  - @cambly/syntax-core@6.0.2
+
+## 0.8.21
+
+### Patch Changes
+
+- Updated dependencies [f1f5b2f]
+  - @cambly/syntax-floating-components@0.1.3
+  - @cambly/syntax-core@6.0.1
+
 ## 0.8.20
 
 ### Patch Changes

@@ -2,6 +2,7 @@ import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 
 const BadgeColor = [
+  "gray200",
   "gray900",
   "destructive700",
   "orange700",
@@ -11,8 +12,20 @@ const BadgeColor = [
   "purple700",
 ] as const;
 
+const textColorForBackgroundColor = (
+  color: (typeof BadgeColor)[number],
+): "gray900" | "white" => {
+  switch (color) {
+    case "gray200":
+    case "yellow700":
+      return "gray900";
+    default:
+      return "white";
+  }
+};
+
 /**
- * Badge is a component to display short text and give additional context to features and other components.
+ * [Badge](https://cambly-syntax.vercel.app/?path=/docs/components-badge--docs) is a component to display short text and give additional context to features and other components.
  */
 const Badge = ({
   text,
@@ -37,7 +50,7 @@ const Badge = ({
     backgroundColor={color}
   >
     <Typography
-      color={color === "yellow700" ? "gray900" : "white"}
+      color={textColorForBackgroundColor(color)}
       size={100}
       weight="bold"
     >

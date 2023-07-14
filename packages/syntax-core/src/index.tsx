@@ -13,6 +13,7 @@ import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
+import TextField from "./TextField/TextField";
 import Typography from "./Typography/Typography";
 
 export {
@@ -31,5 +32,6 @@ export {
   Modal,
   RadioButton,
   SelectList,
+  TextField,
   Typography,
 };

@@ -1,5 +1,53 @@
 # @cambly/syntax-core
 
+## 6.4.0
+
+### Minor Changes
+
+- b1ac6a4: Badge: add "gray200" as possible color
+
+## 6.3.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
+## 6.2.0
+
+### Minor Changes
+
+- 2357772: Button / IconButton: make onClick optional
+
+## 6.1.1
+
+### Patch Changes
+
+- 29203a7: Change root monorepo package.json to force usage of pnpm at specific ^version
+
+## 6.1.0
+
+### Minor Changes
+
+- 2969ba6: TextField: add component
+
+## 6.0.3
+
+### Patch Changes
+
+- 39bab26: link to changesets documentation in readme
+
+## 6.0.2
+
+### Patch Changes
+
+- ad32c4b: Add individual links to components
+
+## 6.0.1
+
+### Patch Changes
+
+- f1f5b2f: Fix tests
+
 ## 6.0.0
 
 ### Major Changes

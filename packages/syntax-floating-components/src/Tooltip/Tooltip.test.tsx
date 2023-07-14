@@ -42,7 +42,6 @@ describe("tooltip", () => {
 
     const button = screen.getByRole("button");
     expect(screen.queryByText("My tooltip")).not.toBeInTheDocument();
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.hover(button);
     expect(screen.getByText("My tooltip")).toBeInTheDocument();
   });

@@ -10,7 +10,7 @@ const gap = {
 } as const;
 
 /**
- * Group buttons to render them in a row or column with consistent spacing between each button
+ * [ButtonGroup](https://cambly-syntax.vercel.app/?path=/docs/components-buttongroup--docs) groups buttons in a row or column with consistent spacing between each button.
  */
 const ButtonGroup = ({
   orientation = "horizontal",

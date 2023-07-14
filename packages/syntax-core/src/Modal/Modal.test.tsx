@@ -43,9 +43,12 @@ describe("modal", () => {
     );
 
     const closeButton = screen.getByLabelText("close modal");
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.click(closeButton);
-    expect(handleOnDismiss).toHaveBeenCalledOnce();
+    expect(handleOnDismiss).toHaveBeenCalledWith(
+      expect.objectContaining({
+        type: "click",
+      }),
+    );
   });
 
   it("renders header text successfully", () => {
@@ -159,7 +162,6 @@ describe("modal", () => {
         ,
       </>,
     );
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.tab();
     const button = screen.getByTestId("should-focus");
     expect(button).toHaveFocus();
@@ -184,9 +186,7 @@ describe("modal", () => {
 
     const closeButton = screen.getByLabelText("close-button");
     // first tab tabs back to "body", second tab stays inside the modal and doesn't go to the `dont-focus` button
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.tab();
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.tab();
     expect(closeButton).toHaveFocus();
   });

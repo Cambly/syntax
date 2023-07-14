@@ -49,7 +49,7 @@ type IconButtonType = {
   /**
    * The callback to be called when the button is clicked
    */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /**
    * The tooltip to be displayed when the user hovers over the button
    */
@@ -57,7 +57,7 @@ type IconButtonType = {
 };
 
 /**
- * IconButton is a clickable element that is used to perform an action.
+ * [IconButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a clickable element that is used to perform an action.
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
   (
