@@ -12,16 +12,17 @@ export default {
     },
   },
   argTypes: {
+    text: {
+      control: { type: "text" },
+    },
+    href: {
+      control: { type: "text" },
+    },
+    target: {
+      options: ["_blank", "_self", "_parent", "_top", ""],
+      control: { type: "radio" },
+    },
     color: {
-      text: {
-        control: { type: "text" },
-      },
-      href: {
-        control: { type: "text" },
-      },
-      target: {
-        control: { type: "text" },
-      },
       options: [
         "primary",
         "secondary",
@@ -49,7 +50,7 @@ export default {
 export const Default: StoryObj<typeof LinkButton> = {
   args: {
     text: "Call to action",
-    href: "www.google.com",
+    href: "https://www.google.com",
     target: "_blank",
   },
   render: ({ ...args }) => <LinkButton {...args} />,
