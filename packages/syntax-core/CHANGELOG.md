@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 6.5.0
+
+### Minor Changes
+
+- bc17eae: LinkButton: Add component
+  Buttons: Update Buttons with Typography instead of custom css.
+
 ## 6.4.0
 
 ### Minor Changes
