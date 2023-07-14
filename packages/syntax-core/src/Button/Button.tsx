@@ -2,14 +2,15 @@ import React, { forwardRef } from "react";
 import classNames from "classnames";
 
 import backgroundColor from "../colors//backgroundColor";
-import foregroundColor, {
-  foregroundTypographyColor,
-} from "../colors/foregroundColor";
-import { type Color, type Size } from "../constants";
+import foregroundColor from "../colors/foregroundColor";
+import foregroundTypographyColor from "../colors/foregroundTypographyColor";
+import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 
-import { textVariant, iconSize, loadingIconSize } from "./ButtonConstants";
+import iconSize from "./constants/iconSize";
+import textVariant from "./constants/textVariant";
+import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 
 type ButtonType = {
@@ -30,7 +31,15 @@ type ButtonType = {
    *
    * @defaultValue "primary"
    */
-  color?: (typeof Color)[number];
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "destructive-primary"
+    | "destructive-secondary"
+    | "destructive-tertiary"
+    | "branded"
+    | "success";
   /**
    * The size of the button
    *
@@ -137,7 +146,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
               size={textVariant[size]}
               color={foregroundTypographyColor(color)}
             >
-              {loading ? loadingText : text}
+              <span style={{ fontWeight: 500 }}>
+                {loading ? loadingText : text}
+              </span>
             </Typography>
           </Box>
         )}

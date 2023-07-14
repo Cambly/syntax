@@ -1,46 +1,23 @@
 import classNames from "classnames";
 import backgroundColor from "../colors/backgroundColor";
-import foregroundColor, {
-  foregroundTypographyColor,
-} from "../colors/foregroundColor";
+import foregroundColor from "../colors/foregroundColor";
+import foregroundTypographyColor from "../colors/foregroundTypographyColor";
 import React from "react";
-import { type Color, type Size } from "../constants";
+import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 
 import buttonStyles from "../Button/Button.module.css";
-import { textVariant, iconSize } from "../Button/ButtonConstants";
+import iconSize from "../Button/constants/iconSize";
+import textVariant from "../Button/constants/textVariant";
 
 import styles from "./LinkButton.module.css";
 
 /**
- * LinkButton is a "variation" of Button that should look identical to Button, but should be used to render links instead.
- * It needs to be wrapped with the appropriate wrapper for react-router, next/link, or a tag.
- * The wrapper will most likely need a style={{textDecoration: "none"}} to remove the default underline styling.
- *
- * ```
- * <a href="/english/resources" target="_blank" style={{textDecoration: "none"}}>
- *    <LinkButton text="Resources" />
- * </a>
- * ```
- *
- * ```
- * import Link from "next/link";
- *
- * <Link href="/english/resources" style={{textDecoration: "none"}}>
- *    <LinkButton text="Resources" />
- * </Link>
- * ```
- *
- * ```
- * import Link from "react-router-dom";
- *
- * <Link href="/english/resources" style={{textDecoration: "none"}}>
- *    <LinkButton text="Resources" />
- * </Link>
- * ```
+ * [LinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-linkbutton--docs) is a "variation" of Button that should look identical to Button, but should be used to render links instead.
  */
 export default function LinkButton({
   text,
+  href,
   "data-testid": dataTestId,
   color = "primary",
   size = "md",
@@ -57,11 +34,29 @@ export default function LinkButton({
    */
   text: string;
   /**
+   * The link that the LinkButton should route to.
+   *
+   */
+  href: string;
+  /**
+   * The target attribute specifies where to open the linked document:
+   *
+   */
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  /**
    * The color of the button
    *
    * @defaultValue "primary"
    */
-  color?: (typeof Color)[number];
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "destructive-primary"
+    | "destructive-secondary"
+    | "destructive-tertiary"
+    | "branded"
+    | "success";
   /**
    * The size of the button
    *
@@ -87,11 +82,13 @@ export default function LinkButton({
    */
   endIcon?: React.ComponentType<{ className: string }>;
   /**
-   * The custom wrapper for LinkButton, This wrapper is used to change the default "a" tag to something like Next.js Link or react-router-dom's Link.
+   * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
+  onClick?: React.MouseEventHandler;
 }): JSX.Element {
   return (
-    <div
+    <a
+      href={href}
       data-testid={dataTestId}
       className={classNames(
         styles.linkButton,
@@ -110,17 +107,17 @@ export default function LinkButton({
       )}
     >
       {StartIcon && (
-        <StartIcon className={classNames(styles.icon, iconSize[size])} />
+        <StartIcon className={classNames(buttonStyles.icon, iconSize[size])} />
       )}
       <Typography
         color={foregroundTypographyColor(color)}
         size={textVariant[size]}
       >
-        {text}
+        <span style={{ fontWeight: 500 }}>{text}</span>
       </Typography>
       {EndIcon && (
-        <EndIcon className={classNames(styles.icon, iconSize[size])} />
+        <EndIcon className={classNames(buttonStyles.icon, iconSize[size])} />
       )}
-    </div>
+    </a>
   );
 }

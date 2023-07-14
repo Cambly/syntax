@@ -49,16 +49,9 @@ export default {
 export const Default: StoryObj<typeof LinkButton> = {
   args: {
     text: "Call to action",
+    href: "www.google.com",
   },
-  render: ({ ...args }) => (
-    <a
-      href="https://www.google.com"
-      target="_blank"
-      style={{ textDecoration: "none" }}
-    >
-      <LinkButton {...args} />
-    </a>
-  ),
+  render: ({ ...args }) => <LinkButton {...args} />,
 };
 
 export const Small: StoryObj<typeof LinkButton> = {

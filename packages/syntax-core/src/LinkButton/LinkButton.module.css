@@ -1,3 +1,7 @@
+.linkButton {
+  text-decoration: none;
+}
+
 .fitContent {
   width: fit-content;
 }
