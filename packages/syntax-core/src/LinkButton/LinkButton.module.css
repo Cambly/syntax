@@ -1,4 +1,5 @@
-.linkButton {
+.linkButton:focus,
+.linkButton:hover {
   text-decoration: none;
 }
 
