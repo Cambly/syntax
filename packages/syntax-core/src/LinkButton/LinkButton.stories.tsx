@@ -22,6 +22,19 @@ export default {
       options: ["_blank", "_self", "_parent", "_top", ""],
       control: { type: "radio" },
     },
+    rel: {
+      options: [
+        "prev",
+        "next",
+        "nofollow",
+        "noreferrer",
+        "search",
+        "tag",
+        "related",
+        "alternate",
+      ],
+      control: { type: "radio" },
+    },
     color: {
       options: [
         "primary",
