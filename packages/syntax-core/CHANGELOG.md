@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 6.6.0
+
+### Minor Changes
+
+- f605998: Add rel tags for linkbutton
+  Add more specific styling to override camblystrap.
+
 ## 6.5.0
 
 ### Minor Changes
