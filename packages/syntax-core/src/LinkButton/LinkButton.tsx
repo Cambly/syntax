@@ -48,7 +48,7 @@ export default function LinkButton({
    */
   target?: "_blank" | "_self" | "_parent" | "_top";
   /**
-   * The target attribute specifies where to open the linked document.
+   * The rel attribute specifies the relationship between the document and the link.
    *
    */
   rel?: HtmlHTMLAttributes<HTMLAnchorElement>["rel"];
