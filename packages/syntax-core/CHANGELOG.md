@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.7.0
+
+### Minor Changes
+
+- 40b1cf9: LinkButton: Update description for rel tag
+
 ## 6.6.0
 
 ### Minor Changes
