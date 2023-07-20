@@ -1,3 +1,4 @@
+import { type HtmlHTMLAttributes } from "react";
 import classNames from "classnames";
 import backgroundColor from "../colors/backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
@@ -50,15 +51,7 @@ export default function LinkButton({
    * The target attribute specifies where to open the linked document.
    *
    */
-  rel?:
-    | "prev"
-    | "next"
-    | "nofollow"
-    | "noreferrer"
-    | "search"
-    | "tag"
-    | "related"
-    | "alternate";
+  rel?: HtmlHTMLAttributes<HTMLAnchorElement>["rel"];
   /**
    * The color of the button
    *
