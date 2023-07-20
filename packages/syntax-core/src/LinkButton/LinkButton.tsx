@@ -19,6 +19,7 @@ export default function LinkButton({
   text,
   href,
   target,
+  rel,
   "data-testid": dataTestId,
   color = "primary",
   size = "md",
@@ -45,6 +46,19 @@ export default function LinkButton({
    *
    */
   target?: "_blank" | "_self" | "_parent" | "_top";
+  /**
+   * The target attribute specifies where to open the linked document.
+   *
+   */
+  rel?:
+    | "prev"
+    | "next"
+    | "nofollow"
+    | "noreferrer"
+    | "search"
+    | "tag"
+    | "related"
+    | "alternate";
   /**
    * The color of the button
    *
@@ -93,6 +107,7 @@ export default function LinkButton({
       href={href}
       data-testid={dataTestId}
       target={target}
+      rel={rel}
       className={classNames(
         styles.linkButton,
         buttonStyles.button,
