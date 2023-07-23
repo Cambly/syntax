@@ -78,3 +78,7 @@
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   width: 24px !important;
 }
+
+.border {
+  border: 1px solid;
+}

@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 
+import borderColor from "../colors/borderColor";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
 import foregroundTypographyColor from "../colors/foregroundTypographyColor";
@@ -130,13 +131,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
           styles.button,
           foregroundColor(color),
           backgroundColor(color),
+          borderColor(color),
           styles[size],
           {
             [styles.fullWidth]: fullWidth,
             [styles.buttonGap]: size === "lg" || size === "md",
-            [styles.secondaryBorder]: color === "secondary",
-            [styles.secondaryDestructiveBorder]:
-              color === "destructive-secondary",
+            [styles.border]:
+              color === "secondary" || color === "destructive-secondary",
           },
         )}
       >

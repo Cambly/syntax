@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import borderColor from "../colors/borderColor";
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
 import React, { forwardRef } from "react";
@@ -85,7 +86,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
           styles.iconButton,
           foregroundColor(color),
           backgroundColor(color),
+          borderColor(color),
           styles[size],
+          {
+            [styles.border]:
+              color === "secondary" || color === "destructive-secondary",
+          },
         )}
         ref={ref}
       >
