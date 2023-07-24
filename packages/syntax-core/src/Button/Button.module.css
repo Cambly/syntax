@@ -98,11 +98,11 @@
 }
 
 .secondaryBorder {
-  border: 1px solid var(--color-base-primary-700);
+  border: 1px solid var(--color-base-primary-300);
 }
 
 .secondaryDestructiveBorder {
-  border: 1px solid var(--color-base-destructive-700);
+  border: 1px solid var(--color-base-destructive-300);
 }
 
 @keyframes syntaxButtonLoadingRotate {
