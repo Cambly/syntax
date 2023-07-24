@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.7.1
+
+### Patch Changes
+
+- 146fa33: IconButton secondary + destructive-secondary borders + match colors to Figma
+
 ## 6.7.0
 
 ### Minor Changes
