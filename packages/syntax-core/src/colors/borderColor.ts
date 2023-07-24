@@ -6,9 +6,9 @@ export default function borderColor(
 ): string | undefined {
   switch (color) {
     case "secondary":
-      return styles.primary700BorderColor;
+      return styles.primary300BorderColor;
     case "destructive-secondary":
-      return styles.destructive700BorderColor;
+      return styles.destructive300BorderColor;
     default:
       return undefined;
   }
