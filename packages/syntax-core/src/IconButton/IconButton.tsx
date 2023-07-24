@@ -86,6 +86,11 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
           foregroundColor(color),
           backgroundColor(color),
           styles[size],
+          {
+            [styles.secondaryBorder]: color === "secondary",
+            [styles.secondaryDestructiveBorder]:
+              color === "destructive-secondary",
+          },
         )}
         ref={ref}
       >
