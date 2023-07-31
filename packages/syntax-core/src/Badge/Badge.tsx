@@ -1,6 +1,5 @@
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
-import { type ReactElement } from "react";
 import styles from "./Badge.module.css";
 
 const BadgeColor = [
