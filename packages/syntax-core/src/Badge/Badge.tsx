@@ -41,7 +41,7 @@ const Badge = ({
   /**
    * The text to display inside the badge
    */
-  text: string | ReactElement;
+  text: string;
   /**
    * The color of the badge
    *
