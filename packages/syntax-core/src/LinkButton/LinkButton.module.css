@@ -1,0 +1,12 @@
+.linkButton {
+  text-decoration: none;
+}
+
+.linkButton:focus,
+.linkButton:hover {
+  text-decoration: none;
+}
+
+.fitContent {
+  width: fit-content;
+}
