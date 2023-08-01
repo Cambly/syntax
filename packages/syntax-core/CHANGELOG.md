@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.8.0
+
+### Minor Changes
+
+- 436b46c: Feat: Badge: can render `icon` prop
+
 ## 6.7.1
 
 ### Patch Changes
