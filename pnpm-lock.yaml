@@ -57,7 +57,7 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:6.7.1
+        specifier: workspace:6.8.0
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.8.0
@@ -152,7 +152,7 @@ importers:
         version: 8.8.0(eslint@8.39.0)
       eslint-config-turbo:
         specifier: latest
-        version: 1.10.10(eslint@8.39.0)
+        version: 1.10.12(eslint@8.39.0)
       eslint-plugin-react:
         specifier: 7.32.2
         version: 7.32.2(eslint@8.39.0)
@@ -6978,13 +6978,13 @@ packages:
       eslint: 8.39.0
     dev: false
 
-  /eslint-config-turbo@1.10.10(eslint@8.39.0):
-    resolution: {integrity: sha512-SThJ7tDmKrrlTx4RojyK6z4jnLrYzasHWlvLyYuCSq4kcEjmBsOZHZFweiZqRtdqPVHHwLJ2oSiXvsZcVOtGTw==}
+  /eslint-config-turbo@1.10.12(eslint@8.39.0):
+    resolution: {integrity: sha512-z3jfh+D7UGYlzMWGh+Kqz++hf8LOE96q3o5R8X4HTjmxaBWlLAWG+0Ounr38h+JLR2TJno0hU9zfzoPNkR9BdA==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
       eslint: 8.39.0
-      eslint-plugin-turbo: 1.10.10(eslint@8.39.0)
+      eslint-plugin-turbo: 1.10.12(eslint@8.39.0)
     dev: false
 
   /eslint-import-resolver-node@0.3.7:
@@ -7155,8 +7155,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-turbo@1.10.10(eslint@8.39.0):
-    resolution: {integrity: sha512-omrsZ7iKoLgUOqHUgoR6ZwwIhC/P3d9KZIBmcy32FLtw2jmC5DsCBK/+VPbrGQH1he3LdIxmmoAyISJbYoltYg==}
+  /eslint-plugin-turbo@1.10.12(eslint@8.39.0):
+    resolution: {integrity: sha512-uNbdj+ohZaYo4tFJ6dStRXu2FZigwulR1b3URPXe0Q8YaE7thuekKNP+54CHtZPH9Zey9dmDx5btAQl9mfzGOw==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
