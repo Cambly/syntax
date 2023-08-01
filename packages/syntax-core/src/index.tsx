@@ -8,9 +8,12 @@ import Checkbox from "./Checkbox/Checkbox";
 import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
+import LinkButton from "./LinkButton/LinkButton";
 import MiniActionCard from "./MiniActionCard/MiniActionCard";
+import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
+import TextField from "./TextField/TextField";
 import Typography from "./Typography/Typography";
 
 export {
@@ -24,8 +27,11 @@ export {
   Divider,
   Heading,
   IconButton,
+  LinkButton,
   MiniActionCard,
+  Modal,
   RadioButton,
   SelectList,
+  TextField,
   Typography,
 };

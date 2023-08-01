@@ -161,6 +161,9 @@ const useTooltipContext = () => {
   return context;
 };
 
+/**
+ * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
+ */
 export function Tooltip({
   children,
   ...options

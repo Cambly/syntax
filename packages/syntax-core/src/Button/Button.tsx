@@ -1,28 +1,17 @@
+import React, { forwardRef } from "react";
 import classNames from "classnames";
+
 import backgroundColor from "../colors//backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
-import React, { forwardRef } from "react";
-import { type Color, type Size } from "../constants";
+import foregroundTypographyColor from "../colors/foregroundTypographyColor";
+import { type Size } from "../constants";
+import Typography from "../Typography/Typography";
+import Box from "../Box/Box";
+
+import iconSize from "./constants/iconSize";
+import textVariant from "./constants/textVariant";
+import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
-
-const textVariant = {
-  // Replace with `Typography` once it lands in `syntax-core`
-  ["sm"]: styles.buttonTextSmall,
-  ["md"]: styles.buttonTextMedium,
-  ["lg"]: styles.buttonTextLarge,
-} as const;
-
-const loadingIconSize = {
-  ["sm"]: 16,
-  ["md"]: 20,
-  ["lg"]: 24,
-};
-
-const iconSize = {
-  ["sm"]: styles.smIcon,
-  ["md"]: styles.mdIcon,
-  ["lg"]: styles.lgIcon,
-};
 
 type ButtonType = {
   /**
@@ -42,7 +31,15 @@ type ButtonType = {
    *
    * @defaultValue "primary"
    */
-  color?: (typeof Color)[number];
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "destructive-primary"
+    | "destructive-secondary"
+    | "destructive-tertiary"
+    | "branded"
+    | "success";
   /**
    * The size of the button
    *
@@ -86,7 +83,7 @@ type ButtonType = {
   /**
    * The callback to be called when the button is clicked
    */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /**
    * The tooltip to be displayed when the user hovers over the button
    */
@@ -97,6 +94,9 @@ type ButtonType = {
   type?: "button" | "submit" | "reset";
 };
 
+/**
+ * [Button](https://cambly-syntax.vercel.app/?path=/docs/components-button--docs) is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+ */
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
   (
     {
@@ -144,12 +144,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
           <StartIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {((loading && loadingText) || (!loading && text)) && (
-          <div className={styles.textContainer}>
-            {/* Replace with `Typography` once it lands in `syntax-core` */}
-            <div className={classNames(styles.buttonText, textVariant[size])}>
-              {loading ? loadingText : text}
-            </div>
-          </div>
+          <Box paddingX={1}>
+            <Typography
+              size={textVariant[size]}
+              color={foregroundTypographyColor(color)}
+            >
+              <span style={{ fontWeight: 500 }}>
+                {loading ? loadingText : text}
+              </span>
+            </Typography>
+          </Box>
         )}
         {!loading && EndIcon && (
           <EndIcon className={classNames(styles.icon, iconSize[size])} />

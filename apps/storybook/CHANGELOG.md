@@ -1,5 +1,159 @@
 # @syntax/storybook
 
+## 0.9.6
+
+### Patch Changes
+
+- Updated dependencies [436b46c]
+  - @cambly/syntax-core@6.8.0
+
+## 0.9.5
+
+### Patch Changes
+
+- Updated dependencies [146fa33]
+  - @cambly/syntax-core@6.7.1
+
+## 0.9.4
+
+### Patch Changes
+
+- Updated dependencies [40b1cf9]
+  - @cambly/syntax-core@6.7.0
+
+## 0.9.3
+
+### Patch Changes
+
+- Updated dependencies [f605998]
+  - @cambly/syntax-core@6.6.0
+
+## 0.9.2
+
+### Patch Changes
+
+- Updated dependencies [bc17eae]
+  - @cambly/syntax-core@6.5.0
+
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [b1ac6a4]
+  - @cambly/syntax-core@6.4.0
+
+## 0.9.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
+### Patch Changes
+
+- Updated dependencies [8be2304]
+  - @cambly/syntax-floating-components@0.2.0
+  - @cambly/syntax-core@6.3.0
+
+## 0.8.26
+
+### Patch Changes
+
+- Updated dependencies [2357772]
+  - @cambly/syntax-core@6.2.0
+
+## 0.8.25
+
+### Patch Changes
+
+- Updated dependencies [29203a7]
+  - @cambly/syntax-core@6.1.1
+
+## 0.8.24
+
+### Patch Changes
+
+- Updated dependencies [2969ba6]
+  - @cambly/syntax-core@6.1.0
+
+## 0.8.23
+
+### Patch Changes
+
+- Updated dependencies [39bab26]
+  - @cambly/syntax-core@6.0.3
+
+## 0.8.22
+
+### Patch Changes
+
+- Updated dependencies [ad32c4b]
+  - @cambly/syntax-floating-components@0.1.4
+  - @cambly/syntax-core@6.0.2
+
+## 0.8.21
+
+### Patch Changes
+
+- Updated dependencies [f1f5b2f]
+  - @cambly/syntax-floating-components@0.1.3
+  - @cambly/syntax-core@6.0.1
+
+## 0.8.20
+
+### Patch Changes
+
+- Updated dependencies [7352b8d]
+  - @cambly/syntax-core@6.0.0
+
+## 0.8.19
+
+### Patch Changes
+
+- Updated dependencies [3cfc786]
+  - @cambly/syntax-core@5.10.0
+
+## 0.8.18
+
+### Patch Changes
+
+- Updated dependencies [f13655f]
+  - @cambly/syntax-core@5.9.0
+
+## 0.8.17
+
+### Patch Changes
+
+- Updated dependencies [60892ef]
+  - @cambly/syntax-core@5.8.0
+
+## 0.8.16
+
+### Patch Changes
+
+- Updated dependencies [4533f54]
+  - @cambly/syntax-core@5.7.0
+
+## 0.8.15
+
+### Patch Changes
+
+- Updated dependencies [a237fd5]
+  - @cambly/syntax-core@5.6.1
+
+## 0.8.14
+
+### Patch Changes
+
+- Updated dependencies [a9b3b53]
+  - @cambly/syntax-core@5.6.0
+
+## 0.8.13
+
+### Patch Changes
+
+- Updated dependencies [5954c94]
+  - @cambly/syntax-core@5.5.0
+
 ## 0.8.12
 
 ### Patch Changes

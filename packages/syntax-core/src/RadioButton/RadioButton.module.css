@@ -1,24 +1,34 @@
 .radioBaseContainer {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   align-items: center;
-  cursor: pointer;
   position: relative;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.cursorDisabled {
+  cursor: auto;
+}
+
+.cursorEnabled {
+  cursor: pointer;
 }
 
 .smBase {
   height: 16px;
-  gap: 4px;
 }
 
 .mdBase {
   height: 32px;
-  gap: 16px;
 }
 
 .radioStyleOverride {
-  opacity: 0;
   margin: 0;
+  opacity: 0;
 }
 
 .smOverride {

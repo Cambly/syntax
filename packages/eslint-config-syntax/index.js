@@ -40,7 +40,10 @@ module.exports = {
       extends: ["plugin:testing-library/react", "plugin:vitest/all"],
       plugins: ["testing-library", "vitest"],
       rules: {
-        "testing-library/no-await-sync-events": "error",
+        "testing-library/no-await-sync-events": [
+          "error",
+          { eventModules: ["fire-event"] },
+        ],
         "testing-library/no-global-regexp-flag-in-query": "error",
         "testing-library/no-manual-cleanup": "error",
         "testing-library/prefer-user-event": "error",

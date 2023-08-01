@@ -1,5 +1,133 @@
 # @cambly/syntax-core
 
+## 6.8.0
+
+### Minor Changes
+
+- 436b46c: Feat: Badge: can render `icon` prop
+
+## 6.7.1
+
+### Patch Changes
+
+- 146fa33: IconButton secondary + destructive-secondary borders + match colors to Figma
+
+## 6.7.0
+
+### Minor Changes
+
+- 40b1cf9: LinkButton: Update description for rel tag
+
+## 6.6.0
+
+### Minor Changes
+
+- f605998: Add rel tags for linkbutton
+  Add more specific styling to override camblystrap.
+
+## 6.5.0
+
+### Minor Changes
+
+- bc17eae: LinkButton: Add component
+  Buttons: Update Buttons with Typography instead of custom css.
+
+## 6.4.0
+
+### Minor Changes
+
+- b1ac6a4: Badge: add "gray200" as possible color
+
+## 6.3.0
+
+### Minor Changes
+
+- 8be2304: Button/RadioButton/Checkbox/SelectList/IconButton: update disabled opacity
+
+## 6.2.0
+
+### Minor Changes
+
+- 2357772: Button / IconButton: make onClick optional
+
+## 6.1.1
+
+### Patch Changes
+
+- 29203a7: Change root monorepo package.json to force usage of pnpm at specific ^version
+
+## 6.1.0
+
+### Minor Changes
+
+- 2969ba6: TextField: add component
+
+## 6.0.3
+
+### Patch Changes
+
+- 39bab26: link to changesets documentation in readme
+
+## 6.0.2
+
+### Patch Changes
+
+- ad32c4b: Add individual links to components
+
+## 6.0.1
+
+### Patch Changes
+
+- f1f5b2f: Fix tests
+
+## 6.0.0
+
+### Major Changes
+
+- 7352b8d: SelectList: make label required
+
+## 5.10.0
+
+### Minor Changes
+
+- 3cfc786: SelectList: pass through onClick
+
+## 5.9.0
+
+### Minor Changes
+
+- f13655f: Modal: Add modal to syntax.
+
+## 5.8.0
+
+### Minor Changes
+
+- 60892ef: Checkbox/RadioButton: update disabled states
+
+## 5.7.0
+
+### Minor Changes
+
+- 4533f54: SelectList: stopPropagation onClick
+
+## 5.6.1
+
+### Patch Changes
+
+- a237fd5: fix radio button behavior when z-index is customized such as in a modal
+
+## 5.6.0
+
+### Minor Changes
+
+- a9b3b53: SelectList: Handle conditional div so div is centered
+
+## 5.5.0
+
+### Minor Changes
+
+- 5954c94: SelectList: Remove label as required prop
+
 ## 5.4.0
 
 ### Minor Changes

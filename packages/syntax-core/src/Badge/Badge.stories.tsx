@@ -1,5 +1,6 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Badge from "./Badge";
+import RepeatIcon from "@mui/icons-material/Repeat";
 
 export default {
   title: "Components/Badge",
@@ -13,6 +14,7 @@ export default {
   argTypes: {
     color: {
       options: [
+        "gray200",
         "gray900",
         "destructive700",
         "orange700",
@@ -29,4 +31,12 @@ export default {
 
 export const Default: StoryObj<typeof Badge> = {
   args: { text: "Call to action" },
+};
+
+export const WithIcon: StoryObj<typeof Badge> = {
+  args: {
+    color: "gray200",
+    icon: RepeatIcon,
+    text: "Every Wednesday",
+  },
 };

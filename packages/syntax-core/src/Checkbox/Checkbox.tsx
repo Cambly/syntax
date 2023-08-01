@@ -16,7 +16,7 @@ const iconWidth = {
 };
 
 /**
- * Checkbox is a clickable element that will show if an option has been selected or not
+ * [Checkbox](https://cambly-syntax.vercel.app/?path=/docs/components-checkbox--docs) is a clickable element that will show if an option has been selected or not.
  */
 const Checkbox = ({
   checked = false,
@@ -83,33 +83,43 @@ const Checkbox = ({
   });
 
   return (
-    <label className={classNames(styles.mainContainer)}>
-      <div className={styles.checkboxContainer}>
-        <input
-          data-testid={dataTestId}
-          type="checkbox"
-          className={classNames(styles.inputOverlay, styles[size])}
-          checked={checked}
-          onChange={onChange}
-          disabled={disabled}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-        />
-        <div className={checked ? checkedStyling : uncheckedStyling}>
-          {checked && (
-            <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
-              <path
-                fill="#fff"
-                d="m9 16.2-3.5-3.5a.9839.9839 0 0 0-1.4 0c-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4a.9839.9839 0 0 0-1.4 0L9 16.2z"
-              ></path>
-            </svg>
-          )}
-        </div>
+    <label
+      className={classNames(
+        styles.mainContainer,
+        styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        {
+          [styles.disabled]: disabled,
+        },
+      )}
+    >
+      <div className={checked ? checkedStyling : uncheckedStyling}>
+        {checked && (
+          <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
+            <path
+              fill="#fff"
+              d="m9 16.2-3.5-3.5a.9839.9839 0 0 0-1.4 0c-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4a.9839.9839 0 0 0-1.4 0L9 16.2z"
+            ></path>
+          </svg>
+        )}
       </div>
+      <input
+        data-testid={dataTestId}
+        type="checkbox"
+        className={classNames(
+          styles.inputOverlay,
+          styles[size],
+          styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        )}
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
+      />
       <Typography
         size={typographySize[size]}
         color={error ? "destructive-primary" : "gray800"}

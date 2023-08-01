@@ -1,0 +1,13 @@
+.icon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 16px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 16px !important;
+
+  /**
+   * The badge size is 22px total, text is size 14px, there is 4px top + 4px bottom padding
+   * Adjust the margins on the (optional) icon so that is displays the right size but does not affect overall height
+   */
+  margin-top: -1px;
+  margin-bottom: -1px;
+}

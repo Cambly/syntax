@@ -7,10 +7,12 @@ import { useState } from "react";
 const SelectDropdown = ({
   numberOfOptions,
   onChange,
+  onClick,
   selectedValue = "",
 }: {
   selectedValue?: string;
   numberOfOptions: number;
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) => {
   const options = Array.from({ length: numberOfOptions }, (item, idx) => ({
@@ -22,6 +24,7 @@ const SelectDropdown = ({
       data-testid="syntax-select"
       selectedValue={selectedValue}
       onChange={onChange}
+      onClick={onClick}
       placeholderText="placeholder"
       label="Select"
     >
@@ -40,9 +43,11 @@ const SelectDropdown = ({
 const InteractiveSelectDropdown = ({
   numberOfOptions,
   handleChange,
+  onClick,
 }: {
   numberOfOptions: number;
   handleChange: (value: string) => void;
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
 }) => {
   const [selectedValue, setSelectedValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -52,6 +57,7 @@ const InteractiveSelectDropdown = ({
   return (
     <SelectDropdown
       onChange={onChange}
+      onClick={onClick}
       selectedValue={selectedValue}
       numberOfOptions={numberOfOptions}
     />
@@ -84,6 +90,20 @@ describe("select", () => {
     // Expect one additional option because of the placeholder option
     expect(screen.getAllByRole("option")).toHaveLength(numberOfOptions + 1);
   });
+  it("calls onclick when clicking the select", async () => {
+    const handleChange = vi.fn();
+    const handleClick = vi.fn();
+
+    render(
+      <InteractiveSelectDropdown
+        onClick={handleClick}
+        handleChange={handleChange}
+        numberOfOptions={3}
+      />,
+    );
+    await userEvent.click(screen.getByTestId("syntax-select"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();
 
@@ -95,13 +115,11 @@ describe("select", () => {
     );
     const firstSelectionValue = "1";
     const secondSelectionValue = "2";
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       firstSelectionValue,
     );
     expect(handleChange).toHaveBeenCalledWith(firstSelectionValue);
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       secondSelectionValue,
@@ -120,7 +138,6 @@ describe("select", () => {
     );
     const firstSelectionValue = "1";
     const secondSelectionValue = "2";
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       firstSelectionValue,
@@ -129,7 +146,6 @@ describe("select", () => {
       `${"syntax-select"}-${firstSelectionValue}`,
     );
     expect(option1.selected).toBeTruthy();
-    // eslint-disable-next-line testing-library/no-await-sync-events
     await userEvent.selectOptions(
       screen.getByTestId("syntax-select"),
       secondSelectionValue,

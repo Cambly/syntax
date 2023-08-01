@@ -21,7 +21,10 @@ const iconSize = {
   lg: 24,
 } as const;
 
-const SelectList = ({
+/**
+ * [SelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
+ */
+export default function SelectList({
   children,
   "data-testid": dataTestId,
   disabled = false,
@@ -29,6 +32,7 @@ const SelectList = ({
   helperText,
   label,
   onChange,
+  onClick,
   placeholderText,
   selectedValue = "",
   size = "md",
@@ -47,8 +51,11 @@ const SelectList = ({
    */
   disabled?: boolean;
   /**
+   * Callback to be called when select is clicked
+   */
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  /**
    * Text shown below select box if there is an input error.
-   * Should only have a value if error = true
    */
   errorText?: string;
   /**
@@ -81,7 +88,7 @@ const SelectList = ({
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
-}): ReactElement => {
+}): ReactElement {
   const id = useId();
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
@@ -92,11 +99,13 @@ const SelectList = ({
         [styles.opacityOverlay]: disabled,
       })}
     >
-      <label htmlFor={id} className={styles.outerTextContainer}>
-        <Typography size={100} color="gray700">
-          {label}
-        </Typography>
-      </label>
+      {label && (
+        <label htmlFor={id} className={styles.outerTextContainer}>
+          <Typography size={100} color="gray700">
+            {label}
+          </Typography>
+        </label>
+      )}
       <div className={styles.selectWrapper}>
         <select
           id={id}
@@ -108,9 +117,10 @@ const SelectList = ({
             [styles.selectError]: errorText,
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
-            [styles.seletBoxMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+            [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
           })}
           onChange={onChange}
+          onClick={onClick}
           value={
             placeholderText && !selectedValue ? placeholderText : selectedValue
           }
@@ -138,18 +148,18 @@ const SelectList = ({
           </svg>
         </div>
       </div>
-      <div className={styles.outerTextContainer}>
-        <Typography
-          size={100}
-          color={errorText ? "destructive-primary" : "gray700"}
-        >
-          {errorText ? errorText : helperText}
-        </Typography>
-      </div>
+      {(helperText || errorText) && (
+        <div className={styles.outerTextContainer}>
+          <Typography
+            size={100}
+            color={errorText ? "destructive-primary" : "gray700"}
+          >
+            {errorText ? errorText : helperText}
+          </Typography>
+        </div>
+      )}
     </div>
   );
-};
-
-export default SelectList;
+}
 
 SelectList.Option = SelectOption;

@@ -7,7 +7,7 @@ import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 
 /**
- * RadioButton is a radio button with accompanying text
+ * [RadioButton](https://cambly-syntax.vercel.app/?path=/docs/components-radiobutton--docs) is a radio button with accompanying text
  */
 const RadioButton = ({
   checked = false,
@@ -84,20 +84,39 @@ const RadioButton = ({
 
   return (
     <label
-      className={classnames(styles.radioBaseContainer, {
-        [styles.smBase]: size === "sm",
-        [styles.mdBase]: size === "md",
-      })}
+      className={classnames(
+        styles.radioBaseContainer,
+        styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+        {
+          [styles.disabled]: disabled,
+          [styles.smBase]: size === "sm",
+          [styles.mdBase]: size === "md",
+        },
+      )}
     >
+      {checked ? (
+        <div
+          className={classnames(sharedStyles, {
+            [styles.mdCheckedBorder]: size === "md",
+            [styles.smCheckedBorder]: size === "sm",
+          })}
+        />
+      ) : (
+        <div className={classnames(sharedStyles, styles.neutralBorder)} />
+      )}
       <input
         data-testid={dataTestId}
         type="radio"
         id={id}
         name={name}
-        className={classnames(styles.radioStyleOverride, {
-          [styles.smOverride]: size === "sm",
-          [styles.mdOverride]: size === "md",
-        })}
+        className={classnames(
+          styles.radioStyleOverride,
+          styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
+          {
+            [styles.smOverride]: size === "sm",
+            [styles.mdOverride]: size === "md",
+          },
+        )}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
@@ -109,16 +128,6 @@ const RadioButton = ({
           setIsFocused(false);
         }}
       />
-      {checked ? (
-        <div
-          className={classnames(sharedStyles, {
-            [styles.mdCheckedBorder]: size === "md",
-            [styles.smCheckedBorder]: size === "sm",
-          })}
-        />
-      ) : (
-        <div className={classnames(sharedStyles, styles.neutralBorder)} />
-      )}
       {label && (
         <Typography
           size={size === "md" ? 200 : 100}

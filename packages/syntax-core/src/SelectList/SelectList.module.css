@@ -5,7 +5,7 @@
 }
 
 .opacityOverlay {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .outerTextContainer {
@@ -19,20 +19,22 @@
 }
 
 .selectBox {
-  width: 100%;
-  padding: 0 12px;
-  display: flex;
   align-items: center;
-  border: 1px solid var(--color-base-gray-700);
-  justify-content: space-between;
-  cursor: pointer;
   appearance: none;
+  border: 1px solid var(--color-base-gray-700);
+  cursor: pointer;
+  display: flex;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  justify-content: space-between;
   margin: 0;
+  outline: 0;
+  padding: 0 12px;
+  width: 100%;
 }
 
-.seletBoxMouseFocusStyling {
+.selectMouseFocusStyling {
   border: 1px solid var(--color-base-primary-700);
   box-shadow: 0 0 0 1px var(--color-base-primary-700);
 }
@@ -60,18 +62,21 @@
 }
 
 .sm {
-  height: 32px;
   border-radius: 12px;
+  font-size: 12px;
+  height: 32px;
 }
 
 .md {
-  height: 40px;
   border-radius: 12px;
+  font-size: 14px;
+  height: 40px;
 }
 
 .lg {
-  height: 48px;
   border-radius: 16px;
+  font-size: 16px;
+  height: 48px;
 }
 
 .selectError {
