@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.9.0
+
+### Minor Changes
+
+- 97be68e: Modal: Update docs per feedback
+
 ## 6.8.0
 
 ### Minor Changes
