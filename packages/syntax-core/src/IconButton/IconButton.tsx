@@ -39,7 +39,7 @@ type IconButtonType = {
   /**
    * The icon to be displayed. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  icon: React.ComponentType<{ className: string }>;
+  icon: React.ComponentType<{ className?: string }>;
   /**
    * If `true`, the button will be disabled
    *

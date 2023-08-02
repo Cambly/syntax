@@ -36,7 +36,7 @@ const Badge = ({
   /**
    * The icon to be displayed. Please use a [Material Icon](https://material.io/resources/icons/)
    */
-  icon?: React.ComponentType<{ className: string }>;
+  icon?: React.ComponentType<{ className?: string }>;
   /**
    * The text to display inside the badge
    */
