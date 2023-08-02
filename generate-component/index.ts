@@ -1,6 +1,5 @@
 import fsSync, { promises as fs } from "fs";
 import { parseArgs } from "node:util";
-import { component, story, test } from "./component_templates";
 
 function writeFileErrorHandler(err) {
   if (err) throw err;
@@ -84,10 +83,11 @@ async function generateComponent() {
     );
 
     // insert new component into 'packages/syntax-core/src/index.tsx file
-    updateIndexFile(name);
+    // updateIndexFile(name);
 
     console.log(
-      "Note: Formatting of files might change because of our lint rules when you save.",
+      `TODO: Update the describe block of your newly generated .test.tsx to be lowercased! e.g: describe("template", ....)\n`,
+      "Note: Formatting of files might change because of our lint rules when you save.\n",
       "Note 2: Make sure the casing of your Component names are 'StartCased' ex: 'ButtonGroup' or 'Card' ",
     );
   } catch (error) {
