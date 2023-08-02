@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 6.10.0
+
+### Minor Changes
+
+- ee3bd3e: Make className on icons optional
+
 ## 6.9.0
 
 ### Minor Changes
