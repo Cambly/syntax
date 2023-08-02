@@ -75,11 +75,11 @@ type ButtonType = {
   /**
    * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  startIcon?: React.ComponentType<{ className: string }>;
+  startIcon?: React.ComponentType<{ className?: string }>;
   /**
    * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  endIcon?: React.ComponentType<{ className: string }>;
+  endIcon?: React.ComponentType<{ className?: string }>;
   /**
    * The callback to be called when the button is clicked
    */
