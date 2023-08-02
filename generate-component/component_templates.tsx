@@ -1,31 +1,30 @@
-export const component = (name) => `
-import Box from "../Box/Box";
+export const component = (name) => `import Box from "../Box/Box";
 
-export type ${name}Type = {
+export default function ${name} ({
+  text
+  // Props here! (Can delete if props not needed)
+}: {
   // Add props types here!
   /**
    * Don't forget to add comments.
    */
-}
-
-const ${name} = ({
-  // Props here! (Can delete if props not needed)
-}: ${name}Type): JSX.Element => {
+  text: string;
+}): JSX.Element {
   return (
     <Box>
       {/**
         * Edit here: */}
       Hello 👋, I am a ${name} component.
+      {text}
     </Box>
   );
-};
-
-export default ${name};
+}
 `;
 
 // component.stories.jsx
-export const story = (name) => `
-import { type StoryObj, type Meta } from "@storybook/react";
+export const story = (
+  name,
+) => `import { type StoryObj, type Meta } from "@storybook/react";
 import ${name} from './${name}';
 
 export default {
@@ -46,12 +45,13 @@ export default {
 export const Default: StoryObj<typeof ${name}> = {
   args: {},
   render: ({ ...args }) => <${name} {...args}/>
-};
+}
 `;
 
 // component.test.tsx
-export const test = (name) => `
-import { screen, render } from '@testing-library/react';
+export const test = (
+  name,
+) => `import { screen, render } from '@testing-library/react';
 import ${name} from './${name}';
 
 describe('${name.toLowerCase()}', () => {
@@ -61,5 +61,5 @@ describe('${name.toLowerCase()}', () => {
     render(<${name} />);
     expect(screen).toBeTruthy()
   });
-});
+})
 `;

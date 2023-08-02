@@ -1,8 +1,13 @@
 import fs from "fs";
+import { parseArgs } from "node:util";
 import { component, story, test } from "./component_templates";
 
 // grab component name from terminal argument
-const [name] = process.argv.slice(2);
+const { positionals } = parseArgs({
+  options: {},
+  allowPositionals: true,
+});
+const name = positionals[0];
 if (!name) throw new Error("You must include a component name.");
 
 const dir = `./packages/syntax-core/src/${name}/`;
