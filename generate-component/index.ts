@@ -1,68 +1,98 @@
-import fs from "fs";
+import fsSync, { promises as fs } from "fs";
 import { parseArgs } from "node:util";
 import { component, story, test } from "./component_templates";
-
-// grab component name from terminal argument
-const { positionals } = parseArgs({
-  options: {},
-  allowPositionals: true,
-});
-const name = positionals[0];
-if (!name) throw new Error("You must include a component name.");
-
-const dir = `./packages/syntax-core/src/${name}/`;
-
-// throw an error if the file already exists
-if (fs.existsSync(dir))
-  throw new Error("A component with that name already exists.");
-
-// create the folder
-fs.mkdirSync(dir);
 
 function writeFileErrorHandler(err) {
   if (err) throw err;
 }
 
-// ComponentName.tsx
-fs.writeFile(`${dir}/${name}.tsx`, component(name), writeFileErrorHandler);
-// ComponentName.stories.tsx
-fs.writeFile(`${dir}/${name}.stories.tsx`, story(name), writeFileErrorHandler);
-// ComponentName.test.tsx
-fs.writeFile(`${dir}/${name}.test.tsx`, test(name), writeFileErrorHandler);
+async function updateIndexFile(newTemplateName) {
+  const indexFileContents = await fs.readFile(
+    "./packages/syntax-core/src/index.tsx",
+    "utf8",
+  );
 
-// insert new component into 'packages/syntax-core/src/index.tsx file
-fs.readFile(
-  "./packages/syntax-core/src/index.tsx",
-  "utf8",
-  function (err, data) {
-    if (err) throw err;
+  // grab all components and combine them with new component
+  const currentComponents =
+    indexFileContents.match(/(?<=import )(.*?)(?= from)/g) || "";
+  const newComponents = [newTemplateName, ...currentComponents].sort();
 
-    // grab all components and combine them with new component
-    const currentComponents = data.match(/(?<=import )(.*?)(?= from)/g) || "";
-    const newComponents = [name, ...currentComponents].sort();
+  // create the import and export statements
+  const importStatements = newComponents
+    .map(
+      (importName) =>
+        `import ${importName} from './${importName}/${importName}';\n`,
+    )
+    .join("");
+  const exportStatements = `export {\n${newComponents
+    .map((component) => `  ${component},\n`)
+    .join("")}};\n`;
 
-    // create the import and export statements
-    const importStatements = newComponents
-      .map(
-        (importName) =>
-          `import ${importName} from './${importName}/${importName}';\n`,
-      )
-      .join("");
-    const exportStatements = `export {\n${newComponents
-      .map((component) => `  ${component},\n`)
-      .join("")}};\n`;
+  const fileContent = `${importStatements}\n${exportStatements}`;
 
-    const fileContent = `${importStatements}\n${exportStatements}`;
+  try {
+    await fs.writeFile(`./packages/syntax-core/src/index.tsx`, fileContent);
+  } catch (error) {
+    writeFileErrorHandler(error);
+  }
+}
 
-    fs.writeFile(
-      `./packages/syntax-core/src/index.tsx`,
-      fileContent,
-      writeFileErrorHandler,
+async function generateComponent() {
+  // grab component name from terminal argument
+  const { positionals } = parseArgs({
+    options: {},
+    allowPositionals: true,
+  });
+  const name = positionals[0];
+  if (!name) throw new Error("You must include a component name.");
+
+  const dir = `./packages/syntax-core/src/${name}/`;
+
+  // Throw an error if the file already exists
+  if (fsSync.existsSync(dir))
+    throw new Error("A component with that name already exists.");
+
+  try {
+    // Create the folder
+    await fs.mkdir(dir);
+
+    // Create file: ComponentName.tsx
+    const Template = await fs.readFile(__dirname + "/Template.tsx", "utf8");
+    await fs.writeFile(
+      `${dir}/${name}.tsx`,
+      Template.replace(/Template/g, name),
     );
-  },
-);
 
-console.log(
-  "Note: Formatting of files might change because of our lint rules when you save.",
-  "Note 2: Make sure the casing of your Component names are 'StartCased' ex: 'ButtonGroup' or 'Card' ",
-);
+    // Create file: ComponentName.stories.tsx
+    const StoriesTemplate = await fs.readFile(
+      __dirname + "/Template.stories.tsx",
+      "utf8",
+    );
+    await fs.writeFile(
+      `${dir}/${name}.stories.tsx`,
+      StoriesTemplate.replace(/Template/g, name),
+    );
+
+    // Create file: ComponentName.test.tsx
+    const TestTemplate = await fs.readFile(
+      __dirname + "/Template.test.tsx",
+      "utf8",
+    );
+    await fs.writeFile(
+      `${dir}/${name}.test.tsx`,
+      TestTemplate.replace(/Template/g, name),
+    );
+
+    // insert new component into 'packages/syntax-core/src/index.tsx file
+    updateIndexFile(name);
+
+    console.log(
+      "Note: Formatting of files might change because of our lint rules when you save.",
+      "Note 2: Make sure the casing of your Component names are 'StartCased' ex: 'ButtonGroup' or 'Card' ",
+    );
+  } catch (error) {
+    writeFileErrorHandler(error);
+  }
+}
+
+generateComponent();
