@@ -29,7 +29,7 @@ const sizeWidth = {
 
 type ModalType = {
   /**
-   * The modal's main content.
+   * The modal's main content. Should typically take in `Typography`'d text.
    */
   children: JSX.Element;
   /**
@@ -48,9 +48,22 @@ type ModalType = {
    */
   image?: JSX.Element;
   /**
-   * The footer for the bottom area of the Modal.
-   * Typically used for rendering buttons.
-   * If two(2) buttons, put primary button _second_.
+   * The footer for the bottom area of the Modal. Typically used for rendering buttons.
+   * * Use Syntax `Button` and pass it into footer.
+   * * If one button, just pass it in. If two, wrap in a React fragment (`<> </>`)
+   * * If two(2) buttons, put primary button _second_.
+   *
+      <>
+        <Button
+          text="Cancel"
+          color="secondary"
+          onClick={() => {}}
+        />
+        <Button
+          text="Confirm"
+          onClick={() => {}}
+        />
+      </>
    */
   footer?: JSX.Element;
   /**
@@ -86,6 +99,36 @@ type ModalType = {
 
 /**
  * [Modal](https://cambly-syntax.vercel.app/?path=/docs/components-modal--docs) is a dialog that appears on top of the main content and locks user interaction within the modal.
+ *
+ ```
+  const [showModal, setShowModal] = useState(false)
+
+  return (
+    <>
+      {showModal && <Modal
+        header="header text"
+        onDismiss={() => setShowModal(false)}
+        footer={
+          <>
+            <Button
+              text="Cancel"
+              color="secondary"
+              onClick={() => {}}
+            />
+            <Button
+              text="Confirm"
+              onClick={() => {}}
+            />
+          </>
+        }
+      >
+        <Typography>
+          Body text goes here!
+        </Typography>
+      </Modal> }
+    </>
+  )
+  ```
  */
 export default function Modal({
   header,
