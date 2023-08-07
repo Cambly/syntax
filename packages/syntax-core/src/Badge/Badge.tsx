@@ -54,7 +54,6 @@ const Badge = ({
     paddingY={1}
     rounding="full"
     backgroundColor={color}
-    dangerouslySetInlineStyle={{ __style: { lineHeight: "14px" } }}
   >
     <Typography color={textColorForBackgroundColor(color)} size={100}>
       <Box display="flex" gap={1} alignItems="center" justifyContent="start">
