@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
-import CheckboxGroup, { type checkedOptionProps } from "./CheckboxGroup";
+import CheckboxGroup from "./CheckboxGroup";
 import { useState, type ReactElement } from "react";
+import Checkbox from "../Checkbox/Checkbox";
 
 export default {
   title: "Components/CheckboxGroup",
@@ -11,52 +12,47 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1197%3A6474&mode=dev",
     },
   },
-  argTypes: {
-    options: { control: { disable: true } },
-    onFormChange: { control: { disable: true } },
-    selections: { control: { disable: true } },
-    size: {
-      options: ["sm", "md"],
-      control: { type: "radio" },
-    },
-  },
   tags: ["autodocs"],
 } as Meta<typeof CheckboxGroup>;
 
 export const Default: StoryObj<typeof CheckboxGroup> = {
   args: {
-    options: [
-      { value: "value1", label: "Event 1" },
-      { value: "value2", label: "Event 2" },
-      { value: "value3", label: "Event 3" },
-    ],
-    selections: { value1: false, value2: false, value3: false },
-    onFormChange: () => {
-      /* empty */
-    },
+    children: ["Event 1", "Event 2", "Event 3"].map((label, i) => (
+      <Checkbox
+        key={i}
+        checked={false}
+        label={label}
+        onChange={() => {
+          /* empty */
+        }}
+      />
+    )),
   },
 };
 
 const CheckboxGroupInteractive = (): ReactElement => {
-  const options = [
-    { value: "value1", label: "1989" },
-    { value: "value2", label: "Reputation" },
-    { value: "value3", label: "Speak Now" },
-  ];
-  const [selections, setSelections] = useState<checkedOptionProps>({
-    value1: false,
-    value2: false,
-    value3: true,
-  });
-  const onFormChange = (newSelections: checkedOptionProps) =>
-    setSelections(newSelections);
+  const [isEvent1Checked, setIsEvent1Checked] = useState(false);
+  const [isEvent2Checked, setIsEvent2Checked] = useState(false);
+  const [isEvent3Checked, setIsEvent3Checked] = useState(true);
 
   return (
-    <CheckboxGroup
-      options={options}
-      selections={selections}
-      onFormChange={onFormChange}
-    />
+    <CheckboxGroup>
+      <Checkbox
+        label="1989"
+        checked={isEvent1Checked}
+        onChange={() => setIsEvent1Checked(!isEvent1Checked)}
+      />
+      <Checkbox
+        label="Reputation"
+        checked={isEvent2Checked}
+        onChange={() => setIsEvent2Checked(!isEvent2Checked)}
+      />
+      <Checkbox
+        label="Speak Now"
+        checked={isEvent3Checked}
+        onChange={() => setIsEvent3Checked(!isEvent3Checked)}
+      />
+    </CheckboxGroup>
   );
 };
 
