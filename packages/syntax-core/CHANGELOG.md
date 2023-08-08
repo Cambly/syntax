@@ -1,5 +1,43 @@
 # @cambly/syntax-core
 
+## 6.8.0
+
+### Minor Changes
+
+- 436b46c: Feat: Badge: can render `icon` prop
+
+## 6.7.1
+
+### Patch Changes
+
+- 146fa33: IconButton secondary + destructive-secondary borders + match colors to Figma
+
+## 6.7.0
+
+### Minor Changes
+
+- 40b1cf9: LinkButton: Update description for rel tag
+
+## 6.6.0
+
+### Minor Changes
+
+- f605998: Add rel tags for linkbutton
+  Add more specific styling to override camblystrap.
+
+## 6.5.0
+
+### Minor Changes
+
+- bc17eae: LinkButton: Add component
+  Buttons: Update Buttons with Typography instead of custom css.
+
+## 6.4.0
+
+### Minor Changes
+
+- b1ac6a4: Badge: add "gray200" as possible color
+
 ## 6.3.0
 
 ### Minor Changes
