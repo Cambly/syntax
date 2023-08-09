@@ -11,8 +11,14 @@ nvm install
 npm install -g pnpm@8.6.6
 pnpm install
 # Run the dev server
-pnpm dev
+pnpm start
 ```
+
+## Generate a new React Component
+
+1. Run `pnpm generate ComponentName`
+1. Update newly generated files.
+1. (Don't forget to StartCase your ComponentName)
 
 ## Contribute
 
@@ -25,3 +31,7 @@ pnpm dev
 ## Acknowledgements
 
 - Originally forked from [vercel/turbo/examples/design-system](https://github.com/vercel/turbo/tree/main/examples/design-system)
+
+```
+
+```
