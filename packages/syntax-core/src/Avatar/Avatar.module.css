@@ -3,24 +3,25 @@
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 .sm {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 .md {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
 }
 
 .lg {
-  width: 72px;
-  height: 72px;
+  width: 70px;
+  height: 70px;
 }
 
 .xl {
-  width: 128px;
-  height: 128px;
+  width: 126px;
+  height: 126px;
 }
