@@ -35,7 +35,7 @@ type IconButtonType = {
   /**
    * The label to be used for accessibility
    */
-  accessibilityLabel?: string;
+  accessibilityLabel: string;
   /**
    * The icon to be displayed. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
