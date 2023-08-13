@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.0.0
+
+### Major Changes
+
+- f8fbccc: IconButton: make accessibilityLabel required
+
 ## 6.10.0
 
 ### Minor Changes
