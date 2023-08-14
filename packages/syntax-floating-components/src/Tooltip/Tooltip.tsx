@@ -58,7 +58,15 @@ type TooltipOptions = {
   strategy?: Strategy;
 };
 
-type UseTooltipType = UseFloatingReturn & {
+export function useTooltip({
+  delay = 0,
+  initialOpen = false,
+  open: controlledOpen,
+  placement = "right",
+  strategy = "absolute",
+  onOpen = undefined,
+  onClose = undefined,
+}: TooltipOptions): UseFloatingReturn & {
   getReferenceProps: (
     userProps?: React.HTMLProps<Element> | undefined,
   ) => Record<string, unknown>;
@@ -71,17 +79,7 @@ type UseTooltipType = UseFloatingReturn & {
   arrowRef: React.MutableRefObject<null>;
   open: boolean;
   setOpen: (open: boolean) => void;
-};
-
-export function useTooltip({
-  delay = 0,
-  initialOpen = false,
-  open: controlledOpen,
-  placement = "right",
-  strategy = "absolute",
-  onOpen = undefined,
-  onClose = undefined,
-}: TooltipOptions): UseTooltipType {
+} {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
   const arrowRef = React.useRef(null);
@@ -147,9 +145,9 @@ export function useTooltip({
   );
 }
 
-type ContextType = ReturnType<typeof useTooltip> | null;
-
-const TooltipContext = React.createContext<ContextType>(null);
+const TooltipContext = React.createContext<ReturnType<
+  typeof useTooltip
+> | null>(null);
 
 const useTooltipContext = () => {
   const context = React.useContext(TooltipContext);

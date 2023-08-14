@@ -11,7 +11,7 @@ const iconSize = {
   ["lg"]: styles.lgIcon,
 };
 
-type IconButtonType = {
+type IconButtonProps = {
   /**
    * The color of the button
    *
@@ -59,7 +59,7 @@ type IconButtonType = {
 /**
  * [IconButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a clickable element that is used to perform an action.
  */
-const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {
       accessibilityLabel,
@@ -70,7 +70,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(
       size = "md",
       tooltip,
       onClick,
-    },
+    }: IconButtonProps,
     ref,
   ) => {
     return (
