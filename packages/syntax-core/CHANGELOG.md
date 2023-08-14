@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.1.0
+
+### Minor Changes
+
+- 9ad4866: Add 1px white border to Avatar
+
 ## 7.0.0
 
 ### Major Changes
