@@ -1,4 +1,4 @@
-import { type HtmlHTMLAttributes } from "react";
+import { forwardRef, type HtmlHTMLAttributes } from "react";
 import classNames from "classnames";
 import backgroundColor from "../colors/backgroundColor";
 import foregroundColor from "../colors/foregroundColor";
@@ -13,22 +13,7 @@ import textVariant from "../Button/constants/textVariant";
 
 import styles from "./LinkButton.module.css";
 
-/**
- * [LinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-linkbutton--docs) is a "variation" of Button that should look identical to Button, but should be used to render links instead.
- */
-export default function LinkButton({
-  text,
-  href,
-  target,
-  rel,
-  "data-testid": dataTestId,
-  color = "primary",
-  size = "md",
-  fullWidth = false,
-  startIcon: StartIcon,
-  endIcon: EndIcon,
-  onClick,
-}: {
+type LinkButtonProps = {
   /**
    * Test id for the button
    */
@@ -94,42 +79,71 @@ export default function LinkButton({
    * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-}): JSX.Element {
-  return (
-    <a
-      href={href}
-      data-testid={dataTestId}
-      target={target}
-      rel={rel}
-      className={classNames(
-        styles.linkButton,
-        buttonStyles.button,
-        foregroundColor(color),
-        backgroundColor(color),
-        buttonStyles[size],
-        {
-          [buttonStyles.fullWidth]: fullWidth,
-          [styles.fitContent]: !fullWidth,
-          [buttonStyles.buttonGap]: size === "lg" || size === "md",
-          [buttonStyles.secondaryBorder]: color === "secondary",
-          [buttonStyles.secondaryDestructiveBorder]:
-            color === "destructive-secondary",
-        },
-      )}
-      onClick={onClick}
-    >
-      {StartIcon && (
-        <StartIcon className={classNames(buttonStyles.icon, iconSize[size])} />
-      )}
-      <Typography
-        color={foregroundTypographyColor(color)}
-        size={textVariant[size]}
+};
+
+/**
+ * [LinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-linkbutton--docs) is a "variation" of Button that should look identical to Button, but should be used to render links instead.
+ */
+const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
+  (
+    {
+      text,
+      href,
+      target,
+      rel,
+      "data-testid": dataTestId,
+      color = "primary",
+      size = "md",
+      fullWidth = false,
+      startIcon: StartIcon,
+      endIcon: EndIcon,
+      onClick,
+    }: LinkButtonProps,
+    ref,
+  ) => {
+    return (
+      <a
+        href={href}
+        data-testid={dataTestId}
+        target={target}
+        ref={ref}
+        rel={rel}
+        className={classNames(
+          styles.linkButton,
+          buttonStyles.button,
+          foregroundColor(color),
+          backgroundColor(color),
+          buttonStyles[size],
+          {
+            [buttonStyles.fullWidth]: fullWidth,
+            [styles.fitContent]: !fullWidth,
+            [buttonStyles.buttonGap]: size === "lg" || size === "md",
+            [buttonStyles.secondaryBorder]: color === "secondary",
+            [buttonStyles.secondaryDestructiveBorder]:
+              color === "destructive-secondary",
+          },
+        )}
+        onClick={onClick}
       >
-        <span style={{ fontWeight: 500 }}>{text}</span>
-      </Typography>
-      {EndIcon && (
-        <EndIcon className={classNames(buttonStyles.icon, iconSize[size])} />
-      )}
-    </a>
-  );
-}
+        {StartIcon && (
+          <StartIcon
+            className={classNames(buttonStyles.icon, iconSize[size])}
+          />
+        )}
+        <Typography
+          color={foregroundTypographyColor(color)}
+          size={textVariant[size]}
+        >
+          <span style={{ fontWeight: 500 }}>{text}</span>
+        </Typography>
+        {EndIcon && (
+          <EndIcon className={classNames(buttonStyles.icon, iconSize[size])} />
+        )}
+      </a>
+    );
+  },
+);
+
+LinkButton.displayName = "LinkButton";
+
+export default LinkButton;
