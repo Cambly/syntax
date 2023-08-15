@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 
 import LinkButton from "./LinkButton";
+import { createRef } from "react";
 
 describe("linkButton", () => {
   it("renders successfully", () => {
@@ -80,5 +81,22 @@ describe("linkButton", () => {
     );
     const linkButton = await screen.findByTestId("linkButton-test-id");
     expect(linkButton).toHaveStyle({ width: "100%" });
+  });
+
+  it("allows ref to be set", () => {
+    const ref = createRef<HTMLAnchorElement>();
+
+    render(
+      <LinkButton
+        text="button"
+        data-testid="linkButton-test-id"
+        href="https://www.google.com"
+        ref={ref}
+      />,
+    );
+    expect(ref.current instanceof HTMLAnchorElement).toBeTruthy();
+    expect(ref.current?.getAttribute("data-testid")).toStrictEqual(
+      "linkButton-test-id",
+    );
   });
 });
