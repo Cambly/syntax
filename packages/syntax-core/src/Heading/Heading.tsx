@@ -10,6 +10,7 @@ const Heading = ({
   as = "h1",
   children,
   color = "gray900",
+  "data-testid": dataTestId,
   size = 500,
 }: {
   /**
@@ -37,6 +38,10 @@ const Heading = ({
    */
   color?: (typeof Color)[number];
   /**
+   * Test id for the text.
+   */
+  "data-testid"?: string;
+  /**
    * Size of the text.
    *
    * * `500`: 20px
@@ -50,7 +55,14 @@ const Heading = ({
 }): ReactElement => {
   const weight = [700, 800].includes(size) ? "heavy" : "bold";
   return (
-    <Typography align={align} as={as} color={color} size={size} weight={weight}>
+    <Typography
+      align={align}
+      as={as}
+      color={color}
+      data-testid={dataTestId}
+      size={size}
+      weight={weight}
+    >
       {children}
     </Typography>
   );
