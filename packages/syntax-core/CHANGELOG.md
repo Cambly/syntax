@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.3.0
+
+### Minor Changes
+
+- fe4dc68: Allow `data-testid` to be set on `Typography` and `Heading`
+
 ## 7.2.0
 
 ### Minor Changes
