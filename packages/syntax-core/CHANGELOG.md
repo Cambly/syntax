@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.4.0
+
+### Minor Changes
+
+- f77f891: LinkButton: allow 'ref' to be set
+
 ## 7.3.0
 
 ### Minor Changes
