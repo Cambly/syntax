@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.2.0
+
+### Minor Changes
+
+- 1484f5c: Docs: fix generated docs for forwardRef components
+
 ## 7.1.0
 
 ### Minor Changes
