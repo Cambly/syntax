@@ -13,7 +13,7 @@ import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 
-type ButtonType = {
+type ButtonProps = {
   /**
    * Test id for the button
    */
@@ -97,7 +97,7 @@ type ButtonType = {
 /**
  * [Button](https://cambly-syntax.vercel.app/?path=/docs/components-button--docs) is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonType>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       "data-testid": dataTestId,
@@ -114,7 +114,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(
       onClick,
       tooltip,
       type = "button",
-    },
+    }: ButtonProps,
     ref,
   ) => {
     return (

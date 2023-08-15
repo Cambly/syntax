@@ -61,6 +61,315 @@ type Margin =
   | "auto";
 type Padding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type BoxProps = {
+  /**
+   * The alignment of the box on the cross axis.
+   *
+   * Responsive props:
+   * * `smAlignItems`
+   * * `lgAlignItems`
+   */
+  alignItems?: AlignItems;
+  /**
+   * Allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
+   */
+  alignSelf?: "auto" | "start" | "end" | "center" | "baseline" | "stretch";
+  /**
+   * The underlying DOM element usually set for accessibility or SEO reasons.
+   *
+   * @defaultValue "div"
+   */
+  as?: As;
+  /**
+   * The background color of the box.
+   */
+  backgroundColor?: (typeof allColors)[number];
+  /**
+   * The children to be rendered inside the box.
+   */
+  children?: ReactNode;
+  /**
+   * An "escape hatch" used to apply styles not otherwise available on Box.
+   *
+   * Please use this sparingly and only when you have a good reason to.
+   */
+  dangerouslySetInlineStyle?: {
+    __style: Record<string, string | number | null>;
+  };
+  /**
+   * The flex direction of the box.
+   *
+   * Responsive props:
+   * * `smDirection`
+   * * `lgDirection`
+   *
+   * @defaultValue `row`
+   */
+  direction?: Direction;
+  /**
+   * The display property specifies the display behavior (the type of rendering box) of an element.
+   *
+   * Responsive props:
+   * * `smDisplay`
+   * * `lgDisplay`
+   *
+   * @defaultValue `block`
+   */
+  display?: Display;
+  /**
+   * Sets the flex behavior of a flex item.
+   *
+   * * `none`: The item will not grow or shrink
+   * * `shrink`: The item will shrink if necessary (default browser behavior)
+   * * `grow`: The item will grow if necessary
+   *
+   * @defaultValue `shrink`
+   */
+  flex?: "none" | "shrink" | "grow";
+  /**
+   * By default, flex items will all try to fit onto one line. But if you specify `flexWrap="wrap"`, the flex items will wrap onto multiple lines.
+   *
+   * @defaultValue `nowrap`
+   */
+  flexWrap?: "wrap" | "nowrap";
+  /**
+   * The gap between the children of the box.
+   */
+  gap?: Gap;
+  /**
+   * The id of the element.
+   */
+  id?: string;
+  /**
+   * The alignment of the box on the cross axis on lg (960px) or larger viewports.
+   */
+  lgAlignItems?: AlignItems;
+  /**
+   * The flex direction on lg (960px) or larger viewports.
+   */
+  lgDirection?: Direction;
+  /**
+   * The display style on lg (960px) or larger viewports.
+   */
+  lgDisplay?: Display;
+  /**
+   * The alignment of the box on the cross axis on lg (960px) or larger viewports.
+   */
+  lgJustifyContent?: JustifyContent;
+  /**
+   * Margin on lg (960px) or larger viewports.
+   */
+  lgMargin?: Margin;
+  /**
+   * Bottom margin on lg (960px) or larger viewports.
+   */
+  lgMarginBottom?: Margin;
+  /**
+   * Margin to the right in left-to-right languages, and to the left in right-to-left languages on lg (960px) or larger viewports.
+   */
+  lgMarginEnd?: Margin;
+  /**
+   * Margin to the left in left-to-right languages, and to the right in right-to-left languages on lg (960px) or larger viewports.
+   */
+  lgMarginStart?: Margin;
+  /**
+   * Top margin on lg (960px) or larger viewports.
+   */
+  lgMarginTop?: Margin;
+  /**
+   * The padding of the box on lg (960px) or larger viewports.
+   */
+  lgPadding?: Padding;
+  /**
+   * The padding of the box on the x-axis on lg (960px) or larger viewports.
+   */
+  lgPaddingX?: Padding;
+  /**
+   * The padding of the box on the y-axis on lg (960px) or larger viewports.
+   */
+  lgPaddingY?: Padding;
+  /**
+   * The margin of the box.
+   *
+   * Responsive props:
+   * * `smMargin`
+   * * `lgMargin`
+   *
+   * @defaultValue 0
+   */
+  margin?: Margin;
+  /**
+   * Bottom margin of the box.
+   *
+   * Responsive props:
+   * * `smMarginBottom`
+   * * `lgMarginBottom`
+   *
+   */
+  marginBottom?: Margin;
+  /**
+   * Margin to the right in left-to-right languages, and to the left in right-to-left languages.
+   *
+   * Responsive props:
+   * * `smMarginEnd`
+   * * `lgMarginEnd`
+   *
+   */
+  marginEnd?: Margin;
+  /**
+   * Margin to the left in left-to-right languages, and to the right in right-to-left languages.
+   *
+   * Responsive props:
+   * * `smMarginStart`
+   * * `lgMarginStart`
+   *
+   */
+  marginStart?: Margin;
+  /**
+   * Top margin of the box.
+   *
+   * Responsive props:
+   * * `smMarginTop`
+   * * `lgMarginTop`
+   *
+   */
+  marginTop?: Margin;
+  /**
+   * The maximum height of the box.
+   */
+  maxHeight?: Dimension;
+  /**
+   * The maximum width of the box.
+   */
+  maxWidth?: Dimension;
+  /**
+   * The minimum height of the box.
+   */
+  minHeight?: Dimension;
+  /**
+   * The minimum width of the box.
+   */
+  minWidth?: Dimension;
+  /**
+   * The height of the box.
+   */
+  height?: Dimension;
+  /**
+   * The alignment of the box on the main axis.
+   *
+   * Responsive props:
+   * * `smJustifyContent`
+   * * `lgJustifyContent`
+   *
+   * @defaultValue "start"
+   */
+  justifyContent?: JustifyContent;
+  /**
+   * The padding of the box.
+   *
+   * Responsive props:
+   * * `smPadding`
+   * * `lgPadding`
+   *
+   * @defaultValue 0
+   */
+  padding?: Padding;
+  /**
+   * The padding of the box on the x-axis.
+   *
+   * Responsive props:
+   * * `smPaddingX`
+   * * `lgPaddingX`
+   *
+   */
+  paddingX?: Padding;
+  /**
+   * The padding of the box on the y-axis.
+   *
+   * Responsive props:
+   * * `smPaddingY`
+   * * `lgPaddingY`
+   */
+  paddingY?: Padding;
+  /**
+   * The position of the box.
+   *
+   * @defaultValue "static"
+   */
+  position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
+  /**
+   * The role attribute of the box.
+   *
+   * See [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) for the list of valid roles.
+   */
+  role?: AriaRole;
+  /**
+   * Border radius of the box.
+   *
+   * * `none`: 0px
+   * * `sm`: 8px
+   * * `md`: 12px
+   * * `lg`: 16px
+   * * `xl`: 32px
+   * * `full`: 999px
+   *
+   * @defaultValue "none"
+   */
+  rounding?: "xl" | "lg" | "md" | "sm" | "full" | "none";
+  /**
+   * The alignment of the box on the cross axis on sm (480px) or larger viewports.
+   */
+  smAlignItems?: AlignItems;
+  /**
+   * The flex direction on sm (480px) or larger viewports.
+   */
+  smDirection?: Direction;
+  /**
+   * The display style on sm (480px) or larger viewports.
+   */
+  smDisplay?: Display;
+  /**
+   * The alignment of the box on the main axis on sm (480px) or larger viewports.
+   */
+  smJustifyContent?: JustifyContent;
+  /**
+   * Margin on sm (480px) or larger viewports.
+   */
+  smMargin?: Margin;
+  /**
+   * Bottom margin on sm (480px) or larger viewports.
+   */
+  smMarginBottom?: Margin;
+  /**
+   * Margin to the right in left-to-right languages, and to the left in right-to-left languages on sm (480px) or larger viewports.
+   */
+  smMarginEnd?: Margin;
+  /**
+   * Margin to the left in left-to-right languages, and to the right in right-to-left languages on sm (480px) or larger viewports.
+   */
+  smMarginStart?: Margin;
+  /**
+   * Top margin on sm (480px) or larger viewports.
+   */
+  smMarginTop?: Margin;
+  /**
+   * The padding of the box on sm (480px) or larger viewports.
+   */
+  smPadding?: Padding;
+  /**
+   * The padding of the box on the x-axis on sm (480px) or larger viewports.
+   */
+  smPaddingX?: Padding;
+  /**
+   * The padding of the box on the y-axis on sm (480px) or larger viewports.
+   */
+  smPaddingY?: Padding;
+  /**
+   * The width of the box.
+   */
+  width?: Dimension;
+};
+
 /**
  * [Box](https://cambly-syntax.vercel.app/?path=/docs/components-box--docs) is primitive design component and is used by lots of other components. It keeps details like spacing, borders and colors consistent across all of Syntax.
  *
@@ -68,317 +377,10 @@ type Padding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
  *  * `aria-*`
  *  * `data-testid`
  */
-const Box = forwardRef<
-  HTMLDivElement,
-  {
-    /**
-     * The alignment of the box on the cross axis.
-     *
-     * Responsive props:
-     * * `smAlignItems`
-     * * `lgAlignItems`
-     */
-    alignItems?: AlignItems;
-    /**
-     * Allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
-     */
-    alignSelf?: "auto" | "start" | "end" | "center" | "baseline" | "stretch";
-    /**
-     * The underlying DOM element usually set for accessibility or SEO reasons.
-     *
-     * @defaultValue "div"
-     */
-    as?: As;
-    /**
-     * The background color of the box.
-     */
-    backgroundColor?: (typeof allColors)[number];
-    /**
-     * The children to be rendered inside the box.
-     */
-    children?: ReactNode;
-    /**
-     * An "escape hatch" used to apply styles not otherwise available on Box.
-     *
-     * Please use this sparingly and only when you have a good reason to.
-     */
-    dangerouslySetInlineStyle?: {
-      __style: Record<string, string | number | null>;
-    };
-    /**
-     * The flex direction of the box.
-     *
-     * Responsive props:
-     * * `smDirection`
-     * * `lgDirection`
-     *
-     * @defaultValue `row`
-     */
-    direction?: Direction;
-    /**
-     * The display property specifies the display behavior (the type of rendering box) of an element.
-     *
-     * Responsive props:
-     * * `smDisplay`
-     * * `lgDisplay`
-     *
-     * @defaultValue `block`
-     */
-    display?: Display;
-    /**
-     * Sets the flex behavior of a flex item.
-     *
-     * * `none`: The item will not grow or shrink
-     * * `shrink`: The item will shrink if necessary (default browser behavior)
-     * * `grow`: The item will grow if necessary
-     *
-     * @defaultValue `shrink`
-     */
-    flex?: "none" | "shrink" | "grow";
-    /**
-     * By default, flex items will all try to fit onto one line. But if you specify `flexWrap="wrap"`, the flex items will wrap onto multiple lines.
-     *
-     * @defaultValue `nowrap`
-     */
-    flexWrap?: "wrap" | "nowrap";
-    /**
-     * The gap between the children of the box.
-     */
-    gap?: Gap;
-    /**
-     * The id of the element.
-     */
-    id?: string;
-    /**
-     * The alignment of the box on the cross axis on lg (960px) or larger viewports.
-     */
-    lgAlignItems?: AlignItems;
-    /**
-     * The flex direction on lg (960px) or larger viewports.
-     */
-    lgDirection?: Direction;
-    /**
-     * The display style on lg (960px) or larger viewports.
-     */
-    lgDisplay?: Display;
-    /**
-     * The alignment of the box on the cross axis on lg (960px) or larger viewports.
-     */
-    lgJustifyContent?: JustifyContent;
-    /**
-     * Margin on lg (960px) or larger viewports.
-     */
-    lgMargin?: Margin;
-    /**
-     * Bottom margin on lg (960px) or larger viewports.
-     */
-    lgMarginBottom?: Margin;
-    /**
-     * Margin to the right in left-to-right languages, and to the left in right-to-left languages on lg (960px) or larger viewports.
-     */
-    lgMarginEnd?: Margin;
-    /**
-     * Margin to the left in left-to-right languages, and to the right in right-to-left languages on lg (960px) or larger viewports.
-     */
-    lgMarginStart?: Margin;
-    /**
-     * Top margin on lg (960px) or larger viewports.
-     */
-    lgMarginTop?: Margin;
-    /**
-     * The padding of the box on lg (960px) or larger viewports.
-     */
-    lgPadding?: Padding;
-    /**
-     * The padding of the box on the x-axis on lg (960px) or larger viewports.
-     */
-    lgPaddingX?: Padding;
-    /**
-     * The padding of the box on the y-axis on lg (960px) or larger viewports.
-     */
-    lgPaddingY?: Padding;
-    /**
-     * The margin of the box.
-     *
-     * Responsive props:
-     * * `smMargin`
-     * * `lgMargin`
-     *
-     * @defaultValue 0
-     */
-    margin?: Margin;
-    /**
-     * Bottom margin of the box.
-     *
-     * Responsive props:
-     * * `smMarginBottom`
-     * * `lgMarginBottom`
-     *
-     */
-    marginBottom?: Margin;
-    /**
-     * Margin to the right in left-to-right languages, and to the left in right-to-left languages.
-     *
-     * Responsive props:
-     * * `smMarginEnd`
-     * * `lgMarginEnd`
-     *
-     */
-    marginEnd?: Margin;
-    /**
-     * Margin to the left in left-to-right languages, and to the right in right-to-left languages.
-     *
-     * Responsive props:
-     * * `smMarginStart`
-     * * `lgMarginStart`
-     *
-     */
-    marginStart?: Margin;
-    /**
-     * Top margin of the box.
-     *
-     * Responsive props:
-     * * `smMarginTop`
-     * * `lgMarginTop`
-     *
-     */
-    marginTop?: Margin;
-    /**
-     * The maximum height of the box.
-     */
-    maxHeight?: Dimension;
-    /**
-     * The maximum width of the box.
-     */
-    maxWidth?: Dimension;
-    /**
-     * The minimum height of the box.
-     */
-    minHeight?: Dimension;
-    /**
-     * The minimum width of the box.
-     */
-    minWidth?: Dimension;
-    /**
-     * The height of the box.
-     */
-    height?: Dimension;
-    /**
-     * The alignment of the box on the main axis.
-     *
-     * Responsive props:
-     * * `smJustifyContent`
-     * * `lgJustifyContent`
-     *
-     * @defaultValue "start"
-     */
-    justifyContent?: JustifyContent;
-    /**
-     * The padding of the box.
-     *
-     * Responsive props:
-     * * `smPadding`
-     * * `lgPadding`
-     *
-     * @defaultValue 0
-     */
-    padding?: Padding;
-    /**
-     * The padding of the box on the x-axis.
-     *
-     * Responsive props:
-     * * `smPaddingX`
-     * * `lgPaddingX`
-     *
-     */
-    paddingX?: Padding;
-    /**
-     * The padding of the box on the y-axis.
-     *
-     * Responsive props:
-     * * `smPaddingY`
-     * * `lgPaddingY`
-     */
-    paddingY?: Padding;
-    /**
-     * The position of the box.
-     *
-     * @defaultValue "static"
-     */
-    position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
-    /**
-     * The role attribute of the box.
-     *
-     * See [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) for the list of valid roles.
-     */
-    role?: AriaRole;
-    /**
-     * Border radius of the box.
-     *
-     * * `none`: 0px
-     * * `sm`: 8px
-     * * `md`: 12px
-     * * `lg`: 16px
-     * * `xl`: 32px
-     * * `full`: 999px
-     *
-     * @defaultValue "none"
-     */
-    rounding?: "xl" | "lg" | "md" | "sm" | "full" | "none";
-    /**
-     * The alignment of the box on the cross axis on sm (480px) or larger viewports.
-     */
-    smAlignItems?: AlignItems;
-    /**
-     * The flex direction on sm (480px) or larger viewports.
-     */
-    smDirection?: Direction;
-    /**
-     * The display style on sm (480px) or larger viewports.
-     */
-    smDisplay?: Display;
-    /**
-     * The alignment of the box on the main axis on sm (480px) or larger viewports.
-     */
-    smJustifyContent?: JustifyContent;
-    /**
-     * Margin on sm (480px) or larger viewports.
-     */
-    smMargin?: Margin;
-    /**
-     * Bottom margin on sm (480px) or larger viewports.
-     */
-    smMarginBottom?: Margin;
-    /**
-     * Margin to the right in left-to-right languages, and to the left in right-to-left languages on sm (480px) or larger viewports.
-     */
-    smMarginEnd?: Margin;
-    /**
-     * Margin to the left in left-to-right languages, and to the right in right-to-left languages on sm (480px) or larger viewports.
-     */
-    smMarginStart?: Margin;
-    /**
-     * Top margin on sm (480px) or larger viewports.
-     */
-    smMarginTop?: Margin;
-    /**
-     * The padding of the box on sm (480px) or larger viewports.
-     */
-    smPadding?: Padding;
-    /**
-     * The padding of the box on the x-axis on sm (480px) or larger viewports.
-     */
-    smPaddingX?: Padding;
-    /**
-     * The padding of the box on the y-axis on sm (480px) or larger viewports.
-     */
-    smPaddingY?: Padding;
-    /**
-     * The width of the box.
-     */
-    width?: Dimension;
-  }
->(function Box(props, ref): ReactElement {
+const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
+  props: BoxProps,
+  ref,
+): ReactElement {
   const { as: BoxElement = "div", children, ...boxProps } = props;
 
   const {

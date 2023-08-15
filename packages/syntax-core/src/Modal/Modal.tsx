@@ -27,7 +27,50 @@ const sizeWidth = {
   lg: 600,
 } as const;
 
-type ModalType = {
+/**
+ * [Modal](https://cambly-syntax.vercel.app/?path=/docs/components-modal--docs) is a dialog that appears on top of the main content and locks user interaction within the modal.
+ *
+ ```
+  const [showModal, setShowModal] = useState(false)
+
+  return (
+    <>
+      {showModal && <Modal
+        header="header text"
+        onDismiss={() => setShowModal(false)}
+        footer={
+          <>
+            <Button
+              text="Cancel"
+              color="secondary"
+              onClick={() => {}}
+            />
+            <Button
+              text="Confirm"
+              onClick={() => {}}
+            />
+          </>
+        }
+      >
+        <Typography>
+          Body text goes here!
+        </Typography>
+      </Modal> }
+    </>
+  )
+  ```
+ */
+export default function Modal({
+  header,
+  children,
+  image,
+  onDismiss,
+  footer,
+  accessibilityCloseLabel = "close modal",
+  size = "sm",
+  zIndex = 1,
+  "data-testid": dataTestId,
+}: {
   /**
    * The modal's main content. Should typically take in `Typography`'d text.
    */
@@ -95,52 +138,7 @@ type ModalType = {
    * Test id for the modal
    */
   "data-testid"?: string;
-};
-
-/**
- * [Modal](https://cambly-syntax.vercel.app/?path=/docs/components-modal--docs) is a dialog that appears on top of the main content and locks user interaction within the modal.
- *
- ```
-  const [showModal, setShowModal] = useState(false)
-
-  return (
-    <>
-      {showModal && <Modal
-        header="header text"
-        onDismiss={() => setShowModal(false)}
-        footer={
-          <>
-            <Button
-              text="Cancel"
-              color="secondary"
-              onClick={() => {}}
-            />
-            <Button
-              text="Confirm"
-              onClick={() => {}}
-            />
-          </>
-        }
-      >
-        <Typography>
-          Body text goes here!
-        </Typography>
-      </Modal> }
-    </>
-  )
-  ```
- */
-export default function Modal({
-  header,
-  children,
-  image,
-  onDismiss,
-  footer,
-  accessibilityCloseLabel = "close modal",
-  size = "sm",
-  zIndex = 1,
-  "data-testid": dataTestId,
-}: ModalType): ReactElement {
+}): ReactElement {
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
