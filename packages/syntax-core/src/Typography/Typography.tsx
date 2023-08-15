@@ -29,6 +29,7 @@ const Typography = ({
   as = "div",
   children,
   color = "gray900",
+  "data-testid": dataTestId,
   inline = false,
   lineClamp = undefined,
   size = 200,
@@ -61,6 +62,10 @@ const Typography = ({
    * @defaultValue "gray900"
    */
   color?: (typeof Color)[number];
+  /**
+   * Test id for the text
+   */
+  "data-testid"?: string;
   /**
    * Whether the text should flow inline with other elements.
    *
@@ -123,6 +128,7 @@ const Typography = ({
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,
       )}
+      data-testid={dataTestId}
       style={{
         WebkitLineClamp: lineClamp,
       }}

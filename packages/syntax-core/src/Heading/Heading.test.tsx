@@ -39,4 +39,9 @@ describe("heading", () => {
       "Heading 6",
     );
   });
+
+  it("sets test id", () => {
+    render(<Heading data-testid="heading-testid">Test</Heading>);
+    expect(screen.getByTestId("heading-testid")).toBeInTheDocument();
+  });
 });

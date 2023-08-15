@@ -39,4 +39,9 @@ describe("typography", () => {
       "Heading 6",
     );
   });
+
+  it("sets test id", () => {
+    render(<Typography data-testid="typography-testid">Test</Typography>);
+    expect(screen.getByTestId("typography-testid")).toBeInTheDocument();
+  });
 });
