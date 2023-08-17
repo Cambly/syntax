@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.5.0
+
+### Minor Changes
+
+- 955bd06: typography: add interactive font-weight
+
 ## 7.4.0
 
 ### Minor Changes
