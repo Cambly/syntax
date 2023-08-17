@@ -63,6 +63,10 @@
   font-weight: 400;
 }
 
+.interactive {
+  font-weight: 500;
+}
+
 .semiBold {
   font-weight: 600;
 }
