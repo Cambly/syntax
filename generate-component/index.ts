@@ -83,7 +83,7 @@ async function generateComponent() {
     );
 
     // insert new component into 'packages/syntax-core/src/index.tsx file
-    // updateIndexFile(name);
+    updateIndexFile(name);
 
     console.log(
       `TODO: Update the describe block of your newly generated .test.tsx to be lowercased! e.g: describe("template", ....)\n`,
