@@ -4,7 +4,7 @@ import Template from "./Template";
 
 // NOTE: Update this to be the lowercased version!
 describe("Template", () => {
-  it("it should render successfully", () => {
+  it("renders successfully", () => {
     // Update tests here:
     // Don't forget to add your props!
     render(<Template text="text!!" />);
