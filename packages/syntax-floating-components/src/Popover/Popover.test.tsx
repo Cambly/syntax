@@ -30,7 +30,7 @@ describe("popover", () => {
     expect(screen.getByText("popover trigger")).toBeInTheDocument();
   });
 
-  it("tooltip dialogue appears", async () => {
+  it("renders popover dialogue", async () => {
     render(
       <Popover>
         <PopoverTrigger>
@@ -44,5 +44,26 @@ describe("popover", () => {
     expect(screen.queryByText("My Popover")).not.toBeInTheDocument();
     await userEvent.hover(button);
     expect(screen.getByText("My Popover")).toBeInTheDocument();
+  });
+
+  it("renders popover width correctly", async () => {
+    render(
+      <Popover>
+        <PopoverTrigger>
+          <button>popover trigger</button>
+        </PopoverTrigger>
+        <PopoverContent maxWidth="400px" width="100%">
+          My Popover
+        </PopoverContent>
+      </Popover>,
+    );
+
+    const button = screen.getByRole("button");
+    expect(screen.queryByText("My Popover")).not.toBeInTheDocument();
+    await userEvent.hover(button);
+    expect(screen.getByText("My Popover")).toHaveStyle({
+      maxWidth: "400px",
+      width: "100%",
+    });
   });
 });

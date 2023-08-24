@@ -46,6 +46,9 @@ export default {
       },
     },
     children: {},
+    maxWidth: {
+      control: { type: "number" },
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof Popover>;
@@ -86,7 +89,9 @@ export const Default: StoryObj<typeof Popover> = {
             size="lg"
           />
         </PopoverTrigger>
-        <PopoverContent>{children}</PopoverContent>
+        <PopoverContent maxWidth="400px" width="100%">
+          {children}
+        </PopoverContent>
       </Popover>
     </div>
   ),
@@ -133,7 +138,7 @@ export const ControlledPopover = (): ReactElement => {
               onClick={() => setOpen((v) => !v)}
             />
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent maxWidth="700px" width="100%">
             <Box width="100%" display="flex" direction="column" gap={2}>
               <Typography transform="uppercase" color="gray700" size={100}>
                 Weekly Plan

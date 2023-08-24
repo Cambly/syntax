@@ -111,7 +111,6 @@ export function usePopover({
       size({
         apply({ availableHeight, elements }) {
           Object.assign(elements.floating.style, {
-            maxWidth: `352px`,
             maxHeight: `${availableHeight}px`,
           });
         },
@@ -165,7 +164,7 @@ const usePopoverContext = () => {
  *
  * Most likely will be using the controlled variation for showing/hiding components. For detailed implementation details, see `See Code` in `Controlled Popover`.
  *
- * Popover content currently only has one size which is `352px`. More sizes can be added further later on if design requests it.
+ * Popover content takes in props of width and maxWidth so you can control what size you want it to be.
  * Padding is set to `28px`
  * Would recommend passing in a `Box` component into PopoverContent to control spacing and positioning.
  *
@@ -180,7 +179,7 @@ const usePopoverContext = () => {
   <PopoverTrigger>
     <IconButton />
   </PopoverTrigger>
-  <PopoverContent>
+  <PopoverContent maxWidth="500px" width="100%">
     <Box>
       // content goes here
     </Box>
@@ -234,7 +233,10 @@ export const PopoverTrigger = React.forwardRef<
 
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
+  React.HTMLProps<HTMLDivElement> & {
+    maxWidth?: string | number;
+    width?: string | number;
+  }
 >(function PopoverContent(props, propRef) {
   const { ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
@@ -251,6 +253,8 @@ export const PopoverContent = React.forwardRef<
       )}
       style={{
         ...context.floatingStyles,
+        width: props.width,
+        maxWidth: props.maxWidth,
       }}
     >
       {props.children}
