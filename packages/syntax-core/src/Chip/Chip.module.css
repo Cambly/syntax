@@ -1,0 +1,40 @@
+.chip {
+  cursor: pointer;
+  background-color: var(--color-base-gray-200);
+  border: 1px solid var(--color-base-gray-300);
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1000px;
+  justify-content: center;
+}
+
+.selectedChip {
+  background-color: var(--color-base-primary-800);
+  border: 1px solid var(--color-base-primary-800);
+}
+
+.icon {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 24px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 24px !important;
+  color: var(--color-base-grey-900);
+}
+
+.selectedIcon {
+  color: #fff;
+}
+
+.sm {
+  height: 32px;
+  min-width: 40px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.lg {
+  height: 48px;
+  min-width: 56px;
+  padding: 8px 16px;
+  text-align: center;
+}
