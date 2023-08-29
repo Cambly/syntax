@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.9.0
+
+### Minor Changes
+
+- 8027375: Popover + Elevation: Create Popover component + add elevation to tokens
+
 ## 0.8.0
 
 ### Minor Changes

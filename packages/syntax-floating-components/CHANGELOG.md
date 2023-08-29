@@ -1,5 +1,16 @@
 # @cambly/syntax-floating-components
 
+## 0.3.0
+
+### Minor Changes
+
+- 8027375: Popover + Elevation: Create Popover component + add elevation to tokens
+
+### Patch Changes
+
+- Updated dependencies [8027375]
+  - @cambly/syntax-design-tokens@0.9.0
+
 ## 0.2.0
 
 ### Minor Changes
