@@ -12,11 +12,11 @@ type ChipProps = {
    *
    * @defaultValue "false"
    */
-  selected: boolean;
+  selected?: boolean;
   /**
    * Test id for the button
    */
-  "data-testid": string;
+  "data-testid"?: string;
   /**
    * Size of the chip.
    *
@@ -25,7 +25,7 @@ type ChipProps = {
    *
    * @defaultValue sm
    */
-  size: "sm" | "lg";
+  size?: "sm" | "lg";
   /**
    * The text to be displayed on the chip
    */
