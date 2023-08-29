@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { type StoryObj, type Meta } from "@storybook/react";
 import Chip from "./Chip";
 import Star from "@mui/icons-material/Star";
@@ -21,6 +21,7 @@ export default {
       control: "text",
     },
   },
+  tags: ["autodocs"],
 } as Meta<typeof Chip>;
 
 export const Default: StoryObj<typeof Chip> = {

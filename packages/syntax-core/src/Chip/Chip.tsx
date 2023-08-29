@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
 import classnames from "classnames";
-import { Box, Typography } from "@cambly/syntax-core";
-import styles from "components/Chip/Chip.module.css";
-import { Size } from "components/library/constants";
+import Typography from "../Typography/Typography";
+import Box from "../Box/Box";
+import styles from "./Chip.module.css";
 
 type ChipProps = {
   /**
@@ -39,7 +39,9 @@ type ChipProps = {
    */
   icon?: React.ComponentType<{ className?: string }>;
 };
-
+/**
+ * [Chip](https://cambly-syntax.vercel.app/?path=/docs/components-chip--docs) is used to show status (selecte/not selected) like a toggle button.
+ */
 const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   (
     {
@@ -59,8 +61,8 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       [styles.selectedIcon]: selected,
     });
     const typographySize = {
-      [Size.SMALL]: 200,
-      [Size.LARGE]: 300,
+      ["sm"]: 200,
+      ["lg"]: 300,
     } as const;
     return (
       <button
@@ -73,7 +75,10 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       >
         {Icon && <Icon className={iconStyles} />}
         <Box paddingX={Icon ? 1 : 0}>
-          <Typography size={typographySize[size]} color={selected ? "white" : "gray900"}>
+          <Typography
+            size={typographySize[size]}
+            color={selected ? "white" : "gray900"}
+          >
             {text}
           </Typography>
         </Box>
