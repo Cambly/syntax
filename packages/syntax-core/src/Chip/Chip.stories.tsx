@@ -20,6 +20,7 @@ export default {
     text: {
       control: "text",
     },
+    size: { options: ["sm", "lg"], control: { type: "radio" } },
   },
   tags: ["autodocs"],
 } as Meta<typeof Chip>;
@@ -44,26 +45,20 @@ const ChipInteractive = () => {
   };
 
   return (
-    <>
-      <Box margin={1} display="inlineBlock">
-        <Chip
-          data-testid="data-testid"
-          text="interactive sm chip"
-          size="sm"
-          onChange={handleSmChange}
-          selected={isSmSelected}
-        />
-      </Box>
-      <Box margin={1} display="inlineBlock">
-        <Chip
-          data-testid="data-testid"
-          text="interactive lg chip"
-          size="lg"
-          onChange={handleLgChange}
-          selected={isLgSelected}
-        />
-      </Box>
-    </>
+    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+      <Chip
+        text="interactive sm chip"
+        size="sm"
+        onChange={handleSmChange}
+        selected={isSmSelected}
+      />
+      <Chip
+        text="interactive lg chip"
+        size="lg"
+        onChange={handleLgChange}
+        selected={isLgSelected}
+      />
+    </Box>
   );
 };
 const ChipIconInteractive = () => {
@@ -77,28 +72,22 @@ const ChipIconInteractive = () => {
   };
 
   return (
-    <>
-      <Box margin={1} display="inlineBlock">
-        <Chip
-          icon={Star}
-          data-testid="data-testid"
-          text="interactive sm chip"
-          size="sm"
-          onChange={handleSmChange}
-          selected={isSmSelected}
-        />
-      </Box>
-      <Box margin={1} display="inlineBlock">
-        <Chip
-          icon={Star}
-          data-testid="data-testid"
-          text="interactive lg chip"
-          size="lg"
-          onChange={handleLgChange}
-          selected={isLgSelected}
-        />
-      </Box>
-    </>
+    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+      <Chip
+        icon={Star}
+        text="interactive sm chip"
+        size="sm"
+        onChange={handleSmChange}
+        selected={isSmSelected}
+      />
+      <Chip
+        icon={Star}
+        text="interactive lg chip"
+        size="lg"
+        onChange={handleLgChange}
+        selected={isLgSelected}
+      />
+    </Box>
   );
 };
 

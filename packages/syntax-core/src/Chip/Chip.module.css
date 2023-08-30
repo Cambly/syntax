@@ -5,6 +5,7 @@
   align-items: center;
   border-radius: 1000px;
   justify-content: center;
+  text-align: center;
 }
 
 .selectedChip {
@@ -28,12 +29,10 @@
   height: 32px;
   min-width: 40px;
   padding: 8px 12px;
-  text-align: center;
 }
 
 .lg {
   height: 48px;
   min-width: 56px;
   padding: 8px 16px;
-  text-align: center;
 }
