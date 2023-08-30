@@ -5,6 +5,7 @@ import Button from "./Button/Button";
 import ButtonGroup from "./ButtonGroup/ButtonGroup";
 import Card from "./Card/Card";
 import Checkbox from "./Checkbox/Checkbox";
+import Chip from "./Chip/Chip";
 import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
@@ -24,6 +25,7 @@ export {
   ButtonGroup,
   Card,
   Checkbox,
+  Chip,
   Divider,
   Heading,
   IconButton,
