@@ -40,7 +40,7 @@ type ChipProps = {
   icon?: React.ComponentType<{ className?: string }>;
 };
 /**
- * [Chip](https://cambly-syntax.vercel.app/?path=/docs/components-chip--docs) is used to show status (selecte/not selected) like a toggle button.
+ * [Chip](https://cambly-syntax.vercel.app/?path=/docs/components-chip--docs) is used to show status (selected/not selected) like a toggle button.
  */
 const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   (
