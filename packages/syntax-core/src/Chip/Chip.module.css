@@ -1,5 +1,4 @@
 .chip {
-  cursor: pointer;
   background-color: var(--color-base-gray-200);
   border: 1px solid var(--color-base-gray-300);
   display: inline-flex;
