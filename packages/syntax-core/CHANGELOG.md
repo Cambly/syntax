@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.6.1
+
+### Patch Changes
+
+- 09b4cf2: SelectList: avoid long text overlapping caret
+
 ## 7.6.0
 
 ### Minor Changes
