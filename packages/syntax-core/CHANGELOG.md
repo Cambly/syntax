@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.7.0
+
+### Minor Changes
+
+- 3851706: Create Chip Component
+
 ## 7.6.1
 
 ### Patch Changes
