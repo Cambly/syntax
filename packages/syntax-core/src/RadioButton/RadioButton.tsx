@@ -71,7 +71,7 @@ const RadioButton = ({
   /**
    * Value of the selected radio option
    */
-  value?: string | number;
+  value: string | number;
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
