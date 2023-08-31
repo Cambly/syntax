@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.7.1
+
+### Patch Changes
+
+- 8e27ed6: Added more types for the value in radiobutton
+
 ## 7.7.0
 
 ### Minor Changes
