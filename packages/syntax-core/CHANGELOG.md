@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.8.0
+
+### Minor Changes
+
+- b1f668b: Typography: Patch: Add interactive weight to props + update stories
+
 ## 7.7.1
 
 ### Patch Changes
