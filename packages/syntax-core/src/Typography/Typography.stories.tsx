@@ -54,7 +54,7 @@ export default {
       control: "boolean",
     },
     weight: {
-      options: ["regular", "semiBold", "bold", "heavy", "interactive"],
+      options: ["regular", "interactive", "semiBold", "bold", "heavy"],
       control: { type: "radio" },
     },
   },
@@ -156,6 +156,9 @@ export const Weight: StoryObj<typeof Typography> = {
       <Typography {...args} weight="regular">
         Weight Regular
       </Typography>
+      <Typography {...args} weight="interactive">
+        Weight interactive
+      </Typography>
       <Typography {...args} weight="semiBold">
         Weight semiBold
       </Typography>
@@ -164,9 +167,6 @@ export const Weight: StoryObj<typeof Typography> = {
       </Typography>
       <Typography {...args} weight="heavy">
         Weight heavy
-      </Typography>
-      <Typography {...args} weight="interactive">
-        Weight interactive
       </Typography>
     </>
   ),

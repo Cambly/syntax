@@ -111,7 +111,7 @@ const Typography = ({
    *
    * @defaultValue "regular"
    */
-  weight?: "regular" | "semiBold" | "bold" | "heavy" | "interactive";
+  weight?: "regular" | "interactive" | "semiBold" | "bold" | "heavy";
 }): ReactElement => {
   const Tag = as;
 
