@@ -54,7 +54,7 @@ export default {
       control: "boolean",
     },
     weight: {
-      options: ["regular", "semiBold", "bold", "heavy"],
+      options: ["regular", "semiBold", "bold", "heavy", "interactive"],
       control: { type: "radio" },
     },
   },
@@ -147,5 +147,27 @@ export const Underline: StoryObj<typeof Typography> = {
     <Typography {...args} underline>
       Underlined
     </Typography>
+  ),
+};
+
+export const Weight: StoryObj<typeof Typography> = {
+  render: (args) => (
+    <>
+      <Typography {...args} weight="regular">
+        Weight Regular
+      </Typography>
+      <Typography {...args} weight="semiBold">
+        Weight semiBold
+      </Typography>
+      <Typography {...args} weight="bold">
+        Weight bold
+      </Typography>
+      <Typography {...args} weight="heavy">
+        Weight heavy
+      </Typography>
+      <Typography {...args} weight="interactive">
+        Weight interactive
+      </Typography>
+    </>
   ),
 };
