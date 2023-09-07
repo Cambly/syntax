@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.10.0
+
+### Minor Changes
+
+- 9da74f1: LinkButton: Add box-sizing: border-box to fix centering issue
+
 ## 7.9.0
 
 ### Minor Changes
