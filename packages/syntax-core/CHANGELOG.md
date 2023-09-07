@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.9.0
+
+### Minor Changes
+
+- 987cb16: Chip/add-cursor-pointer-on-hover
+
 ## 7.8.0
 
 ### Minor Changes
