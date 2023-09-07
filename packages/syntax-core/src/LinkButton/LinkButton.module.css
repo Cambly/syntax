@@ -1,6 +1,6 @@
 .linkButton {
-  text-decoration: none;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 .linkButton:focus,
