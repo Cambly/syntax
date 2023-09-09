@@ -14,6 +14,7 @@ import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
+import TapArea from "./TapArea/TapArea";
 import TextField from "./TextField/TextField";
 import Typography from "./Typography/Typography";
 
@@ -34,6 +35,7 @@ export {
   Modal,
   RadioButton,
   SelectList,
+  TapArea,
   TextField,
   Typography,
 };
