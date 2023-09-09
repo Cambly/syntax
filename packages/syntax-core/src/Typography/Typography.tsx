@@ -26,7 +26,7 @@ function textColor(color: (typeof Color)[number]): string {
  */
 const Typography = ({
   align = "start",
-  as = "div",
+  as,
   children,
   color = "gray900",
   "data-testid": dataTestId,
@@ -51,7 +51,7 @@ const Typography = ({
    *
    * @defaultValue "div"
    */
-  as?: "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  as?: "div" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   /**
    * The text to be rendered
    */
@@ -113,7 +113,7 @@ const Typography = ({
    */
   weight?: "regular" | "interactive" | "semiBold" | "bold" | "heavy";
 }): ReactElement => {
-  const Tag = as;
+  const Tag = as ?? inline ? "span" : "div";
 
   return (
     <Tag
