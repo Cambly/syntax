@@ -6,4 +6,17 @@
   color: var(--color-base-white);
   padding: 8px 12px;
   border-radius: 8px;
+  max-width: 240px;
+}
+
+.trigger {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.trigger:focus,
+.tooltipContent:focus {
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
 }

@@ -1,236 +1,235 @@
-import * as React from "react";
-import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  useHover,
-  useFocus,
-  useDismiss,
-  useRole,
-  useInteractions,
-  useMergeRefs,
-  FloatingArrow,
-  arrow,
-  size,
-  FloatingPortal,
-} from "@floating-ui/react";
-import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
-import Typography from "../../../syntax-core/src/Typography/Typography";
+import React, {
+  type ReactNode,
+  forwardRef,
+  type ReactElement,
+  useCallback,
+  type FocusEvent,
+  useState,
+  useEffect,
+} from "react";
+import { Typography } from "@cambly/syntax-core";
 import styles from "./Tooltip.module.css";
 
-type TooltipOptions = {
+import {
+  useTooltipStore,
+  Tooltip as AriakitTooltip,
+  TooltipAnchor,
+  TooltipArrow,
+  type DisclosureStore,
+  type PopoverStore,
+} from "@ariakit/react";
+
+type TooltipProps = {
+  /** Optional aria-label for the tooltip (content element) */
+  accessibilityLabel?: string;
+  /** Required trigger element */
+  children: ReactElement | string;
+  /* Content to be shown inside the tooltip. */
+  content: ReactNode;
   /**
    * How long a user hovers before tooltip shows (in ms)
-   *
    * @defaultValue 0
    */
   delay?: number;
   /**
-   * Whether an (uncontrolled) tooltip should open on load
-   *
+   * If set to true the tooltip will render initially open
    * @defaultValue false
    */
   initialOpen?: boolean;
-  /**
-   * Value of 'open' state of the tooltip content if controlled
-   */
+  /** Optional handler for change of visibility for tooltip content.  called with (visible: boolean) */
+  onChangeContentVisibility?: (visible: boolean) => void;
+  /** Optional boolean to control open state of tooltip externally */
   open?: boolean;
   /**
-   * Function to set value of 'open' state to true if controlled
-   */
-  onOpen?: (open: boolean) => void;
-  /**
-   * Function to set value of 'open' state to false if controlled
-   */
-  onClose?: (close: boolean) => void;
-  /**
    * Location of the tooltip content relative to anchor element
-   *
-   * @defaultValue "right"
+   * @defaultValue "top-start"
    */
-  placement?: Side;
-  /**
-   * Placement strategy, either "fixed" or "absolute"
-   *
-   * @defaultValue "absolute"
-   */
-  strategy?: Strategy;
+  placement?:
+    | "top"
+    | "bottom"
+    | "top-start"
+    | "top-end"
+    | "bottom-start"
+    | "bottom-end";
 };
 
-export function useTooltip({
-  delay = 0,
-  initialOpen = false,
-  open: controlledOpen,
-  placement = "right",
-  strategy = "absolute",
-  onOpen = undefined,
-  onClose = undefined,
-}: TooltipOptions): UseFloatingReturn & {
-  getReferenceProps: (
-    userProps?: React.HTMLProps<Element> | undefined,
-  ) => Record<string, unknown>;
-  getFloatingProps: (
-    userProps?: React.HTMLProps<HTMLElement> | undefined,
-  ) => Record<string | number | symbol, unknown>;
-  getItemProps: (
-    userProps?: React.HTMLProps<HTMLElement> | undefined,
-  ) => Record<string | number | symbol, unknown>;
-  arrowRef: React.MutableRefObject<null>;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-} {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
+// TODO: share with the bit in syntax-core focus-trap
+const INTERACTIVE_ELEMENT_SELECTORS = [
+  "a[href]",
+  "area[href]",
+  'input:not([disabled]):not([type="hidden"])',
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "button:not([disabled])",
+  "iframe",
+  "object",
+  "embed",
+  '[tabindex="0"]',
+  "[contenteditable]",
+  "audio[controls]",
+  "video[controls]",
+  "summary",
+  '[tabindex]:not([tabindex="-1"])',
+].join(",");
 
-  const arrowRef = React.useRef(null);
-
-  const open = controlledOpen ?? uncontrolledOpen;
-  let setOpen: (open: boolean) => void;
-  if (onOpen && controlledOpen == true) {
-    setOpen = onOpen;
-  } else if (onClose && controlledOpen == false) {
-    setOpen = onClose;
-  } else {
-    setOpen = setUncontrolledOpen;
-  }
-
-  const data = useFloating({
-    placement,
-    strategy,
-    open,
-    onOpenChange: setOpen,
-    whileElementsMounted: autoUpdate,
-    middleware: [
-      offset(8),
-      flip({
-        fallbackAxisSideDirection: "start",
-      }),
-      shift({ padding: 4 }),
-      arrow({ element: arrowRef }),
-      size({
-        apply({ availableHeight, elements }) {
-          Object.assign(elements.floating.style, {
-            maxWidth: `240px`,
-            maxHeight: `${availableHeight}px`,
-          });
-        },
-      }),
-    ],
-  });
-
-  const context = data.context;
-
-  const hover = useHover(context, {
-    move: false,
-    enabled: controlledOpen == null,
-    delay,
-  });
-  const focus = useFocus(context, {
-    enabled: controlledOpen == null,
-  });
-  const dismiss = useDismiss(context);
-  const role = useRole(context, { role: "tooltip" });
-
-  const interactions = useInteractions([hover, focus, dismiss, role]);
-
-  return React.useMemo(
-    () => ({
-      open,
-      setOpen,
-      ...interactions,
-      ...data,
-      arrowRef,
-    }),
-    [open, setOpen, interactions, data],
-  );
+/**
+ * Hook AriaKit - based floating components
+ * Wires a handler to fire when visibility changes to an ariakit DisclosureStore store (tooltip, hovercard, popover, etc...)
+ * Use for analytics and controlling open state externally
+ */
+function useOnChangeContentVisibility(
+  store: DisclosureStore,
+  onChangeContentVisibility?: (visible: boolean) => void,
+): void {
+  // when visibility changes, fire `onChangeContentVisibility`
+  const { animating, open } = store.getState();
+  const contentVisible = open ? !animating : animating;
+  const [prevContentVisible, setPrevContentVisible] = useState(false);
+  useEffect(() => setPrevContentVisible(contentVisible), [contentVisible]);
+  useEffect(() => {
+    if (contentVisible === prevContentVisible) return undefined;
+    onChangeContentVisibility?.(contentVisible);
+  }, [contentVisible, prevContentVisible, onChangeContentVisibility]);
+  // prevent over-firing of `onChangeContentVisibility` handler
+  // when `animated`, `open` turns true a tick before `animating` turns true
+  const animated = store.useState("animated");
+  // so use that to determine which bit gets subscribe to
+  store.useState(animated ? "animating" : "open");
 }
 
-const TooltipContext = React.createContext<ReturnType<
-  typeof useTooltip
-> | null>(null);
+function useOnFocusForwardAnchorFocusToInteractiveChild(
+  store: PopoverStore,
+  options?: { onFocus?: (evt: FocusEvent<HTMLElement>) => void },
+): (evt: FocusEvent<HTMLElement>) => void {
+  const onFocusProp = options?.onFocus;
 
-const useTooltipContext = () => {
-  const context = React.useContext(TooltipContext);
+  // transfer focus to child element if it is focusable
+  //
+  // if there is a focusable child in the trigger children,
+  // focus is immediately transferred to that child element
+  // (e.g. when the user tabs to the trigger)
+  // prevents a double-focus situation where user tabs/steps to the trigger,
+  // then has to step again to focus the child element
+  const forwardFocusToInteractiveChild = useCallback(
+    (evt: FocusEvent<HTMLElement>) => {
+      // only operate on focus events for the tooltip anchor directly, not focus events bubbling up from children
+      if (evt.currentTarget !== evt.target) return;
+      // hold reference to actual anchor element
+      // anchorRef.current = evt.currentTarget;
+      // try to find the first focusable child element if it exists
+      const childToFocus = evt.currentTarget.querySelector<HTMLElement>(
+        INTERACTIVE_ELEMENT_SELECTORS,
+      );
+      if (!childToFocus) return;
+      // ariakit Tooltip uses html data attr to determine if mouse moves closes the tooltip or not
+      // adding this to forward-focused child prevents tooltip from disappearing on mousemove while child is focused
+      childToFocus.setAttribute("data-focus-visible", "true");
+      // update the anchor element in the tooltip store to this interactive child element
+      store.setAnchorElement(childToFocus);
+      // transfer focus to the child element
+      childToFocus.focus();
+    },
+    [store],
+  );
 
-  if (context == null) {
-    throw new Error("Tooltip components must be wrapped in <Tooltip />");
-  }
-
-  return context;
-};
+  return useCallback(
+    (evt: FocusEvent<HTMLElement>) => {
+      onFocusProp?.(evt);
+      if (evt.defaultPrevented) return;
+      forwardFocusToInteractiveChild(evt);
+    },
+    [onFocusProp, forwardFocusToInteractiveChild],
+  );
+}
 
 /**
  * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
+ *
+ * Tooltip content is hidden by default and shown on hover or focus.
+ * The content is hidden again when the user mouses out of the trigger element or blurs the trigger element or presses Escape
+ *
+ * Example Usage:
+ ```
+  <Tooltip
+    delay={200}
+    placement="bottom-start"
+    initialOpen
+    content={(
+      <Box padding={2}>
+        ... some content goes here
+      </Box>
+    )}
+  >
+      <Button text="Trigger me" />
+  </Tooltip>
+ ```
  */
-export function Tooltip({
-  children,
-  ...options
-}: { children: React.ReactNode } & TooltipOptions): JSX.Element {
-  // This can accept any props as options, e.g. `placement`,
-  // or other positioning options.
-  const tooltip = useTooltip(options);
-  return (
-    <TooltipContext.Provider value={tooltip}>
-      {children}
-    </TooltipContext.Provider>
-  );
-}
+const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
+  props: TooltipProps,
+  ref,
+): ReactElement {
+  const {
+    accessibilityLabel,
+    delay = 0,
+    children,
+    content,
+    initialOpen = false,
+    onChangeContentVisibility,
+    open,
+    placement = "top-start",
+  } = props;
 
-export const TooltipTrigger = React.forwardRef<
-  HTMLElement,
-  React.HTMLProps<HTMLElement>
->(function TooltipTrigger({ children, ...props }, propRef) {
-  const context = useTooltipContext();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
-  const childrenRef = (children as any).ref;
-  const ref = useMergeRefs([
-    context.refs.setReference,
-    propRef,
-    childrenRef,
-  ] as React.Ref<unknown>[]);
+  const tooltip = useTooltipStore({
+    defaultOpen: initialOpen,
+    placement,
+    showTimeout: delay,
+  });
 
-  if (React.isValidElement(children)) {
-    return React.cloneElement(
-      children,
-      context.getReferenceProps({
-        ref,
-        ...props,
-        ...children.props,
-        "data-state": context.open ? "open" : "closed",
-      } as React.HTMLProps<Element> | undefined),
-    );
-  } else {
-    throw new Error(
-      "TooltipTrigger must be wrapped around a valid React element",
-    );
-  }
-});
-
-export const TooltipContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
->(function TooltipContent(props, propRef) {
-  const { context: floatingContext, ...context } = useTooltipContext();
-  const ref = useMergeRefs([context.refs.setFloating, propRef]);
-
-  if (!context.open) return null;
+  // For Analytics and Control:
+  useOnChangeContentVisibility(tooltip, onChangeContentVisibility);
+  // transfer focus to child element if it is focusable. Wire into onFocus on Tooltip Anchor
+  const forwardAnchorFocusToInteractiveChild =
+    useOnFocusForwardAnchorFocusToInteractiveChild(tooltip);
+  // allow external control of open state via `open` prop
+  useEffect(() => {
+    if (open === undefined) return;
+    tooltip.setOpen(open);
+  }, [open, tooltip]);
 
   return (
-    <FloatingPortal>
-      <div
-        {...context.getFloatingProps(props)}
+    <>
+      <TooltipAnchor
+        store={tooltip}
         ref={ref}
-        className={styles.tooltipContent}
-        style={{
-          ...context.floatingStyles,
-        }}
+        className={styles.trigger}
+        onFocus={forwardAnchorFocusToInteractiveChild}
       >
-        <Typography size={100} color="white">
-          {props.children}
+        {typeof children === "string" ? (
+          <Typography color="inherit">{children}</Typography>
+        ) : (
+          children
+        )}
+      </TooltipAnchor>
+      <AriakitTooltip
+        store={tooltip}
+        gutter={4}
+        overflowPadding={4}
+        fitViewport
+        className={styles.tooltipContent}
+        // ensures focusable items in tooltip are tab-able
+        preserveTabOrder
+        // first thing screen reader reads
+        // e.g. "<this was the label prop>, dialog, 4 items..."
+        aria-label={accessibilityLabel}
+        // ariakit sets role
+      >
+        <TooltipArrow className="" />
+        <Typography inline size={100} color="inherit">
+          {content}
         </Typography>
-        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
-      </div>
-    </FloatingPortal>
+      </AriakitTooltip>
+    </>
   );
 });
+
+export default Tooltip;

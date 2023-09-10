@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect, type ReactElement } from "react";
+import React, { useRef, useEffect, type ReactElement, useState } from "react";
 import type { StoryObj, Meta } from "@storybook/react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
-import Button from "../../../syntax-core/src/Button/Button";
-import IconButton from "../../../syntax-core/src/IconButton/IconButton";
+import Tooltip from "./Tooltip";
+import { Box, Button, IconButton, Typography } from "@cambly/syntax-core";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Box from "../../../syntax-core/src/Box/Box";
 import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
@@ -17,6 +16,13 @@ export default {
     },
   },
   argTypes: {
+    delay: {
+      control: { type: "number" },
+      defaultValue: 0,
+      table: {
+        defaultValue: { summary: 0 },
+      },
+    },
     initialOpen: {
       control: { type: "radio" },
       defaultValue: true,
@@ -27,10 +33,10 @@ export default {
       description:
         "Value of the 'open' state when controlled (disabled for story)",
     },
-    onOpenChange: {
+    onChangeContentVisibility: {
       table: { disable: true },
       description:
-        "Function to change the value of 'open' when tooltip is interacted (diabled for story)",
+        "Function that is called when the content visibility changes (disabled for story)",
     },
     placement: {
       control: { type: "select" },
@@ -40,17 +46,27 @@ export default {
         defaultValue: { summary: "right" },
       },
     },
-    strategy: {
-      control: { type: "select" },
-      options: ["absolute", "fixed"],
-      defaultValue: "absolute",
-      table: {
-        defaultValue: { summary: "absolute" },
-      },
-    },
+    // accessibilityLabel,
+    // delay = 0,
+    // children,
+    // content,
+    // strategy: {
+    //   control: { type: "select" },
+    //   options: ["absolute", "fixed"],
+    //   defaultValue: "absolute",
+    //   table: {
+    //     defaultValue: { summary: "absolute" },
+    //   },
+    // },
     children: {
       control: { type: "text" },
-      description: "The string value to show on the tooltip content",
+      description:
+        "The string value to show for tooltip trigger (can also be a ReactElement)",
+    },
+    content: {
+      control: { type: "text" },
+      description:
+        "The string value to show on the tooltip content (can also be a ReactElement",
     },
   },
   tags: ["autodocs"],
@@ -58,51 +74,262 @@ export default {
 
 export const Default: StoryObj<typeof Tooltip> = {
   args: {
-    delay: 0,
-    placement: "right",
-    initialOpen: true,
-    strategy: "absolute",
-    children: "This is a tooltip",
+    children: "Hover / Focus me",
+    content: (
+      <Typography inline color="inherit">
+        This is a tooltip content{" "}
+        <button role="button" title="a button">
+          a button
+        </button>
+      </Typography>
+    ),
   },
-  render: ({ delay, placement, initialOpen, strategy, children }) => (
-    <div style={{ margin: "240px" }}>
+  render: ({ delay, placement, initialOpen, content, children }) => (
+    <Box
+      display="flex"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="400px"
+      gap={2}
+    >
       <Tooltip
         delay={delay}
         placement={placement}
         initialOpen={initialOpen}
-        strategy={strategy}
+        content={content}
       >
-        <TooltipTrigger>
-          <IconButton
-            accessibilityLabel="Info Icon Button"
-            icon={InfoOutlinedIcon}
-            onClick={() => alert("Default button pressed")}
-            color="tertiary"
-            size="lg"
-          />
-        </TooltipTrigger>
-        <TooltipContent>{children}</TooltipContent>
+        {children}
       </Tooltip>
-    </div>
+    </Box>
   ),
 };
 
-export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
-  render: () => (
-    <Tooltip>
-      <TooltipTrigger>
-        <Button
-          text="My trigger"
-          onClick={() => alert("UncontrolledButtonTooltip pressed")}
-        />
-      </TooltipTrigger>
-      <TooltipContent>This is a button</TooltipContent>
+export const AddContextToLabel: StoryObj<typeof Tooltip> = {
+  args: {
+    placement: "top-end",
+    children: "tutor rating",
+    content:
+      "The tutor's rating is calculated from these types of information: 1) something, 2) something else",
+  },
+  render: (props) => (
+    <Box
+      display="flex"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="400px"
+      gap={2}
+    >
+      <Tooltip {...props} />
+    </Box>
+  ),
+};
+
+export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
+  args: {
+    placement: "top-end",
+    children: "some text",
+    content: (
+      <Box maxWidth="400px" display="flex" direction="column" gap={2}>
+        <Typography color="inherit" weight="semiBold" size={500}>
+          Learn English with Cambly.
+          <br />
+          We help you progress.
+        </Typography>
+        <Typography color="inherit">
+          Welcome to Cambly, your trusted platform for learning English. With
+          our expert tutors and interactive sessions, we are here to help you
+          progress and achieve fluency in the English language. Whether you are
+          a beginner or looking to refine your language skills, our personalized
+          approach ensures that you receive the guidance you need. Join Cambly
+          today and embark on your journey to English proficiency.
+        </Typography>
+        <a href="https://news.ycombinator.com" target="_blank">
+          Here is a link to HackerNews
+        </a>
+      </Box>
+    ),
+  },
+  render: (props) => (
+    <Box
+      display="flex"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="400px"
+      gap={2}
+    >
+      <Tooltip {...props} />
+    </Box>
+  ),
+};
+
+export const FocusedInParagraph: StoryObj<typeof Tooltip> = {
+  args: {
+    placement: "top-end",
+    children: "some text",
+    content: "Focused tooltip content",
+  },
+  render: (props) => (
+    <Typography>
+      This tooltip content is inline
+      <Tooltip {...props} initialOpen />
+      and also within a paragraph.
+    </Typography>
+  ),
+};
+
+export const MultipleTooltipsStacked: StoryObj<typeof Tooltip> = {
+  args: {
+    content: (
+      <Typography inline color="inherit">
+        This is a tooltip content{" "}
+        <button role="button" title="a button">
+          a button
+        </button>
+      </Typography>
+    ),
+  },
+  render: ({ content }) => (
+    <>
+      <div>
+        <Tooltip content={content} initialOpen>
+          Label 1
+        </Tooltip>
+      </div>
+      <div>
+        <Tooltip content={content}>Label 2</Tooltip>
+      </div>
+      <div>
+        <Tooltip content={content}>Label 3</Tooltip>
+      </div>
+    </>
+  ),
+};
+
+export const PlacementOptions: StoryObj<typeof Tooltip> = {
+  args: {
+    content: (
+      <Typography inline color="inherit">
+        This is a tooltip content{" "}
+        <button role="button" title="a button">
+          a button
+        </button>
+      </Typography>
+    ),
+  },
+  render: ({ content }) => (
+    <>
+      {/* styles below provide lots of space for scroll and flip testing */}
+      <div
+        style={{
+          marginTop: "70px",
+          marginLeft: "300px",
+          marginBottom: "400px",
+        }}
+      >
+        <div style={{ display: "inline-flex" }}>
+          <span style={{ width: "100px" }} />
+          <Tooltip placement="top-start" content={content}>
+            <Button text="top-start" />
+          </Tooltip>
+          <span style={{ width: "100px" }} />
+        </div>
+        <p />
+        <div style={{ marginTop: "50px", display: "inline-flex" }}>
+          <Tooltip placement="bottom-start" content={content} initialOpen>
+            <Button text="bottom-start" />
+          </Tooltip>
+          <span style={{ width: "175px" }} />
+          <Tooltip placement="top-end" content={content}>
+            <Button text="top-end" />
+          </Tooltip>
+        </div>
+        <p />
+        <div style={{ marginTop: "40px", display: "inline-flex" }}>
+          <span style={{ width: "100px" }} />
+          <Tooltip placement="bottom-end" content={content}>
+            <Button text="bottom-end" />
+          </Tooltip>
+        </div>
+      </div>
+    </>
+  ),
+};
+
+export const ButtonAsTrigger: StoryObj<typeof Tooltip> = {
+  args: {
+    content: (
+      <Typography inline color="inherit">
+        This is a tooltip content{" "}
+        <button role="button" title="a button">
+          a button
+        </button>
+      </Typography>
+    ),
+  },
+  render: ({ content }) => (
+    <Tooltip placement="top" content={content}>
+      <Button
+        text="My trigger"
+        onClick={() => alert("UncontrolledButtonTooltip pressed")}
+      />
     </Tooltip>
   ),
 };
 
-export const ControlledTooltip = (): ReactElement => {
-  const [open, setOpen] = useState(false);
+export const IconButtonAsTrigger: StoryObj<typeof Tooltip> = {
+  args: {
+    content: (
+      <Typography inline color="inherit">
+        This is a tooltip content{" "}
+        <button role="button" title="a button">
+          a button
+        </button>
+      </Typography>
+    ),
+  },
+  render: ({ content }) => (
+    <Tooltip placement="top" content={content}>
+      <IconButton
+        accessibilityLabel="Info Icon Button"
+        icon={InfoOutlinedIcon}
+        onClick={() => alert("icon button pressed")}
+        color="tertiary"
+        size="md"
+      />
+    </Tooltip>
+  ),
+};
+
+export const DivAsTrigger: StoryObj<typeof Tooltip> = {
+  render: () => (
+    <Tooltip placement="top" content="some content">
+      <div>hover or focus me</div>
+    </Tooltip>
+  ),
+};
+
+export const InputAsTrigger: StoryObj<typeof Tooltip> = {
+  render: () => (
+    <>
+      <Typography>
+        (a little wonky, but not terrible, just an example, not trying to
+        support)
+      </Typography>
+      <Tooltip placement="top" content="some content">
+        <input
+          type="text"
+          placeholder="with tooltip"
+          style={{ border: "1px solid" }}
+        />
+      </Tooltip>
+    </>
+  ),
+};
+
+export const OpenedBelowTheFold = (): ReactElement => {
   const scrollableRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);
 
@@ -118,42 +345,39 @@ export const ControlledTooltip = (): ReactElement => {
     <div
       ref={scrollableRef}
       style={{
+        position: "relative",
         overflowY: "auto",
         width: "400px",
         height: "300px",
+        border: "1px solid black",
       }}
     >
+      There is a tooltip befow the fold here. scroll this box to see it.
       <div
         style={{
-          marginTop: "300px",
-          marginBottom: "300px",
+          marginTop: "400px",
+          marginBottom: "400px",
           display: "flex",
           justifyContent: "center",
         }}
       >
         <Tooltip
-          open={open}
-          onOpen={() => setOpen(true)}
-          onClose={() => setOpen(false)}
+          initialOpen
+          content={
+            <>
+              <span style={{ display: "block" }}>
+                This is a button and a really long sentence.
+              </span>
+              <a
+                href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
+                style={{ textUnderlinePosition: "under", color: "white" }}
+              >
+                Learn more
+              </a>
+            </>
+          }
         >
-          <TooltipTrigger>
-            <Button
-              ref={ref}
-              text="My trigger"
-              onClick={() => setOpen((v) => !v)}
-            />
-          </TooltipTrigger>
-          <TooltipContent>
-            <span style={{ display: "block" }}>
-              This is a button and a really long sentence.
-            </span>
-            <a
-              href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
-              style={{ textUnderlinePosition: "under", color: "white" }}
-            >
-              Learn more
-            </a>
-          </TooltipContent>
+          <Button ref={ref} text="My trigger.  Hover or focus me." />
         </Tooltip>
       </div>
     </div>
@@ -205,11 +429,8 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
                     onChange={(e) => setChoice(Number(e.target.value))}
                     checked={choice === value}
                   />
-                  <Tooltip placement="left">
-                    <TooltipTrigger>
-                      <InfoOutlinedIcon width={20} height={20} />
-                    </TooltipTrigger>
-                    <TooltipContent>{content}</TooltipContent>
+                  <Tooltip initialOpen placement="left" content={content}>
+                    <InfoOutlinedIcon width={20} height={20} />
                   </Tooltip>
                 </Box>
               ))}
@@ -217,6 +438,47 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
           </Box>
         </Box>
       </Box>
+    </Box>
+  );
+};
+export const OpenControlledExternally = (): ReactElement => {
+  const [open, setOpen] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const id = setInterval(() => setOpen((_open) => !_open), 3000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <Box
+      display="flex"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="400px"
+      gap={2}
+    >
+      <Typography>
+        There is a 3 second interval running to toggle the tooltip open state.
+        It can also be toggled externally with the button below.
+      </Typography>
+      <Tooltip
+        open={open}
+        initialOpen
+        onChangeContentVisibility={setOpen}
+        content={
+          <Typography inline color="inherit">
+            This is a tooltip content{" "}
+            <button role="button" title="a button">
+              a button
+            </button>
+          </Typography>
+        }
+      >
+        <Button text="Trigger me" />
+      </Tooltip>
+
+      <Button text="External Trigger" onClick={() => setOpen(!open)} />
     </Box>
   );
 };
