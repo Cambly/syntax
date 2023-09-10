@@ -3,7 +3,6 @@ import type { StoryObj, Meta } from "@storybook/react";
 import Tooltip from "./Tooltip";
 import { Box, Button, IconButton, Typography } from "@cambly/syntax-core";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Box from "../../../syntax-core/src/Box/Box";
 import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
 
 export default {
@@ -46,18 +45,6 @@ export default {
         defaultValue: { summary: "right" },
       },
     },
-    // accessibilityLabel,
-    // delay = 0,
-    // children,
-    // content,
-    // strategy: {
-    //   control: { type: "select" },
-    //   options: ["absolute", "fixed"],
-    //   defaultValue: "absolute",
-    //   table: {
-    //     defaultValue: { summary: "absolute" },
-    //   },
-    // },
     children: {
       control: { type: "text" },
       description:
@@ -129,7 +116,7 @@ export const AddContextToLabel: StoryObj<typeof Tooltip> = {
 export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
   args: {
     placement: "top-end",
-    children: "some text",
+    children: <InfoOutlinedIcon />,
     content: (
       <Box maxWidth="400px" display="flex" direction="column" gap={2}>
         <Typography color="inherit" weight="semiBold" size={500}>
@@ -168,14 +155,13 @@ export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
 export const FocusedInParagraph: StoryObj<typeof Tooltip> = {
   args: {
     placement: "top-end",
-    children: "some text",
+    children: <InfoOutlinedIcon fontSize="inherit" />,
     content: "Focused tooltip content",
   },
   render: (props) => (
     <Typography>
-      This tooltip content is inline
-      <Tooltip {...props} initialOpen />
-      and also within a paragraph.
+      This tooltip content is inline <Tooltip {...props} initialOpen /> and also
+      within a paragraph.
     </Typography>
   ),
 };
@@ -194,15 +180,22 @@ export const MultipleTooltipsStacked: StoryObj<typeof Tooltip> = {
   render: ({ content }) => (
     <>
       <div>
+        <Typography>Label 1 </Typography>
         <Tooltip content={content} initialOpen>
-          Label 1
+          <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
       <div>
-        <Tooltip content={content}>Label 2</Tooltip>
+        <Typography>Label 2 </Typography>
+        <Tooltip content={content}>
+          <InfoOutlinedIcon fontSize="inherit" />
+        </Tooltip>
       </div>
       <div>
-        <Tooltip content={content}>Label 3</Tooltip>
+        <Typography>Label 3 </Typography>
+        <Tooltip content={content}>
+          <InfoOutlinedIcon fontSize="inherit" />
+        </Tooltip>
       </div>
     </>
   ),
@@ -429,7 +422,7 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
                     onChange={(e) => setChoice(Number(e.target.value))}
                     checked={choice === value}
                   />
-                  <Tooltip initialOpen placement="left" content={content}>
+                  <Tooltip initialOpen placement="top-start" content={content}>
                     <InfoOutlinedIcon width={20} height={20} />
                   </Tooltip>
                 </Box>
