@@ -1,4 +1,4 @@
-import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip/Tooltip";
+import Tooltip from "./Tooltip/Tooltip";
 import { Popover, PopoverContent, PopoverTrigger } from "./Popover/Popover";
 
 export {
@@ -6,6 +6,4 @@ export {
   PopoverContent,
   PopoverTrigger,
   Tooltip,
-  TooltipContent,
-  TooltipTrigger,
 };
