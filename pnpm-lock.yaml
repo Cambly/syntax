@@ -252,6 +252,12 @@ importers:
 
   packages/syntax-floating-components:
     dependencies:
+      '@ariakit/react':
+        specifier: ^0.3.0
+        version: 0.3.12(react-dom@18.2.0)(react@18.2.0)
+      '@cambly/syntax-core':
+        specifier: workspace:^
+        version: link:../syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.10.0
         version: link:../syntax-design-tokens
@@ -341,6 +347,34 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
+
+  /@ariakit/core@0.3.10:
+    resolution: {integrity: sha512-AcN+GSoVXuUOzKx5d3xPL3YsEHevh4PIO6QIt/mg/nRX1XQ6cvxQEiAjO/BJQm+/MVl7/VbuGBoTFjr0tPU6NQ==}
+    dev: false
+
+  /@ariakit/react-core@0.3.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-w6P1A7TYb1fKUe9QbwaoTOWofl13g7TEuXdV4JyefJCQL1e9HQdEw9UL67I8aXRo8/cFHH94/z0N37t8hw5Ogg==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@ariakit/core': 0.3.10
+      '@floating-ui/dom': 1.2.7
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@ariakit/react@0.3.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-HxKMZZhWSkwwS/Sh9OdWyuNKQ2tjDAIQIy2KVI7IRa8ZQ6ze/4g3YLUHbfCxO7oDupXHfXaeZ4hWx8lP7l1U/g==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@ariakit/react-core': 0.3.12(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@aw-web-design/x-default-browser@1.4.88:
     resolution: {integrity: sha512-AkEmF0wcwYC2QkhK703Y83fxWARttIWXDmQN8+cof8FmFZ5BRhnNXGymeb1S73bOCLfWjYELxtujL56idCN/XA==}
@@ -11260,6 +11294,14 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
