@@ -44,18 +44,6 @@ export default {
         defaultValue: { summary: "right" },
       },
     },
-    // accessibilityLabel,
-    // delay = 0,
-    // children,
-    // content,
-    // strategy: {
-    //   control: { type: "select" },
-    //   options: ["absolute", "fixed"],
-    //   defaultValue: "absolute",
-    //   table: {
-    //     defaultValue: { summary: "absolute" },
-    //   },
-    // },
     children: {
       control: { type: "text" },
       description: "The string value to show for tooltip trigger (can also be a ReactElement)",
@@ -104,7 +92,7 @@ export const AddContextToLabel: StoryObj<typeof Tooltip> = {
 export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
   args: {
     placement: "top-end",
-    children: "some text",
+    children: <InfoOutlinedIcon />,
     content: (
       <Box maxWidth='400px' display="flex" direction="column" gap={2}>
         <Typography
@@ -143,13 +131,13 @@ export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
 export const FocusedInParagraph: StoryObj<typeof Tooltip> = {
   args: {
     placement: "top-end",
-    children: "some text",
+    children: <InfoOutlinedIcon fontSize="inherit" />,
     content: "Focused tooltip content"
   },
   render: (props) => (
     <Typography>
-      This tooltip content is inline
-      <Tooltip {...props} initialOpen />
+      This tooltip content is inline{' '}
+      <Tooltip {...props} initialOpen />{' '}
       and also within a paragraph.
     </Typography>
   )
@@ -162,21 +150,24 @@ export const MultipleTooltipsStacked: StoryObj<typeof Tooltip> = {
   render: ({ content }) => (
     <>
       <div>
+        <Typography>Label 1 </Typography>
         <Tooltip
           content={content}
           initialOpen
         >
-          Label 1
+          <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
       <div>
+        <Typography>Label 2 </Typography>
         <Tooltip content={content}>
-          Label 2
+          <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
       <div>
+        <Typography>Label 3 </Typography>
         <Tooltip content={content}>
-          Label 3
+          <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
     </>
