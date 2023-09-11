@@ -96,7 +96,7 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
         fitViewport
         className={styles.content}
         // ensures focusable items in popover are tab-able
-        // preserveTabOrder
+        preserveTabOrder
         // tabIndex={0}
         // first thing screen reader reads
         // e.g. "<this was the label prop>, dialog, 4 items..."
@@ -109,7 +109,7 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
             padding={7}
             position="relative"
             width="100%"
-            height="var(--popover-available-height, 100%)"
+            maxHeight="var(--popover-available-height, 100%)"
             dangerouslySetInlineStyle={{ __style: { overflowY: 'auto' } }}
           >
             <Typography inline size={100} color="inherit">
