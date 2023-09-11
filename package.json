@@ -6,7 +6,7 @@
     "changeset": "changeset",
     "clean": "turbo run clean && rm -rf node_modules",
     "dev": "turbo run dev --no-cache --continue",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "lint": "turbo run lint",
     "release": "turbo run build && changeset publish && pnpm install --no-frozen-lockfile",
     "stylelint": "turbo run stylelint",
