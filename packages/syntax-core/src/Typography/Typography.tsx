@@ -115,7 +115,8 @@ const Typography = ({
    */
   weight?: "regular" | "interactive" | "semiBold" | "bold" | "heavy";
 }): ReactElement => {
-  const Tag = as ?? inline ? "span" : "div";
+  const defaultTag = inline ? "span" : "div";
+  const Tag = as ? as : defaultTag;
 
   return (
     <Tag
