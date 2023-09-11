@@ -1,7 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import Popover from "./Popover";
 import userEvent from "@testing-library/user-event";
-import { Box } from "@cambly/syntax-core";
+import { Box } from "../../../syntax-core/src";
 
 // class ResizeObserver {
 //   observe() {
