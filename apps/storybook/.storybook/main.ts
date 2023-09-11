@@ -8,16 +8,18 @@ const config: StorybookConfig = {
   // (this happens because syntax-floating components has a dependency on syntax-core + pnpm linking behavior for workspace management)
   //
   // see: https://github.com/storybookjs/storybook/issues/19446#issuecomment-1276067149
-  stories: globby.sync([
-    "../stories/Introduction.stories.mdx",
-    "../stories/*.stories.mdx",
-    "../../../packages/**/*.stories.tsx",
-    // globby allows negating patterns. specifically exclude stories from this workspace duplicate matched through node_modules
-    "!../../../packages/**/node_modules"
-  ],
-  {
-    cwd: __dirname,
-  }),
+  stories: globby.sync(
+    [
+      "../stories/Introduction.stories.mdx",
+      "../stories/*.stories.mdx",
+      "../../../packages/**/*.stories.tsx",
+      // globby allows negating patterns. specifically exclude stories from this workspace duplicate matched through node_modules
+      "!../../../packages/**/node_modules",
+    ],
+    {
+      cwd: __dirname,
+    },
+  ),
   addons: [
     {
       name: "@storybook/addon-essentials",
