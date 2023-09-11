@@ -1,26 +1,6 @@
 import { type PopoverStore } from "@ariakit/react";
-import { type FocusEventHandler, type FocusEvent, useCallback } from "react";
-
-
-// TODO: share with the bit in syntax-core focus-trap
-const INTERACTIVE_ELEMENT_SELECTORS = [
-  "a[href]",
-  "area[href]",
-  "input:not([disabled]):not([type=\"hidden\"])",
-  "select:not([disabled])",
-  "textarea:not([disabled])",
-  "button:not([disabled])",
-  "iframe",
-  "object",
-  "embed",
-  '[tabindex="0"]',
-  "[contenteditable]",
-  "audio[controls]",
-  "video[controls]",
-  "summary",
-  "[tabindex]:not([tabindex=\"-1\"])"
-].join(",");
-
+import { getFirstTabbableIn } from "@ariakit/core/utils/focus";
+import { type FocusEventHandler, type FocusEvent, useCallback, useRef, useEffect } from "react";
 
 type OnFocusHandler = FocusEventHandler<HTMLElement>;
 
@@ -29,7 +9,8 @@ export default function useForwardFocus(
   options?: { onFocus?: OnFocusHandler
 }): OnFocusHandler {
   const onFocusProp = options?.onFocus;
-
+  const anchorRef = useRef<HTMLElement | null>(null);
+  const anchorElement = store.useState("anchorElement");
   // transfer focus to child element if it is focusable
   //
   // if there is a focusable child in the trigger children,
@@ -40,19 +21,28 @@ export default function useForwardFocus(
   const forwardFocusToInteractiveChild = useCallback((evt: FocusEvent<HTMLElement>) => {
     // only operate on focus events for the tooltip anchor directly, not focus events bubbling up from children
     if (evt.currentTarget !== evt.target) return;
-    // hold reference to actual anchor element
-    // anchorRef.current = evt.currentTarget;
+    anchorRef.current = evt.currentTarget;
     // try to find the first focusable child element if it exists
-    const childToFocus = evt.currentTarget.querySelector<HTMLElement>(INTERACTIVE_ELEMENT_SELECTORS)
-    if (!childToFocus) return;
+    const focusableChild = getFirstTabbableIn(evt.currentTarget, false, true);
+    if (!focusableChild) return;
+    store.setAnchorElement(focusableChild);
+  }, [store]);
+
+  useEffect(() => {
+    if (!anchorRef.current || !anchorElement || anchorElement === anchorRef.current) return;
     // ariakit Tooltip uses html data attr to determine if mouse moves closes the tooltip or not
     // adding this to forward-focused child prevents tooltip from disappearing on mousemove while child is focused
-    childToFocus.setAttribute('data-focus-visible', 'true');
-    // update the anchor element in the tooltip store to this interactive child element
-    store.setAnchorElement(childToFocus);
+    anchorElement.setAttribute('data-focus-visible', 'true');
     // transfer focus to the child element
-    childToFocus.focus();
-  }, [store]);
+    anchorElement.focus();
+    // cleanup data attr when focus leaves the anchor element
+    const onBlur = () => {
+      anchorElement.removeEventListener('blur', onBlur);
+      anchorElement.removeAttribute('data-focus-visible');
+    };
+    anchorElement.addEventListener('blur', onBlur);
+    return () => onBlur();
+  }, [anchorElement]);
 
   return useCallback((evt: FocusEvent<HTMLElement>) => {
     onFocusProp?.(evt);
