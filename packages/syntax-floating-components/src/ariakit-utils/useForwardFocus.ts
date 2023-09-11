@@ -21,11 +21,13 @@ export default function useForwardFocus(
   const forwardFocusToInteractiveChild = useCallback((evt: FocusEvent<HTMLElement>) => {
     // only operate on focus events for the tooltip anchor directly, not focus events bubbling up from children
     if (evt.currentTarget !== evt.target) return;
-    anchorRef.current = evt.currentTarget;
     // try to find the first focusable child element if it exists
     const focusableChild = getFirstTabbableIn(evt.currentTarget, false, true);
     if (!focusableChild) return;
+    anchorRef.current = evt.currentTarget;
     store.setAnchorElement(focusableChild);
+    // transfer focus to the child element
+    focusableChild.focus();
   }, [store]);
 
   useEffect(() => {
@@ -33,8 +35,6 @@ export default function useForwardFocus(
     // ariakit Tooltip uses html data attr to determine if mouse moves closes the tooltip or not
     // adding this to forward-focused child prevents tooltip from disappearing on mousemove while child is focused
     anchorElement.setAttribute('data-focus-visible', 'true');
-    // transfer focus to the child element
-    anchorElement.focus();
     // cleanup data attr when focus leaves the anchor element
     const onBlur = () => {
       anchorElement.removeEventListener('blur', onBlur);
