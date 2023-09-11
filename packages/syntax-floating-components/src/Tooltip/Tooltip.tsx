@@ -1,12 +1,12 @@
 import React, { type ReactNode, forwardRef, type ReactElement, useEffect } from "react";
 import { Typography } from "@cambly/syntax-core";
 import styles from "./Tooltip.module.css";
-
 import {
   useTooltipStore,
   Tooltip as AriakitTooltip,
   TooltipAnchor,
   TooltipArrow,
+  type TooltipStoreProps,
 } from '@ariakit/react';
 import useChangeContentVisibility from "../ariakit-utils/useChangeContentVisibility";
 import useForwardFocus from "../ariakit-utils/useForwardFocus";
@@ -36,7 +36,7 @@ type TooltipProps = {
    * Location of the tooltip content relative to anchor element
    * @defaultValue "top-start"
    */
-  placement?: "top" | "bottom" | "top-start" | "top-end" | "bottom-start" | "bottom-end";
+  placement?: TooltipStoreProps["placement"];
 }
 
 /**
@@ -89,14 +89,16 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
     store.setOpen(open);
   }, [open, store]);
 
+  const anchorNode = typeof children === 'string' ? <Typography color="inherit">{children}</Typography> : children;
+
   return (
     <>
       <TooltipAnchor store={store} ref={ref}
         className={styles.trigger}
         onFocus={forwardAnchorFocusToInteractiveChild}
       >
-        {typeof children === 'string' ? <Typography color="inherit">{children}</Typography> : children}
-      </TooltipAnchor>
+        {anchorNode}
+      </TooltipAnchor >
       <AriakitTooltip store={store}
         gutter={4}
         overflowPadding={4}

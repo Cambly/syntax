@@ -1,3 +1,4 @@
+/* TODO: clean this up, and try to get as much of the visual styling as possible through Box usage in the tsx. */
 .tooltipContent {
   display: flex;
   flex-direction: column;
