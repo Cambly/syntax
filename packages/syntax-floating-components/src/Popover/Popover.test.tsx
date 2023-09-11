@@ -1,21 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import Popover from "./Popover";
 import userEvent from "@testing-library/user-event";
-import { Box } from "../../../syntax-core/src";
-
-// class ResizeObserver {
-//   observe() {
-//     // do nothing
-//   }
-//   unobserve() {
-//     // do nothing
-//   }
-//   disconnect() {
-//     // do nothing
-//   }
-// }
-
-// window.ResizeObserver = ResizeObserver;
+import { Box } from "@cambly/syntax-core";
 
 describe("popover", () => {
   it("renders successfully", () => {
