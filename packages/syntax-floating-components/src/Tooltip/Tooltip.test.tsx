@@ -99,7 +99,14 @@ describe("tooltip", () => {
 
   it("allows tab focus on content inside the tooltip when content is visible from tab-focus", async () => {
     render(
-      <Tooltip content={<>I am some content and <button data-testid="content-button">I am a button</button></>}>
+      <Tooltip
+        content={
+          <>
+            I am some content and{" "}
+            <button data-testid="content-button">I am a button</button>
+          </>
+        }
+      >
         <button data-testid="trigger">My trigger</button>
       </Tooltip>,
     );

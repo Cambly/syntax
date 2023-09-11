@@ -11,6 +11,7 @@ import {
   Tooltip as AriakitTooltip,
   TooltipAnchor,
   TooltipArrow,
+  type TooltipStoreProps,
 } from "@ariakit/react";
 import useChangeContentVisibility from "../ariakit-utils/useChangeContentVisibility";
 import useForwardFocus from "../ariakit-utils/useForwardFocus";
@@ -40,14 +41,7 @@ type TooltipProps = {
    * Location of the tooltip content relative to anchor element
    * @defaultValue "top-start"
    */
-  placement?:
-    | "top"
-    | "bottom"
-    | "top-start"
-    | "top-end"
-    | "bottom-start"
-    | "bottom-end";
-  // placement?: TooltipStoreProps["placement"];
+  placement?: TooltipStoreProps["placement"];
 };
 
 /**

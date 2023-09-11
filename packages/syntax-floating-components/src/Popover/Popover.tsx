@@ -1,4 +1,9 @@
-import React, { type ReactNode, forwardRef, type ReactElement, useEffect } from "react";
+import React, {
+  type ReactNode,
+  forwardRef,
+  type ReactElement,
+  useEffect,
+} from "react";
 import { Box, Typography } from "@cambly/syntax-core";
 import styles from "./Popover.module.css";
 import {
@@ -7,7 +12,7 @@ import {
   PopoverDisclosure,
   PopoverArrow,
   type PopoverStoreProps,
-} from '@ariakit/react';
+} from "@ariakit/react";
 import useForwardFocus from "../ariakit-utils/useForwardFocus";
 import useChangeContentVisibility from "../ariakit-utils/useChangeContentVisibility";
 
@@ -34,7 +39,7 @@ type PopoverProps = {
    * @defaultValue "top-start"
    */
   placement?: PopoverStoreProps["placement"];
-}
+};
 
 /**
  * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-popover--docs) displays contextual information on hover or focus.
@@ -57,7 +62,10 @@ type PopoverProps = {
   </Popover>
  ```
  */
-export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: PopoverProps, ref): ReactElement {
+export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(
+  props: PopoverProps,
+  ref,
+): ReactElement {
   const {
     accessibilityLabel,
     children,
@@ -84,13 +92,20 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
     store.setOpen(open);
   }, [open, store]);
 
-  const anchorNode = typeof children === 'string' ? <Typography color="inherit">{children}</Typography> : children
+  const anchorNode =
+    typeof children === "string" ? (
+      <Typography color="inherit">{children}</Typography>
+    ) : (
+      children
+    );
   const modal = !anchorNode || modalProp;
 
   return (
     <>
       {anchorNode && (
-        <PopoverDisclosure store={store} ref={ref}
+        <PopoverDisclosure
+          store={store}
+          ref={ref}
           as="span"
           className={styles.trigger}
           onFocus={forwardAnchorFocusToInteractiveChild}
@@ -98,7 +113,8 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
           {anchorNode}
         </PopoverDisclosure>
       )}
-      <AriakitPopover store={store}
+      <AriakitPopover
+        store={store}
         // first thing screen reader reads
         // e.g. "<this was the label prop>, dialog, 4 items..."
         aria-label={accessibilityLabel}
@@ -112,7 +128,7 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
         preserveTabOrder
         tabIndex={0}
 
-      // ariakit sets role
+        // ariakit sets role
       >
         <>
           <Box
@@ -125,14 +141,15 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
             alignItems="center"
           >
             {!modal && <PopoverArrow />}
-            <Box padding={7}
+            <Box
+              padding={7}
               maxHeight="var(--popover-available-height, 100%)"
               dangerouslySetInlineStyle={{
                 __style: {
                   // TODO: (syntax-core/Box): Box should take elevation prop and so should popover
                   boxShadow: "var(--elevation-400)",
-                  overflowY: 'auto',
-                }
+                  overflowY: "auto",
+                },
               }}
             >
               <Typography inline size={100} color="inherit">
@@ -141,7 +158,7 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(props: 
             </Box>
           </Box>
         </>
-      </AriakitPopover >
+      </AriakitPopover>
     </>
   );
-})
+});

@@ -20,7 +20,7 @@ import { Box } from "@cambly/syntax-core";
 describe("popover", () => {
   it("renders successfully", () => {
     render(
-      <Popover content={(<div data-testid="content">My Popover</div>)}>
+      <Popover content={<div data-testid="content">My Popover</div>}>
         <button data-testid="trigger">popover trigger</button>
       </Popover>,
     );
@@ -31,7 +31,7 @@ describe("popover", () => {
 
   it("renders popover dialogue on trigger click", async () => {
     render(
-      <Popover content={(<div data-testid="content">My Popover</div>)}>
+      <Popover content={<div data-testid="content">My Popover</div>}>
         <button data-testid="trigger">popover trigger</button>
       </Popover>,
     );
@@ -46,7 +46,7 @@ describe("popover", () => {
 
   it("does not render popover dialogue on trigger focus", async () => {
     render(
-      <Popover content={(<div data-testid="content">My Popover</div>)}>
+      <Popover content={<div data-testid="content">My Popover</div>}>
         <button data-testid="trigger">popover trigger</button>
       </Popover>,
     );
@@ -64,7 +64,7 @@ describe("popover", () => {
 
   it("does not render popover dialogue on trigger hover", async () => {
     render(
-      <Popover content={(<div data-testid="content">My Popover</div>)}>
+      <Popover content={<div data-testid="content">My Popover</div>}>
         <button data-testid="trigger">popover trigger</button>
       </Popover>,
     );
@@ -80,15 +80,13 @@ describe("popover", () => {
 
   it("renders popover width correctly", async () => {
     render(
-      <Popover content={(
-        <Box
-          maxWidth="400px"
-          width="100%"
-          data-testid="content"
-        >
-          My Popover
-        </Box>
-      )}>
+      <Popover
+        content={
+          <Box maxWidth="400px" width="100%" data-testid="content">
+            My Popover
+          </Box>
+        }
+      >
         <button data-testid="trigger">popover trigger</button>
       </Popover>,
     );
