@@ -8,8 +8,8 @@ import {
   TooltipAnchor,
   TooltipArrow,
 } from '@ariakit/react';
-import useForwardFocus from "../ariakit-utils/useForwardFocus";
 import useChangeContentVisibility from "../ariakit-utils/useChangeContentVisibility";
+import useForwardFocus from "../ariakit-utils/useForwardFocus";
 
 type TooltipProps = {
   /**
@@ -73,31 +73,31 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
     placement = "top-start",
   } = props;
 
-  const tooltip = useTooltipStore({
+  const store = useTooltipStore({
     defaultOpen: initialOpen,
     placement,
     showTimeout: delay,
   });
 
   // For Analytics and Control:
-  useChangeContentVisibility(tooltip, onChangeContentVisibility);
+  useChangeContentVisibility(store, onChangeContentVisibility);
   // transfer focus to child element if it is focusable. Wire into onFocus on Tooltip Anchor
-  const forwardAnchorFocusToInteractiveChild = useForwardFocus(tooltip);
+  const forwardAnchorFocusToInteractiveChild = useForwardFocus(store);
   // allow external control of open state via `open` prop
   useEffect(() => {
     if (open === undefined) return;
-    tooltip.setOpen(open);
-  }, [open, tooltip]);
+    store.setOpen(open);
+  }, [open, store]);
 
   return (
     <>
-      <TooltipAnchor store={tooltip} ref={ref}
+      <TooltipAnchor store={store} ref={ref}
         className={styles.trigger}
         onFocus={forwardAnchorFocusToInteractiveChild}
       >
         {typeof children === 'string' ? <Typography color="inherit">{children}</Typography> : children}
       </TooltipAnchor>
-      <AriakitTooltip store={tooltip}
+      <AriakitTooltip store={store}
         gutter={4}
         overflowPadding={4}
         fitViewport
