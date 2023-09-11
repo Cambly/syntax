@@ -8,7 +8,7 @@
   max-height: 100%;
   background-color: var(--color-base-white);
   color: var(--color-base-white);
-  border: 1px solid var(--transparent-gray-10, rgba(203, 203, 203, 0.50));
+  border: 1px solid var(--transparent-gray-10, rgba(203, 203, 203, 0.5));
   border-radius: 8px;
 }
 
