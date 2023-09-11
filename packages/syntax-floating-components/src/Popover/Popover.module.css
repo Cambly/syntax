@@ -1,6 +1,40 @@
-.popoverContent {
+/* .popoverContent {
   box-sizing: border-box;
   background-color: var(--color-base-white);
   padding: 28px;
   border-radius: 24px;
+} */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 100%;
+
+  /* background-color: var(--color-base-gray-900); */
+  background-color: var(--color-base-white);
+
+  /* color: var(--color-base-white); */
+
+  /* border: 1px solid var(--color-base-gray-900); */
+
+  border: 1px solid var(--transparent-gray-10, rgba(203, 203, 203, 0.50));
+
+  /* padding: 8px 12px; */
+
+  border-radius: 8px;
+
+  /* max-width: 240px; */
+}
+
+.trigger {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.trigger:focus,
+.content:focus {
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
 }
