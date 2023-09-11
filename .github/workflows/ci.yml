@@ -58,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - run: cd packages/syntax-design-tokens && pnpm run build
+      - run: pnpm run build
         env:
           NODE_OPTIONS: --max-old-space-size=8192
       - run: pnpm run test
