@@ -1,4 +1,9 @@
-import React, { type ReactNode, forwardRef, type ReactElement, useEffect } from "react";
+import React, {
+  type ReactNode,
+  forwardRef,
+  type ReactElement,
+  useEffect,
+} from "react";
 import { Typography } from "@cambly/syntax-core";
 import styles from "./Tooltip.module.css";
 import {
@@ -7,7 +12,7 @@ import {
   TooltipAnchor,
   TooltipArrow,
   type TooltipStoreProps,
-} from '@ariakit/react';
+} from "@ariakit/react";
 import useChangeContentVisibility from "../ariakit-utils/useChangeContentVisibility";
 import useForwardFocus from "../ariakit-utils/useForwardFocus";
 
@@ -37,7 +42,7 @@ type TooltipProps = {
    * @defaultValue "top-start"
    */
   placement?: TooltipStoreProps["placement"];
-}
+};
 
 /**
  * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
@@ -61,7 +66,10 @@ type TooltipProps = {
   </Tooltip>
  ```
  */
-const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(props: TooltipProps, ref): ReactElement {
+const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
+  props: TooltipProps,
+  ref,
+): ReactElement {
   const {
     accessibilityLabel,
     delay = 0,
@@ -89,17 +97,25 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
     store.setOpen(open);
   }, [open, store]);
 
-  const anchorNode = typeof children === 'string' ? <Typography color="inherit">{children}</Typography> : children;
+  const anchorNode =
+    typeof children === "string" ? (
+      <Typography color="inherit">{children}</Typography>
+    ) : (
+      children
+    );
 
   return (
     <>
-      <TooltipAnchor store={store} ref={ref}
+      <TooltipAnchor
+        store={store}
+        ref={ref}
         className={styles.trigger}
         onFocus={forwardAnchorFocusToInteractiveChild}
       >
         {anchorNode}
-      </TooltipAnchor >
-      <AriakitTooltip store={store}
+      </TooltipAnchor>
+      <AriakitTooltip
+        store={store}
         gutter={4}
         overflowPadding={4}
         fitViewport
@@ -109,15 +125,15 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
         // first thing screen reader reads
         // e.g. "<this was the label prop>, dialog, 4 items..."
         aria-label={accessibilityLabel}
-      // ariakit sets role
+        // ariakit sets role
       >
         <TooltipArrow className="" />
         <Typography inline size={100} color="inherit">
           {content}
         </Typography>
-      </AriakitTooltip >
+      </AriakitTooltip>
     </>
   );
-})
+});
 
 export default Tooltip;
