@@ -6,6 +6,19 @@ import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Tooltip from "../Tooltip/Tooltip";
 
+const ContentWithTooltips = () => (
+  <Box width="100%" maxWidth="400px" display="flex" direction="column" gap={2}>
+    <Typography transform="uppercase" color="gray700" size={100}>
+      Weekly Plan <Tooltip content="Save more by subscribing to our monthly or yearly plans!"><InfoOutlinedIcon fontSize="inherit" /></Tooltip>
+    </Typography>
+    <Typography weight="bold" size={500}>
+      30 Minutes x 2 <Tooltip content="One 30 minute or two 15 minute lessons, twice per week"><InfoOutlinedIcon fontSize="inherit" /></Tooltip>
+    </Typography>
+    <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes</Typography>
+    <Button text="Change Plan" color="secondary" fullWidth />
+  </Box>
+)
+
 export default {
   title: "Floating-Components/Popover",
   component: Popover,
@@ -83,18 +96,7 @@ export const Default: StoryObj<typeof Popover> = {
         size="lg"
       />
     ),
-    content: (
-      <Box width="100%" display="flex" direction="column" gap={2}>
-        <Typography transform="uppercase" color="gray700" size={100}>
-          Weekly Plan
-        </Typography>
-        <Typography weight="bold" size={500}>
-          30 Minutes x 2
-        </Typography>
-        <Typography>Daily maximum of 30 minutes</Typography>
-        <Button text="Change Plan" color="secondary" fullWidth />
-      </Box>
-    ),
+    content: <ContentWithTooltips />,
   },
   render: ({ placement, initialOpen, content, children }) => (
     <div style={{ margin: "240px" }}>
@@ -111,6 +113,7 @@ export const Default: StoryObj<typeof Popover> = {
 
 export const ControlledPopover = (): ReactElement => {
   const [open, setOpen] = useState(false);
+  const [openChildless, setOpenChildless] = useState(false);
   const scrollableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -141,47 +144,52 @@ export const ControlledPopover = (): ReactElement => {
             open={open}
             placement="bottom"
             onChangeContentVisibility={(visible) => setOpen(visible)}
-            content={(
-              <Box maxWidth="700px" width="100%">
-                <Box width="100%" display="flex" direction="column" gap={2}>
-                  <Typography transform="uppercase" color="gray700" size={100}>
-                    Weekly Plan
-                  </Typography>
-                  <Typography weight="bold" size={500}>
-                    30 Minutes x 2
-                  </Typography>
-                  <Typography>Daily maximum of 30 minutes</Typography>
-                  <Button text="Change Plan" color="secondary" fullWidth />
-                </Box>
-              </Box>
-            )}
+            content={<ContentWithTooltips />}
           >
             <Button text="Internal trigger" />
           </Popover>
         </Box>
       </div >
+      <Popover
+        open={openChildless}
+        placement="bottom"
+        onChangeContentVisibility={(visible) => setOpen(visible)}
+        content={
+          <Box maxWidth={400} display="flex" direction="column" gap={3}>
+            <ContentWithTooltips />
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+            <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+          </Box>
+        }
+      />
       <Button
         text="External trigger"
         onClick={() => setOpen((v) => !v)}
+      />
+      <Button
+        text="External trigger for popover with no children"
+        onClick={() => setOpenChildless((v) => !v)}
       />
     </>
   );
 };
 
-export const ContentHasTooltips = ({ placement }): ReactElement => (
+export const ContentWhenLong = (): ReactElement => (
   <Popover
-    placement={placement}
-    initialOpen
+    placement="right"
+    modal
     content={(
-      <Box width="100%" maxWidth="400px" display="flex" direction="column" gap={2}>
-        <Typography transform="uppercase" color="gray700" size={100}>
-          Weekly Plan <Tooltip content="Save more by subscribing to our monthly or yearly plans!"><InfoOutlinedIcon fontSize="inherit" /></Tooltip>
-        </Typography>
-        <Typography weight="bold" size={500}>
-          30 Minutes x 2 <Tooltip content="One 30 minute or two 15 minute lessons, twice per week"><InfoOutlinedIcon fontSize="inherit" /></Tooltip>
-        </Typography>
-        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes</Typography>
-        <Button text="Change Plan" color="secondary" fullWidth />
+      <Box maxWidth={400} display="flex" direction="column" gap={3}>
+        <ContentWithTooltips />
+        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+        <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
         <Typography tooltip="This is a tooltip">Daily maximum of 30 minutes. And a lot of really long text.     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
       </Box>
     )}

@@ -6,7 +6,6 @@ import React, {
 } from "react";
 import { Typography } from "@cambly/syntax-core";
 import styles from "./Tooltip.module.css";
-
 import {
   useTooltipStore,
   Tooltip as AriakitTooltip,
@@ -48,6 +47,7 @@ type TooltipProps = {
     | "top-end"
     | "bottom-start"
     | "bottom-end";
+  // placement?: TooltipStoreProps["placement"];
 };
 
 /**
@@ -103,6 +103,13 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
     store.setOpen(open);
   }, [open, store]);
 
+  const anchorNode =
+    typeof children === "string" ? (
+      <Typography color="inherit">{children}</Typography>
+    ) : (
+      children
+    );
+
   return (
     <>
       <TooltipAnchor
@@ -111,11 +118,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
         className={styles.trigger}
         onFocus={forwardAnchorFocusToInteractiveChild}
       >
-        {typeof children === "string" ? (
-          <Typography color="inherit">{children}</Typography>
-        ) : (
-          children
-        )}
+        {anchorNode}
       </TooltipAnchor>
       <AriakitTooltip
         store={store}
