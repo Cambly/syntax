@@ -1,3 +1,4 @@
+import { join } from path;
 import spawn from "cross-spawn";
 import fse from "fs-extra";
 import { build } from "tsup";
@@ -37,7 +38,12 @@ spawn.sync(
   [
     "--emitDeclarationOnly",
     "--project",
-    "tsconfig.build.json",
+    // This file and the other files in the scripts folder were copied
+    // verbatim from the ariakit repo. The only change to the build
+    // script that was necessary to get a minimal build was the tsconfig file
+    // "tsconfig.build.json", // old version, starting point:
+    // https://github.com/ariakit/ariakit/blob/main/scripts/build/build.js
+    "tsconfig.json",
     "--noEmit",
     "false",
     "--outDir",

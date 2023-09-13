@@ -9,4 +9,5 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "target": "es6"
   }
+
 }
