@@ -125,7 +125,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function SyntaxTooltip(
         // first thing screen reader reads
         // e.g. "<this was the label prop>, dialog, 4 items..."
         aria-label={accessibilityLabel}
-        // ariakit sets role
+      // ariakit sets role
       >
         <TooltipArrow className="" />
         <Typography inline size={100} color="inherit">

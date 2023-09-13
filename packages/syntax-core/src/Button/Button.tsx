@@ -1,4 +1,6 @@
-import React, { forwardRef } from "react";
+import React, {
+  forwardRef,
+} from "react";
 import classNames from "classnames";
 
 import backgroundColor from "../colors//backgroundColor";
@@ -33,15 +35,15 @@ type ButtonProps = {
    * @defaultValue "primary"
    */
   color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "destructive-primary"
-    | "destructive-secondary"
-    | "destructive-tertiary"
-    | "branded"
-    | "success"
-    | "inverse";
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "destructive-primary"
+  | "destructive-secondary"
+  | "destructive-tertiary"
+  | "branded"
+  | "success"
+  | "inverse";
   /**
    * The size of the button
    *
@@ -116,6 +118,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       tooltip,
       type = "button",
+      ...ariaDomProps
     }: ButtonProps,
     ref,
   ) => {
@@ -123,6 +126,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
+        {...ariaDomProps}
         data-testid={dataTestId}
         ref={ref}
         aria-label={accessibilityLabel}
