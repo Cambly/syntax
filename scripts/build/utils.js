@@ -93,6 +93,10 @@ export function getSourceDir() {
   return "src";
 }
 
+export function getDistDir() {
+  return "dist";
+}
+
 export function getESMDir() {
   return "esm";
 }
@@ -106,6 +110,13 @@ export function getCJSDir() {
  */
 export function getSourcePath(rootPath) {
   return join(rootPath, getSourceDir());
+}
+
+/**
+ * @param {string} rootPath
+ */
+export function getDistPath(rootPath) {
+  return join(rootPath, getDistDir());
 }
 
 /**

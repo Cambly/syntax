@@ -1,0 +1,25 @@
+# Automatically generated
+/Avatar
+/Badge
+/Box
+/Button
+/ButtonGroup
+/Card
+/Checkbox
+/Chip
+/Divider
+/Heading
+/IconButton
+/LinkButton
+/MiniActionCard
+/Modal
+/RadioButton
+/SelectList
+/TextField
+/Typography
+/cjs
+/colors
+/constants
+/esm
+/useFocusVisible
+/useFocusVisible.test

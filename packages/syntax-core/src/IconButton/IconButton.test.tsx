@@ -12,6 +12,7 @@ describe("iconButton", () => {
           /* empty */
         }}
         icon={Star}
+        accessibilityLabel="accessibility label is required"
       />,
     );
     expect(baseElement).toBeTruthy();
@@ -24,6 +25,7 @@ describe("iconButton", () => {
           /* empty */
         }}
         icon={Star}
+        accessibilityLabel="accessibility label is required"
       />,
     );
     const button = await screen.findAllByRole("button");
