@@ -1,5 +1,7 @@
 {
+  "name": "root",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "pnpm run dev",
     "build": "turbo run build",
@@ -26,6 +28,7 @@
     "glob": "10.3.10",
     "jsdom": "22.0.0",
     "prettier": "2.8.8",
+    "rimraf": "^5.0.1",
     "stylelint": "15.6.0",
     "stylelint-config-css-modules": "4.2.0",
     "stylelint-config-standard": "33.0.0",
