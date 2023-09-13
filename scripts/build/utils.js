@@ -98,11 +98,13 @@ export function getDistDir() {
 }
 
 export function getESMDir() {
-  return "esm";
+  // return "esm";
+  return join(getDistDir(), "esm");
 }
 
 export function getCJSDir() {
-  return "cjs";
+  // return "cjs";
+  return join(getDistDir(), "cjs");
 }
 
 /**

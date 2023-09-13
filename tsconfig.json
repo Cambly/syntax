@@ -25,12 +25,10 @@
     "noImplicitReturns": true,
     "stripInternal": true,
     "noUncheckedIndexedAccess": true,
-    "verbatimModuleSyntax": true,
 
   },
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ],
-  "exclude": ["node_modules", "website", "coverage"]
+  ]
 }
