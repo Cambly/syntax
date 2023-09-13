@@ -17,9 +17,8 @@
 /SelectList
 /TextField
 /Typography
-/cjs
 /colors
 /constants
-/esm
+/dist
 /useFocusVisible
 /useFocusVisible.test
