@@ -105,10 +105,11 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(
       {anchorNode && (
         <PopoverDisclosure
           store={store}
-          ref={ref}
-          as="span"
+          // ref={ref}
+          // as="span"
           className={styles.trigger}
-          onFocus={forwardAnchorFocusToInteractiveChild}
+          // onFocus={forwardAnchorFocusToInteractiveChild}
+          render={(<div ref={ref} />)}
         >
           {anchorNode}
         </PopoverDisclosure>
@@ -128,7 +129,7 @@ export default forwardRef<HTMLDivElement, PopoverProps>(function Popover(
         preserveTabOrder
         tabIndex={0}
 
-        // ariakit sets role
+      // ariakit sets role
       >
         <>
           <Box

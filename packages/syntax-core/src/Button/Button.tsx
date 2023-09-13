@@ -1,4 +1,9 @@
-import React, { forwardRef } from "react";
+import React, {
+  type AriaAttributes,
+  forwardRef,
+  type DOMAttributes,
+  type AriaRole,
+} from "react";
 import classNames from "classnames";
 
 import backgroundColor from "../colors//backgroundColor";
@@ -13,86 +18,89 @@ import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 
-type ButtonProps = {
-  /**
-   * Test id for the button
-   */
-  "data-testid"?: string;
-  /**
-   * The text to be displayed inside the button
-   */
-  text: string;
-  /**
-   * The text to be displayed inside the button when it is in a loading state
-   */
-  loadingText?: string;
-  /**
-   * The color of the button
-   *
-   * @defaultValue "primary"
-   */
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "destructive-primary"
-    | "destructive-secondary"
-    | "destructive-tertiary"
-    | "branded"
-    | "success";
-  /**
-   * The size of the button
-   *
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * @defaultValue "md"
-   */
-  size?: (typeof Size)[number];
-  /**
-   * The label to be used for accessibility
-   */
-  accessibilityLabel?: string;
-  /**
-   * If `true`, the button will be disabled
-   *
-   * @defaultValue false
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, the button will be in a loading state
-   *
-   * @defaultValue false
-   */
-  loading?: boolean;
-  /**
-   * If `true`, the button will take up the full width of its container
-   *
-   * @defaultValue false
-   */
-  fullWidth?: boolean;
-  /**
-   * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  startIcon?: React.ComponentType<{ className?: string }>;
-  /**
-   * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  endIcon?: React.ComponentType<{ className?: string }>;
-  /**
-   * The callback to be called when the button is clicked
-   */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  /**
-   * The tooltip to be displayed when the user hovers over the button
-   */
-  tooltip?: string;
-  /**
-   * The type you want to set for the primitive <button/>
-   */
-  type?: "button" | "submit" | "reset";
-};
+type ButtonProps = AriaAttributes &
+  DOMAttributes<HTMLButtonElement> & {
+    role?: AriaRole;
+  } & {
+    /**
+     * Test id for the button
+     */
+    "data-testid"?: string;
+    /**
+     * The text to be displayed inside the button
+     */
+    text: string;
+    /**
+     * The text to be displayed inside the button when it is in a loading state
+     */
+    loadingText?: string;
+    /**
+     * The color of the button
+     *
+     * @defaultValue "primary"
+     */
+    color?:
+      | "primary"
+      | "secondary"
+      | "tertiary"
+      | "destructive-primary"
+      | "destructive-secondary"
+      | "destructive-tertiary"
+      | "branded"
+      | "success";
+    /**
+     * The size of the button
+     *
+     * * `sm`: 32px
+     * * `md`: 40px
+     * * `lg`: 48px
+     *
+     * @defaultValue "md"
+     */
+    size?: (typeof Size)[number];
+    /**
+     * The label to be used for accessibility
+     */
+    accessibilityLabel?: string;
+    /**
+     * If `true`, the button will be disabled
+     *
+     * @defaultValue false
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the button will be in a loading state
+     *
+     * @defaultValue false
+     */
+    loading?: boolean;
+    /**
+     * If `true`, the button will take up the full width of its container
+     *
+     * @defaultValue false
+     */
+    fullWidth?: boolean;
+    /**
+     * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
+     */
+    startIcon?: React.ComponentType<{ className?: string }>;
+    /**
+     * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
+     */
+    endIcon?: React.ComponentType<{ className?: string }>;
+    /**
+     * The callback to be called when the button is clicked
+     */
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    /**
+     * The tooltip to be displayed when the user hovers over the button
+     */
+    tooltip?: string;
+    /**
+     * The type you want to set for the primitive <button/>
+     */
+    type?: "button" | "submit" | "reset";
+  };
 
 /**
  * [Button](https://cambly-syntax.vercel.app/?path=/docs/components-button--docs) is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
@@ -114,11 +122,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       tooltip,
       type = "button",
+      ...ariaDomProps
     }: ButtonProps,
     ref,
   ) => {
     return (
       <button
+        {...ariaDomProps}
         data-testid={dataTestId}
         ref={ref}
         aria-label={accessibilityLabel}
