@@ -227,6 +227,14 @@
   flex-direction: row;
 }
 
+.rowReverse {
+  flex-direction: row-reverse;
+}
+
+.columnReverse {
+  flex-direction: column-reverse;
+}
+
 /* Direction (small and up) */
 @media (min-width: 480px) {
   .columnSmall {
@@ -235,6 +243,14 @@
 
   .rowSmall {
     flex-direction: row;
+  }
+
+  .rowReverseSmall {
+    flex-direction: row-reverse;
+  }
+
+  .columnReverseSmall {
+    flex-direction: column-reverse;
   }
 }
 
@@ -246,6 +262,14 @@
 
   .rowLarge {
     flex-direction: row;
+  }
+
+  .rowReverseLarge {
+    flex-direction: row-reverse;
+  }
+
+  .columnReverseLarge {
+    flex-direction: column-reverse;
   }
 }
 
@@ -379,6 +403,55 @@
   .justifyContentevenlyLarge {
     justify-content: space-evenly;
   }
+}
+
+/* Overflow */
+.overflowXvisible {
+  overflow-x: visible;
+}
+
+.overflowXhidden {
+  overflow-x: hidden;
+}
+
+.overflowXscroll {
+  overflow-x: scroll;
+}
+
+.overflowXauto {
+  overflow-x: auto;
+}
+
+.overflowXinherit {
+  overflow-x: inherit;
+}
+
+.overflowXinitial {
+  overflow-x: initial;
+}
+
+.overflowYvisible {
+  overflow-y: visible;
+}
+
+.overflowYhidden {
+  overflow-y: hidden;
+}
+
+.overflowYscroll {
+  overflow-y: scroll;
+}
+
+.overflowYauto {
+  overflow-y: auto;
+}
+
+.overflowYinherit {
+  overflow-y: inherit;
+}
+
+.overflowYinitial {
+  overflow-y: initial;
 }
 
 /* Position */

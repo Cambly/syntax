@@ -22,7 +22,7 @@ type As =
   | "section"
   | "summary";
 type Dimension = number | string;
-type Direction = "row" | "column";
+type Direction = "row" | "column" | "rowReverse" | "columnReverse";
 type Display = "none" | "flex" | "block" | "inlineBlock" | "visuallyHidden";
 type Gap = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type JustifyContent =
@@ -60,6 +60,13 @@ type Margin =
   | 12
   | "auto";
 type Padding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type Overflow =
+  | "visible"
+  | "hidden"
+  | "scroll"
+  | "auto"
+  | "inherit"
+  | "initial";
 
 type BoxProps = {
   /**
@@ -265,6 +272,34 @@ type BoxProps = {
    */
   justifyContent?: JustifyContent;
   /**
+   * How box behaves when content does not fit in the box on the X axis.
+   *
+   * Responsive props:
+   * * `visible`
+   * * `hidden`
+   * * `scroll`
+   * * `auto`
+   * * `inherit`
+   * * `initial`
+   *
+   * @defaultValue "visible"
+   */
+  overflowX?: Overflow;
+  /**
+   * How box behaves when content does not fit in the box on the Y axis.
+   *
+   * Responsive props:
+   * * `visible`
+   * * `hidden`
+   * * `scroll`
+   * * `auto`
+   * * `inherit`
+   * * `initial`
+   *
+   * @defaultValue "visible"
+   */
+  overflowY?: Overflow;
+  /**
    * The padding of the box.
    *
    * Responsive props:
@@ -418,6 +453,9 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     lgMarginEnd,
     lgMarginStart,
     lgMarginTop,
+    // Overflow
+    overflowX,
+    overflowY,
     // Padding
     padding,
     paddingX,
@@ -525,6 +563,8 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
       rounding && rounding !== "none" && styles[`rounding${rounding}`],
+      overflowX && styles[`overflowX${overflowX}`],
+      overflowY && styles[`overflowY${overflowY}`],
     ),
     style: {
       height,
