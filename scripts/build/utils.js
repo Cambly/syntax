@@ -98,11 +98,11 @@ export function getDistDir() {
 }
 
 export function getESMDir() {
-  return "esm";
+  return join(getDistDir(), "esm");
 }
 
 export function getCJSDir() {
-  return "cjs";
+  return join(getDistDir(), "cjs");
 }
 
 /**
@@ -128,6 +128,17 @@ function normalizePath(filePath) {
 }
 
 /**
+ * Filters to catch test and story files and other patterns that should be ignored.
+ * @param {string} rootPath
+ * @param {string} filename
+ */
+function isOtherIgnoredPath(filepath) {
+  if(/\.test\./.test(filepath)) return true;
+  if(/\.stories\./.test(filepath)) return true;
+  return false;
+}
+
+/**
  * Filters out files starting with __
  * Includes directories and TS/JS files.
  * @param {string} rootPath
@@ -136,6 +147,7 @@ function normalizePath(filePath) {
 function isPublicModule(rootPath, filename) {
   const isPrivate = /^__/.test(filename);
   if (isPrivate) return false;
+  if (isOtherIgnoredPath(join(rootPath, filename))) return false;
   if (isDirectory(join(rootPath, filename))) return true;
   return /\.(j|t)sx?$/.test(filename);
 }
@@ -172,7 +184,7 @@ export function getPublicFiles(sourcePath, prefix = "") {
 export function getProxyFolders(rootPath) {
   const publicFiles = getPublicFiles(getSourcePath(rootPath));
   return Object.fromEntries(
-    Object.keys(publicFiles)
+      Object.keys(publicFiles)
       .map((name) => [name.replace(/\/index$/, ""), name])
       .filter(([name]) => name !== "index"),
   );
