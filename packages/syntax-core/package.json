@@ -3,9 +3,9 @@
   "description": "Cambly design system core components",
   "version": "9.7.0",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/cjs/index.d.ts",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
   "files": [
@@ -43,282 +43,75 @@
     "access": "public"
   },
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs"
-    },
-    "./useFocusVisible": {
-      "import": "./dist/esm/useFocusVisible.js",
-      "require": "./dist/cjs/useFocusVisible.cjs"
-    },
-    "./useFocusVisible.test": {
-      "import": "./dist/esm/useFocusVisible.test.js",
-      "require": "./dist/cjs/useFocusVisible.test.cjs"
-    },
-    "./constants": {
-      "import": "./dist/esm/constants.js",
-      "require": "./dist/cjs/constants.cjs"
-    },
-    "./colors/foregroundTypographyColor": {
-      "import": "./dist/esm/colors/foregroundTypographyColor.js",
-      "require": "./dist/cjs/colors/foregroundTypographyColor.cjs"
-    },
-    "./colors/foregroundColor": {
-      "import": "./dist/esm/colors/foregroundColor.js",
-      "require": "./dist/cjs/colors/foregroundColor.cjs"
-    },
-    "./colors/backgroundColor": {
-      "import": "./dist/esm/colors/backgroundColor.js",
-      "require": "./dist/cjs/colors/backgroundColor.cjs"
-    },
-    "./colors/allColors": {
-      "import": "./dist/esm/colors/allColors.js",
-      "require": "./dist/cjs/colors/allColors.cjs"
-    },
-    "./Typography/Typography": {
-      "import": "./dist/esm/Typography/Typography.js",
-      "require": "./dist/cjs/Typography/Typography.cjs"
-    },
-    "./Typography/Typography.test": {
-      "import": "./dist/esm/Typography/Typography.test.js",
-      "require": "./dist/cjs/Typography/Typography.test.cjs"
-    },
-    "./Typography/Typography.stories": {
-      "import": "./dist/esm/Typography/Typography.stories.js",
-      "require": "./dist/cjs/Typography/Typography.stories.cjs"
-    },
-    "./TextField/TextField": {
-      "import": "./dist/esm/TextField/TextField.js",
-      "require": "./dist/cjs/TextField/TextField.cjs"
-    },
-    "./TextField/TextField.test": {
-      "import": "./dist/esm/TextField/TextField.test.js",
-      "require": "./dist/cjs/TextField/TextField.test.cjs"
-    },
-    "./TextField/TextField.stories": {
-      "import": "./dist/esm/TextField/TextField.stories.js",
-      "require": "./dist/cjs/TextField/TextField.stories.cjs"
-    },
-    "./SelectList/SelectOption": {
-      "import": "./dist/esm/SelectList/SelectOption.js",
-      "require": "./dist/cjs/SelectList/SelectOption.cjs"
-    },
-    "./SelectList/SelectList": {
-      "import": "./dist/esm/SelectList/SelectList.js",
-      "require": "./dist/cjs/SelectList/SelectList.cjs"
-    },
-    "./SelectList/SelectList.test": {
-      "import": "./dist/esm/SelectList/SelectList.test.js",
-      "require": "./dist/cjs/SelectList/SelectList.test.cjs"
-    },
-    "./SelectList/SelectList.stories": {
-      "import": "./dist/esm/SelectList/SelectList.stories.js",
-      "require": "./dist/cjs/SelectList/SelectList.stories.cjs"
-    },
-    "./RadioButton/RadioButton": {
-      "import": "./dist/esm/RadioButton/RadioButton.js",
-      "require": "./dist/cjs/RadioButton/RadioButton.cjs"
-    },
-    "./RadioButton/RadioButton.test": {
-      "import": "./dist/esm/RadioButton/RadioButton.test.js",
-      "require": "./dist/cjs/RadioButton/RadioButton.test.cjs"
-    },
-    "./RadioButton/RadioButton.stories": {
-      "import": "./dist/esm/RadioButton/RadioButton.stories.js",
-      "require": "./dist/cjs/RadioButton/RadioButton.stories.cjs"
-    },
-    "./Modal/StopScroll": {
-      "import": "./dist/esm/Modal/StopScroll.js",
-      "require": "./dist/cjs/Modal/StopScroll.cjs"
-    },
-    "./Modal/Modal": {
-      "import": "./dist/esm/Modal/Modal.js",
-      "require": "./dist/cjs/Modal/Modal.cjs"
-    },
-    "./Modal/Modal.test": {
-      "import": "./dist/esm/Modal/Modal.test.js",
-      "require": "./dist/cjs/Modal/Modal.test.cjs"
-    },
-    "./Modal/Modal.stories": {
-      "import": "./dist/esm/Modal/Modal.stories.js",
-      "require": "./dist/cjs/Modal/Modal.stories.cjs"
-    },
-    "./Modal/Layer": {
-      "import": "./dist/esm/Modal/Layer.js",
-      "require": "./dist/cjs/Modal/Layer.cjs"
-    },
-    "./Modal/FocusTrap": {
-      "import": "./dist/esm/Modal/FocusTrap.js",
-      "require": "./dist/cjs/Modal/FocusTrap.cjs"
-    },
-    "./MiniActionCard/MiniActionCard": {
-      "import": "./dist/esm/MiniActionCard/MiniActionCard.js",
-      "require": "./dist/cjs/MiniActionCard/MiniActionCard.cjs"
-    },
-    "./MiniActionCard/MiniActionCard.test": {
-      "import": "./dist/esm/MiniActionCard/MiniActionCard.test.js",
-      "require": "./dist/cjs/MiniActionCard/MiniActionCard.test.cjs"
-    },
-    "./MiniActionCard/MiniActionCard.stories": {
-      "import": "./dist/esm/MiniActionCard/MiniActionCard.stories.js",
-      "require": "./dist/cjs/MiniActionCard/MiniActionCard.stories.cjs"
-    },
-    "./LinkButton/LinkButton": {
-      "import": "./dist/esm/LinkButton/LinkButton.js",
-      "require": "./dist/cjs/LinkButton/LinkButton.cjs"
-    },
-    "./LinkButton/LinkButton.test": {
-      "import": "./dist/esm/LinkButton/LinkButton.test.js",
-      "require": "./dist/cjs/LinkButton/LinkButton.test.cjs"
-    },
-    "./LinkButton/LinkButton.stories": {
-      "import": "./dist/esm/LinkButton/LinkButton.stories.js",
-      "require": "./dist/cjs/LinkButton/LinkButton.stories.cjs"
-    },
-    "./IconButton/IconButton": {
-      "import": "./dist/esm/IconButton/IconButton.js",
-      "require": "./dist/cjs/IconButton/IconButton.cjs"
-    },
-    "./IconButton/IconButton.test": {
-      "import": "./dist/esm/IconButton/IconButton.test.js",
-      "require": "./dist/cjs/IconButton/IconButton.test.cjs"
-    },
-    "./IconButton/IconButton.stories": {
-      "import": "./dist/esm/IconButton/IconButton.stories.js",
-      "require": "./dist/cjs/IconButton/IconButton.stories.cjs"
-    },
-    "./Heading/Heading": {
-      "import": "./dist/esm/Heading/Heading.js",
-      "require": "./dist/cjs/Heading/Heading.cjs"
-    },
-    "./Heading/Heading.test": {
-      "import": "./dist/esm/Heading/Heading.test.js",
-      "require": "./dist/cjs/Heading/Heading.test.cjs"
-    },
-    "./Heading/Heading.stories": {
-      "import": "./dist/esm/Heading/Heading.stories.js",
-      "require": "./dist/cjs/Heading/Heading.stories.cjs"
-    },
-    "./Divider/Divider": {
-      "import": "./dist/esm/Divider/Divider.js",
-      "require": "./dist/cjs/Divider/Divider.cjs"
-    },
-    "./Divider/Divider.test": {
-      "import": "./dist/esm/Divider/Divider.test.js",
-      "require": "./dist/cjs/Divider/Divider.test.cjs"
-    },
-    "./Divider/Divider.stories": {
-      "import": "./dist/esm/Divider/Divider.stories.js",
-      "require": "./dist/cjs/Divider/Divider.stories.cjs"
-    },
-    "./Chip/Chip": {
-      "import": "./dist/esm/Chip/Chip.js",
-      "require": "./dist/cjs/Chip/Chip.cjs"
-    },
-    "./Chip/Chip.test": {
-      "import": "./dist/esm/Chip/Chip.test.js",
-      "require": "./dist/cjs/Chip/Chip.test.cjs"
-    },
-    "./Chip/Chip.stories": {
-      "import": "./dist/esm/Chip/Chip.stories.js",
-      "require": "./dist/cjs/Chip/Chip.stories.cjs"
-    },
-    "./Checkbox/Checkbox": {
-      "import": "./dist/esm/Checkbox/Checkbox.js",
-      "require": "./dist/cjs/Checkbox/Checkbox.cjs"
-    },
-    "./Checkbox/Checkbox.test": {
-      "import": "./dist/esm/Checkbox/Checkbox.test.js",
-      "require": "./dist/cjs/Checkbox/Checkbox.test.cjs"
-    },
-    "./Checkbox/Checkbox.stories": {
-      "import": "./dist/esm/Checkbox/Checkbox.stories.js",
-      "require": "./dist/cjs/Checkbox/Checkbox.stories.cjs"
-    },
-    "./Card/Card": {
-      "import": "./dist/esm/Card/Card.js",
-      "require": "./dist/cjs/Card/Card.cjs"
-    },
-    "./Card/Card.test": {
-      "import": "./dist/esm/Card/Card.test.js",
-      "require": "./dist/cjs/Card/Card.test.cjs"
-    },
-    "./Card/Card.stories": {
-      "import": "./dist/esm/Card/Card.stories.js",
-      "require": "./dist/cjs/Card/Card.stories.cjs"
-    },
-    "./ButtonGroup/Buttongroup.stories": {
-      "import": "./dist/esm/ButtonGroup/Buttongroup.stories.js",
-      "require": "./dist/cjs/ButtonGroup/Buttongroup.stories.cjs"
-    },
-    "./ButtonGroup/ButtonGroup": {
-      "import": "./dist/esm/ButtonGroup/ButtonGroup.js",
-      "require": "./dist/cjs/ButtonGroup/ButtonGroup.cjs"
-    },
-    "./ButtonGroup/ButtonGroup.test": {
-      "import": "./dist/esm/ButtonGroup/ButtonGroup.test.js",
-      "require": "./dist/cjs/ButtonGroup/ButtonGroup.test.cjs"
-    },
-    "./Button/constants/textVariant": {
-      "import": "./dist/esm/Button/constants/textVariant.js",
-      "require": "./dist/cjs/Button/constants/textVariant.cjs"
-    },
-    "./Button/constants/loadingIconSize": {
-      "import": "./dist/esm/Button/constants/loadingIconSize.js",
-      "require": "./dist/cjs/Button/constants/loadingIconSize.cjs"
-    },
-    "./Button/constants/iconSize": {
-      "import": "./dist/esm/Button/constants/iconSize.js",
-      "require": "./dist/cjs/Button/constants/iconSize.cjs"
-    },
-    "./Button/Button": {
-      "import": "./dist/esm/Button/Button.js",
-      "require": "./dist/cjs/Button/Button.cjs"
-    },
-    "./Button/Button.test": {
-      "import": "./dist/esm/Button/Button.test.js",
-      "require": "./dist/cjs/Button/Button.test.cjs"
-    },
-    "./Button/Button.stories": {
-      "import": "./dist/esm/Button/Button.stories.js",
-      "require": "./dist/cjs/Button/Button.stories.cjs"
-    },
-    "./Box/Box": {
-      "import": "./dist/esm/Box/Box.js",
-      "require": "./dist/cjs/Box/Box.cjs"
-    },
-    "./Box/Box.test": {
-      "import": "./dist/esm/Box/Box.test.js",
-      "require": "./dist/cjs/Box/Box.test.cjs"
-    },
-    "./Box/Box.stories": {
-      "import": "./dist/esm/Box/Box.stories.js",
-      "require": "./dist/cjs/Box/Box.stories.cjs"
-    },
-    "./Badge/Badge": {
-      "import": "./dist/esm/Badge/Badge.js",
-      "require": "./dist/cjs/Badge/Badge.cjs"
-    },
-    "./Badge/Badge.test": {
-      "import": "./dist/esm/Badge/Badge.test.js",
-      "require": "./dist/cjs/Badge/Badge.test.cjs"
-    },
-    "./Badge/Badge.stories": {
-      "import": "./dist/esm/Badge/Badge.stories.js",
-      "require": "./dist/cjs/Badge/Badge.stories.cjs"
-    },
-    "./Avatar/Avatar": {
-      "import": "./dist/esm/Avatar/Avatar.js",
-      "require": "./dist/cjs/Avatar/Avatar.cjs"
-    },
-    "./Avatar/Avatar.test": {
-      "import": "./dist/esm/Avatar/Avatar.test.js",
-      "require": "./dist/cjs/Avatar/Avatar.test.cjs"
-    },
-    "./Avatar/Avatar.stories": {
-      "import": "./dist/esm/Avatar/Avatar.stories.js",
-      "require": "./dist/cjs/Avatar/Avatar.stories.cjs"
-    },
+    ".": "./src/index.tsx",
+    "./useFocusVisible": "./src/useFocusVisible.tsx",
+    "./useFocusVisible.test": "./src/useFocusVisible.test.tsx",
+    "./constants": "./src/constants.ts",
+    "./colors/foregroundTypographyColor": "./src/colors/foregroundTypographyColor.ts",
+    "./colors/foregroundColor": "./src/colors/foregroundColor.ts",
+    "./colors/backgroundColor": "./src/colors/backgroundColor.ts",
+    "./colors/allColors": "./src/colors/allColors.ts",
+    "./Typography/Typography": "./src/Typography/Typography.tsx",
+    "./Typography/Typography.test": "./src/Typography/Typography.test.tsx",
+    "./Typography/Typography.stories": "./src/Typography/Typography.stories.tsx",
+    "./TextField/TextField": "./src/TextField/TextField.tsx",
+    "./TextField/TextField.test": "./src/TextField/TextField.test.tsx",
+    "./TextField/TextField.stories": "./src/TextField/TextField.stories.tsx",
+    "./SelectList/SelectOption": "./src/SelectList/SelectOption.tsx",
+    "./SelectList/SelectList": "./src/SelectList/SelectList.tsx",
+    "./SelectList/SelectList.test": "./src/SelectList/SelectList.test.tsx",
+    "./SelectList/SelectList.stories": "./src/SelectList/SelectList.stories.tsx",
+    "./RadioButton/RadioButton": "./src/RadioButton/RadioButton.tsx",
+    "./RadioButton/RadioButton.test": "./src/RadioButton/RadioButton.test.tsx",
+    "./RadioButton/RadioButton.stories": "./src/RadioButton/RadioButton.stories.tsx",
+    "./Modal/StopScroll": "./src/Modal/StopScroll.tsx",
+    "./Modal/Modal": "./src/Modal/Modal.tsx",
+    "./Modal/Modal.test": "./src/Modal/Modal.test.tsx",
+    "./Modal/Modal.stories": "./src/Modal/Modal.stories.tsx",
+    "./Modal/Layer": "./src/Modal/Layer.tsx",
+    "./Modal/FocusTrap": "./src/Modal/FocusTrap.tsx",
+    "./MiniActionCard/MiniActionCard": "./src/MiniActionCard/MiniActionCard.tsx",
+    "./MiniActionCard/MiniActionCard.test": "./src/MiniActionCard/MiniActionCard.test.tsx",
+    "./MiniActionCard/MiniActionCard.stories": "./src/MiniActionCard/MiniActionCard.stories.tsx",
+    "./LinkButton/LinkButton": "./src/LinkButton/LinkButton.tsx",
+    "./LinkButton/LinkButton.test": "./src/LinkButton/LinkButton.test.tsx",
+    "./LinkButton/LinkButton.stories": "./src/LinkButton/LinkButton.stories.tsx",
+    "./IconButton/IconButton": "./src/IconButton/IconButton.tsx",
+    "./IconButton/IconButton.test": "./src/IconButton/IconButton.test.tsx",
+    "./IconButton/IconButton.stories": "./src/IconButton/IconButton.stories.tsx",
+    "./Heading/Heading": "./src/Heading/Heading.tsx",
+    "./Heading/Heading.test": "./src/Heading/Heading.test.tsx",
+    "./Heading/Heading.stories": "./src/Heading/Heading.stories.tsx",
+    "./Divider/Divider": "./src/Divider/Divider.tsx",
+    "./Divider/Divider.test": "./src/Divider/Divider.test.tsx",
+    "./Divider/Divider.stories": "./src/Divider/Divider.stories.tsx",
+    "./Chip/Chip": "./src/Chip/Chip.tsx",
+    "./Chip/Chip.test": "./src/Chip/Chip.test.tsx",
+    "./Chip/Chip.stories": "./src/Chip/Chip.stories.tsx",
+    "./Checkbox/Checkbox": "./src/Checkbox/Checkbox.tsx",
+    "./Checkbox/Checkbox.test": "./src/Checkbox/Checkbox.test.tsx",
+    "./Checkbox/Checkbox.stories": "./src/Checkbox/Checkbox.stories.tsx",
+    "./Card/Card": "./src/Card/Card.tsx",
+    "./Card/Card.test": "./src/Card/Card.test.tsx",
+    "./Card/Card.stories": "./src/Card/Card.stories.tsx",
+    "./ButtonGroup/Buttongroup.stories": "./src/ButtonGroup/Buttongroup.stories.tsx",
+    "./ButtonGroup/ButtonGroup": "./src/ButtonGroup/ButtonGroup.tsx",
+    "./ButtonGroup/ButtonGroup.test": "./src/ButtonGroup/ButtonGroup.test.tsx",
+    "./Button/constants/textVariant": "./src/Button/constants/textVariant.ts",
+    "./Button/constants/loadingIconSize": "./src/Button/constants/loadingIconSize.ts",
+    "./Button/constants/iconSize": "./src/Button/constants/iconSize.ts",
+    "./Button/Button": "./src/Button/Button.tsx",
+    "./Button/Button.test": "./src/Button/Button.test.tsx",
+    "./Button/Button.stories": "./src/Button/Button.stories.tsx",
+    "./Box/Box": "./src/Box/Box.tsx",
+    "./Box/Box.test": "./src/Box/Box.test.tsx",
+    "./Box/Box.stories": "./src/Box/Box.stories.tsx",
+    "./Badge/Badge": "./src/Badge/Badge.tsx",
+    "./Badge/Badge.test": "./src/Badge/Badge.test.tsx",
+    "./Badge/Badge.stories": "./src/Badge/Badge.stories.tsx",
+    "./Avatar/Avatar": "./src/Avatar/Avatar.tsx",
+    "./Avatar/Avatar.test": "./src/Avatar/Avatar.test.tsx",
+    "./Avatar/Avatar.stories": "./src/Avatar/Avatar.stories.tsx",
     "./package.json": "./package.json"
   }
 }

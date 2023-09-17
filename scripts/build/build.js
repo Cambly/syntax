@@ -1,3 +1,4 @@
+import { join } from path;
 import spawn from "cross-spawn";
 import fse from "fs-extra";
 import { build } from "tsup";
@@ -62,7 +63,6 @@ for (const { format, outDir } of builds) {
   await build({
     entry,
     format,
-    exclude: ["**/dist/**", "**/cjs/**", "**/esm/**", "**/node_modules/**"],
     outDir,
     splitting: true,
     esbuildOptions(options) {
