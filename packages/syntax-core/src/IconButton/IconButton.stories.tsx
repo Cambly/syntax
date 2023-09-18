@@ -75,5 +75,5 @@ export const Colors: StoryObj<typeof IconButton> = {
         />
       ))}
     </Box>
-    )
+  ),
 };
