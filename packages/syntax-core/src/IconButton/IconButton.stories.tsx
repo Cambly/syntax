@@ -2,6 +2,8 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Star from "@mui/icons-material/Star";
+import { Color, type Size } from "../constants";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/IconButton",
@@ -14,14 +16,7 @@ export default {
   },
   argTypes: {
     color: {
-      options: [
-        "primary",
-        "secondary",
-        "tertiary",
-        "destructive-primary",
-        "destructive-secondary",
-        "success",
-      ],
+      options: Color,
       control: { type: "radio" },
     },
     size: {
@@ -67,4 +62,18 @@ export const Success: StoryObj<typeof IconButton> = {
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
+};
+export const Colors: StoryObj<typeof IconButton> = {
+  render: () => (
+    <Box display="flex" gap={3}>
+      {Color.map((color) => (
+        <IconButton
+          key={color}
+          color={color}
+          icon={Star}
+          accessibilityLabel={color}
+        />
+      ))}
+    </Box>
+    )
 };

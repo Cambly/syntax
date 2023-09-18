@@ -12,6 +12,7 @@ export const Color = [
   "gray800",
   "gray900",
   "white",
+  "black",
   "inherit",
 ] as const;
 
