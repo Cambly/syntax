@@ -1,4 +1,3 @@
-import { join } from path;
 import spawn from "cross-spawn";
 import fse from "fs-extra";
 import { build } from "tsup";
@@ -12,6 +11,7 @@ import {
   makeProxies,
   writePackageJson,
 } from "./utils.js";
+import { glob } from "glob";
 
 Object.defineProperty(process.env, "NODE_ENV", {
   writable: true,
@@ -41,9 +41,9 @@ spawn.sync(
     // This file and the other files in the scripts folder were copied
     // verbatim from the ariakit repo. The only change to the build
     // script that was necessary to get a minimal build was the tsconfig file
-    // "tsconfig.build.json", // old version, starting point:
+    "tsconfig.build.json", // old version, starting point:
     // https://github.com/ariakit/ariakit/blob/main/scripts/build/build.js
-    "tsconfig.json",
+    // "tsconfig.json",
     "--noEmit",
     "false",
     "--outDir",
@@ -59,10 +59,24 @@ const builds = /** @type {const} */ ([
   { format: "cjs", outDir: cjsDir },
 ]);
 
+// const entry = await glob("src/**/*.{ts,tsx}", {
+//   cwd,
+//   ignore: [
+//     "**/node_modules/**",
+//     // "**/dist/**",
+//     // "**/cjs/**",
+//     // "**/esm/**",
+//     // "**/node_modules/**",
+//     // "*.stories.*",
+//     // "*.test.*",
+//   ],
+// });
+
 for (const { format, outDir } of builds) {
   await build({
     entry,
     format,
+    exclude: ["**/dist/**", "**/cjs/**", "**/esm/**", "**/node_modules/**", "*.stories.*", "*.test.*"],
     outDir,
     splitting: true,
     esbuildOptions(options) {
