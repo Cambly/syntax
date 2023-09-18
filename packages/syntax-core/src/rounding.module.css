@@ -1,0 +1,20 @@
+/* Border Radius */
+.roundingsm {
+  border-radius: 8px;
+}
+
+.roundingmd {
+  border-radius: 12px;
+}
+
+.roundinglg {
+  border-radius: 16px;
+}
+
+.roundingxl {
+  border-radius: 32px;
+}
+
+.roundingfull {
+  border-radius: 999px;
+}
