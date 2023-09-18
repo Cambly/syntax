@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Star from "@mui/icons-material/Star";
-import { Color, type Size } from "../constants";
+import { Color } from "../constants";
 import Box from "../Box/Box";
 
 export default {
