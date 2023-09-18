@@ -12,18 +12,20 @@ describe("iconButton", () => {
           /* empty */
         }}
         icon={Star}
+        accessibilityLabel="My accessibility label"
       />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it("renders an role=IconButton element", async () => {
+  it("renders an role=button element", async () => {
     render(
       <IconButton
         onClick={() => {
           /* empty */
         }}
         icon={Star}
+        accessibilityLabel="My accessibility label"
       />,
     );
     const button = await screen.findAllByRole("button");
