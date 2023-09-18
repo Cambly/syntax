@@ -13,7 +13,6 @@ export default defineConfig({
       "**/dist/**",
       "**/cjs/**",
       "**/esm/**",
-      "**/node_modules/**",
       "**/*.stories.*",
       "**/*.test.*",
     ],
