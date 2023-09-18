@@ -5,24 +5,47 @@ import postcss from "postcss";
 import postcssModules from "postcss-modules";
 import { glob } from "glob";
 
+// build.mjs
+import { build } from "esbuild";
+
+// entry,
+// exclude: ["**/dist/**", "**/cjs/**", "**/esm/**", "**/node_modules/**", "*.stories.*", "*.test.*"],
+// format,
+// declaration: true,
+// outDir,
+// splitting: true,
+// esbuildOptions(options) {
+//   options.chunkNames = "__chunks/[hash]";
+// },
+
+const cwd = process.cwd();
+const entry = glob.sync("src/**/*.{ts,tsx}", {
+  cwd,
+  ignore: [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/cjs/**",
+    "**/esm/**",
+    "**/*.stories.*",
+    "**/*.test.*",
+  ],
+});
+
+// console.log('entry', entry);
+// process.exit(0)
 export default defineConfig({
-  entry: glob.sync("src/**/*.{ts,tsx}", {
-    cwd: process.cwd(),
-    ignore: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/cjs/**",
-      "**/esm/**",
-      "**/*.stories.*",
-      "**/*.test.*",
-    ],
-  }),
+  // entry: ["src/index.tsx"],
+  // entry: ["src/**/*!(.stories).{ts,tsx}"],
+  // entry: ["src/**/*"],
+  // tsconfig: "tsconfig.build.json",
+  entry,
   format: ["cjs", "esm"],
   external: ["react", "react-dom"],
   noExternal: ["@cambly/syntax-design-tokens"],
   sourcemap: true,
   dts: true,
   splitting: true,
+  // bundle: false,
   skipNodeModulesBundle: true,
   esbuildOptions(options) {
     options.chunkNames = "__chunks/[hash]";
@@ -56,6 +79,12 @@ export default defineConfig({
             );
 
             let cssModule = {};
+            postcssModules({
+              getJSON(_, json) {
+                console.log("jsoin", json);
+                // cssModule = json;
+              },
+            });
             const result = await postcss([
               postcssModules({
                 getJSON(_, json) {
