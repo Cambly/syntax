@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.11.0
+
+### Minor Changes
+
+- 92dd95d: TapArea: add component
+
 ## 7.10.0
 
 ### Minor Changes
