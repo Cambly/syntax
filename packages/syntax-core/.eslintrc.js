@@ -6,6 +6,7 @@ module.exports = {
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
+      excludedFiles: ["dist"],
       parserOptions: {
         project: [path.join(__dirname, "tsconfig.json")],
       },
