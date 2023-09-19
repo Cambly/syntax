@@ -167,4 +167,20 @@ describe("tapArea", () => {
       "tap-area-testid",
     );
   });
+
+  it("when focused it is keyboard interactable", async () => {
+    const spy = vi.fn();
+    render(<TapArea data-testid="tap-area-testid" onClick={spy} />);
+
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    // tab to focus on the tapArea
+    await userEvent.tab();
+    expect(tapArea).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    expect(spy).toHaveBeenCalledTimes(1);
+    await userEvent.keyboard("{Space}");
+    expect(spy).toHaveBeenCalledTimes(2);
+    await userEvent.keyboard(" ");
+    expect(spy).toHaveBeenCalledTimes(3);
+  });
 });
