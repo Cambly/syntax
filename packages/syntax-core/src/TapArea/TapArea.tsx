@@ -69,12 +69,15 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
       !disabled ? onClick(event) : undefined;
 
-    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (
+      event,
+    ) => {
       if (disabled) return;
-      if (event.key !== "Enter" && event.key !== " " && event.key !== "Space") return;
-      event.preventDefault();
-      onClick(event);
-    }
+      if (event.key === "Enter" || event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        onClick(event);
+      }
+    };
 
     return (
       <div
