@@ -29,7 +29,7 @@ type TapAreaProps = {
   /**
    * The callback to be called when the tap area is clicked
    */
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick: (event: React.SyntheticEvent<HTMLDivElement>) => void;
   /**
    * Border radius of the tap area.
    *
@@ -69,6 +69,13 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
       !disabled ? onClick(event) : undefined;
 
+    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+      if (disabled) return;
+      if (event.key !== "Enter" && event.key !== " " && event.key !== "Space") return;
+      event.preventDefault();
+      onClick(event);
+    }
+
     return (
       <div
         aria-disabled={disabled}
@@ -81,6 +88,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         )}
         data-testid={dataTestId}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
