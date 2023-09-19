@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.11.1
+
+### Patch Changes
+
+- ae9a80d: Fix: TapArea - handle keyboard interaction when focused
+
 ## 7.11.0
 
 ### Minor Changes
