@@ -19,6 +19,10 @@
   color: var(--color-base-primary-700);
 }
 
+.success700Color {
+  color: var(--color-base-success-700);
+}
+
 .whiteColor {
   color: var(--color-base-white);
 }
