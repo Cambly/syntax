@@ -8,17 +8,19 @@ export default function Layer({
 }: {
   children: ReactElement;
   zIndex?: number;
-}): ReactPortal {
-  return createPortal(
-    <Box
-      data-testid="syntax-layer"
-      position="fixed"
-      dangerouslySetInlineStyle={{
-        __style: { zIndex, inset: 0 },
-      }}
-    >
-      {children}
-    </Box>,
-    document.body,
-  );
+}): ReactPortal | null {
+  return typeof document !== "undefined"
+    ? createPortal(
+        <Box
+          data-testid="syntax-layer"
+          position="fixed"
+          dangerouslySetInlineStyle={{
+            __style: { zIndex, inset: 0 },
+          }}
+        >
+          {children}
+        </Box>,
+        document.body,
+      )
+    : null;
 }
