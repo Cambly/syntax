@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.12.0
+
+### Minor Changes
+
+- 93997f3: Layer: fix document is not defined issue
+
 ## 7.11.1
 
 ### Patch Changes
