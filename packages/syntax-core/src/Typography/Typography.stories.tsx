@@ -26,6 +26,7 @@ export default {
         "gray700",
         "gray900",
         "primary",
+        "success",
         "white",
       ],
       control: { type: "radio" },
@@ -109,6 +110,9 @@ export const Colors: StoryObj<typeof Typography> = {
       </Typography>
       <Typography {...args} color="primary">
         Color primary
+      </Typography>
+      <Typography {...args} color="success">
+        Color success
       </Typography>
       <div style={{ backgroundColor: "#000" }}>
         <Typography {...args} color="white">
