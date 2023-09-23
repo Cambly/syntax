@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 7.13.0
+
+### Minor Changes
+
+- f6c17f0: Add green/success color to Text and Heading
+
 ## 7.12.0
 
 ### Minor Changes
