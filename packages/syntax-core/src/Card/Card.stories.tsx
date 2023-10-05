@@ -15,7 +15,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["sm", "lg"],
+      options: ["sm", "lg", undefined],
       control: { type: "radio" },
     },
   },

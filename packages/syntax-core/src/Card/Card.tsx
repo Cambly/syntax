@@ -18,7 +18,7 @@ type CardType = {
    * `sm`: 352px
    * `lg`: 744px
    *
-   * @defaultValue sm
+   * @defaultValue `undefined`
    */
   size?: (typeof CardSizes)[number];
 };
@@ -28,7 +28,7 @@ type CardType = {
  */
 export default function Card({
   children,
-  size = "sm",
+  size,
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
   const sizeWidth = {
@@ -41,7 +41,7 @@ export default function Card({
       rounding="xl"
       padding={7}
       smPadding={9}
-      maxWidth={sizeWidth[size]}
+      maxWidth={size ? sizeWidth[size] : undefined}
       width="100%"
       backgroundColor="white"
       data-testid={dataTestId}
