@@ -14,9 +14,8 @@ export default {
     },
   },
   argTypes: {
-    size: {
-      options: ["sm", "lg", undefined],
-      control: { type: "radio" },
+    maxWidth: {
+      control: { type: "number" },
     },
   },
   tags: ["autodocs"],
@@ -38,12 +37,4 @@ const CardContainer = ({ ...args }): JSX.Element => (
 
 export const Default: StoryObj<typeof Card> = {
   render: ({ ...args }) => <CardContainer {...args} />,
-};
-
-export const Small: StoryObj<typeof Card> = {
-  render: ({ ...args }) => <CardContainer size="sm" {...args} />,
-};
-
-export const Large: StoryObj<typeof Card> = {
-  render: ({ ...args }) => <CardContainer size="lg" {...args} />,
 };
