@@ -16,9 +16,24 @@ describe("card", () => {
     expect(screen.getByText(/text/)).toBeInTheDocument();
   });
 
-  it("should have the specified maxWidth ", () => {
+  it("should have the specified maxWidth number", () => {
     render(
       <Card data-testid="card" maxWidth={352}>
+        <>
+          <h1>title</h1>
+          <p>text</p>
+        </>
+      </Card>,
+    );
+    expect(screen.getByTestId("card")).toHaveStyle({
+      width: "100%",
+      maxWidth: "352px",
+    });
+  });
+
+  it("should have the specified maxWidth string", () => {
+    render(
+      <Card data-testid="card" maxWidth="352px">
         <>
           <h1>title</h1>
           <p>text</p>
