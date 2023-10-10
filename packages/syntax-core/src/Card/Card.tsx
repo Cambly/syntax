@@ -1,5 +1,7 @@
 import Box from "../Box/Box";
 
+const DeprecatedCardSizes = ["sm", "lg"] as const;
+
 type CardType = {
   /**
    * Test id for the button
@@ -11,8 +13,14 @@ type CardType = {
   children: JSX.Element;
   /**
    * The size of the card
+   *
+   * `sm`: 352px
+   * `lg`: 744px
+   *
+   * @defaultValue `undefined`
+   * @deprecated Card width should be controlled by the parent container
    */
-  maxWidth?: string | number;
+  size?: (typeof DeprecatedCardSizes)[number];
 };
 
 /**
@@ -20,15 +28,20 @@ type CardType = {
  */
 export default function Card({
   children,
-  maxWidth,
+  size,
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
+  const sizeWidth = {
+    sm: 352,
+    lg: 744,
+  } as const;
+
   return (
     <Box
       rounding="xl"
       padding={7}
       smPadding={9}
-      maxWidth={maxWidth}
+      maxWidth={size ? sizeWidth[size] : undefined}
       width="100%"
       backgroundColor="white"
       data-testid={dataTestId}
