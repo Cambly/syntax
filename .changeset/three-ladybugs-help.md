@@ -3,10 +3,10 @@
 ---
 
 WHAT the breaking change is
-Card's "size" prop is being replaced by the maxWidth prop.
+Card's "size" prop is being deprecated.
 
 WHY the change was made
-Card cannot be used if you want to render it with a width larger than 744px (size="lg"). In general, it's not as flexible as it could be.
+Card cannot be used if you want to render it with a width larger than 744px (size="lg"). We should just have the width stretch to its parent's container.
 
 HOW a consumer should update their code
-Those using size="sm" should replace it with maxWidth="352px", those using size="lg" should replace it with maxWidth="744px".
+Those using a Card with size="sm" should wrap it with a Box of maxWidth={352}, those using a card with size="lg" should wrap it with a Box of maxWidth{744}.
