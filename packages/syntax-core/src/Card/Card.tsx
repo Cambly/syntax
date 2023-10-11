@@ -17,8 +17,8 @@ type CardType = {
    * `sm`: 352px
    * `lg`: 744px
    *
-   * @defaultValue `undefined`
    * @deprecated Card width should be controlled by the parent container
+   * @defaultValue `undefined`
    */
   size?: (typeof DeprecatedCardSizes)[number];
 };
