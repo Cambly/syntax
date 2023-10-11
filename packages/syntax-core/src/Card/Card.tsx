@@ -41,7 +41,7 @@ export default function Card({
       rounding="xl"
       padding={7}
       smPadding={9}
-      maxWidth={size ? sizeWidth[size] : undefined}
+      maxWidth={size && sizeWidth[size]}
       width="100%"
       backgroundColor="white"
       data-testid={dataTestId}
