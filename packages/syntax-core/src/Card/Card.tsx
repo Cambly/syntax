@@ -1,7 +1,6 @@
 import Box from "../Box/Box";
 
-// note: only sm + lg size currently, when design decides on the medium size, we can use the "size" constant
-const CardSizes = ["sm", "lg"] as const;
+const DeprecatedCardSizes = ["sm", "lg"] as const;
 
 type CardType = {
   /**
@@ -18,9 +17,10 @@ type CardType = {
    * `sm`: 352px
    * `lg`: 744px
    *
-   * @defaultValue sm
+   * @deprecated Card width should be controlled by the parent container
+   * @defaultValue `undefined`
    */
-  size?: (typeof CardSizes)[number];
+  size?: (typeof DeprecatedCardSizes)[number];
 };
 
 /**
@@ -28,7 +28,7 @@ type CardType = {
  */
 export default function Card({
   children,
-  size = "sm",
+  size,
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
   const sizeWidth = {
@@ -41,7 +41,7 @@ export default function Card({
       rounding="xl"
       padding={7}
       smPadding={9}
-      maxWidth={sizeWidth[size]}
+      maxWidth={size && sizeWidth[size]}
       width="100%"
       backgroundColor="white"
       data-testid={dataTestId}
