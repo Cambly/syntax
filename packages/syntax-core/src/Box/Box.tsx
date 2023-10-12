@@ -469,6 +469,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     lgMarginStart,
     lgMarginTop,
     // Overflow
+    overflow,
     overflowX,
     overflowY,
     // Padding
@@ -578,6 +579,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
       rounding && rounding !== "none" && roundingStyles[`rounding${rounding}`],
+      overflow && styles[`overflow${overflow}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],
     ),
