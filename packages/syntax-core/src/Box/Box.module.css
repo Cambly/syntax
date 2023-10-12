@@ -361,6 +361,30 @@
 }
 
 /* Overflow */
+.overfloVwisible {
+  overflow: visible;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+.overflowScroll {
+  overflow: scroll;
+}
+
+.overflowAuto {
+  overflow: auto;
+}
+
+.overflowInherit {
+  overflow: inherit;
+}
+
+.overflowInitial {
+  overflow: initial;
+}
+
 .overflowXvisible {
   overflow-x: visible;
 }

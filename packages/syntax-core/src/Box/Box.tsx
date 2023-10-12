@@ -273,6 +273,20 @@ type BoxProps = {
    */
   justifyContent?: JustifyContent;
   /**
+   * How box behaves when content does not fit in the box on both axes.
+   *
+   * Responsive props:
+   * * `visible`
+   * * `hidden`
+   * * `scroll`
+   * * `auto`
+   * * `inherit`
+   * * `initial`
+   *
+   * @defaultValue "visible"
+   */
+  overflow?: Overflow;
+  /**
    * How box behaves when content does not fit in the box on the X axis.
    *
    * Responsive props:

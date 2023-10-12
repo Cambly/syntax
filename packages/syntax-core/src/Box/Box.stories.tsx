@@ -104,6 +104,10 @@ export default {
     gap: {
       control: { type: "number", min: 0, max: 12, step: 1 },
     },
+    overflow: {
+      options: ["initial", "inherit", "visible", "hidden", "scroll", "auto"],
+      control: { type: "select" },
+    },
     overflowX: {
       options: ["initial", "inherit", "visible", "hidden", "scroll", "auto"],
       control: { type: "select" },
@@ -239,42 +243,6 @@ export const Direction: StoryObj<typeof Box> = {
       </Box>
       <Typography weight="bold">Direction: column </Typography>
       <Box display="flex" direction="column">
-        <Box height={40} width={40}>
-          <Typography>1</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>2</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>3</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>4</Typography>
-        </Box>
-      </Box>
-      <Box width="100%">
-        <Divider />
-      </Box>
-      <Typography weight="bold">Direction: rowReverse </Typography>
-      <Box display="flex" direction="rowReverse">
-        <Box height={40} width={40}>
-          <Typography>1</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>2</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>3</Typography>
-        </Box>
-        <Box height={40} width={40}>
-          <Typography>4</Typography>
-        </Box>
-      </Box>
-      <Box width="100%">
-        <Divider />
-      </Box>
-      <Typography weight="bold">Direction: columnReverse </Typography>
-      <Box display="flex" direction="columnReverse">
         <Box height={40} width={40}>
           <Typography>1</Typography>
         </Box>
