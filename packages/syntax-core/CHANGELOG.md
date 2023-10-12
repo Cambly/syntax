@@ -1,5 +1,42 @@
 # @cambly/syntax-core
 
+## 8.0.0
+
+### Major Changes
+
+- 4ecbf7c: WHAT the breaking change is
+  Card's "size" prop is being deprecated.
+
+  WHY the change was made
+  Card cannot be used if you want to render it with a width larger than 744px (size="lg"). We should just have the width stretch to its parent's container.
+
+  HOW a consumer should update their code
+  Those using a Card with size="sm" should wrap it with a Box of maxWidth={352}, those using a card with size="lg" should wrap it with a Box of maxWidth{744}.
+
+## 7.13.0
+
+### Minor Changes
+
+- f6c17f0: Add green/success color to Text and Heading
+
+## 7.12.0
+
+### Minor Changes
+
+- 93997f3: Layer: fix document is not defined issue
+
+## 7.11.1
+
+### Patch Changes
+
+- ae9a80d: Fix: TapArea - handle keyboard interaction when focused
+
+## 7.11.0
+
+### Minor Changes
+
+- 92dd95d: TapArea: add component
+
 ## 7.10.0
 
 ### Minor Changes

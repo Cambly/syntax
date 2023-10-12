@@ -1,5 +1,44 @@
 # @syntax/storybook
 
+## 0.10.1
+
+### Patch Changes
+
+- Updated dependencies [4ecbf7c]
+  - @cambly/syntax-core@8.0.0
+
+## 0.10.0
+
+### Minor Changes
+
+- f6c17f0: Add green/success color to Text and Heading
+
+### Patch Changes
+
+- Updated dependencies [f6c17f0]
+  - @cambly/syntax-core@7.13.0
+
+## 0.9.24
+
+### Patch Changes
+
+- Updated dependencies [93997f3]
+  - @cambly/syntax-core@7.12.0
+
+## 0.9.23
+
+### Patch Changes
+
+- Updated dependencies [ae9a80d]
+  - @cambly/syntax-core@7.11.1
+
+## 0.9.22
+
+### Patch Changes
+
+- Updated dependencies [92dd95d]
+  - @cambly/syntax-core@7.11.0
+
 ## 0.9.21
 
 ### Patch Changes

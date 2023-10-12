@@ -1,0 +1,12 @@
+.miniActionCardGroup {
+  max-width: 744px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+@media (min-width: 960px) {
+  .miniActionCardGroup {
+    flex-direction: row;
+  }
+}

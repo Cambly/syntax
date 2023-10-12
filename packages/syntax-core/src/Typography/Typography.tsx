@@ -16,6 +16,8 @@ function textColor(color: (typeof Color)[number]): string {
       return colorStyles.primary700Color;
     case "destructive-primary":
       return colorStyles.destructive700Color;
+    case "success":
+      return colorStyles.success700Color;
     default:
       return colorStyles.gray900Color;
   }

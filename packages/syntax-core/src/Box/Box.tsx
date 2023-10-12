@@ -5,6 +5,7 @@ import marginStyles from "./margin.module.css";
 import paddingStyles from "./padding.module.css";
 import type allColors from "../colors/allColors";
 import colorStyles from "../colors/colors.module.css";
+import roundingStyles from "../rounding.module.css";
 import { forwardRef } from "react";
 
 type AlignItems = "baseline" | "center" | "end" | "start" | "stretch";
@@ -562,7 +563,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       smJustifyContent && styles[`justifyContent${smJustifyContent}Small`],
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
-      rounding && rounding !== "none" && styles[`rounding${rounding}`],
+      rounding && rounding !== "none" && roundingStyles[`rounding${rounding}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],
     ),
