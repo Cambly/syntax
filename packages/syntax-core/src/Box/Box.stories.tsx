@@ -301,8 +301,8 @@ export const Margin: StoryObj<typeof Box> = {
 export const Overflow: StoryObj<typeof Box> = {
   render: () => (
     <>
-      <Typography weight="bold">OverflowY: hidden</Typography>
-      <Box rounding="full" overflowY="hidden" height={80} width={80}>
+      <Typography weight="bold">Overflow: hidden</Typography>
+      <Box rounding="full" overflow="hidden" height={80} width={80}>
         <Box backgroundColor="primary700">
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
