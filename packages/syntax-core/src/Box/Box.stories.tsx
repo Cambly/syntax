@@ -59,15 +59,15 @@ export default {
       control: { type: "radio" },
     },
     direction: {
-      options: ["column", "row", "column-reverse", "row-reverse"],
+      options: ["column", "row"],
       control: { type: "radio" },
     },
     smDirection: {
-      options: ["column", "row", "column-reverse", "row-reverse"],
+      options: ["column", "row"],
       control: { type: "radio" },
     },
     lgDirection: {
-      options: ["column", "row", "column-reverse", "row-reverse"],
+      options: ["column", "row"],
       control: { type: "radio" },
     },
     display: {
