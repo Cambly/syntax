@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 8.1.0
+
+### Minor Changes
+
+- a659747: Box: add Overflow, OverflowX and OverFlowY to Box Props
+
 ## 8.0.0
 
 ### Major Changes
