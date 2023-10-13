@@ -275,7 +275,6 @@ type BoxProps = {
   /**
    * How box behaves when content does not fit in the box on both axes.
    *
-   * Responsive props:
    * * `visible`
    * * `hidden`
    * * `scroll`
@@ -289,7 +288,6 @@ type BoxProps = {
   /**
    * How box behaves when content does not fit in the box on the X axis.
    *
-   * Responsive props:
    * * `visible`
    * * `hidden`
    * * `scroll`
@@ -303,7 +301,6 @@ type BoxProps = {
   /**
    * How box behaves when content does not fit in the box on the Y axis.
    *
-   * Responsive props:
    * * `visible`
    * * `hidden`
    * * `scroll`
