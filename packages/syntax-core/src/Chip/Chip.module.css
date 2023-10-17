@@ -9,6 +9,11 @@
   cursor: pointer;
 }
 
+.disabled {
+  filter: opacity(50%);
+  cursor: auto;
+}
+
 .selectedChip {
   background-color: var(--color-base-primary-800);
   border: 1px solid var(--color-base-primary-800);

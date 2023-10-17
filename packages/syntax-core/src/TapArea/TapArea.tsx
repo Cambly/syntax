@@ -2,6 +2,7 @@ import React, { type ReactNode, forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
+import useIsHydrated from "../useIsHydrated";
 
 type TapAreaProps = {
   /**
@@ -58,7 +59,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       children,
       accessibilityLabel,
       "data-testid": dataTestId,
-      disabled = false,
+      disabled: disabledProp = false,
       fullWidth = true,
       onClick,
       rounding = "none",
@@ -66,6 +67,9 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
     }: TapAreaProps,
     ref,
   ) => {
+    const isHydrated = useIsHydrated();
+    const disabled = !isHydrated || disabledProp;
+
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
       !disabled ? onClick(event) : undefined;
 

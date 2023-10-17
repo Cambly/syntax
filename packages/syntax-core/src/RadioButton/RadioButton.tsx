@@ -5,6 +5,7 @@ import styles from "./RadioButton.module.css";
 import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
+import useIsHydrated from "../useIsHydrated";
 
 /**
  * [RadioButton](https://cambly-syntax.vercel.app/?path=/docs/components-radiobutton--docs) is a radio button with accompanying text
@@ -12,7 +13,7 @@ import useFocusVisible from "../useFocusVisible";
 const RadioButton = ({
   checked = false,
   "data-testid": dataTestId,
-  disabled = false,
+  disabled: disabledProp = false,
   error = false,
   id,
   label,
@@ -73,6 +74,8 @@ const RadioButton = ({
    */
   value: string | number;
 }): ReactElement => {
+  const isHydrated = useIsHydrated();
+  const disabled = !isHydrated || disabledProp;
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
 

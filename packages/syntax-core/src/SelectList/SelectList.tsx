@@ -14,6 +14,7 @@ import styles from "./SelectList.module.css";
 import focusStyles from "../Focus.module.css";
 import SelectOption from "./SelectOption";
 import useFocusVisible from "../useFocusVisible";
+import useIsHydrated from "../useIsHydrated";
 
 const iconSize = {
   sm: 20,
@@ -27,7 +28,7 @@ const iconSize = {
 export default function SelectList({
   children,
   "data-testid": dataTestId,
-  disabled = false,
+  disabled: disabledProp = false,
   errorText,
   helperText,
   id,
@@ -95,6 +96,8 @@ export default function SelectList({
   size?: "sm" | "md" | "lg";
 }): ReactElement {
   const reactId = useId();
+  const isHydrated = useIsHydrated();
+  const disabled = !isHydrated || disabledProp;
   const selectId = id ?? reactId;
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
