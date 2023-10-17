@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import Button from "../../../syntax-core/src/Button/Button";
+import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Box from "../../../syntax-core/src/Box/Box";
 import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
@@ -55,65 +56,34 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Tooltip>;
 
-const proficiencyChoices = [
-  {
-    text: "Beginner",
-  },
-  {
-    text: "Intermediate",
-  },
-  {
-    text: "Advanced",
-  },
-];
-
 export const Default: StoryObj<typeof Tooltip> = {
   args: {
     delay: 0,
-    placement: "left",
-    initialOpen: false,
+    placement: "right",
+    initialOpen: true,
     strategy: "absolute",
-    children:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    children: "This is a tooltip",
   },
   render: ({ delay, placement, initialOpen, strategy, children }) => (
-    <Box paddingY={8} paddingX={4} backgroundColor="gray200">
-      <Box display="flex" alignItems="center" direction="column">
-        <Box padding={7} rounding="xl" backgroundColor="white" width="100%">
-          <Box
-            display="flex"
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Box role="radiogroup">
-              {proficiencyChoices.map(({ text }) => (
-                <Box key={text} display="flex" alignItems="center" gap={1}>
-                  <RadioButton
-                    key={text}
-                    label={text}
-                    value={text}
-                    name="proficiency"
-                    onChange={(e) => alert(`${e.target.value} button pressed`)}
-                  />
-                  <Tooltip
-                    delay={delay}
-                    placement={placement}
-                    initialOpen={initialOpen}
-                    strategy={strategy}
-                  >
-                    <TooltipTrigger>
-                      <InfoOutlinedIcon width={20} height={20} />
-                    </TooltipTrigger>
-                    <TooltipContent>{children}</TooltipContent>
-                  </Tooltip>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+    <div style={{ margin: "240px" }}>
+      <Tooltip
+        delay={delay}
+        placement={placement}
+        initialOpen={initialOpen}
+        strategy={strategy}
+      >
+        <TooltipTrigger>
+          <IconButton
+            accessibilityLabel="Info Icon Button"
+            icon={InfoOutlinedIcon}
+            onClick={() => alert("Default button pressed")}
+            color="tertiary"
+            size="lg"
+          />
+        </TooltipTrigger>
+        <TooltipContent>{children}</TooltipContent>
+      </Tooltip>
+    </div>
   ),
 };
 
@@ -187,5 +157,66 @@ export const ControlledTooltip = (): ReactElement => {
         </Tooltip>
       </div>
     </div>
+  );
+};
+
+export const RadioButtonGroupWithTooltips = (): ReactElement => {
+  const [choice, setChoice] = useState(0);
+
+  const proficiencyChoices = [
+    {
+      text: "Beginner",
+      value: 0,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+    {
+      text: "Intermediate",
+      value: 1,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+    {
+      text: "Advanced",
+      value: 2,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+  ];
+
+  return (
+    <Box paddingY={8} paddingX={4} backgroundColor="gray200">
+      <Box display="flex" alignItems="center" direction="column">
+        <Box padding={7} rounding="xl" backgroundColor="white" width="100%">
+          <Box
+            display="flex"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Box role="radiogroup">
+              {proficiencyChoices.map(({ text, value, content }) => (
+                <Box key={value} display="flex" alignItems="center" gap={1}>
+                  <RadioButton
+                    key={value}
+                    label={text}
+                    value={value}
+                    name="proficiency"
+                    onChange={(e) => setChoice(Number(e.target.value))}
+                    checked={choice === value}
+                  />
+                  <Tooltip placement="left">
+                    <TooltipTrigger>
+                      <InfoOutlinedIcon width={20} height={20} />
+                    </TooltipTrigger>
+                    <TooltipContent>{content}</TooltipContent>
+                  </Tooltip>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
