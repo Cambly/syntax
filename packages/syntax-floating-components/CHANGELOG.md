@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.3.1
+
+### Patch Changes
+
+- c5964e8: Add floating portal to tooltip content so styles don't overlap it
+
 ## 0.3.0
 
 ### Minor Changes
