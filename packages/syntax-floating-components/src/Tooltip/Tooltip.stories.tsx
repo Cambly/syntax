@@ -4,6 +4,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import Button from "../../../syntax-core/src/Button/Button";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import Box from "../../../syntax-core/src/Box/Box";
+import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
 
 export default {
   title: "Floating-Components/Tooltip",
@@ -155,5 +157,66 @@ export const ControlledTooltip = (): ReactElement => {
         </Tooltip>
       </div>
     </div>
+  );
+};
+
+export const RadioButtonGroupWithTooltips = (): ReactElement => {
+  const [choice, setChoice] = useState(0);
+
+  const proficiencyChoices = [
+    {
+      text: "Beginner",
+      value: 0,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+    {
+      text: "Intermediate",
+      value: 1,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+    {
+      text: "Advanced",
+      value: 2,
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    },
+  ];
+
+  return (
+    <Box paddingY={8} paddingX={4} backgroundColor="gray200">
+      <Box display="flex" alignItems="center" direction="column">
+        <Box padding={7} rounding="xl" backgroundColor="white" width="100%">
+          <Box
+            display="flex"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Box role="radiogroup">
+              {proficiencyChoices.map(({ text, value, content }) => (
+                <Box key={value} display="flex" alignItems="center" gap={1}>
+                  <RadioButton
+                    key={value}
+                    label={text}
+                    value={value}
+                    name="proficiency"
+                    onChange={(e) => setChoice(Number(e.target.value))}
+                    checked={choice === value}
+                  />
+                  <Tooltip placement="left">
+                    <TooltipTrigger>
+                      <InfoOutlinedIcon width={20} height={20} />
+                    </TooltipTrigger>
+                    <TooltipContent>{content}</TooltipContent>
+                  </Tooltip>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
