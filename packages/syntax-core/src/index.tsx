@@ -10,7 +10,6 @@ import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import LinkButton from "./LinkButton/LinkButton";
-import MiniActionCard from "./MiniActionCard/MiniActionCard";
 import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
@@ -31,7 +30,6 @@ export {
   Heading,
   IconButton,
   LinkButton,
-  MiniActionCard,
   Modal,
   RadioButton,
   SelectList,
