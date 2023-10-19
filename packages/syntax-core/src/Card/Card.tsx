@@ -38,9 +38,10 @@ export default function Card({
 
   return (
     <Box
-      rounding="xl"
-      padding={7}
-      smPadding={9}
+      rounding="lg"
+      padding={5}
+      smPadding={7}
+      lgPadding={7}
       maxWidth={size && sizeWidth[size]}
       width="100%"
       backgroundColor="white"
