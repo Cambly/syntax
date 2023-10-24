@@ -2,6 +2,7 @@
   background-color: var(--color-base-gray-10);
   border-radius: 50px;
   border: none;
+  flex: 0 0 auto;
   height: 1px;
   margin: 0;
 }
