@@ -1,5 +1,26 @@
 # @cambly/syntax-core
 
+## 9.0.0
+
+### Major Changes
+
+- 9c37298: MiniActionCard: Remove from Syntax
+
+  MiniActionCard was the first component added to Syntax and was meant to be a "test" component. As it isn't used much and we no longer need the basic demonstration, it can be removed.
+
+### Minor Changes
+
+- d576caf: ## Card
+
+  - update padding from 36px -> 28px on md + lg breakpoints
+  - update padding from 28px -> 20px on sm breakpoint
+
+  ## Box
+
+  - update `xl` rounding from 32px to 24px
+
+- d2516d6: SelectList: add id prop
+
 ## 8.1.0
 
 ### Minor Changes
