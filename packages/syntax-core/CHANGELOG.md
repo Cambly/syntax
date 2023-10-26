@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.0.2
+
+### Patch Changes
+
+- 271cffa: Checkbox: Fix input overlay rendering bug that forced way too much extra height in overflow containers
+
 ## 9.0.1
 
 ### Patch Changes
