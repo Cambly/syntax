@@ -53,7 +53,7 @@ export const Interactive: StoryObj<typeof Checkbox> = {
 
 export const FixDoesNotBlowoutHeight: StoryObj<typeof Checkbox> = {
   render: () => (
-    <Box height="100px" overflowY="auto">
+    <Box height="100px" overflowY="auto" padding={3}>
       <CheckboxInteractive />
       <CheckboxInteractive />
       <CheckboxInteractive />
