@@ -20,6 +20,9 @@ pnpm start
 1. Update newly generated files.
 1. (Don't forget to StartCase your ComponentName)
 
+## Usage guidelines
+https://docs.google.com/document/d/1zXAR4Lz0M_--SluTlEUpGUW16TpWWaZNh5h39cU3gQk/edit
+
 ## Contribute
 
 1. [Fork the syntax repository](https://github.com/Cambly/syntax/fork)
