@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.1.1
+
+### Patch Changes
+
+- 559f067: Remove 'use client' annotation for now
+
 ## 9.1.0
 
 ### Minor Changes
