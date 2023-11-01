@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.1.0
+
+### Minor Changes
+
+- 59b08c0: Interactive elements: only enable after hydration
+
 ## 9.0.2
 
 ### Patch Changes
