@@ -12,6 +12,7 @@ import iconSize from "./constants/iconSize";
 import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
+import useIsHydrated from "../useIsHydrated";
 
 type ButtonProps = {
   /**
@@ -117,6 +118,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }: ButtonProps,
     ref,
   ) => {
+    const isHydrated = useIsHydrated();
+
     return (
       <button
         data-testid={dataTestId}
@@ -124,7 +127,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-label={accessibilityLabel}
         type={type}
         title={tooltip}
-        disabled={disabled || loading}
+        disabled={!isHydrated || disabled || loading}
         onClick={onClick}
         className={classNames(
           styles.button,
