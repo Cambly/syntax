@@ -1,4 +1,4 @@
-import React, { type ReactNode, forwardRef } from "react";
+import React, { type ReactNode, forwardRef, useReducer } from "react";
 import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
@@ -50,6 +50,29 @@ type TapAreaProps = {
   tabIndex?: 0 | -1;
 };
 
+function reducer(
+  state: {
+    hovered: boolean;
+    focussed: boolean;
+  },
+  action: {
+    type: "BLUR" | "FOCUS" | "MOUSE_ENTER" | "MOUSE_LEAVE";
+  },
+) {
+  switch (action.type) {
+    case "BLUR":
+      return { ...state, focussed: false };
+    case "FOCUS":
+      return { ...state, focussed: true };
+    case "MOUSE_ENTER":
+      return { ...state, hovered: true };
+    case "MOUSE_LEAVE":
+      return { ...state, hovered: false };
+    default:
+      return state;
+  }
+}
+
 /**
  * [TapArea](https://cambly-syntax.vercel.app/?path=/docs/components-taparea--docs) allows components to be clickable and touchable in an accessible way.
  */
@@ -69,6 +92,10 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
   ) => {
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
+    const [{ hovered, focussed }, dispatch] = useReducer(reducer, {
+      hovered: false,
+      focussed: false,
+    });
 
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
       !disabled ? onClick(event) : undefined;
@@ -83,6 +110,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       }
     };
 
+    const isHoveredOrFocussed = !disabled && (hovered || focussed);
+
     return (
       <div
         aria-disabled={disabled}
@@ -91,15 +120,27 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
           styles.tapArea,
           styles[`${disabled ? "disabled" : "enabled"}`],
           fullWidth && styles.fullWidth,
-          rounding !== "none" && roundingStyles[`rounding${rounding}`],
+          isHoveredOrFocussed && styles.hoveredOrFocussed,
         )}
         data-testid={dataTestId}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
+        onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
+        onFocus={() => dispatch({ type: "FOCUS" })}
+        onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
       >
+        {!disabled && (hovered || focussed) && (
+          <div
+            className={classNames(
+              styles.overlay,
+              rounding !== "none" && roundingStyles[`rounding${rounding}`],
+            )}
+          />
+        )}
         {children}
       </div>
     );
