@@ -82,3 +82,30 @@ export const Rounding: StoryObj<typeof Box> = {
     </>
   ),
 };
+
+export const Colored: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Box display="flex" direction="column" gap={4}>
+        <Typography>Hover to see the overlay</Typography>
+
+        <TapArea
+          fullWidth={false}
+          onClick={() => {
+            /* empty */
+          }}
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={2}
+            padding={2}
+            backgroundColor="purple300"
+          >
+            <Typography>Colored</Typography>
+          </Box>
+        </TapArea>
+      </Box>
+    </>
+  ),
+};
