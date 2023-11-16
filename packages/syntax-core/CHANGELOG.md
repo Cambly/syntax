@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.2.0
+
+### Minor Changes
+
+- 9b01ebf: TapArea: support hover on children with color
+
 ## 9.1.1
 
 ### Patch Changes
