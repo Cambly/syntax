@@ -11,6 +11,7 @@ const Heading = ({
   children,
   color = "gray900",
   "data-testid": dataTestId,
+  lineClamp,
   size = 500,
 }: {
   /**
@@ -42,6 +43,10 @@ const Heading = ({
    */
   "data-testid"?: string;
   /**
+   * The number of lines we should truncate the text at
+   */
+  lineClamp?: number | undefined;
+  /**
    * Size of the text.
    *
    * * `500`: 20px
@@ -60,6 +65,7 @@ const Heading = ({
       as={as}
       color={color}
       data-testid={dataTestId}
+      lineClamp={lineClamp}
       size={size}
       weight={weight}
     >
