@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.3.0
+
+### Minor Changes
+
+- cd22cc3: Adding lineClamp to Heading Component
+
 ## 9.2.0
 
 ### Minor Changes
