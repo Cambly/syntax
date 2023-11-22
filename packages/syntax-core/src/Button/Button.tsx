@@ -40,7 +40,8 @@ type ButtonProps = {
     | "destructive-secondary"
     | "destructive-tertiary"
     | "branded"
-    | "success";
+    | "success"
+    | "inverse";
   /**
    * The size of the button
    *
