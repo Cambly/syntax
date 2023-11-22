@@ -3,6 +3,7 @@ import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
+import useFocusVisible from "../useFocusVisible";
 
 type TapAreaProps = {
   /**
@@ -53,17 +54,12 @@ type TapAreaProps = {
 function reducer(
   state: {
     hovered: boolean;
-    focussed: boolean;
   },
   action: {
-    type: "BLUR" | "FOCUS" | "MOUSE_ENTER" | "MOUSE_LEAVE";
+    type: "MOUSE_ENTER" | "MOUSE_LEAVE";
   },
 ) {
   switch (action.type) {
-    case "BLUR":
-      return { ...state, focussed: false };
-    case "FOCUS":
-      return { ...state, focussed: true };
     case "MOUSE_ENTER":
       return { ...state, hovered: true };
     case "MOUSE_LEAVE":
@@ -92,10 +88,10 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
   ) => {
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
-    const [{ hovered, focussed }, dispatch] = useReducer(reducer, {
+    const [{ hovered }, dispatch] = useReducer(reducer, {
       hovered: false,
-      focussed: false,
     });
+    const { isFocusVisible } = useFocusVisible();
 
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
       !disabled ? onClick(event) : undefined;
@@ -110,7 +106,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       }
     };
 
-    const isHoveredOrFocussed = !disabled && (hovered || focussed);
+    const isHoveredOrFocussed = !disabled && (hovered || isFocusVisible);
 
     return (
       <div
@@ -127,13 +123,11 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         onKeyDown={handleKeyDown}
         onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
         onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
-        onFocus={() => dispatch({ type: "FOCUS" })}
-        onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
       >
-        {!disabled && (hovered || focussed) && (
+        {!disabled && (hovered || isFocusVisible) && (
           <div
             className={classNames(
               styles.overlay,
