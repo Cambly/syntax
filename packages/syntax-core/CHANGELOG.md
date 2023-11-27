@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.4.0
+
+### Minor Changes
+
+- cf53f87: Add "Inverse" color option to Button and IconButton
+
 ## 9.3.0
 
 ### Minor Changes
