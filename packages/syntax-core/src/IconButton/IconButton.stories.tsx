@@ -21,6 +21,7 @@ export default {
         "destructive-primary",
         "destructive-secondary",
         "success",
+        "inverse",
       ],
       control: { type: "radio" },
     },
@@ -64,6 +65,9 @@ export const DestructiveTertiary: StoryObj<typeof IconButton> = {
 };
 export const Success: StoryObj<typeof IconButton> = {
   args: { ...Default.args, color: "success" },
+};
+export const Inverse: StoryObj<typeof IconButton> = {
+  args: { ...Default.args, color: "inverse" },
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
