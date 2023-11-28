@@ -3,7 +3,6 @@ import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
-import useFocusVisible from "../useFocusVisible";
 
 type TapAreaProps = {
   /**
@@ -54,12 +53,17 @@ type TapAreaProps = {
 function reducer(
   state: {
     hovered: boolean;
+    focussed: boolean;
   },
   action: {
-    type: "MOUSE_ENTER" | "MOUSE_LEAVE";
+    type: "BLUR" | "FOCUS" | "MOUSE_ENTER" | "MOUSE_LEAVE";
   },
 ) {
   switch (action.type) {
+    case "BLUR":
+      return { ...state, focussed: false };
+    case "FOCUS":
+      return { ...state, focussed: true };
     case "MOUSE_ENTER":
       return { ...state, hovered: true };
     case "MOUSE_LEAVE":
@@ -88,13 +92,19 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
   ) => {
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
-    const [{ hovered }, dispatch] = useReducer(reducer, {
+    const [{ hovered, focussed }, dispatch] = useReducer(reducer, {
       hovered: false,
+      focussed: false,
     });
-    const { isFocusVisible } = useFocusVisible();
 
-    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
-      !disabled ? onClick(event) : undefined;
+    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+      if (disabled) {
+        undefined;
+      } else {
+        onClick(event);
+        event.currentTarget.blur();
+      }
+    };
 
     const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (
       event,
@@ -106,7 +116,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       }
     };
 
-    const isHoveredOrFocussed = !disabled && (hovered || isFocusVisible);
+    const isHoveredOrFocussed = !disabled && (hovered || focussed);
 
     return (
       <div
@@ -121,13 +131,15 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         data-testid={dataTestId}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        onFocus={() => dispatch({ type: "FOCUS" })}
+        onBlur={() => dispatch({ type: "BLUR" })}
         onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
         onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
       >
-        {!disabled && (hovered || isFocusVisible) && (
+        {!disabled && (hovered || focussed) && (
           <div
             className={classNames(
               styles.overlay,
