@@ -1,5 +1,12 @@
 # @syntax/storybook
 
+## 0.10.11
+
+### Patch Changes
+
+- Updated dependencies [dac2560]
+  - @cambly/syntax-core@9.5.0
+
 ## 0.10.10
 
 ### Patch Changes

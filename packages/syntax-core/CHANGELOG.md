@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.5.0
+
+### Minor Changes
+
+- dac2560: Blur TapArea event target when clicked
+
 ## 9.4.0
 
 ### Minor Changes
