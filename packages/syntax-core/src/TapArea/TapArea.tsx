@@ -131,10 +131,10 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         data-testid={dataTestId}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        onFocus={() => dispatch({ type: "FOCUS" })}
-        onBlur={() => dispatch({ type: "BLUR" })}
         onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
         onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
+        onFocus={() => dispatch({ type: "FOCUS" })}
+        onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
