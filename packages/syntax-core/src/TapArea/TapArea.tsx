@@ -97,8 +97,14 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       focussed: false,
     });
 
-    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
-      !disabled ? onClick(event) : undefined;
+    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+      if (disabled) {
+        undefined;
+      } else {
+        event.currentTarget.blur();
+        onClick(event);
+      }
+    };
 
     const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (
       event,
