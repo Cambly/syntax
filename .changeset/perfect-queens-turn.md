@@ -2,4 +2,4 @@
 "@cambly/syntax-core": minor
 ---
 
-Don't consider TapArea as "focussed" if clicked
+Blur TapArea event target when clicked
