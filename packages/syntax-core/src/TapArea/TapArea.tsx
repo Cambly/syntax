@@ -101,8 +101,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       if (disabled) {
         undefined;
       } else {
-        onClick(event);
         event.currentTarget.blur();
+        onClick(event);
       }
     };
 
