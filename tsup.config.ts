@@ -3,14 +3,30 @@ import { promises as fsPromises } from "fs";
 import path from "path";
 import postcss from "postcss";
 import postcssModules from "postcss-modules";
+import { glob } from "glob";
 
 export default defineConfig({
-  entry: ["src/index.tsx"],
+  entry: glob.sync("src/**/*.{ts,tsx}", {
+    cwd: process.cwd(),
+    ignore: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cjs/**",
+      "**/esm/**",
+      "**/*.stories.*",
+      "**/*.test.*",
+    ],
+  }),
   format: ["cjs", "esm"],
   external: ["react", "react-dom"],
   noExternal: ["@cambly/syntax-design-tokens"],
   sourcemap: true,
   dts: true,
+  splitting: true,
+  skipNodeModulesBundle: true,
+  esbuildOptions(options) {
+    options.chunkNames = "__chunks/[hash]";
+  },
   // ESBuild does not yet support CSS Modules
   // https://github.com/egoist/tsup/issues/536#issuecomment-1302012400
   esbuildPlugins: [
