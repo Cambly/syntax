@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.4.0
+
+### Minor Changes
+
+- dc86dc0: tree-shaking: build individual module files instead of single large index.js bundle
+
 ## 1.3.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 0.6.0
+
+### Minor Changes
+
+- dc86dc0: tree-shaking: build individual module files instead of single large index.js bundle
+
 ## 0.5.1
 
 ### Patch Changes

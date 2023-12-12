@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-tsconfig",
   "description": "Cambly design system TypeScript config",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "license": "Apache-2.0",
   "publishConfig": {

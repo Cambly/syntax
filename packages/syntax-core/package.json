@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-core",
   "description": "Cambly design system core components",
-  "version": "9.6.0",
+  "version": "9.7.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,7 +21,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cambly/syntax-design-tokens": "workspace:0.9.0"
+    "@cambly/syntax-design-tokens": "workspace:0.10.0"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",
