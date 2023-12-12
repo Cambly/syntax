@@ -4,6 +4,7 @@ import Box from "./Box";
 import Typography from "../Typography/Typography";
 import Button from "../Button/Button";
 import Heading from "../Heading/Heading";
+import Divider from "../Divider/Divider";
 
 export default {
   title: "Components/Box",
@@ -102,6 +103,18 @@ export default {
     },
     gap: {
       control: { type: "number", min: 0, max: 12, step: 1 },
+    },
+    overflow: {
+      options: ["initial", "inherit", "visible", "hidden", "scroll", "auto"],
+      control: { type: "select" },
+    },
+    overflowX: {
+      options: ["initial", "inherit", "visible", "hidden", "scroll", "auto"],
+      control: { type: "select" },
+    },
+    overflowY: {
+      options: ["initial", "inherit", "visible", "hidden", "scroll", "auto"],
+      control: { type: "select" },
     },
     padding: {
       control: { type: "number", min: 0, max: 12, step: 1 },
@@ -207,6 +220,46 @@ export const BackgroundColor: StoryObj<typeof Box> = {
   ),
 };
 
+export const Direction: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Typography weight="bold">Direction: row </Typography>
+      <Box display="flex">
+        <Box height={40} width={40}>
+          <Typography>1</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>2</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>3</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>4</Typography>
+        </Box>
+      </Box>
+      <Box width="100%">
+        <Divider />
+      </Box>
+      <Typography weight="bold">Direction: column </Typography>
+      <Box display="flex" direction="column">
+        <Box height={40} width={40}>
+          <Typography>1</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>2</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>3</Typography>
+        </Box>
+        <Box height={40} width={40}>
+          <Typography>4</Typography>
+        </Box>
+      </Box>
+    </>
+  ),
+};
+
 export const Display: StoryObj<typeof Box> = {
   render: () => (
     <>
@@ -242,6 +295,22 @@ export const Margin: StoryObj<typeof Box> = {
         </Box>
       ))}
     </Box>
+  ),
+};
+
+export const Overflow: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Typography weight="bold">Overflow: hidden</Typography>
+      <Box rounding="full" overflow="hidden" height={80} width={80}>
+        <Box backgroundColor="primary700">
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Typography>
+        </Box>
+      </Box>
+    </>
   ),
 };
 

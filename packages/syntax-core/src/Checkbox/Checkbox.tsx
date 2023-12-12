@@ -4,6 +4,7 @@ import useFocusVisible from "../useFocusVisible";
 import styles from "./Checkbox.module.css";
 import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
+import useIsHydrated from "../useIsHydrated";
 
 const typographySize = {
   sm: 100,
@@ -21,7 +22,7 @@ const iconWidth = {
 const Checkbox = ({
   checked = false,
   "data-testid": dataTestId,
-  disabled = false,
+  disabled: disabledProp = false,
   size = "md",
   label,
   error = false,
@@ -67,6 +68,8 @@ const Checkbox = ({
    */
   error?: boolean;
 }): ReactElement => {
+  const isHydrated = useIsHydrated();
+  const disabled = !isHydrated || disabledProp;
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
 

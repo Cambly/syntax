@@ -14,6 +14,7 @@ import styles from "./SelectList.module.css";
 import focusStyles from "../Focus.module.css";
 import SelectOption from "./SelectOption";
 import useFocusVisible from "../useFocusVisible";
+import useIsHydrated from "../useIsHydrated";
 
 const iconSize = {
   sm: 20,
@@ -27,9 +28,10 @@ const iconSize = {
 export default function SelectList({
   children,
   "data-testid": dataTestId,
-  disabled = false,
+  disabled: disabledProp = false,
   errorText,
   helperText,
+  id,
   label,
   onChange,
   onClick,
@@ -63,6 +65,10 @@ export default function SelectList({
    */
   helperText?: string;
   /**
+   * Id of the select element
+   */
+  id?: string;
+  /**
    * Text shown above select box
    */
   label: string;
@@ -89,7 +95,10 @@ export default function SelectList({
    */
   size?: "sm" | "md" | "lg";
 }): ReactElement {
-  const id = useId();
+  const reactId = useId();
+  const isHydrated = useIsHydrated();
+  const disabled = !isHydrated || disabledProp;
+  const selectId = id ?? reactId;
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
 
@@ -100,7 +109,7 @@ export default function SelectList({
       })}
     >
       {label && (
-        <label htmlFor={id} className={styles.outerTextContainer}>
+        <label htmlFor={selectId} className={styles.outerTextContainer}>
           <Typography size={100} color="gray700">
             {label}
           </Typography>
@@ -108,7 +117,7 @@ export default function SelectList({
       )}
       <div className={styles.selectWrapper}>
         <select
-          id={id}
+          id={selectId}
           data-testid={dataTestId}
           disabled={disabled}
           className={classNames(styles.selectBox, styles[size], {

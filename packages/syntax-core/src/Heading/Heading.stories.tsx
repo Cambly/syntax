@@ -29,6 +29,7 @@ export default {
         "gray700",
         "gray900",
         "primary",
+        "success",
         "white",
       ],
       control: { type: "radio" },
@@ -80,6 +81,9 @@ export const Colors: StoryObj<typeof Heading> = {
       </Heading>
       <Heading {...args} color="primary">
         Color primary
+      </Heading>
+      <Heading {...args} color="success">
+        Color success
       </Heading>
       <div style={{ backgroundColor: "#000" }}>
         <Heading {...args} color="white">

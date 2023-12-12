@@ -14,6 +14,7 @@ import {
   FloatingArrow,
   arrow,
   size,
+  FloatingPortal,
 } from "@floating-ui/react";
 import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 import Typography from "../../../syntax-core/src/Typography/Typography";
@@ -216,18 +217,20 @@ export const TooltipContent = React.forwardRef<
   if (!context.open) return null;
 
   return (
-    <div
-      {...context.getFloatingProps(props)}
-      ref={ref}
-      className={styles.tooltipContent}
-      style={{
-        ...context.floatingStyles,
-      }}
-    >
-      <Typography size={100} color="white">
-        {props.children}
-      </Typography>
-      <FloatingArrow ref={context.arrowRef} context={floatingContext} />
-    </div>
+    <FloatingPortal>
+      <div
+        {...context.getFloatingProps(props)}
+        ref={ref}
+        className={styles.tooltipContent}
+        style={{
+          ...context.floatingStyles,
+        }}
+      >
+        <Typography size={100} color="white">
+          {props.children}
+        </Typography>
+        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
+      </div>
+    </FloatingPortal>
   );
 });

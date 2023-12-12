@@ -11,6 +11,8 @@ export default function foregroundColor(color: (typeof Color)[number]): string {
       return styles.destructive700Color;
     case "branded":
       return styles.gray900Color;
+    case "inverse":
+      return styles.whiteColor;
     default:
       return styles.whiteColor;
   }

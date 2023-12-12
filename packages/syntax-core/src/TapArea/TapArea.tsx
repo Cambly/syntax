@@ -1,7 +1,8 @@
-import React, { type ReactNode, forwardRef } from "react";
+import React, { type ReactNode, forwardRef, useReducer } from "react";
 import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
+import useIsHydrated from "../useIsHydrated";
 
 type TapAreaProps = {
   /**
@@ -29,7 +30,7 @@ type TapAreaProps = {
   /**
    * The callback to be called when the tap area is clicked
    */
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick: (event: React.SyntheticEvent<HTMLDivElement>) => void;
   /**
    * Border radius of the tap area.
    *
@@ -49,6 +50,29 @@ type TapAreaProps = {
   tabIndex?: 0 | -1;
 };
 
+function reducer(
+  state: {
+    hovered: boolean;
+    focussed: boolean;
+  },
+  action: {
+    type: "BLUR" | "FOCUS" | "MOUSE_ENTER" | "MOUSE_LEAVE";
+  },
+) {
+  switch (action.type) {
+    case "BLUR":
+      return { ...state, focussed: false };
+    case "FOCUS":
+      return { ...state, focussed: true };
+    case "MOUSE_ENTER":
+      return { ...state, hovered: true };
+    case "MOUSE_LEAVE":
+      return { ...state, hovered: false };
+    default:
+      return state;
+  }
+}
+
 /**
  * [TapArea](https://cambly-syntax.vercel.app/?path=/docs/components-taparea--docs) allows components to be clickable and touchable in an accessible way.
  */
@@ -58,7 +82,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       children,
       accessibilityLabel,
       "data-testid": dataTestId,
-      disabled = false,
+      disabled: disabledProp = false,
       fullWidth = true,
       onClick,
       rounding = "none",
@@ -66,8 +90,33 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
     }: TapAreaProps,
     ref,
   ) => {
-    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) =>
-      !disabled ? onClick(event) : undefined;
+    const isHydrated = useIsHydrated();
+    const disabled = !isHydrated || disabledProp;
+    const [{ hovered, focussed }, dispatch] = useReducer(reducer, {
+      hovered: false,
+      focussed: false,
+    });
+
+    const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+      if (disabled) {
+        undefined;
+      } else {
+        event.currentTarget.blur();
+        onClick(event);
+      }
+    };
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (
+      event,
+    ) => {
+      if (disabled) return;
+      if (event.key === "Enter" || event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        onClick(event);
+      }
+    };
+
+    const isHoveredOrFocussed = !disabled && (hovered || focussed);
 
     return (
       <div
@@ -77,14 +126,27 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
           styles.tapArea,
           styles[`${disabled ? "disabled" : "enabled"}`],
           fullWidth && styles.fullWidth,
-          rounding !== "none" && roundingStyles[`rounding${rounding}`],
+          isHoveredOrFocussed && styles.hoveredOrFocussed,
         )}
         data-testid={dataTestId}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
+        onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
+        onFocus={() => dispatch({ type: "FOCUS" })}
+        onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}
         role="button"
         tabIndex={disabled ? undefined : tabIndex}
       >
+        {!disabled && (hovered || focussed) && (
+          <div
+            className={classNames(
+              styles.overlay,
+              rounding !== "none" && roundingStyles[`rounding${rounding}`],
+            )}
+          />
+        )}
         {children}
       </div>
     );

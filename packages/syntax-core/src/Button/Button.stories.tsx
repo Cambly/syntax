@@ -22,6 +22,7 @@ export default {
         "destructive-tertiary",
         "success",
         "branded",
+        "inverse",
       ],
       control: { type: "radio" },
     },
@@ -72,6 +73,9 @@ export const DestructiveTertiary: StoryObj<typeof Button> = {
 };
 export const Branded: StoryObj<typeof Button> = {
   args: { ...Default.args, color: "branded" },
+};
+export const Inverse: StoryObj<typeof Button> = {
+  args: { ...Default.args, color: "inverse" },
 };
 export const Loading: StoryObj<typeof Button> = {
   args: { ...Default.args, loading: true, loadingText: "Connecting…" },

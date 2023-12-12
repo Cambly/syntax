@@ -3,6 +3,7 @@ import classnames from "classnames";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Chip.module.css";
+import useIsHydrated from "../useIsHydrated";
 
 type ChipProps = {
   /**
@@ -54,8 +55,12 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     }: ChipProps,
     ref,
   ) => {
+    const isHydrated = useIsHydrated();
+    const disabled = !isHydrated;
+
     const chipStyles = classnames(styles.chip, styles[size], {
       [styles.selectedChip]: selected,
+      [styles.disabled]: disabled,
     });
     const iconStyles = classnames(styles.icon, {
       [styles.selectedIcon]: selected,
@@ -67,6 +72,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     return (
       <button
         className={chipStyles}
+        disabled={disabled}
         data-testid={dataTestId}
         ref={ref}
         type="button"

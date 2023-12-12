@@ -360,6 +360,79 @@
   }
 }
 
+/* Overflow */
+.overflowvisible {
+  overflow: visible;
+}
+
+.overflowhidden {
+  overflow: hidden;
+}
+
+.overflowscroll {
+  overflow: scroll;
+}
+
+.overflowauto {
+  overflow: auto;
+}
+
+.overflowinherit {
+  overflow: inherit;
+}
+
+.overflowinitial {
+  overflow: initial;
+}
+
+.overflowXvisible {
+  overflow-x: visible;
+}
+
+.overflowXhidden {
+  overflow-x: hidden;
+}
+
+.overflowXscroll {
+  overflow-x: scroll;
+}
+
+.overflowXauto {
+  overflow-x: auto;
+}
+
+.overflowXinherit {
+  overflow-x: inherit;
+}
+
+.overflowXinitial {
+  overflow-x: initial;
+}
+
+.overflowYvisible {
+  overflow-y: visible;
+}
+
+.overflowYhidden {
+  overflow-y: hidden;
+}
+
+.overflowYscroll {
+  overflow-y: scroll;
+}
+
+.overflowYauto {
+  overflow-y: auto;
+}
+
+.overflowYinherit {
+  overflow-y: inherit;
+}
+
+.overflowYinitial {
+  overflow-y: initial;
+}
+
 /* Position */
 .absolute {
   position: absolute;

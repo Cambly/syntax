@@ -16,6 +16,8 @@ export default function backgroundColor(color: (typeof Color)[number]): string {
       return styles.whiteBackgroundColor;
     case "branded":
       return styles.yellow700BackgroundColor;
+    case "inverse":
+      return styles.gray60BackgroundColor;
     default:
       return styles.primary700BackgroundColor;
   }

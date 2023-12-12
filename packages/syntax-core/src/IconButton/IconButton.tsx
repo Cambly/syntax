@@ -4,6 +4,7 @@ import foregroundColor from "../colors/foregroundColor";
 import React, { forwardRef } from "react";
 import { type Color, type Size } from "../constants";
 import styles from "./IconButton.module.css";
+import useIsHydrated from "../useIsHydrated";
 
 const iconSize = {
   ["sm"]: styles.smIcon,
@@ -73,13 +74,15 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     }: IconButtonProps,
     ref,
   ) => {
+    const isHydrated = useIsHydrated();
+
     return (
       <button
         aria-label={accessibilityLabel}
         data-testid={dataTestId}
         type="button"
         title={tooltip}
-        disabled={disabled}
+        disabled={!isHydrated || disabled}
         onClick={onClick}
         className={classNames(
           styles.iconButton,

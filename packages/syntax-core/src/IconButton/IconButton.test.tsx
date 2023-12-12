@@ -8,6 +8,7 @@ describe("iconButton", () => {
   it("renders successfully", () => {
     const { baseElement } = render(
       <IconButton
+        accessibilityLabel="Star"
         onClick={() => {
           /* empty */
         }}
@@ -20,6 +21,7 @@ describe("iconButton", () => {
   it("renders an role=IconButton element", async () => {
     render(
       <IconButton
+        accessibilityLabel="Star"
         onClick={() => {
           /* empty */
         }}

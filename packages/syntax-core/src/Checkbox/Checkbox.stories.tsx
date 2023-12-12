@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Checkbox from "./Checkbox";
 import React, { useState } from "react";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/Checkbox",
@@ -48,4 +49,32 @@ const CheckboxInteractive = () => {
 
 export const Interactive: StoryObj<typeof Checkbox> = {
   render: () => <CheckboxInteractive />,
+};
+
+export const FixDoesNotBlowoutHeight: StoryObj<typeof Checkbox> = {
+  render: () => (
+    <Box height="100px" overflowY="auto" padding={3}>
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+      <CheckboxInteractive />
+    </Box>
+  ),
 };

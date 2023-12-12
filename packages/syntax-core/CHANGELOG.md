@@ -1,5 +1,117 @@
 # @cambly/syntax-core
 
+## 9.6.0
+
+### Minor Changes
+
+- 7ab86fc: TapArea: fix issue with link nested in TapArea
+
+## 9.5.0
+
+### Minor Changes
+
+- dac2560: Blur TapArea event target when clicked
+
+## 9.4.0
+
+### Minor Changes
+
+- cf53f87: Add "Inverse" color option to Button and IconButton
+
+## 9.3.0
+
+### Minor Changes
+
+- cd22cc3: Adding lineClamp to Heading Component
+
+## 9.2.0
+
+### Minor Changes
+
+- 9b01ebf: TapArea: support hover on children with color
+
+## 9.1.1
+
+### Patch Changes
+
+- 559f067: Remove 'use client' annotation for now
+
+## 9.1.0
+
+### Minor Changes
+
+- 59b08c0: Interactive elements: only enable after hydration
+
+## 9.0.2
+
+### Patch Changes
+
+- 271cffa: Checkbox: Fix input overlay rendering bug that forced way too much extra height in overflow containers
+
+## 9.0.1
+
+### Patch Changes
+
+- 015a2eb: Divider: add style flex: 0 0 auto; this makes the height inflexible, preventing it from being squashed to height 0px when contained within a scrolling flex container
+
+## 9.0.0
+
+### Major Changes
+
+- 9c37298: MiniActionCard: Remove from Syntax
+
+  MiniActionCard was the first component added to Syntax and was meant to be a "test" component. As it isn't used much and we no longer need the basic demonstration, it can be removed.
+
+### Minor Changes
+
+- d576caf: ## Card
+
+  - update padding from 36px -> 28px on md + lg breakpoints
+  - update padding from 28px -> 20px on sm breakpoint
+
+  ## Box
+
+  - update `xl` rounding from 32px to 24px
+
+- d2516d6: SelectList: add id prop
+
+## 8.1.0
+
+### Minor Changes
+
+- a659747: Box: add Overflow, OverflowX and OverFlowY to Box Props
+
+## 8.0.0
+
+### Major Changes
+
+- 4ecbf7c: WHAT the breaking change is
+  Card's "size" prop is being deprecated.
+
+  WHY the change was made
+  Card cannot be used if you want to render it with a width larger than 744px (size="lg"). We should just have the width stretch to its parent's container.
+
+  HOW a consumer should update their code
+  Those using a Card with size="sm" should wrap it with a Box of maxWidth={352}, those using a card with size="lg" should wrap it with a Box of maxWidth{744}.
+
+## 7.13.0
+
+### Minor Changes
+
+- f6c17f0: Add green/success color to Text and Heading
+
+## 7.12.0
+
+### Minor Changes
+
+- 93997f3: Layer: fix document is not defined issue
+
+## 7.11.1
+
+### Patch Changes
+
+- ae9a80d: Fix: TapArea - handle keyboard interaction when focused
+
 ## 7.11.0
 
 ### Minor Changes

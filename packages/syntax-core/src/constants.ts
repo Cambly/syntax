@@ -3,6 +3,7 @@ export const Color = [
   "secondary",
   "tertiary",
   "branded",
+  "inverse",
   "destructive-primary",
   "destructive-secondary",
   "destructive-tertiary",
