@@ -106,6 +106,60 @@ describe("tapArea", () => {
     expect(handleTap).toHaveBeenCalledTimes(0);
   });
 
+  it("fires onClick & opens link when link is clicked inside in TapArea", async () => {
+    const handleTap = vi.fn();
+    const handleLinkClick = vi.fn();
+    render(
+      <TapArea
+        data-testid="tap-area-testid"
+        onClick={handleTap}
+        accessibilityLabel="Continue to the next step"
+      >
+        <a
+          href="https://www.cambly.com"
+          data-testid="link-in-tap-area"
+          onClick={handleLinkClick}
+        >
+          Cambly
+        </a>
+      </TapArea>,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    const linkInTapArea = await screen.findByTestId("link-in-tap-area");
+    await userEvent.hover(tapArea);
+    await userEvent.click(linkInTapArea);
+    expect(handleTap).toHaveBeenCalledTimes(1);
+    expect(handleLinkClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("only opens link when link is clicked inside in TapArea and event.stopPropagation() is called", async () => {
+    const handleTap = vi.fn();
+    const handleLinkClick = vi.fn().mockImplementation((event: Event) => {
+      event.stopPropagation();
+    });
+    render(
+      <TapArea
+        data-testid="tap-area-testid"
+        onClick={handleTap}
+        accessibilityLabel="Continue to the next step"
+      >
+        <a
+          href="https://www.cambly.com"
+          data-testid="link-in-tap-area"
+          onClick={handleLinkClick}
+        >
+          Cambly
+        </a>
+      </TapArea>,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    const linkInTapArea = await screen.findByTestId("link-in-tap-area");
+    await userEvent.hover(tapArea);
+    await userEvent.click(linkInTapArea);
+    expect(handleTap).toHaveBeenCalledTimes(0);
+    expect(handleLinkClick).toHaveBeenCalledTimes(1);
+  });
+
   it("allows us to focus the TapArea", async () => {
     render(
       <TapArea
