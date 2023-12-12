@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 9.6.0
+
+### Minor Changes
+
+- 7ab86fc: TapArea: fix issue with link nested in TapArea
+
 ## 9.5.0
 
 ### Minor Changes
