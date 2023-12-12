@@ -1,6 +1,6 @@
 {
   "name": "@syntax/storybook",
-  "version": "0.10.12",
+  "version": "0.11.0",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider storybook dev -p 6006",
@@ -9,9 +9,9 @@
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "@cambly/syntax-core": "workspace:9.6.0",
-    "@cambly/syntax-design-tokens": "workspace:0.9.0",
-    "@cambly/syntax-floating-components": "workspace:^0.3.0",
+    "@cambly/syntax-core": "workspace:9.7.0",
+    "@cambly/syntax-design-tokens": "workspace:0.10.0",
+    "@cambly/syntax-floating-components": "workspace:^0.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 9.7.0
+
+### Minor Changes
+
+- dc86dc0: tree-shaking: build individual module files instead of single large index.js bundle
+
+### Patch Changes
+
+- Updated dependencies [dc86dc0]
+  - @cambly/syntax-design-tokens@0.10.0
+
 ## 9.6.0
 
 ### Minor Changes
