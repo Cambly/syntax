@@ -31,6 +31,7 @@
     "eslint": "8.39.0",
     "glob": "10.3.4",
     "jsdom": "22.0.0",
+    "package-json-type": "1.0.3",
     "prettier": "2.8.8",
     "rimraf": "^5.0.1",
     "stylelint": "15.6.0",
