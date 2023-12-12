@@ -1,5 +1,5 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 import spawn from "cross-spawn";
 import fse from "fs-extra";
 import { build } from "tsup";
@@ -56,10 +56,10 @@ const cjsDir = getCJSDir();
 
 fse.copySync(esmDir, cjsDir);
 
-const builds = /** @type {const} */ ([
+const builds = /** @type {const} */ [
   { format: "esm", outDir: esmDir },
   { format: "cjs", outDir: cjsDir },
-]);
+];
 
 // const entry = await glob("src/**/*.{ts,tsx}", {
 //   cwd,
@@ -83,7 +83,14 @@ for (const { format, outDir } of builds) {
     config,
     // tsconfig,
     entry,
-    exclude: ["**/dist/**", "**/cjs/**", "**/esm/**", "**/node_modules/**", "*.stories.*", "*.test.*"],
+    exclude: [
+      "**/dist/**",
+      "**/cjs/**",
+      "**/esm/**",
+      "**/node_modules/**",
+      "*.stories.*",
+      "*.test.*",
+    ],
     format,
     declaration: true,
     outDir,

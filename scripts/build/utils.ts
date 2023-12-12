@@ -4,33 +4,20 @@ import chalk from "chalk";
 import fse from "fs-extra";
 import { rimrafSync } from "rimraf";
 
-/**
- * @param {string} path
- */
-function isDirectory(path) {
+function isDirectory(path: string) {
   return lstatSync(path).isDirectory();
 }
 
-/**
- * @param {string} path
- */
-export function removeExt(path) {
+export function removeExt(path: string) {
   return path.replace(/\.[^.]+$/, "");
 }
 
-/**
- * @param {string} rootPath
- * @returns {Record<string, any>}
- */
-export function readPackageJson(rootPath) {
+export function readPackageJson(rootPath: string): Record<string, unknown> {
   const pkgPath = join(rootPath, "package.json");
   return JSON.parse(readFileSync(pkgPath, "utf-8"));
 }
 
-/**
- * @param {string} rootPath
- */
-export function getPackageJson(rootPath, prod = false) {
+export function getPackageJson(rootPath: string, prod: boolean = false) {
   const { exports: _, ...pkg } = readPackageJson(rootPath);
   // const sourcePath = getSourcePath(rootPath);
   // const publicFiles = getPublicFiles(sourcePath);
@@ -62,7 +49,7 @@ export function getPackageJson(rootPath, prod = false) {
   // );
 
   /** @type {Record<string, any>} */
-  const nextPkg = {
+  const nextPkg: Record<string, unknown> = {
     ...pkg,
     main: prod ? join(cjsDir, "index.cjs") : join(sourceDir, "index.ts"),
     module: prod ? join(esmDir, "index.js") : join(sourceDir, "index.ts"),
@@ -76,10 +63,7 @@ export function getPackageJson(rootPath, prod = false) {
   return nextPkg;
 }
 
-/**
- * @param {string} rootPath
- */
-export function writePackageJson(rootPath, prod = false) {
+export function writePackageJson(rootPath: string, prod = false) {
   const pkgPath = join(rootPath, "package.json");
   const currentContents = readFileSync(pkgPath, "utf-8");
   const pkg = getPackageJson(rootPath, prod);
@@ -105,57 +89,47 @@ export function getCJSDir() {
   return join(getDistDir(), "cjs");
 }
 
-/**
- * @param {string} rootPath
- */
-export function getSourcePath(rootPath) {
+export function getSourcePath(rootPath: string) {
   return join(rootPath, getSourceDir());
 }
 
-/**
- * @param {string} rootPath
- */
-export function getDistPath(rootPath) {
+export function getDistPath(rootPath: string) {
   return join(rootPath, getDistDir());
 }
 
 /**
  * Ensure that paths are consistent across Windows and non-Windows platforms.
- * @param {string} filePath
  */
-function normalizePath(filePath) {
+function normalizePath(filePath: string) {
   return filePath.replace(/\\/g, "/");
 }
 
 /**
  * Filters to catch test and story files and other patterns that should be ignored.
- * @param {string} rootPath
- * @param {string} filename
  */
-function isOtherIgnoredPath(filepath) {
-  if(/\.test\./.test(filepath)) return true;
-  if(/\.stories\./.test(filepath)) return true;
+function isOtherIgnoredPath(filepath: string) {
+  if (/\.test\./.test(filepath)) return true;
+  if (/\.stories\./.test(filepath)) return true;
   return false;
 }
 
 /**
  * Filters out files starting with __
  * Includes directories and TS/JS files.
- * @param {string} rootPath
- * @param {string} filename
  */
-function isModuleNameSameAsDirectory(rootPath, filename) {
+function isModuleNameSameAsDirectory(rootPath: string, filename: string) {
   if (isDirectory(join(rootPath, filename))) return true;
-  return basename(dirname(join(rootPath, filename))) === removeExt(basename(join(rootPath, filename)));
+  return (
+    basename(dirname(join(rootPath, filename))) ===
+    removeExt(basename(join(rootPath, filename)))
+  );
 }
 
 /**
  * Filters out files starting with __
  * Includes directories and TS/JS files.
- * @param {string} rootPath
- * @param {string} filename
  */
-function isPublicModule(rootPath, filename) {
+function isPublicModule(rootPath: string, filename: string) {
   const isPrivate = /^__/.test(filename);
   if (isPrivate) return false;
   if (isDirectory(join(rootPath, filename))) return true;
@@ -164,102 +138,87 @@ function isPublicModule(rootPath, filename) {
 
 /**
  * Returns { index: "path/to/index", moduleName: "path/to/moduleName" }
- * @param {string} sourcePath
- * @param {string} prefix
- * @returns {Record<string, string>}
  */
-export function getPublicFiles(sourcePath, prefix = "") {
-  return readdirSync(sourcePath)
-  .filter((filename) => isPublicModule(sourcePath, filename))
-  // .filter((filename) => !isOtherIgnoredPath(filename))
-  .filter((filename) => isModuleNameSameAsDirectory(sourcePath, filename))
-  .sort() // Ensure consistent order across platforms
-    .reduce((acc, filename) => {
-      const path = join(sourcePath, filename);
-      const childFiles =
-        isDirectory(path) && getPublicFiles(path, join(prefix, filename));
-      return {
-        ...(childFiles || {
-          [removeExt(normalizePath(join(prefix, filename)))]:
-            normalizePath(path),
-        }),
-        ...acc,
-      };
-    }, {});
+export function getPublicFiles(
+  sourcePath: string,
+  prefix: string = "",
+): Record<string, string> {
+  return (
+    readdirSync(sourcePath)
+      .filter((filename) => isPublicModule(sourcePath, filename))
+      // .filter((filename) => !isOtherIgnoredPath(filename))
+      .filter((filename) => isModuleNameSameAsDirectory(sourcePath, filename))
+      .sort() // Ensure consistent order across platforms
+      .reduce((acc, filename) => {
+        const path = join(sourcePath, filename);
+        const childFiles =
+          isDirectory(path) && getPublicFiles(path, join(prefix, filename));
+        return {
+          ...(childFiles || {
+            [removeExt(normalizePath(join(prefix, filename)))]:
+              normalizePath(path),
+          }),
+          ...acc,
+        };
+      }, {})
+  );
 }
-
 
 /**
  * Syntax repos do not use index files, instead use a file whose name matches it's directory
  * This function helps export as if it was an index file;
  */
-function collapseMatchingModuleAndDirectoryName(moduleName) {
-  const parts = moduleName.split('/');
+function collapseMatchingModuleAndDirectoryName(moduleName: string) {
+  const parts = moduleName.split("/");
   if (parts.length < 2) return moduleName;
   const lastPart = parts[parts.length - 1];
   const secondToLastPart = parts[parts.length - 2];
   if (lastPart === secondToLastPart) {
-    return parts.slice(0, parts.length - 1).join('/');
+    return parts.slice(0, parts.length - 1).join("/");
   }
   return moduleName;
 }
 
 /**
  * Returns { "module": "module", "path/to/module": "path/to/module/index" }]
- * @param {string} rootPath
- * @returns {Record<string, string>}
  */
-export function getProxyFolders(rootPath) {
+export function getProxyFolders(rootPath: string): Record<string, string> {
   const publicFiles = getPublicFiles(getSourcePath(rootPath));
-  console.log('publicFiles in getProxyFolders', publicFiles);
+  console.log("publicFiles in getProxyFolders", publicFiles);
   return Object.fromEntries(
-      Object.keys(publicFiles)
-      .map((name) => [name.replace(/\/index$/, ""), name])
-      .map(([module, name]) => [collapseMatchingModuleAndDirectoryName(module), name])
-      .filter(([name]) => name !== "index")
+    Object.keys(publicFiles)
+      .map((name): [string, string] => [name.replace(/\/index$/, ""), name])
+      .map(([module, name]) => [
+        collapseMatchingModuleAndDirectoryName(module),
+        name,
+      ])
+      .filter(([name]) => name !== "index"),
   );
 }
 
 /**
  * Returns ["lib", "es", "dist", "ts", "moduleName", ...]
- * @param {string} rootPath
- * @returns {string[]}
  */
-export function getBuildFolders(rootPath) {
+export function getBuildFolders(rootPath: string): string[] {
   return [getCJSDir(), getESMDir(), ...Object.keys(getProxyFolders(rootPath))];
 }
 
-/**
- * @param {string} path
- */
-function getRootPath(path) {
+function getRootPath(path: string) {
   return path.replace(/^([^/]+).*$/, "$1");
 }
 
-/**
- * @param {string} path
- * @param {number} _
- * @param {string[]} array
- */
-function isRootModule(path, _, array) {
+function isRootModule(path: string, _: number, array: string[]) {
   const rootPath = getRootPath(path);
   return path === rootPath || !array.includes(rootPath);
 }
 
-/**
- * @param {string[]} array
- * @param {string} path
- */
-function reduceToRootPaths(array, path) {
+function reduceToRootPaths(array: string[], path: string) {
   const rootPath = getRootPath(path);
   if (array.includes(rootPath)) return array;
   return [...array, rootPath];
 }
 
-/**
- * @param {string} rootPath
- */
-export function cleanBuild(rootPath) {
+export function cleanBuild(rootPath: string) {
   writePackageJson(rootPath);
   getBuildFolders(rootPath)
     .filter(isRootModule)
@@ -267,10 +226,7 @@ export function cleanBuild(rootPath) {
     .forEach((name) => rimrafSync(name));
 }
 
-/**
- * @param {string} path
- */
-export function getIndexPath(path) {
+export function getIndexPath(path: string) {
   const index = readdirSync(path).find((file) =>
     /^index\.(c|m)?(j|t)sx?/.test(file),
   );
@@ -280,10 +236,7 @@ export function getIndexPath(path) {
   return join(path, index);
 }
 
-/**
- * @param {string} rootPath
- */
-export function makeGitignore(rootPath) {
+export function makeGitignore(rootPath: string) {
   const pkg = readPackageJson(rootPath);
   const buildFolders = getBuildFolders(rootPath);
   const contents = buildFolders
@@ -303,12 +256,11 @@ export function makeGitignore(rootPath) {
   );
 }
 
-/**
- * @param {string} rootPath
- * @param {string} moduleName
- * @param {string} path
- */
-function getProxyPackageContents(rootPath, moduleName, path) {
+function getProxyPackageContents(
+  rootPath: string,
+  moduleName: string,
+  path: string,
+) {
   const { name } = readPackageJson(rootPath);
   const mainDir = getCJSDir();
   const moduleDir = getESMDir();
@@ -324,13 +276,10 @@ function getProxyPackageContents(rootPath, moduleName, path) {
   return JSON.stringify(json, null, 2);
 }
 
-/**
- * @param {string} rootPath
- */
-export function makeProxies(rootPath) {
+export function makeProxies(rootPath: string) {
   const pkg = readPackageJson(rootPath);
   /** @type {string[]} */
-  const created = [];
+  const created: string[] = [];
   Object.entries(getProxyFolders(rootPath)).forEach(([name, path]) => {
     fse.ensureDirSync(name);
     writeFileSync(
