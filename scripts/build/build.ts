@@ -26,9 +26,9 @@ const cwd = process.cwd();
 
 cleanBuild(cwd);
 
-// writePackageJson(cwd, true);
-// makeGitignore(cwd);
-// makeProxies(cwd);
+writePackageJson(cwd, true);
+makeGitignore(cwd);
+makeProxies(cwd);
 
 const sourcePath = getSourcePath(cwd);
 const entry = getPublicFiles(sourcePath);
