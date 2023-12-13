@@ -19,45 +19,43 @@ export function readPackageJson(rootPath: string): Record<string, unknown> {
 
 export function getPackageJson(rootPath: string, prod: boolean = false) {
   const { exports: _, ...pkg } = readPackageJson(rootPath);
-  // const sourcePath = getSourcePath(rootPath);
-  // const publicFiles = getPublicFiles(sourcePath);
+  const sourcePath = getSourcePath(rootPath);
+  const publicFiles = getPublicFiles(sourcePath);
   const sourceDir = getSourceDir();
   const cjsDir = getCJSDir();
   const esmDir = getESMDir();
 
-  // /** @param {string} path */
-  // const getExports = (path) => {
-  //   if (!prod) {
-  //     return path.replace(sourcePath, `./${sourceDir}`);
-  //   }
-  //   path = removeExt(path).replace(sourcePath, "");
-  //   return {
-  //     import: `./${join(esmDir, path)}.js`,
-  //     require: `./${join(cjsDir, path)}.cjs`,
-  //   };
-  // };
+  const getExports = (path: string) => {
+    if (!prod) {
+      return path.replace(sourcePath, `./${sourceDir}`);
+    }
+    path = removeExt(path).replace(sourcePath, "");
+    return {
+      import: `./${join(esmDir, path)}.js`,
+      require: `./${join(cjsDir, path)}.cjs`,
+    };
+  };
 
-  // const moduleExports = Object.entries(publicFiles).reduce(
-  //   (acc, [name, path]) => {
-  //     if (name === "index") {
-  //       return { ".": getExports(path), ...acc };
-  //     }
-  //     const pathname = `./${name.replace(/\/index$/, "")}`;
-  //     return { ...acc, [pathname]: getExports(path) };
-  //   },
-  //   {},
-  // );
+  const moduleExports = Object.entries(publicFiles).reduce(
+    (acc, [name, path]) => {
+      if (name === "index") {
+        return { ".": getExports(path), ...acc };
+      }
+      const pathname = `./${name.replace(/\/index$/, "")}`;
+      return { ...acc, [pathname]: getExports(path) };
+    },
+    {},
+  );
 
-  /** @type {Record<string, any>} */
   const nextPkg: Record<string, unknown> = {
     ...pkg,
     main: prod ? join(cjsDir, "index.cjs") : join(sourceDir, "index.ts"),
     module: prod ? join(esmDir, "index.js") : join(sourceDir, "index.ts"),
     types: prod ? join(cjsDir, "index.d.ts") : join(sourceDir, "index.ts"),
-    // exports: {
-    //   ...moduleExports,
-    //   "./package.json": "./package.json",
-    // },
+    exports: {
+      ...moduleExports,
+      "./package.json": "./package.json",
+    },
   };
 
   return nextPkg;
