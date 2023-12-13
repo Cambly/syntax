@@ -13,9 +13,9 @@
   ],
   "scripts": {
     "old_build": "tsup",
-    "build": "ts-node ../../scripts/build/build.tsx",
+    "build": "tsx ../../scripts/build/build.ts",
     "old_clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "cleanbuild": "node ../../scripts/build/clean.ts",
+    "cleanbuild": "tsx ../../scripts/build/clean.ts",
     "clean": "rm -rf .turbo && rm -rf node_modules && pnpm cleanbuild",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
