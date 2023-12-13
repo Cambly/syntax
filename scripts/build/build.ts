@@ -35,24 +35,24 @@ const entry = getPublicFiles(sourcePath);
 const esmDir = getESMDir();
 const cjsDir = getCJSDir();
 
-// spawn.sync(
-//   "tsc",
-//   [
-//     "--emitDeclarationOnly",
-//     "--project",
-//     // This file and the other files in the scripts folder were copied
-//     // verbatim from the ariakit repo. The only change to the build
-//     // script that was necessary to get a minimal build was the tsconfig file
-//     "tsconfig.build.json", // old version, starting point:
-//     // https://github.com/ariakit/ariakit/blob/main/scripts/build/build.js
-//     // "tsconfig.json",
-//     "--noEmit",
-//     "false",
-//     "--outDir",
-//     esmDir,
-//   ],
-//   { stdio: "inherit" },
-// );
+spawn.sync(
+  "tsc",
+  [
+    "--emitDeclarationOnly",
+    "--project",
+    // This file and the other files in the scripts folder were copied
+    // verbatim from the ariakit repo. The only change to the build
+    // script that was necessary to get a minimal build was the tsconfig file
+    "tsconfig.build.json", // old version, starting point:
+    // https://github.com/ariakit/ariakit/blob/main/scripts/build/build.js
+    // "tsconfig.json",
+    "--noEmit",
+    "false",
+    "--outDir",
+    esmDir,
+  ],
+  { stdio: "inherit" },
+);
 
 fse.copySync(esmDir, cjsDir);
 
