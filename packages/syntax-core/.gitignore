@@ -11,10 +11,11 @@
 /Heading
 /IconButton
 /LinkButton
-/MiniActionCard
 /Modal
 /RadioButton
+/RoundButton
 /SelectList
+/TapArea
 /TextField
 /Typography
 /dist

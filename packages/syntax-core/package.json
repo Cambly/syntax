@@ -3,9 +3,9 @@
   "description": "Cambly design system core components",
   "version": "9.7.0",
   "type": "module",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
   "files": [
@@ -43,5 +43,84 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    "./Typography/Typography": {
+      "import": "./dist/esm/Typography/Typography.js",
+      "require": "./dist/cjs/Typography/Typography.cjs"
+    },
+    "./TextField/TextField": {
+      "import": "./dist/esm/TextField/TextField.js",
+      "require": "./dist/cjs/TextField/TextField.cjs"
+    },
+    "./TapArea/TapArea": {
+      "import": "./dist/esm/TapArea/TapArea.js",
+      "require": "./dist/cjs/TapArea/TapArea.cjs"
+    },
+    "./SelectList/SelectList": {
+      "import": "./dist/esm/SelectList/SelectList.js",
+      "require": "./dist/cjs/SelectList/SelectList.cjs"
+    },
+    "./RoundButton/RoundButton": {
+      "import": "./dist/esm/RoundButton/RoundButton.js",
+      "require": "./dist/cjs/RoundButton/RoundButton.cjs"
+    },
+    "./RadioButton/RadioButton": {
+      "import": "./dist/esm/RadioButton/RadioButton.js",
+      "require": "./dist/cjs/RadioButton/RadioButton.cjs"
+    },
+    "./Modal/Modal": {
+      "import": "./dist/esm/Modal/Modal.js",
+      "require": "./dist/cjs/Modal/Modal.cjs"
+    },
+    "./LinkButton/LinkButton": {
+      "import": "./dist/esm/LinkButton/LinkButton.js",
+      "require": "./dist/cjs/LinkButton/LinkButton.cjs"
+    },
+    "./IconButton/IconButton": {
+      "import": "./dist/esm/IconButton/IconButton.js",
+      "require": "./dist/cjs/IconButton/IconButton.cjs"
+    },
+    "./Heading/Heading": {
+      "import": "./dist/esm/Heading/Heading.js",
+      "require": "./dist/cjs/Heading/Heading.cjs"
+    },
+    "./Divider/Divider": {
+      "import": "./dist/esm/Divider/Divider.js",
+      "require": "./dist/cjs/Divider/Divider.cjs"
+    },
+    "./Chip/Chip": {
+      "import": "./dist/esm/Chip/Chip.js",
+      "require": "./dist/cjs/Chip/Chip.cjs"
+    },
+    "./Checkbox/Checkbox": {
+      "import": "./dist/esm/Checkbox/Checkbox.js",
+      "require": "./dist/cjs/Checkbox/Checkbox.cjs"
+    },
+    "./Card/Card": {
+      "import": "./dist/esm/Card/Card.js",
+      "require": "./dist/cjs/Card/Card.cjs"
+    },
+    "./ButtonGroup/ButtonGroup": {
+      "import": "./dist/esm/ButtonGroup/ButtonGroup.js",
+      "require": "./dist/cjs/ButtonGroup/ButtonGroup.cjs"
+    },
+    "./Button/Button": {
+      "import": "./dist/esm/Button/Button.js",
+      "require": "./dist/cjs/Button/Button.cjs"
+    },
+    "./Box/Box": {
+      "import": "./dist/esm/Box/Box.js",
+      "require": "./dist/cjs/Box/Box.cjs"
+    },
+    "./Badge/Badge": {
+      "import": "./dist/esm/Badge/Badge.js",
+      "require": "./dist/cjs/Badge/Badge.cjs"
+    },
+    "./Avatar/Avatar": {
+      "import": "./dist/esm/Avatar/Avatar.js",
+      "require": "./dist/cjs/Avatar/Avatar.cjs"
+    },
+    "./package.json": "./package.json"
   }
 }
