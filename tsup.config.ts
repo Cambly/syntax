@@ -24,7 +24,7 @@ export default defineConfig({
   sourcemap: true,
   dts: true,
   splitting: true,
-  // bundle: false,
+  bundle: false,
   skipNodeModulesBundle: true,
   esbuildOptions(options) {
     options.chunkNames = "__chunks/[hash]";
@@ -58,12 +58,6 @@ export default defineConfig({
             );
 
             let cssModule = {};
-            postcssModules({
-              getJSON(_, json) {
-                console.log("jsoin", json);
-                // cssModule = json;
-              },
-            });
             const result = await postcss([
               postcssModules({
                 getJSON(_, json) {
