@@ -13,9 +13,9 @@
   ],
   "scripts": {
     "old_build": "tsup",
-    "build": "node ../../scripts/build/build.js",
+    "build": "ts-node ../../scripts/build/build.tsx",
     "old_clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "cleanbuild": "node ../../scripts/build/clean.js",
+    "cleanbuild": "node ../../scripts/build/clean.ts",
     "clean": "rm -rf .turbo && rm -rf node_modules && pnpm cleanbuild",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
@@ -38,8 +38,8 @@
     "postcss": "8.4.23",
     "postcss-modules": "6.0.0",
     "react": "18.2.0",
-    "ts-node": "10.9.2",
     "tsup": "6.7.0",
+    "tsx": "4.6.2",
     "typescript": "5.0.4"
   },
   "publishConfig": {
