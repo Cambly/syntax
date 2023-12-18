@@ -206,6 +206,10 @@
   flex-direction: row;
 }
 
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
 /* Direction (small and up) */
 @media (min-width: 480px) {
   .columnSmall {
@@ -214,6 +218,10 @@
 
   .rowSmall {
     flex-direction: row;
+  }
+
+  .row-reverseSmall {
+    flex-direction: row-reverse;
   }
 }
 
@@ -225,6 +233,10 @@
 
   .rowLarge {
     flex-direction: row;
+  }
+
+  .row-reverseLarge {
+    flex-direction: row-reverse;
   }
 }
 
