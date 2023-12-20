@@ -3,10 +3,10 @@ import styles from "./Avatar.module.css";
 import Box from "../Box/Box";
 
 const sizeToIconStyles = {
-  sm: { top: 4, marginInlineEnd: 0 },
-  md: { top: 8, marginInlineEnd: 0 },
-  lg: { top: 20, marginInlineEnd: 4 },
-  xl: { top: 32, marginInlineEnd: 8 },
+  sm: { top: -12, marginInlineEnd: 0 },
+  md: { top: -12, marginInlineEnd: 0 },
+  lg: { top: -20, marginInlineEnd: 4 },
+  xl: { top: -32, marginInlineEnd: 8 },
 } as const;
 
 const sizeToIconSize = {
@@ -51,7 +51,7 @@ const Avatar = ({
   src: string;
 }): JSX.Element => {
   return (
-    <>
+    <div className={styles[size]}>
       <img
         alt={accessibilityLabel}
         src={src}
@@ -75,7 +75,7 @@ const Avatar = ({
           </Box>
         </Box>
       )}
-    </>
+    </div>
   );
 };
 
