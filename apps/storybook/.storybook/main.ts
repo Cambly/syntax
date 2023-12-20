@@ -16,6 +16,7 @@ const config: StorybookConfig = {
     "@storybook/addon-actions",
     "storybook-addon-designs",
     "@storybook/addon-a11y",
+    "storybook-addon-rtl",
   ],
   staticDirs: ["../public"],
   framework: {
