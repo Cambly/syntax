@@ -3,17 +3,10 @@ import styles from "./Avatar.module.css";
 import Box from "../Box/Box";
 
 const sizeToIconStyles = {
-  sm: { top: -12, marginInlineEnd: 0 },
-  md: { top: -12, marginInlineEnd: 0 },
-  lg: { top: -20, marginInlineEnd: 4 },
-  xl: { top: -32, marginInlineEnd: 8 },
-} as const;
-
-const sizeToIconSize = {
-  sm: 8,
-  md: 8,
-  lg: 12,
-  xl: 16,
+  sm: { top: -12, marginInlineEnd: 0, height: 4, width: 4 },
+  md: { top: -12, marginInlineEnd: 0, height: 8, width: 8 },
+  lg: { top: -20, marginInlineEnd: 4, height: 12, width: 12 },
+  xl: { top: -32, marginInlineEnd: 4, height: 16, width: 16 },
 } as const;
 
 /**
@@ -68,8 +61,6 @@ const Avatar = ({
               __style: { border: "1px solid white", ...sizeToIconStyles[size] },
             }}
             rounding="full"
-            height={sizeToIconSize[size]}
-            width={sizeToIconSize[size]}
           >
             {icon}
           </Box>
