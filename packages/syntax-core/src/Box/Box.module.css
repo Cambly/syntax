@@ -206,7 +206,7 @@
   flex-direction: row;
 }
 
-.row-reverse {
+.rowReverse {
   flex-direction: row-reverse;
 }
 
@@ -220,7 +220,7 @@
     flex-direction: row;
   }
 
-  .row-reverseSmall {
+  .rowReverseSmall {
     flex-direction: row-reverse;
   }
 }
@@ -235,7 +235,7 @@
     flex-direction: row;
   }
 
-  .row-reverseLarge {
+  .rowReverseLarge {
     flex-direction: row-reverse;
   }
 }
