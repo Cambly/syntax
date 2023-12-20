@@ -1,12 +1,12 @@
 import Box from "../Box/Box";
 import { type ReactNode } from "react";
-import FacepileAvatar from "./FacepileAvatar";
+import AvatarGroupAvatar from "./AvatarGroupAvatar";
 
 /**
  * [Facepile] is a stack of avatars to represent a group of people
  */
 
-export default function Facepile({
+export default function AvatarGroup({
   children,
   orientation = "standard",
 }: {
@@ -17,14 +17,14 @@ export default function Facepile({
   /**
    * Direction of the avatar stack
    * standard - avatars stack from right to left
-   * standard - avatars stack from left to right
+   * reverse - avatars stack from left to right
    */
   orientation: "standard" | "reverse";
-}): React.ReactElement {
+}): JSX.Element {
   return (
     <Box
       display="flex"
-      direction={orientation === "reverse" ? "row-reverse" : "row"}
+      direction={orientation === "reverse" ? "rowReverse" : "row"}
       alignItems="center"
     >
       {children}
@@ -32,5 +32,5 @@ export default function Facepile({
   );
 }
 
-Facepile.displayName = "Facepile";
-Facepile.Avatar = FacepileAvatar;
+AvatarGroup.displayName = "AvatarGroup";
+AvatarGroup.Avatar = AvatarGroupAvatar;

@@ -9,7 +9,7 @@ const sizeToMargin = {
   xl: -96,
 } as const;
 
-export default function FacepileAvatar({
+export default function AvatarGroupAvatar({
   accessibilityLabel,
   icon,
   orientation,

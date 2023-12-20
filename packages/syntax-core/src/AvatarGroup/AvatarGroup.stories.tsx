@@ -1,13 +1,13 @@
 import { type StoryObj, type Meta } from "@storybook/react";
-import Facepile from "./Facepile";
+import AvatarGroup from "./AvatarGroup";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
 import { type ReactElement } from "react";
 import defaultAvatar from "../../../../apps/storybook/assets/images/defaultAvatar.svg";
 import Box from "../Box/Box";
 
 export default {
-  title: "Components/Facepile",
-  component: Facepile,
+  title: "Components/AvatarGroup",
+  component: AvatarGroup,
   parameters: {
     layout: "fullscreen",
     design: {
@@ -26,7 +26,7 @@ export default {
     },
   },
   tags: ["autodocs"],
-} as Meta<typeof Facepile>;
+} as Meta<typeof AvatarGroup>;
 
 const filledAvatars = [
   {
@@ -64,7 +64,7 @@ const Avatars = ({
   return (
     <>
       {filledAvatars.map(({ src, accessibilityLabel, key, icon }, index) => (
-        <Facepile.Avatar
+        <AvatarGroup.Avatar
           src={src}
           accessibilityLabel={accessibilityLabel}
           key={key}
@@ -75,7 +75,7 @@ const Avatars = ({
         />
       ))}
       {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
-        <Facepile.Avatar
+        <AvatarGroup.Avatar
           src={src}
           accessibilityLabel={accessibilityLabel}
           key={key}
@@ -96,9 +96,9 @@ const FacepileInteractive = ({
   orientation: "standard" | "reverse";
 }): ReactElement => (
   <Box width={200} margin={4}>
-    <Facepile orientation={orientation}>
+    <AvatarGroup orientation={orientation}>
       <Avatars size={size} orientation={orientation} />
-    </Facepile>
+    </AvatarGroup>
   </Box>
 );
 
