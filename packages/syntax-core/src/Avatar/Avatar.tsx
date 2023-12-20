@@ -3,10 +3,10 @@ import styles from "./Avatar.module.css";
 import Box from "../Box/Box";
 
 const sizeToIconStyles = {
-  sm: { top: -12, marginInlineEnd: 0, height: 4, width: 4 },
-  md: { top: -12, marginInlineEnd: 0, height: 8, width: 8 },
-  lg: { top: -20, marginInlineEnd: 4, height: 12, width: 12 },
-  xl: { top: -32, marginInlineEnd: 4, height: 16, width: 16 },
+  sm: { bottom: 8, marginInlineEnd: 0, height: 4, width: 4 },
+  md: { bottom: 8, marginInlineEnd: 0, height: 8, width: 8 },
+  lg: { bottom: 8, marginInlineEnd: 4, height: 12, width: 12 },
+  xl: { bottom: 12, marginInlineEnd: 12, height: 16, width: 16 },
 } as const;
 
 /**
