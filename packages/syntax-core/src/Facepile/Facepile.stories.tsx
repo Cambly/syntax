@@ -95,14 +95,7 @@ const FacepileInteractive = ({
   size: "sm" | "md" | "lg" | "xl";
   orientation: "standard" | "reverse";
 }): ReactElement => (
-  <Box
-    width={200}
-    dangerouslySetInlineStyle={{
-      __style: {
-        border: "1px solid black",
-      },
-    }}
-  >
+  <Box width={200} margin={4}>
     <Facepile orientation={orientation}>
       <Avatars size={size} orientation={orientation} />
     </Facepile>
