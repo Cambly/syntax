@@ -19,7 +19,7 @@ export default function AvatarGroup({
    * standard - avatars stack from right to left
    * reverse - avatars stack from left to right
    */
-  orientation: "standard" | "reverse";
+  orientation?: "standard" | "reverse";
 }): JSX.Element {
   return (
     <Box

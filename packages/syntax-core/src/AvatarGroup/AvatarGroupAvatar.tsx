@@ -12,7 +12,7 @@ const sizeToMargin = {
 export default function AvatarGroupAvatar({
   accessibilityLabel,
   icon,
-  orientation,
+  orientation = "standard",
   size = "md",
   src,
   zIndex,
@@ -33,7 +33,7 @@ export default function AvatarGroupAvatar({
   /**
    * Influences which direction we apply the negative margin between avatars
    */
-  orientation: "standard" | "reverse";
+  orientation?: "standard" | "reverse";
   /**
    * Position of the avatar in the stack
    */
