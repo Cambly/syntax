@@ -24,8 +24,12 @@ export default function AvatarGroup({
   return (
     <Box
       display="flex"
-      direction={orientation === "reverse" ? "rowReverse" : "row"}
       alignItems="center"
+      dangerouslySetInlineStyle={{
+        __style: {
+          flexDirection: orientation === "reverse" ? "row-reverse" : "row",
+        },
+      }}
     >
       {children}
     </Box>

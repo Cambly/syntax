@@ -1,9 +1,10 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import AvatarGroup from "./AvatarGroup";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
-import { type ReactElement } from "react";
 import defaultAvatar from "../../../../apps/storybook/assets/images/defaultAvatar.svg";
+import type Avatar from "../Avatar/Avatar";
 import Box from "../Box/Box";
+import { type ComponentProps } from "react";
 
 export default {
   title: "Components/AvatarGroup",
@@ -54,55 +55,122 @@ const defaultAvatars = Array(2)
     key: `defaultAvatar${idx}`,
   }));
 
-const Avatars = ({
-  size,
-  orientation,
-}: {
-  size: "sm" | "md" | "lg" | "xl";
-  orientation: "standard" | "reverse";
-}): ReactElement => {
-  return (
-    <>
-      {filledAvatars.map(({ src, accessibilityLabel, key, icon }, index) => (
-        <AvatarGroup.Avatar
-          src={src}
-          accessibilityLabel={accessibilityLabel}
-          key={key}
-          icon={icon}
-          orientation={orientation}
-          size={size}
-          zIndex={filledAvatars.length + defaultAvatars.length - index}
-        />
-      ))}
-      {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
-        <AvatarGroup.Avatar
-          src={src}
-          accessibilityLabel={accessibilityLabel}
-          key={key}
-          orientation={orientation}
-          size={size}
-          zIndex={defaultAvatars.length - index}
-        />
-      ))}
-    </>
-  );
+export const Default: StoryObj<
+  ComponentProps<typeof AvatarGroup> & {
+    size: ComponentProps<typeof Avatar>["size"];
+  }
+> = {
+  args: { size: "md", orientation: "standard" },
+  render: (args) => {
+    const { size, orientation } = args;
+    return (
+      <Box width={200} margin={4}>
+        <AvatarGroup orientation={orientation}>
+          {filledAvatars.map(
+            ({ src, accessibilityLabel, key, icon }, index) => (
+              <AvatarGroup.Avatar
+                src={src}
+                accessibilityLabel={accessibilityLabel}
+                key={key}
+                icon={icon}
+                orientation={orientation}
+                size={size}
+                zIndex={filledAvatars.length + defaultAvatars.length - index}
+              />
+            ),
+          )}
+          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
+            <AvatarGroup.Avatar
+              src={src}
+              accessibilityLabel={accessibilityLabel}
+              key={key}
+              orientation={orientation}
+              size={size}
+              zIndex={defaultAvatars.length - index}
+            />
+          ))}
+        </AvatarGroup>
+      </Box>
+    );
+  },
 };
 
-const FacepileInteractive = ({
-  size,
-  orientation,
-}: {
-  size: "sm" | "md" | "lg" | "xl";
-  orientation: "standard" | "reverse";
-}): ReactElement => (
-  <Box width={200} margin={4}>
-    <AvatarGroup orientation={orientation}>
-      <Avatars size={size} orientation={orientation} />
-    </AvatarGroup>
-  </Box>
-);
+export const Standard: StoryObj<
+  ComponentProps<typeof AvatarGroup> & {
+    size: ComponentProps<typeof Avatar>["size"];
+  }
+> = {
+  args: { size: "xl", orientation: "standard" },
+  render: (args) => {
+    const { size, orientation } = args;
+    return (
+      <Box width={200} margin={4}>
+        <AvatarGroup orientation={orientation}>
+          {filledAvatars.map(
+            ({ src, accessibilityLabel, key, icon }, index) => (
+              <AvatarGroup.Avatar
+                src={src}
+                accessibilityLabel={accessibilityLabel}
+                key={key}
+                icon={icon}
+                orientation={orientation}
+                size={size}
+                zIndex={filledAvatars.length + defaultAvatars.length - index}
+              />
+            ),
+          )}
+          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
+            <AvatarGroup.Avatar
+              src={src}
+              accessibilityLabel={accessibilityLabel}
+              key={key}
+              orientation={orientation}
+              size={size}
+              zIndex={defaultAvatars.length - index}
+            />
+          ))}
+        </AvatarGroup>
+      </Box>
+    );
+  },
+};
 
-export const Default: StoryObj<typeof FacepileInteractive> = {
-  args: { size: "md", orientation: "standard" },
-  render: (args) => <FacepileInteractive {...args} />,
+export const Reverse: StoryObj<
+  ComponentProps<typeof AvatarGroup> & {
+    size: ComponentProps<typeof Avatar>["size"];
+  }
+> = {
+  args: { size: "xl", orientation: "reverse" },
+  render: (args) => {
+    const { size, orientation } = args;
+    return (
+      <Box width={200} margin={4}>
+        <AvatarGroup orientation={orientation}>
+          {filledAvatars.map(
+            ({ src, accessibilityLabel, key, icon }, index) => (
+              <AvatarGroup.Avatar
+                src={src}
+                accessibilityLabel={accessibilityLabel}
+                key={key}
+                icon={icon}
+                orientation={orientation}
+                size={size}
+                zIndex={filledAvatars.length + defaultAvatars.length - index}
+              />
+            ),
+          )}
+          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
+            <AvatarGroup.Avatar
+              src={src}
+              accessibilityLabel={accessibilityLabel}
+              key={key}
+              orientation={orientation}
+              size={size}
+              zIndex={defaultAvatars.length - index}
+            />
+          ))}
+        </AvatarGroup>
+      </Box>
+    );
+  },
 };

@@ -50,7 +50,7 @@ const Avatar = ({
         src={src}
         className={classNames(styles.avatar, styles[size])}
       />
-      {!!icon && (
+      {icon && (
         <Box display="flex" position="relative" justifyContent="end">
           <Box
             display="flex"
