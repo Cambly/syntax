@@ -1,4 +1,5 @@
 import Avatar from "./Avatar/Avatar";
+import AvatarGroup from "./AvatarGroup/AvatarGroup";
 import Badge from "./Badge/Badge";
 import Box from "./Box/Box";
 import Button from "./Button/Button";
@@ -19,6 +20,7 @@ import Typography from "./Typography/Typography";
 
 export {
   Avatar,
+  AvatarGroup,
   Badge,
   Box,
   Button,

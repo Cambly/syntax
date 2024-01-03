@@ -20,6 +20,17 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Avatar>;
 
+const DotIcon = () => (
+  <div
+    style={{
+      height: "100%",
+      width: "100%",
+      backgroundColor: "green",
+      borderRadius: "50%",
+    }}
+  />
+);
+
 export const Default: StoryObj<typeof Avatar> = {
   args: { accessibilityLabel: "Jane", src: image },
 };
@@ -31,4 +42,8 @@ export const Large: StoryObj<typeof Avatar> = {
 };
 export const ExtraLarge: StoryObj<typeof Avatar> = {
   args: { ...Default.args, size: "xl" },
+};
+
+export const IconAvatar: StoryObj<typeof Avatar> = {
+  args: { ...Default.args, icon: <DotIcon /> },
 };
