@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 import AvatarGroupAvatar from "./AvatarGroupAvatar";
 
 /**
- * [Facepile] is a stack of avatars to represent a group of people
+ * [AvatarGroup](https://cambly-syntax.vercel.app/?path=/docs/components-avatargroup--docs) is a stack of avatars to represent a group of people
  */
 
 export default function AvatarGroup({
@@ -11,7 +11,7 @@ export default function AvatarGroup({
   orientation = "standard",
 }: {
   /**
-   * One or more Facepile.Avatar components.
+   * One or more.Avatar components.
    */
   children: ReactNode;
   /**
