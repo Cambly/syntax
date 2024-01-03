@@ -1,5 +1,13 @@
 # @cambly/syntax-core
 
+## 9.8.0
+
+### Minor Changes
+
+- 2453733: Add AvatarGroup component
+  Update Avatar with Icon component
+  Introduce LTR storybook package
+
 ## 9.7.0
 
 ### Minor Changes
