@@ -1,5 +1,6 @@
-import { Box, Typography } from "@cambly/syntax-core";
 import React, { type ReactElement, useId } from "react";
+import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 import styles from "components/SchedulingRep/form/TextArea.module.css";
 
 /**
