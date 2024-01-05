@@ -6,7 +6,6 @@ import {
   cloneElement,
   useEffect,
   useState,
-  type SyntheticEvent,
 } from "react";
 import { getFirstTabbableIn } from "@ariakit/core/utils/focus";
 import { useMergeRefs } from "@floating-ui/react";
@@ -45,11 +44,11 @@ export const createSyntheticEvent = <T extends Element, E extends Event>(
 };
 const AriakitSyntaxBridge = forwardRef<
   HTMLDivElement,
-  Omit<HTMLAttributes<HTMLDivElement>, "children"> & { children?: ReactElement }
+  Omit<HTMLAttributes<HTMLDivElement>, "children"> & { children: ReactElement }
 >(function AriakitSyntaxBridge(
   { children, ...props },
   ref,
-): ReactElement | undefined {
+): ReactElement {
   const tabbableRef = useRef<HTMLElement | null>(null);
   const cloneRef = useMergeRefs([tabbableRef, ref]);
   const clone = children && cloneElement(children, { ...props, ref: cloneRef });
@@ -60,7 +59,7 @@ const AriakitSyntaxBridge = forwardRef<
     () =>
       setFocusableChild(
         tabbableRef.current &&
-          getFirstTabbableIn(tabbableRef.current, true, true),
+        getFirstTabbableIn(tabbableRef.current, true, true),
       ),
     [cloneRef],
   );
