@@ -14,6 +14,7 @@ export default function backgroundColor(color: (typeof Color)[number]): string {
     case "tertiary":
     case "destructive-tertiary":
       return styles.whiteBackgroundColor;
+    case "primary":
     case "branded":
       return styles.yellow700BackgroundColor;
     case "inverse":

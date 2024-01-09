@@ -153,9 +153,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               size={textVariant[size]}
               color={foregroundTypographyColor(color)}
             >
-              <span style={{ fontWeight: 500 }}>
-                {loading ? loadingText : text}
-              </span>
+              {loading ? loadingText : text}
             </Typography>
           </Box>
         )}

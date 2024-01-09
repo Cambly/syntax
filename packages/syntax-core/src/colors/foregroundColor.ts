@@ -9,6 +9,7 @@ export default function foregroundColor(color: (typeof Color)[number]): string {
     case "destructive-secondary":
     case "destructive-tertiary":
       return styles.destructive700Color;
+    case "primary":
     case "branded":
       return styles.gray900Color;
     case "inverse":

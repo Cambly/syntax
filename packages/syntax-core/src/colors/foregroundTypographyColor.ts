@@ -10,6 +10,7 @@ export default function foregroundTypographyColor(
     case "destructive-secondary":
     case "destructive-tertiary":
       return "destructive-primary";
+    case "primary":
     case "branded":
       return "gray900";
     case "inverse":
