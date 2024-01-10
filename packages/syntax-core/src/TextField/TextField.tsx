@@ -114,9 +114,14 @@ export default function TextField({
       )}
       <input
         autoComplete={autoComplete}
-        className={classNames(styles.textfield, styles[size], {
-          [styles.inputError]: errorText,
-        })}
+        className={classNames(
+          styles.textfield,
+          styles[size],
+          styles[`${size}Height`],
+          {
+            [styles.inputError]: errorText,
+          },
+        )}
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}
