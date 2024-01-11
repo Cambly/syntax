@@ -83,3 +83,5 @@ export default function AvatarGroup({
     </AvatarGroupContext.Provider>
   );
 }
+
+AvatarGroup.displayName = "AvatarGroup";
