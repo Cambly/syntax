@@ -1,5 +1,9 @@
 .avatar {
   box-sizing: border-box;
+}
+
+.avatarImage {
+  box-sizing: border-box;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

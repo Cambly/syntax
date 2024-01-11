@@ -52,11 +52,11 @@ function AvatarInternal({
   src,
 }: AvatarProps): ReactElement {
   return (
-    <div className={styles[size]}>
+    <div className={classNames(styles.avatar, styles[size])}>
       <img
         alt={accessibilityLabel}
         src={src}
-        className={classNames(styles.avatar, styles[size])}
+        className={classNames(styles.avatarImage, styles[size])}
       />
       {icon && (
         <Box display="flex" position="relative" justifyContent="end">
