@@ -1,5 +1,3 @@
-"use client";
-
 import { type ReactElement } from "react";
 import classNames from "classnames";
 import styles from "./Avatar.module.css";
