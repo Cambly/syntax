@@ -1,8 +1,8 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import AvatarGroup from "./AvatarGroup";
+import Avatar from "../Avatar/Avatar";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
 import defaultAvatar from "../../../../apps/storybook/assets/images/defaultAvatar.svg";
-import type Avatar from "../Avatar/Avatar";
 import Box from "../Box/Box";
 import { type ComponentProps } from "react";
 
@@ -29,29 +29,11 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof AvatarGroup>;
 
-const filledAvatars = [
-  {
-    src: image,
-    accessibilityLabel: "Jane",
-    key: "Jane",
-    icon: (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          backgroundColor: "green",
-          borderRadius: "50%",
-        }}
-      />
-    ),
-  },
-];
-
 const defaultAvatars = Array(2)
   .fill(undefined)
   .map((_, idx) => ({
     src: defaultAvatar,
-    accessibilityLabel: "defaultAccessibilityLAbel",
+    accessibilityLabel: "defaultAccessibilityLabel",
     key: `defaultAvatar${idx}`,
   }));
 
@@ -64,31 +46,29 @@ export const Default: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box width={200} margin={4}>
-        <AvatarGroup orientation={orientation}>
-          {filledAvatars.map(
-            ({ src, accessibilityLabel, key, icon }, index) => (
-              <AvatarGroup.Avatar
-                src={src}
-                accessibilityLabel={accessibilityLabel}
-                key={key}
-                icon={icon}
-                orientation={orientation}
-                size={size}
-                zIndex={filledAvatars.length + defaultAvatars.length - index}
-              />
-            ),
-          )}
-          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
-            <AvatarGroup.Avatar
+      <Box backgroundColor="gray100">
+        <AvatarGroup size={size} orientation={orientation}>
+          {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
+            <Avatar
               src={src}
               accessibilityLabel={accessibilityLabel}
               key={key}
-              orientation={orientation}
-              size={size}
-              zIndex={defaultAvatars.length - index}
             />
           ))}
+          <Avatar
+            src={image}
+            accessibilityLabel="Jane"
+            icon={
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                }}
+              />
+            }
+          />
         </AvatarGroup>
       </Box>
     );
@@ -104,31 +84,29 @@ export const Standard: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box width={200} margin={4}>
-        <AvatarGroup orientation={orientation}>
-          {filledAvatars.map(
-            ({ src, accessibilityLabel, key, icon }, index) => (
-              <AvatarGroup.Avatar
-                src={src}
-                accessibilityLabel={accessibilityLabel}
-                key={key}
-                icon={icon}
-                orientation={orientation}
-                size={size}
-                zIndex={filledAvatars.length + defaultAvatars.length - index}
-              />
-            ),
-          )}
-          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
-            <AvatarGroup.Avatar
+      <Box backgroundColor="gray100">
+        <AvatarGroup size={size} orientation={orientation}>
+          {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
+            <Avatar
               src={src}
               accessibilityLabel={accessibilityLabel}
               key={key}
-              orientation={orientation}
-              size={size}
-              zIndex={defaultAvatars.length - index}
             />
           ))}
+          <Avatar
+            src={image}
+            accessibilityLabel="Jane"
+            icon={
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                }}
+              />
+            }
+          />
         </AvatarGroup>
       </Box>
     );
@@ -144,33 +122,42 @@ export const Reverse: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box width={200} margin={4}>
-        <AvatarGroup orientation={orientation}>
-          {filledAvatars.map(
-            ({ src, accessibilityLabel, key, icon }, index) => (
-              <AvatarGroup.Avatar
-                src={src}
-                accessibilityLabel={accessibilityLabel}
-                key={key}
-                icon={icon}
-                orientation={orientation}
-                size={size}
-                zIndex={filledAvatars.length + defaultAvatars.length - index}
-              />
-            ),
-          )}
-          {defaultAvatars.map(({ src, accessibilityLabel, key }, index) => (
-            <AvatarGroup.Avatar
+      <Box backgroundColor="gray100">
+        <AvatarGroup size={size} orientation={orientation}>
+          {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
+            <Avatar
               src={src}
               accessibilityLabel={accessibilityLabel}
               key={key}
-              orientation={orientation}
-              size={size}
-              zIndex={defaultAvatars.length - index}
             />
           ))}
+          <Avatar
+            src={image}
+            accessibilityLabel="Jane"
+            icon={
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                }}
+              />
+            }
+          />
         </AvatarGroup>
       </Box>
     );
   },
+};
+
+export const Test: StoryObj = {
+  args: { size: "xl", orientation: "reverse" },
+  render: () => (
+    <>
+      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
+      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
+      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
+    </>
+  ),
 };

@@ -1,31 +1,28 @@
-:root {
-  --syntax-avatar-border-width: 1px;
-}
-
 .avatar {
+  box-sizing: border-box;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: var(--syntax-avatar-border-width) solid #fff;
+  border: 2px solid #fff;
 }
 
 .sm {
-  width: calc(24px - var(--syntax-avatar-border-width) * 2);
-  height: calc(24px - var(--syntax-avatar-border-width) * 2);
+  width: 24px;
+  height: 24px;
 }
 
 .md {
-  width: calc(40px - var(--syntax-avatar-border-width) * 2);
-  height: calc(40px - var(--syntax-avatar-border-width) * 2);
+  width: 40px;
+  height: 40px;
 }
 
 .lg {
-  width: calc(72px - var(--syntax-avatar-border-width) * 2);
-  height: calc(72px - var(--syntax-avatar-border-width) * 2);
+  width: 72px;
+  height: 72px;
 }
 
 .xl {
-  width: calc(128px - var(--syntax-avatar-border-width) * 2);
-  height: calc(128px - var(--syntax-avatar-border-width) * 2);
+  width: 128px;
+  height: 129px;
 }

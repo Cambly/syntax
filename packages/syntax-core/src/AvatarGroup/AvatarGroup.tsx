@@ -1,40 +1,50 @@
+import {
+  type ReactNode,
+  createContext,
+  useContext,
+  type ReactElement,
+} from "react";
 import Box from "../Box/Box";
-import { type ReactNode } from "react";
-import AvatarGroupAvatar from "./AvatarGroupAvatar";
+
+type AvatarGroupContextType = {
+  size: "sm" | "md" | "lg" | "xl";
+  orientation: "standard" | "reverse";
+};
+
+const AvatarGroupContext = createContext<AvatarGroupContextType | null>(null);
+
+export function useAvatarGroup(): AvatarGroupContextType | null {
+  const context = useContext(AvatarGroupContext);
+  return !context ? null : context;
+}
 
 /**
  * [AvatarGroup](https://cambly-syntax.vercel.app/?path=/docs/components-avatargroup--docs) is a stack of avatars to represent a group of people
  */
-
-export default function AvatarGroup({
+function AvatarGroup({
+  size,
+  orientation,
   children,
-  orientation = "standard",
 }: {
-  /**
-   * One or more.Avatar components.
-   */
+  size: "sm" | "md" | "lg" | "xl";
+  orientation: "standard" | "reverse";
   children: ReactNode;
-  /**
-   * Direction of the avatar stack
-   * standard - avatars stack from right to left
-   * reverse - avatars stack from left to right
-   */
-  orientation?: "standard" | "reverse";
-}): JSX.Element {
+}): ReactElement {
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      dangerouslySetInlineStyle={{
-        __style: {
-          flexDirection: orientation === "reverse" ? "row-reverse" : "row",
-        },
-      }}
-    >
-      {children}
-    </Box>
+    <AvatarGroupContext.Provider value={{ size, orientation }}>
+      <Box
+        display="flex"
+        justifyContent={orientation === "standard" ? "start" : "end"}
+        dangerouslySetInlineStyle={{
+          __style: {
+            flexDirection: orientation === "standard" ? "row" : "row-reverse",
+          },
+        }}
+      >
+        {children}
+      </Box>
+    </AvatarGroupContext.Provider>
   );
 }
 
-AvatarGroup.displayName = "AvatarGroup";
-AvatarGroup.Avatar = AvatarGroupAvatar;
+export default AvatarGroup;
