@@ -68,10 +68,7 @@ function AvatarInternal({
             dangerouslySetInlineStyle={{
               __style: {
                 border: "1px solid white",
-                height: sizeToIconStyles[size].height,
-                width: sizeToIconStyles[size].width,
-                bottom: sizeToIconStyles[size].bottom,
-                marginInlineEnd: sizeToIconStyles[size].marginInlineEnd,
+                ...sizeToIconStyles[size],
               },
             }}
             rounding="full"

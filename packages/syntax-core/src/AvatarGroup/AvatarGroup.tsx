@@ -6,9 +6,12 @@ import {
 } from "react";
 import Box from "../Box/Box";
 
+type Size = "sm" | "md" | "lg" | "xl";
+type Orientation = "standard" | "reverse";
+
 type AvatarGroupContextType = {
-  size: "sm" | "md" | "lg" | "xl";
-  orientation: "standard" | "reverse";
+  size: Size;
+  orientation: Orientation;
 };
 
 const AvatarGroupContext = createContext<AvatarGroupContextType | null>(null);
@@ -20,14 +23,46 @@ export function useAvatarGroup(): AvatarGroupContextType | null {
 
 /**
  * [AvatarGroup](https://cambly-syntax.vercel.app/?path=/docs/components-avatargroup--docs) is a stack of avatars to represent a group of people
+ *
+ * Pass in Avatar components as children to the AvatarGroup component. The size prop that is passed into the AvatarGroup component will override Avatar's size prop..
+ *
+ * Usage:
+ *
+ * <AvatarGroup size="xl" orientation="standard">
+ *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
+ *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
+ *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
+ * </AvatarGroup>
+ *
  */
-function AvatarGroup({
-  size,
-  orientation,
+export default function AvatarGroup({
+  size = "md",
+  orientation = "standard",
   children,
 }: {
-  size: "sm" | "md" | "lg" | "xl";
-  orientation: "standard" | "reverse";
+  /**
+   * Size of the avatars in the AvatarGroup.
+   *
+   * * `sm`: 24px
+   * * `md`: 40px
+   * * `lg`: 72px
+   * * `xl`: 128px
+   *
+   * @defaultValue `md`
+   */
+  size?: Size;
+  /**
+   * Orientation of the AvatarGroup.
+   * This describes the order of rendering of the Avatar components.
+   * Standard renders the Avatar components with the right component on top.
+   * Reverse renders the Avatar components with the left component on top.
+   *
+   * @defaultValue `standard`
+   */
+  orientation?: Orientation;
+  /**
+   * Avatars to be rendered within the AvatarGroup.
+   */
   children: ReactNode;
 }): ReactElement {
   return (
@@ -46,5 +81,3 @@ function AvatarGroup({
     </AvatarGroupContext.Provider>
   );
 }
-
-export default AvatarGroup;

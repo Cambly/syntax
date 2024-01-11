@@ -150,14 +150,3 @@ export const Reverse: StoryObj<
     );
   },
 };
-
-export const Test: StoryObj = {
-  args: { size: "xl", orientation: "reverse" },
-  render: () => (
-    <>
-      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
-      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
-      <Avatar src={image} accessibilityLabel="Jane" key="Jane" />
-    </>
-  ),
-};
