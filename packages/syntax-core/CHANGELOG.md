@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.0.0
+
+### Major Changes
+
+- b541ee2: AvatarGroup: update AvatarGroup API using Context + update styling to match figma
+
 ## 9.8.0
 
 ### Minor Changes
