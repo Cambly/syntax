@@ -5,8 +5,8 @@ import Box from "../Box/Box";
 import { useAvatarGroup } from "../AvatarGroup/AvatarGroup";
 
 const sizeToIconStyles = {
-  sm: { bottom: 8, marginInlineEnd: 0, height: 4, width: 4 },
-  md: { bottom: 8, marginInlineEnd: 0, height: 8, width: 8 },
+  sm: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
+  md: { bottom: 4, marginInlineEnd: 2, height: 8, width: 8 },
   lg: { bottom: 8, marginInlineEnd: 4, height: 12, width: 12 },
   xl: { bottom: 12, marginInlineEnd: 12, height: 16, width: 16 },
 } as const;
@@ -66,7 +66,13 @@ function AvatarInternal({
             justifyContent="center"
             position="absolute"
             dangerouslySetInlineStyle={{
-              __style: { border: "1px solid white", ...sizeToIconStyles[size] },
+              __style: {
+                border: "1px solid white",
+                height: sizeToIconStyles[size].height,
+                width: sizeToIconStyles[size].width,
+                bottom: sizeToIconStyles[size].bottom,
+                marginInlineEnd: sizeToIconStyles[size].marginInlineEnd,
+              },
             }}
             rounding="full"
           >
