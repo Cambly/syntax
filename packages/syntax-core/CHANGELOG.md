@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.1.0
+
+### Minor Changes
+
+- 08ba07c: Fix bug where use client is in AvatarGroup
+
 ## 10.0.0
 
 ### Major Changes
