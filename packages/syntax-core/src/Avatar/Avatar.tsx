@@ -18,39 +18,17 @@ const sizeToMargin = {
   xl: -88,
 } as const;
 
-type AvatarProps = {
-  /**
-   * Alt text to use for the image.
-   * This should describe the image to people using screen readers.
-   */
-  accessibilityLabel: string;
-  /**
-   * optional icon that appears on the bottom corner of the avatar
-   */
-  icon?: React.ReactElement;
-  /**
-   * Size of the avatar.
-   *
-   * * `sm`: 24px
-   * * `md`: 40px
-   * * `lg`: 72px
-   * * `xl`: 128px
-   *
-   * @defaultValue `md`
-   */
-  size?: "sm" | "md" | "lg" | "xl";
-  /**
-   * URL of the image to display as the avatar.
-   */
-  src: string;
-};
-
 function AvatarInternal({
   accessibilityLabel,
   icon,
   size = "md",
   src,
-}: AvatarProps): ReactElement {
+}: {
+  accessibilityLabel: string;
+  icon?: React.ReactElement;
+  size?: "sm" | "md" | "lg" | "xl";
+  src: string;
+}): ReactElement {
   return (
     <div className={classNames(styles.avatar, styles[size])}>
       <img
@@ -89,7 +67,32 @@ const Avatar = ({
   icon,
   size = "md",
   src,
-}: AvatarProps): JSX.Element => {
+}: {
+  /**
+   * Alt text to use for the image.
+   * This should describe the image to people using screen readers.
+   */
+  accessibilityLabel: string;
+  /**
+   * optional icon that appears on the bottom corner of the avatar
+   */
+  icon?: React.ReactElement;
+  /**
+   * Size of the avatar.
+   *
+   * * `sm`: 24px
+   * * `md`: 40px
+   * * `lg`: 72px
+   * * `xl`: 128px
+   *
+   * @defaultValue `md`
+   */
+  size?: "sm" | "md" | "lg" | "xl";
+  /**
+   * URL of the image to display as the avatar.
+   */
+  src: string;
+}): JSX.Element => {
   const avatarGroupContext = useAvatarGroup();
 
   if (avatarGroupContext !== null) {
