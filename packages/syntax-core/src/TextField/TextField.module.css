@@ -5,7 +5,6 @@
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 0 12px;
   width: 100%;
 }
 
@@ -23,18 +22,36 @@
 }
 
 .sm {
-  height: 32px;
   border-radius: 12px;
+  font-size: 12px;
+  padding-inline-start: 12px;
+  padding-inline-end: 12px;
+}
+
+.smHeight {
+  height: 32px;
 }
 
 .md {
-  height: 40px;
   border-radius: 12px;
+  font-size: 14px;
+  padding-inline-start: 12px;
+  padding-inline-end: 12px;
+}
+
+.mdHeight {
+  height: 40px;
 }
 
 .lg {
-  height: 48px;
   border-radius: 16px;
+  font-size: 16px;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+}
+
+.lgHeight {
+  height: 48px;
 }
 
 .inputError {
