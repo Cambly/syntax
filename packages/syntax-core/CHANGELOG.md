@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.2.0
+
+### Minor Changes
+
+- b64a5c7: TextArea: add component
+
 ## 10.1.0
 
 ### Minor Changes
