@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 1.4.1
+
+### Patch Changes
+
+- 0db2d92: package.json type: "module" for packages that get bundled into apps
+
 ## 1.4.0
 
 ### Minor Changes
