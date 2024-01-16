@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.10.1
+
+### Patch Changes
+
+- 0db2d92: package.json type: "module" for packages that get bundled into apps
+
 ## 0.10.0
 
 ### Minor Changes

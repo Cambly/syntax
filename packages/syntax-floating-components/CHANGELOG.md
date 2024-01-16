@@ -1,5 +1,13 @@
 # @cambly/syntax-floating-components
 
+## 0.4.1
+
+### Patch Changes
+
+- 0db2d92: package.json type: "module" for packages that get bundled into apps
+- Updated dependencies [0db2d92]
+  - @cambly/syntax-design-tokens@0.10.1
+
 ## 0.4.0
 
 ### Minor Changes
