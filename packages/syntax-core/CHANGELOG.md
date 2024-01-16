@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.2.2
+
+### Patch Changes
+
+- 9670ccf: patch main + module path resolutions to point to correct cjs / esm build outputs
+
 ## 10.2.1
 
 ### Patch Changes
