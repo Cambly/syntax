@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.4.2
+
+### Patch Changes
+
+- 9670ccf: patch main + module path resolutions to point to correct cjs / esm build outputs
+
 ## 0.4.1
 
 ### Patch Changes
