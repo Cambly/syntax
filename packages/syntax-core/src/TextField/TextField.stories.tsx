@@ -58,7 +58,7 @@ export default {
 } as Meta<typeof TextField>;
 
 function TextFieldDefault({
-  label = "TextField label",
+  label = "Label",
   placeholder = "Placeholder",
   value: initialValue = "",
   ...rest
@@ -79,4 +79,28 @@ function TextFieldDefault({
 
 export const Default: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault {...args} />,
+};
+
+export const SizeSm: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault size="sm" {...args} />,
+};
+
+export const SizeMd: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault size="md" {...args} />,
+};
+
+export const SizeLg: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault size="lg" {...args} />,
+};
+
+export const helperText: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault helperText="Helper text" {...args} />,
+};
+
+export const ErrorText: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault errorText="This is an error" {...args} />,
+};
+
+export const TypeNumber: StoryObj<typeof TextField> = {
+  render: (args) => <TextFieldDefault type="number" {...args} />,
 };

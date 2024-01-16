@@ -1,5 +1,23 @@
 # @cambly/syntax-core
 
+## 10.2.0
+
+### Minor Changes
+
+- b64a5c7: TextArea: add component
+
+## 10.1.0
+
+### Minor Changes
+
+- 08ba07c: Fix bug where use client is in AvatarGroup
+
+## 10.0.0
+
+### Major Changes
+
+- b541ee2: AvatarGroup: update AvatarGroup API using Context + update styling to match figma
+
 ## 9.8.0
 
 ### Minor Changes

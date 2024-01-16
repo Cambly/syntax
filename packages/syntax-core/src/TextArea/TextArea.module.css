@@ -1,0 +1,18 @@
+.textarea {
+  border-radius: 12px;
+}
+
+.sm {
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.md {
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.lg {
+  padding-bottom: 16px;
+  padding-top: 16px;
+}

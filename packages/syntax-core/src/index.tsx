@@ -15,6 +15,7 @@ import Modal from "./Modal/Modal";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
 import TapArea from "./TapArea/TapArea";
+import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
 import Typography from "./Typography/Typography";
 
@@ -36,6 +37,7 @@ export {
   RadioButton,
   SelectList,
   TapArea,
+  TextArea,
   TextField,
   Typography,
 };
