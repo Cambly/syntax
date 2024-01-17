@@ -43,7 +43,7 @@ function AvatarInternal({
             alignItems="center"
             justifyContent="center"
             position="absolute"
-            // backgroundColor="white"
+            backgroundColor="white"
             dangerouslySetInlineStyle={{
               __style: {
                 border: "1px solid white",
