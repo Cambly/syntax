@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.3.0
+
+### Minor Changes
+
+- 9bd7c93: Some icons have a no background, adding a white background to this handles this properly
+
 ## 10.2.2
 
 ### Patch Changes
