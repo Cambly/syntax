@@ -18,7 +18,7 @@ const user = userEvent.setup({
 describe("tooltip", () => {
   // click on the document body to put into pointer modality for hovering to work
   // eslint-disable-next-line vitest/no-hooks -- this is async and needs to be run before all tests
-  beforeAll(async () => await user.click(document.body));
+  beforeEach(async () => await user.click(document.body));
 
   it("renders successfully", () => {
     render(
@@ -146,5 +146,29 @@ describe("tooltip", () => {
     // press escape to hide the tooltip
     await user.type(document.body, "{Escape}");
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
+  });
+
+  it("fires onContentVisibilityChanged callback when popover is opened and animation finishes", async () => {
+    const spy = vi.fn();
+    render(
+      <Tooltip
+        onChangeContentVisibility={spy}
+        content={<span data-testid="content">My tooltip</span>}
+      >
+        <button data-testid="trigger" tabIndex={0}>
+          My trigger
+        </button>
+      </Tooltip>,
+    );
+    expect(spy).toHaveBeenCalledTimes(0);
+    await user.hover(screen.getByTestId("trigger"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(true);
+    await user.unhover(screen.getByTestId("trigger"));
+    // there is a delay before tooltip exit animation finishes
+    expect(spy).toHaveBeenCalledTimes(1);
+    await act(() => vi.runAllTimers()); // wait for close delay
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(false);
   });
 });

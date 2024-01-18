@@ -17,6 +17,7 @@ import Typography from "../Typography/Typography";
 import IconButton from "../IconButton/IconButton";
 import styles from "./Popover.module.css";
 import Triggerable from "../react-aria-utils/Triggerable";
+import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 
 type Placement = "top" | "end" | "bottom" | "start";
 
@@ -33,7 +34,7 @@ function syntaxToRAPlacement(placement?: Placement): RAPlacement | undefined {
 }
 
 /**
- * [Popover](https://cambly-syntax.vercel.app/?path=/docs/floating-components-popover--docs) displays contextual information on hover or focus.
+ * [Popover](https://cambly-syntax.vercel.app/?path=/docs/components-popover--docs) displays contextual information on hover or focus.
  *
  * Popover content is hidden by default and shown on hover or focus.
  * The content is hidden again when the user mouses out of the trigger element or blurs the trigger element or presses Escape
@@ -71,7 +72,7 @@ const Popover = forwardRef<
     initialOpen?: boolean;
     /** Optional boolean to control whether popover content is rendered as a modal */
     modal?: boolean;
-    /** Optional handler for change of visibility for popover content */
+    /** Optional handler for change of visibility for popover content, for analytics and control */
     onChangeContentVisibility?: (visible: boolean) => void;
     /** Optional boolean to control open state of popover externally */
     open?: boolean;
@@ -89,8 +90,6 @@ const Popover = forwardRef<
     content,
     initialOpen,
     modal: modalProp,
-    // For Analytics and Control:
-    // *NOTE*: double-check timing if tooltip dialog is changed to include entry/exit animations
     onChangeContentVisibility,
     open,
     placement = "bottom",
@@ -127,22 +126,28 @@ const Popover = forwardRef<
       placement={syntaxToRAPlacement(placement)}
       className={styles.racPopover}
     >
-      {/* TODO: the inner scope to popover has the animation timing booleans */}
-      {/* {({ isEntering, isExiting, placement, trigger }) => {}} */}
-      {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
-      <Dialog accessibilityLabel={accessibilityLabel} data-testid={dataTestId}>
-        {content}
-      </Dialog>
+      {({ isEntering, isExiting }) => (
+        <>
+          <OverlayVisibility
+            isEntering={isEntering}
+            isExiting={isExiting}
+            onChange={onChangeContentVisibility}
+          />
+          {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
+          <Dialog
+            accessibilityLabel={accessibilityLabel}
+            data-testid={dataTestId}
+          >
+            {content}
+          </Dialog>
+        </>
+      )}
     </RACPopover>
   );
 
   if (!anchorNode) return modalNode;
   return (
-    <RACDialogTrigger
-      defaultOpen={initialOpen}
-      isOpen={open}
-      onOpenChange={onChangeContentVisibility}
-    >
+    <RACDialogTrigger defaultOpen={initialOpen} isOpen={open}>
       {<Triggerable>{anchorNode}</Triggerable>}
       {modal ? modalNode : popoverNode}
     </RACDialogTrigger>
@@ -279,8 +284,6 @@ const ModalDialog = forwardRef<
       isKeyboardDismissDisabled={!dismissable}
       defaultOpen={initialOpen}
       isOpen={open}
-      // *NOTE*: double-check timing if tooltip dialog is changed to include entry/exit animations
-      onOpenChange={onChangeContentVisibility}
       className={styles.racModalOverlay}
     >
       {({ state }) => (
@@ -298,33 +301,42 @@ const ModalDialog = forwardRef<
             aria-label={accessibilityLabel}
             className={styles.racModal}
           >
-            <Dialog
-              accessibilityLabel={accessibilityLabel}
-              data-testid={dataTestId}
-            >
-              <Box
-                position="absolute"
-                padding={2}
-                dangerouslySetInlineStyle={{
-                  __style: {
-                    top: "0",
-                    right: "0",
-                  },
-                }}
-              >
-                <IconButton
-                  onClick={() => state.close()}
-                  color="tertiary"
-                  // TODO(remove this comment before merge):
-                  //  internationalize? rac dialog already includes
-                  //  hidden dismiss element, accessible to screen readers,
-                  //  and that aria-label _is_ i18n'ed "dismiss"
-                  accessibilityLabel="Dismiss"
-                  icon={XIcon}
+            {({ isEntering, isExiting }) => (
+              <>
+                <OverlayVisibility
+                  isEntering={isEntering}
+                  isExiting={isExiting}
+                  onChange={onChangeContentVisibility}
                 />
-              </Box>
-              {children}
-            </Dialog>
+                <Dialog
+                  accessibilityLabel={accessibilityLabel}
+                  data-testid={dataTestId}
+                >
+                  <Box
+                    position="absolute"
+                    padding={2}
+                    dangerouslySetInlineStyle={{
+                      __style: {
+                        top: "0",
+                        right: "0",
+                      },
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => state.close()}
+                      color="tertiary"
+                      // TODO(remove this comment before merge):
+                      //  internationalize? rac dialog already includes
+                      //  hidden dismiss element, accessible to screen readers,
+                      //  and that aria-label _is_ i18n'ed "dismiss"
+                      accessibilityLabel="Dismiss"
+                      icon={XIcon}
+                    />
+                  </Box>
+                  {children}
+                </Dialog>
+              </>
+            )}
           </RACModal>
         </Box>
       )}

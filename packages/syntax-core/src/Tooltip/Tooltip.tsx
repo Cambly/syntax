@@ -9,6 +9,7 @@ import Triggerable from "../react-aria-utils/Triggerable";
 import Typography from "../Typography/Typography";
 import OverlayArrow from "../react-aria-utils/OverlayArrow";
 import Box from "../Box/Box";
+import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 
 type Placement = "top-end" | "top-start" | "bottom-end" | "bottom-start";
 
@@ -27,7 +28,7 @@ function syntaxPlacementToRAPlacement(
 }
 
 /**
- * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
+ * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/components-tooltip--docs) displays contextual information on hover or focus.
  *
  * Tooltip content is hidden by default and shown on hover or focus.
  * The content is hidden again when the user mouses out of the trigger element or blurs the trigger element or presses Escape
@@ -73,7 +74,7 @@ const Tooltip = forwardRef<
      * @defaultValue false
      */
     initialOpen?: boolean;
-    /** Optional handler for change of visibility for tooltip content */
+    /** Optional handler for change of visibility for tooltip content, for analytics and control */
     onChangeContentVisibility?: (visible: boolean) => void;
     /** Optional boolean to control open state of tooltip externally */
     open?: boolean;
@@ -110,11 +111,7 @@ const Tooltip = forwardRef<
       delay={delay}
       closeDelay={500}
       isDisabled={disabled}
-      // allow external control of open state via `open` prop
       isOpen={open}
-      // For Analytics and Control:
-      // *NOTE*: double-check timing if tooltip dialog is changed to include entry/exit animations
-      onOpenChange={onChangeContentVisibility}
     >
       {/* transfer focus handlers to child element if it is focusable */}
       <Triggerable>{anchorNode}</Triggerable>
@@ -129,18 +126,27 @@ const Tooltip = forwardRef<
           color: "var(--color-base-gray-900)",
         }}
       >
-        <OverlayArrow />
-        <Box
-          backgroundColor="gray900"
-          paddingY={2}
-          paddingX={3}
-          rounding="sm"
-          maxWidth={240}
-        >
-          <Typography size={100} as="div" color="white">
-            {content}
-          </Typography>
-        </Box>
+        {({ isEntering, isExiting }) => (
+          <>
+            <OverlayArrow />
+            <Box
+              backgroundColor="gray900"
+              paddingY={2}
+              paddingX={3}
+              rounding="sm"
+              maxWidth={240}
+            >
+              <Typography size={100} as="div" color="white">
+                {content}
+              </Typography>
+            </Box>
+            <OverlayVisibility
+              isEntering={isEntering}
+              isExiting={isExiting}
+              onChange={onChangeContentVisibility}
+            />
+          </>
+        )}
       </RACTooltip>
     </RACTooltipTrigger>
   );

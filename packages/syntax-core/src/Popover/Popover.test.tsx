@@ -372,4 +372,24 @@ describe("popover", () => {
     await user.type(document.body, "{Escape}");
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
   });
+
+  it("fires onContentVisibilityChanged callback when popover is opened and animation finishes", async () => {
+    const spy = vi.fn();
+    render(
+      <Popover
+        content={<div data-testid="content">My Popover</div>}
+        onChangeContentVisibility={spy}
+      >
+        <button data-testid="trigger">My Trigger</button>
+      </Popover>,
+    );
+    expect(spy).toHaveBeenCalledTimes(0);
+    await user.tab(); // trigger has focus
+    await user.keyboard("{Enter}"); // dialog has focus now
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(true);
+    await user.keyboard("{Escape}"); // dialog has focus now
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(false);
+  });
 });
