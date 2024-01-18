@@ -1,0 +1,38 @@
+.racPopover {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 4px 16px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.racDialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.racPopover,
+.racDialog,
+.racModalOverlay,
+.racModal {
+  visibility: visible;
+
+  /* This is necessary for sizing. (TODO) This should be set for all elements by default */
+  box-sizing: border-box;
+}
+
+.racModalOverlay {
+  position: fixed;
+  inset: 0;
+}
+
+.racDialog,
+.racModal {
+  max-height: 100%;
+}
+
+.racDialog:focus-visible {
+  border-radius: 16px;
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
