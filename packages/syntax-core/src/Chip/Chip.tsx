@@ -7,6 +7,10 @@ import useIsHydrated from "../useIsHydrated";
 
 type ChipProps = {
   /**
+   * If true, the chip will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * Sets the initial status of this chip component.
    * * `true` will display a grey chip.
    * * `false` will display a premium800 color chip.
@@ -39,6 +43,8 @@ type ChipProps = {
    * The icon to be displayed.
    */
   icon?: React.ComponentType<{ className?: string }>;
+  /** forces focus ring styling */
+  dangerouslyForceFocusStyles?: boolean;
 };
 /**
  * [Chip](https://cambly-syntax.vercel.app/?path=/docs/components-chip--docs) is used to show status (selected/not selected) like a toggle button.
@@ -46,21 +52,24 @@ type ChipProps = {
 const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   (
     {
+      disabled: disabledProp = false,
       selected = false,
       "data-testid": dataTestId,
       size = "sm",
       text,
       onChange,
       icon: Icon,
+      dangerouslyForceFocusStyles,
     }: ChipProps,
     ref,
   ) => {
     const isHydrated = useIsHydrated();
-    const disabled = !isHydrated;
+    const disabled = !isHydrated || disabledProp;
 
     const chipStyles = classnames(styles.chip, styles[size], {
       [styles.selectedChip]: selected,
       [styles.disabled]: disabled,
+      [styles.forceFocus]: dangerouslyForceFocusStyles,
     });
     const iconStyles = classnames(styles.icon, {
       [styles.selectedIcon]: selected,
@@ -69,6 +78,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       ["sm"]: 200,
       ["lg"]: 300,
     } as const;
+
     return (
       <button
         className={chipStyles}
