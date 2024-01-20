@@ -1,0 +1,17 @@
+.label {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.listBoxItem {
+}
+
+.listBoxItem:focus-visible {
+  outline: none;
+}
