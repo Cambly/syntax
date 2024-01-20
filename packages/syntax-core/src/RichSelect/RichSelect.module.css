@@ -1,0 +1,4 @@
+.richSelectItem:focus-visible,
+.richSelectBox:focus-visible {
+  outline: none;
+}

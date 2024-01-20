@@ -14,6 +14,7 @@ import LinkButton from "./LinkButton/LinkButton";
 import Modal from "./Modal/Modal";
 import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
+import RichSelectList from "./RichSelect/RichSelectList";
 import SelectList from "./SelectList/SelectList";
 import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
@@ -38,6 +39,7 @@ export {
   Modal,
   Popover,
   RadioButton,
+  RichSelectList,
   SelectList,
   TapArea,
   TextArea,
