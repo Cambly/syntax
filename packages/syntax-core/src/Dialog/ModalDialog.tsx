@@ -34,7 +34,7 @@ type AriaModalOverlayProps = {
   "data-testid"?: string;
 } & ReactAriaModalOverlayProps;
 /**
- * AriaModalOverlay: This component extends upon ModalOverlay from react-aria-components
+ * AriaModalOverlay: This component extends ModalOverlay from react-aria-components
  * It applies syntax styles and adds aadditional props:
  *  - data-testid
  */
@@ -67,7 +67,7 @@ type AriaModalProps = {
   onChangeContentVisibility?: (visible: boolean) => void;
 } & ComponentProps<typeof ReactAriaModal>;
 /**
- * AriaModal: This component extends upon Modal from react-aria-components
+ * AriaModal: This component extends Modal from react-aria-components
  * It applies syntax styles and adds aadditional props:
  *  - data-testid
  *  - onContentChangeVisibility

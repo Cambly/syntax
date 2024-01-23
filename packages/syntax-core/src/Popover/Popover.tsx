@@ -60,11 +60,11 @@ function syntaxToReactAriaPlacement(
 
 type AriaPopoverProps = {
   "data-testid"?: string;
-  /** Optional handler for change of visibility for popover content, for analytics timing */
+  /** Optional handler for change of visibility for overlaid content, for analytics timing */
   onChangeContentVisibility?: (visible: boolean) => void;
 } & ReactAriaPopoverProps;
 /**
- * AriaPopover: This component extends upon Popover from react-aria-components
+ * AriaPopover: This component extends Popover from react-aria-components
  * It applies syntax styles and adds aadditional props:
  *  - data-testid
  *  - onContentChangeVisibility
