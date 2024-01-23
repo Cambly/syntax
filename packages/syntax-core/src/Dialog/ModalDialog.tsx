@@ -30,7 +30,7 @@ type ModalDialogProps = DialogProps & {
   /** Optional boolean to control open state of modal dialog externally */
   open?: boolean;
   /** Optional override for default dismiss button accessibility label */
-  dismissAccessibilityLabel?: string;
+  accessibilityCloseLabel?: string;
 };
 
 /**
@@ -57,7 +57,7 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
       accessibilityLabel,
       children,
       dismissable = true,
-      dismissAccessibilityLabel = "Dismiss",
+      accessibilityCloseLabel = "Dismiss",
       initialOpen,
       onChangeContentVisibility,
       open,
@@ -110,7 +110,7 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
                       <IconButton
                         onClick={() => state.close()}
                         color="tertiary"
-                        accessibilityLabel={dismissAccessibilityLabel}
+                        accessibilityLabel={accessibilityCloseLabel}
                         icon={XIcon}
                       />
                     </Box>
