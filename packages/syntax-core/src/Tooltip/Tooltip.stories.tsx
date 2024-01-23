@@ -60,9 +60,9 @@ export default {
       },
     },
     children: {
-      control: { type: "text" },
+      table: { disable: true },
       description:
-        "The string value to show for tooltip trigger (can also be a ReactElement)",
+        "The ReactElement to use as tooltip trigger (can also be a ReactElement)",
     },
     content: {
       control: { type: "text" },
@@ -108,7 +108,6 @@ export const Default: StoryObj<typeof Tooltip> = {
 
 export const AddContextToLabel: StoryObj<typeof Tooltip> = {
   args: {
-    placement: "top-end",
     children: <span>tutor rating</span>,
     content:
       "The tutor's rating is calculated from these types of information: 1) something, 2) something else",
@@ -129,7 +128,6 @@ export const AddContextToLabel: StoryObj<typeof Tooltip> = {
 
 export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
   args: {
-    placement: "top-end",
     children: <InfoOutlinedIcon />,
     content: (
       <Box maxWidth="400px" display="flex" direction="column" gap={2}>
@@ -168,7 +166,6 @@ export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
 
 export const FocusedInParagraph: StoryObj<typeof Tooltip> = {
   args: {
-    placement: "top-start",
     children: <InfoOutlinedIcon fontSize="inherit" />,
     content: "Focused tooltip content",
   },
@@ -237,9 +234,7 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
           gap={12}
         >
           {Array.from({ length: 2 }).map((__, j) =>
-            (
-              ["top-end", "bottom-end", "top-start", "bottom-start"] as const
-            ).map((placement) => (
+            (["top", "bottom"] as const).map((placement) => (
               <Fragment key={`${placement}${j}`}>
                 <Tooltip
                   placement={placement}
@@ -272,22 +267,20 @@ export const MultipleOpenInTightSpaces: StoryObj<typeof Tooltip> = {
   },
   render: ({ content }) => (
     <Box display="flex" direction="column" gap={10}>
-      {(["top-end", "bottom-end", "top-start", "bottom-start"] as const).map(
-        (placement) => (
-          <Box key={placement} display="flex" gap={2}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Tooltip
-                key={i}
-                placement={placement}
-                content={content}
-                initialOpen
-              >
-                <Button text={placement} />
-              </Tooltip>
-            ))}
-          </Box>
-        ),
-      )}
+      {(["top", "bottom"] as const).map((placement) => (
+        <Box key={placement} display="flex" gap={2}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Tooltip
+              key={i}
+              placement={placement}
+              content={content}
+              initialOpen
+            >
+              <Button text={placement} />
+            </Tooltip>
+          ))}
+        </Box>
+      ))}
     </Box>
   ),
 };
@@ -304,7 +297,7 @@ export const ButtonAsTrigger: StoryObj<typeof Tooltip> = {
     ),
   },
   render: ({ content }) => (
-    <Tooltip placement="top-end" content={content}>
+    <Tooltip content={content}>
       <Button
         text="My trigger"
         onClick={() => alert("UncontrolledButtonTooltip pressed")}
@@ -325,7 +318,7 @@ export const IconButtonAsTrigger: StoryObj<typeof Tooltip> = {
     ),
   },
   render: ({ content }) => (
-    <Tooltip placement="top-end" content={content}>
+    <Tooltip content={content}>
       <IconButton
         accessibilityLabel="Info Icon Button"
         icon={InfoOutlinedIcon}
@@ -339,7 +332,7 @@ export const IconButtonAsTrigger: StoryObj<typeof Tooltip> = {
 
 export const DivAsTrigger: StoryObj<typeof Tooltip> = {
   render: () => (
-    <Tooltip placement="top-end" content="some content">
+    <Tooltip content="some content">
       <div>hover or focus me</div>
     </Tooltip>
   ),
@@ -352,7 +345,7 @@ export const InputAsTrigger: StoryObj<typeof Tooltip> = {
         (a little wonky, but not terrible, just an example, not trying to
         support)
       </Typography>
-      <Tooltip placement="top-end" content="some content">
+      <Tooltip content="some content">
         <input
           type="text"
           placeholder="with tooltip"
@@ -463,11 +456,7 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
                     onChange={(e) => setChoice(Number(e.target.value))}
                     checked={choice === value}
                   />
-                  <Tooltip
-                    initialOpen={i === 1}
-                    placement="top-start"
-                    content={content}
-                  >
+                  <Tooltip initialOpen={i === 1} content={content}>
                     <InfoOutlinedIcon width={20} height={20} />
                   </Tooltip>
                 </Box>

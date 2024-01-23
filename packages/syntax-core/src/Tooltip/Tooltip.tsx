@@ -1,15 +1,16 @@
 import React, { forwardRef, type ReactNode, type ReactElement } from "react";
 import { mergeProps, type Placement as ReactAriaPlacement } from "react-aria";
 import {
+  composeRenderProps,
+  OverlayArrow as ReactAriaOverlayArrow,
+  type OverlayArrowProps as ReactAriaOverlayArrowProps,
   Tooltip as ReactAriaTooltip,
   TooltipTrigger as ReactAriaTooltipTrigger,
   type TooltipProps as ReactAriaTooltipProps,
-  composeRenderProps,
 } from "react-aria-components";
 
 import Triggerable from "../react-aria-utils/Triggerable";
 import Typography from "../Typography/Typography";
-import OverlayArrow from "../react-aria-utils/AriaOverlayArrow";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import classNames from "classnames";
 import boxStyles from "../Box/Box.module.css";
@@ -18,13 +19,12 @@ import roundingStyles from "../rounding.module.css";
 import colorStyles from "../colors/colors.module.css";
 import styles from "./Tooltip.module.css";
 
-type Placement = "top-end" | "top-start" | "bottom-end" | "bottom-start";
+// type Placement = "top-end" | "top-start" | "bottom-end" | "bottom-start";
+type Placement = "top" | "bottom";
 
 const SYNTAX_TO_REACT_ARIA_PLACEMENT: Record<Placement, ReactAriaPlacement> = {
-  "top-end": "top right",
-  "top-start": "top left",
-  "bottom-end": "bottom right",
-  "bottom-start": "bottom left",
+  top: "top start",
+  bottom: "bottom start",
 } as const;
 
 function syntaxToReactAriaPlacement(
@@ -34,63 +34,91 @@ function syntaxToReactAriaPlacement(
   return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
 }
 
-type AriaTooltipProps = {
-  "data-testid"?: string;
-  /** Optional handler for change of visibility for overlaid content, for analytics timing */
-  onChangeContentVisibility?: (visible: boolean) => void;
-} & ReactAriaTooltipProps;
+function TooltipArrow(props: ReactAriaOverlayArrowProps): ReactElement {
+  return (
+    <ReactAriaOverlayArrow {...props}>
+      {({ placement }) => {
+        if (placement === "center") return null;
+        if (placement === "left") return null;
+        if (placement === "right") return null;
+        return (
+          <div
+            className={classNames([
+              boxStyles.block,
+              styles[`arrowPlacement${placement}`],
+            ])}
+          >
+            <svg
+              className={classNames([boxStyles.block])}
+              width={40}
+              height={5}
+              viewBox="0 0 40 5"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M17 0L22 5H12L17 0Z" fill="currentColor" />
+            </svg>
+          </div>
+        );
+      }}
+    </ReactAriaOverlayArrow>
+  );
+}
+
 /**
  * AriaTooltip: This component extends Tooltip from react-aria-components
  * It applies syntax styles and adds aadditional props:
- *  - data-testid
  *  - onContentChangeVisibility
  */
-export const AriaTooltip = forwardRef<HTMLDivElement, AriaTooltipProps>(
-  function AriaTooltip(
-    { children: childrenProp, onChangeContentVisibility, ...otherProps },
-    ref,
-  ): ReactElement {
-    const className = classNames([
-      boxStyles.box,
-      colorStyles.gray900Color,
-      colorStyles.gray900BackgroundColor,
-      paddingStyles.paddingY2,
-      paddingStyles.paddingX3,
-      roundingStyles.roundingsm,
-      styles.tooltip,
-    ]);
-    return (
-      <ReactAriaTooltip
-        ref={ref}
-        {...mergeProps(
-          {
-            className,
-            offset: 8,
-            crossOffset: 0,
-          },
-          otherProps,
-        )}
-      >
-        {composeRenderProps(
-          childrenProp,
-          (children, { isEntering, isExiting }) => (
-            <>
-              <OverlayArrow />
-              <Typography size={100} color="white">
-                {children}
-              </Typography>
-              <OverlayVisibility
-                isEntering={isEntering}
-                isExiting={isExiting}
-                onChange={onChangeContentVisibility}
-              />
-            </>
-          ),
-        )}
-      </ReactAriaTooltip>
-    );
-  },
-);
+export const AriaTooltip = forwardRef<
+  HTMLDivElement,
+  ReactAriaTooltipProps & {
+    /** Optional handler for change of visibility for overlaid content, for analytics timing */
+    onChangeContentVisibility?: (visible: boolean) => void;
+  }
+>(function AriaTooltip(
+  { children: childrenProp, onChangeContentVisibility, ...otherProps },
+  ref,
+): ReactElement {
+  const className = classNames([
+    boxStyles.box,
+    colorStyles.gray900Color,
+    colorStyles.gray900BackgroundColor,
+    paddingStyles.paddingY2,
+    paddingStyles.paddingX3,
+    roundingStyles.roundingsm,
+    styles.tooltip,
+  ]);
+  return (
+    <ReactAriaTooltip
+      ref={ref}
+      {...mergeProps(
+        {
+          className,
+          offset: 8,
+          crossOffset: 0,
+        },
+        otherProps,
+      )}
+    >
+      {composeRenderProps(
+        childrenProp,
+        (children, { isEntering, isExiting }) => (
+          <>
+            <TooltipArrow />
+            <Typography size={100} color="white">
+              {children}
+            </Typography>
+            <OverlayVisibility
+              isEntering={isEntering}
+              isExiting={isExiting}
+              onChange={onChangeContentVisibility}
+            />
+          </>
+        ),
+      )}
+    </ReactAriaTooltip>
+  );
+});
 
 type TooltipProps = {
   /**
@@ -161,7 +189,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
     onChangeContentVisibility,
     onOpenChange,
     open,
-    placement = "top-end",
+    placement = "top",
   } = props;
 
   return (
