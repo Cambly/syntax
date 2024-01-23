@@ -97,11 +97,6 @@ const SuperLongContent = () => (
 export default {
   title: "Components/Popover",
   component: Popover,
-  parameters: {
-    design: {
-      type: "figma",
-    },
-  },
   argTypes: {
     initialOpen: {
       control: { type: "radio" },
