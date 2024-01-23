@@ -122,7 +122,9 @@ export default {
         "Optional boolean to control whether popover content is rendered as a modal",
     },
     open: {
-      table: { disable: true },
+      control: { type: "radio" },
+      defaultValue: undefined,
+      options: [false, true, undefined],
       description:
         "Value of the 'open' state when controlled (disabled for story)",
     },
