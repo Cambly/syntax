@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.4.0
+
+### Minor Changes
+
+- a7a0ed0: Feat: Tooltip + Popover, Feat: Typography forwards ref
+
 ## 10.3.0
 
 ### Minor Changes
