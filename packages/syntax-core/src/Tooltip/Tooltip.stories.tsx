@@ -24,6 +24,11 @@ export default {
     },
   },
   argTypes: {
+    accessibilityLabel: {
+      control: { type: "string" },
+      defaultValue: "My accessibility label",
+      description: "Optional aria-label for the popover (content element)",
+    },
     delay: {
       control: { type: "number" },
       defaultValue: 0,
@@ -31,13 +36,20 @@ export default {
         defaultValue: { summary: 0 },
       },
     },
+    disabled: {
+      control: { type: "boolean" },
+      defaultValue: false,
+      description: "Optional boolean to disable tooltip trigger behavior",
+    },
     initialOpen: {
       control: { type: "radio" },
-      defaultValue: true,
-      options: [false, true],
+      defaultValue: undefined,
+      options: [false, true, undefined],
     },
     open: {
-      table: { disable: true },
+      control: { type: "radio" },
+      defaultValue: undefined,
+      options: [false, true, undefined],
       description:
         "Value of the 'open' state when controlled (disabled for story)",
     },
@@ -53,11 +65,8 @@ export default {
     },
     placement: {
       control: { type: "select" },
-      defaultValue: "right",
-      options: ["top", "right", "bottom", "left"],
-      table: {
-        defaultValue: { summary: "right" },
-      },
+      defaultValue: undefined,
+      options: ["top", "bottom"],
     },
     children: {
       table: { disable: true },
@@ -85,7 +94,7 @@ export const Default: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ delay, placement, initialOpen, content, children }) => (
+  render: (props) => (
     <Box
       display="flex"
       direction="column"
@@ -94,14 +103,7 @@ export const Default: StoryObj<typeof Tooltip> = {
       minHeight="400px"
       gap={2}
     >
-      <Tooltip
-        delay={delay}
-        placement={placement}
-        initialOpen={initialOpen}
-        content={content}
-      >
-        {children}
-      </Tooltip>
+      <Tooltip {...props} />
     </Box>
   ),
 };
@@ -188,23 +190,23 @@ export const MultipleTooltipsStacked: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ content }) => (
+  render: (props) => (
     <>
       <div>
         <Typography>Label 1 </Typography>
-        <Tooltip content={content} initialOpen>
+        <Tooltip {...props} initialOpen>
           <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
       <div>
         <Typography>Label 2 </Typography>
-        <Tooltip content={content}>
+        <Tooltip {...props}>
           <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
       <div>
         <Typography>Label 3 </Typography>
-        <Tooltip content={content}>
+        <Tooltip {...props}>
           <InfoOutlinedIcon fontSize="inherit" />
         </Tooltip>
       </div>
@@ -223,7 +225,7 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ content }) => (
+  render: (props) => (
     <Box display="flex" direction="row" justifyContent="between" flex="grow">
       {Array.from({ length: 5 }).map((_, i) => (
         <Box
@@ -237,8 +239,7 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
             (["top", "bottom"] as const).map((placement) => (
               <Fragment key={`${placement}${j}`}>
                 <Tooltip
-                  placement={placement}
-                  content={content}
+                  {...props}
                   initialOpen={i % 2 === 0}
                   open={i % 2 === 0 ? true : undefined}
                 >
@@ -265,17 +266,12 @@ export const MultipleOpenInTightSpaces: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ content }) => (
+  render: (props) => (
     <Box display="flex" direction="column" gap={10}>
       {(["top", "bottom"] as const).map((placement) => (
         <Box key={placement} display="flex" gap={2}>
           {Array.from({ length: 5 }).map((_, i) => (
-            <Tooltip
-              key={i}
-              placement={placement}
-              content={content}
-              initialOpen
-            >
+            <Tooltip key={i} {...props} initialOpen>
               <Button text={placement} />
             </Tooltip>
           ))}
@@ -296,8 +292,8 @@ export const ButtonAsTrigger: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ content }) => (
-    <Tooltip content={content}>
+  render: (props) => (
+    <Tooltip {...props}>
       <Button
         text="My trigger"
         onClick={() => alert("UncontrolledButtonTooltip pressed")}
@@ -317,8 +313,8 @@ export const IconButtonAsTrigger: StoryObj<typeof Tooltip> = {
       </>
     ),
   },
-  render: ({ content }) => (
-    <Tooltip content={content}>
+  render: (props) => (
+    <Tooltip {...props}>
       <IconButton
         accessibilityLabel="Info Icon Button"
         icon={InfoOutlinedIcon}
@@ -331,21 +327,21 @@ export const IconButtonAsTrigger: StoryObj<typeof Tooltip> = {
 };
 
 export const DivAsTrigger: StoryObj<typeof Tooltip> = {
-  render: () => (
-    <Tooltip content="some content">
+  render: (props) => (
+    <Tooltip {...props}>
       <div>hover or focus me</div>
     </Tooltip>
   ),
 };
 
 export const InputAsTrigger: StoryObj<typeof Tooltip> = {
-  render: () => (
+  render: (props) => (
     <>
       <Typography>
         (a little wonky, but not terrible, just an example, not trying to
         support)
       </Typography>
-      <Tooltip content="some content">
+      <Tooltip {...props}>
         <input
           type="text"
           placeholder="with tooltip"
