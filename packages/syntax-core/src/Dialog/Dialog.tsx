@@ -57,13 +57,6 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     size = "md",
   } = props;
 
-  const content =
-    typeof children === "string" ? (
-      <Typography color="inherit">{children}</Typography>
-    ) : (
-      children
-    );
-
   return (
     <RACDialog
       ref={ref}
@@ -87,7 +80,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       ])}
       style={{ maxWidth: "100%", maxHeight: "100%" }}
     >
-      {content}
+      {children}
     </RACDialog>
   );
 });
