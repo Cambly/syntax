@@ -66,7 +66,7 @@ const Tooltip = forwardRef<
     /** Optional aria-label for the tooltip (content element) */
     accessibilityLabel?: string;
     /** Required trigger element */
-    children: ReactElement | string;
+    children: ReactElement;
     /** Content to be shown inside the tooltip. */
     content: ReactNode;
     /**
@@ -98,9 +98,6 @@ const Tooltip = forwardRef<
     placement = "top-end",
   } = props;
 
-  const anchorNode =
-    typeof children === "string" ? <span>{children}</span> : children;
-
   return (
     <RACTooltipTrigger
       defaultOpen={initialOpen}
@@ -110,7 +107,7 @@ const Tooltip = forwardRef<
       isOpen={open}
     >
       {/* transfer focus handlers to child element if it is focusable */}
-      <Triggerable>{anchorNode}</Triggerable>
+      <Triggerable>{children}</Triggerable>
       <RACTooltip
         ref={ref}
         offset={8}

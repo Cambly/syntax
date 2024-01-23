@@ -70,7 +70,7 @@ export default {
 
 export const Default: StoryObj<typeof Tooltip> = {
   args: {
-    children: "Hover / Focus me",
+    children: <span>Hover / Focus me</span>,
     content: (
       <>
         This is a tooltip content{" "}
@@ -104,7 +104,7 @@ export const Default: StoryObj<typeof Tooltip> = {
 export const AddContextToLabel: StoryObj<typeof Tooltip> = {
   args: {
     placement: "top-end",
-    children: "tutor rating",
+    children: <span>tutor rating</span>,
     content:
       "The tutor's rating is calculated from these types of information: 1) something, 2) something else",
   },

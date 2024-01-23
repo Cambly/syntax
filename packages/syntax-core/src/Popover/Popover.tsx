@@ -93,8 +93,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     placement = "bottom",
   } = props;
 
-  const anchorNode = children;
-  const modal = !anchorNode || modalProp;
+  const modal = !children || modalProp;
 
   // ensure overlay remains dismissible when open state is controlled externally
   // (listen to onChangeContentVisibility to update external open state)
@@ -141,14 +140,14 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     </RACPopover>
   );
 
-  if (!anchorNode) return modalNode;
+  if (!children) return modalNode;
   return (
     <RACDialogTrigger
       defaultOpen={initialOpen}
       isOpen={isOpen}
       onOpenChange={setIsOpen}
     >
-      {<Triggerable>{anchorNode}</Triggerable>}
+      {<Triggerable>{children}</Triggerable>}
       {modal ? modalNode : popoverNode}
     </RACDialogTrigger>
   );

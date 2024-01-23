@@ -8,7 +8,6 @@ describe("tooltip - server", () => {
   it.each([
     <button key="button-trigger">My trigger</button>,
     <span key="span-trigger">My trigger</span>,
-    "My trigger",
   ])("renders on the server without any errors", (children) => {
     const renderOnServer = () =>
       renderToString(
