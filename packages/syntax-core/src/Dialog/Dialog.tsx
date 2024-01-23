@@ -1,5 +1,4 @@
 import React, { type ReactNode, forwardRef, type ReactElement } from "react";
-import Typography from "../Typography/Typography";
 import colorStyles from "../colors/colors.module.css";
 import elevationStyles from "../elevation/elevation.module.css";
 import paddingStyles from "../Box/padding.module.css";
