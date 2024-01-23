@@ -38,7 +38,7 @@ type PopoverProps = {
   open?: boolean;
   /**
    * Location of the popover content relative to anchor element
-   * @defaultValue "top-start"
+   * @defaultValue "bottom"
    */
   placement?: Placement;
 };
