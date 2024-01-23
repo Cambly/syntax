@@ -20,7 +20,7 @@ export default function OverlayVisibility({
   onChange?: (visible: boolean) => void;
   /** Whether the content is entering (animating) */
   isEntering?: boolean;
-  /** Whether the content is entering (animating) */
+  /** Whether the content is exiting (animating) */
   isExiting?: boolean;
 }): null {
   const onChangeRef = useRef(onChange);

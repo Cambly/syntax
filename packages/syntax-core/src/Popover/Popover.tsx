@@ -57,7 +57,7 @@ function syntaxToRAPlacement(placement?: Placement): RAPlacement | undefined {
 /**
  * [Popover](https://cambly-syntax.vercel.app/?path=/docs/components-popover--docs) displays contextual information on hover or focus.
  *
- * Popover content is hidden by default and shown on hover or focus.
+ * Popover content is hidden by default and shown on click or focus.
  * The content is hidden again when the user mouses out of the trigger element or blurs the trigger element or presses Escape
  *
  * Example Usage:
@@ -102,7 +102,6 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
   const modal = !anchorNode || modalProp;
 
   const modalNode = (
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     <ModalDialog
       ref={ref}
       accessibilityLabel={accessibilityLabel}

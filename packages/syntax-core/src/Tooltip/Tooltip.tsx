@@ -80,7 +80,7 @@ const Tooltip = forwardRef<
     open?: boolean;
     /**
      * Location of the tooltip content relative to anchor element
-     * @defaultValue "top-right"
+     * @defaultValue "top-end"
      */
     placement?: Placement;
   }
@@ -136,7 +136,7 @@ const Tooltip = forwardRef<
               rounding="sm"
               maxWidth={240}
             >
-              <Typography size={100} as="div" color="white">
+              <Typography size={100} color="white">
                 {content}
               </Typography>
             </Box>

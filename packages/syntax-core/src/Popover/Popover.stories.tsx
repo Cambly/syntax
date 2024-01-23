@@ -246,7 +246,7 @@ export const ControlledPopover = (): ReactElement => {
             content={<ContentWithTooltips />}
             accessibilityLabel="Popover with internal trigger, controlled"
           >
-            <Button text="Internal trigger" />
+            <Button text="Internal trigger (no action)" />
           </Popover>
         </Box>
       </div>

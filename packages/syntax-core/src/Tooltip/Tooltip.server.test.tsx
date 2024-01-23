@@ -4,7 +4,7 @@
 import Tooltip from "./Tooltip";
 import { renderToString } from "react-dom/server";
 
-describe("chip - server", () => {
+describe("tooltip - server", () => {
   it.each([
     <button key="button-trigger">My trigger</button>,
     <span key="span-trigger">My trigger</span>,
