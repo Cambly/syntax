@@ -1,23 +1,15 @@
-import React, {
-  type ReactNode,
-  forwardRef,
-  type ReactElement,
-  type ComponentProps,
-} from "react";
+import React, { type ReactNode, forwardRef, type ReactElement } from "react";
 import { type Placement as RAPlacement } from "react-aria";
 import {
   Popover as RACPopover,
   DialogTrigger as RACDialogTrigger,
-  Modal as RACModal,
-  ModalOverlay as RACModalOverlay,
 } from "react-aria-components";
-import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
-import IconButton from "../IconButton/IconButton";
 import styles from "./Popover.module.css";
 import Triggerable from "../react-aria-utils/Triggerable";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import Dialog from "../Dialog/Dialog";
+import ModalDialog from "../Dialog/ModalDialog";
 
 type Placement = "top" | "end" | "bottom" | "start";
 
@@ -156,123 +148,3 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 });
 
 export default Popover;
-
-function XIcon({ color = "#000" }: { color?: string; className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill={color}>
-      <path
-        fill="inherit"
-        d="M11.25.758a.83.83 0 0 0-1.175 0L6 4.825 1.925.75A.83.83 0 1 0 .75 1.925L4.825 6 .75 10.075a.83.83 0 1 0 1.175 1.175L6 7.175l4.075 4.075a.83.83 0 1 0 1.175-1.175L7.175 6l4.075-4.075a.835.835 0 0 0 0-1.167Z"
-      />
-    </svg>
-  );
-}
-
-/**
- * ModalDialog is a controlled component -- visibility is managed with the `open` prop.
- *
- * Example Usage:
- ```
-  <ModalDialog
-    open={open}
-    initialOpen
-    content={(
-    )}
-    onChangeContentVisibility={(visible) => ...}
-  >
-    <Box padding={2} maxWidth={400}>
-      ... some content goes here
-    </Box>
-  </ModalDialog>
- ```
- */
-const ModalDialog = forwardRef<
-  HTMLDivElement,
-  ComponentProps<typeof Dialog> & {
-    /** Whether dialog can be dismissed with click outside / Escape key  */
-    dismissable?: boolean;
-    /** render visible initially. */
-    initialOpen?: boolean;
-    /** Optional handler for change of visibility for dialog content.  For analytics and control */
-    onChangeContentVisibility?: (visible: boolean) => void;
-    /** Optional boolean to control open state of modal dialog externally */
-    open?: boolean;
-  }
->(function ModalDialog(props, ref): ReactElement {
-  const {
-    "data-testid": dataTestId,
-    accessibilityLabel,
-    children,
-    dismissable = true,
-    initialOpen,
-    onChangeContentVisibility,
-    open,
-  } = props;
-
-  return (
-    <RACModalOverlay
-      isDismissable={dismissable}
-      isKeyboardDismissDisabled={!dismissable}
-      defaultOpen={initialOpen}
-      isOpen={open}
-      className={styles.racModalOverlay}
-    >
-      {({ state }) => (
-        <Box
-          padding={4} // padding/gutter from window edges
-          height="100%"
-          width="100%"
-          display="flex"
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <RACModal
-            ref={ref}
-            aria-label={accessibilityLabel}
-            className={styles.racModal}
-          >
-            {({ isEntering, isExiting }) => (
-              <>
-                <OverlayVisibility
-                  isEntering={isEntering}
-                  isExiting={isExiting}
-                  onChange={onChangeContentVisibility}
-                />
-                <Dialog
-                  accessibilityLabel={accessibilityLabel}
-                  data-testid={dataTestId}
-                >
-                  <Box
-                    position="absolute"
-                    padding={2}
-                    dangerouslySetInlineStyle={{
-                      __style: {
-                        top: "0",
-                        right: "0",
-                      },
-                    }}
-                  >
-                    <IconButton
-                      onClick={() => state.close()}
-                      color="tertiary"
-                      // TODO(remove this comment before merge):
-                      //  internationalize? rac dialog already includes
-                      //  hidden dismiss element, accessible to screen readers,
-                      //  and that aria-label _is_ i18n'ed "dismiss"
-                      accessibilityLabel="Dismiss"
-                      icon={XIcon}
-                    />
-                  </Box>
-                  {children}
-                </Dialog>
-              </>
-            )}
-          </RACModal>
-        </Box>
-      )}
-    </RACModalOverlay>
-  );
-});
-
-export { ModalDialog };

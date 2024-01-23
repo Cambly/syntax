@@ -11,7 +11,7 @@ import classNames from "classnames";
 
 type DialogSize = "sm" | "md" | "lg";
 type DialogRounding = "lg" | "xl";
-type DialogProps = {
+export type DialogProps = {
   /** Test id for the floating dialog */
   "data-testid"?: string;
   /** aria-label for the dialog */

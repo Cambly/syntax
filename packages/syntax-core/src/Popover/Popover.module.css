@@ -4,20 +4,6 @@
   padding: 4px 16px 16px;
   display: flex;
   flex-direction: column;
-}
-
-.racPopover,
-.racModalOverlay,
-.racModal {
   visibility: visible;
   box-sizing: border-box;
-}
-
-.racModalOverlay {
-  position: fixed;
-  inset: 0;
-}
-
-.racModal {
-  max-height: 100%;
 }
