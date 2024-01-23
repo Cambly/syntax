@@ -210,12 +210,12 @@ export const NestedPopovers = (): ReactElement => {
     <Popover
       placement="top"
       content={
-        <>
+        <Box display="flex" direction="column" gap={3}>
           <ContentWithTooltips />
           <Popover
             placement="start"
             content={
-              <>
+              <Box display="flex" direction="column" gap={3}>
                 <ContentWithTooltips />
                 <Popover
                   placement="start"
@@ -227,12 +227,12 @@ export const NestedPopovers = (): ReactElement => {
                 >
                   <Button text="Nested popover" />
                 </Popover>
-              </>
+              </Box>
             }
           >
             <Button text="Nested popover" />
           </Popover>
-        </>
+        </Box>
       }
     >
       <Button text="Nested popover" />
