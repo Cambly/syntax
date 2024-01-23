@@ -29,10 +29,7 @@ type PopoverProps = {
   children?: ReactElement | string;
   /** Content to be shown inside the popover. */
   content: ReactNode;
-  /**
-   * If set to true the popover will render initially open
-   * @defaultValue false
-   */
+  /** If set to true the popover be open after mount / the first time it renders */
   initialOpen?: boolean;
   /** Optional boolean to control whether popover content is rendered as a modal */
   modal?: boolean;
@@ -90,7 +87,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     accessibilityCloseLabel,
     children,
     content,
-    initialOpen,
+    initialOpen = false,
     modal: modalProp,
     onChangeContentVisibility,
     open,

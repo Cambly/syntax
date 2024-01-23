@@ -146,6 +146,36 @@ export default {
 export const Default: StoryObj<typeof Popover> = {
   args: {
     placement: "bottom",
+    children: (
+      <IconButton
+        accessibilityLabel="Info Icon Button"
+        icon={InfoOutlinedIcon}
+        onClick={() => alert("Default button pressed")}
+        color="tertiary"
+        size="lg"
+      />
+    ),
+    content: <ContentWithTooltips />,
+  },
+  render: ({ placement, initialOpen, content, children }) => (
+    <Box display="flex" justifyContent="center" alignItems="center">
+      <Popover
+        placement={placement}
+        initialOpen={initialOpen}
+        content={
+          <Box maxWidth="400px" width="100%">
+            {content}
+          </Box>
+        }
+      >
+        {children}
+      </Popover>
+    </Box>
+  ),
+};
+
+export const InitialOpen: StoryObj<typeof Popover> = {
+  args: {
     initialOpen: true,
     children: (
       <IconButton
@@ -159,7 +189,7 @@ export const Default: StoryObj<typeof Popover> = {
     content: <ContentWithTooltips />,
   },
   render: ({ placement, initialOpen, content, children }) => (
-    <div style={{ margin: "240px" }}>
+    <Box display="flex" justifyContent="center" alignItems="center">
       <Popover
         placement={placement}
         initialOpen={initialOpen}
@@ -171,7 +201,7 @@ export const Default: StoryObj<typeof Popover> = {
       >
         {children}
       </Popover>
-    </div>
+    </Box>
   ),
 };
 
