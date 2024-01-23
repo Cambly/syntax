@@ -1,0 +1,12 @@
+.modalOverlay,
+.modal {
+  visibility: visible;
+}
+
+.modalOverlay {
+  inset: 0;
+}
+
+.modal {
+  max-height: 100%;
+}

@@ -12,11 +12,13 @@ import Heading from "./Heading/Heading";
 import IconButton from "./IconButton/IconButton";
 import LinkButton from "./LinkButton/LinkButton";
 import Modal from "./Modal/Modal";
+import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
 import SelectList from "./SelectList/SelectList";
 import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
+import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
 
 export {
@@ -34,10 +36,12 @@ export {
   IconButton,
   LinkButton,
   Modal,
+  Popover,
   RadioButton,
   SelectList,
   TapArea,
   TextArea,
   TextField,
+  Tooltip,
   Typography,
 };

@@ -1,0 +1,11 @@
+.dialog {
+  min-width: var(--trigger-width);
+  max-width: 100%;
+  max-height: 100%;
+  visibility: visible;
+}
+
+.dialog:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, var(--elevation-400);
+}
