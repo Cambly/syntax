@@ -140,10 +140,10 @@ export default {
     },
     placement: {
       control: { type: "select" },
-      defaultValue: "right",
-      options: ["top", "right", "bottom", "left"],
+      defaultValue: undefined,
+      options: ["top", "end", "bottom", "start"],
       table: {
-        defaultValue: { summary: "right" },
+        defaultValue: { summary: "end" },
       },
     },
     children: {},
