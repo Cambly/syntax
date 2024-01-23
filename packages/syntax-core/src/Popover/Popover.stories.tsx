@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
@@ -213,20 +213,10 @@ export const NestedPopovers = (): ReactElement => {
 export const ControlledPopover = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const [openChildless, setOpenChildless] = useState(false);
-  const scrollableRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (scrollableRef.current) {
-      scrollableRef.current.scrollTop =
-        scrollableRef.current.scrollHeight / 2 -
-        scrollableRef.current.offsetHeight / 2;
-    }
-  }, [scrollableRef]);
 
   return (
     <Box display="flex" direction="column" gap={3} backgroundColor="purple100">
       <div
-        ref={scrollableRef}
         style={{
           overflowY: "auto",
           width: "400px",
@@ -242,11 +232,11 @@ export const ControlledPopover = (): ReactElement => {
           <Popover
             open={open}
             placement="bottom"
-            onChangeContentVisibility={(visible) => setOpen(visible)}
+            onChangeContentVisibility={setOpen}
             content={<ContentWithTooltips />}
             accessibilityLabel="Popover with internal trigger, controlled"
           >
-            <Button text="Internal trigger (no action)" />
+            <Button text="Internal trigger" />
           </Popover>
         </Box>
       </div>
@@ -254,7 +244,7 @@ export const ControlledPopover = (): ReactElement => {
         accessibilityLabel="Popover with no trigger, controlled"
         open={openChildless}
         placement="top"
-        onChangeContentVisibility={(visible) => setOpenChildless(visible)}
+        onChangeContentVisibility={setOpenChildless}
         content={
           <Box maxWidth={400} display="flex" direction="column" gap={3}>
             <ContentWithTooltips />

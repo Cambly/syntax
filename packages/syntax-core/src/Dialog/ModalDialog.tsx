@@ -1,4 +1,4 @@
-import React, { type ReactElement, forwardRef } from "react";
+import React, { type ReactElement, forwardRef, useEffect } from "react";
 import {
   Modal as RACModal,
   ModalOverlay as RACModalOverlay,
@@ -63,13 +63,19 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
       open,
     } = props;
 
+    // ensure overlay remains dismissible when open state is controlled externally
+    // (listen to onChangeContentVisibility to update external open state)
+    const [isOpen, setIsOpen] = React.useState(open);
+    useEffect(() => setIsOpen(open), [open]);
+
     return (
       <RACModalOverlay
         isDismissable={dismissable}
         isKeyboardDismissDisabled={!dismissable}
         defaultOpen={initialOpen}
-        isOpen={open}
+        isOpen={isOpen}
         className={styles.racModalOverlay}
+        onOpenChange={setIsOpen}
       >
         {({ state }) => (
           <Box

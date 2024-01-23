@@ -1,4 +1,9 @@
-import React, { type ReactNode, forwardRef, type ReactElement } from "react";
+import React, {
+  type ReactNode,
+  forwardRef,
+  type ReactElement,
+  useEffect,
+} from "react";
 import { type Placement as RAPlacement } from "react-aria";
 import {
   Popover as RACPopover,
@@ -101,6 +106,11 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   const modal = !anchorNode || modalProp;
 
+  // ensure overlay remains dismissible when open state is controlled externally
+  // (listen to onChangeContentVisibility to update external open state)
+  const [isOpen, setIsOpen] = React.useState(open);
+  useEffect(() => setIsOpen(open), [open]);
+
   const modalNode = (
     <ModalDialog
       ref={ref}
@@ -143,7 +153,11 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   if (!anchorNode) return modalNode;
   return (
-    <RACDialogTrigger defaultOpen={initialOpen} isOpen={open}>
+    <RACDialogTrigger
+      defaultOpen={initialOpen}
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+    >
       {<Triggerable>{anchorNode}</Triggerable>}
       {modal ? modalNode : popoverNode}
     </RACDialogTrigger>
