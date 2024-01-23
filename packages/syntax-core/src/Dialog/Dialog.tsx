@@ -18,8 +18,6 @@ export type DialogProps = {
   accessibilityLabel?: string;
   /** Content to be shown inside the dialog. */
   children?: ReactNode;
-  /** Optional rounding of the dialog box */
-  rounding?: DialogRounding;
   /** Optional size of the dialog box */
   size?: DialogSize;
 };
