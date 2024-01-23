@@ -111,8 +111,8 @@ export default {
     },
     initialOpen: {
       control: { type: "radio" },
-      defaultValue: true,
-      options: [false, true],
+      defaultValue: undefined,
+      options: [false, true, undefined],
     },
     modal: {
       control: { type: "radio" },
@@ -140,10 +140,10 @@ export default {
     },
     placement: {
       control: { type: "select" },
-      defaultValue: undefined,
+      defaultValue: "bottom",
       options: ["top", "end", "bottom", "start"],
       table: {
-        defaultValue: { summary: "end" },
+        defaultValue: { summary: "bottom" },
       },
     },
     children: {},

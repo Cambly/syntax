@@ -1,5 +1,5 @@
 import React, { forwardRef, type ReactNode, type ReactElement } from "react";
-import { mergeProps, type Placement as ReactAriaPlacement } from "react-aria";
+import { mergeProps } from "react-aria";
 import {
   composeRenderProps,
   OverlayArrow as ReactAriaOverlayArrow,
@@ -18,21 +18,10 @@ import paddingStyles from "../Box/padding.module.css";
 import roundingStyles from "../rounding.module.css";
 import colorStyles from "../colors/colors.module.css";
 import styles from "./Tooltip.module.css";
-
-// type Placement = "top-end" | "top-start" | "bottom-end" | "bottom-start";
-type Placement = "top" | "bottom";
-
-const SYNTAX_TO_REACT_ARIA_PLACEMENT: Record<Placement, ReactAriaPlacement> = {
-  top: "top start",
-  bottom: "bottom start",
-} as const;
-
-function syntaxToReactAriaPlacement(
-  placement?: Placement,
-): ReactAriaPlacement | undefined {
-  if (!placement) return undefined;
-  return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
-}
+import {
+  type Placement,
+  syntaxToReactAriaPlacement,
+} from "../react-aria-utils/placement";
 
 function TooltipArrow(props: ReactAriaOverlayArrowProps): ReactElement {
   return (

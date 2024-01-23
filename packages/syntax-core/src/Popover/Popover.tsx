@@ -1,6 +1,6 @@
 import React, { type ReactNode, forwardRef, type ReactElement } from "react";
 import classNames from "classnames";
-import { mergeProps, type Placement as ReactAriaPlacement } from "react-aria";
+import { mergeProps } from "react-aria";
 import {
   Popover as ReactAriaPopover,
   type PopoverProps as ReactAriaPopoverProps,
@@ -13,8 +13,10 @@ import Dialog from "../Dialog/Dialog";
 import ModalDialog from "../Dialog/ModalDialog";
 import boxStyles from "../Box/Box.module.css";
 import styles from "./Popover.module.css";
-
-type Placement = "top" | "end" | "bottom" | "start";
+import {
+  type Placement,
+  syntaxToReactAriaPlacement,
+} from "../react-aria-utils/placement";
 
 type PopoverProps = {
   /** Test id for the floating dialog */
@@ -43,20 +45,6 @@ type PopoverProps = {
    */
   placement?: Placement;
 };
-
-const SYNTAX_TO_REACT_ARIA_PLACEMENT: Record<Placement, ReactAriaPlacement> = {
-  top: "top start",
-  end: "top end",
-  bottom: "bottom end",
-  start: "bottom start",
-} as const;
-
-function syntaxToReactAriaPlacement(
-  placement?: Placement,
-): ReactAriaPlacement | undefined {
-  if (!placement) return undefined;
-  return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
-}
 
 type AriaPopoverProps = {
   "data-testid"?: string;

@@ -65,8 +65,11 @@ export default {
     },
     placement: {
       control: { type: "select" },
-      defaultValue: undefined,
-      options: ["top", "bottom"],
+      defaultValue: "top",
+      options: ["top", "end", "bottom", "start"],
+      table: {
+        defaultValue: { summary: "top" },
+      },
     },
     children: {
       table: { disable: true },
@@ -236,10 +239,11 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
           gap={12}
         >
           {Array.from({ length: 2 }).map((__, j) =>
-            (["top", "bottom"] as const).map((placement) => (
+            (["top", "end", "bottom", "start"] as const).map((placement) => (
               <Fragment key={`${placement}${j}`}>
                 <Tooltip
                   {...props}
+                  placement={placement}
                   initialOpen={i % 2 === 0}
                   open={i % 2 === 0 ? true : undefined}
                 >
@@ -268,10 +272,10 @@ export const MultipleOpenInTightSpaces: StoryObj<typeof Tooltip> = {
   },
   render: (props) => (
     <Box display="flex" direction="column" gap={10}>
-      {(["top", "bottom"] as const).map((placement) => (
+      {(["top", "end", "bottom", "start"] as const).map((placement) => (
         <Box key={placement} display="flex" gap={2}>
           {Array.from({ length: 5 }).map((_, i) => (
-            <Tooltip key={i} {...props} initialOpen>
+            <Tooltip key={i} {...props} placement={placement} initialOpen>
               <Button text={placement} />
             </Tooltip>
           ))}
