@@ -9,7 +9,6 @@ import {
   Popover as RACPopover,
   DialogTrigger as RACDialogTrigger,
 } from "react-aria-components";
-import Typography from "../Typography/Typography";
 import styles from "./Popover.module.css";
 import Triggerable from "../react-aria-utils/Triggerable";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
@@ -26,7 +25,7 @@ type PopoverProps = {
   /** Optional aria-label for the close button (trigger element) when displayed as ModalDialog */
   accessibilityCloseLabel?: string;
   /** Optional trigger element */
-  children?: ReactElement | string;
+  children?: ReactElement;
   /** Content to be shown inside the popover. */
   content: ReactNode;
   /** If set to true the popover be open after mount / the first time it renders */
@@ -94,13 +93,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     placement = "bottom",
   } = props;
 
-  const anchorNode =
-    typeof children === "string" ? (
-      <Typography color="inherit">{children}</Typography>
-    ) : (
-      children
-    );
-
+  const anchorNode = children;
   const modal = !anchorNode || modalProp;
 
   // ensure overlay remains dismissible when open state is controlled externally

@@ -99,11 +99,7 @@ const Tooltip = forwardRef<
   } = props;
 
   const anchorNode =
-    typeof children === "string" ? (
-      <Typography color="inherit">{children}</Typography>
-    ) : (
-      children
-    );
+    typeof children === "string" ? <span>{children}</span> : children;
 
   return (
     <RACTooltipTrigger
