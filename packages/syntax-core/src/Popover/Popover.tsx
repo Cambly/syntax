@@ -18,6 +18,8 @@ type PopoverProps = {
   "data-testid"?: string;
   /** Optional aria-label for the popover (content element) */
   accessibilityLabel?: string;
+  /** Optional aria-label for the close button (trigger element) when displayed as ModalDialog */
+  accessibilityCloseLabel?: string;
   /** Optional trigger element */
   children?: ReactElement | string;
   /** Content to be shown inside the popover. */
@@ -80,6 +82,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
   const {
     "data-testid": dataTestId,
     accessibilityLabel,
+    accessibilityCloseLabel,
     children,
     content,
     initialOpen,
@@ -103,6 +106,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     <ModalDialog
       ref={ref}
       accessibilityLabel={accessibilityLabel}
+      accessibilityCloseLabel={accessibilityCloseLabel}
       data-testid={dataTestId}
       initialOpen={initialOpen}
       onChangeContentVisibility={onChangeContentVisibility}
