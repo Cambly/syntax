@@ -41,10 +41,15 @@ export default {
       description:
         "Value of the 'open' state when controlled (disabled for story)",
     },
+    onOpenChange: {
+      table: { disable: true },
+      description:
+        "Function that is called when the open state changes (disabled for story)",
+    },
     onChangeContentVisibility: {
       table: { disable: true },
       description:
-        "Function that is called when the content visibility changes (disabled for story)",
+        "Function that is called when the content visibility changes, after animations complete (disabled for story)",
     },
     placement: {
       control: { type: "select" },
@@ -498,7 +503,7 @@ export const OpenControlledExternally = (): ReactElement => {
       <Tooltip
         open={open}
         initialOpen
-        onChangeContentVisibility={setOpen}
+        onOpenChange={setOpen}
         content={
           <>
             This is a tooltip content{" "}

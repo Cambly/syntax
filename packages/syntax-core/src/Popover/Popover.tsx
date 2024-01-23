@@ -1,19 +1,18 @@
-import React, {
-  type ReactNode,
-  forwardRef,
-  type ReactElement,
-  useEffect,
-} from "react";
-import { type Placement as ReactAriaPlacement } from "react-aria";
+import React, { type ReactNode, forwardRef, type ReactElement } from "react";
+import classNames from "classnames";
+import { mergeProps, type Placement as ReactAriaPlacement } from "react-aria";
 import {
   Popover as ReactAriaPopover,
+  type PopoverProps as ReactAriaPopoverProps,
   DialogTrigger as ReactAriaDialogTrigger,
+  composeRenderProps,
 } from "react-aria-components";
-import styles from "./Popover.module.css";
 import Triggerable from "../react-aria-utils/Triggerable";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import Dialog from "../Dialog/Dialog";
 import ModalDialog from "../Dialog/ModalDialog";
+import boxStyles from "../Box/Box.module.css";
+import styles from "./Popover.module.css";
 
 type Placement = "top" | "end" | "bottom" | "start";
 
@@ -32,7 +31,9 @@ type PopoverProps = {
   initialOpen?: boolean;
   /** Optional boolean to control whether popover content is rendered as a modal */
   modal?: boolean;
-  /** Optional handler for change of visibility for popover content, for analytics and control */
+  /** Optional handler for change of visibility for popover content, for control */
+  onOpenChange?: (open: boolean) => void;
+  /** Optional handler for change of visibility for popover content, for analytics timing */
   onChangeContentVisibility?: (visible: boolean) => void;
   /** Optional boolean to control open state of popover externally */
   open?: boolean;
@@ -56,6 +57,57 @@ function syntaxToReactAriaPlacement(
   if (!placement) return undefined;
   return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
 }
+
+type AriaPopoverProps = {
+  "data-testid"?: string;
+  /** Optional handler for change of visibility for popover content, for analytics timing */
+  onChangeContentVisibility?: (visible: boolean) => void;
+} & ReactAriaPopoverProps;
+/**
+ * AriaPopover: This component extends upon Popover from react-aria-components
+ * It applies syntax styles and adds aadditional props:
+ *  - data-testid
+ *  - onContentChangeVisibility
+ */
+export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
+  function AriaPopover(
+    { children: childrenProp, onChangeContentVisibility, ...otherProps },
+    ref,
+  ): ReactElement {
+    return (
+      <ReactAriaPopover
+        ref={ref}
+        {...mergeProps(
+          {
+            offset: 8,
+            containerPadding: 16,
+            className: classNames([
+              boxStyles.box,
+              boxStyles.flex,
+              boxStyles.column,
+              styles.popover,
+            ]),
+          },
+          otherProps,
+        )}
+      >
+        {composeRenderProps(
+          childrenProp,
+          (children, { isEntering, isExiting }) => (
+            <>
+              <OverlayVisibility
+                isEntering={isEntering}
+                isExiting={isExiting}
+                onChange={onChangeContentVisibility}
+              />
+              {children}
+            </>
+          ),
+        )}
+      </ReactAriaPopover>
+    );
+  },
+);
 
 /**
  * [Popover](https://cambly-syntax.vercel.app/?path=/docs/components-popover--docs) displays contextual information on hover or focus.
@@ -88,19 +140,15 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     accessibilityCloseLabel,
     children,
     content,
-    initialOpen = false,
+    initialOpen,
     modal: modalProp,
+    onOpenChange,
     onChangeContentVisibility,
     open,
     placement = "bottom",
   } = props;
 
   const modal = !children || modalProp;
-
-  // ensure overlay remains dismissible when open state is controlled externally
-  // (listen to onChangeContentVisibility to update external open state)
-  const [isOpen, setIsOpen] = React.useState(open);
-  useEffect(() => setIsOpen(open), [open]);
 
   const modalNode = (
     <ModalDialog
@@ -110,6 +158,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
       data-testid={dataTestId}
       initialOpen={initialOpen}
       onChangeContentVisibility={onChangeContentVisibility}
+      onOpenChange={onOpenChange}
       open={open}
     >
       {content}
@@ -117,37 +166,23 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
   );
 
   const popoverNode = (
-    <ReactAriaPopover
+    <AriaPopover
       ref={ref}
-      offset={4}
-      containerPadding={0} // padding against window is managed in css module file
       placement={syntaxToReactAriaPlacement(placement)}
-      className={styles.popover}
+      onChangeContentVisibility={onChangeContentVisibility}
     >
-      {({ isEntering, isExiting }) => (
-        <>
-          <OverlayVisibility
-            isEntering={isEntering}
-            isExiting={isExiting}
-            onChange={onChangeContentVisibility}
-          />
-          <Dialog
-            accessibilityLabel={accessibilityLabel}
-            data-testid={dataTestId}
-          >
-            {content}
-          </Dialog>
-        </>
-      )}
-    </ReactAriaPopover>
+      <Dialog accessibilityLabel={accessibilityLabel} data-testid={dataTestId}>
+        {content}
+      </Dialog>
+    </AriaPopover>
   );
 
   if (!children) return modalNode;
   return (
     <ReactAriaDialogTrigger
       defaultOpen={initialOpen}
-      isOpen={isOpen}
-      onOpenChange={setIsOpen}
+      isOpen={open}
+      onOpenChange={onOpenChange}
     >
       {<Triggerable>{children}</Triggerable>}
       {modal ? modalNode : popoverNode}

@@ -1,9 +1,5 @@
 .popover {
   max-width: 100%;
   max-height: 100%;
-  padding: 4px 16px 16px;
-  display: flex;
-  flex-direction: column;
   visibility: visible;
-  box-sizing: border-box;
 }

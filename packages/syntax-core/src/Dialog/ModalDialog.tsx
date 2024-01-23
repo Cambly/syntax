@@ -1,13 +1,23 @@
-import React, { type ReactElement, forwardRef, useEffect } from "react";
+import React, {
+  type ReactElement,
+  forwardRef,
+  type ComponentProps,
+} from "react";
 import {
   Modal as ReactAriaModal,
   ModalOverlay as ReactAriaModalOverlay,
+  composeRenderProps,
+  type ModalOverlayProps as ReactAriaModalOverlayProps,
 } from "react-aria-components";
+import classNames from "classnames";
+import { mergeProps } from "react-aria";
 import Dialog, { type DialogProps } from "./Dialog";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
+import paddingStyles from "../Box/padding.module.css";
+import boxStyles from "../Box/Box.module.css";
 import styles from "./ModalDialog.module.css";
-import Box from "../Box/Box";
 import IconButton from "../IconButton/IconButton";
+import Box from "../Box/Box";
 
 function XIcon({ color = "#000" }: { color?: string; className?: string }) {
   return (
@@ -20,13 +30,83 @@ function XIcon({ color = "#000" }: { color?: string; className?: string }) {
   );
 }
 
+type AriaModalOverlayProps = {
+  "data-testid"?: string;
+} & ReactAriaModalOverlayProps;
+/**
+ * AriaModalOverlay: This component extends upon ModalOverlay from react-aria-components
+ * It applies syntax styles and adds aadditional props:
+ *  - data-testid
+ */
+export const AriaModalOverlay = forwardRef<
+  HTMLDivElement,
+  AriaModalOverlayProps
+>(function AriaModalOverlay({ children, ...otherProps }, ref): ReactElement {
+  const className = classNames([
+    boxStyles.box,
+    boxStyles.fixed,
+    boxStyles.box,
+    boxStyles.flex,
+    boxStyles.column,
+    boxStyles.alignItemscenter,
+    boxStyles.justifyContentcenter,
+    paddingStyles.paddingX4,
+    paddingStyles.paddingY4,
+    styles.modalOverlay,
+  ]);
+  return (
+    <ReactAriaModalOverlay ref={ref} {...mergeProps({ className }, otherProps)}>
+      {children}
+    </ReactAriaModalOverlay>
+  );
+});
+
+type AriaModalProps = {
+  "data-testid"?: string;
+  /** Optional handler for change of visibility for overlaid content, for analytics timing */
+  onChangeContentVisibility?: (visible: boolean) => void;
+} & ComponentProps<typeof ReactAriaModal>;
+/**
+ * AriaModal: This component extends upon Modal from react-aria-components
+ * It applies syntax styles and adds aadditional props:
+ *  - data-testid
+ *  - onContentChangeVisibility
+ */
+export const AriaModal = forwardRef<HTMLDivElement, AriaModalProps>(
+  function AriaModal(
+    { children: childrenProp, onChangeContentVisibility, ...otherProps },
+    ref,
+  ): ReactElement {
+    const className = classNames([boxStyles.box, styles.modal]);
+    return (
+      <ReactAriaModal ref={ref} {...mergeProps({ className }, otherProps)}>
+        {composeRenderProps(
+          childrenProp,
+          (children, { isEntering, isExiting }) => (
+            <>
+              <OverlayVisibility
+                isEntering={isEntering}
+                isExiting={isExiting}
+                onChange={onChangeContentVisibility}
+              />
+              {children}
+            </>
+          ),
+        )}
+      </ReactAriaModal>
+    );
+  },
+);
+
 type ModalDialogProps = DialogProps & {
   /** Whether dialog can be dismissed with click outside / Escape key  */
   dismissable?: boolean;
   /** render visible initially. */
   initialOpen?: boolean;
-  /** Optional handler for change of visibility for dialog content.  For analytics and control */
+  /** Optional handler for change of visibility for popover content, for analytics timing */
   onChangeContentVisibility?: (visible: boolean) => void;
+  /** Optional handler for change of visibility for popover content, for control */
+  onOpenChange?: (open: boolean) => void;
   /** Optional boolean to control open state of modal dialog externally */
   open?: boolean;
   /** Optional override for default dismiss button accessibility label */
@@ -60,74 +140,50 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
       accessibilityCloseLabel = "Dismiss",
       initialOpen,
       onChangeContentVisibility,
+      onOpenChange,
       open,
     } = props;
 
-    // ensure overlay remains dismissible when open state is controlled externally
-    // (listen to onChangeContentVisibility to update external open state)
-    const [isOpen, setIsOpen] = React.useState(open);
-    useEffect(() => setIsOpen(open), [open]);
-
     return (
-      <ReactAriaModalOverlay
+      <AriaModalOverlay
         isDismissable={dismissable}
         isKeyboardDismissDisabled={!dismissable}
         defaultOpen={initialOpen}
-        isOpen={isOpen}
-        className={styles.modalOverlay}
-        onOpenChange={setIsOpen}
+        isOpen={open}
+        onOpenChange={onOpenChange}
       >
         {({ state }) => (
-          <Box
-            padding={4} // padding/gutter from window edges
-            height="100%"
-            width="100%"
-            display="flex"
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
+          <AriaModal
+            ref={ref}
+            aria-label={accessibilityLabel}
+            onChangeContentVisibility={onChangeContentVisibility}
           >
-            <ReactAriaModal
-              ref={ref}
-              aria-label={accessibilityLabel}
-              className={styles.modal}
+            <Dialog
+              accessibilityLabel={accessibilityLabel}
+              data-testid={dataTestId}
             >
-              {({ isEntering, isExiting }) => (
-                <>
-                  <OverlayVisibility
-                    isEntering={isEntering}
-                    isExiting={isExiting}
-                    onChange={onChangeContentVisibility}
-                  />
-                  <Dialog
-                    accessibilityLabel={accessibilityLabel}
-                    data-testid={dataTestId}
-                  >
-                    <Box
-                      position="absolute"
-                      padding={2}
-                      dangerouslySetInlineStyle={{
-                        __style: {
-                          top: "0",
-                          right: "0",
-                        },
-                      }}
-                    >
-                      <IconButton
-                        onClick={() => state.close()}
-                        color="tertiary"
-                        accessibilityLabel={accessibilityCloseLabel}
-                        icon={XIcon}
-                      />
-                    </Box>
-                    {children}
-                  </Dialog>
-                </>
-              )}
-            </ReactAriaModal>
-          </Box>
+              <Box
+                position="absolute"
+                padding={2}
+                dangerouslySetInlineStyle={{
+                  __style: {
+                    top: "0",
+                    right: "0",
+                  },
+                }}
+              >
+                <IconButton
+                  onClick={() => state.close()}
+                  color="tertiary"
+                  accessibilityLabel={accessibilityCloseLabel}
+                  icon={XIcon}
+                />
+              </Box>
+              {children}
+            </Dialog>
+          </AriaModal>
         )}
-      </ReactAriaModalOverlay>
+      </AriaModalOverlay>
     );
   },
 );

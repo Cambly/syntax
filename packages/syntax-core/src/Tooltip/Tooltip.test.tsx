@@ -148,7 +148,35 @@ describe("tooltip", () => {
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
   });
 
-  it("fires onContentVisibilityChanged callback when popover is opened and animation finishes", async () => {
+  it("fires onOpenChange callback when tooltip open state changes (before animations finish)", async () => {
+    const spy = vi.fn();
+    render(
+      <Tooltip
+        onOpenChange={spy}
+        content={<span data-testid="content">My tooltip</span>}
+      >
+        <button data-testid="trigger" tabIndex={0}>
+          My trigger
+        </button>
+      </Tooltip>,
+    );
+    expect(spy).toHaveBeenCalledTimes(0);
+    await user.hover(screen.getByTestId("trigger"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(true);
+    await user.unhover(screen.getByTestId("trigger"));
+    // there is a delay before tooltip state change is broadcast
+    expect(spy).toHaveBeenCalledTimes(1);
+    await act(() => vi.advanceTimersByTime(500)); // wait for the specific close delay (500ms hardcoded)
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(false);
+  });
+
+  // NOTE: this is basically the same as onOpenChange test right now.
+  //      expect to tweak this test if we add animations to tooltip style
+  //      in that case should test opOpenChange called after close delay, not immediately
+  //      and onChangeContentVisibility called after animation finishes (test the specific times)
+  it("fires onChangeContentVisibility callback when overlay content is opened and animation finishes", async () => {
     const spy = vi.fn();
     render(
       <Tooltip
@@ -167,7 +195,7 @@ describe("tooltip", () => {
     await user.unhover(screen.getByTestId("trigger"));
     // there is a delay before tooltip exit animation finishes
     expect(spy).toHaveBeenCalledTimes(1);
-    await act(() => vi.runAllTimers()); // wait for close delay
+    await act(() => vi.advanceTimersByTime(500)); // wait for the specific close delay (500ms hardcoded)
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith(false);
   });

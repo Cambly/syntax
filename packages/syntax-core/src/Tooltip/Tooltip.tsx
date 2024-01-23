@@ -69,13 +69,12 @@ const Tooltip = forwardRef<
     children: ReactElement;
     /** Content to be shown inside the tooltip. */
     content: ReactNode;
-    /**
-     * If set to true the tooltip will render initially open
-     * @defaultValue false
-     */
+    /** If set to true the tooltip will render initially open */
     initialOpen?: boolean;
-    /** Optional handler for change of visibility for tooltip content, for analytics and control */
+    /** Optional handler for change of visibility for popover content, for analytics timing */
     onChangeContentVisibility?: (visible: boolean) => void;
+    /** Optional handler for change of visibility for popover content, for control */
+    onOpenChange?: (open: boolean) => void;
     /** Optional boolean to control open state of tooltip externally */
     open?: boolean;
     /**
@@ -92,8 +91,9 @@ const Tooltip = forwardRef<
     disabled = false,
     children,
     content,
-    initialOpen = false,
+    initialOpen,
     onChangeContentVisibility,
+    onOpenChange,
     open,
     placement = "top-end",
   } = props;
@@ -105,6 +105,7 @@ const Tooltip = forwardRef<
       closeDelay={500}
       isDisabled={disabled}
       isOpen={open}
+      onOpenChange={onOpenChange}
     >
       {/* transfer focus handlers to child element if it is focusable */}
       <Triggerable>{children}</Triggerable>

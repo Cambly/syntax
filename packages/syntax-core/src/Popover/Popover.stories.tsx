@@ -116,7 +116,12 @@ export default {
     onOpenChange: {
       table: { disable: true },
       description:
-        "Function to change the value of 'open' when popover is interacted (diabled for story)",
+        "Function that is called when the open state changes (disabled for story)",
+    },
+    onChangeContentVisibility: {
+      table: { disable: true },
+      description:
+        "Function that is called when the content visibility changes, after animations complete (disabled for story)",
     },
     placement: {
       control: { type: "select" },
@@ -262,8 +267,20 @@ export const ControlledPopover = (): ReactElement => {
           <Popover
             open={open}
             placement="bottom"
-            onChangeContentVisibility={setOpen}
-            content={<ContentWithTooltips />}
+            onOpenChange={setOpen}
+            content={
+              <Box maxWidth={400} display="flex" direction="column" gap={3}>
+                <Typography>
+                  This popover is controlled by an external piece of state. The
+                  external trigger button below opens the popover. This button
+                  inside can close the popover.
+                </Typography>
+                <Button
+                  text="Close popover"
+                  onClick={() => setOpen((v) => !v)}
+                />
+              </Box>
+            }
             accessibilityLabel="Popover with internal trigger, controlled"
           >
             <Button text="Internal trigger" />
@@ -271,10 +288,10 @@ export const ControlledPopover = (): ReactElement => {
         </Box>
       </div>
       <Popover
-        accessibilityLabel="Popover with no trigger, controlled"
+        accessibilityLabel="Popover with no trigger children, controlled"
         open={openChildless}
         placement="top"
-        onChangeContentVisibility={setOpenChildless}
+        onOpenChange={setOpenChildless}
         content={
           <Box maxWidth={400} display="flex" direction="column" gap={3}>
             <ContentWithTooltips />
@@ -284,11 +301,14 @@ export const ControlledPopover = (): ReactElement => {
       />
       <Box display="flex" direction="column" gap={3} alignItems="center">
         <Box>
-          <Button text="External trigger" onClick={() => setOpen((v) => !v)} />
+          <Button
+            text="External trigger for popover, controlled, with internal trigger children (Open)"
+            onClick={() => setOpen((v) => !v)}
+          />
         </Box>
         <Box>
           <Button
-            text="External trigger for popover with no children"
+            text="External trigger for popover with no trigger children"
             onClick={() => setOpenChildless((v) => !v)}
           />
         </Box>
