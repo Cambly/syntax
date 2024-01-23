@@ -98,10 +98,28 @@ export default {
   title: "Components/Popover",
   component: Popover,
   argTypes: {
+    accessibilityLabel: {
+      control: { type: "string" },
+      defaultValue: "My accessibility label",
+      description: "Optional aria-label for the popover (content element)",
+    },
+    accessibilityCloseLabel: {
+      control: { type: "string" },
+      defaultValue: "My accessibility close label",
+      description:
+        "Optional aria-label for the close button (trigger element) when displayed as ModalDialog",
+    },
     initialOpen: {
       control: { type: "radio" },
       defaultValue: true,
       options: [false, true],
+    },
+    modal: {
+      control: { type: "radio" },
+      defaultValue: false,
+      options: [false, true],
+      desciption:
+        "Optional boolean to control whether popover content is rendered as a modal",
     },
     open: {
       table: { disable: true },
@@ -126,19 +144,8 @@ export default {
         defaultValue: { summary: "right" },
       },
     },
-    strategy: {
-      control: { type: "select" },
-      options: ["absolute", "fixed"],
-      defaultValue: "absolute",
-      table: {
-        defaultValue: { summary: "absolute" },
-      },
-    },
     children: {},
     content: {},
-    maxWidth: {
-      control: { type: "number" },
-    },
   },
   tags: ["autodocs"],
 } as Meta<typeof Popover>;
@@ -157,19 +164,16 @@ export const Default: StoryObj<typeof Popover> = {
     ),
     content: <ContentWithTooltips />,
   },
-  render: ({ placement, initialOpen, content, children }) => (
+  render: ({ content, ...otherProps }) => (
     <Box display="flex" justifyContent="center" alignItems="center">
       <Popover
-        placement={placement}
-        initialOpen={initialOpen}
+        {...otherProps}
         content={
           <Box maxWidth="400px" width="100%">
             {content}
           </Box>
         }
-      >
-        {children}
-      </Popover>
+      />
     </Box>
   ),
 };
@@ -188,19 +192,16 @@ export const InitialOpen: StoryObj<typeof Popover> = {
     ),
     content: <ContentWithTooltips />,
   },
-  render: ({ placement, initialOpen, content, children }) => (
+  render: ({ content, ...otherProps }) => (
     <Box display="flex" justifyContent="center" alignItems="center">
       <Popover
-        placement={placement}
-        initialOpen={initialOpen}
+        {...otherProps}
         content={
           <Box maxWidth="400px" width="100%">
             {content}
           </Box>
         }
-      >
-        {children}
-      </Popover>
+      />
     </Box>
   ),
 };
