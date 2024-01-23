@@ -27,10 +27,8 @@ const Triggerable = forwardRef<
   const childRef = useObjectRef<HTMLElement>(null);
   const hasTabbableChild = useHasTabbableChild(wrapperDomRef);
   const focusableRef = hasTabbableChild ? childRef : wrapperDomRef;
-  const WrapperComponent = "span";
   const { focusableProps } = useFocusable({}, focusableRef);
-  const elementType = WrapperComponent;
-  const { buttonProps } = useButton({ elementType }, focusableRef);
+  const { buttonProps } = useButton({ elementType: "span" }, focusableRef);
   const { hoverProps } = useHover({});
   // focus handlers are attached to tabbable child if present
   const { onFocus, onBlur, onKeyDown, onKeyUp, ...otherFocusableProps } =
@@ -43,7 +41,7 @@ const Triggerable = forwardRef<
   });
 
   return (
-    <WrapperComponent
+    <span
       ref={wrapperDomRef}
       {...mergeProps(
         buttonProps,
@@ -61,7 +59,7 @@ const Triggerable = forwardRef<
       tabIndex={hasTabbableChild ? undefined : 0}
     >
       {child}
-    </WrapperComponent>
+    </span>
   );
 });
 
