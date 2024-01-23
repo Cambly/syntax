@@ -4,10 +4,10 @@ import React, {
   type ReactElement,
   useEffect,
 } from "react";
-import { type Placement as RAPlacement } from "react-aria";
+import { type Placement as ReactAriaPlacement } from "react-aria";
 import {
-  Popover as RACPopover,
-  DialogTrigger as RACDialogTrigger,
+  Popover as ReactAriaPopover,
+  DialogTrigger as ReactAriaDialogTrigger,
 } from "react-aria-components";
 import styles from "./Popover.module.css";
 import Triggerable from "../react-aria-utils/Triggerable";
@@ -43,16 +43,18 @@ type PopoverProps = {
   placement?: Placement;
 };
 
-const SYNTAX_PLACEMENT_TO_RAC_PLACEMENT: Record<Placement, RAPlacement> = {
+const SYNTAX_TO_REACT_ARIA_PLACEMENT: Record<Placement, ReactAriaPlacement> = {
   top: "top start",
   end: "top end",
   bottom: "bottom end",
   start: "bottom start",
 } as const;
 
-function syntaxToRAPlacement(placement?: Placement): RAPlacement | undefined {
+function syntaxToReactAriaPlacement(
+  placement?: Placement,
+): ReactAriaPlacement | undefined {
   if (!placement) return undefined;
-  return SYNTAX_PLACEMENT_TO_RAC_PLACEMENT[placement];
+  return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
 }
 
 /**
@@ -115,12 +117,12 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
   );
 
   const popoverNode = (
-    <RACPopover
+    <ReactAriaPopover
       ref={ref}
       offset={4}
       containerPadding={0} // padding against window is managed in css module file
-      placement={syntaxToRAPlacement(placement)}
-      className={styles.racPopover}
+      placement={syntaxToReactAriaPlacement(placement)}
+      className={styles.popover}
     >
       {({ isEntering, isExiting }) => (
         <>
@@ -137,19 +139,19 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
           </Dialog>
         </>
       )}
-    </RACPopover>
+    </ReactAriaPopover>
   );
 
   if (!children) return modalNode;
   return (
-    <RACDialogTrigger
+    <ReactAriaDialogTrigger
       defaultOpen={initialOpen}
       isOpen={isOpen}
       onOpenChange={setIsOpen}
     >
       {<Triggerable>{children}</Triggerable>}
       {modal ? modalNode : popoverNode}
-    </RACDialogTrigger>
+    </ReactAriaDialogTrigger>
   );
 });
 

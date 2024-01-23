@@ -1,14 +1,14 @@
-.racModalOverlay,
-.racModal {
+.modalOverlay,
+.modal {
   visibility: visible;
   box-sizing: border-box;
 }
 
-.racModalOverlay {
+.modalOverlay {
   position: fixed;
   inset: 0;
 }
 
-.racModal {
+.modal {
   max-height: 100%;
 }

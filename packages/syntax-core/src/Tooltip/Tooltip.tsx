@@ -1,8 +1,8 @@
 import React, { forwardRef, type ReactNode, type ReactElement } from "react";
-import { type Placement as RAPlacement } from "react-aria";
+import { type Placement as ReactAriaPlacement } from "react-aria";
 import {
-  Tooltip as RACTooltip,
-  TooltipTrigger as RACTooltipTrigger,
+  Tooltip as ReactAriaTooltip,
+  TooltipTrigger as ReactAriaTooltipTrigger,
 } from "react-aria-components";
 
 import Triggerable from "../react-aria-utils/Triggerable";
@@ -13,18 +13,18 @@ import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 
 type Placement = "top-end" | "top-start" | "bottom-end" | "bottom-start";
 
-const SYNTAX_PLACEMENT_TO_RAC_PLACEMENT: Record<Placement, RAPlacement> = {
+const SYNTAX_TO_REACT_ARIA_PLACEMENT: Record<Placement, ReactAriaPlacement> = {
   "top-end": "top right",
   "top-start": "top left",
   "bottom-end": "bottom right",
   "bottom-start": "bottom left",
 } as const;
 
-function syntaxPlacementToRAPlacement(
+function syntaxToReactAriaPlacement(
   placement?: Placement,
-): RAPlacement | undefined {
+): ReactAriaPlacement | undefined {
   if (!placement) return undefined;
-  return SYNTAX_PLACEMENT_TO_RAC_PLACEMENT[placement];
+  return SYNTAX_TO_REACT_ARIA_PLACEMENT[placement];
 }
 
 /**
@@ -99,7 +99,7 @@ const Tooltip = forwardRef<
   } = props;
 
   return (
-    <RACTooltipTrigger
+    <ReactAriaTooltipTrigger
       defaultOpen={initialOpen}
       delay={delay}
       closeDelay={500}
@@ -108,11 +108,11 @@ const Tooltip = forwardRef<
     >
       {/* transfer focus handlers to child element if it is focusable */}
       <Triggerable>{children}</Triggerable>
-      <RACTooltip
+      <ReactAriaTooltip
         ref={ref}
         offset={8}
         crossOffset={0}
-        placement={syntaxPlacementToRAPlacement(placement)}
+        placement={syntaxToReactAriaPlacement(placement)}
         aria-label={accessibilityLabel}
         data-testid={dataTestId}
         style={{
@@ -140,8 +140,8 @@ const Tooltip = forwardRef<
             />
           </>
         )}
-      </RACTooltip>
-    </RACTooltipTrigger>
+      </ReactAriaTooltip>
+    </ReactAriaTooltipTrigger>
   );
 });
 

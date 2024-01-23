@@ -1,7 +1,7 @@
 import React, { type ReactElement, forwardRef, useEffect } from "react";
 import {
-  Modal as RACModal,
-  ModalOverlay as RACModalOverlay,
+  Modal as ReactAriaModal,
+  ModalOverlay as ReactAriaModalOverlay,
 } from "react-aria-components";
 import Dialog, { type DialogProps } from "./Dialog";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
@@ -69,12 +69,12 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
     useEffect(() => setIsOpen(open), [open]);
 
     return (
-      <RACModalOverlay
+      <ReactAriaModalOverlay
         isDismissable={dismissable}
         isKeyboardDismissDisabled={!dismissable}
         defaultOpen={initialOpen}
         isOpen={isOpen}
-        className={styles.racModalOverlay}
+        className={styles.modalOverlay}
         onOpenChange={setIsOpen}
       >
         {({ state }) => (
@@ -87,10 +87,10 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
             alignItems="center"
             justifyContent="center"
           >
-            <RACModal
+            <ReactAriaModal
               ref={ref}
               aria-label={accessibilityLabel}
-              className={styles.racModal}
+              className={styles.modal}
             >
               {({ isEntering, isExiting }) => (
                 <>
@@ -124,10 +124,10 @@ const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
                   </Dialog>
                 </>
               )}
-            </RACModal>
+            </ReactAriaModal>
           </Box>
         )}
-      </RACModalOverlay>
+      </ReactAriaModalOverlay>
     );
   },
 );

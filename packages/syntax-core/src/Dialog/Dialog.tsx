@@ -5,7 +5,7 @@ import paddingStyles from "../Box/padding.module.css";
 import roundingStyles from "../rounding.module.css";
 import boxStyles from "../Box/Box.module.css";
 import styles from "./Dialog.module.css";
-import { Dialog as RACDialog } from "react-aria-components";
+import { Dialog as ReactAriaDialog } from "react-aria-components";
 import classNames from "classnames";
 
 type DialogSize = "sm" | "md" | "lg";
@@ -57,7 +57,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   } = props;
 
   return (
-    <RACDialog
+    <ReactAriaDialog
       ref={ref}
       data-testid={dataTestId}
       // first thing screen reader reads
@@ -80,7 +80,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       style={{ maxWidth: "100%", maxHeight: "100%" }}
     >
       {children}
-    </RACDialog>
+    </ReactAriaDialog>
   );
 });
 
