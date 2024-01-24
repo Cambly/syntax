@@ -13,6 +13,7 @@ import useIsHydrated from "../useIsHydrated";
 const RadioButton = ({
   checked = false,
   "data-testid": dataTestId,
+  dangerouslyForceFocusStyles = false,
   disabled: disabledProp = false,
   error = false,
   id,
@@ -73,6 +74,8 @@ const RadioButton = ({
    * Value of the selected radio option
    */
   value: string | number;
+  /** forces focus ring styling */
+  dangerouslyForceFocusStyles?: boolean;
 }): ReactElement => {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -82,7 +85,8 @@ const RadioButton = ({
   const sharedStyles = classnames(styles.background, styles[size], {
     [styles.errorBorderColor]: error,
     [styles.borderColor]: !error,
-    [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible,
+    [focusStyles.accessibilityOutlineFocus]:
+      (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
   });
 
   return (
