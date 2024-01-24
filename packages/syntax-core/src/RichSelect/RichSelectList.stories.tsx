@@ -1,8 +1,6 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import RichSelectList from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
-import SelectOption from "../SelectList/SelectOption.js";
-import Chip from "../Chip/Chip.js";
 import Box from "../Box/Box.js";
 
 export default {
@@ -37,57 +35,15 @@ const options = [
 const Options = () => (
   <>
     {options.map(({ label, name, value }) => (
-      <Chip key={value} value={value} text={label} name={name} />
+      <RichSelectList.Chip
+        key={value}
+        value={value}
+        label={label}
+        name={name}
+      />
     ))}
   </>
 );
-
-const SelectPeople = () => (
-  <>
-    <Chip text="John" value="john" />
-    <Chip text="Jane" value="jane" />
-    <Chip text="Joe" value="joe" />
-  </>
-);
-const SelectPlaces = () => (
-  <>
-    <Chip text="San Francisco" value="sf" />
-    <Chip text="New York" value="ny" />
-    <Chip text="Los Angeles" value="la" />
-  </>
-);
-const SelectTimes = () => (
-  <>
-    <Chip text="Morning" value="morning" />
-    <Chip text="Afternoon" value="afternoon" />
-    <Chip text="Evening" value="evening" />
-  </>
-);
-// export const WhatIfItLookedLikeThis = (): ReactElement => {
-//   const [selectionValue, setSelectionValue] = useState("");
-//   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-//     setSelectionValue(e.target.value);
-//   };
-//   return (
-//     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
-//       <RichSelectList
-//         label="Label"
-//         helperText="Helper text"
-//         selectedValue={selectionValue}
-//         placeholderText="Placeholder"
-//         onChange={onChange}
-//       >
-//         <Chip text="Morning" value="morning" />
-//         <Chip text="Afternoon" value="afternoon" />
-//         <Chip text="Evening" value="evening" />
-
-//         {/* <SelectTimes />
-//       <SelectPlaces />
-//       <SelectPeople /> */}
-//       </RichSelectList>
-//     </Box>
-//   );
-// };
 
 export const WhatIfItLookedLikeThis = (): ReactElement => {
   const [selectionValue, setSelectionValue] = useState("");
@@ -283,4 +239,21 @@ const RichSelectListInteractive = (): ReactElement => {
 
 export const Interactive: StoryObj<typeof RichSelectList> = {
   render: () => <RichSelectListInteractive />,
+};
+
+export const RadioButtons: StoryObj<typeof RichSelectList> = {
+  render: () => (
+    <RichSelectList
+      multiple={false}
+      label="Label"
+      selectedValue="opt1"
+      placeholderText="Placeholder"
+      onChange={() => undefined}
+      helperText="When radio buttons are used, `multiple` prop should be false"
+    >
+      <RichSelectList.RadioButton name="name1" label="Option 1" value="opt1" />
+      <RichSelectList.RadioButton name="name1" label="Option 2" value="opt2" />
+      <RichSelectList.RadioButton name="name1" label="Option 3" value="opt3" />
+    </RichSelectList>
+  ),
 };

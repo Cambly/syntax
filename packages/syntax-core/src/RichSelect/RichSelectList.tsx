@@ -80,6 +80,10 @@ import {
   type Selection,
   SelectContext,
   SelectStateContext,
+  type MenuTriggerProps as ReactAriaMenuTriggerProps,
+  MenuContext,
+  MenuStateContext,
+  ListBoxContext,
 } from "react-aria-components";
 
 import { Item, useSelectState, useListState } from "react-stately";
@@ -106,12 +110,50 @@ import DisabledKeysProvider, {
 import { useResizeObserver } from "@react-aria/utils";
 
 import { type LabelProps } from "react-aria-components";
+import RichSelectRadioButton from "./RichSelectRadioButton";
 
 const iconSize = {
   sm: 20,
   md: 24,
   lg: 24,
 } as const;
+
+const MultipleSelectTrigger = React.forwardRef<
+  HTMLButtonElement,
+  ReactAriaMenuTriggerProps & {
+    size: "sm" | "md" | "lg";
+  }
+>(function MultipleSelectTrigger({ children, size, ...rest }, ref) {
+  const menuCtx = useContext(MenuContext);
+  const menuStateCtx = useContext(MenuStateContext);
+  const listBoxCtx = useContext(ListBoxContext);
+  const listBoxStateCtx = useContext(ListBoxContext);
+  const listStateCtx = useContext(ListStateContext);
+  console.log("MultipleSelectTrigger ctxs", {
+    menuCtx,
+    menuStateCtx,
+    listBoxCtx,
+    listBoxStateCtx,
+    listStateCtx,
+  });
+  return (
+    <ReactAriaButton
+      {...rest}
+      ref={ref}
+      className={({ isFocused, isFocusVisible }) =>
+        classNames(styles.selectBox, styles[size], {
+          // [styles.unselected]: !selectedValue && !errorText,
+          // [styles.selected]: selectedValue && !errorText,
+          // [styles.selectError]: errorText,
+          [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
+          [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+        })
+      }
+    >
+      {children}
+    </ReactAriaButton>
+  );
+});
 
 type RichSelectListProps = {
   /**
@@ -253,6 +295,8 @@ function RichSelectListInner({
     [],
   );
 
+  const valueId = useId();
+
   return (
     <>
       {/* <p>
@@ -320,13 +364,15 @@ function RichSelectListInner({
                 autoFocus
                 selectionMode="multiple"
                 // selectionMode="single"
-                selectionBehavior="toggle" // or "replace"
+                // selectionBehavior="toggle" // or "replace"
+                // selectionBehavior="replace" // or "replace"
+                selectionBehavior={multiple ? "toggle" : "replace"}
                 shouldFocusWrap
                 orientation="horizontal"
                 selectedKeys={selected}
-                onSelectionChange={(keys) => {
+                onSelectionChange={(keys, ...args) => {
                   console.log(
-                    "RichSelectBoxInner onSelectionChange keys",
+                    "RichSelectBoxInner ReactAriaListBox onSelectionChange keys",
                     keys,
                   );
                   setSelected(keys);
@@ -591,6 +637,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
 export default Object.assign(RichSelectList, {
   OptGroup: RichSelectOptGroup,
   Chip: RichSelectChip,
+  RadioButton: RichSelectRadioButton,
 });
 
 // function MyListBoxItem({ children, ...rest }) {

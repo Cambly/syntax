@@ -10,6 +10,7 @@ export type RichSelectListItemProps = {
   "data-testid"?: string;
   value: string;
   label: string;
+  name?: string;
   disabled?: boolean;
   selected?: boolean;
   /** The children of the component. A function may be provided to alter the children based on component state. */
