@@ -1,3 +1,4 @@
+/* TODO: rename to RichSelectSection */
 import React, { forwardRef, type ReactElement } from "react";
 import {
   Section as ReactAriaSection,
@@ -6,19 +7,21 @@ import {
 import classNames from "classnames";
 import boxStyles from "../Box/Box.module.css";
 import layoutStyles from "../layout.module.css";
+import { type PartialNode } from "@react-stately/collections";
 
-const RichSelectOptGroup = forwardRef<
-  HTMLDivElement,
-  {
-    "data-testid"?: string;
-    label: string;
-    children: ReactElement | ReactElement[];
-    orientation?: "horizontal" | "vertical";
-  }
->(function RichSelectOptGroup(
-  { "data-testid": dataTestId, label, children, orientation = "horizontal" },
-  ref,
-): ReactElement {
+type RichSelectOptGroupProps = {
+  "data-testid"?: string;
+  label: string;
+  children: ReactElement | ReactElement[];
+  orientation?: "horizontal" | "vertical";
+};
+function RichSelectOptGroup(props: RichSelectOptGroupProps): ReactElement {
+  const {
+    "data-testid": dataTestId,
+    label,
+    children,
+    orientation = "horizontal",
+  } = props;
   return (
     <ReactAriaSection
       data-testid={dataTestId}
@@ -29,7 +32,6 @@ const RichSelectOptGroup = forwardRef<
           [boxStyles.column]: orientation === "vertical",
         },
       )}
-      ref={ref}
     >
       {label && (
         <ReactAriaHeader className={classNames(layoutStyles.fullWidth)}>
@@ -39,6 +41,35 @@ const RichSelectOptGroup = forwardRef<
       {children}
     </ReactAriaSection>
   );
-});
+}
 
-export default RichSelectOptGroup;
+export function* getCollectionNode(
+  props: RichSelectOptGroupProps,
+): Generator<PartialNode<unknown>> {
+  const { children, label } = props;
+  yield {
+    type: "section",
+    props: props,
+    hasChildNodes: true,
+    rendered: label,
+    "aria-label": label,
+    *childNodes() {
+      const items: PartialNode<unknown>[] = [];
+      React.Children.forEach(children, (child) => {
+        items.push({
+          type: "item",
+          element: child,
+        });
+      });
+
+      yield* items;
+    },
+  };
+}
+
+const _RichSelectOptGroup = forwardRef<HTMLDivElement, RichSelectOptGroupProps>(
+  RichSelectOptGroup,
+);
+
+// ensure component works with react-aria-components Collections
+export default Object.assign(_RichSelectOptGroup, { getCollectionNode });

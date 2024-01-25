@@ -1,21 +1,21 @@
 import React, { forwardRef, type ReactElement } from "react";
 import RichSelectListItem, {
+  getCollectionNode,
   type RichSelectListItemProps,
 } from "./RichSelectListItem";
 import RadioButton from "../RadioButton/RadioButton";
 
-const RichSelectRadioButton = forwardRef<
-  HTMLDivElement,
-  RichSelectListItemProps & {
-    name: string;
-    size?: "sm" | "md";
-  }
->(function RichSelectRadioButton(
-  { size = "sm", name, ...props },
-  ref,
-): ReactElement {
+type RichSelectRadioButtonProps = RichSelectListItemProps & {
+  name: string;
+  size?: "sm" | "md";
+};
+function RichSelectRadioButton({
+  size = "sm",
+  name,
+  ...props
+}: RichSelectRadioButtonProps): ReactElement {
   return (
-    <RichSelectListItem {...props} ref={ref}>
+    <RichSelectListItem {...props}>
       {({ isSelected, isFocusVisible, isDisabled }) => (
         <RadioButton
           checked={isSelected}
@@ -30,6 +30,12 @@ const RichSelectRadioButton = forwardRef<
       )}
     </RichSelectListItem>
   );
-});
+}
 
-export default RichSelectRadioButton;
+const _RichSelectRadioButton = forwardRef<
+  HTMLDivElement,
+  RichSelectRadioButtonProps
+>(RichSelectRadioButton);
+
+// ensure component works with react-aria-components Collections
+export default Object.assign(_RichSelectRadioButton, { getCollectionNode });
