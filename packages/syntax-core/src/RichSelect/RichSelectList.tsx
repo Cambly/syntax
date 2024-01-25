@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /**
  * Okay, got it.  Here's the breakdown:
  * - RichSelectBox - non-dropdown box with selectable items
@@ -29,13 +30,10 @@
  */
 import React, {
   type ReactElement,
-  type ReactNode,
   useId,
-  useState,
-  useContext,
   useCallback,
-  useRef,
   useEffect,
+  useMemo,
 } from "react";
 import classNames from "classnames";
 import {
@@ -43,14 +41,14 @@ import {
   ColorBaseGray800,
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
-import SelectOption from "../SelectList/SelectOption";
-import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
 import Popover, { AriaPopover } from "../Popover/Popover";
-import Chip from "../Chip/Chip";
+import { type Node, type Collection } from "@react-types/shared";
+
 import {
   CheckboxGroup as ReactAriaCheckboxGroup,
   RadioGroup as ReactAriaRadioGroup,
+  Group as ReactAriaGroup,
   ListBox as ReactAriaListBox,
   Select as ReactAriaSelect,
   SelectValue as ReactAriaSelectValue,
@@ -83,34 +81,33 @@ import {
   type MenuTriggerProps as ReactAriaMenuTriggerProps,
   MenuContext,
   MenuStateContext,
-  ListBoxContext,
+  type ListBoxProps as ReactAriaListBoxProps,
+  composeRenderProps,
 } from "react-aria-components";
 
-import { Item, useSelectState, useListState } from "react-stately";
-import { HiddenSelect, useListBox, useSelect } from "react-aria";
+import { useCollection } from "react-stately";
+import { ListCollection } from "@react-stately/list";
+import {
+  HiddenSelect as ReactAriaHiddenSelect,
+  useComboBox,
+  useListBox,
+  useSelect,
+} from "react-aria";
 
-import type { AriaListBoxProps } from "react-aria";
-import { mergeProps, useFocusRing, useOption } from "react-aria";
+import { mergeProps } from "react-aria";
 
 import RichSelectChip from "./RichSelectChip";
 import RichSelectOptGroup from "./RichSelectOptGroup";
 import RichSelectBox from "./RichSelectBox";
-import Dialog, { dialogClassnames } from "../Dialog/Dialog";
-import colorStyles from "../colors/colors.module.css";
-import elevationStyles from "../elevation/elevation.module.css";
+import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
-import paddingStyles from "../Box/padding.module.css";
-import roundingStyles from "../rounding.module.css";
-import boxStyles from "../Box/Box.module.css";
 import styles from "../SelectList/SelectList.module.css";
 import DisabledKeysProvider, {
   useDisabledKeys,
   useSelectedKeys,
 } from "./DisabledKeysProvider";
-import { useResizeObserver } from "@react-aria/utils";
-
-import { type LabelProps } from "react-aria-components";
 import RichSelectRadioButton from "./RichSelectRadioButton";
+import { type forwardRefType } from "../react-aria-utils/ForwardRefType";
 
 const iconSize = {
   sm: 20,
@@ -118,48 +115,55 @@ const iconSize = {
   lg: 24,
 } as const;
 
-const MultipleSelectTrigger = React.forwardRef<
-  HTMLButtonElement,
-  ReactAriaMenuTriggerProps & {
-    size: "sm" | "md" | "lg";
-  }
->(function MultipleSelectTrigger({ children, size, ...rest }, ref) {
-  const menuCtx = useContext(MenuContext);
-  const menuStateCtx = useContext(MenuStateContext);
-  const listBoxCtx = useContext(ListBoxContext);
-  const listBoxStateCtx = useContext(ListBoxContext);
-  const listStateCtx = useContext(ListStateContext);
-  console.log("MultipleSelectTrigger ctxs", {
-    menuCtx,
-    menuStateCtx,
-    listBoxCtx,
-    listBoxStateCtx,
-    listStateCtx,
-  });
-  return (
-    <ReactAriaButton
-      {...rest}
-      ref={ref}
-      className={({ isFocused, isFocusVisible }) =>
-        classNames(styles.selectBox, styles[size], {
-          // [styles.unselected]: !selectedValue && !errorText,
-          // [styles.selected]: selectedValue && !errorText,
-          // [styles.selectError]: errorText,
-          [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
-          [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-        })
-      }
-    >
-      {children}
-    </ReactAriaButton>
-  );
-});
+// TODO: make this RichSelectTrigger, and have it get access to the collection
+// that this RichSelect is using (through custom RichSelectContext)
+// can then use that to render a <RichSelectValue /> component
+
+// const MultipleSelectTrigger = React.forwardRef<
+//   HTMLButtonElement,
+//   ReactAriaMenuTriggerProps & {
+//     size: "sm" | "md" | "lg";
+//   }
+// >(function MultipleSelectTrigger({ children, size, ...rest }, ref) {
+//   const menuCtx = useContext(MenuContext);
+//   const menuStateCtx = useContext(MenuStateContext);
+//   const listBoxCtx = useContext(ListBoxContext);
+//   const listBoxStateCtx = useContext(ListBoxContext);
+//   const listStateCtx = useContext(ListStateContext);
+//   console.log("MultipleSelectTrigger ctxs", {
+//     menuCtx,
+//     menuStateCtx,
+//     listBoxCtx,
+//     listBoxStateCtx,
+//     listStateCtx,
+//   });
+//   return (
+//     <ReactAriaButton
+//       {...rest}
+//       ref={ref}
+//       className={({ isFocused, isFocusVisible }) =>
+//         classNames(styles.selectBox, styles[size], {
+//           // [styles.unselected]: !selectedValue && !errorText,
+//           // [styles.selected]: selectedValue && !errorText,
+//           // [styles.selectError]: errorText,
+//           [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
+//           [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+//         })
+//       }
+//     >
+//       {children}
+//     </ReactAriaButton>
+//   );
+// });
+
+// TODO: use ReactAriaHiddenSelect + need to get list state context to access collection
 
 type RichSelectListProps = {
   /**
    * One or more RichSelectList.Option components.
    */
-  children: ReactNode;
+  // children: ReactNode;
+  children: ReactElement | ReactElement[];
   /**
    * Test id for the select element
    */
@@ -194,6 +198,10 @@ type RichSelectListProps = {
    */
   label: string; // also show this inside the popover?
   /**
+   * Html name attribute for the select element
+   */
+  name?: string;
+  /**
    * Enables multiple selection (multiselect)
    */
   multiple?: boolean;
@@ -222,33 +230,59 @@ type RichSelectListProps = {
 
   // DIFF THAN SELECTLIST
   selectValues?: string[];
+  // might be necesasry for HiddenSelect
+  form?: string;
 };
+
+function hasTypeItem<T extends object>(item: Node<T>): boolean {
+  return item.type === "item";
+}
+
+function getSelectedItems<T extends object>(
+  keys: Selection,
+  collection: Collection<Node<T>>,
+) {
+  if (keys === "all")
+    return [...collection].filter((item) => hasTypeItem(item));
+  return [...keys].map((key) => collection.getItem(key));
+}
+
+function getSelectedTextValues<T extends object>(
+  keys: Selection,
+  collection: Collection<Node<T>>,
+) {
+  if (keys === "all") {
+    return "all";
+  }
+  const selectedItems = getSelectedItems(keys, collection);
+  return selectedItems.map((item) => item?.textValue).filter(Boolean);
+}
 
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner({
-  children,
-  "data-testid": dataTestId,
-  description,
-  disabled: disabledProp = false,
-  errorText,
-  helperText,
-  id,
-  label = "myLabel",
-  multiple = true,
-  onChange,
-  onClick,
-  placeholderText,
-  selectedValue = "",
-  size = "md",
-}: RichSelectListProps): ReactElement {
+function RichSelectListInner(props: RichSelectListProps): ReactElement {
+  const {
+    children,
+    "data-testid": dataTestId,
+    description,
+    disabled: disabledProp = false,
+    errorText,
+    helperText,
+    id,
+    label = "myLabel",
+    name,
+    multiple = true,
+    onChange,
+    onClick,
+    placeholderText,
+    selectedValue = "",
+    size = "md",
+  } = props;
   const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const selectId = id ?? reactId;
-  // const { isFocusVisible } = useFocusVisible();
-  // const [isFocused, setIsFocused] = useState(false);
 
   {
     /* Okay, the idea here is that we wrap popover around the trigger
@@ -278,15 +312,10 @@ function RichSelectListInner({
         */
   }
 
-  const handleCheckboxGroupChange = (value: string[]) => {
-    console.log("handleCheckboxGroupChange value", value);
-    // onChange(value);
-  };
-
   const disabledKeys = useDisabledKeys();
-
-  const selectedKeys = useSelectedKeys();
+  const selectedKeys = useSelectedKeys(); // unsure if the selected keys make it down to the listbox item (for rendering color as selected properly)
   const [selected, setSelected] = React.useState<Selection>(new Set());
+  // this likely needs to update?
   useEffect(
     () =>
       setSelected((curr) => {
@@ -295,14 +324,23 @@ function RichSelectListInner({
     [],
   );
 
-  const valueId = useId();
+  // construct collection from composed children tree
+  const collection = useCollection(
+    props,
+    useCallback((nodes) => new ListCollection(nodes), []),
+    useMemo(() => ({ suppressTextValueWarning: false }), []),
+  );
 
+  const selectedItems = getSelectedItems(selected, collection);
+  const selectedTextValues = getSelectedTextValues(selected, collection);
+
+  console.log("chidlren", {
+    collection,
+    selectedItems,
+    selectedKeys,
+  });
   return (
     <>
-      {/* <p>
-        Current selection (controlled):{" "}
-        {selected === "all" ? "all" : [...selected].join(", ")}
-      </p> */}
       <div
         className={classNames(styles.selectContainer, {
           [styles.opacityOverlay]: disabled,
@@ -336,10 +374,11 @@ function RichSelectListInner({
                   })
                 }
               >
-                {selected === "all"
-                  ? "all"
-                  : selected.size
-                  ? [...selected].join(", ")
+                {/* TODO: abstract this */}
+                {selectedTextValues === "all"
+                  ? selectedTextValues
+                  : selectedTextValues.length
+                  ? selectedTextValues.join(", ")
                   : placeholderText}
               </ReactAriaButton>
               <div className={styles.arrowIcon}>
@@ -362,10 +401,7 @@ function RichSelectListInner({
               <ReactAriaListBox
                 id={selectId}
                 autoFocus
-                selectionMode="multiple"
-                // selectionMode="single"
-                // selectionBehavior="toggle" // or "replace"
-                // selectionBehavior="replace" // or "replace"
+                selectionMode="multiple" // TODO: !multiple -> "single"?
                 selectionBehavior={multiple ? "toggle" : "replace"}
                 shouldFocusWrap
                 orientation="horizontal"
@@ -398,232 +434,6 @@ function RichSelectListInner({
       </div>
     </>
   );
-
-  // return (
-  //   <ReactAriaComboBox
-  //     aria-label="Select favorite animal"
-  //     // onSelectionChange={(value, ...rest) => {
-  //     //   console.log("select onSelectionChange value", value, rest);
-  //     //   // onChange(value);
-  //     // }}
-  //     menuTrigger="manual"
-  //     // onSelectionChange={(keys) =>
-  //     //   console.log("ReactAriaComboBox onSelectionChange keys", keys)
-  //     // }
-  //     disabledKeys={disabledKeys}
-  //     // style={{ display: "flex", flexDirection: "column" }}
-  //   >
-  //     {label && <ReactAriaLabel style={{ display: "block" }}>{label}</ReactAriaLabel>}
-  //     {/* <Popover
-  //       placement="bottom"
-  //       content={
-  //         <RichSelectBox multiple={multiple}>
-  //           <RichSelectChip label="Cat" value="cat" disabled />
-  //           <RichSelectChip label="Dog" value="dog" />
-  //           <RichSelectChip label="Captain" value="cappy" />
-  //         </RichSelectBox>
-  //       }
-  //     >
-  //       <ReactAriaInput placeholder="Select one placeholder prop" readOnly />
-  //     </Popover> */}
-  //     <ReactAriaInput placeholder="Select one placeholder prop" readOnly />
-  //     <ReactAriaButton>▼</ReactAriaButton>
-
-  //     {/* {description && <ReactAriaText slot="description">{description}</ReactAriaText>} */}
-
-  //     <ReactAriaPopover
-  //       placement="bottom"
-  //       // className={classNames([
-  //       //   boxStyles.box,
-  //       //   boxStyles.flex,
-  //       //   boxStyles.column,
-  //       //   boxStyles.relative,
-  //       //   boxStyles.overflowauto,
-  //       //   colorStyles.whiteBackgroundColor,
-  //       //   paddingStyles.paddingX6,
-  //       //   paddingStyles.paddingY6,
-  //       //   roundingStyles.roundinglg,
-  //       //   elevationStyles.elevation400BoxShadow,
-  //       // ])}
-  //     >
-  //       <Dialog>
-  //         <RichSelectBox multiple={multiple}>
-  //           <RichSelectChip label="Cat" value="cat" disabled />
-  //           <RichSelectChip label="Dog" value="dog" />
-  //           <RichSelectChip label="Captain" value="cappy" />
-  //         </RichSelectBox>
-  //       </Dialog>
-  //     </ReactAriaPopover>
-  //     {/* <ReactAriaListBox
-  //       aria-label="Favorite animal"
-  //       selectionMode="multiple"
-  //       // onSelectionChange={(keys) =>
-  //       //   console.log("listbox onSelectionChange", keys)
-  //       // }
-  //     >
-  //       <ReactAriaListBoxItem value={{ selectedValue: "foobar" }}>
-  //         Aardvark
-  //       </ReactAriaListBoxItem>
-  //       <ReactAriaListBoxItem>Cat</ReactAriaListBoxItem>
-  //       <ReactAriaListBoxItem>Dog</ReactAriaListBoxItem>
-  //       <ReactAriaListBoxItem>Kangaroo</ReactAriaListBoxItem>
-  //       <ReactAriaListBoxItem>Panda</ReactAriaListBoxItem>
-  //       <ReactAriaListBoxItem>Snake</ReactAriaListBoxItem>
-  //     </ReactAriaListBox> */}
-  //   </ReactAriaComboBox>
-  // );
-
-  // return (
-  //   <div
-  //     className={classNames(styles.selectContainer, {
-  //       [styles.opacityOverlay]: disabled,
-  //     })}
-  //   >
-  //     {label && (
-  //       <label htmlFor={selectId} className={styles.outerTextContainer}>
-  //         <Typography size={100} color="gray700">
-  //           {label}
-  //         </Typography>
-  //       </label>
-  //     )}
-  //     <Popover
-  //       content={
-  //         <div>
-  //           {/* {children} */}
-  //           {/* <ReactAriaGridList
-  //             defaultSelectedKeys={
-  //               Array.isArray(selectedValue) ? selectedValue : [selectedValue]
-  //             }
-  //             onSelectionChange={(_value) => {
-  //               console.log("onSelectionChange _value", _value);
-  //               // onChange(_value);
-  //             }}
-  //             // onChange={handleCheckboxGroupChange}
-  //             // defaultValue={selectedValue}
-  //             // onChange={handleCheckboxGroupChange}
-  //           > */}
-  //           {/* {React.Children.map(children, (child) => (
-  //               <ReactAriaListBoxItem>{child}</ReactAriaListBoxItem>
-  //             ))} */}
-  //           {/* {children} */}
-  //           {/* <ReactAriaLabel>Categories</ReactAriaLabel> */}
-  //           {/* <ReactAriaGridListItem textValue="News">
-  //               <Chip text="News" />
-  //               News
-  //             </ReactAriaGridListItem>
-  //             <ReactAriaGridListItem textValue="Travel">
-  //               <Chip text="News" />
-  //               Travel
-  //             </ReactAriaGridListItem>
-  //             <ReactAriaGridListItem textValue="Gaming">
-  //               <Chip text="News" />
-  //               Gaming
-  //             </ReactAriaGridListItem>
-  //             <ReactAriaGridListItem textValue="Shopping">
-  //               <Chip text="News" />
-  //               Shopping
-  //             </ReactAriaGridListItem>
-  //           </ReactAriaGridList> */}
-  //           <ReactAriaSelect>
-  //             <ReactAriaListBox aria-label="Favorite animal" selectionMode="single">
-  //               <ReactAriaListBoxItem>Aardvark</ReactAriaListBoxItem>
-  //               <ReactAriaListBoxItem>Cat</ReactAriaListBoxItem>
-  //               <ReactAriaListBoxItem>Dog</ReactAriaListBoxItem>
-  //               <ReactAriaListBoxItem>Kangaroo</ReactAriaListBoxItem>
-  //               <ReactAriaListBoxItem>Panda</ReactAriaListBoxItem>
-  //               <ReactAriaListBoxItem>Snake</ReactAriaListBoxItem>
-  //             </ReactAriaListBox>
-  //           </ReactAriaSelect>
-  //           {/* <ReactAriaTagGroup
-  //             selectedKeys={["News", "Travel"]}
-  //             defaultSelectedKeys={["Gaming", "Shopping"]}
-  //             selectionMode="multiple"
-  //             onSelectionChange={(_value) => {
-  //               console.log("onSelectionChange _value", _value);
-  //               // onChange(_value);
-  //             }}
-  //           >
-  //             <ReactAriaLabel>Categories</ReactAriaLabel>
-  //             <ReactAriaTagList>
-  //               <ReactAriaTag>News</ReactAriaTag>
-  //               <ReactAriaTag>Travel</ReactAriaTag>
-  //               <ReactAriaTag>Gaming</ReactAriaTag>
-  //               <ReactAriaTag>Shopping</ReactAriaTag>
-  //             </ReactAriaTagList>
-  //           </ReactAriaTagGroup> */}
-  //         </div>
-  //       }
-  //     >
-  //       <div className={styles.selectWrapper}>
-  //         <div
-  //           tabIndex={0} // TODO: use react-aria hooks for this?
-  //           className={classNames(styles.selectBox, styles[size], {
-  //             [styles.unselected]: !selectedValue && !errorText,
-  //             [styles.selected]: selectedValue && !errorText,
-  //             [styles.selectError]: errorText,
-  //             [focusStyles.accessibilityOutlineFocus]:
-  //               isFocused && isFocusVisible, // for focus keyboard
-  //             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-  //           })}
-  //         >
-  //           I am a select container
-  //         </div>
-  //         {/* <select
-  //           id={selectId}
-  //           data-testid={dataTestId}
-  //           disabled={disabled}
-  //           className={classNames(styles.selectBox, styles[size], {
-  //             [styles.unselected]: !selectedValue && !errorText,
-  //             [styles.selected]: selectedValue && !errorText,
-  //             [styles.selectError]: errorText,
-  //             [focusStyles.accessibilityOutlineFocus]:
-  //               isFocused && isFocusVisible, // for focus keyboard
-  //             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-  //           })}
-  //           onChange={onChange}
-  //           onClick={onClick}
-  //           value={
-  //             placeholderText && !selectedValue
-  //               ? placeholderText
-  //               : selectedValue
-  //           }
-  //           onFocus={() => setIsFocused(true)}
-  //           onBlur={() => setIsFocused(false)}
-  //         >
-  //           {placeholderText && (
-  //             <option disabled value={placeholderText}>
-  //               {placeholderText}
-  //             </option>
-  //           )}
-  //           {children}
-  //         </select> */}
-  //         <div className={styles.arrowIcon}>
-  //           <svg
-  //             focusable="false"
-  //             aria-hidden="true"
-  //             viewBox="0 0 24 24"
-  //             width={iconSize[size]}
-  //           >
-  //             <path
-  //               fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
-  //               d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-  //             />
-  //           </svg>
-  //         </div>
-  //       </div>
-  //     </Popover>
-  //     {(helperText || errorText) && (
-  //       <div className={styles.outerTextContainer}>
-  //         <Typography
-  //           size={100}
-  //           color={errorText ? "destructive-primary" : "gray700"}
-  //         >
-  //           {errorText ? errorText : helperText}
-  //         </Typography>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
 }
 
 function RichSelectList(props: RichSelectListProps): ReactElement {
@@ -634,28 +444,25 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   );
 }
 
+/**
+ * *NOTE*:
+ *
+ * In order to support the react-aria CollectionBuilder API, we need to
+ * add a getCollectionNode method to each component that RichSelect* supports.
+ * These are how React-Spectrum integrates itself with the colleections API.
+ *
+ * Doing this allows the components that define Component.getCollectionNode to
+ * be used as children of a component that implements CollectionBuilder.
+ *
+ * react-aria-components ListBox is the main one that allows for multiple selection.
+ * in order to build MultiSelect / RichSelectLists that render syntax components,
+ * we have to attach these methods.
+ *
+ * We need to do this in order to match selected keys to prettier text/label values
+ * in order to render text of the labels for the selected values in the list.
+ */
 export default Object.assign(RichSelectList, {
   OptGroup: RichSelectOptGroup,
   Chip: RichSelectChip,
   RadioButton: RichSelectRadioButton,
 });
-
-// function MyListBoxItem({ children, ...rest }) {
-//   return (
-//     <ReactAriaListBoxItem {...rest}>
-//       {({ isSelected, isFocused, isDisabled }) => {
-//         console.log("MyListBoxItem render props", {
-//           isSelected,
-//           isFocused,
-//           isDisabled,
-//         });
-//         return (
-//           <>
-//             {children}
-//             <Chip text="News" selected={isSelected} disabled={isDisabled} />
-//           </>
-//         );
-//       }}
-//     </ReactAriaListBoxItem>
-//   );
-// }

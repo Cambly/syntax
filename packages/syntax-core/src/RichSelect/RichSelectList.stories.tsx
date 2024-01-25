@@ -134,7 +134,13 @@ export const VeryLongContent = (): ReactElement => {
     setSelectionValue(e.target.value);
   };
   return (
-    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+    <Box
+      display="block"
+      maxWidth="50%"
+      gap={2}
+      alignItems="center"
+      flexWrap="wrap"
+    >
       <RichSelectList
         label="Label"
         helperText="Helper text"
