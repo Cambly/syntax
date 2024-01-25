@@ -34,6 +34,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useState,
 } from "react";
 import classNames from "classnames";
 import {
@@ -83,9 +84,11 @@ import {
   MenuStateContext,
   type ListBoxProps as ReactAriaListBoxProps,
   composeRenderProps,
+  ListBoxItemRenderProps,
 } from "react-aria-components";
 
-import { useCollection } from "react-stately";
+import { type PartialNode } from "@react-stately/collections";
+import { useCollection } from "@react-stately/collections";
 import { ListCollection } from "@react-stately/list";
 import {
   HiddenSelect as ReactAriaHiddenSelect,
@@ -158,7 +161,7 @@ const iconSize = {
 
 // TODO: use ReactAriaHiddenSelect + need to get list state context to access collection
 
-type RichSelectListProps = {
+type RichSelectListProps<IsMultiselect extends boolean> = {
   /**
    * One or more RichSelectList.Option components.
    */
@@ -204,7 +207,7 @@ type RichSelectListProps = {
   /**
    * Enables multiple selection (multiselect)
    */
-  multiple?: boolean;
+  multiple?: IsMultiselect;
   /**
    * The callback to be called when an option is selected
    */
@@ -218,6 +221,10 @@ type RichSelectListProps = {
    * Value of the currently selected option
    */
   selectedValue?: string;
+  /**
+   * (Multiselect only) Value of the currently selected options
+   */
+  selectedValues?: string[] | Set<string>;
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -238,30 +245,50 @@ function hasTypeItem<T extends object>(item: Node<T>): boolean {
   return item.type === "item";
 }
 
-function getSelectedItems<T extends object>(
-  keys: Selection,
-  collection: Collection<Node<T>>,
-) {
+type KeysWithCollection<T extends object> = {
+  keys?: Selection;
+  collection: Collection<Node<T>>;
+};
+function getSelectedItems<T extends object>(opts: KeysWithCollection<T>) {
+  const { keys, collection } = opts;
+  if (!keys) return [];
   if (keys === "all")
     return [...collection].filter((item) => hasTypeItem(item));
   return [...keys].map((key) => collection.getItem(key));
 }
 
-function getSelectedTextValues<T extends object>(
-  keys: Selection,
-  collection: Collection<Node<T>>,
-) {
-  if (keys === "all") {
-    return "all";
+function getSelectedTextValue<T extends object>(
+  opts: KeysWithCollection<T> & { placeholderText?: string },
+): string {
+  const { keys, collection } = opts;
+  if (keys === "all") return "all";
+  const items = getSelectedItems({ keys, collection });
+  if (!items.length) return opts.placeholderText ?? "";
+  return items.join(", ");
+}
+
+function walkCollection<T>(node: Node<T>): PartialNode<T> {
+  if (node.type === "section") {
+    return {
+      ...node,
+      items: [...node.childNodes].map(walkCollection),
+    };
   }
-  const selectedItems = getSelectedItems(keys, collection);
-  return selectedItems.map((item) => item?.textValue).filter(Boolean);
+  return node;
+}
+// reconstructs the plain object tree view from the recursive collection map
+function useCollectionItems<T extends object>(collection: Collection<Node<T>>) {
+  return useMemo(() => {
+    return collection;
+  }, [collection]);
 }
 
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner(props: RichSelectListProps): ReactElement {
+function RichSelectListInner<IsMultiple extends boolean>(
+  props: RichSelectListProps<IsMultiple>,
+): ReactElement {
   const {
     children,
     "data-testid": dataTestId,
@@ -277,6 +304,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     onClick,
     placeholderText,
     selectedValue = "",
+    selectedValues: selectedKeys,
     size = "md",
   } = props;
   const reactId = useId();
@@ -313,16 +341,31 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   }
 
   const disabledKeys = useDisabledKeys();
-  const selectedKeys = useSelectedKeys(); // unsure if the selected keys make it down to the listbox item (for rendering color as selected properly)
-  const [selected, setSelected] = React.useState<Selection>(new Set());
-  // this likely needs to update?
-  useEffect(
-    () =>
-      setSelected((curr) => {
-        return new Set([...curr, ...selectedKeys]);
-      }),
-    [],
-  );
+  // const [selectedKeys, setSelectedKeys] = useState<Selection>();
+  // useEffect(
+  //   () => selectedValues && setSelectedKeys(selectedValues),
+  //   [selectedValues],
+  // );
+  // const selectedKeys = useSelectedKeys(); // unsure if the selected keys make it down to the listbox item (for rendering color as selected properly)
+  // const [selected, setSelected] = React.useState<Selection>(new Set());
+  // // this likely needs to update?
+  // useEffect(
+  //   () =>
+  //     setSelected((curr) => {
+  //       return new Set([...curr, ...selectedKeys]);
+  //     }),
+  //   [],
+  // );
+
+  // construct collection from composed children tree
+  // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
+  //   but now think i understand the ComboBox/Select trick of rendering
+  //   two list boxes (I think one is in a portal?), and putting list state in context
+  //   that would allow ListBox to build the collection in that portal,
+  //   leave open the "items" prop route for this component if we need a.la. Ken's
+  //   rational proposal, and _should_ allow to drop the getCollectionNode hackey method
+  //   Huge benefits all around, might need to figure out the portal first, unsure
+  //   if the portal acces is unified and/or even exposed from library
 
   // construct collection from composed children tree
   const collection = useCollection(
@@ -331,13 +374,25 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     useMemo(() => ({ suppressTextValueWarning: false }), []),
   );
 
-  const selectedItems = getSelectedItems(selected, collection);
-  const selectedTextValues = getSelectedTextValues(selected, collection);
+  const selectedItems = getSelectedItems({ keys: selectedKeys, collection });
+  const selectedTextValue = getSelectedTextValue({
+    keys: selectedKeys,
+    collection,
+    placeholderText,
+  });
+
+  const items = useCollectionItems(collection);
+
+  for (const item of collection) {
+    console.log("item", item);
+  }
 
   console.log("chidlren", {
     collection,
     selectedItems,
     selectedKeys,
+    items,
+    first: collection.getItem(collection.getFirstKey()),
   });
   return (
     <>
@@ -375,11 +430,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
                 }
               >
                 {/* TODO: abstract this */}
-                {selectedTextValues === "all"
-                  ? selectedTextValues
-                  : selectedTextValues.length
-                  ? selectedTextValues.join(", ")
-                  : placeholderText}
+                {selectedTextValue}
               </ReactAriaButton>
               <div className={styles.arrowIcon}>
                 <svg
@@ -401,11 +452,12 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
               <ReactAriaListBox
                 id={selectId}
                 autoFocus
+                // items={collection}
                 selectionMode="multiple" // TODO: !multiple -> "single"?
                 selectionBehavior={multiple ? "toggle" : "replace"}
                 shouldFocusWrap
                 orientation="horizontal"
-                selectedKeys={selected}
+                selectedKeys={selectedKeys}
                 onSelectionChange={(keys, ...args) => {
                   console.log(
                     "RichSelectBoxInner ReactAriaListBox onSelectionChange keys",
@@ -436,7 +488,9 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   );
 }
 
-function RichSelectList(props: RichSelectListProps): ReactElement {
+function RichSelectList<IsMultiple extends boolean>(
+  props: RichSelectListProps<IsMultiple>,
+): ReactElement {
   return (
     <DisabledKeysProvider isolate>
       <RichSelectListInner {...props} />
