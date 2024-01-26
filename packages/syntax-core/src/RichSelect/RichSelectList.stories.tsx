@@ -56,8 +56,12 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         label="Label"
         helperText="Helper text"
         selectedValue={selectionValue}
+        multiple
         placeholderText="Placeholder"
-        onChange={onChange}
+        // onChange={onChange}
+        onChange={(vals) => {
+          console.log("onChange", vals);
+        }}
       >
         <RichSelectList.OptGroup label="People">
           <RichSelectList.Chip label="John" value="john" disabled />
@@ -144,9 +148,12 @@ export const VeryLongContent = (): ReactElement => {
       <RichSelectList
         label="Label"
         helperText="Helper text"
-        selectedValue={selectionValue}
+        // selectedValue={selectionValue}
         placeholderText="Placeholder"
-        onChange={onChange}
+        onChange={(vals) => {
+          console.log("onChange", vals);
+        }}
+        // onChange={onChange}
       >
         <RichSelectList.Chip label="John" value="john" disabled />
         <RichSelectList.Chip label="Jane" value="jane" />

@@ -35,6 +35,7 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useContext,
 } from "react";
 import classNames from "classnames";
 import {
@@ -85,6 +86,7 @@ import {
   type ListBoxProps as ReactAriaListBoxProps,
   composeRenderProps,
   ListBoxItemRenderProps,
+  ListBoxContext,
 } from "react-aria-components";
 
 import { type PartialNode } from "@react-stately/collections";
@@ -111,6 +113,8 @@ import DisabledKeysProvider, {
 } from "./DisabledKeysProvider";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 import { type forwardRefType } from "../react-aria-utils/ForwardRefType";
+import Button from "../Button/Button";
+import ButtonGroup from "../ButtonGroup/ButtonGroup";
 
 const iconSize = {
   sm: 20,
@@ -122,42 +126,40 @@ const iconSize = {
 // that this RichSelect is using (through custom RichSelectContext)
 // can then use that to render a <RichSelectValue /> component
 
-// const MultipleSelectTrigger = React.forwardRef<
-//   HTMLButtonElement,
-//   ReactAriaMenuTriggerProps & {
-//     size: "sm" | "md" | "lg";
-//   }
-// >(function MultipleSelectTrigger({ children, size, ...rest }, ref) {
-//   const menuCtx = useContext(MenuContext);
-//   const menuStateCtx = useContext(MenuStateContext);
-//   const listBoxCtx = useContext(ListBoxContext);
-//   const listBoxStateCtx = useContext(ListBoxContext);
-//   const listStateCtx = useContext(ListStateContext);
-//   console.log("MultipleSelectTrigger ctxs", {
-//     menuCtx,
-//     menuStateCtx,
-//     listBoxCtx,
-//     listBoxStateCtx,
-//     listStateCtx,
-//   });
-//   return (
-//     <ReactAriaButton
-//       {...rest}
-//       ref={ref}
-//       className={({ isFocused, isFocusVisible }) =>
-//         classNames(styles.selectBox, styles[size], {
-//           // [styles.unselected]: !selectedValue && !errorText,
-//           // [styles.selected]: selectedValue && !errorText,
-//           // [styles.selectError]: errorText,
-//           [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
-//           [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-//         })
-//       }
-//     >
-//       {children}
-//     </ReactAriaButton>
-//   );
-// });
+const RichSelectTrigger = React.forwardRef<
+  HTMLButtonElement,
+  ReactAriaMenuTriggerProps & {
+    size: "sm" | "md" | "lg";
+  }
+>(function RichSelectTrigger({ children, size, ...rest }, ref) {
+  const menuCtx = useContext(MenuContext);
+  const menuStateCtx = useContext(MenuStateContext);
+  const listBoxCtx = useContext(ListBoxContext);
+  const listStateCtx = useContext(ListStateContext);
+  console.log("RichSelectTrigger ctxs", {
+    menuCtx,
+    menuStateCtx,
+    listBoxCtx,
+    listStateCtx,
+  });
+  return (
+    <ReactAriaButton
+      {...rest}
+      ref={ref}
+      className={({ isFocused, isFocusVisible }) =>
+        classNames(styles.selectBox, styles[size], {
+          // [styles.unselected]: !selectedValue && !errorText,
+          // [styles.selected]: selectedValue && !errorText,
+          // [styles.selectError]: errorText,
+          [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
+          [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+        })
+      }
+    >
+      {children}
+    </ReactAriaButton>
+  );
+});
 
 // TODO: use ReactAriaHiddenSelect + need to get list state context to access collection
 
@@ -211,7 +213,7 @@ type RichSelectListProps<IsMultiselect extends boolean> = {
   /**
    * The callback to be called when an option is selected
    */
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  // onChange: React.ChangeEventHandler<HTMLSelectElement>;
   /**
    * Text showing in select box if no option has been chosen.
    * We should always have a placeholder unless there is a default option selected
@@ -236,7 +238,15 @@ type RichSelectListProps<IsMultiselect extends boolean> = {
   size?: "sm" | "md" | "lg";
 
   // DIFF THAN SELECTLIST
-  selectValues?: string[];
+  autoCommit?: boolean;
+  // onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  onChange: (selectedValues?: string[] | "all") => void;
+  defaultSelectedValues?: string[] | "all";
+  primaryButtonText?: string;
+  primaryButtonAccessibilityLabel?: string;
+  secondaryButtonText?: string;
+  secondaryButtonAccessibilityLabel?: string;
+  // selectedValues?: string[] | Set<string>;
   // might be necesasry for HiddenSelect
   form?: string;
 };
@@ -246,7 +256,7 @@ function hasTypeItem<T extends object>(item: Node<T>): boolean {
 }
 
 type KeysWithCollection<T extends object> = {
-  keys?: Selection;
+  keys?: "all" | string[];
   collection: Collection<Node<T>>;
 };
 function getSelectedItems<T extends object>(opts: KeysWithCollection<T>) {
@@ -264,18 +274,18 @@ function getSelectedTextValue<T extends object>(
   if (keys === "all") return "all";
   const items = getSelectedItems({ keys, collection });
   if (!items.length) return opts.placeholderText ?? "";
-  return items.join(", ");
+  return items.map((n) => n?.textValue).join(", ");
 }
 
-function walkCollection<T>(node: Node<T>): PartialNode<T> {
-  if (node.type === "section") {
-    return {
-      ...node,
-      items: [...node.childNodes].map(walkCollection),
-    };
-  }
-  return node;
-}
+// function walkCollection<T>(node: Node<T>): PartialNode<T> {
+//   if (node.type === "section") {
+//     return {
+//       ...node,
+//       items: [...node.childNodes].map(walkCollection),
+//     };
+//   }
+//   return node;
+// }
 // reconstructs the plain object tree view from the recursive collection map
 function useCollectionItems<T extends object>(collection: Collection<Node<T>>) {
   return useMemo(() => {
@@ -290,6 +300,7 @@ function RichSelectListInner<IsMultiple extends boolean>(
   props: RichSelectListProps<IsMultiple>,
 ): ReactElement {
   const {
+    autoCommit,
     children,
     "data-testid": dataTestId,
     description,
@@ -299,12 +310,17 @@ function RichSelectListInner<IsMultiple extends boolean>(
     id,
     label = "myLabel",
     name,
-    multiple = true,
+    multiple = false,
     onChange,
     onClick,
     placeholderText,
+    primaryButtonText = "Save",
+    primaryButtonAccessibilityLabel = "Save",
+    secondaryButtonText = "Clear",
+    secondaryButtonAccessibilityLabel = "Clear",
     selectedValue = "",
-    selectedValues: selectedKeys,
+    selectedValues: selectedValuesProp,
+    defaultSelectedValues: defaultSelectedKeys,
     size = "md",
   } = props;
   const reactId = useId();
@@ -341,7 +357,35 @@ function RichSelectListInner<IsMultiple extends boolean>(
   }
 
   const disabledKeys = useDisabledKeys();
-  // const [selectedKeys, setSelectedKeys] = useState<Selection>();
+
+  const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
+    new Set(defaultSelectedKeys),
+  );
+  // const [selected, setSelected] = useState<Selection>();
+  const [changed, setChanged] = useState<"all" | string[]>();
+  const [committed, setCommitted] = useState<"all" | string[]>();
+  const commit = useCallback(() => setCommitted(() => changed), [changed]);
+  const clear = useCallback(() => {
+    console.log("CLEAR> TODO: NEED TO CLEAR INTERNAL SELECTION MANAGER STATE");
+    // setSelected(undefined);
+    setSelectedKeys(() => new Set());
+    // setSelectedKeys(() => undefined);
+    setChanged(() => undefined);
+    setCommitted(() => undefined);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedKeys) return setChanged(() => selectedKeys);
+    if (selectedKeys === "all") return setChanged(() => selectedKeys);
+    setChanged(() => [...selectedKeys].map(String));
+    // }, [selected]);
+  }, [selectedKeys]);
+  useEffect(() => {
+    if (!autoCommit) return;
+    commit();
+  }, [autoCommit, commit]);
+  useEffect(() => onChange(committed), [committed, onChange]);
+
   // useEffect(
   //   () => selectedValues && setSelectedKeys(selectedValues),
   //   [selectedValues],
@@ -374,26 +418,36 @@ function RichSelectListInner<IsMultiple extends boolean>(
     useMemo(() => ({ suppressTextValueWarning: false }), []),
   );
 
-  const selectedItems = getSelectedItems({ keys: selectedKeys, collection });
+  // const keys = useMemo(
+  //   () => (selectedKeys ? new Set(selectedKeys) : undefined),
+  //   [selectedKeys],
+  // );
+  // const keys = useMemo(
+  //   () => (committed ? new Set(...committed) : undefined),
+  //   [committed],
+  // );
+  const selectedItems = getSelectedItems({ keys: committed, collection });
   const selectedTextValue = getSelectedTextValue({
-    keys: selectedKeys,
+    keys: committed,
     collection,
     placeholderText,
   });
 
   const items = useCollectionItems(collection);
 
-  for (const item of collection) {
-    console.log("item", item);
-  }
+  // for (const item of collection) {
+  //   console.log("item", item);
+  // }
 
-  console.log("chidlren", {
-    collection,
-    selectedItems,
-    selectedKeys,
-    items,
-    first: collection.getItem(collection.getFirstKey()),
-  });
+  // console.log("chidlren", {
+  //   collection,
+  //   selectedItems,
+  //   selectedKeys,
+  //   selected,
+  //   changed,
+  //   items,
+  //   first: collection.getItem(collection.getFirstKey()),
+  // });
   return (
     <>
       <div
@@ -413,6 +467,7 @@ function RichSelectListInner<IsMultiple extends boolean>(
             </Typography>
           )}
           <ReactAriaMenuTrigger>
+            <RichSelectTrigger size="sm">Click me</RichSelectTrigger>
             {/* <ReactAriaInput placeholder="Select one placeholder prop" readOnly /> */}
             <div className={styles.selectWrapper}>
               <ReactAriaButton
@@ -448,28 +503,40 @@ function RichSelectListInner<IsMultiple extends boolean>(
                 </svg>
               </div>
             </div>
-            <AriaPopover>
+            <AriaPopover
+              className={classNames(dialogClassnames({ size: "md" }))}
+            >
               <ReactAriaListBox
                 id={selectId}
                 autoFocus
                 // items={collection}
-                selectionMode="multiple" // TODO: !multiple -> "single"?
+                selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
                 selectionBehavior={multiple ? "toggle" : "replace"}
                 shouldFocusWrap
                 orientation="horizontal"
-                selectedKeys={selectedKeys}
-                onSelectionChange={(keys, ...args) => {
-                  console.log(
-                    "RichSelectBoxInner ReactAriaListBox onSelectionChange keys",
-                    keys,
-                  );
-                  setSelected(keys);
-                }}
+                selectedKeys={selectedValuesProp || selectedKeys}
+                // onSelectionChange={setSelected}
+                onSelectionChange={setSelectedKeys}
                 disabledKeys={disabledKeys}
-                className={classNames(dialogClassnames({ size: "md" }))}
+                // className={classNames(dialogClassnames({ size: "md" }))}
               >
                 {children}
               </ReactAriaListBox>
+              {/* TODO: ACCESSIBILITY LABELS + PROPS FOR EACH BUTTON */}
+              <ButtonGroup orientation="horizontal">
+                <Button
+                  onClick={clear}
+                  color={"secondary"}
+                  text={secondaryButtonText}
+                  accessibilityLabel={secondaryButtonAccessibilityLabel}
+                />
+                <Button
+                  onClick={commit}
+                  text={primaryButtonText}
+                  accessibilityLabel={primaryButtonAccessibilityLabel}
+                  color="primary"
+                />
+              </ButtonGroup>
             </AriaPopover>
           </ReactAriaMenuTrigger>
         </ReactAriaLabel>
