@@ -240,8 +240,8 @@ export type RichSelectListProps = {
   // DIFF THAN SELECTLIST
   autoCommit?: boolean;
   // onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  // onChange: (selectedValues?: string[] | "all") => void;
-  onChange: (selectedValues?: Set<string> | "all") => void;
+  onChange: (selectedValues: string[] | "all") => void;
+  // onChange: (selectedValues?: Set<string> | "all") => void;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
@@ -408,9 +408,10 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     // setSelectedKeys(() => undefined);
     // setChanged(() => undefined);
     // setCommitted(() => undefined);
-    setSelectedKeys(undefined);
+    setSelectedKeys(new Set());
+    // setSelectedKeys(undefined);
     setChanged(undefined);
-    setCommitted(undefined);
+    // setCommitted(undefined);
   }, []);
 
   useEffect(() => {
@@ -432,7 +433,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     if (isEqualSelection(committed, committedRef.current)) return;
     committedRef.current = committed;
     if (!committed || isString(committed)) return onChange(committed);
-    onChange(new Set([...committed].map(String)));
+    onChange([...committed].map(String));
   }, [committed, onChange]);
 
   // useEffect(
