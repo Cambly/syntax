@@ -136,12 +136,12 @@ const RichSelectTrigger = React.forwardRef<
   const menuStateCtx = useContext(MenuStateContext);
   const listBoxCtx = useContext(ListBoxContext);
   const listStateCtx = useContext(ListStateContext);
-  console.log("RichSelectTrigger ctxs", {
-    menuCtx,
-    menuStateCtx,
-    listBoxCtx,
-    listStateCtx,
-  });
+  // console.log("RichSelectTrigger ctxs", {
+  //   menuCtx,
+  //   menuStateCtx,
+  //   listBoxCtx,
+  //   listStateCtx,
+  // });
   return (
     <ReactAriaButton
       {...rest}
@@ -240,7 +240,8 @@ type RichSelectListProps<IsMultiselect extends boolean> = {
   // DIFF THAN SELECTLIST
   autoCommit?: boolean;
   // onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  onChange: (selectedValues?: string[] | "all") => void;
+  // onChange: (selectedValues?: string[] | "all") => void;
+  onChange: (selectedValues?: Set<string> | "all") => void;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
@@ -291,6 +292,23 @@ function useCollectionItems<T extends object>(collection: Collection<Node<T>>) {
   return useMemo(() => {
     return collection;
   }, [collection]);
+}
+
+function isString(val: unknown): val is string {
+  return typeof val === "string";
+}
+
+function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
+  if (set1 === set2) return true;
+  if (!set1 && !set2) return true;
+  if (!set1 || !set2) return false;
+  if (isString(set1)) return set1 === set2;
+  if (isString(set2)) return false;
+  if (set1.size !== set2.size) return false;
+  for (const item of set1) {
+    if (!set2.has(item)) return false;
+  }
+  return true;
 }
 
 /**
@@ -362,29 +380,62 @@ function RichSelectListInner<IsMultiple extends boolean>(
     new Set(defaultSelectedKeys),
   );
   // const [selected, setSelected] = useState<Selection>();
-  const [changed, setChanged] = useState<"all" | string[]>();
-  const [committed, setCommitted] = useState<"all" | string[]>();
-  const commit = useCallback(() => setCommitted(() => changed), [changed]);
+  // const [changed, setChanged] = useState<"all" | string[]>();
+  // const [committed, setCommitted] = useState<"all" | string[]>();
+
+  const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
+  const [committed, setCommitted] = useState<Selection | undefined>(
+    selectedKeys,
+  );
+
+  const changedRef = React.useRef<Selection | undefined>(selectedKeys);
+  const committedRef = React.useRef<Selection | undefined>(selectedKeys);
+
+  const commit = useCallback(() => {
+    const _changed = changedRef.current;
+    if (isEqualSelection(changedRef.current, committedRef.current)) return;
+    changedRef.current = undefined;
+    setCommitted(_changed);
+
+    // setCommitted((_committed) => {
+    //   if (isEqualSelection(changedRef.current, committedRef.current))
+    //     return _committed;
+    //   // if (_changed === _committed) return _committed;
+    //   changedRef.current = undefined;
+    //   return _changed;
+    // });
+  }, []);
   const clear = useCallback(() => {
-    console.log("CLEAR> TODO: NEED TO CLEAR INTERNAL SELECTION MANAGER STATE");
-    // setSelected(undefined);
-    setSelectedKeys(() => new Set());
+    // setSelectedKeys(() => new Set());
     // setSelectedKeys(() => undefined);
-    setChanged(() => undefined);
-    setCommitted(() => undefined);
+    // setChanged(() => undefined);
+    // setCommitted(() => undefined);
+    setSelectedKeys(undefined);
+    setChanged(undefined);
+    setCommitted(undefined);
   }, []);
 
   useEffect(() => {
-    if (!selectedKeys) return setChanged(() => selectedKeys);
-    if (selectedKeys === "all") return setChanged(() => selectedKeys);
-    setChanged(() => [...selectedKeys].map(String));
-    // }, [selected]);
-  }, [selectedKeys]);
+    if (isEqualSelection(changedRef.current, selectedKeys)) return;
+    changedRef.current = selectedKeys;
+    if (autoCommit) return commit();
+    setChanged((curr) => {
+      if (selectedKeys === curr) return curr;
+      return selectedKeys;
+    });
+  }, [autoCommit, commit, selectedKeys]);
   useEffect(() => {
     if (!autoCommit) return;
     commit();
-  }, [autoCommit, commit]);
-  useEffect(() => onChange(committed), [committed, onChange]);
+  }, [autoCommit, commit, changed]);
+  useEffect(() => {
+    if (committed === changedRef.current) return;
+    // check if new value to commit is shallow equal to the current committed value
+    if (isEqualSelection(committed, committedRef.current)) return;
+    committedRef.current = committed;
+    if (!committed) return onChange(committed);
+    onChange(new Set([...committed].map(String)));
+  }, [committed, onChange]);
 
   // useEffect(
   //   () => selectedValues && setSelectedKeys(selectedValues),
@@ -467,10 +518,11 @@ function RichSelectListInner<IsMultiple extends boolean>(
             </Typography>
           )}
           <ReactAriaMenuTrigger>
-            <RichSelectTrigger size="sm">Click me</RichSelectTrigger>
+            {/* <RichSelectTrigger size="sm">Click me</RichSelectTrigger> */}
             {/* <ReactAriaInput placeholder="Select one placeholder prop" readOnly /> */}
             <div className={styles.selectWrapper}>
               <ReactAriaButton
+                data-testid={dataTestId}
                 // tabIndex={0} // TODO: use react-aria hooks for this?
                 className={({ isFocused, isFocusVisible }) =>
                   classNames(styles.selectBox, styles[size], {
@@ -507,7 +559,8 @@ function RichSelectListInner<IsMultiple extends boolean>(
               className={classNames(dialogClassnames({ size: "md" }))}
             >
               <ReactAriaListBox
-                id={selectId}
+                // id={selectId}
+                aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
                 autoFocus
                 // items={collection}
                 selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
@@ -516,7 +569,10 @@ function RichSelectListInner<IsMultiple extends boolean>(
                 orientation="horizontal"
                 selectedKeys={selectedValuesProp || selectedKeys}
                 // onSelectionChange={setSelected}
-                onSelectionChange={setSelectedKeys}
+                onSelectionChange={(curr) => {
+                  console.log("onSelectionChange", curr);
+                  setSelectedKeys(curr);
+                }}
                 disabledKeys={disabledKeys}
                 // className={classNames(dialogClassnames({ size: "md" }))}
               >
@@ -529,12 +585,18 @@ function RichSelectListInner<IsMultiple extends boolean>(
                   color={"secondary"}
                   text={secondaryButtonText}
                   accessibilityLabel={secondaryButtonAccessibilityLabel}
+                  data-testid={
+                    dataTestId ? `${dataTestId}-secondary-button` : undefined
+                  }
                 />
                 <Button
                   onClick={commit}
                   text={primaryButtonText}
                   accessibilityLabel={primaryButtonAccessibilityLabel}
                   color="primary"
+                  data-testid={
+                    dataTestId ? `${dataTestId}-primary-button` : undefined
+                  }
                 />
               </ButtonGroup>
             </AriaPopover>
