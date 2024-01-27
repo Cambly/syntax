@@ -1,5 +1,5 @@
 /* TODO: rename to RichSelectSection */
-import React, { forwardRef, type ReactElement } from "react";
+import React, { type ForwardedRef, forwardRef, type ReactElement } from "react";
 import {
   Section as ReactAriaSection,
   Header as ReactAriaHeader,
@@ -15,7 +15,10 @@ type RichSelectOptGroupProps = {
   children: ReactElement | ReactElement[];
   orientation?: "horizontal" | "vertical";
 };
-function RichSelectOptGroup(props: RichSelectOptGroupProps): ReactElement {
+function RichSelectOptGroup(
+  props: RichSelectOptGroupProps,
+  ref: ForwardedRef<HTMLDivElement>,
+): ReactElement {
   const {
     "data-testid": dataTestId,
     label,
@@ -24,6 +27,7 @@ function RichSelectOptGroup(props: RichSelectOptGroupProps): ReactElement {
   } = props;
   return (
     <ReactAriaSection
+      ref={ref}
       data-testid={dataTestId}
       className={classNames(
         [boxStyles.box, boxStyles.flex, boxStyles.flexWrap, boxStyles.gap3],

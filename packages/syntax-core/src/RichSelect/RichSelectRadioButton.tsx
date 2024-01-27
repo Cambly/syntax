@@ -1,4 +1,4 @@
-import React, { forwardRef, type ReactElement } from "react";
+import React, { type ForwardedRef, forwardRef, type ReactElement } from "react";
 import RichSelectListItem, {
   getCollectionNode,
   type RichSelectListItemProps,
@@ -9,22 +9,24 @@ type RichSelectRadioButtonProps = RichSelectListItemProps & {
   name: string;
   size?: "sm" | "md";
 };
-function RichSelectRadioButton({
-  size = "sm",
-  name,
-  ...props
-}: RichSelectRadioButtonProps): ReactElement {
+function RichSelectRadioButton(
+  props: RichSelectRadioButtonProps,
+  ref: ForwardedRef<HTMLDivElement>,
+): ReactElement {
+  const { size = "sm", name, ...otherProps } = props;
   return (
-    <RichSelectListItem {...props}>
+    <RichSelectListItem {...otherProps} ref={ref}>
       {({ isSelected, isFocusVisible, isDisabled }) => (
         <RadioButton
           checked={isSelected}
           disabled={isDisabled}
           name={name}
-          label={props.label}
-          value={props.value}
+          label={otherProps.label}
+          value={otherProps.value}
           dangerouslyForceFocusStyles={isFocusVisible}
-          onChange={() => undefined}
+          onChange={(e) =>
+            console.log("RichSelectRadioButton onChange", e.target.value)
+          }
           size={size}
         />
       )}
