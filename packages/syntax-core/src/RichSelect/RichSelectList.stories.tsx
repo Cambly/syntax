@@ -233,19 +233,35 @@ export const Error: StoryObj<typeof RichSelectList> = {
 };
 
 const RichSelectListInteractive = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(e.target.value);
-  };
+  const [selectionValue, setSelectionValue] = useState<string[] | "all">();
+  // const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectionValue(e.target.value);
+  // };
   return (
     <RichSelectList
       label="Label"
       helperText="Helper text"
-      selectedValue={selectionValue}
+      multiple
+      selectedValues={selectionValue}
       placeholderText="Placeholder"
-      onChange={onChange}
+      onChange={setSelectionValue}
     >
-      <Options />
+      <RichSelectList.OptGroup label="People">
+        <RichSelectList.Chip label="New York" value="ny" disabled />
+        <RichSelectList.Chip label="Los Angeles" value="la" selected disabled />
+        <RichSelectList.Chip label="Morning" value="morning" />
+        <RichSelectList.Chip label="Afternoon" value="afternoon" selected />
+      </RichSelectList.OptGroup>
+      {/* <>
+        {options.map(({ label, name, value }) => (
+          <RichSelectList.Chip
+            key={value}
+            value={value}
+            label={label}
+            name={name}
+          />
+        ))}
+      </> */}
     </RichSelectList>
   );
 };
@@ -258,6 +274,7 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       multiple={false}
+      // multiple
       label="Label"
       selectedValue="opt1"
       placeholderText="Placeholder"
@@ -269,4 +286,30 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
       <RichSelectList.RadioButton name="name1" label="Option 3" value="opt3" />
     </RichSelectList>
   ),
+};
+
+export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
+  render: () => {
+    const [selectedValues, setSelectedValues] = useState(["la"]);
+    return (
+      <RichSelectList
+        multiple
+        label="Label"
+        selectedValue="opt1"
+        placeholderText="Placeholder"
+        helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+        autoCommit={false}
+        onChange={(vals) => {
+          console.log("onChange", vals);
+        }}
+        // defaultSelectedValues={["la", "ny"]}
+      >
+        <RichSelectList.OptGroup label="People">
+          <RichSelectList.Chip label="San Francisco" value="sf" />
+          <RichSelectList.Chip label="New York" value="ny" disabled />
+          <RichSelectList.Chip label="Los Angeles" value="la" />
+        </RichSelectList.OptGroup>
+      </RichSelectList>
+    );
+  },
 };
