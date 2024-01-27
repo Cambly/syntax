@@ -163,7 +163,7 @@ const RichSelectTrigger = React.forwardRef<
 
 // TODO: use ReactAriaHiddenSelect + need to get list state context to access collection
 
-type RichSelectListProps<IsMultiselect extends boolean> = {
+export type RichSelectListProps = {
   /**
    * One or more RichSelectList.Option components.
    */
@@ -209,7 +209,7 @@ type RichSelectListProps<IsMultiselect extends boolean> = {
   /**
    * Enables multiple selection (multiselect)
    */
-  multiple?: IsMultiselect;
+  multiple?: boolean;
   /**
    * The callback to be called when an option is selected
    */
@@ -314,9 +314,7 @@ function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner<IsMultiple extends boolean>(
-  props: RichSelectListProps<IsMultiple>,
-): ReactElement {
+function RichSelectListInner(props: RichSelectListProps): ReactElement {
   const {
     autoCommit,
     children,
@@ -617,9 +615,7 @@ function RichSelectListInner<IsMultiple extends boolean>(
   );
 }
 
-function RichSelectList<IsMultiple extends boolean>(
-  props: RichSelectListProps<IsMultiple>,
-): ReactElement {
+function RichSelectList(props: RichSelectListProps): ReactElement {
   return (
     <DisabledKeysProvider isolate>
       <RichSelectListInner {...props} />
