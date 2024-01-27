@@ -76,4 +76,6 @@ const _RichSelectOptGroup = forwardRef<HTMLDivElement, RichSelectOptGroupProps>(
 );
 
 // ensure component works with react-aria-components Collections
-export default Object.assign(_RichSelectOptGroup, { getCollectionNode });
+export default Object.assign(_RichSelectOptGroup, {
+  getCollectionNode,
+});

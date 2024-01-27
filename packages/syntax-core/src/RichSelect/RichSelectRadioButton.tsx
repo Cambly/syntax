@@ -1,6 +1,12 @@
-import React, { type ForwardedRef, forwardRef, type ReactElement } from "react";
+import React, {
+  type ForwardedRef,
+  forwardRef,
+  type ReactElement,
+  useContext,
+} from "react";
 import RichSelectListItem, {
   getCollectionNode,
+  RichSelectItemContext,
   type RichSelectListItemProps,
 } from "./RichSelectListItem";
 import RadioButton from "../RadioButton/RadioButton";
@@ -14,24 +20,41 @@ function RichSelectRadioButton(
   ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
   const { size = "sm", name, ...otherProps } = props;
+  const { isFocusVisible, isFocused, isDisabled, isSelected, ...ctx } =
+    useContext(RichSelectItemContext);
+
   return (
-    <RichSelectListItem {...otherProps} ref={ref}>
-      {({ isSelected, isFocusVisible, isDisabled }) => (
-        <RadioButton
-          checked={isSelected}
-          disabled={isDisabled}
-          name={name}
-          label={otherProps.label}
-          value={otherProps.value}
-          dangerouslyForceFocusStyles={isFocusVisible}
-          onChange={(e) =>
-            console.log("RichSelectRadioButton onChange", e.target.value)
-          }
-          size={size}
-        />
-      )}
-    </RichSelectListItem>
+    <RadioButton
+      checked={isSelected}
+      disabled={isDisabled}
+      name={name}
+      label={otherProps.label}
+      value={otherProps.value}
+      dangerouslyForceFocusStyles={isFocusVisible}
+      // onChange={(e) =>
+      //   console.log("RichSelectRadioButton onChange", e.target.value)
+      // }
+      size={size}
+    />
   );
+  // return (
+  //   <RichSelectListItem {...otherProps} ref={ref}>
+  //     {({ isSelected, isFocusVisible, isDisabled }) => (
+  //       <RadioButton
+  //         checked={isSelected}
+  //         disabled={isDisabled}
+  //         name={name}
+  //         label={otherProps.label}
+  //         value={otherProps.value}
+  //         dangerouslyForceFocusStyles={isFocusVisible}
+  //         onChange={(e) =>
+  //           console.log("RichSelectRadioButton onChange", e.target.value)
+  //         }
+  //         size={size}
+  //       />
+  //     )}
+  //   </RichSelectListItem>
+  // );
 }
 
 const _RichSelectRadioButton = forwardRef<
