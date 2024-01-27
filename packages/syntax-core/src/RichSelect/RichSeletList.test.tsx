@@ -408,6 +408,9 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("select"));
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("select-primary-button"));
+      expect(spy).toHaveBeenCalledTimes(1);
       await user.click(screen.getByTestId("select-secondary-button"));
       await user.click(screen.getByTestId("select-primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);

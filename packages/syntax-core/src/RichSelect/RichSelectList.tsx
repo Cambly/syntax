@@ -395,7 +395,7 @@ function RichSelectListInner<IsMultiple extends boolean>(
     const _changed = changedRef.current;
     if (isEqualSelection(changedRef.current, committedRef.current)) return;
     changedRef.current = undefined;
-    setCommitted(_changed);
+    setCommitted(() => _changed);
 
     // setCommitted((_committed) => {
     //   if (isEqualSelection(changedRef.current, committedRef.current))
@@ -433,7 +433,7 @@ function RichSelectListInner<IsMultiple extends boolean>(
     // check if new value to commit is shallow equal to the current committed value
     if (isEqualSelection(committed, committedRef.current)) return;
     committedRef.current = committed;
-    if (!committed) return onChange(committed);
+    if (!committed || isString(committed)) return onChange(committed);
     onChange(new Set([...committed].map(String)));
   }, [committed, onChange]);
 
