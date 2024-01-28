@@ -105,7 +105,8 @@ function AriaOption<T extends object>({
 
   const { collection } = state;
   const items = state.collection.getChildren?.(item.key);
-  console.log("AriaOption item", { item, items: [...items], state, states });
+  // console.log("AriaOption item", { item, items: [...items], state, states });
+  // console.log("AriaOption item", { item, state, states });
 
   // return (
   //   <Provider values={[[RichSelectItemContext, item.props]]}>
@@ -352,9 +353,24 @@ function AriaListBox<T extends object>(
   const [disabledKeysState, setDisabledKeysState] = React.useState<Set<Key>>(
     new Set(disabledKeysProp),
   );
-  const [selectedKeys, setSelectedKeys] = React.useState<"all" | Set<Key>>(
-    new Set(selectedKeysProp),
+  useEffect(
+    () => setDisabledKeysState(new Set(disabledKeysProp)),
+    [disabledKeysProp],
   );
+  const [selectedKeysState, setSelectedKeysState] = React.useState<
+    "all" | Set<Key>
+  >(new Set(selectedKeysProp));
+  useEffect(
+    () => setSelectedKeysState(new Set(selectedKeysProp)),
+    [selectedKeysProp],
+  );
+
+  console.log("AriaListBox", {
+    disabledKeysProp,
+    disabledKeysState,
+    selectedKeysProp,
+    selectedKeysState,
+  });
 
   // Create state based on the incoming props
   // const localRef = useRef(null);
@@ -363,13 +379,13 @@ function AriaListBox<T extends object>(
   const state = useListState({
     ...props,
     disabledKeys: disabledKeysState,
-    selectedKeys,
+    selectedKeys: selectedKeysState,
     onSelectionChange(keys) {
-      setSelectedKeys(keys);
+      setSelectedKeysState(keys);
       onSelectionChange?.(keys);
     },
   });
-  console.log("AriaListBox state", state);
+  // console.log("AriaListBox state", state);
 
   const { layout = "stack", orientation = "vertical" } = props;
   const { collection, selectionManager } = state;
@@ -430,7 +446,7 @@ function AriaListBox<T extends object>(
               setDisabledKeysState((keys) => new Set(keys.add(key)));
             }, []),
             selectKey: useCallback((key: Key) => {
-              setSelectedKeys((keys) => {
+              setSelectedKeysState((keys) => {
                 if (keys === "all") return keys;
                 // if (!keys) return new Set([key]);
                 return new Set(keys.add(key));

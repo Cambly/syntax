@@ -20,7 +20,7 @@ function RichSelectChip(
 ): ReactElement {
   const { isFocusVisible, isFocused, isDisabled, isSelected, ...ctx } =
     useContext(RichSelectItemContext) ?? {};
-  console.log("render RichSelectChip", ctx);
+  // console.log("render RichSelectChip", ctx);
   return (
     <Chip
       text={props.label || ctxProps?.label || ""}

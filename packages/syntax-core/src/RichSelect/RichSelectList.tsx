@@ -238,6 +238,7 @@ export type RichSelectListProps = {
 
   // DIFF THAN SELECTLIST
   autoCommit?: boolean;
+  dropdown?: boolean;
   // onChange: React.ChangeEventHandler<HTMLSelectElement>;
   onChange: (selectedValues: string[] | "all") => void;
   // onChange: (selectedValues?: Set<string> | "all") => void;
@@ -313,6 +314,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     "data-testid": dataTestId,
     description,
     disabled: disabledProp = false,
+    dropdown = true,
     errorText,
     helperText,
     id,
@@ -387,6 +389,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     changedRef.current = undefined;
     setCommitted(_changed);
   }, []);
+
   const clear = useCallback(() => {
     setSelectedKeys(new Set());
     setChanged(undefined);
@@ -474,125 +477,132 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   //   disabledKeys: disabledKeys,
   // });
 
-  return (
+  const listBoxNode = (
     <>
       <ReactAriaProvider
         values={[[AriaListBoxContext, { onChangeCollection: setCollection }]]}
       >
-        <div
-          className={classNames(styles.selectContainer, {
-            [styles.opacityOverlay]: disabled,
-          })}
+        <AriaListBox
+          // id={selectId}
+          aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
+          autoFocus
+          // items={collection}
+          selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
+          selectionBehavior={multiple ? "toggle" : "replace"}
+          shouldFocusWrap
+          // orientation="horizontal"
+          // selectedKeys={selectedValuesProp || selectedKeys}
+          selectedKeys={selectedValuesProp || selectedKeys}
+          // onSelectionChange={setSelected}
+          onSelectionChange={(curr) => {
+            // console.log("onSelectionChange", curr);
+            setSelectedKeys(curr);
+          }}
+          disabledKeys={disabledKeys}
+          // className={classNames(dialogClassnames({ size: "md" }))}
         >
-          <ReactAriaLabel
-            className={classNames(
-              styles.selectContainer,
-              styles.outerTextContainer,
-            )}
-          >
-            {label && (
-              <Typography size={100} color="gray700">
-                {label}
-              </Typography>
-            )}
-            <ReactAriaMenuTrigger>
-              {/* <RichSelectTrigger size="sm">Click me</RichSelectTrigger> */}
-              {/* <ReactAriaInput placeholder="Select one placeholder prop" readOnly /> */}
-              <div className={styles.selectWrapper}>
-                <ReactAriaButton
-                  data-testid={dataTestId}
-                  // tabIndex={0} // TODO: use react-aria hooks for this?
-                  className={({ isFocused, isFocusVisible }) =>
-                    classNames(styles.selectBox, styles[size], {
-                      [styles.unselected]: !selectedValue && !errorText,
-                      [styles.selected]: selectedValue && !errorText,
-                      [styles.selectError]: errorText,
-                      [focusStyles.accessibilityOutlineFocus]:
-                        isFocused && isFocusVisible, // for focus keyboard
-                      [styles.selectMouseFocusStyling]:
-                        isFocused && !isFocusVisible, // for focus mouse
-                    })
-                  }
-                >
-                  {/* TODO: abstract this */}
-                  {selectedTextValue}
-                  {/* {TODO revire selectedTextValue} */}
-                </ReactAriaButton>
-                <div className={styles.arrowIcon}>
-                  <svg
-                    focusable="false"
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    width={iconSize[size]}
-                  >
-                    <path
-                      fill={
-                        errorText ? ColorBaseDestructive700 : ColorBaseGray800
-                      }
-                      d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <AriaPopover
-                className={classNames(dialogClassnames({ size: "md" }))}
-              >
-                <AriaListBox
-                  // id={selectId}
-                  aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-                  autoFocus
-                  // items={collection}
-                  selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
-                  selectionBehavior={multiple ? "toggle" : "replace"}
-                  shouldFocusWrap
-                  // orientation="horizontal"
-                  selectedKeys={selectedValuesProp || selectedKeys}
-                  // onSelectionChange={setSelected}
-                  onSelectionChange={(curr) => {
-                    console.log("onSelectionChange", curr);
-                    setSelectedKeys(curr);
-                  }}
-                  disabledKeys={disabledKeys}
-                  // className={classNames(dialogClassnames({ size: "md" }))}
-                >
-                  {children}
-                </AriaListBox>
-                {/* TODO: ACCESSIBILITY LABELS + PROPS FOR EACH BUTTON */}
-                <ButtonGroup orientation="horizontal">
-                  <Button
-                    onClick={clear}
-                    color={"secondary"}
-                    text={secondaryButtonText}
-                    accessibilityLabel={secondaryButtonAccessibilityLabel}
-                    data-testid={
-                      dataTestId ? `${dataTestId}-secondary-button` : undefined
-                    }
-                  />
-                  <Button
-                    onClick={commit}
-                    text={primaryButtonText}
-                    accessibilityLabel={primaryButtonAccessibilityLabel}
-                    color="primary"
-                    data-testid={
-                      dataTestId ? `${dataTestId}-primary-button` : undefined
-                    }
-                  />
-                </ButtonGroup>
-              </AriaPopover>
-            </ReactAriaMenuTrigger>
-          </ReactAriaLabel>
-          {(helperText || errorText) && (
-            <div className={styles.outerTextContainer}>
-              <Typography
-                size={100}
-                color={errorText ? "destructive-primary" : "gray700"}
-              >
-                {errorText ? errorText : helperText}
-              </Typography>
-            </div>
-          )}
-        </div>
+          {children}
+        </AriaListBox>
       </ReactAriaProvider>
+      {/* TODO: ACCESSIBILITY LABELS + PROPS FOR EACH BUTTON */}
+      <ButtonGroup orientation="horizontal">
+        <Button
+          onClick={clear}
+          color={"secondary"}
+          text={secondaryButtonText}
+          accessibilityLabel={secondaryButtonAccessibilityLabel}
+          data-testid={
+            dataTestId ? `${dataTestId}-secondary-button` : undefined
+          }
+        />
+        <Button
+          onClick={commit}
+          text={primaryButtonText}
+          accessibilityLabel={primaryButtonAccessibilityLabel}
+          color="primary"
+          data-testid={dataTestId ? `${dataTestId}-primary-button` : undefined}
+        />
+      </ButtonGroup>
+    </>
+  );
+
+  if (!dropdown) return listBoxNode;
+
+  return (
+    <>
+      <div
+        className={classNames(styles.selectContainer, {
+          [styles.opacityOverlay]: disabled,
+        })}
+      >
+        <ReactAriaLabel
+          className={classNames(
+            styles.selectContainer,
+            styles.outerTextContainer,
+          )}
+        >
+          {label && (
+            <Typography size={100} color="gray700">
+              {label}
+            </Typography>
+          )}
+          <ReactAriaMenuTrigger>
+            {/* <RichSelectTrigger size="sm">Click me</RichSelectTrigger> */}
+            {/* <ReactAriaInput placeholder="Select one placeholder prop" readOnly /> */}
+            <div className={styles.selectWrapper}>
+              <ReactAriaButton
+                data-testid={dataTestId}
+                // tabIndex={0} // TODO: use react-aria hooks for this?
+                className={({ isFocused, isFocusVisible }) =>
+                  classNames(styles.selectBox, styles[size], {
+                    [styles.unselected]: !selectedValue && !errorText,
+                    [styles.selected]: selectedValue && !errorText,
+                    [styles.selectError]: errorText,
+                    [focusStyles.accessibilityOutlineFocus]:
+                      isFocused && isFocusVisible, // for focus keyboard
+                    [styles.selectMouseFocusStyling]:
+                      isFocused && !isFocusVisible, // for focus mouse
+                  })
+                }
+              >
+                {/* TODO: abstract this */}
+                {selectedTextValue}
+                {/* {TODO revire selectedTextValue} */}
+              </ReactAriaButton>
+              <div className={styles.arrowIcon}>
+                <svg
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  width={iconSize[size]}
+                >
+                  <path
+                    fill={
+                      errorText ? ColorBaseDestructive700 : ColorBaseGray800
+                    }
+                    d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <AriaPopover
+              className={classNames(dialogClassnames({ size: "md" }))}
+            >
+              {listBoxNode}
+            </AriaPopover>
+          </ReactAriaMenuTrigger>
+        </ReactAriaLabel>
+        {(helperText || errorText) && (
+          <div className={styles.outerTextContainer}>
+            <Typography
+              size={100}
+              color={errorText ? "destructive-primary" : "gray700"}
+            >
+              {errorText ? errorText : helperText}
+            </Typography>
+          </div>
+        )}
+      </div>
     </>
   );
 }
