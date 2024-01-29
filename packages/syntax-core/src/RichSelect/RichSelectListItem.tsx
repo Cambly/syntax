@@ -3,6 +3,8 @@ import React, {
   type ReactElement,
   type ForwardedRef,
   createContext,
+  useEffect,
+  useContext,
 } from "react";
 import {
   ListBoxItem as ReactAriaListBoxItem,
@@ -10,7 +12,7 @@ import {
 } from "react-aria-components";
 import styles from "./RichSelect.module.css";
 import { useDisableKey, useSelectKey } from "./DisabledKeysProvider";
-import { type OptionAria } from "react-aria";
+import { type Key, type OptionAria } from "react-aria";
 
 export type RichSelectListItemProps = {
   "data-testid"?: string;
@@ -19,6 +21,7 @@ export type RichSelectListItemProps = {
   name?: string;
   disabled?: boolean;
   selected?: boolean;
+  checked?: boolean;
   /** The children of the component. A function may be provided to alter the children based on component state. */
   children?:
     | string
@@ -27,7 +30,10 @@ export type RichSelectListItemProps = {
 };
 
 // TODO: rename to RichSelectItem (whole file)
-export const RichSelectItemContext = createContext<OptionAria | null>(null);
+export const RichSelectItemContext = createContext<{
+  disableKey?: (key: Key, value: boolean) => void;
+  selectKey?: (key: Key, value: boolean) => void;
+}>({});
 
 export default forwardRef<HTMLDivElement, RichSelectListItemProps>(
   function RichSelectListItem(
@@ -40,8 +46,20 @@ export default forwardRef<HTMLDivElement, RichSelectListItemProps>(
       label,
       disabled = false,
       selected = false,
+      checked = false,
       children,
     } = props;
+
+    const { disableKey, selectKey } = useContext(RichSelectItemContext) || {};
+    useEffect(
+      () => disableKey?.(value, disabled),
+      [disableKey, disabled, value],
+    );
+    useEffect(
+      () => selectKey?.(value, selected || checked),
+      [checked, selectKey, selected, value],
+    );
+
     useDisableKey(value, disabled);
     useSelectKey(value, selected); // wait, does/did this work?
     return (

@@ -4,6 +4,8 @@ import React, {
   type ReactElement,
   useRef,
   useContext,
+  useId,
+  useState,
   type ReactNode,
   useCallback,
   createContext,
@@ -12,10 +14,12 @@ import React, {
 } from "react";
 
 import {
-  ListBoxContext,
-  type ListBoxProps,
   ListBox as ReactAriaListBox,
+  MenuTrigger as ReactAriaMenuTrigger,
+  Label as ReactAriaLabel,
+  Button as ReactAriaButton,
   useContextProps,
+  ListBoxContext,
   ListStateContext,
   Provider,
   Collection,
@@ -47,32 +51,26 @@ import {
   useListState,
   type Selection,
 } from "react-stately";
-import { type ListCollection } from "@react-stately/list";
 import { mergeProps, useFocusRing, useListBox, useOption } from "react-aria";
-import { filterDOMProps, mergeRefs, useObjectRef } from "@react-aria/utils";
+import { filterDOMProps, useObjectRef } from "@react-aria/utils";
 import { RichSelectItemContext } from "./RichSelectListItem";
 import { useListBoxSection } from "react-aria";
 
-type RichSelectChild =
-  | ReactElement<typeof RichSelectChip>
-  | ReactElement<typeof RichSelectOptGroup>;
+import classNames from "classnames";
+import {
+  ColorBaseDestructive700,
+  ColorBaseGray800,
+} from "@cambly/syntax-design-tokens";
+import Typography from "../Typography/Typography";
+import useIsHydrated from "../useIsHydrated";
+import { AriaPopover } from "../Popover/Popover";
 
-type RichSelectBoxProps = {
-  "data-testid"?: string;
-  label?: string;
-  // children: ReactElement | ReactElement[];
-  children: RichSelectChild | RichSelectChild[];
-  /** Whether multipleSelection is enabled */
-  multiple?: boolean;
-  /** The values of the selected options */
-  selectedValues?: string[];
-  /** Whether the select is disabled */
-  disabled?: boolean;
-  /** Whether the select should autofocus on render */
-  autoFocus?: boolean;
-  /** Direction of elements in container */
-  orientation?: "horizontal" | "vertical";
-};
+import { dialogClassnames } from "../Dialog/Dialog";
+import focusStyles from "../Focus.module.css";
+import styles from "../SelectList/SelectList.module.css";
+import ButtonGroup from "../ButtonGroup/ButtonGroup";
+import Button from "../Button/Button";
+import RichSelectRadioButton from "./RichSelectRadioButton";
 
 type AriaListBoxContextType = {
   // state: ListState<object>;
@@ -370,8 +368,6 @@ function AriaListBox<T extends object>(
     onSelectionChange,
   } = props;
 
-  const disabledKeysRef = useRef<Set<Key>>(new Set(disabledKeysProp));
-
   const [disabledKeysState, setDisabledKeysState] = React.useState<Set<Key>>(
     new Set(disabledKeysProp),
   );
@@ -515,58 +511,272 @@ function AriaListBox<T extends object>(
 const _AriaListBox = (forwardRef as forwardRefType)(AriaListBox);
 export { _AriaListBox as AriaListBox };
 
-function Example() {
-  const options = [
-    { id: 1, name: "Aardvark" },
-    { id: 2, name: "Cat" },
-    { id: 3, name: "Dog" },
-    { id: 4, name: "Kangaroo" },
-    { id: 5, name: "Koala" },
-    { id: 6, name: "Penguin" },
-    { id: 7, name: "Snake" },
-    { id: 8, name: "Turtle" },
-    { id: 9, name: "Wombat" },
-  ];
+type RichSelectChild =
+  | ReactElement<typeof RichSelectChip>
+  | ReactElement<typeof RichSelectRadioButton>
+  | ReactElement<typeof RichSelectOptGroup>;
 
-  return (
-    <AriaListBox label="Animals" items={options} selectionMode="single">
-      {(item) => <Item>{item.name}</Item>}
-    </AriaListBox>
-  );
+// type RichSelectBoxProps = {
+//   "data-testid"?: string;
+//   /** Whether the list box should autofocus on render */
+//   autoFocus?: boolean;
+//   /** Text used as label for list box */
+//   label?: string;
+//   // children: ReactElement | ReactElement[];
+//   children: RichSelectChild | RichSelectChild[];
+//   /** Whether multipleSelection is enabled */
+//   multiple?: boolean;
+//   /** The values of the selected options */
+//   selectedValues?: string[];
+//   /** Whether the select is disabled */
+//   disabled?: boolean;
+//   /** Direction of elements in container */
+//   orientation?: "horizontal" | "vertical";
+// };
+
+export type RichSelectBoxProps = {
+  /** Test id for the list box element */
+  "data-testid"?: string;
+  /** Whether the list box should autofocus on render */
+  autoFocus?: boolean;
+  /** One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components. */
+  // children: ReactElement | ReactElement[];
+  children: RichSelectChild | RichSelectChild[];
+  /** Disables the element entirely */
+  disabled?: boolean;
+  /** Text shown above the box */
+  label?: string;
+  /** Direction of elements in container */
+  orientation?: "horizontal" | "vertical";
+  /** Text shown below the box with error styles applied */
+  errorText?: string;
+  /** Text shown below the box */
+  helperText?: string;
+  /** Id of the element */
+  id?: string;
+  /** Html name attribute for the element */
+  name?: string;
+  /** Enables multiple selection (multiselect) */
+  multiple?: boolean;
+  /** The callback to be called when options are selected / committed */
+  onChange: (selectedValues: string[] | "all") => void;
+  /** Value of the currently selected options */
+  selectedValues?: string[] | "all" | Set<string>;
+  /**
+   * Size for the options and sections in the list box
+   *
+   * @defaultValue "md"
+   */
+  size?: "sm" | "md" | "lg";
+
+  // DIFF THAN SELECTLIST
+  autoCommit?: boolean;
+  defaultSelectedValues?: string[] | "all";
+  primaryButtonText?: string;
+  primaryButtonAccessibilityLabel?: string;
+  secondaryButtonText?: string;
+  secondaryButtonAccessibilityLabel?: string;
+  // selectedValues?: string[] | Set<string>;
+  // might be necesasry for HiddenSelect
+  form?: string;
+
+  // nopeed
+  /**
+   * Callback to be called when select is clicked
+   */
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+};
+
+function isString(val: unknown): val is string {
+  return typeof val === "string";
+}
+
+function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
+  if (set1 === set2) return true;
+  if (!set1 && !set2) return true;
+  if (!set1 || !set2) return false;
+  if (isString(set1)) return set1 === set2;
+  if (isString(set2)) return false;
+  if (set1.size !== set2.size) return false;
+  for (const item of set1) {
+    if (!set2.has(item)) return false;
+  }
+  return true;
 }
 
 const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBoxInner(props, ref): ReactElement {
     const {
-      "data-testid": dataTestId,
-      label,
+      autoCommit,
       children,
-      multiple = true,
-      autoFocus = false,
-      orientation = "horizontal",
+      "data-testid": dataTestId,
+      disabled: disabledProp = false,
+      errorText,
+      helperText,
+      id,
+      label = "myLabel",
+      name,
+      multiple = false,
+      onChange,
+      primaryButtonText = "Save",
+      primaryButtonAccessibilityLabel = "Save",
+      secondaryButtonText = "Clear",
+      secondaryButtonAccessibilityLabel = "Clear",
+      selectedValues: selectedValuesProp,
+      defaultSelectedValues: defaultSelectedKeys,
+      size = "md",
     } = props;
+    const reactId = useId();
+    const isHydrated = useIsHydrated();
+    const disabled = !isHydrated || disabledProp;
+    const selectId = id ?? reactId;
+
+    {
+      /* Okay, the idea here is that we wrap popover around the trigger
+            Trigger gets the focus styles, and the popover gets the focus styles.
+            when triggered dialog will open and elements are tabbable.
+            onChange handler is called when selected value is changed.
+            Any Interactible Syntax components are/should be selectable.
+              (wire in react-aria hooks)
+            After rendering wrapper, this component renders:
+            Context provider to wire in onChange in children to localstate in this component.
+            LocalState is made external when state is saved.
+            autosave option updates external state on child change.
+            autosave="false" displays button group to save / cancel
+            popover content needs to render it's own title?  .... or not?
+
+            (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
+
+            *NOTE*: need to wire in aria-labels correctly
+            https://react-spectrum.adobe.com/react-aria/useLabel.html
+
+            also: CheckboxGroup vs. RadioGroup for `multiple?: boolean` prop
+
+
+            20240118:
+            - `multiple` prop: most(all we support?) browsers make it a static box
+              instead of a dropdown.  autoscrolling (ithink)
+          */
+    }
+
     const disabledKeys = useDisabledKeys();
-    const selectedKeys = useSelectedKeys();
+
+    const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
+      new Set(defaultSelectedKeys),
+    );
+    const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
+    const [committed, setCommitted] = useState<Selection | undefined>(
+      selectedKeys,
+    );
+
+    const changedRef = React.useRef<Selection | undefined>(selectedKeys);
+    const committedRef = React.useRef<Selection | undefined>(selectedKeys);
+
+    const commit = useCallback(() => {
+      const _changed = changedRef.current;
+      if (isEqualSelection(changedRef.current, committedRef.current)) return;
+      changedRef.current = undefined;
+      setCommitted(_changed);
+    }, []);
+
+    const clear = useCallback(() => {
+      setSelectedKeys(new Set());
+      setChanged(undefined);
+    }, []);
+
+    useEffect(() => {
+      if (isEqualSelection(changedRef.current, selectedKeys)) return;
+      changedRef.current = selectedKeys;
+      if (autoCommit) return commit();
+      setChanged((curr) => {
+        if (selectedKeys === curr) return curr;
+        return selectedKeys;
+      });
+    }, [autoCommit, commit, selectedKeys]);
+    useEffect(() => {
+      if (!autoCommit) return;
+      commit();
+    }, [autoCommit, commit, changed]);
+    useEffect(() => {
+      if (committed === changedRef.current) return;
+      // check if new value to commit is shallow equal to the current committed value
+      if (isEqualSelection(committed, committedRef.current)) return;
+      committedRef.current = committed;
+      if (!committed || isString(committed)) return onChange(committed);
+      onChange([...committed].map(String));
+    }, [committed, onChange]);
+
+    // construct collection from composed children tree
+    // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
+    //   but now think i understand the ComboBox/Select trick of rendering
+    //   two list boxes (I think one is in a portal?), and putting list state in context
+    //   that would allow ListBox to build the collection in that portal,
+    //   leave open the "items" prop route for this component if we need a.la. Ken's
+    //   rational proposal, and _should_ allow to drop the getCollectionNode hackey method
+    //   Huge benefits all around, might need to figure out the portal first, unsure
+    //   if the portal acces is unified and/or even exposed from library
+
+    // construct collection from composed children tree
+    // const collection = useCollection(
+    //   props,
+    //   useCallback((nodes) => new ListCollection(nodes), []),
+    //   useMemo(() => ({ suppressTextValueWarning: false }), []),
+    // );
+
     return (
-      <ReactAriaListBox
-        ref={ref}
-        data-testid={dataTestId}
-        aria-label="Favorite animal"
-        selectionMode={multiple ? "multiple" : "single"}
-        // selectionMode={"multiple"}
-        selectionBehavior="toggle" // or "replace"
-        // onAction={(key) => console.log("onAction key", key)}
-        selectedKeys={selectedKeys}
-        onSelectionChange={(keys) =>
-          console.log("RichSelectBoxInner onSelectionChange keys", keys)
-        }
-        orientation={orientation}
-        disabledKeys={disabledKeys}
-        // shouldFocusWrap
-        autoFocus={autoFocus}
+      <RichSelectItemContext.Provider
+      // value={{
+      //   disableKey: useCallback((key: Key) => {
+      //     setDisabledKeysState((keys) => new Set(keys.add(key)));
+      //   }, []),
+      //   selectKey: useCallback((key: Key) => {
+      //     setSelectedKeysState((keys) => {
+      //       if (keys === "all") return keys;
+      //       // if (!keys) return new Set([key]);
+      //       return new Set(keys.add(key));
+      //     });
+      //   }, []),
+      // }}
       >
-        {children}
-      </ReactAriaListBox>
+        <ReactAriaListBox
+          ref={ref}
+          // id={selectId}
+          aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
+          autoFocus
+          // items={props.items} // TODO: implement Ken's proposal
+          selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
+          selectionBehavior={multiple ? "toggle" : "replace"}
+          shouldFocusWrap
+          orientation="horizontal"
+          selectedKeys={selectedValuesProp || selectedKeys}
+          onSelectionChange={(curr) => setSelectedKeys(curr)}
+          disabledKeys={disabledKeys}
+          className={
+            props.className
+            // dropdown ? classNames(dialogClassnames({ size: "md" })) : undefined
+          }
+        >
+          {children}
+        </ReactAriaListBox>
+        {!autoCommit && (
+          <ButtonGroup orientation="horizontal">
+            <Button
+              onClick={clear}
+              color={"secondary"}
+              text={secondaryButtonText}
+              accessibilityLabel={secondaryButtonAccessibilityLabel}
+              data-testid={[dataTestId, "secondary-button"].join("-")}
+            />
+            <Button
+              onClick={commit}
+              text={primaryButtonText}
+              accessibilityLabel={primaryButtonAccessibilityLabel}
+              color="primary"
+              data-testid={[dataTestId, "primary-button"].join("-")}
+            />
+          </ButtonGroup>
+        )}
+      </RichSelectItemContext.Provider>
     );
   },
 );
@@ -584,4 +794,5 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
 export default Object.assign(RichSelectBox, {
   OptGroup: RichSelectOptGroup,
   Chip: RichSelectChip,
+  RadioButton: RichSelectRadioButton,
 });
