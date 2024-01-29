@@ -2,6 +2,8 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import RichSelectList from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
+import { ListBox, ListBoxItem, ListBoxSection } from "./ListBox";
+import Chip from "../Chip/Chip";
 
 export default {
   title: "Components/RichSelectList",
@@ -58,7 +60,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         <RichSelectList.OptGroup label="People">
           <RichSelectList.Chip label="John" value="john" disabled />
           <RichSelectList.Chip label="Jane" value="jane" />
-          <RichSelectList.Chip selected label="Joe" value="joe" />
+          <RichSelectList.Chip label="Joe" value="joe" selected disabled />
         </RichSelectList.OptGroup>
         <RichSelectList.OptGroup label="Places">
           <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -124,10 +126,33 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
   );
 };
 
+function ListChip({
+  label,
+  value,
+  name,
+}: {
+  label: string;
+  value: string;
+  name?: string;
+}) {
+  return (
+    <ListBoxItem id={value} key={value} name={name}>
+      {({ isSelected, isFocusVisible, isDisabled }) => (
+        <Chip
+          selected={isSelected}
+          disabled={isDisabled}
+          text={label}
+          onChange={() => undefined}
+        />
+      )}
+    </ListBoxItem>
+  );
+}
+
 export const VeryLongContent = (): ReactElement => {
   const [selectionValue, setSelectionValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(e.target.value);
+    setSelectionValue(ee);
   };
   return (
     <Box
@@ -240,20 +265,20 @@ const RichSelectListInteractive = (): ReactElement => {
         console.log("onChange", vals);
       }}
     >
-      {/* <RichSelectList.OptGroup label="People">
+      <RichSelectList.OptGroup label="People">
         <RichSelectList.Chip label="New York" value="ny" disabled />
         <RichSelectList.Chip label="Los Angeles" value="la" selected disabled />
         <RichSelectList.Chip label="Morning" value="morning" />
         <RichSelectList.Chip label="Afternoon" value="afternoon" selected />
-      </RichSelectList.OptGroup> */}
-      {options.map(({ label, name, value }) => (
+      </RichSelectList.OptGroup>
+      {/* {options.map(({ label, name, value }) => (
         <RichSelectList.Chip
           key={value}
           value={value}
           label={label}
           name={name}
         />
-      ))}
+      ))} */}
     </RichSelectList>
   );
 };

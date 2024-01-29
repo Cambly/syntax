@@ -18,6 +18,10 @@ import {
   useContextProps,
   ListStateContext,
   Provider,
+  Collection,
+  type SectionProps,
+  Section,
+  Header,
 } from "react-aria-components";
 import RichSelectChip from "./RichSelectChip";
 import RichSelectOptGroup from "./RichSelectOptGroup";
@@ -42,7 +46,6 @@ import {
   type Node,
   useListState,
   type Selection,
-  type Collection,
 } from "react-stately";
 import { type ListCollection } from "@react-stately/list";
 import { mergeProps, useFocusRing, useListBox, useOption } from "react-aria";
@@ -73,7 +76,7 @@ type RichSelectBoxProps = {
 
 type AriaListBoxContextType = {
   // state: ListState<object>;
-  onChangeCollection?: (collection: Collection<Node<object>>) => void;
+  onChangeCollection?: (collection: typeof Collection<Node<object>>) => void;
   // TODO: pass thes on to items through separate context?
   disableKey?: (key: Key) => void;
   selectKey?: (key: Key) => void;
@@ -121,13 +124,13 @@ function AriaOption<T extends object>({
   const { disabled, selected, checked } = item.props;
 
   useEffect(() => {
-    if (!disabled) return;
-    disableKey?.(item.key);
+    // if (!disabled) return;
+    disableKey?.(item.key, disabled);
   }, [disableKey, disabled, item.key]);
 
   useEffect(() => {
-    if (!selected && !checked) return;
-    selectKey?.(item.key);
+    // if (!selected && !checked) return;
+    selectKey?.(item.key, selected || checked);
   }, [selectKey, selected, checked, item.key]);
 
   useEffect(() => {
@@ -292,6 +295,23 @@ function AriaListBoxSection<T extends object>(
   );
 }
 
+export type __ListBoxSectionProps<T> = {
+  title?: string;
+} & SectionProps<T>;
+
+export function __AriaListBoxSection<T extends object>(
+  props: __ListBoxSectionProps<T>,
+): ReactElement {
+  return (
+    <Section className="first:-mt-[5px] after:content-[''] after:block after:h-[5px]">
+      <Header className="text-sm font-semibold text-gray-500 dark:text-zinc-300 px-4 py-1 truncate sticky -top-[5px] -mt-px -mx-1 z-10 bg-gray-100/60 dark:bg-zinc-700/60 backdrop-blur-md supports-[-moz-appearance:none]:bg-gray-100 border-y dark:border-y-zinc-700 [&+*]:mt-1">
+        {props.title}
+      </Header>
+      <Collection items={props.items}>{props.children}</Collection>
+    </Section>
+  );
+}
+
 // function AriaListBoxSection<T>({section, className, style}: ListBoxSectionProps<T>) {
 //   let state = useContext(ListStateContext);
 //   let [headingRef, heading] = useSlot();
@@ -350,6 +370,8 @@ function AriaListBox<T extends object>(
     onSelectionChange,
   } = props;
 
+  const disabledKeysRef = useRef<Set<Key>>(new Set(disabledKeysProp));
+
   const [disabledKeysState, setDisabledKeysState] = React.useState<Set<Key>>(
     new Set(disabledKeysProp),
   );
@@ -385,6 +407,7 @@ function AriaListBox<T extends object>(
       onSelectionChange?.(keys);
     },
   });
+
   // console.log("AriaListBox state", state);
 
   const { layout = "stack", orientation = "vertical" } = props;
@@ -464,6 +487,8 @@ function AriaListBox<T extends object>(
         >
           <div {...labelProps}>{props.label}</div>
           <ul>
+            {/* <Collection>{children}</Collection> */}
+            {/* {children} */}
             {[...state.collection].map((item) =>
               item.type === "section" ? (
                 <AriaListBoxSection

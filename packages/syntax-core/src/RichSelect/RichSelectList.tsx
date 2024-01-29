@@ -35,7 +35,6 @@ import React, {
   useEffect,
   useMemo,
   useState,
-  useContext,
 } from "react";
 import classNames from "classnames";
 import {
@@ -44,78 +43,22 @@ import {
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import Popover, { AriaPopover } from "../Popover/Popover";
-import { type Node, type Collection } from "@react-types/shared";
+import { AriaPopover } from "../Popover/Popover";
 
 import {
-  CheckboxGroup as ReactAriaCheckboxGroup,
-  RadioGroup as ReactAriaRadioGroup,
-  Group as ReactAriaGroup,
   ListBox as ReactAriaListBox,
-  Select as ReactAriaSelect,
-  SelectValue as ReactAriaSelectValue,
-  ListBoxItem as ReactAriaListBoxItem,
-  Menu as ReactAriaMenu,
-  MenuItem as ReactAriaMenuItem,
   MenuTrigger as ReactAriaMenuTrigger,
-  Section as ReactAriaSection,
-  TagGroup as ReactAriaTagGroup,
-  TagList as ReactAriaTagList,
-  Dialog as ReactAriaDialog,
-  Tag as ReactAriaTag,
   Label as ReactAriaLabel,
-  GridList as ReactAriaGridList,
-  GridListItem as ReactAriaGridListItem,
-  ComboBox as ReactAriaComboBox,
-  Input as ReactAriaInput,
   Button as ReactAriaButton,
-  Popover as ReactAriaPopover,
-  Tab as ReactAriaTab,
-  Text as ReactAriaText,
-  Header as ReactAriaHeader,
-  Provider as ReactAriaProvider,
-  ListStateContext,
-  ListBoxContext as ReactAriaListBoxContext,
-  useContextProps,
   type Selection,
-  SelectContext,
-  SelectStateContext,
-  type MenuTriggerProps as ReactAriaMenuTriggerProps,
-  MenuContext,
-  MenuStateContext,
-  type ListBoxProps as ReactAriaListBoxProps,
-  composeRenderProps,
-  ListBoxItemRenderProps,
-  ListBoxContext,
 } from "react-aria-components";
-import { useListState } from "react-stately";
-import { type PartialNode } from "@react-stately/collections";
-import { useCollection } from "@react-stately/collections";
-import { ListCollection } from "@react-stately/list";
-import {
-  HiddenSelect as ReactAriaHiddenSelect,
-  useComboBox,
-  useListBox,
-  useSelect,
-} from "react-aria";
-
-import { mergeProps } from "react-aria";
-
 import RichSelectChip from "./RichSelectChip";
 import RichSelectOptGroup from "./RichSelectOptGroup";
-import RichSelectBox, {
-  AriaListBox,
-  AriaListBoxContext,
-} from "./RichSelectBox";
 import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
-import DisabledKeysProvider, {
-  useDisabledKeys,
-  useSelectedKeys,
-} from "./DisabledKeysProvider";
+import DisabledKeysProvider, { useDisabledKeys } from "./DisabledKeysProvider";
 import RichSelectRadioButton from "./RichSelectRadioButton";
-import { type forwardRefType } from "../react-aria-utils/ForwardRefType";
 import Button from "../Button/Button";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 
@@ -125,50 +68,10 @@ const iconSize = {
   lg: 24,
 } as const;
 
-// TODO: make this RichSelectTrigger, and have it get access to the collection
-// that this RichSelect is using (through custom RichSelectContext)
-// can then use that to render a <RichSelectValue /> component
-
-const RichSelectTrigger = React.forwardRef<
-  HTMLButtonElement,
-  ReactAriaMenuTriggerProps & {
-    size: "sm" | "md" | "lg";
-  }
->(function RichSelectTrigger({ children, size, ...rest }, ref) {
-  const menuCtx = useContext(MenuContext);
-  const menuStateCtx = useContext(MenuStateContext);
-  const listBoxCtx = useContext(ListBoxContext);
-  const listStateCtx = useContext(ListStateContext);
-  // console.log("RichSelectTrigger ctxs", {
-  //   menuCtx,
-  //   menuStateCtx,
-  //   listBoxCtx,
-  //   listStateCtx,
-  // });
-  return (
-    <ReactAriaButton
-      {...rest}
-      ref={ref}
-      className={({ isFocused, isFocusVisible }) =>
-        classNames(styles.selectBox, styles[size], {
-          // [styles.unselected]: !selectedValue && !errorText,
-          // [styles.selected]: selectedValue && !errorText,
-          // [styles.selectError]: errorText,
-          [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible, // for focus keyboard
-          [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-        })
-      }
-    >
-      {children}
-    </ReactAriaButton>
-  );
-});
-
-// TODO: use ReactAriaHiddenSelect + need to get list state context to access collection
-
 export type RichSelectListProps = {
-  /** One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components. */
-  // children: ReactNode;
+  /**
+   * One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components.
+   */
   children: ReactElement | ReactElement[];
   /** Test id for the select element */
   "data-testid"?: string;
@@ -177,10 +80,6 @@ export type RichSelectListProps = {
    * @defaultValue false
    */
   disabled?: boolean;
-  /**
-   * Description text shown below select box
-   */
-  description?: string;
   /**
    * Callback to be called when select is clicked
    */
@@ -247,45 +146,17 @@ export type RichSelectListProps = {
   primaryButtonAccessibilityLabel?: string;
   secondaryButtonText?: string;
   secondaryButtonAccessibilityLabel?: string;
+  selectTextValue?: ({
+    selectedValues,
+    placeholderText,
+  }: {
+    selectedValues?: string[];
+    placeholderText: string;
+  }) => string;
   // selectedValues?: string[] | Set<string>;
   // might be necesasry for HiddenSelect
   form?: string;
 };
-
-function hasTypeItem<T extends object>(item: Node<T>): boolean {
-  return item.type === "item";
-}
-
-type KeysWithCollection<T extends object> = {
-  keys?: "all" | string[];
-  collection?: Collection<Node<T>>;
-};
-function getSelectedItems<T extends object>(opts: KeysWithCollection<T>) {
-  const { keys, collection } = opts;
-  if (!collection) return [];
-  if (!keys) return [];
-  if (keys === "all")
-    return [...collection].filter((item) => hasTypeItem(item));
-  return [...keys].map((key) => collection.getItem(key));
-}
-
-function getSelectedTextValue<T extends object>(
-  opts: KeysWithCollection<T> & { placeholderText?: string },
-): string {
-  const { keys, collection } = opts;
-  if (!collection) return opts.placeholderText ?? "";
-  if (keys === "all") return "all";
-  const items = getSelectedItems({ keys, collection });
-  if (!items.length) return opts.placeholderText ?? "";
-  return items.map((n) => n?.textValue).join(", ");
-}
-
-// reconstructs the plain object tree view from the recursive collection map
-function useCollectionItems<T extends object>(collection: Collection<Node<T>>) {
-  return useMemo(() => {
-    return collection;
-  }, [collection]);
-}
 
 function isString(val: unknown): val is string {
   return typeof val === "string";
@@ -312,7 +183,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     autoCommit,
     children,
     "data-testid": dataTestId,
-    description,
     disabled: disabledProp = false,
     dropdown = true,
     errorText,
@@ -323,9 +193,10 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     multiple = false,
     onChange,
     onClick,
-    placeholderText,
+    placeholderText = "Select an option",
     primaryButtonText = "Save",
     primaryButtonAccessibilityLabel = "Save",
+    selectTextValue,
     secondaryButtonText = "Clear",
     secondaryButtonAccessibilityLabel = "Clear",
     selectedValue = "",
@@ -371,10 +242,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
     new Set(defaultSelectedKeys),
   );
-  // const [selected, setSelected] = useState<Selection>();
-  // const [changed, setChanged] = useState<"all" | string[]>();
-  // const [committed, setCommitted] = useState<"all" | string[]>();
-
   const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
   const [committed, setCommitted] = useState<Selection | undefined>(
     selectedKeys,
@@ -434,76 +301,38 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   //   useMemo(() => ({ suppressTextValueWarning: false }), []),
   // );
 
-  const [collection, setCollection] = useState<Collection<Node<object>>>();
-
-  // const selectedItems = getSelectedItems({ keys: committed, collection });
-  const selectedTextValue = getSelectedTextValue({
-    keys: committed,
-    collection,
-    placeholderText,
-  });
-
-  // const items = useCollectionItems(collection);
-
-  // for (const item of collection) {
-  //   console.log("item", item);
-  // }
-
-  // console.log("chidlren", {
-  //   collection,
-  //   selectedItems,
-  //   selectedKeys,
-  //   selected,
-  //   changed,
-  //   items,
-  //   first: collection.getItem(collection.getFirstKey()),
-  // });
-
-  // const listState = useListState({
-  //   children: children,
-  //   // "aria-label": "TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV",
-  //   // autoFocus,
-  //   // items={collection}
-  //   selectionMode: multiple ? "multiple" : "single", // TODO: !multiple -> "single"?
-  //   selectionBehavior: multiple ? "toggle" : "replace",
-  //   // shouldFocusWrap,
-  //   // orientation="horizontal"
-  //   selectedKeys: selectedValuesProp ?? selectedKeys,
-  //   // onSelectionChange={setSelected}
-  //   onSelectionChange: (curr) => {
-  //     console.log("onSelectionChange", curr);
-  //     setSelectedKeys(curr);
-  //   },
-  //   disabledKeys: disabledKeys,
-  // });
+  const selectedTextValue = useMemo(() => {
+    if (selectTextValue) {
+      return selectTextValue({
+        selectedValues: committed ? [...committed].map(String) : [],
+        placeholderText,
+      });
+    }
+    if (committed === "all") return "all";
+    if (!committed?.size) return placeholderText;
+    return `${committed.size} selected`;
+  }, [committed, placeholderText, selectTextValue]);
 
   const listBoxNode = (
     <>
-      <ReactAriaProvider
-        values={[[AriaListBoxContext, { onChangeCollection: setCollection }]]}
+      <ReactAriaListBox
+        // id={selectId}
+        aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
+        autoFocus
+        // items={props.items} // TODO: implement Ken's proposal
+        selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
+        selectionBehavior={multiple ? "toggle" : "replace"}
+        shouldFocusWrap
+        orientation="horizontal"
+        selectedKeys={selectedValuesProp || selectedKeys}
+        onSelectionChange={(curr) => setSelectedKeys(curr)}
+        disabledKeys={disabledKeys}
+        className={
+          dropdown ? classNames(dialogClassnames({ size: "md" })) : undefined
+        }
       >
-        <AriaListBox
-          // id={selectId}
-          aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-          autoFocus
-          // items={collection}
-          selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
-          selectionBehavior={multiple ? "toggle" : "replace"}
-          shouldFocusWrap
-          // orientation="horizontal"
-          // selectedKeys={selectedValuesProp || selectedKeys}
-          selectedKeys={selectedValuesProp || selectedKeys}
-          // onSelectionChange={setSelected}
-          onSelectionChange={(curr) => {
-            // console.log("onSelectionChange", curr);
-            setSelectedKeys(curr);
-          }}
-          disabledKeys={disabledKeys}
-          // className={classNames(dialogClassnames({ size: "md" }))}
-        >
-          {children}
-        </AriaListBox>
-      </ReactAriaProvider>
+        {children}
+      </ReactAriaListBox>
       {/* TODO: ACCESSIBILITY LABELS + PROPS FOR EACH BUTTON */}
       <ButtonGroup orientation="horizontal">
         <Button
@@ -547,10 +376,9 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
             </Typography>
           )}
           <ReactAriaMenuTrigger>
-            {/* <RichSelectTrigger size="sm">Click me</RichSelectTrigger> */}
-            {/* <ReactAriaInput placeholder="Select one placeholder prop" readOnly /> */}
             <div className={styles.selectWrapper}>
               <ReactAriaButton
+                // id={selectId}
                 data-testid={dataTestId}
                 // tabIndex={0} // TODO: use react-aria hooks for this?
                 className={({ isFocused, isFocusVisible }) =>
@@ -567,7 +395,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
               >
                 {/* TODO: abstract this */}
                 {selectedTextValue}
-                {/* {TODO revire selectedTextValue} */}
               </ReactAriaButton>
               <div className={styles.arrowIcon}>
                 <svg
@@ -585,11 +412,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
                 </svg>
               </div>
             </div>
-            <AriaPopover
-              className={classNames(dialogClassnames({ size: "md" }))}
-            >
-              {listBoxNode}
-            </AriaPopover>
+            <AriaPopover>{listBoxNode}</AriaPopover>
           </ReactAriaMenuTrigger>
         </ReactAriaLabel>
         {(helperText || errorText) && (
@@ -615,23 +438,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   );
 }
 
-/**
- * *NOTE*:
- *
- * In order to support the react-aria CollectionBuilder API, we need to
- * add a getCollectionNode method to each component that RichSelect* supports.
- * These are how React-Spectrum integrates itself with the colleections API.
- *
- * Doing this allows the components that define Component.getCollectionNode to
- * be used as children of a component that implements CollectionBuilder.
- *
- * react-aria-components ListBox is the main one that allows for multiple selection.
- * in order to build MultiSelect / RichSelectLists that render syntax components,
- * we have to attach these methods.
- *
- * We need to do this in order to match selected keys to prettier text/label values
- * in order to render text of the labels for the selected values in the list.
- */
 export default Object.assign(RichSelectList, {
   OptGroup: RichSelectOptGroup,
   Chip: RichSelectChip,

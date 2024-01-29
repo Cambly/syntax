@@ -23,13 +23,9 @@ DisabledKeysContext.displayName = "DisabledKeysContext";
 
 export default function DisabledKeysProvider({
   children,
-  isolate = false,
 }: {
   children: ReactNode;
-  isolate?: boolean;
 }): ReactElement {
-  const { updateDisabledKey: parentUpdateDisabledKey } =
-    useContext(DisabledKeysContext) ?? {};
   const [disabledKeys, setDisabledKeys] = useState<Set<string>>(new Set());
   const updateDisabledKey = useCallback(
     (key: string, disabled: boolean) =>
@@ -57,23 +53,12 @@ export default function DisabledKeysProvider({
   const richSelectContext = useMemo<DisabledKeysContextValue>(() => {
     const ctx: DisabledKeysContextValue = {
       disabledKeys,
-      updateDisabledKey: isolate
-        ? updateDisabledKey
-        : chain(parentUpdateDisabledKey, updateDisabledKey),
+      updateDisabledKey,
       selectedKeys,
-      updateSelectedKey: isolate
-        ? updateSelectedKey
-        : chain(parentUpdateDisabledKey, updateSelectedKey),
+      updateSelectedKey,
     };
     return ctx;
-  }, [
-    disabledKeys,
-    isolate,
-    parentUpdateDisabledKey,
-    selectedKeys,
-    updateDisabledKey,
-    updateSelectedKey,
-  ]);
+  }, [disabledKeys, selectedKeys, updateDisabledKey, updateSelectedKey]);
   return (
     <DisabledKeysContext.Provider value={richSelectContext}>
       {children}
