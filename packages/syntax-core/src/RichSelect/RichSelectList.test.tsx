@@ -88,12 +88,8 @@ describe("richSelectList", () => {
       render(simpleRichSelectList(props));
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
-      expect(
-        screen.queryByTestId("trigger-primary-button"),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId("trigger-secondary-button"),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("secondary-button")).not.toBeInTheDocument();
     },
   );
 
@@ -104,7 +100,7 @@ describe("richSelectList", () => {
     );
     await user.click(screen.getByTestId("trigger"));
     await act(() => vi.runAllTimers());
-    await user.click(screen.getByTestId("trigger-primary-button"));
+    await user.click(screen.getByTestId("primary-button"));
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -188,7 +184,7 @@ describe("richSelectList", () => {
         );
         await act(() => vi.runAllTimers());
         const opt1 = screen.getByTestId("opt1");
-        const clear = screen.getByTestId("trigger-secondary-button");
+        const clear = screen.getByTestId("secondary-button");
         await user.click(opt1);
         await user.click(clear);
         expect(spy).not.toHaveBeenCalled();
@@ -207,7 +203,7 @@ describe("richSelectList", () => {
         await act(() => vi.runAllTimers());
         const opt1 = screen.getByTestId("opt1");
         await user.click(opt1);
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith(["opt1"]);
         expect(opt1).toHaveAttribute("aria-selected", "true");
@@ -225,11 +221,11 @@ describe("richSelectList", () => {
         await act(() => vi.runAllTimers());
         const opt1 = screen.getByTestId("opt1");
         await user.click(opt1);
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith(["opt1"]);
         expect(opt1).toHaveAttribute("aria-selected", "true");
-        await user.click(screen.getByTestId("trigger-secondary-button"));
+        await user.click(screen.getByTestId("secondary-button"));
         expect(spy).toHaveBeenCalledTimes(1); // clearing only stages, does not commit yet
         expect(opt1).toHaveAttribute("aria-selected", "false");
       });
@@ -269,7 +265,7 @@ describe("richSelectList", () => {
         const opt2 = screen.getByTestId("opt2");
         await user.click(opt1);
         await user.click(opt2);
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
         expect(opt1).toHaveAttribute("aria-selected", "true");
@@ -303,7 +299,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
     });
@@ -316,7 +312,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt3"]);
     });
@@ -328,12 +324,12 @@ describe("richSelectList", () => {
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1); // did not call onChange again because final value did not change
     });
 
@@ -352,7 +348,7 @@ describe("richSelectList", () => {
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).not.toHaveBeenCalled();
     });
 
@@ -369,7 +365,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).not.toHaveBeenCalled();
     });
 
@@ -387,7 +383,7 @@ describe("richSelectList", () => {
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt2"]);
     });
@@ -406,7 +402,7 @@ describe("richSelectList", () => {
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger-secondary-button"));
+      await user.click(screen.getByTestId("secondary-button"));
       expect(spy).not.toHaveBeenCalled();
     });
 
@@ -424,11 +420,11 @@ describe("richSelectList", () => {
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
-      await user.click(screen.getByTestId("trigger-secondary-button"));
+      await user.click(screen.getByTestId("secondary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith([]);
     });
@@ -443,7 +439,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt3"]);
     });
@@ -463,11 +459,9 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.keyboard("{Escape}");
-      expect(
-        screen.queryByTestId("trigger-primary-button"),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
       await user.click(screen.getByTestId("trigger")); // reopen
-      await user.click(screen.getByTestId("trigger-primary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(0);
     });
 
@@ -488,7 +482,7 @@ describe("richSelectList", () => {
         await user.click(screen.getByTestId("opt1"));
         await user.click(screen.getByTestId("opt2"));
         await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
       });
@@ -509,8 +503,8 @@ describe("richSelectList", () => {
         await user.click(screen.getByTestId("opt1"));
         await user.click(screen.getByTestId("opt2"));
         await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("trigger-secondary-button"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("secondary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).not.toHaveBeenCalled();
       });
 
@@ -528,8 +522,8 @@ describe("richSelectList", () => {
         await user.click(screen.getByTestId("trigger"));
         await act(() => vi.runAllTimers());
         expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("trigger-secondary-button"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("secondary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith([]);
       });
@@ -549,11 +543,11 @@ describe("richSelectList", () => {
         await act(() => vi.runAllTimers());
         expect(spy).not.toHaveBeenCalled();
         await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
-        await user.click(screen.getByTestId("trigger-secondary-button"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("secondary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(2);
         expect(spy).toHaveBeenLastCalledWith([]);
       });
@@ -573,7 +567,7 @@ describe("richSelectList", () => {
         await act(() => vi.runAllTimers());
         expect(spy).not.toHaveBeenCalled();
         await user.click(screen.getByTestId("opt1"));
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenLastCalledWith([]);
       });
@@ -594,11 +588,9 @@ describe("richSelectList", () => {
         await user.click(screen.getByTestId("opt1"));
         await user.click(screen.getByTestId("opt2"));
         await user.keyboard("{Escape}");
-        expect(
-          screen.queryByTestId("trigger-primary-button"),
-        ).not.toBeInTheDocument();
+        expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
         await user.click(screen.getByTestId("trigger")); // reopen
-        await user.click(screen.getByTestId("trigger-primary-button"));
+        await user.click(screen.getByTestId("primary-button"));
         expect(spy).toHaveBeenCalledTimes(0);
       });
     });

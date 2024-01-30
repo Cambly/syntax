@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import React, { type ReactElement } from "react";
+import React, { useState, type ReactElement } from "react";
 import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
@@ -494,6 +494,66 @@ describe("richSelectList", () => {
       expect(
         screen.queryByTestId("box-secondary-button"),
       ).not.toBeInTheDocument();
+    });
+  });
+
+  describe('controlled, autoCommit="false"', () => {
+    const ControlledRichSelectBox = ({
+      selectedValues,
+      onChange,
+      ...props
+    }: RichSelectBoxProps) => {
+      const [value, setValue] = useState(selectedValues);
+      return (
+        <RichSelectBox
+          {...props}
+          selectedValues={value}
+          onChange={(v) => {
+            setValue(v);
+            onChange(v);
+          }}
+        />
+      );
+    };
+
+    function renderControlledRichSelectBox(
+      props: Partial<RichSelectBoxProps> = {},
+    ): ReturnType<typeof render> {
+      return render(
+        <ControlledRichSelectBox
+          data-testid="box"
+          {...defaultRequiredProps}
+          {...props}
+        >
+          <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+            <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
+            <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
+            <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
+          </RichSelectBox.OptGroup>
+        </ControlledRichSelectBox>,
+      );
+    }
+
+    it("can stage a clear of controlled selection", async () => {
+      const spy = vi.fn();
+      renderControlledRichSelectBox({
+        autoCommit: false,
+        onChange: spy,
+        selectedValues: [],
+      });
+      const opt1 = screen.getByTestId("opt1");
+      await user.click(opt1);
+      expect(opt1).toHaveAttribute("aria-selected", "true"); // staged selection
+      expect(spy).not.toHaveBeenCalled();
+      await user.click(screen.getByTestId("box-primary-button"));
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+      await user.click(screen.getByTestId("box-secondary-button"));
+      expect(opt1).toHaveAttribute("aria-selected", "false"); // staged selection
+      expect(spy).toHaveBeenCalledTimes(1); // not called again
+      await user.click(screen.getByTestId("box-primary-button"));
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenLastCalledWith([]);
     });
   });
 });

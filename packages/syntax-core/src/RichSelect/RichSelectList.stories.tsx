@@ -2,7 +2,6 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import RichSelectList from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
-import { ListBox, ListBoxItem, ListBoxSection } from "./ListBox";
 import Chip from "../Chip/Chip";
 
 export default {
@@ -125,29 +124,6 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
     </Box>
   );
 };
-
-function ListChip({
-  label,
-  value,
-  name,
-}: {
-  label: string;
-  value: string;
-  name?: string;
-}) {
-  return (
-    <ListBoxItem id={value} key={value} name={name}>
-      {({ isSelected, isFocusVisible, isDisabled }) => (
-        <Chip
-          selected={isSelected}
-          disabled={isDisabled}
-          text={label}
-          onChange={() => undefined}
-        />
-      )}
-    </ListBoxItem>
-  );
-}
 
 export const VeryLongContent = (): ReactElement => {
   const [selectionValue, setSelectionValue] = useState("");

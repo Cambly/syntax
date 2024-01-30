@@ -1,9 +1,8 @@
 import { type StoryObj, type Meta } from "@storybook/react";
-import RichSelectBox from "./RichSelectBox";
+import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
-import { ListBox, ListBoxItem, ListBoxSection } from "./ListBox";
-import Chip from "../Chip/Chip";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/RichSelectBox",
@@ -40,21 +39,15 @@ const renderOptions = () =>
   ));
 
 export const WhatIfItLookedLikeThis = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(e.target.value);
-  };
+  const [selectedValues, setSelectedValues] = useState<string[] | "all">();
   return (
-    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+    <Box display="flex" direction="column" gap={2}>
       <RichSelectBox
         label="Label"
         helperText="Helper text"
         // selectedValues={selectionValue}
         multiple
-        // onChange={onChange}
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
+        onChange={setSelectedValues}
       >
         <RichSelectBox.OptGroup label="People">
           <RichSelectBox.Chip label="John" value="john" disabled />
@@ -121,31 +114,25 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectBox.Chip label="Gacrux" value="gacrux" />
         </RichSelectBox.OptGroup>
       </RichSelectBox>
+      {!selectedValues && (
+        <Typography>{`Selected: Nothing selected yet.`}</Typography>
+      )}
+      {selectedValues && (
+        <Typography>{`Selected: ${JSON.stringify(selectedValues)}`}</Typography>
+      )}
     </Box>
   );
 };
 
 export const VeryLongContent = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(ee);
-  };
+  const [selectedValues, setSelectedValues] = useState<string[] | "all">();
   return (
-    <Box
-      display="block"
-      maxWidth="50%"
-      gap={2}
-      alignItems="center"
-      flexWrap="wrap"
-    >
+    <Box display="flex" direction="column" maxWidth="50%" gap={2}>
       <RichSelectBox
         label="Label"
         helperText="Helper text"
         // selectedValue={selectionValue}
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
-        // onChange={onChange}
+        onChange={setSelectedValues}
       >
         <RichSelectBox.Chip label="John" value="john" disabled />
         <RichSelectBox.Chip label="Jane" value="jane" />
@@ -200,6 +187,12 @@ export const VeryLongContent = (): ReactElement => {
         <RichSelectBox.Chip label="Castor" value="castor" />
         <RichSelectBox.Chip label="Gacrux" value="gacrux" />
       </RichSelectBox>
+      {!selectedValues && (
+        <Typography>{`Selected: Nothing selected yet.`}</Typography>
+      )}
+      {selectedValues && (
+        <Typography>{`Selected: ${JSON.stringify(selectedValues)}`}</Typography>
+      )}
     </Box>
   );
 };
@@ -223,33 +216,46 @@ export const Error: StoryObj<typeof RichSelectBox> = {
 };
 
 const RichSelectBoxInteractive = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState<string[] | "all">();
+  const [selectedValues, setSelectedValues] = useState<string[] | "all">();
   return (
-    <RichSelectBox
-      label="Label"
-      helperText="Helper text"
-      multiple
-      selectedValues={selectionValue}
-      onChange={(vals) => {
-        setSelectionValue(vals);
-        console.log("onChange", vals);
-      }}
-    >
-      <RichSelectBox.OptGroup label="People">
-        <RichSelectBox.Chip label="New York" value="ny" disabled />
-        <RichSelectBox.Chip label="Los Angeles" value="la" selected disabled />
-        <RichSelectBox.Chip label="Morning" value="morning" />
-        <RichSelectBox.Chip label="Afternoon" value="afternoon" selected />
-      </RichSelectBox.OptGroup>
-      {/* {options.map(({ label, name, value }) => (
+    <Box display="flex" direction="column" gap={2}>
+      <RichSelectBox
+        label="Label"
+        helperText="Helper text"
+        multiple
+        selectedValues={selectedValues}
+        onChange={setSelectedValues}
+      >
+        <RichSelectBox.OptGroup label="People">
+          <RichSelectBox.Chip label="New York" value="ny" disabled />
+          <RichSelectBox.Chip
+            label="Los Angeles"
+            value="la"
+            selected
+            disabled
+          />
+          <RichSelectBox.Chip label="Morning" value="morning" />
+          <RichSelectBox.Chip label="Afternoon" value="afternoon" selected />
+        </RichSelectBox.OptGroup>
+        {/* {options.map(({ label, name, value, disabled, selected, checked }) => (
         <RichSelectBox.Chip
           key={value}
           value={value}
           label={label}
           name={name}
+          selected={selected}
+          disabled={disabled}
+          checked={checked}
         />
       ))} */}
-    </RichSelectBox>
+      </RichSelectBox>
+      {!selectedValues && (
+        <Typography>{`Selected: Nothing selected yet.`}</Typography>
+      )}
+      {selectedValues && (
+        <Typography>{`Selected: ${JSON.stringify(selectedValues)}`}</Typography>
+      )}
+    </Box>
   );
 };
 
@@ -274,27 +280,109 @@ export const RadioButtons: StoryObj<typeof RichSelectBox> = {
   ),
 };
 
-export const NoAutoCommitControlled: StoryObj<typeof RichSelectBox> = {
-  render: () => {
-    const [selectedValues, setSelectedValues] = useState(["la"]);
-    return (
+const ControlledRichSelectBox = ({
+  selectedValues = [],
+  ...props
+}: Omit<RichSelectBoxProps, "onChange">) => {
+  const [value, setValue] = useState(selectedValues);
+  return (
+    <Box display="flex" direction="column" gap={2}>
       <RichSelectBox
-        multiple
-        label="Label"
-        selectedValues={["opt1"]}
-        helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-        autoCommit={false}
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
-        // defaultSelectedValues={["la", "ny"]}
-      >
-        <RichSelectBox.OptGroup label="People">
-          <RichSelectBox.Chip label="San Francisco" value="sf" />
-          <RichSelectBox.Chip label="New York" value="ny" disabled />
-          <RichSelectBox.Chip label="Los Angeles" value="la" />
-        </RichSelectBox.OptGroup>
-      </RichSelectBox>
+        {...props}
+        data-testid="box"
+        selectedValues={value}
+        onChange={(v) => setValue(v)}
+      />
+      {!value && <Typography>{`Selected: Nothing selected yet.`}</Typography>}
+      {value && <Typography>{`Selected: ${JSON.stringify(value)}`}</Typography>}
+    </Box>
+  );
+};
+
+export const NoAutoCommitControlledMultipleSelect: StoryObj<
+  typeof RichSelectBox
+> = {
+  render: () => {
+    // const [selectedValuesMultiple, setSelectedValuesMultiple] = useState<string[] | "all">([
+    //   "opt1",
+    // ]);
+    return (
+      <Box display="flex" direction="column" gap={2}>
+        <ControlledRichSelectBox
+          multiple
+          label="Multiple select"
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+        >
+          <RichSelectBox.OptGroup label="People">
+            <RichSelectBox.Chip label="San Francisco" value="sf" />
+            <RichSelectBox.Chip label="New York" value="ny" disabled />
+            <RichSelectBox.Chip label="Los Angeles" value="la" />
+          </RichSelectBox.OptGroup>
+        </ControlledRichSelectBox>
+
+        <ControlledRichSelectBox
+          multiple={false}
+          label="Single select"
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+        >
+          <RichSelectBox.OptGroup label="People">
+            <RichSelectBox.Chip label="San Francisco" value="sf" />
+            <RichSelectBox.Chip label="New York" value="ny" disabled />
+            <RichSelectBox.Chip label="Los Angeles" value="la" />
+          </RichSelectBox.OptGroup>
+        </ControlledRichSelectBox>
+        {/*
+        <RichSelectBox
+          multiple
+          label="Label (old one)"
+          selectedValues={selectedValues}
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+          onChange={setSelectedValues}
+          // defaultSelectedValues={["la", "ny"]}
+        >
+          <RichSelectBox.OptGroup label="People">
+            <RichSelectBox.Chip label="San Francisco" value="sf" />
+            <RichSelectBox.Chip label="New York" value="ny" disabled />
+            <RichSelectBox.Chip label="Los Angeles" value="la" />
+          </RichSelectBox.OptGroup>
+        </RichSelectBox> */}
+      </Box>
     );
   },
 };
+/*
+const ControlledRichSelectBox = ({
+  selectedValues,
+  ...props
+}: RichSelectBoxProps) => {
+  const [value, setValue] = useState(selectedValues);
+  return (
+    <RichSelectBox
+      {...props}
+      selectedValues={value}
+      onChange={(v) => setValue(v)}
+    />
+  );
+};
+
+function renderControlledRichSelectBox(
+  props: Partial<RichSelectBoxProps> = {},
+): ReturnType<typeof render> {
+  return render(
+    <ControlledRichSelectBox
+      data-testid="box"
+      {...defaultRequiredProps}
+      {...props}
+    >
+      <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+        <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
+        <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
+        <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
+      </RichSelectBox.OptGroup>
+    </ControlledRichSelectBox>,
+  );
+}
+*/

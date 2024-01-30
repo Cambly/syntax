@@ -51,6 +51,8 @@ import {
   useListState,
   type Selection,
 } from "react-stately";
+// import { Selection } from "@react-stately/selection";
+import { useControlledState } from "@react-stately/utils";
 import { mergeProps, useFocusRing, useListBox, useOption } from "react-aria";
 import { filterDOMProps, useObjectRef } from "@react-aria/utils";
 import { RichSelectItemContext } from "./RichSelectListItem";
@@ -537,8 +539,8 @@ type RichSelectChild =
 export type RichSelectBoxProps = {
   /** Test id for the list box element */
   "data-testid"?: string;
-  /** Whether the list box should autofocus on render */
-  autoFocus?: boolean;
+  /** Whether the list box should autofocus + focusWrap and apply gialog styles */
+  dialog?: boolean;
   /** One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components. */
   // children: ReactElement | ReactElement[];
   children: RichSelectChild | RichSelectChild[];
@@ -561,7 +563,8 @@ export type RichSelectBoxProps = {
   /** The callback to be called when options are selected / committed */
   onChange: (selectedValues: string[] | "all") => void;
   /** Value of the currently selected options */
-  selectedValues?: string[] | "all" | Set<string>;
+  selectedValues?: string[] | "all";
+  // selectedValues?: string[] | "all" | Set<string>;
   /**
    * Size for the options and sections in the list box
    *
@@ -610,6 +613,7 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       autoCommit,
       children,
       "data-testid": dataTestId,
+      dialog,
       disabled: disabledProp = false,
       errorText,
       helperText,
@@ -618,12 +622,13 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       name,
       multiple = false,
       onChange,
+      orientation = "vertical",
       primaryButtonText = "Save",
       primaryButtonAccessibilityLabel = "Save",
       secondaryButtonText = "Clear",
       secondaryButtonAccessibilityLabel = "Clear",
       selectedValues: selectedValuesProp,
-      defaultSelectedValues: defaultSelectedKeys,
+      defaultSelectedValues: defaultSelectedValuesProp,
       size = "md",
     } = props;
     const reactId = useId();
@@ -661,6 +666,15 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
 
     const disabledKeys = useDisabledKeys();
 
+    // temp local var name override
+    const defaultSelectedKeys = defaultSelectedValuesProp;
+
+    /**
+     * selectedValues, defaultValues
+     * stagedValues
+     * committedValues
+     */
+
     const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
       new Set(defaultSelectedKeys),
     );
@@ -681,7 +695,7 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
 
     const clear = useCallback(() => {
       setSelectedKeys(new Set());
-      setChanged(undefined);
+      setChanged(new Set());
     }, []);
 
     useEffect(() => {
@@ -702,7 +716,8 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       // check if new value to commit is shallow equal to the current committed value
       if (isEqualSelection(committed, committedRef.current)) return;
       committedRef.current = committed;
-      if (!committed || isString(committed)) return onChange(committed);
+      if (isString(committed)) return onChange(committed);
+      if (!committed) return onChange([]);
       onChange([...committed].map(String));
     }, [committed, onChange]);
 
@@ -742,18 +757,23 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
           ref={ref}
           // id={selectId}
           aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-          autoFocus
+          autoFocus={dialog}
           // items={props.items} // TODO: implement Ken's proposal
           selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
           selectionBehavior={multiple ? "toggle" : "replace"}
-          shouldFocusWrap
-          orientation="horizontal"
-          selectedKeys={selectedValuesProp || selectedKeys}
-          onSelectionChange={(curr) => setSelectedKeys(curr)}
+          shouldFocusWrap={dialog}
+          // orientation="horizontal"
+          orientation={orientation}
+          // selectedKeys={selectedValuesProp || selectedKeys}
+          selectedKeys={changed}
+          onSelectionChange={(curr) => {
+            setSelectedKeys(curr);
+            console.log("curr", curr);
+          }}
           disabledKeys={disabledKeys}
           className={
-            props.className
-            // dropdown ? classNames(dialogClassnames({ size: "md" })) : undefined
+            // props.className
+            dialog ? classNames(dialogClassnames({ size: "md" })) : undefined
           }
         >
           {children}
@@ -765,14 +785,18 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
               color={"secondary"}
               text={secondaryButtonText}
               accessibilityLabel={secondaryButtonAccessibilityLabel}
-              data-testid={[dataTestId, "secondary-button"].join("-")}
+              data-testid={[dataTestId, "secondary-button"]
+                .filter(Boolean)
+                .join("-")}
             />
             <Button
               onClick={commit}
               text={primaryButtonText}
               accessibilityLabel={primaryButtonAccessibilityLabel}
               color="primary"
-              data-testid={[dataTestId, "primary-button"].join("-")}
+              data-testid={[dataTestId, "primary-button"]
+                .filter(Boolean)
+                .join("-")}
             />
           </ButtonGroup>
         )}

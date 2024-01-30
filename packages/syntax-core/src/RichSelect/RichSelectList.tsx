@@ -61,6 +61,7 @@ import DisabledKeysProvider, { useDisabledKeys } from "./DisabledKeysProvider";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 import Button from "../Button/Button";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
+import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 
 const iconSize = {
   sm: 20,
@@ -68,7 +69,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = {
+export type RichSelectListProps = RichSelectBoxProps & {
   /**
    * One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components.
    */
@@ -120,11 +121,11 @@ export type RichSelectListProps = {
   /**
    * Value of the currently selected option
    */
-  selectedValue?: string;
+  // selectedValue?: string;
   /**
    * (Multiselect only) Value of the currently selected options
    */
-  selectedValues?: string[] | Set<string>;
+  // selectedValues?: string[] | Set<string>;
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -157,23 +158,6 @@ export type RichSelectListProps = {
   // might be necesasry for HiddenSelect
   form?: string;
 };
-
-function isString(val: unknown): val is string {
-  return typeof val === "string";
-}
-
-function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
-  if (set1 === set2) return true;
-  if (!set1 && !set2) return true;
-  if (!set1 || !set2) return false;
-  if (isString(set1)) return set1 === set2;
-  if (isString(set2)) return false;
-  if (set1.size !== set2.size) return false;
-  for (const item of set1) {
-    if (!set2.has(item)) return false;
-  }
-  return true;
-}
 
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
@@ -239,120 +223,48 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
 
   const disabledKeys = useDisabledKeys();
 
-  const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
-    new Set(defaultSelectedKeys),
+  const [selectedValuesState, setSelectedValuesState] = useState(
+    selectedValuesProp ?? defaultSelectedKeys,
   );
-  const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
-  const [committed, setCommitted] = useState<Selection | undefined>(
-    selectedKeys,
-  );
-
-  const changedRef = React.useRef<Selection | undefined>(selectedKeys);
-  const committedRef = React.useRef<Selection | undefined>(selectedKeys);
-
-  const commit = useCallback(() => {
-    const _changed = changedRef.current;
-    if (isEqualSelection(changedRef.current, committedRef.current)) return;
-    changedRef.current = undefined;
-    setCommitted(_changed);
-  }, []);
-
-  const clear = useCallback(() => {
-    setSelectedKeys(new Set());
-    setChanged(undefined);
-  }, []);
-
-  useEffect(() => {
-    if (isEqualSelection(changedRef.current, selectedKeys)) return;
-    changedRef.current = selectedKeys;
-    if (autoCommit) return commit();
-    setChanged((curr) => {
-      if (selectedKeys === curr) return curr;
-      return selectedKeys;
-    });
-  }, [autoCommit, commit, selectedKeys]);
-  useEffect(() => {
-    if (!autoCommit) return;
-    commit();
-  }, [autoCommit, commit, changed]);
-  useEffect(() => {
-    if (committed === changedRef.current) return;
-    // check if new value to commit is shallow equal to the current committed value
-    if (isEqualSelection(committed, committedRef.current)) return;
-    committedRef.current = committed;
-    if (!committed || isString(committed)) return onChange(committed);
-    onChange([...committed].map(String));
-  }, [committed, onChange]);
-
-  // construct collection from composed children tree
-  // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
-  //   but now think i understand the ComboBox/Select trick of rendering
-  //   two list boxes (I think one is in a portal?), and putting list state in context
-  //   that would allow ListBox to build the collection in that portal,
-  //   leave open the "items" prop route for this component if we need a.la. Ken's
-  //   rational proposal, and _should_ allow to drop the getCollectionNode hackey method
-  //   Huge benefits all around, might need to figure out the portal first, unsure
-  //   if the portal acces is unified and/or even exposed from library
-
-  // construct collection from composed children tree
-  // const collection = useCollection(
-  //   props,
-  //   useCallback((nodes) => new ListCollection(nodes), []),
-  //   useMemo(() => ({ suppressTextValueWarning: false }), []),
-  // );
 
   const selectedTextValue = useMemo(() => {
     if (selectTextValue) {
       return selectTextValue({
-        selectedValues: committed ? [...committed].map(String) : [],
+        selectedValues: selectedValuesState
+          ? [...selectedValuesState].map(String)
+          : [],
         placeholderText,
       });
     }
-    if (committed === "all") return "all";
-    if (!committed?.size) return placeholderText;
-    return `${committed.size} selected`;
-  }, [committed, placeholderText, selectTextValue]);
+    if (selectedValuesState === "all") return "all";
+    if (!selectedValuesState?.length) return placeholderText;
+    return `${selectedValuesState.length} selected`;
+  }, [selectedValuesState, placeholderText, selectTextValue]);
 
   const listBoxNode = (
-    <>
-      <ReactAriaListBox
-        // id={selectId}
-        aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-        autoFocus
-        // items={props.items} // TODO: implement Ken's proposal
-        selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
-        selectionBehavior={multiple ? "toggle" : "replace"}
-        shouldFocusWrap
-        orientation="horizontal"
-        selectedKeys={selectedValuesProp || selectedKeys}
-        onSelectionChange={(curr) => setSelectedKeys(curr)}
-        disabledKeys={disabledKeys}
-        className={
-          dropdown ? classNames(dialogClassnames({ size: "md" })) : undefined
-        }
-      >
-        {children}
-      </ReactAriaListBox>
-      {/* TODO: ACCESSIBILITY LABELS + PROPS FOR EACH BUTTON */}
-      <ButtonGroup orientation="horizontal">
-        <Button
-          onClick={clear}
-          color={"secondary"}
-          text={secondaryButtonText}
-          accessibilityLabel={secondaryButtonAccessibilityLabel}
-          data-testid={
-            dataTestId ? `${dataTestId}-secondary-button` : undefined
-          }
-        />
-        <Button
-          onClick={commit}
-          text={primaryButtonText}
-          accessibilityLabel={primaryButtonAccessibilityLabel}
-          color="primary"
-          data-testid={dataTestId ? `${dataTestId}-primary-button` : undefined}
-        />
-      </ButtonGroup>
-    </>
+    <RichSelectBox
+      dialog // TODO: better prop name?
+      autoCommit={autoCommit}
+      multiple={multiple}
+      orientation="horizontal"
+      onChange={(selected) => {
+        setSelectedValuesState(selected);
+        onChange(selected);
+      }}
+      size={size}
+      label={label}
+      errorText={errorText}
+      helperText={helperText}
+      disabled={disabled}
+      selectedValues={selectedValuesProp}
+      defaultSelectedValues={defaultSelectedKeys}
+      primaryButtonText={primaryButtonText}
+      primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
+      secondaryButtonText={secondaryButtonText}
+      secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
+    >
+      {children}
+    </RichSelectBox>
   );
 
   if (!dropdown) return listBoxNode;
