@@ -570,4 +570,8 @@ describe("component: RichSelectBox", () => {
       expect(spy).toHaveBeenLastCalledWith([]);
     });
   });
+
+  describe("composition with RichSelectItem", () => {
+    it.todo("can read disabled prop on items");
+  });
 });

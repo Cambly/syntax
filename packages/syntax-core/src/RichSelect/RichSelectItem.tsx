@@ -14,7 +14,7 @@ import styles from "./RichSelect.module.css";
 import { useDisableKey, useSelectKey } from "./DisabledKeysProvider";
 import { type Key, type OptionAria } from "react-aria";
 
-export type RichSelectListItemProps = {
+export type RichSelectItemProps = {
   "data-testid"?: string;
   value: string;
   label: string;
@@ -35,9 +35,9 @@ export const RichSelectItemContext = createContext<{
   selectKey?: (key: Key, value: boolean) => void;
 }>({});
 
-export default forwardRef<HTMLDivElement, RichSelectListItemProps>(
-  function RichSelectListItem(
-    props: RichSelectListItemProps,
+export default forwardRef<HTMLDivElement, RichSelectItemProps>(
+  function RichSelectItem(
+    props: RichSelectItemProps,
     ref: ForwardedRef<HTMLDivElement>,
   ): ReactElement {
     const {

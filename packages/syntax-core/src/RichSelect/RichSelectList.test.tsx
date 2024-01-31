@@ -957,4 +957,67 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith([]);
     });
   });
+
+  describe("autoCommit", () => {
+    it("calls onChange when autoCommit is true", async () => {
+      const spy = vi.fn();
+      render(
+        simpleRichSelectList({
+          autoCommit: true,
+          onChange: spy,
+        }),
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    });
+
+    it.skip("multiple selection mode disables autoCommit", async () => {
+      const spy = vi.fn();
+      render(
+        simpleRichSelectList({
+          autoCommit: true,
+          onChange: spy,
+          multiple: true,
+        }),
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("opt3"));
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it("calls onChange when autoCommit is true and defaultSelectedValues is provided", async () => {
+      const spy = vi.fn();
+      render(
+        simpleRichSelectList({
+          autoCommit: true,
+          onChange: spy,
+          defaultSelectedValues: ["opt1"],
+        }),
+      );
+      await act(() => vi.runAllTimers());
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    });
+
+    it("calls onChange when autoCommit is true and defaultSelectedValues is provided and multiple is true", async () => {
+      const spy = vi.fn();
+      render(
+        simpleRichSelectList({
+          autoCommit: true,
+          onChange: spy,
+          defaultSelectedValues: ["opt1", "opt2"],
+          multiple: true,
+        }),
+      );
+      await act(() => vi.runAllTimers());
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
+    });
+  });
 });

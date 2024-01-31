@@ -1,10 +1,8 @@
 import React, { type ForwardedRef, forwardRef, type ReactElement } from "react";
 import Chip from "../Chip/Chip";
-import RichSelectListItem, {
-  type RichSelectListItemProps,
-} from "./RichSelectListItem";
+import RichSelectItem, { type RichSelectItemProps } from "./RichSelectItem";
 
-type RichSelectChipProps = RichSelectListItemProps;
+type RichSelectChipProps = RichSelectItemProps;
 
 export default forwardRef<HTMLDivElement, RichSelectChipProps>(
   function RichSelectChip(
@@ -12,7 +10,7 @@ export default forwardRef<HTMLDivElement, RichSelectChipProps>(
     ref: ForwardedRef<HTMLDivElement>,
   ): ReactElement {
     return (
-      <RichSelectListItem {...props} ref={ref}>
+      <RichSelectItem {...props} ref={ref}>
         {({ isSelected, isFocusVisible, isDisabled }) => (
           <Chip
             text={props.label}
@@ -22,7 +20,7 @@ export default forwardRef<HTMLDivElement, RichSelectChipProps>(
             onChange={() => undefined}
           />
         )}
-      </RichSelectListItem>
+      </RichSelectItem>
     );
   },
 );

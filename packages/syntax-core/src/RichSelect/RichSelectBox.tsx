@@ -55,7 +55,7 @@ import {
 import { useControlledState } from "@react-stately/utils";
 import { mergeProps, useFocusRing, useListBox, useOption } from "react-aria";
 import { filterDOMProps, useObjectRef } from "@react-aria/utils";
-import { RichSelectItemContext } from "./RichSelectListItem";
+import { RichSelectItemContext } from "./RichSelectItem";
 import { useListBoxSection } from "react-aria";
 
 import classNames from "classnames";
