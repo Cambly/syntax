@@ -28,7 +28,7 @@
  *    - ...
  *
  */
-import React, { type ReactElement, useId, useMemo } from "react";
+import React, { type ReactElement, useId, useMemo, useContext } from "react";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -36,12 +36,12 @@ import {
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import Popover, { AriaPopover } from "../Popover/Popover";
+import Popover from "../Popover/Popover";
 import { type Key } from "react-aria";
 import {
-  MenuTrigger as ReactAriaMenuTrigger,
   Label as ReactAriaLabel,
   Button as ReactAriaButton,
+  OverlayTriggerStateContext as ReactAriaOverlayTriggerStateContext,
 } from "react-aria-components";
 import { useControlledState } from "@react-stately/utils";
 
@@ -183,6 +183,9 @@ function RichSelectListInner(
     defaultSelectedValues: defaultSelectedValuesProp,
     size = "md",
   } = props;
+
+  const overlayTriggerState = useContext(ReactAriaOverlayTriggerStateContext);
+
   return (
     <RichSelectBox
       dialog // TODO: better prop name?
@@ -190,7 +193,10 @@ function RichSelectListInner(
       autoCommit={autoCommit}
       multiple={multiple}
       orientation="horizontal"
-      onChange={onChange}
+      onChange={(vals) => {
+        onChange(vals);
+        overlayTriggerState.close();
+      }}
       size={size}
       label={label}
       errorText={errorText}

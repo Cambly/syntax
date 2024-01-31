@@ -208,11 +208,14 @@ describe("richSelectList", () => {
     );
     await user.click(screen.getByTestId("trigger"));
     await act(() => vi.runAllTimers());
-    const opt1 = screen.getByTestId("opt1");
+    let opt1 = screen.getByTestId("opt1");
     await user.click(opt1);
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    await user.click(screen.getByTestId("trigger")); // re-open overlay
+    await act(() => vi.runAllTimers());
+    opt1 = screen.getByTestId("opt1"); // opt1 was re-created when overlay re-opened. must get new reference
     expect(opt1).toHaveAttribute("aria-selected", "true");
     await user.click(screen.getByTestId("secondary-button"));
     expect(spy).toHaveBeenCalledTimes(1); // clearing only stages, does not commit yet
@@ -357,6 +360,8 @@ describe("richSelectList", () => {
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByTestId("trigger")); // re-open overlay
+    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("opt3"));
     await user.click(screen.getByTestId("opt1"));
@@ -448,6 +453,8 @@ describe("richSelectList", () => {
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByTestId("trigger")); // re-open overlay
+    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("secondary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     await user.click(screen.getByTestId("primary-button"));
@@ -704,6 +711,8 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
+      await user.click(screen.getByTestId("trigger")); // re-open overlay
+      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("secondary-button"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
@@ -764,13 +773,16 @@ describe("richSelectList", () => {
       );
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
-      const opt1 = screen.getByTestId("opt1");
+      let opt1 = screen.getByTestId("opt1");
       await user.click(opt1);
       expect(opt1).toHaveAttribute("aria-selected", "true"); // staged selection
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+      await user.click(screen.getByTestId("trigger")); // re-open overlay
+      await act(() => vi.runAllTimers());
+      opt1 = screen.getByTestId("opt1"); // opt1 was re-created when overlay re-opened. must get new reference
       await user.click(screen.getByTestId("secondary-button"));
       expect(opt1).toHaveAttribute("aria-selected", "false"); // staged selection
       expect(spy).toHaveBeenCalledTimes(1); // not called again
