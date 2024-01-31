@@ -1,8 +1,9 @@
 import { type StoryObj, type Meta } from "@storybook/react";
-import RichSelectList from "./RichSelectList";
+import RichSelectList, { type RichSelectListProps } from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
 import Chip from "../Chip/Chip";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/RichSelectList",
@@ -303,6 +304,80 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
           <RichSelectList.Chip label="Los Angeles" value="la" />
         </RichSelectList.OptGroup>
       </RichSelectList>
+    );
+  },
+};
+
+const ControlledRichSelectList = ({
+  selectedValues = [],
+  ...props
+}: Omit<RichSelectListProps, "onChange">) => {
+  const [value, setValue] = useState(selectedValues);
+  return (
+    <Box display="flex" direction="column" gap={2}>
+      <RichSelectList
+        {...props}
+        data-testid="box"
+        selectedValues={value}
+        onChange={(v) => setValue(v)}
+      />
+      {!value && <Typography>{`Selected: Nothing selected yet.`}</Typography>}
+      {value && <Typography>{`Selected: ${JSON.stringify(value)}`}</Typography>}
+    </Box>
+  );
+};
+
+export const NoAutoCommitControlledMultipleSelect: StoryObj<
+  typeof RichSelectList
+> = {
+  render: () => {
+    // const [selectedValuesMultiple, setSelectedValuesMultiple] = useState<string[] | "all">([
+    //   "opt1",
+    // ]);
+    return (
+      <Box display="flex" direction="column" gap={2}>
+        <ControlledRichSelectList
+          multiple
+          label="Multiple select"
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+        >
+          <RichSelectList.OptGroup label="People">
+            <RichSelectList.Chip label="San Francisco" value="sf" />
+            <RichSelectList.Chip label="New York" value="ny" disabled />
+            <RichSelectList.Chip label="Los Angeles" value="la" />
+          </RichSelectList.OptGroup>
+        </ControlledRichSelectList>
+
+        <ControlledRichSelectList
+          multiple={false}
+          label="Single select"
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+        >
+          <RichSelectList.OptGroup label="People">
+            <RichSelectList.Chip label="San Francisco" value="sf" />
+            <RichSelectList.Chip label="New York" value="ny" disabled />
+            <RichSelectList.Chip label="Los Angeles" value="la" />
+          </RichSelectList.OptGroup>
+        </ControlledRichSelectList>
+        {/*
+        <RichSelectBox
+          multiple
+          label="Label (old one)"
+          selectedValues={selectedValues}
+          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
+          autoCommit={false}
+          onChange={setSelectedValues}
+          // defaultSelectedValues={["la", "ny"]}
+        >
+          <RichSelectBox.OptGroup label="People">
+            <RichSelectBox.Chip label="San Francisco" value="sf" />
+            <RichSelectBox.Chip label="New York" value="ny" disabled />
+            <RichSelectBox.Chip label="Los Angeles" value="la" />
+          </RichSelectBox.OptGroup>
+        </RichSelectBox> */}
+      </Box>
     );
   },
 };

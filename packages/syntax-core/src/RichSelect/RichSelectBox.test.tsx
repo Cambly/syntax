@@ -516,10 +516,8 @@ describe("component: RichSelectBox", () => {
       );
     };
 
-    function renderControlledRichSelectBox(
-      props: Partial<RichSelectBoxProps> = {},
-    ): ReturnType<typeof render> {
-      return render(
+    function controlledRichSelectBox(props: Partial<RichSelectBoxProps> = {}) {
+      return (
         <ControlledRichSelectBox
           data-testid="box"
           {...defaultRequiredProps}
@@ -530,17 +528,19 @@ describe("component: RichSelectBox", () => {
             <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
             <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
           </RichSelectBox.OptGroup>
-        </ControlledRichSelectBox>,
+        </ControlledRichSelectBox>
       );
     }
 
     it("renders controlled selectedValues", async () => {
       const spy = vi.fn();
-      renderControlledRichSelectBox({
-        autoCommit: false,
-        onChange: spy,
-        selectedValues: ["opt1"],
-      });
+      render(
+        controlledRichSelectBox({
+          autoCommit: false,
+          onChange: spy,
+          selectedValues: ["opt1"],
+        }),
+      );
       await act(() => vi.runAllTimers());
       const opt1 = screen.getByTestId("opt1");
       expect(opt1).toHaveAttribute("aria-selected", "true");
@@ -548,11 +548,13 @@ describe("component: RichSelectBox", () => {
 
     it("can stage a clear of controlled selection", async () => {
       const spy = vi.fn();
-      renderControlledRichSelectBox({
-        autoCommit: false,
-        onChange: spy,
-        selectedValues: [],
-      });
+      render(
+        controlledRichSelectBox({
+          autoCommit: false,
+          onChange: spy,
+          selectedValues: [],
+        }),
+      );
       const opt1 = screen.getByTestId("opt1");
       await user.click(opt1);
       expect(opt1).toHaveAttribute("aria-selected", "true"); // staged selection

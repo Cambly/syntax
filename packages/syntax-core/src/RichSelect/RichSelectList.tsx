@@ -44,7 +44,7 @@ import {
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
 import { AriaPopover } from "../Popover/Popover";
-
+import { type Key } from "react-aria";
 import {
   ListBox as ReactAriaListBox,
   MenuTrigger as ReactAriaMenuTrigger,
@@ -52,6 +52,8 @@ import {
   Button as ReactAriaButton,
   type Selection,
 } from "react-aria-components";
+import { useControlledState } from "@react-stately/utils";
+
 import RichSelectChip from "./RichSelectChip";
 import RichSelectOptGroup from "./RichSelectOptGroup";
 import { dialogClassnames } from "../Dialog/Dialog";
@@ -159,6 +161,17 @@ export type RichSelectListProps = RichSelectBoxProps & {
   form?: string;
 };
 
+function convertSelection(
+  selection: "all" | Iterable<Key> | undefined,
+  defaultValue: "all" | Set<Key>,
+): "all" | Set<Key> {
+  if (!selection) {
+    return defaultValue;
+  }
+  if (selection === "all") return "all";
+  return new Set(selection);
+}
+
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
@@ -221,25 +234,67 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
         */
   }
 
-  const disabledKeys = useDisabledKeys();
+  // const disabledKeys = useDisabledKeys();
 
-  const [selectedValuesState, setSelectedValuesState] = useState(
-    selectedValuesProp ?? defaultSelectedKeys,
+  const _selectedKeysProp = useMemo(
+    () => convertSelection(props.selectedValues),
+    [props.selectedValues],
+  );
+  const _defaultSelectedKeys = useMemo(
+    () => convertSelection(props.defaultSelectedValues, new Set()),
+    [props.defaultSelectedValues],
+  );
+  const [_selectedKeys, _setSelectedKeys] = useControlledState(
+    _selectedKeysProp,
+    _defaultSelectedKeys,
+    // props.onSelectionChange,
+    (value) => {
+      console.log("RichSelectListInner change _selectedKeys", value);
+      if (value === "all") return onChange(value);
+      onChange([...value].map(String));
+
+      // if (value === "all") return value;
+      // return new Set(value);
+    },
   );
 
   const selectedTextValue = useMemo(() => {
     if (selectTextValue) {
       return selectTextValue({
-        selectedValues: selectedValuesState
-          ? [...selectedValuesState].map(String)
-          : [],
+        selectedValues: _selectedKeys ? [..._selectedKeys].map(String) : [],
         placeholderText,
       });
     }
-    if (selectedValuesState === "all") return "all";
-    if (!selectedValuesState?.length) return placeholderText;
-    return `${selectedValuesState.length} selected`;
-  }, [selectedValuesState, placeholderText, selectTextValue]);
+    if (_selectedKeys === "all") return "all";
+    if (!_selectedKeys.size) return placeholderText;
+    return `${_selectedKeys.size} selected`;
+  }, [selectTextValue, _selectedKeys, placeholderText]);
+
+  // const [selectedValuesState, setSelectedValuesState] = useState(
+  //   selectedValuesProp ?? defaultSelectedKeys,
+  // );
+
+  // useEffect(() => {
+  //   if (!selectedValuesState) return;
+  //   onChange(selectedValuesState);
+  // }, [onChange, selectedValuesState]);
+
+  // const selectedTextValue = useMemo(() => {
+  //   if (selectTextValue) {
+  //     return selectTextValue({
+  //       selectedValues: selectedValuesState
+  //         ? [...selectedValuesState].map(String)
+  //         : [],
+  //       placeholderText,
+  //     });
+  //   }
+  //   if (selectedValuesState === "all") return "all";
+  //   if (!selectedValuesState?.length) return placeholderText;
+  //   return `${selectedValuesState.length} selected`;
+  // }, [selectedValuesState, placeholderText, selectTextValue]);
+
+  // console.log("rsl render", { selectedValuesState, selectedValuesProp });
+  // console.log("rsl render", { _selectedKeys, selectedValuesProp });
 
   const listBoxNode = (
     <RichSelectBox
@@ -247,16 +302,21 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
       autoCommit={autoCommit}
       multiple={multiple}
       orientation="horizontal"
-      onChange={(selected) => {
-        setSelectedValuesState(selected);
-        onChange(selected);
-      }}
+      onChange={_setSelectedKeys}
+      // onChange={(selected) => {
+      //   // console.log("list onChange of box", selected);
+      //   // setSelectedValuesState(selected);
+      //   _setSelectedKeys(selected);
+      //   // onChange(selected);
+      // }}
       size={size}
       label={label}
       errorText={errorText}
       helperText={helperText}
       disabled={disabled}
-      selectedValues={selectedValuesProp}
+      // selectedValues={selectedValuesProp}
+      // selectedValues={selectedValuesState}
+      selectedValues={_selectedKeys}
       defaultSelectedValues={defaultSelectedKeys}
       primaryButtonText={primaryButtonText}
       primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
@@ -344,9 +404,9 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
 
 function RichSelectList(props: RichSelectListProps): ReactElement {
   return (
-    <DisabledKeysProvider isolate>
-      <RichSelectListInner {...props} />
-    </DisabledKeysProvider>
+    // <DisabledKeysProvider isolate>
+    <RichSelectListInner {...props} />
+    // </DisabledKeysProvider>
   );
 }
 
