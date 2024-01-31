@@ -40,22 +40,15 @@ const renderOptions = () =>
   ));
 
 export const WhatIfItLookedLikeThis = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(e.target.value);
-  };
+  const [value, setValue] = useState<string[] | Set<string> | "all">();
   return (
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <RichSelectList
         label="Label"
         helperText="Helper text"
-        selectedValue={selectionValue}
         multiple
         placeholderText="Placeholder"
-        // onChange={onChange}
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
+        onChange={setValue}
       >
         <RichSelectList.OptGroup label="People">
           <RichSelectList.Chip label="John" value="john" disabled />
@@ -122,6 +115,8 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectList.Chip label="Gacrux" value="gacrux" />
         </RichSelectList.OptGroup>
       </RichSelectList>
+      {!value && <Typography>{`Selected: Nothing selected yet.`}</Typography>}
+      {value && <Typography>{`Selected: ${JSON.stringify(value)}`}</Typography>}
     </Box>
   );
 };

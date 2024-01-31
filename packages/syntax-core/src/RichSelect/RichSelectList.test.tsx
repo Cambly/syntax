@@ -71,17 +71,29 @@ function controlledRichSelectList(props: Partial<RichSelectListProps> = {}) {
 }
 
 describe("richSelectList", () => {
-  it("should render without errors on first pass", async () => {
+  it("renders", async () => {
     render(simpleRichSelectList());
     await act(() => vi.runAllTimers());
+    expect(screen.getByTestId("trigger")).toBeInTheDocument();
+  });
+
+  it("renders in a closed state by default", async () => {
+    render(simpleRichSelectList());
+    await act(() => vi.runAllTimers());
+    expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("opt1")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("opt2")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("opt3")).not.toBeInTheDocument();
   });
 
   it("opens menu when trigger is clicked", async () => {
     render(simpleRichSelectList());
     await user.click(screen.getByTestId("trigger"));
     await act(() => vi.runAllTimers());
-    const listBox = screen.getByTestId("optgroup");
-    expect(listBox).toBeInTheDocument();
+    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+    expect(screen.getByTestId("opt1")).toBeInTheDocument();
+    expect(screen.getByTestId("opt2")).toBeInTheDocument();
+    expect(screen.getByTestId("opt3")).toBeInTheDocument();
   });
 
   it("clicks on an option without erroring", async () => {
@@ -92,6 +104,161 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId(id));
       await act(() => vi.runAllTimers());
     }
+  });
+
+  it("can render chips", async () => {
+    render(
+      <RichSelectList data-testid="trigger" {...defaultRequiredProps}>
+        <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
+        <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
+        <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
+      </RichSelectList>,
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(screen.getByTestId("opt1")).toBeVisible();
+    expect(screen.getByTestId("opt2")).toBeVisible();
+    expect(screen.getByTestId("opt3")).toBeVisible();
+  });
+
+  it("can render sections", async () => {
+    render(
+      <RichSelectList data-testid="trigger" {...defaultRequiredProps}>
+        <RichSelectList.OptGroup data-testid="section1" label="section1">
+          <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
+        </RichSelectList.OptGroup>
+        <RichSelectList.OptGroup data-testid="section2" label="section2">
+          <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
+        </RichSelectList.OptGroup>
+        <RichSelectList.OptGroup data-testid="section3" label="section3">
+          <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
+        </RichSelectList.OptGroup>
+      </RichSelectList>,
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(screen.getByTestId("section1")).toBeVisible();
+    expect(screen.getByTestId("section2")).toBeVisible();
+    expect(screen.getByTestId("section3")).toBeVisible();
+    expect(screen.getByTestId("opt1")).toBeVisible();
+    expect(screen.getByTestId("opt2")).toBeVisible();
+    expect(screen.getByTestId("opt3")).toBeVisible();
+  });
+
+  // autoCommit inactive by default
+  it("can stage a selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    await user.click(opt1);
+    expect(opt1).toHaveAttribute("aria-selected", "true");
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("can stage a selection and clear it", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    const clear = screen.getByTestId("secondary-button");
+    await user.click(opt1);
+    await user.click(clear);
+    expect(spy).not.toHaveBeenCalled();
+    expect(opt1).toHaveAttribute("aria-selected", "false");
+  });
+
+  it("can commit a staged selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    await user.click(opt1);
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    expect(opt1).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("can clear a saved selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    await user.click(opt1);
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    expect(opt1).toHaveAttribute("aria-selected", "true");
+    await user.click(screen.getByTestId("secondary-button"));
+    expect(spy).toHaveBeenCalledTimes(1); // clearing only stages, does not commit yet
+    expect(opt1).toHaveAttribute("aria-selected", "false");
+  });
+
+  it("can stage multiple selections", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+        multiple: true,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    const opt2 = screen.getByTestId("opt2");
+    await user.click(opt1);
+    await user.click(opt2);
+    expect(opt1).toHaveAttribute("aria-selected", "true");
+    expect(opt2).toHaveAttribute("aria-selected", "true");
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("can commit a staged multiple selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        autoCommit: false,
+        onChange: spy,
+        multiple: true,
+      }),
+    );
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    const opt1 = screen.getByTestId("opt1");
+    const opt2 = screen.getByTestId("opt2");
+    await user.click(opt1);
+    await user.click(opt2);
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
+    expect(opt1).toHaveAttribute("aria-selected", "true");
+    expect(opt2).toHaveAttribute("aria-selected", "true");
   });
 
   it.skip("handles onClick on the select trigger", async () => {
@@ -139,314 +306,374 @@ describe("richSelectList", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  describe("dropdown=false", () => {
-    it("renders", async () => {
-      render(simpleRichSelectList({ dropdown: false }));
+  it("does not call onChange when an option is clicked", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    await user.click(screen.getByTestId("opt1"));
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("does not onChange when the dialog is closed", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    await user.click(document.body);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("calls onChange when primary button is clicked", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+  });
+
+  it("user can select different options before clicking save, onChange called once at end", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("opt3"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt3"]);
+  });
+
+  it("user can select different options, onChange is not called when user clicks primary button if selection is same at end as beginning", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("opt3"));
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1); // did not call onChange again because final value did not change
+  });
+
+  it("does not call onChange if final selection is same as initial selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+        defaultSelectedValues: ["opt1"],
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("does not call onChange if user clicks save without changing initial selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+        defaultSelectedValues: ["opt1"],
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("calls onChange if user clicks save after changing initial selection", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+        defaultSelectedValues: ["opt1"],
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt2"]);
+  });
+
+  it("user can clear staged selection by clicking secondary button", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+        defaultSelectedValues: ["opt1"],
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("secondary-button"));
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it("clears the selection and calls onChange when user clicks clear then save if default selected values were provided", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+        defaultSelectedValues: ["opt1"],
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByTestId("secondary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenLastCalledWith([]);
+  });
+
+  it("is single selection mode by default", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onChange: spy }));
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("opt2"));
+    await user.click(screen.getByTestId("opt3"));
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenLastCalledWith(["opt3"]);
+  });
+
+  it("pressing escape clears staged changes", async () => {
+    const spy = vi.fn();
+    render(
+      simpleRichSelectList({
+        onChange: spy,
+      }),
+    );
+
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+    await user.click(screen.getByTestId("opt1"));
+    await user.click(screen.getByTestId("opt2"));
+    await user.keyboard("{Escape}");
+    expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
+    await user.click(screen.getByTestId("trigger")); // reopen
+    await user.click(screen.getByTestId("primary-button"));
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
+
+  describe('"select" input value', () => {
+    it("renders empty by default when no placeholderText is defined", async () => {
+      render(simpleRichSelectList());
       await act(() => vi.runAllTimers());
-      expect(screen.getByTestId("opt1")).toBeInTheDocument();
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("");
     });
 
-    it("can render chips", async () => {
+    it("renders placeholderText initially with no selection", async () => {
+      render(simpleRichSelectList({ placeholderText: "test-placeholder" }));
+      await act(() => vi.runAllTimers());
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("test-placeholder");
+    });
+
+    it("placeholder doesn't show when single selectedValues is passed", async () => {
       render(
-        <RichSelectList
-          data-testid="trigger"
-          dropdown={false}
-          {...defaultRequiredProps}
-        >
-          <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
-          <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
-          <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-        </RichSelectList>,
+        simpleRichSelectList({
+          placeholderText: "test-placeholder",
+          selectedValues: ["opt1"],
+        }),
       );
       await act(() => vi.runAllTimers());
-      expect(screen.getByTestId("opt1")).toBeVisible();
-      expect(screen.getByTestId("opt2")).toBeVisible();
-      expect(screen.getByTestId("opt3")).toBeVisible();
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("1 selected");
     });
 
-    it("can render sections", async () => {
+    it("placeholder doesn't show when single defaultSelectedValues is passed", async () => {
       render(
-        <RichSelectList
-          data-testid="trigger"
-          dropdown={false}
-          {...defaultRequiredProps}
-        >
-          <RichSelectList.OptGroup data-testid="section1" label="section1">
-            <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
-          </RichSelectList.OptGroup>
-          <RichSelectList.OptGroup data-testid="section2" label="section2">
-            <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
-          </RichSelectList.OptGroup>
-          <RichSelectList.OptGroup data-testid="section3" label="section3">
-            <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectList.OptGroup>
-        </RichSelectList>,
+        simpleRichSelectList({
+          placeholderText: "test-placeholder",
+          defaultSelectedValues: ["opt1"],
+        }),
       );
       await act(() => vi.runAllTimers());
-      expect(screen.getByTestId("section1")).toBeVisible();
-      expect(screen.getByTestId("section2")).toBeVisible();
-      expect(screen.getByTestId("section3")).toBeVisible();
-      expect(screen.getByTestId("opt1")).toBeVisible();
-      expect(screen.getByTestId("opt2")).toBeVisible();
-      expect(screen.getByTestId("opt3")).toBeVisible();
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("1 selected");
     });
 
-    describe("autoCommit=false", () => {
-      it("can stage a selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        await user.click(opt1);
-        expect(opt1).toHaveAttribute("aria-selected", "true");
-        expect(spy).not.toHaveBeenCalled();
-      });
+    it("trigger reads # of items selected from selectedValues prop", async () => {
+      render(
+        simpleRichSelectList({
+          placeholderText: "test-placeholder",
+          selectedValues: ["opt1", "opt2"],
+        }),
+      );
+      await act(() => vi.runAllTimers());
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("2 selected");
+    });
 
-      it("can stage a selection and clear it", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        const clear = screen.getByTestId("secondary-button");
-        await user.click(opt1);
-        await user.click(clear);
-        expect(spy).not.toHaveBeenCalled();
-        expect(opt1).toHaveAttribute("aria-selected", "false");
-      });
+    it("trigger reads # of items selected from defaultSelectedValues prop", async () => {
+      render(
+        simpleRichSelectList({
+          placeholderText: "test-placeholder",
+          defaultSelectedValues: ["opt1", "opt2"],
+        }),
+      );
+      await act(() => vi.runAllTimers());
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("2 selected");
+    });
 
-      it("can commit a staged selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        await user.click(opt1);
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-        expect(opt1).toHaveAttribute("aria-selected", "true");
-      });
+    it("trigger reads # of items selected from selectedValues when both selectedValues and defaultSelectedValues prop", async () => {
+      render(
+        simpleRichSelectList({
+          placeholderText: "test-placeholder",
+          selectedValues: ["opt1", "opt2", "opt3"],
+          defaultSelectedValues: ["opt1", "opt2"],
+        }),
+      );
+      await act(() => vi.runAllTimers());
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("3 selected");
+    });
 
-      it("can clear a saved selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        await user.click(opt1);
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-        expect(opt1).toHaveAttribute("aria-selected", "true");
-        await user.click(screen.getByTestId("secondary-button"));
-        expect(spy).toHaveBeenCalledTimes(1); // clearing only stages, does not commit yet
-        expect(opt1).toHaveAttribute("aria-selected", "false");
-      });
+    it("updates trigger text when selection changes", async () => {
+      render(simpleRichSelectList());
+      const trigger = screen.getByTestId("trigger");
+      await user.click(trigger);
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("primary-button"));
+      expect(trigger).toHaveTextContent("1 selected");
+    });
 
-      it("can stage multiple selections", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-            multiple: true,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        const opt2 = screen.getByTestId("opt2");
-        await user.click(opt1);
-        await user.click(opt2);
-        expect(opt1).toHaveAttribute("aria-selected", "true");
-        expect(opt2).toHaveAttribute("aria-selected", "true");
-        expect(spy).not.toHaveBeenCalled();
-      });
+    it("updates trigger text when selection changes in multiple mode", async () => {
+      render(simpleRichSelectList({ multiple: true }));
+      const trigger = screen.getByTestId("trigger");
+      await user.click(trigger);
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("opt3"));
+      await user.click(screen.getByTestId("primary-button"));
+      expect(trigger).toHaveTextContent("2 selected");
+    });
 
-      it("can commit a staged multiple selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            autoCommit: false,
-            dropdown: false,
-            onChange: spy,
-            multiple: true,
-          }),
-        );
-        await act(() => vi.runAllTimers());
-        const opt1 = screen.getByTestId("opt1");
-        const opt2 = screen.getByTestId("opt2");
-        await user.click(opt1);
-        await user.click(opt2);
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
-        expect(opt1).toHaveAttribute("aria-selected", "true");
-        expect(opt2).toHaveAttribute("aria-selected", "true");
-      });
+    it("user can override trigger text rendering with `selectTextValue` prop", () => {
+      render(
+        simpleRichSelectList({
+          selectTextValue: (selected) =>
+            `test ${String(selected?.length)} selected`,
+          selectedValues: ["opt1", "opt2"],
+        }),
+      );
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("test 2 selected");
+    });
+
+    it("falls back to placeholderText when selectTextValue returns void", () => {
+      render(
+        simpleRichSelectList({
+          selectTextValue: () => undefined,
+          selectedValues: ["opt1", "opt2"],
+          placeholderText: "test-placeholder",
+        }),
+      );
+      const trigger = screen.getByTestId("trigger");
+      expect(trigger).toHaveTextContent("test-placeholder");
+    });
+
+    it("uses selectTextValue when selection changes", async () => {
+      render(
+        simpleRichSelectList({
+          selectTextValue: (selected) =>
+            `test ${String(selected?.length)} selected`,
+        }),
+      );
+      const trigger = screen.getByTestId("trigger");
+      await user.click(trigger);
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("primary-button"));
+      expect(trigger).toHaveTextContent("test 1 selected");
     });
   });
 
-  describe("autoCommit=false", () => {
-    it("does not call onChange when an option is clicked", async () => {
+  describe("multiple=true", () => {
+    it("allows staging multiple selections", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
+      render(
+        simpleRichSelectList({
+          onChange: spy,
+          multiple: true,
+        }),
+      );
+
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
-      await user.click(screen.getByTestId("opt1"));
       expect(spy).not.toHaveBeenCalled();
-    });
-
-    it("does not onChange when the dialog is closed", async () => {
-      const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      await user.click(document.body);
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    it("calls onChange when primary button is clicked", async () => {
-      const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-    });
-
-    it("user can select different options before clicking save, onChange called once at end", async () => {
-      const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt3"]);
+      expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
     });
 
-    it("user can select different options, onChange is not called when user clicks primary button if selection is same at end as beginning", async () => {
+    it("clears multiple selections when user presses secondary clear button", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
+      render(
+        simpleRichSelectList({
+          onChange: spy,
+          multiple: true,
+        }),
+      );
+
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).toHaveBeenCalledTimes(1);
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
-      await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).toHaveBeenCalledTimes(1); // did not call onChange again because final value did not change
-    });
-
-    it("does not call onChange if final selection is same as initial selection", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          onChange: spy,
-          autoCommit: false,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    it("does not call onChange if user clicks save without changing initial selection", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          onChange: spy,
-          autoCommit: false,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    it("calls onChange if user clicks save after changing initial selection", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          onChange: spy,
-          autoCommit: false,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("primary-button"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-    });
-
-    it("user can clear staged selection by clicking secondary button", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          onChange: spy,
-          autoCommit: false,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-
-      await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
-      expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("secondary-button"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it("clears the selection and calls onChange when user clicks clear then save if default selected values were provided", async () => {
+    it("user can clear a default selection by clicking the clear button", async () => {
       const spy = vi.fn();
       render(
         simpleRichSelectList({
           onChange: spy,
-          autoCommit: false,
+          multiple: true,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -454,29 +681,52 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
-      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("secondary-button"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
-      await user.click(screen.getByTestId("secondary-button"));
+      expect(spy).toHaveBeenLastCalledWith([]);
+    });
+
+    it("user can clear a committed selection by clicking the clear button", async () => {
+      const spy = vi.fn();
+      render(
+        simpleRichSelectList({
+          onChange: spy,
+          multiple: true,
+          defaultSelectedValues: ["opt1", "opt2"],
+        }),
+      );
+
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(spy).not.toHaveBeenCalled();
+      await user.click(screen.getByTestId("opt3"));
+      await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
+      await user.click(screen.getByTestId("secondary-button"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith([]);
     });
 
-    it("is single selection mode by default", async () => {
+    it("can toggle off a default selection", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectList({ onChange: spy, autoCommit: false }));
+      render(
+        simpleRichSelectList({
+          onChange: spy,
+          multiple: true,
+          defaultSelectedValues: ["opt1"],
+        }),
+      );
 
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
-      await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("opt3"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt3"]);
+      expect(spy).toHaveBeenLastCalledWith([]);
     });
 
     it("pressing escape clears staged changes", async () => {
@@ -484,7 +734,7 @@ describe("richSelectList", () => {
       render(
         simpleRichSelectList({
           onChange: spy,
-          autoCommit: false,
+          multiple: true,
         }),
       );
 
@@ -494,151 +744,20 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.keyboard("{Escape}");
+      await act(() => vi.runAllTimers());
       expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
       await user.click(screen.getByTestId("trigger")); // reopen
+      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(0);
     });
-
-    describe("multiple=true", () => {
-      it("allows staging multiple selections", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("opt1"));
-        await user.click(screen.getByTestId("opt2"));
-        await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
-      });
-
-      it("clears multiple selections when user presses secondary clear button", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("opt1"));
-        await user.click(screen.getByTestId("opt2"));
-        await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("secondary-button"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).not.toHaveBeenCalled();
-      });
-
-      it("user can clear a default selection by clicking the clear button", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("secondary-button"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-      });
-
-      it("user can clear a committed selection by clicking the clear button", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-            defaultSelectedValues: ["opt1", "opt2"],
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("opt3"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
-        await user.click(screen.getByTestId("secondary-button"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith([]);
-      });
-
-      it("can toggle off a default selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("opt1"));
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-      });
-
-      it("pressing escape clears staged changes", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectList({
-            onChange: spy,
-            autoCommit: false,
-            multiple: true,
-          }),
-        );
-
-        await user.click(screen.getByTestId("trigger"));
-        await act(() => vi.runAllTimers());
-        expect(spy).not.toHaveBeenCalled();
-        await user.click(screen.getByTestId("opt1"));
-        await user.click(screen.getByTestId("opt2"));
-        await user.keyboard("{Escape}");
-        await act(() => vi.runAllTimers());
-        expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
-        await user.click(screen.getByTestId("trigger")); // reopen
-        await act(() => vi.runAllTimers());
-        await user.click(screen.getByTestId("primary-button"));
-        expect(spy).toHaveBeenCalledTimes(0);
-      });
-    });
   });
 
-  describe('controlled, autoCommit="false"', () => {
-    it('controlled, autoCommit="false", can stage a clear of controlled selection', async () => {
+  describe("controlled", () => {
+    it("controlled, can stage a clear of controlled selection", async () => {
       const spy = vi.fn();
       render(
         controlledRichSelectList({
-          autoCommit: false,
           onChange: spy,
           selectedValues: [],
         }),

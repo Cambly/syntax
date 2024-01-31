@@ -36,7 +36,7 @@ import {
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import { AriaPopover } from "../Popover/Popover";
+import Popover, { AriaPopover } from "../Popover/Popover";
 import { type Key } from "react-aria";
 import {
   MenuTrigger as ReactAriaMenuTrigger,
@@ -59,7 +59,10 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = RichSelectBoxProps & {
+export type RichSelectListProps = Omit<
+  RichSelectBoxProps,
+  "selectedValue" | "onChange"
+> & {
   /**
    * One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components.
    */
@@ -128,22 +131,13 @@ export type RichSelectListProps = RichSelectBoxProps & {
 
   // DIFF THAN SELECTLIST
   autoCommit?: boolean;
-  dropdown?: boolean;
   onChange: (selectedValues: string[] | "all") => void;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
   secondaryButtonText?: string;
   secondaryButtonAccessibilityLabel?: string;
-  selectTextValue?: ({
-    selectedValues,
-    placeholderText,
-  }: {
-    selectedValues?: string[];
-    placeholderText: string;
-  }) => string;
-  // selectedValues?: string[] | Set<string>;
-  // might be necesasry for HiddenSelect
+  selectTextValue?: (selectedValues?: string[]) => string | undefined;
   form?: string;
 };
 
@@ -161,13 +155,18 @@ function convertSelection(
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner(props: RichSelectListProps): ReactElement {
+function RichSelectListInner(
+  props: Omit<
+    RichSelectListProps,
+    "selectTextValue" | "onClick" | "data-testid"
+  >,
+): ReactElement {
   const {
     autoCommit,
     children,
-    "data-testid": dataTestId,
-    disabled: disabledProp = false,
-    dropdown = true,
+    // "data-testid": dataTestId,
+    // disabled: disabledProp = false,
+    disabled,
     errorText,
     helperText,
     id,
@@ -176,7 +175,55 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     multiple = false,
     onChange,
     onClick,
-    placeholderText = "Select an option",
+    primaryButtonText = "Save",
+    primaryButtonAccessibilityLabel = "Save",
+    secondaryButtonText = "Clear",
+    secondaryButtonAccessibilityLabel = "Clear",
+    selectedValues: selectedValuesProp,
+    defaultSelectedValues: defaultSelectedValuesProp,
+    size = "md",
+  } = props;
+  return (
+    <RichSelectBox
+      dialog // TODO: better prop name?
+      id={id}
+      autoCommit={autoCommit}
+      multiple={multiple}
+      orientation="horizontal"
+      onChange={onChange}
+      size={size}
+      label={label}
+      errorText={errorText}
+      helperText={helperText}
+      disabled={disabled}
+      selectedValues={selectedValuesProp}
+      defaultSelectedValues={defaultSelectedValuesProp}
+      primaryButtonText={primaryButtonText}
+      primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
+      secondaryButtonText={secondaryButtonText}
+      secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
+    >
+      {children}
+    </RichSelectBox>
+  );
+}
+
+function RichSelectList(props: RichSelectListProps): ReactElement {
+  const {
+    autoCommit,
+    children,
+    "data-testid": dataTestId,
+    disabled: disabledProp = false,
+    errorText,
+    helperText,
+    id,
+    label = "myLabel",
+    name,
+    multiple = false,
+    onChange,
+    onClick,
+    // placeholderText = "Select an option",
+    placeholderText,
     primaryButtonText = "Save",
     primaryButtonAccessibilityLabel = "Save",
     selectTextValue,
@@ -187,6 +234,7 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     defaultSelectedValues: defaultSelectedValuesProp,
     size = "md",
   } = props;
+
   const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -210,117 +258,104 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   );
 
   const selectedTextValue = useMemo(() => {
-    if (selectTextValue) {
-      return selectTextValue({
-        selectedValues: selectedKeys ? [...selectedKeys].map(String) : [],
-        placeholderText,
-      });
-    }
+    if (selectTextValue)
+      return selectTextValue([...selectedKeys].map(String)) ?? placeholderText;
     if (selectedKeys === "all") return "all";
-    if (!selectedKeys.size) return placeholderText;
-    return `${selectedKeys.size} selected`;
+    if (selectedKeys.size) return `${selectedKeys.size} selected`;
+    return placeholderText;
   }, [selectTextValue, selectedKeys, placeholderText]);
 
-  const listBoxNode = (
-    <RichSelectBox
-      dialog // TODO: better prop name?
-      autoCommit={autoCommit}
-      multiple={multiple}
-      orientation="horizontal"
-      onChange={setSelectedKeys}
-      size={size}
-      label={label}
-      errorText={errorText}
-      helperText={helperText}
-      disabled={disabled}
-      selectedValues={selectedKeys}
-      defaultSelectedValues={defaultSelectedKeys}
-      primaryButtonText={primaryButtonText}
-      primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
-      secondaryButtonText={secondaryButtonText}
-      secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
-    >
-      {children}
-    </RichSelectBox>
-  );
-
-  if (!dropdown) return listBoxNode;
-
   return (
-    <>
-      <div
-        className={classNames(styles.selectContainer, {
-          [styles.opacityOverlay]: disabled,
-        })}
-      >
-        <ReactAriaLabel
-          className={classNames(
-            styles.selectContainer,
-            styles.outerTextContainer,
-          )}
-        >
-          {label && (
-            <Typography size={100} color="gray700">
-              {label}
-            </Typography>
-          )}
-          <ReactAriaMenuTrigger>
-            <div className={styles.selectWrapper}>
-              <ReactAriaButton
-                // id={selectId}
-                data-testid={dataTestId}
-                // tabIndex={0} // TODO: use react-aria hooks for this?
-                className={({ isFocused, isFocusVisible }) =>
-                  classNames(styles.selectBox, styles[size], {
-                    [styles.unselected]: !selectedValue && !errorText,
-                    [styles.selected]: selectedValue && !errorText,
-                    [styles.selectError]: errorText,
-                    [focusStyles.accessibilityOutlineFocus]:
-                      isFocused && isFocusVisible, // for focus keyboard
-                    [styles.selectMouseFocusStyling]:
-                      isFocused && !isFocusVisible, // for focus mouse
-                  })
-                }
-              >
-                {/* TODO: abstract this */}
-                {selectedTextValue}
-              </ReactAriaButton>
-              <div className={styles.arrowIcon}>
-                <svg
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  width={iconSize[size]}
-                >
-                  <path
-                    fill={
-                      errorText ? ColorBaseDestructive700 : ColorBaseGray800
-                    }
-                    d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <AriaPopover>{listBoxNode}</AriaPopover>
-          </ReactAriaMenuTrigger>
-        </ReactAriaLabel>
-        {(helperText || errorText) && (
-          <div className={styles.outerTextContainer}>
-            <Typography
-              size={100}
-              color={errorText ? "destructive-primary" : "gray700"}
-            >
-              {errorText ? errorText : helperText}
-            </Typography>
-          </div>
+    <div
+      className={classNames(styles.selectContainer, {
+        [styles.opacityOverlay]: disabled,
+      })}
+    >
+      <ReactAriaLabel
+        className={classNames(
+          styles.selectContainer,
+          styles.outerTextContainer,
         )}
-      </div>
-    </>
-  );
-}
+      >
+        {label && (
+          <Typography size={100} color="gray700">
+            {label}
+          </Typography>
+        )}
 
-function RichSelectList(props: RichSelectListProps): ReactElement {
-  return <RichSelectListInner {...props} />;
+        <Popover
+          content={
+            <RichSelectListInner
+              // {...props}
+              selectedValues={selectedKeys}
+              defaultSelectedValues={defaultSelectedKeys}
+              onChange={(selected) => setSelectedKeys(new Set(selected))}
+              multiple={multiple}
+              autoCommit={autoCommit}
+              disabled={disabled}
+              errorText={errorText}
+              helperText={helperText}
+              size={size}
+              label={label}
+              primaryButtonText={primaryButtonText}
+              primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
+              secondaryButtonText={secondaryButtonText}
+              secondaryButtonAccessibilityLabel={
+                secondaryButtonAccessibilityLabel
+              }
+            >
+              {children}
+            </RichSelectListInner>
+          }
+        >
+          <div className={styles.selectWrapper}>
+            <ReactAriaButton
+              // id={selectId}
+              data-testid={dataTestId}
+              // tabIndex={0} // TODO: use react-aria hooks for this?
+              className={({ isFocused, isFocusVisible }) =>
+                classNames(styles.selectBox, styles[size], {
+                  [styles.unselected]: !selectedValue && !errorText,
+                  [styles.selected]: selectedValue && !errorText,
+                  [styles.selectError]: errorText,
+                  [focusStyles.accessibilityOutlineFocus]:
+                    isFocused && isFocusVisible, // for focus keyboard
+                  [styles.selectMouseFocusStyling]:
+                    isFocused && !isFocusVisible, // for focus mouse
+                })
+              }
+            >
+              {/* TODO: abstract this */}
+              {selectedTextValue}
+            </ReactAriaButton>
+            <div className={styles.arrowIcon}>
+              <svg
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width={iconSize[size]}
+              >
+                <path
+                  fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
+                  d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </Popover>
+      </ReactAriaLabel>
+      {(helperText || errorText) && (
+        <div className={styles.outerTextContainer}>
+          <Typography
+            size={100}
+            color={errorText ? "destructive-primary" : "gray700"}
+          >
+            {errorText ? errorText : helperText}
+          </Typography>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Object.assign(RichSelectList, {
