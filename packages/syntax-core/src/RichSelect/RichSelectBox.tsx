@@ -711,10 +711,10 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       }
     }, [internalKeys, selectedKeys, setSelectedKeys]);
 
-    // const stageChanges = (newValues) => {
-    //   console.log("_stage changes", newValues);
-    //   setStagedKeys(newValues);
-    // };
+    const stageChanges = (selectedValues: Selection) => {
+      setStagedKeys(selectedValues);
+      if (autoCommit) setSelectedKeys(selectedValues);
+    };
 
     const saveChanges = () => setSelectedKeys(stagedKeys);
     const clearChanges = () => setStagedKeys(new Set());
@@ -762,7 +762,8 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
           // orientation="horizontal"
           orientation={orientation}
           selectedKeys={stagedKeys}
-          onSelectionChange={setStagedKeys}
+          // onSelectionChange={setStagedKeys}
+          onSelectionChange={stageChanges}
           disabledKeys={disabledKeys}
           className={
             // props.className

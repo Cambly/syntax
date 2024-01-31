@@ -59,6 +59,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectList.Chip label="San Francisco" value="sf" />
           <RichSelectList.Chip label="New York" value="ny" disabled />
           <RichSelectList.Chip label="Los Angeles" value="la" />
+          <RichSelectList.Chip label="Tulsa" value="tulsa" />
         </RichSelectList.OptGroup>
         <RichSelectList.OptGroup label="Times">
           <RichSelectList.Chip label="Morning" value="morning" />
@@ -150,6 +151,7 @@ export const VeryLongContent = (): ReactElement => {
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />
         <RichSelectList.Chip label="Los Angeles" value="la" />
+        <RichSelectList.Chip label="Tulsa" value="tulsa" />
         <RichSelectList.Chip label="Morning" value="morning" />
         <RichSelectList.Chip label="Afternoon" value="afternoon" />
         <RichSelectList.Chip label="Evening" value="evening" disabled />
@@ -284,7 +286,7 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
       <RichSelectList
         multiple
         label="Label"
-        selectedValue="opt1"
+        selectedValues={["opt1"]}
         placeholderText="Placeholder"
         helperText="When `autoCommit` is false, the user must click the button to commit their changes"
         autoCommit={false}
@@ -297,6 +299,7 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
           <RichSelectList.Chip label="San Francisco" value="sf" />
           <RichSelectList.Chip label="New York" value="ny" disabled />
           <RichSelectList.Chip label="Los Angeles" value="la" />
+          <RichSelectList.Chip label="Tulsa" value="tulsa" />
         </RichSelectList.OptGroup>
       </RichSelectList>
     );
@@ -312,7 +315,6 @@ const ControlledRichSelectList = ({
     <Box display="flex" direction="column" gap={2}>
       <RichSelectList
         {...props}
-        data-testid="box"
         selectedValues={value}
         onChange={(v) => setValue(v)}
       />
@@ -326,9 +328,6 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
   typeof RichSelectList
 > = {
   render: () => {
-    // const [selectedValuesMultiple, setSelectedValuesMultiple] = useState<string[] | "all">([
-    //   "opt1",
-    // ]);
     return (
       <Box display="flex" direction="column" gap={2}>
         <ControlledRichSelectList
@@ -337,10 +336,11 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           helperText="When `autoCommit` is false, the user must click the button to commit their changes"
           autoCommit={false}
         >
-          <RichSelectList.OptGroup label="People">
+          <RichSelectList.OptGroup label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
             <RichSelectList.Chip label="New York" value="ny" disabled />
             <RichSelectList.Chip label="Los Angeles" value="la" />
+            <RichSelectList.Chip label="Tulsa" value="tulsa" />
           </RichSelectList.OptGroup>
         </ControlledRichSelectList>
 
@@ -350,29 +350,32 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           helperText="When `autoCommit` is false, the user must click the button to commit their changes"
           autoCommit={false}
         >
-          <RichSelectList.OptGroup label="People">
+          <RichSelectList.OptGroup label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
             <RichSelectList.Chip label="New York" value="ny" disabled />
             <RichSelectList.Chip label="Los Angeles" value="la" />
+            <RichSelectList.Chip label="Tulsa" value="tulsa" />
           </RichSelectList.OptGroup>
         </ControlledRichSelectList>
-        {/*
-        <RichSelectBox
-          multiple
-          label="Label (old one)"
-          selectedValues={selectedValues}
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
-          onChange={setSelectedValues}
-          // defaultSelectedValues={["la", "ny"]}
-        >
-          <RichSelectBox.OptGroup label="People">
-            <RichSelectBox.Chip label="San Francisco" value="sf" />
-            <RichSelectBox.Chip label="New York" value="ny" disabled />
-            <RichSelectBox.Chip label="Los Angeles" value="la" />
-          </RichSelectBox.OptGroup>
-        </RichSelectBox> */}
       </Box>
     );
   },
+};
+
+export const AutoCommit: StoryObj<typeof RichSelectList> = {
+  render: () => (
+    <RichSelectList
+      label="Label"
+      helperText="When `autoCommit` is true, the user's changes are automatically committed"
+      autoCommit
+      onChange={() => undefined}
+    >
+      <RichSelectList.OptGroup label="People">
+        <RichSelectList.Chip label="San Francisco" value="sf" />
+        <RichSelectList.Chip label="New York" value="ny" disabled />
+        <RichSelectList.Chip label="Los Angeles" value="la" />
+        <RichSelectList.Chip label="Tulsa" value="tulsa" />
+      </RichSelectList.OptGroup>
+    </RichSelectList>
+  ),
 };

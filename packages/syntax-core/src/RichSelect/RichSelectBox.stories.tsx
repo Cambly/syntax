@@ -57,7 +57,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         <RichSelectBox.OptGroup label="Places">
           <RichSelectBox.Chip label="San Francisco" value="sf" />
           <RichSelectBox.Chip label="New York" value="ny" disabled />
-          <RichSelectBox.Chip label="Los Angeles" value="la" />
+          <RichSelectBox.Chip label="Tulsa" value="tulsa" />
         </RichSelectBox.OptGroup>
         <RichSelectBox.OptGroup label="Times">
           <RichSelectBox.Chip label="Morning" value="morning" />
@@ -139,7 +139,7 @@ export const VeryLongContent = (): ReactElement => {
         <RichSelectBox.Chip selected label="Joe" value="joe" />
         <RichSelectBox.Chip label="San Francisco" value="sf" />
         <RichSelectBox.Chip label="New York" value="ny" disabled />
-        <RichSelectBox.Chip label="Los Angeles" value="la" />
+        <RichSelectBox.Chip label="Tulsa" value="tulsa" />
         <RichSelectBox.Chip label="Morning" value="morning" />
         <RichSelectBox.Chip label="Afternoon" value="afternoon" />
         <RichSelectBox.Chip label="Evening" value="evening" disabled />
@@ -228,12 +228,7 @@ const RichSelectBoxInteractive = (): ReactElement => {
       >
         <RichSelectBox.OptGroup label="People">
           <RichSelectBox.Chip label="New York" value="ny" disabled />
-          <RichSelectBox.Chip
-            label="Los Angeles"
-            value="la"
-            selected
-            disabled
-          />
+          <RichSelectBox.Chip label="Tulsa" value="tulsa" selected disabled />
           <RichSelectBox.Chip label="Morning" value="morning" />
           <RichSelectBox.Chip label="Afternoon" value="afternoon" selected />
         </RichSelectBox.OptGroup>
@@ -284,7 +279,9 @@ const ControlledRichSelectBox = ({
   selectedValues = [],
   ...props
 }: Omit<RichSelectBoxProps, "onChange">) => {
-  const [value, setValue] = useState(selectedValues);
+  const [value, setValue] = useState<string[] | "all" | undefined>(
+    selectedValues,
+  );
   return (
     <Box display="flex" direction="column" gap={2}>
       <RichSelectBox
@@ -299,15 +296,10 @@ const ControlledRichSelectBox = ({
   );
 };
 
-export const NoAutoCommitControlledMultipleSelect: StoryObj<
-  typeof RichSelectBox
-> = {
+export const Controlled: StoryObj<typeof RichSelectBox> = {
   render: () => {
-    // const [selectedValuesMultiple, setSelectedValuesMultiple] = useState<string[] | "all">([
-    //   "opt1",
-    // ]);
     return (
-      <Box display="flex" direction="column" gap={2}>
+      <Box display="flex" direction="column" gap={4}>
         <ControlledRichSelectBox
           multiple
           label="Multiple select"
@@ -318,7 +310,7 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           <RichSelectBox.OptGroup label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
-            <RichSelectBox.Chip label="Los Angeles" value="la" />
+            <RichSelectBox.Chip label="Tulsa" value="tulsa" />
           </RichSelectBox.OptGroup>
         </ControlledRichSelectBox>
 
@@ -332,59 +324,38 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           <RichSelectBox.OptGroup label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
-            <RichSelectBox.Chip label="Los Angeles" value="la" />
+            <RichSelectBox.Chip label="Tulsa" value="tulsa" />
           </RichSelectBox.OptGroup>
         </ControlledRichSelectBox>
-        {/*
-        <RichSelectBox
+
+        <ControlledRichSelectBox
           multiple
-          label="Label (old one)"
-          selectedValues={selectedValues}
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
-          onChange={setSelectedValues}
-          // defaultSelectedValues={["la", "ny"]}
+          label="Multiple select, autoCommit"
+          helperText="When `autoCommit` is true, the user's changes are automatically committed"
+          autoCommit
+          selectedValues={["tulsa"]}
         >
           <RichSelectBox.OptGroup label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
-            <RichSelectBox.Chip label="Los Angeles" value="la" />
+            <RichSelectBox.Chip label="Tulsa" value="tulsa" />
           </RichSelectBox.OptGroup>
-        </RichSelectBox> */}
+        </ControlledRichSelectBox>
+
+        <ControlledRichSelectBox
+          multiple={false}
+          label="Single select, autoCommit"
+          helperText="When `autoCommit` is true, the user's changes are automatically committed"
+          autoCommit
+          selectedValues={["tulsa"]}
+        >
+          <RichSelectBox.OptGroup label="People">
+            <RichSelectBox.Chip label="San Francisco" value="sf" />
+            <RichSelectBox.Chip label="New York" value="ny" disabled />
+            <RichSelectBox.Chip label="Tulsa" value="tulsa" />
+          </RichSelectBox.OptGroup>
+        </ControlledRichSelectBox>
       </Box>
     );
   },
 };
-/*
-const ControlledRichSelectBox = ({
-  selectedValues,
-  ...props
-}: RichSelectBoxProps) => {
-  const [value, setValue] = useState(selectedValues);
-  return (
-    <RichSelectBox
-      {...props}
-      selectedValues={value}
-      onChange={(v) => setValue(v)}
-    />
-  );
-};
-
-function renderControlledRichSelectBox(
-  props: Partial<RichSelectBoxProps> = {},
-): ReturnType<typeof render> {
-  return render(
-    <ControlledRichSelectBox
-      data-testid="box"
-      {...defaultRequiredProps}
-      {...props}
-    >
-      <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
-        <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
-        <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
-        <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-      </RichSelectBox.OptGroup>
-    </ControlledRichSelectBox>,
-  );
-}
-*/
