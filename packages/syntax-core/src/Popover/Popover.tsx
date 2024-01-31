@@ -4,7 +4,7 @@ import { mergeProps } from "react-aria";
 import {
   Popover as ReactAriaPopover,
   type PopoverProps as ReactAriaPopoverProps,
-  DialogTrigger as ReactAriaDialogTrigger,
+  MenuTrigger as ReactAriaMenuTrigger,
   composeRenderProps,
 } from "react-aria-components";
 import Triggerable from "../react-aria-utils/Triggerable";
@@ -172,14 +172,14 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   if (!children) return modalNode;
   return (
-    <ReactAriaDialogTrigger
+    <ReactAriaMenuTrigger
       defaultOpen={initialOpen}
       isOpen={open}
       onOpenChange={onOpenChange}
     >
       {<Triggerable>{children}</Triggerable>}
       {modal ? modalNode : popoverNode}
-    </ReactAriaDialogTrigger>
+    </ReactAriaMenuTrigger>
   );
 });
 
