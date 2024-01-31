@@ -161,7 +161,7 @@ function convertSelection(
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectList(props: RichSelectListProps): ReactElement {
+function RichSelectListInner(props: RichSelectListProps): ReactElement {
   const {
     autoCommit,
     children,
@@ -184,7 +184,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     secondaryButtonAccessibilityLabel = "Clear",
     selectedValue = "",
     selectedValues: selectedValuesProp,
-    defaultSelectedValues: defaultSelectedKeys,
+    defaultSelectedValues: defaultSelectedValuesProp,
     size = "md",
   } = props;
   const reactId = useId();
@@ -192,17 +192,17 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   const disabled = !isHydrated || disabledProp;
   const selectId = id ?? reactId;
 
-  const _selectedKeysProp = useMemo(
-    () => convertSelection(props.selectedValues),
-    [props.selectedValues],
+  const selectedKeysProp = useMemo(
+    () => convertSelection(selectedValuesProp),
+    [selectedValuesProp],
   );
-  const _defaultSelectedKeys = useMemo(
-    () => convertSelection(props.defaultSelectedValues, new Set()),
-    [props.defaultSelectedValues],
+  const defaultSelectedKeys = useMemo(
+    () => convertSelection(defaultSelectedValuesProp, new Set()),
+    [defaultSelectedValuesProp],
   );
-  const [_selectedKeys, _setSelectedKeys] = useControlledState(
-    _selectedKeysProp,
-    _defaultSelectedKeys,
+  const [selectedKeys, setSelectedKeys] = useControlledState(
+    selectedKeysProp,
+    defaultSelectedKeys,
     (value) => {
       if (value === "all") return onChange(value);
       onChange([...value].map(String));
@@ -212,14 +212,14 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   const selectedTextValue = useMemo(() => {
     if (selectTextValue) {
       return selectTextValue({
-        selectedValues: _selectedKeys ? [..._selectedKeys].map(String) : [],
+        selectedValues: selectedKeys ? [...selectedKeys].map(String) : [],
         placeholderText,
       });
     }
-    if (_selectedKeys === "all") return "all";
-    if (!_selectedKeys.size) return placeholderText;
-    return `${_selectedKeys.size} selected`;
-  }, [selectTextValue, _selectedKeys, placeholderText]);
+    if (selectedKeys === "all") return "all";
+    if (!selectedKeys.size) return placeholderText;
+    return `${selectedKeys.size} selected`;
+  }, [selectTextValue, selectedKeys, placeholderText]);
 
   const listBoxNode = (
     <RichSelectBox
@@ -227,13 +227,13 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       autoCommit={autoCommit}
       multiple={multiple}
       orientation="horizontal"
-      onChange={_setSelectedKeys}
+      onChange={setSelectedKeys}
       size={size}
       label={label}
       errorText={errorText}
       helperText={helperText}
       disabled={disabled}
-      selectedValues={_selectedKeys}
+      selectedValues={selectedKeys}
       defaultSelectedValues={defaultSelectedKeys}
       primaryButtonText={primaryButtonText}
       primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
@@ -317,6 +317,10 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       </div>
     </>
   );
+}
+
+function RichSelectList(props: RichSelectListProps): ReactElement {
+  return <RichSelectListInner {...props} />;
 }
 
 export default Object.assign(RichSelectList, {
