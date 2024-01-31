@@ -607,6 +607,17 @@ function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
   return true;
 }
 
+function convertSelection(
+  selection: "all" | Iterable<Key> | undefined,
+  defaultValue: "all" | Set<Key>,
+): "all" | Set<Key> {
+  if (!selection) {
+    return defaultValue;
+  }
+  if (selection === "all") return "all";
+  return new Set(selection);
+}
+
 const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBoxInner(props, ref): ReactElement {
     const {
@@ -674,52 +685,147 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
      * stagedValues
      * committedValues
      */
-
-    const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
-      new Set(defaultSelectedKeys),
+    // begin rac
+    const _selectedKeysProp = useMemo(
+      () => convertSelection(props.selectedValues),
+      [props.selectedValues],
     );
-    const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
-    const [committed, setCommitted] = useState<Selection | undefined>(
-      selectedKeys,
+    const _defaultSelectedKeys = useMemo(
+      () => convertSelection(props.defaultSelectedValues, new Set()),
+      [props.defaultSelectedValues],
     );
+    const [_selectedKeys, _setSelectedKeys] = useControlledState(
+      _selectedKeysProp,
+      _defaultSelectedKeys,
+      // props.onSelectionChange,
+      (value) => {
+        console.log("RichSelectBoxInner change _selectedKeys", value);
+        // if (value === "all") return value;
+        // return new Set(value);
+      },
+    );
+    const [_stagedKeys, _setStagedKeys] = useState<Set<Key> | "all">(
+      _selectedKeys,
+    );
+    // const [_stagedKeys, _setStagedKeys] = useControlledState(
+    //   _selectedKeys,
+    //   _selectedKeys,
+    //   // _selectedKeysProp,
+    //   // _defaultSelectedKeys,
+    //   (value) => {
+    //     console.log("RichSelectBoxInner change _stagedKeys", value);
+    //     // if (value === "all") return value;
+    //     // return new Set(value);
+    //   },
+    // );
 
-    const changedRef = React.useRef<Selection | undefined>(selectedKeys);
-    const committedRef = React.useRef<Selection | undefined>(selectedKeys);
-
-    const commit = useCallback(() => {
-      const _changed = changedRef.current;
-      if (isEqualSelection(changedRef.current, committedRef.current)) return;
-      changedRef.current = undefined;
-      setCommitted(_changed);
-    }, []);
-
-    const clear = useCallback(() => {
-      setSelectedKeys(new Set());
-      setChanged(new Set());
-    }, []);
-
+    const [_internalKeys, _setInternalKeys] = useState<Set<Key> | undefined>(
+      undefined,
+    );
+    // Merge internalValues with initialSelectedValues
     useEffect(() => {
-      if (isEqualSelection(changedRef.current, selectedKeys)) return;
-      changedRef.current = selectedKeys;
-      if (autoCommit) return commit();
-      setChanged((curr) => {
-        if (selectedKeys === curr) return curr;
-        return selectedKeys;
-      });
-    }, [autoCommit, commit, selectedKeys]);
-    useEffect(() => {
-      if (!autoCommit) return;
-      commit();
-    }, [autoCommit, commit, changed]);
-    useEffect(() => {
-      if (committed === changedRef.current) return;
+      if (_selectedKeys === "all") return "all";
+      if (_internalKeys) {
+        _setSelectedKeys(
+          new Set([..._selectedKeys, ..._internalKeys].filter(Boolean)),
+        ); // filter out duplicates
+      }
+    }, [_internalKeys, _selectedKeys, _setSelectedKeys]);
+
+    const _stageChanges = (newValues) => {
+      console.log("_stage changes", newValues);
+      _setStagedKeys(newValues);
+    };
+
+    const _saveChanges = () => {
+      _setSelectedKeys(_stagedKeys);
+      // _setStagedKeys([]);
+      // _setStagedKeys(new Set());
       // check if new value to commit is shallow equal to the current committed value
-      if (isEqualSelection(committed, committedRef.current)) return;
-      committedRef.current = committed;
-      if (isString(committed)) return onChange(committed);
-      if (!committed) return onChange([]);
-      onChange([...committed].map(String));
-    }, [committed, onChange]);
+      if (isEqualSelection(_stagedKeys, _selectedKeys)) return;
+
+      if (_stagedKeys === "all") return onChange("all");
+      console.log("");
+      onChange([..._stagedKeys].map(String)); // Notify parent about the changes
+    };
+
+    const _clearChanges = () => {
+      _setStagedKeys(new Set());
+    };
+
+    // const _handleSelectionChange = useCallback((values: "all" | Set<Key>) => {
+    //   // console.log("RichSelectBoxInner change _handleSelectionChange", values);
+    //   _stageChanges(values);
+    // }, []);
+
+    // const _disabledKeysProp = useMemo(
+    //   () => (props.disabledKeys ? new Set(props.disabledKeys) : new Set<Key>()),
+    //   [props.disabledKeys],
+    // );
+    // end rac
+
+    // const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
+    //   new Set(defaultSelectedKeys),
+    // );
+    // const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
+    // const [committed, setCommitted] = useState<Selection | undefined>(
+    //   selectedKeys,
+    // );
+
+    // const changedRef = React.useRef<Selection | undefined>(selectedKeys);
+    // const committedRef = React.useRef<Selection | undefined>(selectedKeys);
+
+    // const commit = useCallback(() => {
+    //   const _changed = changedRef.current;
+    //   if (isEqualSelection(changedRef.current, committedRef.current)) return;
+    //   changedRef.current = undefined;
+    //   setCommitted(_changed);
+    // }, []);
+
+    // const clear = useCallback(() => {
+    //   setSelectedKeys(new Set());
+    //   setChanged(new Set());
+    // }, []);
+
+    // useEffect(() => {
+    //   if (isEqualSelection(changedRef.current, selectedKeys)) return;
+    //   changedRef.current = selectedKeys;
+    //   if (autoCommit) return commit();
+    //   setChanged((curr) => {
+    //     if (selectedKeys === curr) return curr;
+    //     return selectedKeys;
+    //   });
+    // }, [autoCommit, commit, selectedKeys]);
+    // useEffect(() => {
+    //   if (!autoCommit) return;
+    //   commit();
+    // }, [autoCommit, commit, changed]);
+    // useEffect(() => {
+    //   if (committed === changedRef.current) return;
+    //   // check if new value to commit is shallow equal to the current committed value
+    //   if (isEqualSelection(committed, committedRef.current)) return;
+    //   committedRef.current = committed;
+    //   if (isString(committed)) return onChange(committed);
+    //   if (!committed) return onChange([]);
+    //   onChange([...committed].map(String));
+    // }, [committed, onChange]);
+
+    //
+    //
+    //
+    // console.log("rsb", {
+    //   selectedKeys,
+    //   changed,
+    //   committed,
+    //   defaultSelectedValuesProp,
+    //   selectedValuesProp,
+    //   newish: {
+    //     _selectedKeysProp,
+    //     _selectedKeys,
+    //     _defaultSelectedKeys,
+    //     _stagedKeys,
+    //   },
+    // });
 
     // construct collection from composed children tree
     // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
@@ -765,11 +871,16 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
           // orientation="horizontal"
           orientation={orientation}
           // selectedKeys={selectedValuesProp || selectedKeys}
-          selectedKeys={changed}
-          onSelectionChange={(curr) => {
-            setSelectedKeys(curr);
-            console.log("curr", curr);
-          }}
+          // selectedKeys={changed}
+          selectedKeys={_stagedKeys}
+          onSelectionChange={_setStagedKeys}
+          // onSelectionChange={(curr) => {
+          //   // setSelectedKeys(curr);
+          //   // _handleSelectionChange(curr);
+          //   _stageChanges(convertSelection(curr, new Set()));
+
+          //   // console.log("onSelectionChange RichSelectBox curr", curr);
+          // }}
           disabledKeys={disabledKeys}
           className={
             // props.className
@@ -781,7 +892,8 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
         {!autoCommit && (
           <ButtonGroup orientation="horizontal">
             <Button
-              onClick={clear}
+              // onClick={clear}
+              onClick={_clearChanges}
               color={"secondary"}
               text={secondaryButtonText}
               accessibilityLabel={secondaryButtonAccessibilityLabel}
@@ -790,7 +902,8 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
                 .join("-")}
             />
             <Button
-              onClick={commit}
+              // onClick={commit}
+              onClick={_saveChanges}
               text={primaryButtonText}
               accessibilityLabel={primaryButtonAccessibilityLabel}
               color="primary"

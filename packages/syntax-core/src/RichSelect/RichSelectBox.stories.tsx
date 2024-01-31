@@ -313,6 +313,7 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           label="Multiple select"
           helperText="When `autoCommit` is false, the user must click the button to commit their changes"
           autoCommit={false}
+          selectedValues={["sf"]}
         >
           <RichSelectBox.OptGroup label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
@@ -326,6 +327,7 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           label="Single select"
           helperText="When `autoCommit` is false, the user must click the button to commit their changes"
           autoCommit={false}
+          selectedValues={["sf"]}
         >
           <RichSelectBox.OptGroup label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />

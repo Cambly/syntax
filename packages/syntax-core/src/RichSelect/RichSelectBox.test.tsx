@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import React, { useState, type ReactElement } from "react";
 import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 import { vi } from "vitest";
@@ -35,7 +35,7 @@ function simpleRichSelectBox(
   );
 }
 
-describe("richSelectList", () => {
+describe("component: RichSelectBox", () => {
   it("renders", () => {
     render(simpleRichSelectBox());
     expect(screen.getByTestId("opt1")).toBeInTheDocument();
@@ -533,6 +533,18 @@ describe("richSelectList", () => {
         </ControlledRichSelectBox>,
       );
     }
+
+    it("renders controlled selectedValues", async () => {
+      const spy = vi.fn();
+      renderControlledRichSelectBox({
+        autoCommit: false,
+        onChange: spy,
+        selectedValues: ["opt1"],
+      });
+      await act(() => vi.runAllTimers());
+      const opt1 = screen.getByTestId("opt1");
+      expect(opt1).toHaveAttribute("aria-selected", "true");
+    });
 
     it("can stage a clear of controlled selection", async () => {
       const spy = vi.fn();
