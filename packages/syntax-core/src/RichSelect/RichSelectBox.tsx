@@ -699,9 +699,10 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       _defaultSelectedKeys,
       // props.onSelectionChange,
       (value) => {
-        console.log("RichSelectBoxInner change _selectedKeys", value);
-        // if (value === "all") return value;
-        // return new Set(value);
+        // console.log("RichSelectBoxInner change _selectedKeys", value);
+        if (isEqualSelection(value, _selectedKeys)) return;
+        if (value === "all") return onChange("all");
+        onChange([...value].map(String)); // Notify parent about the changes
       },
     );
     const [_stagedKeys, _setStagedKeys] = useState<Set<Key> | "all">(
@@ -719,12 +720,14 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     //   },
     // );
 
+    // TODO: ok, time for the disabled/selected/checked composition contexts next
     const [_internalKeys, _setInternalKeys] = useState<Set<Key> | undefined>(
       undefined,
     );
+
     // Merge internalValues with initialSelectedValues
     useEffect(() => {
-      if (_selectedKeys === "all") return "all";
+      if (_selectedKeys === "all") return;
       if (_internalKeys) {
         _setSelectedKeys(
           new Set([..._selectedKeys, ..._internalKeys].filter(Boolean)),
@@ -732,26 +735,13 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       }
     }, [_internalKeys, _selectedKeys, _setSelectedKeys]);
 
-    const _stageChanges = (newValues) => {
-      console.log("_stage changes", newValues);
-      _setStagedKeys(newValues);
-    };
+    // const _stageChanges = (newValues) => {
+    //   console.log("_stage changes", newValues);
+    //   _setStagedKeys(newValues);
+    // };
 
-    const _saveChanges = () => {
-      _setSelectedKeys(_stagedKeys);
-      // _setStagedKeys([]);
-      // _setStagedKeys(new Set());
-      // check if new value to commit is shallow equal to the current committed value
-      if (isEqualSelection(_stagedKeys, _selectedKeys)) return;
-
-      if (_stagedKeys === "all") return onChange("all");
-      console.log("");
-      onChange([..._stagedKeys].map(String)); // Notify parent about the changes
-    };
-
-    const _clearChanges = () => {
-      _setStagedKeys(new Set());
-    };
+    const _saveChanges = () => _setSelectedKeys(_stagedKeys);
+    const _clearChanges = () => _setStagedKeys(new Set());
 
     // const _handleSelectionChange = useCallback((values: "all" | Set<Key>) => {
     //   // console.log("RichSelectBoxInner change _handleSelectionChange", values);
