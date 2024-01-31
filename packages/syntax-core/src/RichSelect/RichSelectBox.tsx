@@ -645,40 +645,34 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     const reactId = useId();
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
-    const selectId = id ?? reactId;
 
-    {
-      /* Okay, the idea here is that we wrap popover around the trigger
-            Trigger gets the focus styles, and the popover gets the focus styles.
-            when triggered dialog will open and elements are tabbable.
-            onChange handler is called when selected value is changed.
-            Any Interactible Syntax components are/should be selectable.
-              (wire in react-aria hooks)
-            After rendering wrapper, this component renders:
-            Context provider to wire in onChange in children to localstate in this component.
-            LocalState is made external when state is saved.
-            autosave option updates external state on child change.
-            autosave="false" displays button group to save / cancel
-            popover content needs to render it's own title?  .... or not?
+    /* Okay, the idea here is that we wrap popover around the trigger
+      Trigger gets the focus styles, and the popover gets the focus styles.
+      when triggered dialog will open and elements are tabbable.
+      onChange handler is called when selected value is changed.
+      Any Interactible Syntax components are/should be selectable.
+        (wire in react-aria hooks)
+      After rendering wrapper, this component renders:
+      Context provider to wire in onChange in children to localstate in this component.
+      LocalState is made external when state is saved.
+      autosave option updates external state on child change.
+      autosave="false" displays button group to save / cancel
+      popover content needs to render it's own title?  .... or not?
 
-            (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
+      (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
 
-            *NOTE*: need to wire in aria-labels correctly
-            https://react-spectrum.adobe.com/react-aria/useLabel.html
+      *NOTE*: need to wire in aria-labels correctly
+      https://react-spectrum.adobe.com/react-aria/useLabel.html
 
-            also: CheckboxGroup vs. RadioGroup for `multiple?: boolean` prop
+      also: CheckboxGroup vs. RadioGroup for `multiple?: boolean` prop
 
 
-            20240118:
-            - `multiple` prop: most(all we support?) browsers make it a static box
-              instead of a dropdown.  autoscrolling (ithink)
-          */
-    }
+      20240118:
+      - `multiple` prop: most(all we support?) browsers make it a static box
+        instead of a dropdown.  autoscrolling (ithink)
+    */
 
     const disabledKeys = useDisabledKeys();
-
-    // temp local var name override
-    const defaultSelectedKeys = defaultSelectedValuesProp;
 
     /**
      * selectedValues, defaultValues
@@ -686,136 +680,51 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
      * committedValues
      */
     // begin rac
-    const _selectedKeysProp = useMemo(
-      () => convertSelection(props.selectedValues),
-      [props.selectedValues],
+    const selectedKeysProp = useMemo(
+      () => convertSelection(selectedValuesProp),
+      [selectedValuesProp],
     );
-    const _defaultSelectedKeys = useMemo(
-      () => convertSelection(props.defaultSelectedValues, new Set()),
-      [props.defaultSelectedValues],
+    const defaultSelectedKeys = useMemo(
+      () => convertSelection(defaultSelectedValuesProp, new Set()),
+      [defaultSelectedValuesProp],
     );
-    const [_selectedKeys, _setSelectedKeys] = useControlledState(
-      _selectedKeysProp,
-      _defaultSelectedKeys,
+    const [selectedKeys, setSelectedKeys] = useControlledState(
+      selectedKeysProp,
+      defaultSelectedKeys,
       // props.onSelectionChange,
       (value) => {
-        // console.log("RichSelectBoxInner change _selectedKeys", value);
-        if (isEqualSelection(value, _selectedKeys)) return;
+        // console.log("RichSelectBoxInner change selectedKeys", value);
+        if (isEqualSelection(value, selectedKeys)) return;
         if (value === "all") return onChange("all");
         onChange([...value].map(String)); // Notify parent about the changes
       },
     );
-    const [_stagedKeys, _setStagedKeys] = useState<Set<Key> | "all">(
-      _selectedKeys,
+    const [stagedKeys, setStagedKeys] = useState<Set<Key> | "all">(
+      selectedKeys,
     );
-    // const [_stagedKeys, _setStagedKeys] = useControlledState(
-    //   _selectedKeys,
-    //   _selectedKeys,
-    //   // _selectedKeysProp,
-    //   // _defaultSelectedKeys,
-    //   (value) => {
-    //     console.log("RichSelectBoxInner change _stagedKeys", value);
-    //     // if (value === "all") return value;
-    //     // return new Set(value);
-    //   },
-    // );
 
     // TODO: ok, time for the disabled/selected/checked composition contexts next
-    const [_internalKeys, _setInternalKeys] = useState<Set<Key> | undefined>(
+    const [internalKeys, setInternalKeys] = useState<Set<Key> | undefined>(
       undefined,
     );
 
     // Merge internalValues with initialSelectedValues
     useEffect(() => {
-      if (_selectedKeys === "all") return;
-      if (_internalKeys) {
-        _setSelectedKeys(
-          new Set([..._selectedKeys, ..._internalKeys].filter(Boolean)),
+      if (selectedKeys === "all") return;
+      if (internalKeys) {
+        setSelectedKeys(
+          new Set([...selectedKeys, ...internalKeys].filter(Boolean)),
         ); // filter out duplicates
       }
-    }, [_internalKeys, _selectedKeys, _setSelectedKeys]);
+    }, [internalKeys, selectedKeys, setSelectedKeys]);
 
-    // const _stageChanges = (newValues) => {
+    // const stageChanges = (newValues) => {
     //   console.log("_stage changes", newValues);
-    //   _setStagedKeys(newValues);
+    //   setStagedKeys(newValues);
     // };
 
-    const _saveChanges = () => _setSelectedKeys(_stagedKeys);
-    const _clearChanges = () => _setStagedKeys(new Set());
-
-    // const _handleSelectionChange = useCallback((values: "all" | Set<Key>) => {
-    //   // console.log("RichSelectBoxInner change _handleSelectionChange", values);
-    //   _stageChanges(values);
-    // }, []);
-
-    // const _disabledKeysProp = useMemo(
-    //   () => (props.disabledKeys ? new Set(props.disabledKeys) : new Set<Key>()),
-    //   [props.disabledKeys],
-    // );
-    // end rac
-
-    // const [selectedKeys, setSelectedKeys] = useState<Selection | undefined>(
-    //   new Set(defaultSelectedKeys),
-    // );
-    // const [changed, setChanged] = useState<Selection | undefined>(selectedKeys);
-    // const [committed, setCommitted] = useState<Selection | undefined>(
-    //   selectedKeys,
-    // );
-
-    // const changedRef = React.useRef<Selection | undefined>(selectedKeys);
-    // const committedRef = React.useRef<Selection | undefined>(selectedKeys);
-
-    // const commit = useCallback(() => {
-    //   const _changed = changedRef.current;
-    //   if (isEqualSelection(changedRef.current, committedRef.current)) return;
-    //   changedRef.current = undefined;
-    //   setCommitted(_changed);
-    // }, []);
-
-    // const clear = useCallback(() => {
-    //   setSelectedKeys(new Set());
-    //   setChanged(new Set());
-    // }, []);
-
-    // useEffect(() => {
-    //   if (isEqualSelection(changedRef.current, selectedKeys)) return;
-    //   changedRef.current = selectedKeys;
-    //   if (autoCommit) return commit();
-    //   setChanged((curr) => {
-    //     if (selectedKeys === curr) return curr;
-    //     return selectedKeys;
-    //   });
-    // }, [autoCommit, commit, selectedKeys]);
-    // useEffect(() => {
-    //   if (!autoCommit) return;
-    //   commit();
-    // }, [autoCommit, commit, changed]);
-    // useEffect(() => {
-    //   if (committed === changedRef.current) return;
-    //   // check if new value to commit is shallow equal to the current committed value
-    //   if (isEqualSelection(committed, committedRef.current)) return;
-    //   committedRef.current = committed;
-    //   if (isString(committed)) return onChange(committed);
-    //   if (!committed) return onChange([]);
-    //   onChange([...committed].map(String));
-    // }, [committed, onChange]);
-
-    //
-    //
-    //
-    // console.log("rsb", {
-    //   selectedKeys,
-    //   changed,
-    //   committed,
-    //   defaultSelectedValuesProp,
-    //   selectedValuesProp,
-    //   newish: {
-    //     _selectedKeysProp,
-    //     _selectedKeys,
-    //     _defaultSelectedKeys,
-    //     _stagedKeys,
-    //   },
-    // });
+    const saveChanges = () => setSelectedKeys(stagedKeys);
+    const clearChanges = () => setStagedKeys(new Set());
 
     // construct collection from composed children tree
     // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
@@ -851,7 +760,6 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       >
         <ReactAriaListBox
           ref={ref}
-          // id={selectId}
           aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
           autoFocus={dialog}
           // items={props.items} // TODO: implement Ken's proposal
@@ -860,17 +768,8 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
           shouldFocusWrap={dialog}
           // orientation="horizontal"
           orientation={orientation}
-          // selectedKeys={selectedValuesProp || selectedKeys}
-          // selectedKeys={changed}
-          selectedKeys={_stagedKeys}
-          onSelectionChange={_setStagedKeys}
-          // onSelectionChange={(curr) => {
-          //   // setSelectedKeys(curr);
-          //   // _handleSelectionChange(curr);
-          //   _stageChanges(convertSelection(curr, new Set()));
-
-          //   // console.log("onSelectionChange RichSelectBox curr", curr);
-          // }}
+          selectedKeys={stagedKeys}
+          onSelectionChange={setStagedKeys}
           disabledKeys={disabledKeys}
           className={
             // props.className
@@ -882,8 +781,7 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
         {!autoCommit && (
           <ButtonGroup orientation="horizontal">
             <Button
-              // onClick={clear}
-              onClick={_clearChanges}
+              onClick={clearChanges}
               color={"secondary"}
               text={secondaryButtonText}
               accessibilityLabel={secondaryButtonAccessibilityLabel}
@@ -892,8 +790,7 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
                 .join("-")}
             />
             <Button
-              // onClick={commit}
-              onClick={_saveChanges}
+              onClick={saveChanges}
               text={primaryButtonText}
               accessibilityLabel={primaryButtonAccessibilityLabel}
               color="primary"

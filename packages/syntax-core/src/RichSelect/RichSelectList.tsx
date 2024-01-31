@@ -28,14 +28,7 @@
  *    - ...
  *
  */
-import React, {
-  type ReactElement,
-  useId,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { type ReactElement, useId, useMemo } from "react";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -46,11 +39,9 @@ import useIsHydrated from "../useIsHydrated";
 import { AriaPopover } from "../Popover/Popover";
 import { type Key } from "react-aria";
 import {
-  ListBox as ReactAriaListBox,
   MenuTrigger as ReactAriaMenuTrigger,
   Label as ReactAriaLabel,
   Button as ReactAriaButton,
-  type Selection,
 } from "react-aria-components";
 import { useControlledState } from "@react-stately/utils";
 
@@ -59,10 +50,7 @@ import RichSelectOptGroup from "./RichSelectOptGroup";
 import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
-import DisabledKeysProvider, { useDisabledKeys } from "./DisabledKeysProvider";
 import RichSelectRadioButton from "./RichSelectRadioButton";
-import Button from "../Button/Button";
-import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 
 const iconSize = {
@@ -141,9 +129,7 @@ export type RichSelectListProps = RichSelectBoxProps & {
   // DIFF THAN SELECTLIST
   autoCommit?: boolean;
   dropdown?: boolean;
-  // onChange: React.ChangeEventHandler<HTMLSelectElement>;
   onChange: (selectedValues: string[] | "all") => void;
-  // onChange: (selectedValues?: Set<string> | "all") => void;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
@@ -175,7 +161,7 @@ function convertSelection(
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner(props: RichSelectListProps): ReactElement {
+function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
     autoCommit,
     children,
@@ -206,36 +192,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   const disabled = !isHydrated || disabledProp;
   const selectId = id ?? reactId;
 
-  {
-    /* Okay, the idea here is that we wrap popover around the trigger
-          Trigger gets the focus styles, and the popover gets the focus styles.
-          when triggered dialog will open and elements are tabbable.
-          onChange handler is called when selected value is changed.
-          Any Interactible Syntax components are/should be selectable.
-            (wire in react-aria hooks)
-          After rendering wrapper, this component renders:
-          Context provider to wire in onChange in children to localstate in this component.
-          LocalState is made external when state is saved.
-          autosave option updates external state on child change.
-          autosave="false" displays button group to save / cancel
-          popover content needs to render it's own title?  .... or not?
-
-          (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
-
-          *NOTE*: need to wire in aria-labels correctly
-          https://react-spectrum.adobe.com/react-aria/useLabel.html
-
-          also: CheckboxGroup vs. RadioGroup for `multiple?: boolean` prop
-
-
-          20240118:
-          - `multiple` prop: most(all we support?) browsers make it a static box
-            instead of a dropdown.  autoscrolling (ithink)
-        */
-  }
-
-  // const disabledKeys = useDisabledKeys();
-
   const _selectedKeysProp = useMemo(
     () => convertSelection(props.selectedValues),
     [props.selectedValues],
@@ -247,14 +203,9 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
   const [_selectedKeys, _setSelectedKeys] = useControlledState(
     _selectedKeysProp,
     _defaultSelectedKeys,
-    // props.onSelectionChange,
     (value) => {
-      console.log("RichSelectListInner change _selectedKeys", value);
       if (value === "all") return onChange(value);
       onChange([...value].map(String));
-
-      // if (value === "all") return value;
-      // return new Set(value);
     },
   );
 
@@ -270,32 +221,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
     return `${_selectedKeys.size} selected`;
   }, [selectTextValue, _selectedKeys, placeholderText]);
 
-  // const [selectedValuesState, setSelectedValuesState] = useState(
-  //   selectedValuesProp ?? defaultSelectedKeys,
-  // );
-
-  // useEffect(() => {
-  //   if (!selectedValuesState) return;
-  //   onChange(selectedValuesState);
-  // }, [onChange, selectedValuesState]);
-
-  // const selectedTextValue = useMemo(() => {
-  //   if (selectTextValue) {
-  //     return selectTextValue({
-  //       selectedValues: selectedValuesState
-  //         ? [...selectedValuesState].map(String)
-  //         : [],
-  //       placeholderText,
-  //     });
-  //   }
-  //   if (selectedValuesState === "all") return "all";
-  //   if (!selectedValuesState?.length) return placeholderText;
-  //   return `${selectedValuesState.length} selected`;
-  // }, [selectedValuesState, placeholderText, selectTextValue]);
-
-  // console.log("rsl render", { selectedValuesState, selectedValuesProp });
-  // console.log("rsl render", { _selectedKeys, selectedValuesProp });
-
   const listBoxNode = (
     <RichSelectBox
       dialog // TODO: better prop name?
@@ -303,19 +228,11 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
       multiple={multiple}
       orientation="horizontal"
       onChange={_setSelectedKeys}
-      // onChange={(selected) => {
-      //   // console.log("list onChange of box", selected);
-      //   // setSelectedValuesState(selected);
-      //   _setSelectedKeys(selected);
-      //   // onChange(selected);
-      // }}
       size={size}
       label={label}
       errorText={errorText}
       helperText={helperText}
       disabled={disabled}
-      // selectedValues={selectedValuesProp}
-      // selectedValues={selectedValuesState}
       selectedValues={_selectedKeys}
       defaultSelectedValues={defaultSelectedKeys}
       primaryButtonText={primaryButtonText}
@@ -399,14 +316,6 @@ function RichSelectListInner(props: RichSelectListProps): ReactElement {
         )}
       </div>
     </>
-  );
-}
-
-function RichSelectList(props: RichSelectListProps): ReactElement {
-  return (
-    // <DisabledKeysProvider isolate>
-    <RichSelectListInner {...props} />
-    // </DisabledKeysProvider>
   );
 }
 
