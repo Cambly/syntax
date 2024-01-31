@@ -385,13 +385,6 @@ function AriaListBox<T extends object>(
     [selectedKeysProp],
   );
 
-  console.log("AriaListBox", {
-    disabledKeysProp,
-    disabledKeysState,
-    selectedKeysProp,
-    selectedKeysState,
-  });
-
   // Create state based on the incoming props
   // const localRef = useRef(null);
   // const ref = mergeRefs(forwardedRef, localRef);

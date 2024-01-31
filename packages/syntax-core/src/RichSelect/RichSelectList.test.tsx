@@ -762,8 +762,124 @@ describe("richSelectList", () => {
     });
   });
 
+  describe("overlay behavior", () => {
+    it("closes the dialog when user clicks outside of the dialog", async () => {
+      render(simpleRichSelectList());
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+      await user.click(document.body);
+      await act(() => vi.runAllTimers());
+      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    });
+
+    it("closes the dialog when user presses escape", async () => {
+      render(simpleRichSelectList());
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+      await user.keyboard("{Escape}");
+      await act(() => vi.runAllTimers());
+      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    });
+
+    it("closes the dialog when user saves a selection", async () => {
+      render(simpleRichSelectList());
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("primary-button"));
+      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    });
+
+    it("keeps state of selection between dialog open/close", async () => {
+      render(simpleRichSelectList({ multiple: true }));
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(screen.getByTestId("primary-button"));
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+      expect(screen.getByTestId("opt2")).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+    });
+
+    it("clears state of staged selection between dialog open/close, click on outside", async () => {
+      render(simpleRichSelectList({ multiple: true }));
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("opt2"));
+      await user.click(document.body);
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+      expect(screen.getByTestId("opt2")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+    });
+
+    it("clears state of staged selection between dialog open/close, Escape key", async () => {
+      render(simpleRichSelectList({ multiple: true }));
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("opt2"));
+      await user.keyboard("{Escape}");
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+      expect(screen.getByTestId("opt2")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+    });
+
+    it("keeps state of single selection between dialog open/close", async () => {
+      render(simpleRichSelectList());
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(document.body);
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      );
+    });
+
+    it("does not keep state of staged single selection between dialog open/close", async () => {
+      render(simpleRichSelectList());
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("primary-button"));
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+    });
+  });
+
   describe("controlled", () => {
-    it("controlled, can stage a clear of controlled selection", async () => {
+    it("can clear a staged controlled selection", async () => {
       const spy = vi.fn();
       render(
         controlledRichSelectList({
@@ -773,18 +889,68 @@ describe("richSelectList", () => {
       );
       await user.click(screen.getByTestId("trigger"));
       await act(() => vi.runAllTimers());
-      let opt1 = screen.getByTestId("opt1");
-      await user.click(opt1);
-      expect(opt1).toHaveAttribute("aria-selected", "true"); // staged selection
+      await user.click(screen.getByTestId("opt1"));
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        // staged selection
+        "aria-selected",
+        "true",
+      );
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
       await user.click(screen.getByTestId("trigger")); // re-open overlay
       await act(() => vi.runAllTimers());
-      opt1 = screen.getByTestId("opt1"); // opt1 was re-created when overlay re-opened. must get new reference
       await user.click(screen.getByTestId("secondary-button"));
-      expect(opt1).toHaveAttribute("aria-selected", "false"); // staged selection
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        // staged selection not retained
+        "aria-selected",
+        "false",
+      );
+      expect(spy).toHaveBeenCalledTimes(1); // not called again
+      await user.click(screen.getByTestId("primary-button"));
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenLastCalledWith([]);
+    });
+
+    it("can clear a staged controlled multiple selection", async () => {
+      const spy = vi.fn();
+      render(
+        controlledRichSelectList({
+          onChange: spy,
+          selectedValues: [],
+          multiple: true,
+        }),
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("opt1"));
+      await user.click(screen.getByTestId("opt3"));
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        // staged selection
+        "aria-selected",
+        "true",
+      );
+      expect(screen.getByTestId("opt3")).toHaveAttribute(
+        // staged selection
+        "aria-selected",
+        "true",
+      );
+      expect(spy).not.toHaveBeenCalled();
+      await user.click(screen.getByTestId("primary-button"));
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1", "opt3"]);
+      await user.click(screen.getByTestId("trigger")); // re-open overlay
+      await act(() => vi.runAllTimers());
+      await user.click(screen.getByTestId("secondary-button"));
+      expect(screen.getByTestId("opt1")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      ); // staged selection cleared
+      expect(screen.getByTestId("opt3")).toHaveAttribute(
+        "aria-selected",
+        "false",
+      ); // staged selection cleared
       expect(spy).toHaveBeenCalledTimes(1); // not called again
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
