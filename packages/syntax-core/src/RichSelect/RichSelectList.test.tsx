@@ -12,6 +12,7 @@ globalThis.jest = {
   ...globalThis.jest,
   advanceTimersByTime: vi.advanceTimersByTime.bind(vi),
 };
+
 const user = userEvent.setup({
   advanceTimers: vi.advanceTimersByTime.bind(vi),
 });
@@ -71,15 +72,13 @@ function controlledRichSelectList(props: Partial<RichSelectListProps> = {}) {
 }
 
 describe("richSelectList", () => {
-  it("renders", async () => {
+  it("renders", () => {
     render(simpleRichSelectList());
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("trigger")).toBeInTheDocument();
   });
 
-  it("renders in a closed state by default", async () => {
+  it("renders in a closed state by default", () => {
     render(simpleRichSelectList());
-    await act(() => vi.runAllTimers());
     expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
     expect(screen.queryByTestId("opt1")).not.toBeInTheDocument();
     expect(screen.queryByTestId("opt2")).not.toBeInTheDocument();
@@ -89,7 +88,6 @@ describe("richSelectList", () => {
   it("opens menu when trigger is clicked", async () => {
     render(simpleRichSelectList());
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("optgroup")).toBeInTheDocument();
     expect(screen.getByTestId("opt1")).toBeInTheDocument();
     expect(screen.getByTestId("opt2")).toBeInTheDocument();
@@ -100,7 +98,6 @@ describe("richSelectList", () => {
     render(simpleRichSelectList());
     await user.tab();
     await user.keyboard("{Enter}");
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("optgroup")).toBeInTheDocument();
   });
 
@@ -108,14 +105,12 @@ describe("richSelectList", () => {
     render(simpleRichSelectList());
     await user.tab();
     await user.keyboard("{ArrowDown}");
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("optgroup")).toBeInTheDocument();
   });
 
   it("does not open menu when disabled", async () => {
     render(simpleRichSelectList({ disabled: true }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
   });
 
@@ -123,7 +118,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onClick: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -131,17 +125,14 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onClick: spy, disabled: true }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
   });
 
   it("clicks on an option without erroring", async () => {
     render(simpleRichSelectList());
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     for (const id of ["opt1", "opt2", "opt3"]) {
       await user.click(screen.getByTestId(id));
-      await act(() => vi.runAllTimers());
     }
   });
 
@@ -154,7 +145,6 @@ describe("richSelectList", () => {
       </RichSelectList>,
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("opt1")).toBeVisible();
     expect(screen.getByTestId("opt2")).toBeVisible();
     expect(screen.getByTestId("opt3")).toBeVisible();
@@ -175,7 +165,6 @@ describe("richSelectList", () => {
       </RichSelectList>,
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(screen.getByTestId("section1")).toBeVisible();
     expect(screen.getByTestId("section2")).toBeVisible();
     expect(screen.getByTestId("section3")).toBeVisible();
@@ -194,7 +183,6 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     const opt1 = screen.getByTestId("opt1");
     await user.click(opt1);
     expect(opt1).toHaveAttribute("aria-selected", "true");
@@ -210,7 +198,6 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     const opt1 = screen.getByTestId("opt1");
     const clear = screen.getByTestId("secondary-button");
     await user.click(opt1);
@@ -228,7 +215,6 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     const opt1 = screen.getByTestId("opt1");
     await user.click(opt1);
     await user.click(screen.getByTestId("primary-button"));
@@ -246,14 +232,12 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     let opt1 = screen.getByTestId("opt1");
     await user.click(opt1);
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenLastCalledWith(["opt1"]);
     await user.click(screen.getByTestId("trigger")); // re-open overlay
-    await act(() => vi.runAllTimers());
     opt1 = screen.getByTestId("opt1"); // opt1 was re-created when overlay re-opened. must get new reference
     expect(opt1).toHaveAttribute("aria-selected", "true");
     await user.click(screen.getByTestId("secondary-button"));
@@ -271,7 +255,6 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     const opt1 = screen.getByTestId("opt1");
     const opt2 = screen.getByTestId("opt2");
     await user.click(opt1);
@@ -291,7 +274,6 @@ describe("richSelectList", () => {
       }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     const opt1 = screen.getByTestId("opt1");
     const opt2 = screen.getByTestId("opt2");
     await user.click(opt1);
@@ -303,10 +285,9 @@ describe("richSelectList", () => {
     expect(opt2).toHaveAttribute("aria-selected", "true");
   });
 
-  it("does not call onChange after initial render", async () => {
+  it("does not call onChange after initial render", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -314,7 +295,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -324,7 +304,6 @@ describe("richSelectList", () => {
       simpleRichSelectList({ onChange: spy, defaultSelectedValues: ["opt1"] }),
     );
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).not.toHaveBeenCalled();
   });
@@ -333,7 +312,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("opt1"));
     expect(spy).not.toHaveBeenCalled();
   });
@@ -342,7 +320,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     await user.click(document.body);
     expect(spy).not.toHaveBeenCalled();
   });
@@ -351,7 +328,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
@@ -362,7 +338,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("opt3"));
@@ -375,13 +350,11 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(simpleRichSelectList({ onChange: spy }));
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     await user.click(screen.getByTestId("trigger")); // re-open overlay
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("opt3"));
     await user.click(screen.getByTestId("opt1"));
@@ -399,7 +372,6 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("opt1"));
@@ -417,7 +389,6 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).not.toHaveBeenCalled();
@@ -433,7 +404,6 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("primary-button"));
@@ -451,7 +421,6 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("secondary-button"));
@@ -468,13 +437,11 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt2"));
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     await user.click(screen.getByTestId("trigger")); // re-open overlay
-    await act(() => vi.runAllTimers());
     await user.click(screen.getByTestId("secondary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
     await user.click(screen.getByTestId("primary-button"));
@@ -487,7 +454,6 @@ describe("richSelectList", () => {
     render(simpleRichSelectList({ onChange: spy }));
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("opt2"));
@@ -506,7 +472,6 @@ describe("richSelectList", () => {
     );
 
     await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
     expect(spy).not.toHaveBeenCalled();
     await user.click(screen.getByTestId("opt1"));
     await user.click(screen.getByTestId("opt2"));
@@ -518,69 +483,63 @@ describe("richSelectList", () => {
   });
 
   describe('"select" input value', () => {
-    it("renders empty by default when no placeholderText is defined", async () => {
+    it("renders empty by default when no placeholderText is defined", () => {
       render(simpleRichSelectList());
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("");
     });
 
-    it("renders placeholderText initially with no selection", async () => {
+    it("renders placeholderText initially with no selection", () => {
       render(simpleRichSelectList({ placeholderText: "test-placeholder" }));
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("test-placeholder");
     });
 
-    it("placeholder doesn't show when single selectedValues is passed", async () => {
+    it("placeholder doesn't show when single selectedValues is passed", () => {
       render(
         simpleRichSelectList({
           placeholderText: "test-placeholder",
           selectedValues: ["opt1"],
         }),
       );
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("1 selected");
     });
 
-    it("placeholder doesn't show when single defaultSelectedValues is passed", async () => {
+    it("placeholder doesn't show when single defaultSelectedValues is passed", () => {
       render(
         simpleRichSelectList({
           placeholderText: "test-placeholder",
           defaultSelectedValues: ["opt1"],
         }),
       );
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("1 selected");
     });
 
-    it("trigger reads # of items selected from selectedValues prop", async () => {
+    it("trigger reads # of items selected from selectedValues prop", () => {
       render(
         simpleRichSelectList({
           placeholderText: "test-placeholder",
           selectedValues: ["opt1", "opt2"],
         }),
       );
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("2 selected");
     });
 
-    it("trigger reads # of items selected from defaultSelectedValues prop", async () => {
+    it("trigger reads # of items selected from defaultSelectedValues prop", () => {
       render(
         simpleRichSelectList({
           placeholderText: "test-placeholder",
           defaultSelectedValues: ["opt1", "opt2"],
         }),
       );
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("2 selected");
     });
 
-    it("trigger reads # of items selected from selectedValues when both selectedValues and defaultSelectedValues prop", async () => {
+    it("trigger reads # of items selected from selectedValues when both selectedValues and defaultSelectedValues prop", () => {
       render(
         simpleRichSelectList({
           placeholderText: "test-placeholder",
@@ -588,7 +547,6 @@ describe("richSelectList", () => {
           defaultSelectedValues: ["opt1", "opt2"],
         }),
       );
-      await act(() => vi.runAllTimers());
       const trigger = screen.getByTestId("trigger");
       expect(trigger).toHaveTextContent("3 selected");
     });
@@ -597,7 +555,6 @@ describe("richSelectList", () => {
       render(simpleRichSelectList());
       const trigger = screen.getByTestId("trigger");
       await user.click(trigger);
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("primary-button"));
       expect(trigger).toHaveTextContent("1 selected");
@@ -607,7 +564,6 @@ describe("richSelectList", () => {
       render(simpleRichSelectList({ multiple: true }));
       const trigger = screen.getByTestId("trigger");
       await user.click(trigger);
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
       await user.click(screen.getByTestId("primary-button"));
@@ -647,7 +603,6 @@ describe("richSelectList", () => {
       );
       const trigger = screen.getByTestId("trigger");
       await user.click(trigger);
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("primary-button"));
       expect(trigger).toHaveTextContent("test 1 selected");
@@ -665,7 +620,6 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
@@ -685,7 +639,6 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
@@ -706,7 +659,6 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("secondary-button"));
       await user.click(screen.getByTestId("primary-button"));
@@ -725,14 +677,12 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt3"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2", "opt3"]);
       await user.click(screen.getByTestId("trigger")); // re-open overlay
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("secondary-button"));
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
@@ -750,7 +700,6 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("primary-button"));
@@ -768,15 +717,12 @@ describe("richSelectList", () => {
       );
 
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.keyboard("{Escape}");
-      await act(() => vi.runAllTimers());
       expect(screen.queryByTestId("primary-button")).not.toBeInTheDocument();
       await user.click(screen.getByTestId("trigger")); // reopen
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(0);
     });
@@ -786,27 +732,22 @@ describe("richSelectList", () => {
     it("closes the dialog when user clicks outside of the dialog", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("optgroup")).toBeInTheDocument();
       await user.click(document.body);
-      await act(() => vi.runAllTimers());
       expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
     });
 
     it("closes the dialog when user presses escape", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("optgroup")).toBeInTheDocument();
       await user.keyboard("{Escape}");
-      await act(() => vi.runAllTimers());
       expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
     });
 
     it("closes the dialog when user saves a selection", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("primary-button"));
       expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
@@ -815,12 +756,10 @@ describe("richSelectList", () => {
     it("keeps state of selection between dialog open/close", async () => {
       render(simpleRichSelectList({ multiple: true }));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("primary-button"));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
         "true",
@@ -834,12 +773,10 @@ describe("richSelectList", () => {
     it("clears state of staged selection between dialog open/close, click on outside", async () => {
       render(simpleRichSelectList({ multiple: true }));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(document.body);
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
         "false",
@@ -853,12 +790,10 @@ describe("richSelectList", () => {
     it("clears state of staged selection between dialog open/close, Escape key", async () => {
       render(simpleRichSelectList({ multiple: true }));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.keyboard("{Escape}");
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
         "false",
@@ -872,11 +807,9 @@ describe("richSelectList", () => {
     it("keeps state of single selection between dialog open/close", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(document.body);
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
         "false",
@@ -886,11 +819,9 @@ describe("richSelectList", () => {
     it("does not keep state of staged single selection between dialog open/close", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("primary-button"));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
         "true",
@@ -908,7 +839,6 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         // staged selection
@@ -920,7 +850,6 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
       await user.click(screen.getByTestId("trigger")); // re-open overlay
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("secondary-button"));
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         // staged selection not retained
@@ -943,7 +872,6 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt3"));
       expect(screen.getByTestId("opt1")).toHaveAttribute(
@@ -961,7 +889,6 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt3"]);
       await user.click(screen.getByTestId("trigger")); // re-open overlay
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("secondary-button"));
       expect(screen.getByTestId("opt1")).toHaveAttribute(
         "aria-selected",
@@ -989,12 +916,10 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
@@ -1009,7 +934,6 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
@@ -1025,7 +949,6 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
@@ -1041,7 +964,6 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
@@ -1058,15 +980,12 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(3);
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
@@ -1083,15 +1002,12 @@ describe("richSelectList", () => {
         }),
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(3);
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
@@ -1120,7 +1036,6 @@ describe("richSelectList", () => {
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       const opt2 = screen.getByTestId("opt2");
       expect(opt2).toHaveAttribute("aria-disabled", "true");
       expect(opt2).toHaveAttribute("aria-selected", "false");
@@ -1156,7 +1071,6 @@ describe("richSelectList", () => {
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       const opt3 = screen.getByTestId("opt3");
       expect(opt3).toHaveAttribute("aria-disabled", "true");
       const opt2 = screen.getByTestId("opt2");
@@ -1196,7 +1110,6 @@ describe("richSelectList", () => {
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));
-      await act(() => vi.runAllTimers());
       const opt2 = screen.getByTestId("opt2");
       expect(opt2).toHaveAttribute("aria-disabled", "true");
       expect(opt2).toHaveAttribute("aria-selected", "true");
