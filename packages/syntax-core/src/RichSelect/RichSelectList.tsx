@@ -102,10 +102,6 @@ export type RichSelectListProps = Omit<
    */
   helperText?: string;
   /**
-   * Id of the select element
-   */
-  id?: string;
-  /**
    * Text shown above select box
    */
   label: string; // also show this inside the popover?
@@ -178,7 +174,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     disabled: disabledProp = false,
     errorText,
     helperText,
-    id,
     label = "myLabel",
     name,
     multiple = false,
@@ -191,16 +186,13 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     selectTextValue,
     secondaryButtonText = "Clear",
     secondaryButtonAccessibilityLabel = "Clear",
-    selectedValue = "",
     selectedValues: selectedValuesProp,
     defaultSelectedValues: defaultSelectedValuesProp,
     size = "md",
   } = props;
 
-  const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
-  const selectId = id ?? reactId;
 
   // passed to popover, which attached open/close methods
   const overlayHandlerRef = useRef<OverlayHandlerRef>({});
@@ -280,7 +272,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           }
         >
           <TapArea
-            // id={selectId}
             data-testid={dataTestId}
             disabled={disabled}
             onClick={onClick}

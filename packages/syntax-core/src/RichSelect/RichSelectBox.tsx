@@ -2,7 +2,6 @@ import React, {
   forwardRef,
   type ReactElement,
   useContext,
-  useId,
   useState,
   useCallback,
   createContext,
@@ -38,10 +37,6 @@ export type RichSelectBoxProps = {
   errorText?: string;
   /** Text shown below the box */
   helperText?: string;
-  /** Id of the element */
-  id?: string;
-  /** Html name attribute for the element */
-  name?: string;
   /** Enables multiple selection (multiselect) */
   multiple?: boolean;
   /** The callback to be called when options are selected / committed */
@@ -110,9 +105,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       "data-testid": dataTestId,
       errorText,
       helperText,
-      id,
       label = "myLabel",
-      name,
       multiple = false,
       onChange,
       primaryButtonText = "Save",
@@ -123,7 +116,6 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       defaultSelectedValues: defaultSelectedValuesProp,
       size = "md",
     } = props;
-    const reactId = useId();
 
     /* Okay, the idea here is that we wrap popover around the trigger
       Trigger gets the focus styles, and the popover gets the focus styles.
@@ -135,7 +127,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       Context provider to wire in onChange in children to localstate in this component.
       LocalState is made external when state is saved.
       autosave option updates external state on child change.
-      autosave="false" displays button group to save / cancel
+      autosave={false} displays button group to save / cancel
       popover content needs to render it's own title?  .... or not?
 
       (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
