@@ -27,44 +27,6 @@ type RichSelectChild =
   | ReactElement<typeof RichSelectRadioButton>
   | ReactElement<typeof RichSelectSection>;
 
-export type RichSelectBoxProps = {
-  /** Test id for the list box element */
-  "data-testid"?: string;
-  /** One or more RichSelectList.<Chip|RadioButton|Section|...> components. */
-  // children: ReactElement | ReactElement[];
-  children: RichSelectChild | RichSelectChild[];
-  /** Text shown above the box */
-  label?: string;
-  /** Text shown below the box with error styles applied */
-  errorText?: string;
-  /** Text shown below the box */
-  helperText?: string;
-  /** Enables multiple selection (multiselect) */
-  multiple?: boolean;
-  /** The callback to be called when options are selected / committed */
-  onChange: (selectedValues: string[] | "all") => void;
-  /** Value of the currently selected options */
-  selectedValues?: Set<Key> | string[] | "all";
-  // selectedValues?: string[] | "all" | Set<string>;
-  /**
-   * Size for the options and sections in the list box
-   *
-   * @defaultValue "md"
-   */
-  size?: "sm" | "md" | "lg";
-
-  // DIFF THAN SELECTLIST
-  autosave?: boolean;
-  defaultSelectedValues?: Set<Key> | string[] | "all";
-  primaryButtonText?: string;
-  primaryButtonAccessibilityLabel?: string;
-  secondaryButtonText?: string;
-  secondaryButtonAccessibilityLabel?: string;
-  // selectedValues?: string[] | Set<string>;
-  // might be necesasry for HiddenSelect
-  form?: string;
-};
-
 function isString(val: unknown): val is string {
   return typeof val === "string";
 }
@@ -91,6 +53,33 @@ export function convertSelection(
   return new Set(selection);
 }
 
+export type RichSelectBoxProps = {
+  /** aria-label for the list box */
+  accessibilityLabel: string;
+  /** Automatically saves changes when true, shows save/clear buttons when not true */
+  autosave?: boolean;
+  /** Test id for the list box element */
+  "data-testid"?: string;
+  /** One or more RichSelectList.<Chip|RadioButton|Section|...> components. */
+  children: RichSelectChild | RichSelectChild[];
+  /** Default selected values */
+  defaultSelectedValues?: Set<Key> | string[] | "all";
+  /** Enables multiple selection (multiselect) */
+  multiple?: boolean;
+  /** The callback to be called when options are selected / committed */
+  onChange: (selectedValues: string[] | "all") => void;
+  /** Text for primary button (Save) */
+  primaryButtonText?: string;
+  /** accessibilityLabel for primary Button component (Save) */
+  primaryButtonAccessibilityLabel?: string;
+  /** Text for primary button (Clear) */
+  secondaryButtonText?: string;
+  /** accessibilityLabel for secondary Button component (Clear) */
+  secondaryButtonAccessibilityLabel?: string;
+  /** Value of the currently selected options */
+  selectedValues?: Set<Key> | string[] | "all";
+};
+
 type RichSelectBoxContextType = {
   /** Automatically focuses RichSelectBox on mount when enabled */
   autoFocus?: boolean;
@@ -100,12 +89,10 @@ export const RichSelectBoxContext = createContext<RichSelectBoxContextType>({});
 const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBox(props, ref): ReactElement {
     const {
+      accessibilityLabel,
       autosave,
       children,
       "data-testid": dataTestId,
-      errorText,
-      helperText,
-      label = "myLabel",
       multiple = false,
       onChange,
       primaryButtonText = "Save",
@@ -114,34 +101,8 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       secondaryButtonAccessibilityLabel = "Clear",
       selectedValues: selectedValuesProp,
       defaultSelectedValues: defaultSelectedValuesProp,
-      size = "md",
     } = props;
 
-    /* Okay, the idea here is that we wrap popover around the trigger
-      Trigger gets the focus styles, and the popover gets the focus styles.
-      when triggered dialog will open and elements are tabbable.
-      onChange handler is called when selected value is changed.
-      Any Interactible Syntax components are/should be selectable.
-        (wire in react-aria hooks)
-      After rendering wrapper, this component renders:
-      Context provider to wire in onChange in children to localstate in this component.
-      LocalState is made external when state is saved.
-      autosave option updates external state on child change.
-      autosave={false} displays button group to save / cancel
-      popover content needs to render it's own title?  .... or not?
-
-      (idea: useImperativeRef on Popover/ModalDialog/etc to expose open/close methods on popover)
-
-      *NOTE*: need to wire in aria-labels correctly
-      https://react-spectrum.adobe.com/react-aria/useLabel.html
-
-      also: CheckboxGroup vs. RadioGroup for `multiple?: boolean` prop
-
-
-      20240118:
-      - `multiple` prop: most(all we support?) browsers make it a static box
-        instead of a dropdown.  autoscrolling (ithink)
-    */
     const selectedKeysProp = useMemo(
       () => convertSelection(selectedValuesProp),
       [selectedValuesProp],
@@ -151,7 +112,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       [defaultSelectedValuesProp],
     );
     const [selectedKeys, setSelectedKeys] = useControlledState(
-      selectedKeysProp,
+      selectedKeysProp!, // eslint-disable-line @typescript-eslint/no-non-null-assertion -- there is a bug in the typedef for useControlledState from react-stately.  Internally they rely on value (first arg) able to be undefined
       defaultSelectedKeys,
       (value) => {
         if (isEqualSelection(value, selectedKeys)) return;
@@ -192,9 +153,8 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
         <Box>
           <ReactAriaListBox
             ref={ref}
-            aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
+            aria-label={accessibilityLabel}
             autoFocus={autoFocus}
-            // items={props.items} // TODO: implement Ken's proposal
             selectionMode={multiple ? "multiple" : "single"}
             selectionBehavior={multiple ? "toggle" : "replace"}
             shouldFocusWrap={true}

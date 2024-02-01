@@ -38,10 +38,6 @@ const iconSize = {
 } as const;
 
 export type RichSelectListProps = RichSelectBoxProps & {
-  /**
-   * One or more RichSelectList.<Chip|RadioButton|Section|...> components.
-   */
-  children: ReactElement | ReactElement[];
   /** Test id for the select element */
   "data-testid"?: string;
   /**
@@ -49,49 +45,27 @@ export type RichSelectListProps = RichSelectBoxProps & {
    * @defaultValue false
    */
   disabled?: boolean;
-  /**
-   * Callback to be called when select is clicked
-   */
+  /** Callback to be called when select is clicked */
   onClick?: (event: SyntheticEvent<HTMLDivElement>) => void;
-  /**
-   * Text shown below select box if there is an input error.
-   */
+  /** Text shown below select box if there is an input error. */
   errorText?: string;
-  /**
-   * Text shown below select box
-   */
+  /** Text shown below select box */
   helperText?: string;
-  /**
-   * Text shown above select box
-   */
+  /** Text shown above select box */
   label: string; // also show this inside the popover?
   /**
-   * Html name attribute for the select element
-   */
-  name?: string;
-  /**
    * Text showing in select box if no option has been chosen.
-   * We should always have a placeholder unless there is a default option selected
+   * There should always have a placeholder unless there is a default option selected
    */
   placeholderText?: string;
+  /** Use to render (override) text shown in the select box */
+  selectTextValue?: (selectedValues?: string[]) => string | undefined;
   /**
    * Size of the select box
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
    *
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
-
-  // DIFF THAN SELECTLIST
-  autosave?: boolean;
-  primaryButtonText?: string;
-  primaryButtonAccessibilityLabel?: string;
-  secondaryButtonText?: string;
-  secondaryButtonAccessibilityLabel?: string;
-  selectTextValue?: (selectedValues?: string[]) => string | undefined;
-  form?: string;
 };
 
 /**
@@ -135,8 +109,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     [defaultSelectedValuesProp],
   );
   const [selectedKeys, setSelectedKeys] = useControlledState(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- there is a bug in the typedef for useControlledState from react-stately.  Internally they rely on value (first arg) able to be undefined
-    selectedKeysProp!,
+    selectedKeysProp!, // eslint-disable-line @typescript-eslint/no-non-null-assertion -- there is a bug in the typedef for useControlledState from react-stately.  Internally they rely on value (first arg) able to be undefined
     defaultSelectedKeys,
     (value) => {
       const _value = value === "all" ? "all" : [...value].map(String);
@@ -191,10 +164,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                   onChange={(selected) => setSelectedKeys(new Set(selected))}
                   multiple={multiple}
                   autosave={autosave}
-                  errorText={errorText}
-                  helperText={helperText}
-                  size={size}
-                  label={label}
+                  accessibilityLabel={label}
                   primaryButtonText={primaryButtonText}
                   primaryButtonAccessibilityLabel={
                     primaryButtonAccessibilityLabel
