@@ -76,6 +76,34 @@ describe("component: RichSelectBox", () => {
     expect(screen.getByTestId("opt3")).toBeVisible();
   });
 
+  it("can render RadioButtons", () => {
+    render(
+      <RichSelectBox data-testid="box" {...defaultRequiredProps}>
+        <RichSelectBox.RadioButton
+          data-testid="opt1"
+          label="Opt1"
+          value="opt1"
+          name="opt1name"
+        />
+        <RichSelectBox.RadioButton
+          data-testid="opt2"
+          label="Opt2"
+          value="opt2"
+          name="opt2name"
+        />
+        <RichSelectBox.RadioButton
+          data-testid="opt3"
+          label="Opt3"
+          value="opt3"
+          name="opt3name"
+        />
+      </RichSelectBox>,
+    );
+    expect(screen.getByTestId("opt1")).toBeVisible();
+    expect(screen.getByTestId("opt2")).toBeVisible();
+    expect(screen.getByTestId("opt3")).toBeVisible();
+  });
+
   it("clicks on an option without erroring", async () => {
     render(simpleRichSelectBox());
     for (const id of ["opt1", "opt2", "opt3"]) {

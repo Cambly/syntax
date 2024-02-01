@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React, { useState, type ReactElement } from "react";
 import RichSelectList, { type RichSelectListProps } from "./RichSelectList";
 import { vi } from "vitest";
@@ -168,6 +168,35 @@ describe("richSelectList", () => {
     expect(screen.getByTestId("section1")).toBeVisible();
     expect(screen.getByTestId("section2")).toBeVisible();
     expect(screen.getByTestId("section3")).toBeVisible();
+    expect(screen.getByTestId("opt1")).toBeVisible();
+    expect(screen.getByTestId("opt2")).toBeVisible();
+    expect(screen.getByTestId("opt3")).toBeVisible();
+  });
+
+  it("can render RadioButtons", async () => {
+    render(
+      <RichSelectList data-testid="trigger" {...defaultRequiredProps}>
+        <RichSelectList.RadioButton
+          data-testid="opt1"
+          label="Opt1"
+          value="opt1"
+          name="opt1name"
+        />
+        <RichSelectList.RadioButton
+          data-testid="opt2"
+          label="Opt2"
+          value="opt2"
+          name="opt2name"
+        />
+        <RichSelectList.RadioButton
+          data-testid="opt3"
+          label="Opt3"
+          value="opt3"
+          name="opt3name"
+        />
+      </RichSelectList>,
+    );
+    await user.click(screen.getByTestId("trigger"));
     expect(screen.getByTestId("opt1")).toBeVisible();
     expect(screen.getByTestId("opt2")).toBeVisible();
     expect(screen.getByTestId("opt3")).toBeVisible();
