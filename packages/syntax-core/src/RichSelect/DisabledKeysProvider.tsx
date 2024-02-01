@@ -29,7 +29,7 @@ export default function DisabledKeysProvider({
   isolate?: boolean;
 }): ReactElement {
   const { updateDisabledKey: parentUpdateDisabledKey } =
-    useContext(DisabledKeysContext) || {};
+    useContext(DisabledKeysContext) ?? {};
   const [disabledKeys, setDisabledKeys] = useState<Set<string>>(new Set());
   const updateDisabledKey = useCallback(
     (key: string, disabled: boolean) =>

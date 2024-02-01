@@ -212,6 +212,9 @@ importers:
       '@react-aria/utils':
         specifier: ^3.23.0
         version: 3.23.0(react@18.2.0)
+      '@react-spectrum/utils':
+        specifier: ^3.11.3
+        version: 3.11.3(react@18.2.0)
       react-aria:
         specifier: ^3.31.0
         version: 3.31.1(react-dom@18.2.0)(react@18.2.0)
@@ -3518,6 +3521,20 @@ packages:
       '@react-aria/utils': 3.23.0(react@18.2.0)
       '@react-types/shared': 3.22.0(react@18.2.0)
       '@swc/helpers': 0.5.3
+      react: 18.2.0
+    dev: false
+
+  /@react-spectrum/utils@3.11.3(react@18.2.0):
+    resolution: {integrity: sha512-XGhR16OFdEkwxGUOLJqWG3ZmvE9JRB0L0gKokJjeDAUlmcqxOJdQOcQ+8PWr40uESoflUqn7pdN9copgjIG+1Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/i18n': 3.10.0(react@18.2.0)
+      '@react-aria/ssr': 3.9.1(react@18.2.0)
+      '@react-aria/utils': 3.23.0(react@18.2.0)
+      '@react-types/shared': 3.22.0(react@18.2.0)
+      '@swc/helpers': 0.5.3
+      clsx: 2.1.0
       react: 18.2.0
     dev: false
 
