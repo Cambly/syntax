@@ -2,8 +2,8 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import RichSelectList, { type RichSelectListProps } from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
-import Chip from "../Chip/Chip";
 import Typography from "../Typography/Typography";
+import { type Key } from "react-aria";
 
 export default {
   title: "Components/RichSelectList",
@@ -53,7 +53,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         <RichSelectList.Section label="People">
           <RichSelectList.Chip label="John" value="john" disabled />
           <RichSelectList.Chip label="Jane" value="jane" />
-          <RichSelectList.Chip label="Joe" value="joe" selected disabled />
+          <RichSelectList.Chip label="Joe" value="joe" disabled />
         </RichSelectList.Section>
         <RichSelectList.Section label="Places">
           <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -122,10 +122,6 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
 };
 
 export const VeryLongContent = (): ReactElement => {
-  const [selectionValue, setSelectionValue] = useState("");
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue(ee);
-  };
   return (
     <Box
       display="block"
@@ -137,16 +133,12 @@ export const VeryLongContent = (): ReactElement => {
       <RichSelectList
         label="Label"
         helperText="Helper text"
-        // selectedValue={selectionValue}
         placeholderText="Placeholder"
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
-        // onChange={onChange}
+        onChange={() => undefined}
       >
         <RichSelectList.Chip label="John" value="john" disabled />
         <RichSelectList.Chip label="Jane" value="jane" />
-        <RichSelectList.Chip selected label="Joe" value="joe" />
+        <RichSelectList.Chip label="Joe" value="joe" />
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />
         <RichSelectList.Chip label="Tulsa" value="tulsa" />
@@ -207,7 +199,7 @@ export const Default: StoryObj<typeof RichSelectList> = {
     helperText: "Helper text",
     label: "Label",
     placeholderText: "Placeholder",
-    selectedValue: "opt1",
+    selectedValues: ["opt1"],
   },
 };
 
@@ -228,29 +220,16 @@ const RichSelectListInteractive = (): ReactElement => {
       label="Label"
       helperText="Helper text"
       multiple
-      dropdown={false}
       selectedValues={selectionValue}
       placeholderText="Placeholder"
-      // onChange={setSelectionValue}
-      onChange={(vals) => {
-        setSelectionValue(vals);
-        console.log("onChange", vals);
-      }}
+      onChange={setSelectionValue}
     >
       <RichSelectList.Section label="People">
         <RichSelectList.Chip label="New York" value="ny" disabled />
-        <RichSelectList.Chip label="Los Angeles" value="la" selected disabled />
+        <RichSelectList.Chip label="Los Angeles" value="la" disabled />
         <RichSelectList.Chip label="Morning" value="morning" />
-        <RichSelectList.Chip label="Afternoon" value="afternoon" selected />
+        <RichSelectList.Chip label="Afternoon" value="afternoon" />
       </RichSelectList.Section>
-      {/* {options.map(({ label, name, value }) => (
-        <RichSelectList.Chip
-          key={value}
-          value={value}
-          label={label}
-          name={name}
-        />
-      ))} */}
     </RichSelectList>
   );
 };
@@ -263,9 +242,8 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       multiple={false}
-      // multiple
       label="Label"
-      selectedValue="opt1"
+      selectedValues={["opt1"]}
       placeholderText="Placeholder"
       onChange={() => undefined}
       helperText="When radio buttons are used, `multiple` prop should be false"
@@ -279,19 +257,15 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
 
 export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
   render: () => {
-    const [selectedValues, setSelectedValues] = useState(["la"]);
     return (
       <RichSelectList
         multiple
         label="Label"
-        selectedValues={["opt1"]}
+        selectedValues={["sf"]}
         placeholderText="Placeholder"
         helperText="When `autosave` is false, the user must click the button to commit their changes"
         autosave={false}
-        onChange={(vals) => {
-          console.log("onChange", vals);
-        }}
-        // defaultSelectedValues={["la", "ny"]}
+        onChange={() => undefined}
       >
         <RichSelectList.Section label="People">
           <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -307,7 +281,9 @@ const ControlledRichSelectList = ({
   selectedValues = [],
   ...props
 }: Omit<RichSelectListProps, "onChange">) => {
-  const [value, setValue] = useState(selectedValues);
+  const [value, setValue] = useState<Set<Key> | string[] | "all" | undefined>(
+    selectedValues,
+  );
   return (
     <Box display="flex" direction="column" gap={2}>
       <RichSelectList
@@ -380,8 +356,8 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectList> = {
       <RichSelectList.Section label="Cities">
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />
-        <RichSelectList.Chip label="Tulsa" value="tulsa" selected disabled />
-        <RichSelectList.Chip label="Chicago" value="chicago" selected />
+        <RichSelectList.Chip label="Tulsa" value="tulsa" disabled />
+        <RichSelectList.Chip label="Chicago" value="chicago" />
       </RichSelectList.Section>
     </RichSelectList>
   ),

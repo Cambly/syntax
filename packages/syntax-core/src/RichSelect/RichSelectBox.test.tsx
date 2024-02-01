@@ -18,7 +18,7 @@ const user = userEvent.setup({
 
 const defaultRequiredProps = {
   onChange: () => undefined,
-  label: "x",
+  accessibilityLabel: "x",
 };
 
 function simpleRichSelectBox(

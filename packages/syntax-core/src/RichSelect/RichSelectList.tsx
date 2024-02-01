@@ -37,7 +37,10 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = RichSelectBoxProps & {
+export type RichSelectListProps = Omit<
+  RichSelectBoxProps,
+  "accessibilityLabel"
+> & {
   /** Test id for the select element */
   "data-testid"?: string;
   /**

@@ -4,6 +4,7 @@ import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
 import Typography from "../Typography/Typography";
 import Heading from "../Heading/Heading";
+import { type Key } from "react-aria";
 
 export default {
   title: "Components/RichSelectBox",
@@ -16,6 +17,10 @@ export default {
     },
   },
   argTypes: {
+    accessibilityLabel: {
+      control: "text",
+      defaultValue: "My accessibility label",
+    },
     size: {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
@@ -44,16 +49,14 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
   return (
     <Box display="flex" direction="column" gap={2}>
       <RichSelectBox
-        label="Label"
-        helperText="Helper text"
-        // selectedValues={selectionValue}
+        accessibilityLabel="Label"
         multiple
         onChange={setSelectedValues}
       >
         <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="John" value="john" disabled />
           <RichSelectBox.Chip label="Jane" value="jane" />
-          <RichSelectBox.Chip label="Joe" value="joe" selected disabled />
+          <RichSelectBox.Chip label="Joe" value="joe" disabled />
         </RichSelectBox.Section>
         <RichSelectBox.Section label="Places">
           <RichSelectBox.Chip label="San Francisco" value="sf" />
@@ -129,15 +132,10 @@ export const VeryLongContent = (): ReactElement => {
   const [selectedValues, setSelectedValues] = useState<string[] | "all">();
   return (
     <Box display="flex" direction="column" maxWidth="50%" gap={2}>
-      <RichSelectBox
-        label="Label"
-        helperText="Helper text"
-        // selectedValue={selectionValue}
-        onChange={setSelectedValues}
-      >
+      <RichSelectBox accessibilityLabel="Label" onChange={setSelectedValues}>
         <RichSelectBox.Chip label="John" value="john" disabled />
         <RichSelectBox.Chip label="Jane" value="jane" />
-        <RichSelectBox.Chip selected label="Joe" value="joe" />
+        <RichSelectBox.Chip label="Joe" value="joe" />
         <RichSelectBox.Chip label="San Francisco" value="sf" />
         <RichSelectBox.Chip label="New York" value="ny" disabled />
         <RichSelectBox.Chip label="Tulsa" value="tulsa" />
@@ -201,8 +199,7 @@ export const VeryLongContent = (): ReactElement => {
 export const Default: StoryObj<typeof RichSelectBox> = {
   args: {
     children: renderOptions(),
-    helperText: "Helper text",
-    label: "Label",
+    accessibilityLabel: "Label",
     defaultSelectedValues: ["opt1"],
   },
 };
@@ -210,9 +207,7 @@ export const Default: StoryObj<typeof RichSelectBox> = {
 export const Error: StoryObj<typeof RichSelectBox> = {
   args: {
     children: renderOptions(),
-    errorText: "Select dropdown error message",
-    helperText: "Helper text",
-    label: "Label",
+    accessibilityLabel: "Label",
   },
 };
 
@@ -221,29 +216,17 @@ const RichSelectBoxInteractive = (): ReactElement => {
   return (
     <Box display="flex" direction="column" gap={2}>
       <RichSelectBox
-        label="Label"
-        helperText="Helper text"
+        accessibilityLabel="Label"
         multiple
         selectedValues={selectedValues}
         onChange={setSelectedValues}
       >
         <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="New York" value="ny" disabled />
-          <RichSelectBox.Chip label="Tulsa" value="tulsa" selected disabled />
+          <RichSelectBox.Chip label="Tulsa" value="tulsa" disabled />
           <RichSelectBox.Chip label="Morning" value="morning" />
-          <RichSelectBox.Chip label="Afternoon" value="afternoon" selected />
+          <RichSelectBox.Chip label="Afternoon" value="afternoon" />
         </RichSelectBox.Section>
-        {/* {options.map(({ label, name, value, disabled, selected, checked }) => (
-        <RichSelectBox.Chip
-          key={value}
-          value={value}
-          label={label}
-          name={name}
-          selected={selected}
-          disabled={disabled}
-          checked={checked}
-        />
-      ))} */}
       </RichSelectBox>
       {!selectedValues && (
         <Typography>{`Selected: Nothing selected yet.`}</Typography>
@@ -263,11 +246,9 @@ export const RadioButtons: StoryObj<typeof RichSelectBox> = {
   render: () => (
     <RichSelectBox
       multiple={false}
-      // multiple
-      label="Label"
+      accessibilityLabel="Label"
       defaultSelectedValues={["opt1"]}
       onChange={() => undefined}
-      helperText="When radio buttons are used, `multiple` prop should be false"
     >
       <RichSelectBox.RadioButton name="name1" label="Option 1" value="opt1" />
       <RichSelectBox.RadioButton name="name1" label="Option 2" value="opt2" />
@@ -280,7 +261,7 @@ const ControlledRichSelectBox = ({
   selectedValues = [],
   ...props
 }: Omit<RichSelectBoxProps, "onChange">) => {
-  const [value, setValue] = useState<string[] | "all" | undefined>(
+  const [value, setValue] = useState<Set<Key> | string[] | "all" | undefined>(
     selectedValues,
   );
   return (
@@ -301,10 +282,13 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
   render: () => {
     return (
       <Box display="flex" direction="column" gap={4}>
+        <Typography>
+          When `autosave` is false, the user must click the button to commit
+          their changes
+        </Typography>
         <ControlledRichSelectBox
           multiple
-          label="Multiple select"
-          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          accessibilityLabel="Multiple select"
           autosave={false}
           selectedValues={["sf"]}
         >
@@ -315,10 +299,13 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
+        <Typography>
+          When `autosave` is false, the user must click the button to commit
+          their changes
+        </Typography>
         <ControlledRichSelectBox
           multiple={false}
-          label="Single select"
-          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          accessibilityLabel="Single select"
           autosave={false}
           selectedValues={["sf"]}
         >
@@ -329,10 +316,13 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
+        <Typography>
+          When `autosave` is true, the user&apos;s changes are automatically
+          committed
+        </Typography>
         <ControlledRichSelectBox
           multiple
-          label="Multiple select, autosave"
-          helperText="When `autosave` is true, the user's changes are automatically committed"
+          accessibilityLabel="Multiple select, autosave"
           autosave
           selectedValues={["tulsa"]}
         >
@@ -343,10 +333,13 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
+        <Typography>
+          When `autosave` is true, the user&apos;s changes are automatically
+          committed
+        </Typography>
         <ControlledRichSelectBox
           multiple={false}
-          label="Single select, autosave"
-          helperText="When `autosave` is true, the user's changes are automatically committed"
+          accessibilityLabel="Single select, autosave"
           autosave
           selectedValues={["tulsa"]}
         >
@@ -366,7 +359,7 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
     <Box display="flex" direction="column" gap={4}>
       <Heading>Multiple</Heading>
       <ControlledRichSelectBox
-        label="Label"
+        accessibilityLabel="Label"
         multiple
         autosave
         defaultSelectedValues={["memphis"]}
@@ -382,7 +375,7 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
 
       <Heading>Single</Heading>
       <ControlledRichSelectBox
-        label="Label"
+        accessibilityLabel="Label"
         autosave
         defaultSelectedValues={["memphis"]}
       >

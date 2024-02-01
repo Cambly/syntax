@@ -6,7 +6,7 @@ import { renderToString } from "react-dom/server";
 
 const defaultRequiredProps = {
   onChange: () => undefined,
-  label: "x",
+  accessibilityLabel: "x",
 };
 
 describe("richselectlist - server", () => {
