@@ -1,0 +1,15 @@
+.fullWidth {
+  width: 100%;
+}
+
+.fullMaxWidth {
+  max-width: 100%;
+}
+
+.fullMaxHeight {
+  max-height: 100%;
+}
+
+.visibilityVisible {
+  visibility: visible;
+}

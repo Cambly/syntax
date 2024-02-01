@@ -315,7 +315,7 @@ export const ControlledPopover = (): ReactElement => {
   );
 };
 
-export const ContentWhenLong = (): ReactElement => {
+export const LongContent = (): ReactElement => {
   return (
     <Box display="flex" direction="column" gap={3} backgroundColor="purple100">
       <Popover
@@ -336,6 +336,44 @@ export const ContentWhenLong = (): ReactElement => {
         content={
           <Box display="flex" direction="column" gap={3} maxWidth={400}>
             <ContentWithTooltips />
+            <SuperLongContent />
+            <ContentWithTooltips />
+          </Box>
+        }
+      >
+        <Button text="Open Popover as Modal Dialog" />
+      </Popover>
+    </Box>
+  );
+};
+
+export const WideLongContent = (): ReactElement => {
+  return (
+    <Box display="flex" direction="column" gap={3} backgroundColor="purple100">
+      <Popover
+        placement="bottom"
+        content={
+          <Box display="flex" direction="column" gap={3}>
+            <ContentWithTooltips />
+            <SuperLongContent />
+            <SuperLongContent />
+            <SuperLongContent />
+            <SuperLongContent />
+            <ContentWithTooltips />
+          </Box>
+        }
+      >
+        <Button text="Open Popover" />
+      </Popover>
+      <Popover
+        placement="bottom"
+        modal
+        content={
+          <Box display="flex" direction="column" gap={3}>
+            <ContentWithTooltips />
+            <SuperLongContent />
+            <SuperLongContent />
+            <SuperLongContent />
             <SuperLongContent />
             <ContentWithTooltips />
           </Box>
