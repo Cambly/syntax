@@ -117,6 +117,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
     };
 
     const isHoveredOrFocussed = !disabled && (hovered || focussed);
+    const roundingClasses =
+      rounding !== "none" && roundingStyles[`rounding${rounding}`];
 
     return (
       <div
@@ -127,6 +129,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
           styles[`${disabled ? "disabled" : "enabled"}`],
           fullWidth && styles.fullWidth,
           isHoveredOrFocussed && styles.hoveredOrFocussed,
+          roundingClasses,
         )}
         data-testid={dataTestId}
         onClick={handleClick}
@@ -140,12 +143,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         tabIndex={disabled ? undefined : tabIndex}
       >
         {!disabled && (hovered || focussed) && (
-          <div
-            className={classNames(
-              styles.overlay,
-              rounding !== "none" && roundingStyles[`rounding${rounding}`],
-            )}
-          />
+          <div className={classNames(styles.overlay, roundingClasses)} />
         )}
         {children}
       </div>
