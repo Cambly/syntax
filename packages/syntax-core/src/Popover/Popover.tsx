@@ -12,7 +12,8 @@ import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import Dialog from "../Dialog/Dialog";
 import ModalDialog from "../Dialog/ModalDialog";
 import boxStyles from "../Box/Box.module.css";
-import styles from "./Popover.module.css";
+import layoutStyles from "../layout.module.css";
+import marginStyles from "../Box/margin.module.css";
 import {
   type Placement,
   syntaxToReactAriaPlacement,
@@ -73,7 +74,11 @@ export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
               boxStyles.box,
               boxStyles.flex,
               boxStyles.column,
-              styles.popover,
+              layoutStyles.fullMaxWidth,
+              layoutStyles.fullMaxHeight,
+              layoutStyles.visibilityVisible,
+              // workaround react-aria layout bug: containerPadding on right side of window not being applied
+              marginStyles.marginEnd4,
             ]),
           },
           otherProps,

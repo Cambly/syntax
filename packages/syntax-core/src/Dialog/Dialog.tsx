@@ -1,6 +1,7 @@
 import React, { type ReactNode, forwardRef, type ReactElement } from "react";
 import colorStyles from "../colors/colors.module.css";
 import elevationStyles from "../elevation/elevation.module.css";
+import layoutStyles from "../layout.module.css";
 import paddingStyles from "../Box/padding.module.css";
 import roundingStyles from "../rounding.module.css";
 import boxStyles from "../Box/Box.module.css";
@@ -75,9 +76,10 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         paddingStyles[`paddingY${sizeToPadding[size]}`],
         roundingStyles[`rounding${sizeToRounding[size]}`],
         elevationStyles.elevation400BoxShadow,
+        layoutStyles.fullMaxHeight,
+        layoutStyles.visibilityVisible,
         styles.dialog,
       ])}
-      style={{ maxWidth: "100%", maxHeight: "100%" }}
     >
       {children}
     </ReactAriaDialog>
