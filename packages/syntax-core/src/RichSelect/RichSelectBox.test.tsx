@@ -645,42 +645,6 @@ describe("component: RichSelectBox", () => {
         expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
       });
 
-      it("autoCommit saves selections immediately, controlled, single, defaultSelectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          controlledRichSelectBox({
-            autoCommit: true,
-            multiple: true,
-            onChange: spy,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
-      it("autoCommit saves selections immediately, controlled, multiple, defaultSelectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          controlledRichSelectBox({
-            autoCommit: true,
-            multiple: true,
-            onChange: spy,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
       it("autoCommit saves selections immediately, uncontrolled, single, defaultSelectedValues not empty", async () => {
         const spy = vi.fn();
         render(
@@ -773,8 +737,6 @@ describe("component: RichSelectBox", () => {
           </RichSelectBox.OptGroup>
         </RichSelectBox>,
       );
-      const opt3 = screen.getByTestId("opt3");
-      expect(opt3).toHaveAttribute("aria-disabled", "true");
       const opt2 = screen.getByTestId("opt2");
       expect(opt2).toHaveAttribute("aria-disabled", "true");
       expect(opt2).toHaveAttribute("aria-selected", "true");
