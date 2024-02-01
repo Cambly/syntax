@@ -1,9 +1,9 @@
-import RichSelectOptGroup from "./RichSelectOptGroup";
+import RichSelectSection from "./RichSelectSection";
 import RichSelectChip from "./RichSelectChip";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 
 const richSelectItems = {
-  OptGroup: RichSelectOptGroup,
+  Section: RichSelectSection,
   Chip: RichSelectChip,
   RadioButton: RichSelectRadioButton,
 };

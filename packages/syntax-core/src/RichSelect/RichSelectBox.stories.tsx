@@ -50,22 +50,22 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         multiple
         onChange={setSelectedValues}
       >
-        <RichSelectBox.OptGroup label="People">
+        <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="John" value="john" disabled />
           <RichSelectBox.Chip label="Jane" value="jane" />
           <RichSelectBox.Chip label="Joe" value="joe" selected disabled />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup label="Places">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section label="Places">
           <RichSelectBox.Chip label="San Francisco" value="sf" />
           <RichSelectBox.Chip label="New York" value="ny" disabled />
           <RichSelectBox.Chip label="Tulsa" value="tulsa" />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup label="Times">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section label="Times">
           <RichSelectBox.Chip label="Morning" value="morning" />
           <RichSelectBox.Chip label="Afternoon" value="afternoon" />
           <RichSelectBox.Chip label="Evening" value="evening" disabled />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup label="Colors">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section label="Colors">
           <RichSelectBox.Chip label="Red" value="red" />
           <RichSelectBox.Chip label="Green" value="green" />
           <RichSelectBox.Chip label="Blue" value="blue" />
@@ -75,8 +75,8 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectBox.Chip label="Black" value="black" />
           <RichSelectBox.Chip label="White" value="white" />
           <RichSelectBox.Chip label="Pink" value="pink" />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup label="Planets">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section label="Planets">
           <RichSelectBox.Chip label="Mercury" value="mercury" />
           <RichSelectBox.Chip label="Venus" value="venus" />
           <RichSelectBox.Chip label="Earth" value="earth" />
@@ -85,8 +85,8 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectBox.Chip label="Saturn" value="saturn" />
           <RichSelectBox.Chip label="Uranus" value="uranus" />
           <RichSelectBox.Chip label="Neptune" value="neptune" />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup label="Stars">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section label="Stars">
           <RichSelectBox.Chip label="Sun" value="sun" />
           <RichSelectBox.Chip label="Sirius" value="sirius" />
           <RichSelectBox.Chip label="Canopus" value="canopus" />
@@ -113,7 +113,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
           <RichSelectBox.Chip label="Shaula" value="shaula" />
           <RichSelectBox.Chip label="Castor" value="castor" />
           <RichSelectBox.Chip label="Gacrux" value="gacrux" />
-        </RichSelectBox.OptGroup>
+        </RichSelectBox.Section>
       </RichSelectBox>
       {!selectedValues && (
         <Typography>{`Selected: Nothing selected yet.`}</Typography>
@@ -227,12 +227,12 @@ const RichSelectBoxInteractive = (): ReactElement => {
         selectedValues={selectedValues}
         onChange={setSelectedValues}
       >
-        <RichSelectBox.OptGroup label="People">
+        <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="New York" value="ny" disabled />
           <RichSelectBox.Chip label="Tulsa" value="tulsa" selected disabled />
           <RichSelectBox.Chip label="Morning" value="morning" />
           <RichSelectBox.Chip label="Afternoon" value="afternoon" selected />
-        </RichSelectBox.OptGroup>
+        </RichSelectBox.Section>
         {/* {options.map(({ label, name, value, disabled, selected, checked }) => (
         <RichSelectBox.Chip
           key={value}
@@ -308,11 +308,11 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           autoCommit={false}
           selectedValues={["sf"]}
         >
-          <RichSelectBox.OptGroup label="People">
+          <RichSelectBox.Section label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
             <RichSelectBox.Chip label="Tulsa" value="tulsa" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
         <ControlledRichSelectBox
@@ -322,11 +322,11 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           autoCommit={false}
           selectedValues={["sf"]}
         >
-          <RichSelectBox.OptGroup label="People">
+          <RichSelectBox.Section label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
             <RichSelectBox.Chip label="Tulsa" value="tulsa" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
         <ControlledRichSelectBox
@@ -336,11 +336,11 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           autoCommit
           selectedValues={["tulsa"]}
         >
-          <RichSelectBox.OptGroup label="People">
+          <RichSelectBox.Section label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
             <RichSelectBox.Chip label="Tulsa" value="tulsa" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </ControlledRichSelectBox>
 
         <ControlledRichSelectBox
@@ -350,11 +350,11 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
           autoCommit
           selectedValues={["tulsa"]}
         >
-          <RichSelectBox.OptGroup label="People">
+          <RichSelectBox.Section label="People">
             <RichSelectBox.Chip label="San Francisco" value="sf" />
             <RichSelectBox.Chip label="New York" value="ny" disabled />
             <RichSelectBox.Chip label="Tulsa" value="tulsa" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </ControlledRichSelectBox>
       </Box>
     );
@@ -371,13 +371,13 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
         autoCommit
         defaultSelectedValues={["memphis"]}
       >
-        <RichSelectBox.OptGroup label="Cities">
+        <RichSelectBox.Section label="Cities">
           <RichSelectBox.Chip label="Memphis" value="memphis" disabled />
           <RichSelectBox.Chip label="San Francisco" value="sf" />
           <RichSelectBox.Chip label="New York" value="ny" disabled />
           <RichSelectBox.Chip label="Tulsa" value="tulsa" />
           <RichSelectBox.Chip label="Chicago" value="chicago" />
-        </RichSelectBox.OptGroup>
+        </RichSelectBox.Section>
       </ControlledRichSelectBox>
 
       <Heading>Single</Heading>
@@ -386,13 +386,13 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
         autoCommit
         defaultSelectedValues={["memphis"]}
       >
-        <RichSelectBox.OptGroup label="Cities">
+        <RichSelectBox.Section label="Cities">
           <RichSelectBox.Chip label="Memphis" value="memphis" disabled />
           <RichSelectBox.Chip label="San Francisco" value="sf" />
           <RichSelectBox.Chip label="New York" value="ny" disabled />
           <RichSelectBox.Chip label="Tulsa" value="tulsa" />
           <RichSelectBox.Chip label="Chicago" value="chicago" />
-        </RichSelectBox.OptGroup>
+        </RichSelectBox.Section>
       </ControlledRichSelectBox>
     </Box>
   ),

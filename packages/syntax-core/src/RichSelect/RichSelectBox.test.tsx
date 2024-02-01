@@ -26,11 +26,11 @@ function simpleRichSelectBox(
 ): ReactElement<RichSelectBoxProps> {
   return (
     <RichSelectBox data-testid="box" {...defaultRequiredProps} {...props}>
-      <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+      <RichSelectBox.Section data-testid="section1" label="Group1">
         <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
         <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
         <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-      </RichSelectBox.OptGroup>
+      </RichSelectBox.Section>
     </RichSelectBox>
   );
 }
@@ -57,15 +57,15 @@ describe("component: RichSelectBox", () => {
   it("can render sections", () => {
     render(
       <RichSelectBox data-testid="box" {...defaultRequiredProps}>
-        <RichSelectBox.OptGroup data-testid="section1" label="section1">
+        <RichSelectBox.Section data-testid="section1" label="section1">
           <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup data-testid="section2" label="section2">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section data-testid="section2" label="section2">
           <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
-        </RichSelectBox.OptGroup>
-        <RichSelectBox.OptGroup data-testid="section3" label="section3">
+        </RichSelectBox.Section>
+        <RichSelectBox.Section data-testid="section3" label="section3">
           <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-        </RichSelectBox.OptGroup>
+        </RichSelectBox.Section>
       </RichSelectBox>,
     );
     expect(screen.getByTestId("section1")).toBeVisible();
@@ -523,11 +523,11 @@ describe("component: RichSelectBox", () => {
           {...defaultRequiredProps}
           {...props}
         >
-          <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectBox.Section data-testid="section1" label="Group1">
             <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectBox.Chip data-testid="opt2" label="Opt2" value="opt2" />
             <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </ControlledRichSelectBox>
       );
     }
@@ -691,7 +691,7 @@ describe("component: RichSelectBox", () => {
           {...defaultRequiredProps}
           onChange={spy}
         >
-          <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectBox.Section data-testid="section1" label="Group1">
             <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectBox.Chip
               data-testid="opt2"
@@ -700,7 +700,7 @@ describe("component: RichSelectBox", () => {
               disabled
             />
             <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </RichSelectBox>,
       );
       const opt2 = screen.getByTestId("opt2");
@@ -720,7 +720,7 @@ describe("component: RichSelectBox", () => {
           onChange={spy}
           defaultSelectedValues={["opt2"]}
         >
-          <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectBox.Section data-testid="section1" label="Group1">
             <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectBox.Chip
               data-testid="opt2"
@@ -734,7 +734,7 @@ describe("component: RichSelectBox", () => {
               value="opt3"
               disabled
             />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </RichSelectBox>,
       );
       const opt2 = screen.getByTestId("opt2");
@@ -761,7 +761,7 @@ describe("component: RichSelectBox", () => {
           onChange={spy}
           selectedValues={["opt2"]}
         >
-          <RichSelectBox.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectBox.Section data-testid="section1" label="Group1">
             <RichSelectBox.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectBox.Chip
               data-testid="opt2"
@@ -770,7 +770,7 @@ describe("component: RichSelectBox", () => {
               disabled
             />
             <RichSelectBox.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectBox.OptGroup>
+          </RichSelectBox.Section>
         </RichSelectBox>,
       );
       const opt2 = screen.getByTestId("opt2");

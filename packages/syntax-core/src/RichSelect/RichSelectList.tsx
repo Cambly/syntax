@@ -2,12 +2,12 @@
 /**
  * Okay, got it.  Here's the breakdown:
  * - RichSelectBox - non-dropdown box with selectable items
- *  - (maybe RichSelectOptGroup?)
+ *  - (maybe RichSelectSection?)
  *  - Props:
  *   - multiple
  *   - onChange
  *   - size
- *   - title (or maybe force RichOptGroup usage for this?)
+ *   - title (or maybe force RichSection usage for this?)
  *   - direction?: "column" | "row"
  *   - ...
  *  - Attached Components:
@@ -17,7 +17,7 @@
  *    - RichSelectBox.Radio -> RichSelectRadio (this one might be harder, maybe only in single select mode?)
  *    - RichSelectBox.Input -> RichSelectInput (this + text area would be interesting use case: combine checkbox with input, when selected, the key is the inputted value?)
  *
- * - RichOptGroup - matches the ReactAriaSection component
+ * - RichSection - matches the ReactAriaSection component
  *  - This would be to get the title displayed in there, compatible with RichSelect ...
  *  - Props:
  *
@@ -52,7 +52,7 @@ import {
 import { useControlledState } from "@react-stately/utils";
 
 import RichSelectChip from "./RichSelectChip";
-import RichSelectOptGroup from "./RichSelectOptGroup";
+import RichSelectSection from "./RichSelectSection";
 import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
@@ -77,7 +77,7 @@ export type RichSelectListProps = Omit<
   "selectedValue" | "onChange"
 > & {
   /**
-   * One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components.
+   * One or more RichSelectList.<Chip|RadioButton|Section|...> components.
    */
   children: ReactElement | ReactElement[];
   /** Test id for the select element */

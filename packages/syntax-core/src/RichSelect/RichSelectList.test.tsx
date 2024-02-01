@@ -27,11 +27,11 @@ function simpleRichSelectList(
 ): ReactElement<RichSelectListProps> {
   return (
     <RichSelectList data-testid="trigger" {...defaultRequiredProps} {...props}>
-      <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+      <RichSelectList.Section data-testid="section1" label="Group1">
         <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
         <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
         <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-      </RichSelectList.OptGroup>
+      </RichSelectList.Section>
     </RichSelectList>
   );
 }
@@ -62,11 +62,11 @@ function controlledRichSelectList(props: Partial<RichSelectListProps> = {}) {
       {...defaultRequiredProps}
       {...props}
     >
-      <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+      <RichSelectList.Section data-testid="section1" label="Group1">
         <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
         <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
         <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-      </RichSelectList.OptGroup>
+      </RichSelectList.Section>
     </ControlledRichSelectList>
   );
 }
@@ -79,7 +79,7 @@ describe("richSelectList", () => {
 
   it("renders in a closed state by default", () => {
     render(simpleRichSelectList());
-    expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("section1")).not.toBeInTheDocument();
     expect(screen.queryByTestId("opt1")).not.toBeInTheDocument();
     expect(screen.queryByTestId("opt2")).not.toBeInTheDocument();
     expect(screen.queryByTestId("opt3")).not.toBeInTheDocument();
@@ -88,7 +88,7 @@ describe("richSelectList", () => {
   it("opens menu when trigger is clicked", async () => {
     render(simpleRichSelectList());
     await user.click(screen.getByTestId("trigger"));
-    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+    expect(screen.getByTestId("section1")).toBeInTheDocument();
     expect(screen.getByTestId("opt1")).toBeInTheDocument();
     expect(screen.getByTestId("opt2")).toBeInTheDocument();
     expect(screen.getByTestId("opt3")).toBeInTheDocument();
@@ -98,20 +98,20 @@ describe("richSelectList", () => {
     render(simpleRichSelectList());
     await user.tab();
     await user.keyboard("{Enter}");
-    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+    expect(screen.getByTestId("section1")).toBeInTheDocument();
   });
 
   it("opens menu when down-arrow key is pressed while focused", async () => {
     render(simpleRichSelectList());
     await user.tab();
     await user.keyboard("{ArrowDown}");
-    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+    expect(screen.getByTestId("section1")).toBeInTheDocument();
   });
 
   it("does not open menu when disabled", async () => {
     render(simpleRichSelectList({ disabled: true }));
     await user.click(screen.getByTestId("trigger"));
-    expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("section1")).not.toBeInTheDocument();
   });
 
   it("handles onClick on the select trigger", async () => {
@@ -153,15 +153,15 @@ describe("richSelectList", () => {
   it("can render sections", async () => {
     render(
       <RichSelectList data-testid="trigger" {...defaultRequiredProps}>
-        <RichSelectList.OptGroup data-testid="section1" label="section1">
+        <RichSelectList.Section data-testid="section1" label="section1">
           <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
-        </RichSelectList.OptGroup>
-        <RichSelectList.OptGroup data-testid="section2" label="section2">
+        </RichSelectList.Section>
+        <RichSelectList.Section data-testid="section2" label="section2">
           <RichSelectList.Chip data-testid="opt2" label="Opt2" value="opt2" />
-        </RichSelectList.OptGroup>
-        <RichSelectList.OptGroup data-testid="section3" label="section3">
+        </RichSelectList.Section>
+        <RichSelectList.Section data-testid="section3" label="section3">
           <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-        </RichSelectList.OptGroup>
+        </RichSelectList.Section>
       </RichSelectList>,
     );
     await user.click(screen.getByTestId("trigger"));
@@ -732,17 +732,17 @@ describe("richSelectList", () => {
     it("closes the dialog when user clicks outside of the dialog", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+      expect(screen.getByTestId("section1")).toBeInTheDocument();
       await user.click(document.body);
-      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("section1")).not.toBeInTheDocument();
     });
 
     it("closes the dialog when user presses escape", async () => {
       render(simpleRichSelectList());
       await user.click(screen.getByTestId("trigger"));
-      expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+      expect(screen.getByTestId("section1")).toBeInTheDocument();
       await user.keyboard("{Escape}");
-      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("section1")).not.toBeInTheDocument();
     });
 
     it("closes the dialog when user saves a selection", async () => {
@@ -750,7 +750,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("primary-button"));
-      expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("section1")).not.toBeInTheDocument();
     });
 
     it("keeps state of selection between dialog open/close", async () => {
@@ -1023,7 +1023,7 @@ describe("richSelectList", () => {
           {...defaultRequiredProps}
           onChange={spy}
         >
-          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectList.Section data-testid="section1" label="Group1">
             <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectList.Chip
               data-testid="opt2"
@@ -1032,7 +1032,7 @@ describe("richSelectList", () => {
               disabled
             />
             <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectList.OptGroup>
+          </RichSelectList.Section>
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));
@@ -1053,7 +1053,7 @@ describe("richSelectList", () => {
           onChange={spy}
           defaultSelectedValues={["opt2"]}
         >
-          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectList.Section data-testid="section1" label="Group1">
             <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectList.Chip
               data-testid="opt2"
@@ -1067,7 +1067,7 @@ describe("richSelectList", () => {
               value="opt3"
               disabled
             />
-          </RichSelectList.OptGroup>
+          </RichSelectList.Section>
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));
@@ -1097,7 +1097,7 @@ describe("richSelectList", () => {
           onChange={spy}
           selectedValues={["opt2"]}
         >
-          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+          <RichSelectList.Section data-testid="section1" label="Group1">
             <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
             <RichSelectList.Chip
               data-testid="opt2"
@@ -1106,7 +1106,7 @@ describe("richSelectList", () => {
               disabled
             />
             <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
-          </RichSelectList.OptGroup>
+          </RichSelectList.Section>
         </RichSelectList>,
       );
       await user.click(screen.getByTestId("trigger"));

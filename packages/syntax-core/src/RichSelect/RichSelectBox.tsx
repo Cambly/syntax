@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { ListBox as ReactAriaListBox } from "react-aria-components";
 import type RichSelectChip from "./RichSelectChip";
-import type RichSelectOptGroup from "./RichSelectOptGroup";
+import type RichSelectSection from "./RichSelectSection";
 import { type Key } from "react-aria";
 import { type Selection } from "react-stately";
 import { useControlledState } from "@react-stately/utils";
@@ -24,12 +24,12 @@ import styles from "./RichSelect.module.css";
 type RichSelectChild =
   | ReactElement<typeof RichSelectChip>
   | ReactElement<typeof RichSelectRadioButton>
-  | ReactElement<typeof RichSelectOptGroup>;
+  | ReactElement<typeof RichSelectSection>;
 
 export type RichSelectBoxProps = {
   /** Test id for the list box element */
   "data-testid"?: string;
-  /** One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components. */
+  /** One or more RichSelectList.<Chip|RadioButton|Section|...> components. */
   // children: ReactElement | ReactElement[];
   children: RichSelectChild | RichSelectChild[];
   /** Text shown above the box */
