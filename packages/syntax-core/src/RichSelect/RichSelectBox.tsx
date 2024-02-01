@@ -44,7 +44,7 @@ export type RichSelectBoxProps = {
   /** The callback to be called when options are selected / committed */
   onChange: (selectedValues: string[] | "all") => void;
   /** Value of the currently selected options */
-  selectedValues?: string[] | "all";
+  selectedValues?: Set<Key> | string[] | "all";
   // selectedValues?: string[] | "all" | Set<string>;
   /**
    * Size for the options and sections in the list box
@@ -55,7 +55,7 @@ export type RichSelectBoxProps = {
 
   // DIFF THAN SELECTLIST
   autosave?: boolean;
-  defaultSelectedValues?: string[] | "all";
+  defaultSelectedValues?: Set<Key> | string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
   secondaryButtonText?: string;
@@ -82,13 +82,11 @@ function isEqualSelection(set1?: Selection, set2?: Selection): boolean {
   return true;
 }
 
-function convertSelection(
+export function convertSelection(
   selection: "all" | Iterable<Key> | undefined,
-  defaultValue: "all" | Set<Key>,
-): "all" | Set<Key> {
-  if (!selection) {
-    return defaultValue;
-  }
+  defaultValue?: "all" | Set<Key>,
+): "all" | Set<Key> | undefined {
+  if (!selection) return defaultValue;
   if (selection === "all") return "all";
   return new Set(selection);
 }

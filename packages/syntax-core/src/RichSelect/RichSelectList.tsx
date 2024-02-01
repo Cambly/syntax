@@ -1,38 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/**
- * Okay, got it.  Here's the breakdown:
- * - RichSelectBox - non-dropdown box with selectable items
- *  - (maybe RichSelectSection?)
- *  - Props:
- *   - multiple
- *   - onChange
- *   - size
- *   - title (or maybe force RichSection usage for this?)
- *   - direction?: "column" | "row"
- *   - ...
- *  - Attached Components:
- *    - RichSelectBox.Chip -> RichSelectChip
- *    - RichSelectBox.Option -> RichSelectOption
- *    - RichSelectBox.Chec../SelectList/SelectOptionlectCheckbox
- *    - RichSelectBox.Radio -> RichSelectRadio (this one might be harder, maybe only in single select mode?)
- *    - RichSelectBox.Input -> RichSelectInput (this + text area would be interesting use case: combine checkbox with input, when selected, the key is the inputted value?)
- *
- * - RichSection - matches the ReactAriaSection component
- *  - This would be to get the title displayed in there, compatible with RichSelect ...
- *  - Props:
- *
- *  From there can build up and reuse them to make:
- *  - RichSelectList - dropdown box with selectable items
- *   - Attached Components:
- *    - RichSelectList.Chip -> RichSelectChip
- *    - ...
- *
- */
 import React, {
   type ReactElement,
-  useId,
   useMemo,
-  useContext,
   type SyntheticEvent,
   useRef,
 } from "react";
@@ -44,23 +12,16 @@ import {
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
 import Popover from "../Popover/Popover";
-import { type Key } from "react-aria";
 import {
   Label as ReactAriaLabel,
-  Button as ReactAriaButton,
-  OverlayTriggerStateContext as ReactAriaOverlayTriggerStateContext,
   Provider as ReactAriaProvider,
 } from "react-aria-components";
 import { useControlledState } from "@react-stately/utils";
-
-import RichSelectChip from "./RichSelectChip";
-import RichSelectSection from "./RichSelectSection";
-import { DialogContext, dialogClassnames } from "../Dialog/Dialog";
-import focusStyles from "../Focus.module.css";
+import { DialogContext } from "../Dialog/Dialog";
 import styles from "../SelectList/SelectList.module.css";
-import RichSelectRadioButton from "./RichSelectRadioButton";
 import RichSelectBox, {
   RichSelectBoxContext,
+  convertSelection,
   type RichSelectBoxProps,
 } from "./RichSelectBox";
 import richSelectItems from "./richSelectItems";
@@ -76,10 +37,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = Omit<
-  RichSelectBoxProps,
-  "selectedValue" | "onChange"
-> & {
+export type RichSelectListProps = RichSelectBoxProps & {
   /**
    * One or more RichSelectList.<Chip|RadioButton|Section|...> components.
    */
@@ -112,26 +70,10 @@ export type RichSelectListProps = Omit<
    */
   name?: string;
   /**
-   * Enables multiple selection (multiselect)
-   */
-  multiple?: boolean;
-  /**
-   * The callback to be called when an option is selected
-   */
-  // onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  /**
    * Text showing in select box if no option has been chosen.
    * We should always have a placeholder unless there is a default option selected
    */
   placeholderText?: string;
-  /**
-   * Value of the currently selected option
-   */
-  // selectedValue?: string;
-  /**
-   * (Multiselect only) Value of the currently selected options
-   */
-  // selectedValues?: string[] | Set<string>;
   /**
    * Size of the select box
    * * `sm`: 32px
@@ -144,8 +86,6 @@ export type RichSelectListProps = Omit<
 
   // DIFF THAN SELECTLIST
   autosave?: boolean;
-  onChange: (selectedValues: string[] | "all") => void;
-  defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
   secondaryButtonText?: string;
@@ -153,17 +93,6 @@ export type RichSelectListProps = Omit<
   selectTextValue?: (selectedValues?: string[]) => string | undefined;
   form?: string;
 };
-
-function convertSelection(
-  selection: "all" | Iterable<Key> | undefined,
-  defaultValue: "all" | Set<Key>,
-): "all" | Set<Key> {
-  if (!selection) {
-    return defaultValue;
-  }
-  if (selection === "all") return "all";
-  return new Set(selection);
-}
 
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
@@ -177,11 +106,9 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     errorText,
     helperText,
     label = "myLabel",
-    name,
     multiple = false,
     onChange,
     onClick = NOOP,
-    // placeholderText = "Select an option",
     placeholderText,
     primaryButtonText = "Save",
     primaryButtonAccessibilityLabel = "Save",
@@ -208,7 +135,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     [defaultSelectedValuesProp],
   );
   const [selectedKeys, setSelectedKeys] = useControlledState(
-    selectedKeysProp,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- there is a bug in the typedef for useControlledState from react-stately.  Internally they rely on value (first arg) able to be undefined
+    selectedKeysProp!,
     defaultSelectedKeys,
     (value) => {
       const _value = value === "all" ? "all" : [...value].map(String);
@@ -256,8 +184,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
               <Box
                 padding={5}
                 dangerouslySetInlineStyle={{ __style: { paddingBottom: 0 } }}
-                // margin={5}
-                // marginEnd={0}
               >
                 <RichSelectBox
                   selectedValues={selectedKeys}
@@ -265,7 +191,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                   onChange={(selected) => setSelectedKeys(new Set(selected))}
                   multiple={multiple}
                   autosave={autosave}
-                  disabled={disabled}
                   errorText={errorText}
                   helperText={helperText}
                   size={size}
