@@ -1,4 +1,3 @@
-/* TODO: rename to RichSelectSection */
 import React, { forwardRef, type ReactElement } from "react";
 import {
   Section as ReactAriaSection,
