@@ -418,4 +418,14 @@ describe("popover", () => {
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith(false);
   });
+
+  it("disabled prop deactivates trigger", async () => {
+    render(
+      <Popover disabled content={<div data-testid="content">My Popover</div>}>
+        <button data-testid="trigger">My Trigger</button>
+      </Popover>,
+    );
+    await user.click(screen.getByTestId("trigger"));
+    expect(screen.queryByTestId("content")).not.toBeInTheDocument();
+  });
 });

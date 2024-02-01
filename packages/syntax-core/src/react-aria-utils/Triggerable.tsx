@@ -20,16 +20,22 @@ function cloneWithRef<T>(children: ReactElementWithRef<T>, parentRef: Ref<T>) {
 
 const Triggerable = forwardRef<
   HTMLSpanElement,
-  { children?: ReactElement | (ReactElement & { ref?: Ref<Element> }) }
+  {
+    children?: ReactElement | (ReactElement & { ref?: Ref<Element> });
+    disabled?: boolean;
+  }
 >(function Triggerable(props, forwardedRef) {
-  const { children } = props;
+  const { children, disabled: isDisabled } = props;
   const wrapperDomRef = useObjectRef(forwardedRef);
   const childRef = useObjectRef<HTMLElement>(null);
   const hasTabbableChild = useHasTabbableChild(wrapperDomRef);
   const focusableRef = hasTabbableChild ? childRef : wrapperDomRef;
-  const { focusableProps } = useFocusable({}, focusableRef);
-  const { buttonProps } = useButton({ elementType: "span" }, focusableRef);
-  const { hoverProps } = useHover({});
+  const { focusableProps } = useFocusable({ isDisabled }, focusableRef);
+  const { buttonProps } = useButton(
+    { elementType: "span", isDisabled },
+    focusableRef,
+  );
+  const { hoverProps } = useHover({ isDisabled });
   // focus handlers are attached to tabbable child if present
   const { onFocus, onBlur, onKeyDown, onKeyUp, ...otherFocusableProps } =
     focusableProps;
