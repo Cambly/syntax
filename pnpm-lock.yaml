@@ -218,9 +218,6 @@ importers:
       react-aria-components:
         specifier: ^1.0.1
         version: 1.0.1(react-dom@18.2.0)(react@18.2.0)
-      react-stately:
-        specifier: ^3.29.1
-        version: 3.29.1(react@18.2.0)
     devDependencies:
       '@cambly/eslint-config-syntax':
         specifier: workspace:*
