@@ -22,23 +22,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-/**
- * [SelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
- */
-export default function SelectList({
-  children,
-  "data-testid": dataTestId,
-  disabled: disabledProp = false,
-  errorText,
-  helperText,
-  id,
-  label,
-  onChange,
-  onClick,
-  placeholderText,
-  selectedValue = "",
-  size = "md",
-}: {
+type SelectListProps = {
   /**
    * One or more SelectList.Option components.
    */
@@ -94,7 +78,25 @@ export default function SelectList({
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
-}): ReactElement {
+};
+
+/**
+ * [SelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
+ */
+export default function SelectList({
+  children,
+  "data-testid": dataTestId,
+  disabled: disabledProp = false,
+  errorText,
+  helperText,
+  id,
+  label,
+  onChange,
+  onClick,
+  placeholderText,
+  selectedValue = "",
+  size = "md",
+}: SelectListProps): ReactElement {
   const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
