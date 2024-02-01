@@ -30,6 +30,8 @@ type PopoverProps = {
   children?: ReactElement;
   /** Content to be shown inside the popover. */
   content: ReactNode;
+  /** If set to true the popover trigger will be disabled */
+  disabled?: boolean;
   /** If set to true the popover be open after mount / the first time it renders */
   initialOpen?: boolean;
   /** Optional boolean to control whether popover content is rendered as a modal */
@@ -133,6 +135,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     accessibilityCloseLabel,
     children,
     content,
+    disabled,
     initialOpen,
     modal: modalProp,
     onOpenChange,
@@ -177,7 +180,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
       isOpen={open}
       onOpenChange={onOpenChange}
     >
-      {<Triggerable>{children}</Triggerable>}
+      {<Triggerable disabled={disabled}>{children}</Triggerable>}
       {modal ? modalNode : popoverNode}
     </ReactAriaMenuTrigger>
   );
