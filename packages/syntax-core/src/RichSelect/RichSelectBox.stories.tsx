@@ -304,8 +304,8 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
         <ControlledRichSelectBox
           multiple
           label="Multiple select"
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
+          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          autosave={false}
           selectedValues={["sf"]}
         >
           <RichSelectBox.Section label="People">
@@ -318,8 +318,8 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
         <ControlledRichSelectBox
           multiple={false}
           label="Single select"
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
+          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          autosave={false}
           selectedValues={["sf"]}
         >
           <RichSelectBox.Section label="People">
@@ -331,9 +331,9 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
 
         <ControlledRichSelectBox
           multiple
-          label="Multiple select, autoCommit"
-          helperText="When `autoCommit` is true, the user's changes are automatically committed"
-          autoCommit
+          label="Multiple select, autosave"
+          helperText="When `autosave` is true, the user's changes are automatically committed"
+          autosave
           selectedValues={["tulsa"]}
         >
           <RichSelectBox.Section label="People">
@@ -345,9 +345,9 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
 
         <ControlledRichSelectBox
           multiple={false}
-          label="Single select, autoCommit"
-          helperText="When `autoCommit` is true, the user's changes are automatically committed"
-          autoCommit
+          label="Single select, autosave"
+          helperText="When `autosave` is true, the user's changes are automatically committed"
+          autosave
           selectedValues={["tulsa"]}
         >
           <RichSelectBox.Section label="People">
@@ -368,7 +368,7 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
       <ControlledRichSelectBox
         label="Label"
         multiple
-        autoCommit
+        autosave
         defaultSelectedValues={["memphis"]}
       >
         <RichSelectBox.Section label="Cities">
@@ -383,7 +383,7 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
       <Heading>Single</Heading>
       <ControlledRichSelectBox
         label="Label"
-        autoCommit
+        autosave
         defaultSelectedValues={["memphis"]}
       >
         <RichSelectBox.Section label="Cities">

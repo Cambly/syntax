@@ -202,12 +202,12 @@ describe("richSelectList", () => {
     expect(screen.getByTestId("opt3")).toBeVisible();
   });
 
-  // autoCommit inactive by default
+  // autosave inactive by default
   it("can stage a selection", async () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
       }),
     );
@@ -222,7 +222,7 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
       }),
     );
@@ -239,7 +239,7 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
       }),
     );
@@ -256,7 +256,7 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
       }),
     );
@@ -278,7 +278,7 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
         multiple: true,
       }),
@@ -297,7 +297,7 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autoCommit: false,
+        autosave: false,
         onChange: spy,
         multiple: true,
       }),
@@ -934,12 +934,12 @@ describe("richSelectList", () => {
     });
   });
 
-  describe("autoCommit", () => {
-    it("calls onChange when autoCommit is true, multiple", async () => {
+  describe("autosave", () => {
+    it("calls onChange when autosave is true, multiple", async () => {
       const spy = vi.fn();
       render(
         simpleRichSelectList({
-          autoCommit: true,
+          autosave: true,
           multiple: true,
           onChange: spy,
         }),
@@ -954,11 +954,11 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
     });
 
-    it("calls onChange when autoCommit is true", async () => {
+    it("calls onChange when autosave is true", async () => {
       const spy = vi.fn();
       render(
         simpleRichSelectList({
-          autoCommit: true,
+          autosave: true,
           onChange: spy,
         }),
       );
@@ -968,11 +968,11 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
     });
 
-    it("autoCommit=true calls onChange immediately after selection, uncontrolled, defaultSelectedValues not empty", async () => {
+    it("autosave=true calls onChange immediately after selection, uncontrolled, defaultSelectedValues not empty", async () => {
       const spy = vi.fn();
       render(
         simpleRichSelectList({
-          autoCommit: true,
+          autosave: true,
           onChange: spy,
           defaultSelectedValues: ["opt1"],
         }),
@@ -983,11 +983,11 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith([]);
     });
 
-    it("autoCommit=true calls onChange immediately after selection, controlled, selectedValues not empty", async () => {
+    it("autosave=true calls onChange immediately after selection, controlled, selectedValues not empty", async () => {
       const spy = vi.fn();
       render(
         controlledRichSelectList({
-          autoCommit: true,
+          autosave: true,
           onChange: spy,
           selectedValues: ["opt1"],
         }),
@@ -998,11 +998,11 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith([]);
     });
 
-    it("autoCommit=true calls onChange immediately after selection, uncontrolled, multiple, defaultSelectedValues not empty", async () => {
+    it("autosave=true calls onChange immediately after selection, uncontrolled, multiple, defaultSelectedValues not empty", async () => {
       const spy = vi.fn();
       render(
         simpleRichSelectList({
-          autoCommit: true,
+          autosave: true,
           multiple: true,
           onChange: spy,
           defaultSelectedValues: ["opt1"],
@@ -1020,11 +1020,11 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
     });
 
-    it("autoCommit=true calls onChange immediately after selection, controlled, multiple, selectedValues not empty", async () => {
+    it("autosave=true calls onChange immediately after selection, controlled, multiple, selectedValues not empty", async () => {
       const spy = vi.fn();
       render(
         controlledRichSelectList({
-          autoCommit: true,
+          autosave: true,
           multiple: true,
           onChange: spy,
           selectedValues: ["opt1"],

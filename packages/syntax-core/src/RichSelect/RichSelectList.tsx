@@ -141,7 +141,7 @@ export type RichSelectListProps = Omit<
   size?: "sm" | "md" | "lg";
 
   // DIFF THAN SELECTLIST
-  autoCommit?: boolean;
+  autosave?: boolean;
   onChange: (selectedValues: string[] | "all") => void;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
@@ -168,7 +168,7 @@ function convertSelection(
  */
 function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
-    autoCommit,
+    autosave,
     children,
     "data-testid": dataTestId,
     disabled: disabledProp = false,
@@ -251,7 +251,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 defaultSelectedValues={defaultSelectedKeys}
                 onChange={(selected) => setSelectedKeys(new Set(selected))}
                 multiple={multiple}
-                autoCommit={autoCommit}
+                autosave={autosave}
                 disabled={disabled}
                 errorText={errorText}
                 helperText={helperText}

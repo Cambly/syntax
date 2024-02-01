@@ -286,8 +286,8 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
         label="Label"
         selectedValues={["opt1"]}
         placeholderText="Placeholder"
-        helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-        autoCommit={false}
+        helperText="When `autosave` is false, the user must click the button to commit their changes"
+        autosave={false}
         onChange={(vals) => {
           console.log("onChange", vals);
         }}
@@ -330,8 +330,8 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
         <ControlledRichSelectList
           multiple
           label="Multiple select"
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
+          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          autosave={false}
         >
           <RichSelectList.Section label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -343,8 +343,8 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
         <ControlledRichSelectList
           multiple={false}
           label="Single select"
-          helperText="When `autoCommit` is false, the user must click the button to commit their changes"
-          autoCommit={false}
+          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          autosave={false}
         >
           <RichSelectList.Section label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -361,8 +361,8 @@ export const AutoCommit: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       label="Label"
-      helperText="When `autoCommit` is true, the user's changes are automatically committed"
-      autoCommit
+      helperText="When `autosave` is true, the user's changes are automatically committed"
+      autosave
       onChange={() => undefined}
     >
       <RichSelectList.Section label="Cities">
@@ -376,12 +376,7 @@ export const AutoCommit: StoryObj<typeof RichSelectList> = {
 
 export const ItemAttributeComposition: StoryObj<typeof RichSelectList> = {
   render: () => (
-    <RichSelectList
-      label="Label"
-      multiple
-      autoCommit
-      onChange={() => undefined}
-    >
+    <RichSelectList label="Label" multiple autosave onChange={() => undefined}>
       <RichSelectList.Section label="Cities">
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />

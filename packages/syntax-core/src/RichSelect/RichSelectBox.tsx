@@ -52,7 +52,7 @@ export type RichSelectBoxProps = {
   size?: "sm" | "md" | "lg";
 
   // DIFF THAN SELECTLIST
-  autoCommit?: boolean;
+  autosave?: boolean;
   defaultSelectedValues?: string[] | "all";
   primaryButtonText?: string;
   primaryButtonAccessibilityLabel?: string;
@@ -100,7 +100,7 @@ export const RichSelectBoxContext = createContext<RichSelectBoxContextType>({});
 const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBox(props, ref): ReactElement {
     const {
-      autoCommit,
+      autosave,
       children,
       "data-testid": dataTestId,
       errorText,
@@ -168,7 +168,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     const clearChanges = () => setStagedKeys(new Set());
     const stageChanges = (selectedValues: Selection) => {
       setStagedKeys(selectedValues);
-      if (autoCommit) setSelectedKeys(selectedValues);
+      if (autosave) setSelectedKeys(selectedValues);
     };
 
     // inject method into context so children can disable themselves
@@ -205,7 +205,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
         >
           {children}
         </ReactAriaListBox>
-        {!autoCommit && (
+        {!autosave && (
           <ButtonGroup orientation="horizontal">
             <Button
               onClick={clearChanges}
