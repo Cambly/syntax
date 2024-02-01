@@ -3,6 +3,7 @@ import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
 import Typography from "../Typography/Typography";
+import Heading from "../Heading/Heading";
 
 export default {
   title: "Components/RichSelectBox",
@@ -358,4 +359,41 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
       </Box>
     );
   },
+};
+
+export const ItemAttributeComposition: StoryObj<typeof RichSelectBox> = {
+  render: () => (
+    <Box display="flex" direction="column" gap={4}>
+      <Heading>Multiple</Heading>
+      <ControlledRichSelectBox
+        label="Label"
+        multiple
+        autoCommit
+        defaultSelectedValues={["memphis"]}
+      >
+        <RichSelectBox.OptGroup label="Cities">
+          <RichSelectBox.Chip label="Memphis" value="memphis" disabled />
+          <RichSelectBox.Chip label="San Francisco" value="sf" />
+          <RichSelectBox.Chip label="New York" value="ny" disabled />
+          <RichSelectBox.Chip label="Tulsa" value="tulsa" />
+          <RichSelectBox.Chip label="Chicago" value="chicago" />
+        </RichSelectBox.OptGroup>
+      </ControlledRichSelectBox>
+
+      <Heading>Single</Heading>
+      <ControlledRichSelectBox
+        label="Label"
+        autoCommit
+        defaultSelectedValues={["memphis"]}
+      >
+        <RichSelectBox.OptGroup label="Cities">
+          <RichSelectBox.Chip label="Memphis" value="memphis" disabled />
+          <RichSelectBox.Chip label="San Francisco" value="sf" />
+          <RichSelectBox.Chip label="New York" value="ny" disabled />
+          <RichSelectBox.Chip label="Tulsa" value="tulsa" />
+          <RichSelectBox.Chip label="Chicago" value="chicago" />
+        </RichSelectBox.OptGroup>
+      </ControlledRichSelectBox>
+    </Box>
+  ),
 };

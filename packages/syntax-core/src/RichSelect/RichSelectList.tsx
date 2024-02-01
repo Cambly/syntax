@@ -52,6 +52,7 @@ import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
+import richSelectItems from "./richSelectItems";
 
 const iconSize = {
   sm: 20,
@@ -331,7 +332,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 })
               }
             >
-              {/* TODO: abstract this */}
               {selectedTextValue}
             </ReactAriaButton>
             <div className={styles.arrowIcon}>
@@ -364,8 +364,4 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   );
 }
 
-export default Object.assign(RichSelectList, {
-  OptGroup: RichSelectOptGroup,
-  Chip: RichSelectChip,
-  RadioButton: RichSelectRadioButton,
-});
+export default Object.assign(RichSelectList, richSelectItems);

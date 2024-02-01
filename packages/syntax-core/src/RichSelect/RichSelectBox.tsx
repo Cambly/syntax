@@ -27,8 +27,8 @@ import {
   Section,
   Header,
 } from "react-aria-components";
-import RichSelectChip from "./RichSelectChip";
-import RichSelectOptGroup from "./RichSelectOptGroup";
+import type RichSelectChip from "./RichSelectChip";
+import type RichSelectOptGroup from "./RichSelectOptGroup";
 import DisabledKeysProvider, {
   useDisabledKeys,
   useSelectedKeys,
@@ -72,7 +72,8 @@ import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Button from "../Button/Button";
-import RichSelectRadioButton from "./RichSelectRadioButton";
+import type RichSelectRadioButton from "./RichSelectRadioButton";
+import richSelectItems from "./richSelectItems";
 
 type AriaListBoxContextType = {
   // state: ListState<object>;
@@ -532,13 +533,9 @@ type RichSelectChild =
 export type RichSelectBoxProps = {
   /** Test id for the list box element */
   "data-testid"?: string;
-  /** Whether the list box should autofocus + focusWrap and apply gialog styles */
-  dialog?: boolean;
   /** One or more RichSelectList.<Chip|RadioButton|OptGroup|...> components. */
   // children: ReactElement | ReactElement[];
   children: RichSelectChild | RichSelectChild[];
-  /** Disables the element entirely */
-  disabled?: boolean;
   /** Text shown above the box */
   label?: string;
   /** Direction of elements in container */
@@ -611,14 +608,12 @@ function convertSelection(
   return new Set(selection);
 }
 
-const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
-  function RichSelectBoxInner(props, ref): ReactElement {
+const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
+  function RichSelectBox(props, ref): ReactElement {
     const {
       autoCommit,
       children,
       "data-testid": dataTestId,
-      dialog,
-      disabled: disabledProp = false,
       errorText,
       helperText,
       id,
@@ -636,8 +631,6 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       size = "md",
     } = props;
     const reactId = useId();
-    const isHydrated = useIsHydrated();
-    const disabled = !isHydrated || disabledProp;
 
     /* Okay, the idea here is that we wrap popover around the trigger
       Trigger gets the focus styles, and the popover gets the focus styles.
@@ -664,15 +657,6 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       - `multiple` prop: most(all we support?) browsers make it a static box
         instead of a dropdown.  autoscrolling (ithink)
     */
-
-    const disabledKeys = useDisabledKeys();
-
-    /**
-     * selectedValues, defaultValues
-     * stagedValues
-     * committedValues
-     */
-    // begin rac
     const selectedKeysProp = useMemo(
       () => convertSelection(selectedValuesProp),
       [selectedValuesProp],
@@ -684,91 +668,62 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     const [selectedKeys, setSelectedKeys] = useControlledState(
       selectedKeysProp,
       defaultSelectedKeys,
-      // props.onSelectionChange,
       (value) => {
-        // console.log("RichSelectBoxInner change selectedKeys", value);
         if (isEqualSelection(value, selectedKeys)) return;
+        // Notify parent about the changes
         if (value === "all") return onChange("all");
-        onChange([...value].map(String)); // Notify parent about the changes
+        onChange([...value].map(String));
       },
     );
     const [stagedKeys, setStagedKeys] = useState<Set<Key> | "all">(
       selectedKeys,
     );
 
-    // TODO: ok, time for the disabled/selected/checked composition contexts next
-    const [internalKeys, setInternalKeys] = useState<Set<Key> | undefined>(
-      undefined,
-    );
-
-    // Merge internalValues with initialSelectedValues
-    useEffect(() => {
-      if (selectedKeys === "all") return;
-      if (internalKeys) {
-        setSelectedKeys(
-          new Set([...selectedKeys, ...internalKeys].filter(Boolean)),
-        ); // filter out duplicates
-      }
-    }, [internalKeys, selectedKeys, setSelectedKeys]);
-
+    const saveChanges = () => setSelectedKeys(stagedKeys);
+    const clearChanges = () => setStagedKeys(new Set());
     const stageChanges = (selectedValues: Selection) => {
       setStagedKeys(selectedValues);
       if (autoCommit) setSelectedKeys(selectedValues);
     };
 
-    const saveChanges = () => setSelectedKeys(stagedKeys);
-    const clearChanges = () => setStagedKeys(new Set());
-
-    // construct collection from composed children tree
-    // TODO: okay at first thought it was necessary to avoid useListState + useListStateContext
-    //   but now think i understand the ComboBox/Select trick of rendering
-    //   two list boxes (I think one is in a portal?), and putting list state in context
-    //   that would allow ListBox to build the collection in that portal,
-    //   leave open the "items" prop route for this component if we need a.la. Ken's
-    //   rational proposal, and _should_ allow to drop the getCollectionNode hackey method
-    //   Huge benefits all around, might need to figure out the portal first, unsure
-    //   if the portal acces is unified and/or even exposed from library
-
-    // construct collection from composed children tree
-    // const collection = useCollection(
-    //   props,
-    //   useCallback((nodes) => new ListCollection(nodes), []),
-    //   useMemo(() => ({ suppressTextValueWarning: false }), []),
-    // );
+    // inject method into context so children can disable themselves
+    // by adding `disabled` attribute (through RichSelectItem)
+    const [disabledKeysComposed, setDisabledKeysComposed] = useState<Set<Key>>(
+      new Set(),
+    );
+    const disableKey = useCallback((key: Key, _disabled: boolean) => {
+      setDisabledKeysComposed((keys) => {
+        if (keys.has(key) === _disabled) return keys;
+        _disabled ? keys.add(key) : keys.delete(key);
+        return new Set(keys);
+      });
+    }, []);
 
     return (
       <RichSelectItemContext.Provider
-      // value={{
-      //   disableKey: useCallback((key: Key) => {
-      //     setDisabledKeysState((keys) => new Set(keys.add(key)));
-      //   }, []),
-      //   selectKey: useCallback((key: Key) => {
-      //     setSelectedKeysState((keys) => {
-      //       if (keys === "all") return keys;
-      //       // if (!keys) return new Set([key]);
-      //       return new Set(keys.add(key));
-      //     });
-      //   }, []),
-      // }}
+        value={{
+          disableKey,
+        }}
       >
         <ReactAriaListBox
           ref={ref}
           aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-          autoFocus={dialog}
+          // autoFocus={dialog}
           // items={props.items} // TODO: implement Ken's proposal
           selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
           selectionBehavior={multiple ? "toggle" : "replace"}
-          shouldFocusWrap={dialog}
-          // orientation="horizontal"
-          orientation={orientation}
+          shouldFocusWrap={true}
+          // shouldFocusWrap={dialog}
+          orientation="horizontal"
+          // orientation={orientation}
           selectedKeys={stagedKeys}
           // onSelectionChange={setStagedKeys}
           onSelectionChange={stageChanges}
-          disabledKeys={disabledKeys}
-          className={
-            // props.className
-            dialog ? classNames(dialogClassnames({ size: "md" })) : undefined
-          }
+          disabledKeys={disabledKeysComposed}
+          // className={
+          //   // props.className
+          //   dialog ? classNames(dialogClassnames({ size: "md" })) : undefined
+          // }
         >
           {children}
         </ReactAriaListBox>
@@ -799,18 +754,4 @@ const RichSelectBoxInner = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   },
 );
 
-const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
-  function RichSelectBox(props, ref): ReactElement {
-    return (
-      <DisabledKeysProvider>
-        <RichSelectBoxInner {...props} ref={ref} />
-      </DisabledKeysProvider>
-    );
-  },
-);
-
-export default Object.assign(RichSelectBox, {
-  OptGroup: RichSelectOptGroup,
-  Chip: RichSelectChip,
-  RadioButton: RichSelectRadioButton,
-});
+export default Object.assign(RichSelectBox, richSelectItems);

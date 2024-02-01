@@ -1066,4 +1066,119 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
     });
   });
+
+  describe("composition with RichSelectItem", () => {
+    it("uses disabled prop on items", async () => {
+      const spy = vi.fn();
+      render(
+        <RichSelectList
+          data-testid="trigger"
+          {...defaultRequiredProps}
+          onChange={spy}
+        >
+          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+            <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
+            <RichSelectList.Chip
+              data-testid="opt2"
+              label="Opt2"
+              value="opt2"
+              disabled
+            />
+            <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
+          </RichSelectList.OptGroup>
+        </RichSelectList>,
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      const opt2 = screen.getByTestId("opt2");
+      expect(opt2).toHaveAttribute("aria-disabled", "true");
+      expect(opt2).toHaveAttribute("aria-selected", "false");
+      await user.click(opt2);
+      expect(opt2).toHaveAttribute("aria-selected", "false");
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it("uses disabled prop on items, defaultSelectedValues not empty", async () => {
+      const spy = vi.fn();
+      render(
+        <RichSelectList
+          data-testid="trigger"
+          {...defaultRequiredProps}
+          onChange={spy}
+          defaultSelectedValues={["opt2"]}
+        >
+          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+            <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
+            <RichSelectList.Chip
+              data-testid="opt2"
+              label="Opt2"
+              value="opt2"
+              disabled
+            />
+            <RichSelectList.Chip
+              data-testid="opt3"
+              label="Opt3"
+              value="opt3"
+              disabled
+            />
+          </RichSelectList.OptGroup>
+        </RichSelectList>,
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      const opt3 = screen.getByTestId("opt3");
+      expect(opt3).toHaveAttribute("aria-disabled", "true");
+      const opt2 = screen.getByTestId("opt2");
+      expect(opt2).toHaveAttribute("aria-disabled", "true");
+      expect(opt2).toHaveAttribute("aria-selected", "true");
+      await user.click(opt2);
+      expect(opt2).toHaveAttribute("aria-selected", "true");
+      expect(spy).not.toHaveBeenCalled();
+      const opt1 = screen.getByTestId("opt1");
+      await user.click(opt1);
+      expect(opt1).toHaveAttribute("aria-selected", "true");
+      expect(opt2).toHaveAttribute("aria-selected", "false");
+      await user.click(screen.getByTestId("primary-button"));
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    });
+
+    it("uses disabled prop on items, selectedValues not empty", async () => {
+      const spy = vi.fn();
+      render(
+        <RichSelectList
+          data-testid="trigger"
+          {...defaultRequiredProps}
+          onChange={spy}
+          selectedValues={["opt2"]}
+        >
+          <RichSelectList.OptGroup data-testid="optgroup" label="Group1">
+            <RichSelectList.Chip data-testid="opt1" label="Opt1" value="opt1" />
+            <RichSelectList.Chip
+              data-testid="opt2"
+              label="Opt2"
+              value="opt2"
+              disabled
+            />
+            <RichSelectList.Chip data-testid="opt3" label="Opt3" value="opt3" />
+          </RichSelectList.OptGroup>
+        </RichSelectList>,
+      );
+      await user.click(screen.getByTestId("trigger"));
+      await act(() => vi.runAllTimers());
+      const opt2 = screen.getByTestId("opt2");
+      expect(opt2).toHaveAttribute("aria-disabled", "true");
+      expect(opt2).toHaveAttribute("aria-selected", "true");
+      await user.click(opt2);
+      expect(opt2).toHaveAttribute("aria-selected", "true");
+      expect(spy).not.toHaveBeenCalled();
+      const opt1 = screen.getByTestId("opt1");
+      await user.click(opt1);
+      expect(opt1).toHaveAttribute("aria-selected", "true");
+      expect(opt2).toHaveAttribute("aria-selected", "false");
+      await user.click(screen.getByTestId("primary-button"));
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
+    });
+  });
 });

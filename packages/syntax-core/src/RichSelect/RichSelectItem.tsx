@@ -11,8 +11,8 @@ import {
   type ListBoxItemRenderProps,
 } from "react-aria-components";
 import styles from "./RichSelect.module.css";
-import { useDisableKey, useSelectKey } from "./DisabledKeysProvider";
-import { type Key, type OptionAria } from "react-aria";
+import { type Key } from "react-aria";
+import useIsHydrated from "../useIsHydrated";
 
 export type RichSelectItemProps = {
   "data-testid"?: string;
@@ -20,8 +20,6 @@ export type RichSelectItemProps = {
   label: string;
   name?: string;
   disabled?: boolean;
-  selected?: boolean;
-  checked?: boolean;
   /** The children of the component. A function may be provided to alter the children based on component state. */
   children?:
     | string
@@ -29,10 +27,8 @@ export type RichSelectItemProps = {
     | ((values: ListBoxItemRenderProps) => ReactElement);
 };
 
-// TODO: rename to RichSelectItem (whole file)
 export const RichSelectItemContext = createContext<{
   disableKey?: (key: Key, value: boolean) => void;
-  selectKey?: (key: Key, value: boolean) => void;
 }>({});
 
 export default forwardRef<HTMLDivElement, RichSelectItemProps>(
@@ -44,24 +40,17 @@ export default forwardRef<HTMLDivElement, RichSelectItemProps>(
       "data-testid": dataTestId,
       value,
       label,
-      disabled = false,
-      selected = false,
-      checked = false,
+      disabled: disabledProp = false,
       children,
     } = props;
+    const isHydrated = useIsHydrated();
+    const disabled = !isHydrated || disabledProp;
 
-    const { disableKey, selectKey } = useContext(RichSelectItemContext) || {};
+    const { disableKey } = useContext(RichSelectItemContext);
     useEffect(
       () => disableKey?.(value, disabled),
       [disableKey, disabled, value],
     );
-    useEffect(
-      () => selectKey?.(value, selected || checked),
-      [checked, selectKey, selected, value],
-    );
-
-    useDisableKey(value, disabled);
-    useSelectKey(value, selected); // wait, does/did this work?
     return (
       <ReactAriaListBoxItem
         id={value}

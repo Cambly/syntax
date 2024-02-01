@@ -58,7 +58,6 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         <RichSelectList.OptGroup label="Places">
           <RichSelectList.Chip label="San Francisco" value="sf" />
           <RichSelectList.Chip label="New York" value="ny" disabled />
-          <RichSelectList.Chip label="Los Angeles" value="la" />
           <RichSelectList.Chip label="Tulsa" value="tulsa" />
         </RichSelectList.OptGroup>
         <RichSelectList.OptGroup label="Times">
@@ -150,7 +149,6 @@ export const VeryLongContent = (): ReactElement => {
         <RichSelectList.Chip selected label="Joe" value="joe" />
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />
-        <RichSelectList.Chip label="Los Angeles" value="la" />
         <RichSelectList.Chip label="Tulsa" value="tulsa" />
         <RichSelectList.Chip label="Morning" value="morning" />
         <RichSelectList.Chip label="Afternoon" value="afternoon" />
@@ -298,7 +296,6 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
         <RichSelectList.OptGroup label="People">
           <RichSelectList.Chip label="San Francisco" value="sf" />
           <RichSelectList.Chip label="New York" value="ny" disabled />
-          <RichSelectList.Chip label="Los Angeles" value="la" />
           <RichSelectList.Chip label="Tulsa" value="tulsa" />
         </RichSelectList.OptGroup>
       </RichSelectList>
@@ -339,7 +336,6 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           <RichSelectList.OptGroup label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
             <RichSelectList.Chip label="New York" value="ny" disabled />
-            <RichSelectList.Chip label="Los Angeles" value="la" />
             <RichSelectList.Chip label="Tulsa" value="tulsa" />
           </RichSelectList.OptGroup>
         </ControlledRichSelectList>
@@ -353,7 +349,6 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
           <RichSelectList.OptGroup label="Cities">
             <RichSelectList.Chip label="San Francisco" value="sf" />
             <RichSelectList.Chip label="New York" value="ny" disabled />
-            <RichSelectList.Chip label="Los Angeles" value="la" />
             <RichSelectList.Chip label="Tulsa" value="tulsa" />
           </RichSelectList.OptGroup>
         </ControlledRichSelectList>
@@ -370,11 +365,28 @@ export const AutoCommit: StoryObj<typeof RichSelectList> = {
       autoCommit
       onChange={() => undefined}
     >
-      <RichSelectList.OptGroup label="People">
+      <RichSelectList.OptGroup label="Cities">
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />
-        <RichSelectList.Chip label="Los Angeles" value="la" />
         <RichSelectList.Chip label="Tulsa" value="tulsa" />
+      </RichSelectList.OptGroup>
+    </RichSelectList>
+  ),
+};
+
+export const ItemAttributeComposition: StoryObj<typeof RichSelectList> = {
+  render: () => (
+    <RichSelectList
+      label="Label"
+      multiple
+      autoCommit
+      onChange={() => undefined}
+    >
+      <RichSelectList.OptGroup label="Cities">
+        <RichSelectList.Chip label="San Francisco" value="sf" />
+        <RichSelectList.Chip label="New York" value="ny" disabled />
+        <RichSelectList.Chip label="Tulsa" value="tulsa" selected disabled />
+        <RichSelectList.Chip label="Chicago" value="chicago" selected />
       </RichSelectList.OptGroup>
     </RichSelectList>
   ),
