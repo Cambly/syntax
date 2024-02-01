@@ -1,14 +1,23 @@
 import React, {
   forwardRef,
+  useImperativeHandle,
   type ReactElement,
   type Ref,
   type RefAttributes,
+  useContext,
+  useRef,
 } from "react";
 import { mergeProps, useButton, useFocusable, useHover } from "react-aria";
+import { OverlayTriggerStateContext } from "react-aria-components";
 import { useObjectRef, mergeRefs } from "@react-aria/utils";
 import { useHasTabbableChild } from "@react-aria/focus";
 import { useDomRefSyntheticEventBridge } from "./useDomRefSyntheticEventBridge";
 import styles from "./Triggerable.module.css";
+
+export type OverlayHandlerRef = {
+  open?: () => void;
+  close?: () => void;
+};
 
 type ReactElementWithRef<T = unknown> = ReactElement & RefAttributes<T>;
 function cloneWithRef<T>(children: ReactElementWithRef<T>, parentRef: Ref<T>) {
@@ -19,14 +28,14 @@ function cloneWithRef<T>(children: ReactElementWithRef<T>, parentRef: Ref<T>) {
 }
 
 const Triggerable = forwardRef<
-  HTMLSpanElement,
+  OverlayHandlerRef,
   {
     children?: ReactElement | (ReactElement & { ref?: Ref<Element> });
     disabled?: boolean;
   }
 >(function Triggerable(props, forwardedRef) {
   const { children, disabled: isDisabled } = props;
-  const wrapperDomRef = useObjectRef(forwardedRef);
+  const wrapperDomRef = useRef<HTMLElement>(null);
   const childRef = useObjectRef<HTMLElement>(null);
   const hasTabbableChild = useHasTabbableChild(wrapperDomRef);
   const focusableRef = hasTabbableChild ? childRef : wrapperDomRef;
@@ -45,6 +54,13 @@ const Triggerable = forwardRef<
   useDomRefSyntheticEventBridge(focusableHandlerProps, childRef, {
     enabled: hasTabbableChild,
   });
+
+  const overlayTriggerState = useContext(OverlayTriggerStateContext);
+  // Expose open and close methods from any overlay context to parent component
+  useImperativeHandle(forwardedRef, () => ({
+    open: () => overlayTriggerState.open(),
+    close: () => overlayTriggerState.close(),
+  }));
 
   return (
     <span

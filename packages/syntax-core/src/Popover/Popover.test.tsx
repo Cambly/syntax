@@ -1,7 +1,8 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, act } from "@testing-library/react";
 import Popover from "./Popover";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { type OverlayHandlerRef } from "../react-aria-utils/Triggerable";
 
 // Fake timers are needed in this test in order to test past delays and nextTicks running down in library components
 // The following setup is needed to use vi fake timers with userEvent library
@@ -426,6 +427,35 @@ describe("popover", () => {
       </Popover>,
     );
     await user.click(screen.getByTestId("trigger"));
+    expect(screen.queryByTestId("content")).not.toBeInTheDocument();
+  });
+
+  it("imperative open method on forwarded ref", () => {
+    const ref: { current: null | OverlayHandlerRef } = { current: null };
+    render(
+      <Popover ref={ref} content={<div data-testid="content">My Popover</div>}>
+        <button data-testid="trigger">My Trigger</button>
+      </Popover>,
+    );
+    expect(ref.current).toHaveProperty("open");
+    expect(ref.current?.open).toBeInstanceOf(Function);
+    expect(screen.queryByTestId("content")).not.toBeInTheDocument();
+    act(() => ref.current?.open?.());
+    expect(screen.getByTestId("content")).toBeVisible();
+  });
+
+  it("imperative close method on forwarded ref", () => {
+    const ref: { current: null | OverlayHandlerRef } = { current: null };
+    render(
+      <Popover ref={ref} content={<div data-testid="content">My Popover</div>}>
+        <button data-testid="trigger">My Trigger</button>
+      </Popover>,
+    );
+    expect(ref.current).toHaveProperty("close");
+    expect(ref.current?.close).toBeInstanceOf(Function);
+    act(() => ref.current?.open?.());
+    expect(screen.getByTestId("content")).toBeVisible();
+    act(() => ref.current?.close?.());
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
   });
 });

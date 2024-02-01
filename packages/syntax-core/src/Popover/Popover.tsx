@@ -7,7 +7,9 @@ import {
   MenuTrigger as ReactAriaMenuTrigger,
   composeRenderProps,
 } from "react-aria-components";
-import Triggerable from "../react-aria-utils/Triggerable";
+import Triggerable, {
+  type OverlayHandlerRef,
+} from "../react-aria-utils/Triggerable";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import Dialog from "../Dialog/Dialog";
 import ModalDialog from "../Dialog/ModalDialog";
@@ -125,7 +127,7 @@ export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
   </Popover>
  ```
  */
-const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
+const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
   props,
   ref,
 ): ReactElement {
@@ -148,7 +150,6 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   const modalNode = (
     <ModalDialog
-      ref={ref}
       accessibilityLabel={accessibilityLabel}
       accessibilityCloseLabel={accessibilityCloseLabel}
       data-testid={dataTestId}
@@ -163,7 +164,6 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   const popoverNode = (
     <AriaPopover
-      ref={ref}
       placement={syntaxToReactAriaPlacement(placement)}
       onChangeContentVisibility={onChangeContentVisibility}
     >
@@ -180,7 +180,11 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
       isOpen={open}
       onOpenChange={onOpenChange}
     >
-      {<Triggerable disabled={disabled}>{children}</Triggerable>}
+      {
+        <Triggerable disabled={disabled} ref={ref}>
+          {children}
+        </Triggerable>
+      }
       {modal ? modalNode : popoverNode}
     </ReactAriaMenuTrigger>
   );
