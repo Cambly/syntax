@@ -19,6 +19,8 @@ import Button from "../Button/Button";
 import type RichSelectRadioButton from "./RichSelectRadioButton";
 import richSelectItems from "./richSelectItems";
 import styles from "./RichSelect.module.css";
+import Box from "../Box/Box";
+import Divider from "../Divider/Divider";
 
 type RichSelectChild =
   | ReactElement<typeof RichSelectChip>
@@ -189,44 +191,71 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
 
     return (
       <RichSelectItemContext.Provider value={{ disableKey }}>
-        <ReactAriaListBox
-          ref={ref}
-          aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-          autoFocus={autoFocus}
-          // items={props.items} // TODO: implement Ken's proposal
-          selectionMode={multiple ? "multiple" : "single"}
-          selectionBehavior={multiple ? "toggle" : "replace"}
-          shouldFocusWrap={true}
-          orientation="horizontal"
-          selectedKeys={stagedKeys}
-          onSelectionChange={stageChanges}
-          disabledKeys={disabledKeysComposed}
-          className={styles.richSelectBox}
-        >
-          {children}
-        </ReactAriaListBox>
-        {!autosave && (
-          <ButtonGroup orientation="horizontal">
-            <Button
-              onClick={clearChanges}
-              color={"secondary"}
-              text={secondaryButtonText}
-              accessibilityLabel={secondaryButtonAccessibilityLabel}
-              data-testid={[dataTestId, "secondary-button"]
-                .filter(Boolean)
-                .join("-")}
-            />
-            <Button
-              onClick={saveChanges}
-              text={primaryButtonText}
-              accessibilityLabel={primaryButtonAccessibilityLabel}
-              color="primary"
-              data-testid={[dataTestId, "primary-button"]
-                .filter(Boolean)
-                .join("-")}
-            />
-          </ButtonGroup>
-        )}
+        <Box>
+          <ReactAriaListBox
+            ref={ref}
+            aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
+            autoFocus={autoFocus}
+            // items={props.items} // TODO: implement Ken's proposal
+            selectionMode={multiple ? "multiple" : "single"}
+            selectionBehavior={multiple ? "toggle" : "replace"}
+            shouldFocusWrap={true}
+            orientation="horizontal"
+            selectedKeys={stagedKeys}
+            onSelectionChange={stageChanges}
+            disabledKeys={disabledKeysComposed}
+            className={styles.richSelectBox}
+          >
+            {children}
+          </ReactAriaListBox>
+          {!autosave && (
+            <Box
+              backgroundColor="white"
+              display="flex"
+              direction="column"
+              gap={5}
+              marginTop={5}
+              justifyContent="end"
+              position="sticky"
+              dangerouslySetInlineStyle={{
+                __style: {
+                  bottom: 0,
+                },
+              }}
+            >
+              <Box flex="grow">
+                <Divider />
+              </Box>
+              <Box
+                paddingY={5}
+                marginTop={-5}
+                display="flex"
+                justifyContent="end"
+              >
+                <ButtonGroup orientation="horizontal">
+                  <Button
+                    onClick={clearChanges}
+                    color={"secondary"}
+                    text={secondaryButtonText}
+                    accessibilityLabel={secondaryButtonAccessibilityLabel}
+                    data-testid={[dataTestId, "secondary-button"]
+                      .filter(Boolean)
+                      .join("-")}
+                  />
+                  <Button
+                    onClick={saveChanges}
+                    text={primaryButtonText}
+                    accessibilityLabel={primaryButtonAccessibilityLabel}
+                    color="primary"
+                    data-testid={[dataTestId, "primary-button"]
+                      .filter(Boolean)
+                      .join("-")}
+                  />
+                </ButtonGroup>
+              </Box>
+            </Box>
+          )}
+        </Box>
       </RichSelectItemContext.Provider>
     );
   },

@@ -49,12 +49,13 @@ import {
   Label as ReactAriaLabel,
   Button as ReactAriaButton,
   OverlayTriggerStateContext as ReactAriaOverlayTriggerStateContext,
+  Provider as ReactAriaProvider,
 } from "react-aria-components";
 import { useControlledState } from "@react-stately/utils";
 
 import RichSelectChip from "./RichSelectChip";
 import RichSelectSection from "./RichSelectSection";
-import { dialogClassnames } from "../Dialog/Dialog";
+import { DialogContext, dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
 import RichSelectRadioButton from "./RichSelectRadioButton";
@@ -65,6 +66,7 @@ import RichSelectBox, {
 import richSelectItems from "./richSelectItems";
 import TapArea from "../TapArea/TapArea";
 import { type OverlayHandlerRef } from "../react-aria-utils/Triggerable";
+import Box from "../Box/Box";
 
 const NOOP = () => undefined;
 
@@ -224,101 +226,116 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   }, [selectTextValue, selectedKeys, placeholderText]);
 
   return (
-    <div
-      className={classNames(styles.selectContainer, {
-        [styles.opacityOverlay]: disabled,
-      })}
+    <ReactAriaProvider
+      values={[
+        [RichSelectBoxContext, { autoFocus: true }],
+        [DialogContext, { padding: 0 }],
+      ]}
     >
-      <ReactAriaLabel
-        className={classNames(
-          styles.selectContainer,
-          styles.outerTextContainer,
-        )}
+      <div
+        className={classNames(styles.selectContainer, {
+          [styles.opacityOverlay]: disabled,
+        })}
       >
-        {label && (
-          <Typography size={100} color="gray700">
-            {label}
-          </Typography>
-        )}
-
-        <Popover
-          ref={overlayHandlerRef}
-          disabled={disabled}
-          content={
-            <RichSelectBoxContext.Provider value={{ autoFocus: true }}>
-              <RichSelectBox
-                selectedValues={selectedKeys}
-                defaultSelectedValues={defaultSelectedKeys}
-                onChange={(selected) => setSelectedKeys(new Set(selected))}
-                multiple={multiple}
-                autosave={autosave}
-                disabled={disabled}
-                errorText={errorText}
-                helperText={helperText}
-                size={size}
-                label={label}
-                primaryButtonText={primaryButtonText}
-                primaryButtonAccessibilityLabel={
-                  primaryButtonAccessibilityLabel
-                }
-                secondaryButtonText={secondaryButtonText}
-                secondaryButtonAccessibilityLabel={
-                  secondaryButtonAccessibilityLabel
-                }
-              >
-                {children}
-              </RichSelectBox>
-            </RichSelectBoxContext.Provider>
-          }
+        <ReactAriaLabel
+          className={classNames(
+            styles.selectContainer,
+            styles.outerTextContainer,
+          )}
         >
-          <TapArea
-            data-testid={dataTestId}
+          {label && (
+            <Typography size={100} color="gray700">
+              {label}
+            </Typography>
+          )}
+
+          <Popover
+            ref={overlayHandlerRef}
             disabled={disabled}
-            onClick={onClick}
-            rounding={size === "lg" ? "lg" : "md"}
-          >
-            <div className={styles.selectWrapper}>
-              <div
-                className={classNames(styles.selectBox, styles[size], {
-                  [styles.unselected]:
-                    !errorText && selectedKeys !== "all" && !selectedKeys.size,
-                  [styles.selected]:
-                    !errorText && (selectedKeys === "all" || selectedKeys.size),
-                  [styles.selectError]: errorText,
-                })}
+            content={
+              <Box
+                padding={5}
+                dangerouslySetInlineStyle={{ __style: { paddingBottom: 0 } }}
+                // margin={5}
+                // marginEnd={0}
               >
-                {selectedTextValue}
-              </div>
-              <div className={styles.arrowIcon}>
-                <svg
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  width={iconSize[size]}
+                <RichSelectBox
+                  selectedValues={selectedKeys}
+                  defaultSelectedValues={defaultSelectedKeys}
+                  onChange={(selected) => setSelectedKeys(new Set(selected))}
+                  multiple={multiple}
+                  autosave={autosave}
+                  disabled={disabled}
+                  errorText={errorText}
+                  helperText={helperText}
+                  size={size}
+                  label={label}
+                  primaryButtonText={primaryButtonText}
+                  primaryButtonAccessibilityLabel={
+                    primaryButtonAccessibilityLabel
+                  }
+                  secondaryButtonText={secondaryButtonText}
+                  secondaryButtonAccessibilityLabel={
+                    secondaryButtonAccessibilityLabel
+                  }
                 >
-                  <path
-                    fill={
-                      errorText ? ColorBaseDestructive700 : ColorBaseGray800
-                    }
-                    d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </TapArea>
-        </Popover>
-      </ReactAriaLabel>
-      {(helperText || errorText) && (
-        <div className={styles.outerTextContainer}>
-          <Typography
-            size={100}
-            color={errorText ? "destructive-primary" : "gray700"}
+                  {children}
+                </RichSelectBox>
+              </Box>
+            }
           >
-            {errorText ? errorText : helperText}
-          </Typography>
-        </div>
-      )}
-    </div>
+            <TapArea
+              data-testid={dataTestId}
+              disabled={disabled}
+              onClick={onClick}
+              rounding={size === "lg" ? "lg" : "md"}
+            >
+              <div className={styles.selectWrapper}>
+                <div
+                  className={classNames(styles.selectBox, styles[size], {
+                    [styles.unselected]:
+                      !errorText &&
+                      selectedKeys !== "all" &&
+                      !selectedKeys.size,
+                    [styles.selected]:
+                      !errorText &&
+                      (selectedKeys === "all" || selectedKeys.size),
+                    [styles.selectError]: errorText,
+                  })}
+                >
+                  {selectedTextValue}
+                </div>
+                <div className={styles.arrowIcon}>
+                  <svg
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    width={iconSize[size]}
+                  >
+                    <path
+                      fill={
+                        errorText ? ColorBaseDestructive700 : ColorBaseGray800
+                      }
+                      d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </TapArea>
+          </Popover>
+        </ReactAriaLabel>
+        {(helperText || errorText) && (
+          <div className={styles.outerTextContainer}>
+            <Typography
+              size={100}
+              color={errorText ? "destructive-primary" : "gray700"}
+            >
+              {errorText ? errorText : helperText}
+            </Typography>
+          </div>
+        )}
+      </div>
+    </ReactAriaProvider>
   );
 }
 
