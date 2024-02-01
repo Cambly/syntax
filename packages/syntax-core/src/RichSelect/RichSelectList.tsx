@@ -34,6 +34,7 @@ import React, {
   useMemo,
   useContext,
   type SyntheticEvent,
+  useRef,
 } from "react";
 import classNames from "classnames";
 import {
@@ -63,6 +64,7 @@ import RichSelectBox, {
 } from "./RichSelectBox";
 import richSelectItems from "./richSelectItems";
 import TapArea from "../TapArea/TapArea";
+import { type OverlayHandlerRef } from "../react-aria-utils/Triggerable";
 
 const NOOP = () => undefined;
 
@@ -168,65 +170,6 @@ function convertSelection(
 /**
  * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
  */
-function RichSelectListInner(
-  props: Omit<
-    RichSelectListProps,
-    "selectTextValue" | "onClick" | "data-testid"
-  >,
-): ReactElement {
-  const {
-    autoCommit,
-    children,
-    // "data-testid": dataTestId,
-    // disabled: disabledProp = false,
-    disabled,
-    errorText,
-    helperText,
-    id,
-    label = "myLabel",
-    name,
-    multiple = false,
-    onChange,
-    onClick,
-    primaryButtonText = "Save",
-    primaryButtonAccessibilityLabel = "Save",
-    secondaryButtonText = "Clear",
-    secondaryButtonAccessibilityLabel = "Clear",
-    selectedValues: selectedValuesProp,
-    defaultSelectedValues: defaultSelectedValuesProp,
-    size = "md",
-  } = props;
-
-  const overlayTriggerState = useContext(ReactAriaOverlayTriggerStateContext);
-
-  return (
-    <RichSelectBoxContext.Provider value={{ autoFocus: true }}>
-      <RichSelectBox
-        id={id}
-        autoCommit={autoCommit}
-        multiple={multiple}
-        orientation="horizontal"
-        onChange={(vals) => {
-          onChange(vals);
-          overlayTriggerState.close();
-        }}
-        size={size}
-        label={label}
-        errorText={errorText}
-        helperText={helperText}
-        selectedValues={selectedValuesProp}
-        defaultSelectedValues={defaultSelectedValuesProp}
-        primaryButtonText={primaryButtonText}
-        primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
-        secondaryButtonText={secondaryButtonText}
-        secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
-      >
-        {children}
-      </RichSelectBox>
-    </RichSelectBoxContext.Provider>
-  );
-}
-
 function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
     autoCommit,
@@ -259,6 +202,9 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   const disabled = !isHydrated || disabledProp;
   const selectId = id ?? reactId;
 
+  // passed to popover, which attached open/close methods
+  const overlayHandlerRef = useRef<OverlayHandlerRef>({});
+
   const selectedKeysProp = useMemo(
     () => convertSelection(selectedValuesProp),
     [selectedValuesProp],
@@ -271,8 +217,9 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     selectedKeysProp,
     defaultSelectedKeys,
     (value) => {
-      if (value === "all") return onChange(value);
-      onChange([...value].map(String));
+      const _value = value === "all" ? "all" : [...value].map(String);
+      onChange(_value);
+      overlayHandlerRef.current.close?.();
     },
   );
 
@@ -303,30 +250,33 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
         )}
 
         <Popover
+          ref={overlayHandlerRef}
           disabled={disabled}
           content={
-            <RichSelectListInner
-              // TODO forward ref here.
-              // {...props}
-              selectedValues={selectedKeys}
-              defaultSelectedValues={defaultSelectedKeys}
-              onChange={(selected) => setSelectedKeys(new Set(selected))}
-              multiple={multiple}
-              autoCommit={autoCommit}
-              disabled={disabled}
-              errorText={errorText}
-              helperText={helperText}
-              size={size}
-              label={label}
-              primaryButtonText={primaryButtonText}
-              primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
-              secondaryButtonText={secondaryButtonText}
-              secondaryButtonAccessibilityLabel={
-                secondaryButtonAccessibilityLabel
-              }
-            >
-              {children}
-            </RichSelectListInner>
+            <RichSelectBoxContext.Provider value={{ autoFocus: true }}>
+              <RichSelectBox
+                selectedValues={selectedKeys}
+                defaultSelectedValues={defaultSelectedKeys}
+                onChange={(selected) => setSelectedKeys(new Set(selected))}
+                multiple={multiple}
+                autoCommit={autoCommit}
+                disabled={disabled}
+                errorText={errorText}
+                helperText={helperText}
+                size={size}
+                label={label}
+                primaryButtonText={primaryButtonText}
+                primaryButtonAccessibilityLabel={
+                  primaryButtonAccessibilityLabel
+                }
+                secondaryButtonText={secondaryButtonText}
+                secondaryButtonAccessibilityLabel={
+                  secondaryButtonAccessibilityLabel
+                }
+              >
+                {children}
+              </RichSelectBox>
+            </RichSelectBoxContext.Provider>
           }
         >
           <TapArea
