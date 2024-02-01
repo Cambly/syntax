@@ -96,6 +96,45 @@ describe("richSelectList", () => {
     expect(screen.getByTestId("opt3")).toBeInTheDocument();
   });
 
+  it("opens menu when Enter key is pressed while focused", async () => {
+    render(simpleRichSelectList());
+    await user.tab();
+    await user.keyboard("{Enter}");
+    await act(() => vi.runAllTimers());
+    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+  });
+
+  it("opens menu when down-arrow key is pressed while focused", async () => {
+    render(simpleRichSelectList());
+    await user.tab();
+    await user.keyboard("{ArrowDown}");
+    await act(() => vi.runAllTimers());
+    expect(screen.getByTestId("optgroup")).toBeInTheDocument();
+  });
+
+  it("does not open menu when disabled", async () => {
+    render(simpleRichSelectList({ disabled: true }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(screen.queryByTestId("optgroup")).not.toBeInTheDocument();
+  });
+
+  it("handles onClick on the select trigger", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onClick: spy }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not call onClick when disabled", async () => {
+    const spy = vi.fn();
+    render(simpleRichSelectList({ onClick: spy, disabled: true }));
+    await user.click(screen.getByTestId("trigger"));
+    await act(() => vi.runAllTimers());
+    expect(spy).not.toHaveBeenCalled();
+  });
+
   it("clicks on an option without erroring", async () => {
     render(simpleRichSelectList());
     await user.click(screen.getByTestId("trigger"));
@@ -262,14 +301,6 @@ describe("richSelectList", () => {
     expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
     expect(opt1).toHaveAttribute("aria-selected", "true");
     expect(opt2).toHaveAttribute("aria-selected", "true");
-  });
-
-  it.skip("handles onClick on the select trigger", async () => {
-    const spy = vi.fn();
-    render(simpleRichSelectList({ onClick: spy }));
-    await user.click(screen.getByTestId("trigger"));
-    await act(() => vi.runAllTimers());
-    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it("does not call onChange after initial render", async () => {

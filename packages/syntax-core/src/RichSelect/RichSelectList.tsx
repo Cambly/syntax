@@ -28,7 +28,13 @@
  *    - ...
  *
  */
-import React, { type ReactElement, useId, useMemo, useContext } from "react";
+import React, {
+  type ReactElement,
+  useId,
+  useMemo,
+  useContext,
+  type SyntheticEvent,
+} from "react";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -51,8 +57,14 @@ import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
 import styles from "../SelectList/SelectList.module.css";
 import RichSelectRadioButton from "./RichSelectRadioButton";
-import RichSelectBox, { type RichSelectBoxProps } from "./RichSelectBox";
+import RichSelectBox, {
+  RichSelectBoxContext,
+  type RichSelectBoxProps,
+} from "./RichSelectBox";
 import richSelectItems from "./richSelectItems";
+import TapArea from "../TapArea/TapArea";
+
+const NOOP = () => undefined;
 
 const iconSize = {
   sm: 20,
@@ -78,7 +90,7 @@ export type RichSelectListProps = Omit<
   /**
    * Callback to be called when select is clicked
    */
-  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  onClick?: (event: SyntheticEvent<HTMLDivElement>) => void;
   /**
    * Text shown below select box if there is an input error.
    */
@@ -188,30 +200,30 @@ function RichSelectListInner(
   const overlayTriggerState = useContext(ReactAriaOverlayTriggerStateContext);
 
   return (
-    <RichSelectBox
-      dialog // TODO: better prop name?
-      id={id}
-      autoCommit={autoCommit}
-      multiple={multiple}
-      orientation="horizontal"
-      onChange={(vals) => {
-        onChange(vals);
-        overlayTriggerState.close();
-      }}
-      size={size}
-      label={label}
-      errorText={errorText}
-      helperText={helperText}
-      disabled={disabled}
-      selectedValues={selectedValuesProp}
-      defaultSelectedValues={defaultSelectedValuesProp}
-      primaryButtonText={primaryButtonText}
-      primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
-      secondaryButtonText={secondaryButtonText}
-      secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
-    >
-      {children}
-    </RichSelectBox>
+    <RichSelectBoxContext.Provider value={{ autoFocus: true }}>
+      <RichSelectBox
+        id={id}
+        autoCommit={autoCommit}
+        multiple={multiple}
+        orientation="horizontal"
+        onChange={(vals) => {
+          onChange(vals);
+          overlayTriggerState.close();
+        }}
+        size={size}
+        label={label}
+        errorText={errorText}
+        helperText={helperText}
+        selectedValues={selectedValuesProp}
+        defaultSelectedValues={defaultSelectedValuesProp}
+        primaryButtonText={primaryButtonText}
+        primaryButtonAccessibilityLabel={primaryButtonAccessibilityLabel}
+        secondaryButtonText={secondaryButtonText}
+        secondaryButtonAccessibilityLabel={secondaryButtonAccessibilityLabel}
+      >
+        {children}
+      </RichSelectBox>
+    </RichSelectBoxContext.Provider>
   );
 }
 
@@ -228,7 +240,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     name,
     multiple = false,
     onChange,
-    onClick,
+    onClick = NOOP,
     // placeholderText = "Select an option",
     placeholderText,
     primaryButtonText = "Save",
@@ -291,8 +303,10 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
         )}
 
         <Popover
+          disabled={disabled}
           content={
             <RichSelectListInner
+              // TODO forward ref here.
               // {...props}
               selectedValues={selectedKeys}
               defaultSelectedValues={defaultSelectedKeys}
@@ -315,39 +329,42 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             </RichSelectListInner>
           }
         >
-          <div className={styles.selectWrapper}>
-            <ReactAriaButton
-              // id={selectId}
-              data-testid={dataTestId}
-              // tabIndex={0} // TODO: use react-aria hooks for this?
-              className={({ isFocused, isFocusVisible }) =>
-                classNames(styles.selectBox, styles[size], {
-                  [styles.unselected]: !selectedValue && !errorText,
-                  [styles.selected]: selectedValue && !errorText,
+          <TapArea
+            // id={selectId}
+            data-testid={dataTestId}
+            disabled={disabled}
+            onClick={onClick}
+            rounding={size === "lg" ? "lg" : "md"}
+          >
+            <div className={styles.selectWrapper}>
+              <div
+                className={classNames(styles.selectBox, styles[size], {
+                  [styles.unselected]:
+                    !errorText && selectedKeys !== "all" && !selectedKeys.size,
+                  [styles.selected]:
+                    !errorText && (selectedKeys === "all" || selectedKeys.size),
                   [styles.selectError]: errorText,
-                  [focusStyles.accessibilityOutlineFocus]:
-                    isFocused && isFocusVisible, // for focus keyboard
-                  [styles.selectMouseFocusStyling]:
-                    isFocused && !isFocusVisible, // for focus mouse
-                })
-              }
-            >
-              {selectedTextValue}
-            </ReactAriaButton>
-            <div className={styles.arrowIcon}>
-              <svg
-                focusable="false"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width={iconSize[size]}
+                })}
               >
-                <path
-                  fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
-                  d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                />
-              </svg>
+                {selectedTextValue}
+              </div>
+              <div className={styles.arrowIcon}>
+                <svg
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  width={iconSize[size]}
+                >
+                  <path
+                    fill={
+                      errorText ? ColorBaseDestructive700 : ColorBaseGray800
+                    }
+                    d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
+          </TapArea>
         </Popover>
       </ReactAriaLabel>
       {(helperText || errorText) && (

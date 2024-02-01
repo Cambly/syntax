@@ -55,7 +55,7 @@ export default forwardRef<HTMLDivElement, RichSelectItemProps>(
       <ReactAriaListBoxItem
         id={value}
         textValue={label}
-        className={styles.listBoxItem}
+        className={styles.richSelectItem}
         data-testid={dataTestId}
         ref={ref}
       >

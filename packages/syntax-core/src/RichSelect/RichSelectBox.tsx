@@ -69,11 +69,11 @@ import { AriaPopover } from "../Popover/Popover";
 
 import { dialogClassnames } from "../Dialog/Dialog";
 import focusStyles from "../Focus.module.css";
-import styles from "../SelectList/SelectList.module.css";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Button from "../Button/Button";
 import type RichSelectRadioButton from "./RichSelectRadioButton";
 import richSelectItems from "./richSelectItems";
+import styles from "./RichSelect.module.css";
 
 type AriaListBoxContextType = {
   // state: ListState<object>;
@@ -538,8 +538,6 @@ export type RichSelectBoxProps = {
   children: RichSelectChild | RichSelectChild[];
   /** Text shown above the box */
   label?: string;
-  /** Direction of elements in container */
-  orientation?: "horizontal" | "vertical";
   /** Text shown below the box with error styles applied */
   errorText?: string;
   /** Text shown below the box */
@@ -572,12 +570,6 @@ export type RichSelectBoxProps = {
   // selectedValues?: string[] | Set<string>;
   // might be necesasry for HiddenSelect
   form?: string;
-
-  // nopeed
-  /**
-   * Callback to be called when select is clicked
-   */
-  onClick?: React.MouseEventHandler<HTMLSelectElement>;
 };
 
 function isString(val: unknown): val is string {
@@ -608,6 +600,12 @@ function convertSelection(
   return new Set(selection);
 }
 
+type RichSelectBoxContextType = {
+  /** Automatically focuses RichSelectBox on mount when enabled */
+  autoFocus?: boolean;
+};
+export const RichSelectBoxContext = createContext<RichSelectBoxContextType>({});
+
 const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBox(props, ref): ReactElement {
     const {
@@ -621,7 +619,6 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       name,
       multiple = false,
       onChange,
-      orientation = "vertical",
       primaryButtonText = "Save",
       primaryButtonAccessibilityLabel = "Save",
       secondaryButtonText = "Clear",
@@ -699,31 +696,24 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       });
     }, []);
 
+    // higher level context for autoFocus behavior (parent sets when rendering RichSelectBox in overlay)
+    const { autoFocus } = useContext(RichSelectBoxContext);
+
     return (
-      <RichSelectItemContext.Provider
-        value={{
-          disableKey,
-        }}
-      >
+      <RichSelectItemContext.Provider value={{ disableKey }}>
         <ReactAriaListBox
           ref={ref}
           aria-label="TODO HOOK UP REAL ONE THIS IS TO SUPPRESS WARNING WHILE DEV"
-          // autoFocus={dialog}
+          autoFocus={autoFocus}
           // items={props.items} // TODO: implement Ken's proposal
           selectionMode={multiple ? "multiple" : "single"} // TODO: !multiple -> "single"?
           selectionBehavior={multiple ? "toggle" : "replace"}
           shouldFocusWrap={true}
-          // shouldFocusWrap={dialog}
           orientation="horizontal"
-          // orientation={orientation}
           selectedKeys={stagedKeys}
-          // onSelectionChange={setStagedKeys}
           onSelectionChange={stageChanges}
           disabledKeys={disabledKeysComposed}
-          // className={
-          //   // props.className
-          //   dialog ? classNames(dialogClassnames({ size: "md" })) : undefined
-          // }
+          className={styles.richSelectBox}
         >
           {children}
         </ReactAriaListBox>

@@ -1,6 +1,4 @@
-.listBoxItem {
-}
-
-.listBoxItem:focus-visible {
+.richSelectItem:focus-visible,
+.richSelectBox:focus-visible {
   outline: none;
 }
