@@ -211,7 +211,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
       }),
     );
@@ -226,7 +225,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
       }),
     );
@@ -243,7 +241,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
       }),
     );
@@ -260,7 +257,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
       }),
     );
@@ -282,7 +278,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
         multiple: true,
       }),
@@ -301,7 +296,6 @@ describe("richSelectList", () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
-        autosave: false,
         onChange: spy,
         multiple: true,
       }),
@@ -935,115 +929,6 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith([]);
-    });
-  });
-
-  describe("autosave", () => {
-    it("calls onChange when autosave is true, multiple", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          autosave: true,
-          multiple: true,
-          onChange: spy,
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt2"));
-      expect(spy).toHaveBeenCalledTimes(2);
-      expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
-    });
-
-    it("calls onChange when autosave is true", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          autosave: true,
-          onChange: spy,
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-    });
-
-    it("autosave=true calls onChange immediately after selection, uncontrolled, defaultSelectedValues not empty", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          autosave: true,
-          onChange: spy,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith([]);
-    });
-
-    it("autosave=true calls onChange immediately after selection, controlled, selectedValues not empty", async () => {
-      const spy = vi.fn();
-      render(
-        controlledRichSelectList({
-          autosave: true,
-          onChange: spy,
-          selectedValues: ["opt1"],
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith([]);
-    });
-
-    it("autosave=true calls onChange immediately after selection, uncontrolled, multiple, defaultSelectedValues not empty", async () => {
-      const spy = vi.fn();
-      render(
-        simpleRichSelectList({
-          autosave: true,
-          multiple: true,
-          onChange: spy,
-          defaultSelectedValues: ["opt1"],
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith([]);
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(3);
-      expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
-    });
-
-    it("autosave=true calls onChange immediately after selection, controlled, multiple, selectedValues not empty", async () => {
-      const spy = vi.fn();
-      render(
-        controlledRichSelectList({
-          autosave: true,
-          multiple: true,
-          onChange: spy,
-          selectedValues: ["opt1"],
-        }),
-      );
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenLastCalledWith([]);
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger"));
-      await user.click(screen.getByTestId("opt1"));
-      expect(spy).toHaveBeenCalledTimes(3);
-      expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
     });
   });
 

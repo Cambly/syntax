@@ -136,7 +136,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
         }),
       );
@@ -150,7 +149,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
         }),
       );
@@ -166,7 +164,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
         }),
       );
@@ -182,7 +179,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
         }),
       );
@@ -201,7 +197,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
           multiple: true,
         }),
@@ -219,7 +214,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         simpleRichSelectBox({
-          autosave: false,
           onChange: spy,
           multiple: true,
         }),
@@ -239,21 +233,21 @@ describe("component: RichSelectBox", () => {
   describe("autosave=false", () => {
     it("does not call onChange when an option is clicked", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
       await user.click(screen.getByTestId("opt1"));
       expect(spy).not.toHaveBeenCalled();
     });
 
     it("does not onChange when the dialog is closed", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
       await user.click(document.body);
       expect(spy).not.toHaveBeenCalled();
     });
 
     it("calls onChange when primary button is clicked", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("box-primary-button"));
       expect(spy).toHaveBeenCalledTimes(1);
@@ -262,7 +256,7 @@ describe("component: RichSelectBox", () => {
 
     it("user can select different options before clicking save, onChange called once at end", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("opt2"));
       await user.click(screen.getByTestId("opt3"));
@@ -273,7 +267,7 @@ describe("component: RichSelectBox", () => {
 
     it("user can select different options, onChange is not called when user clicks primary button if selection is same at end as beginning", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
       await user.click(screen.getByTestId("box-primary-button"));
@@ -290,7 +284,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -307,7 +300,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -322,7 +314,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -339,7 +330,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -355,7 +345,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
           defaultSelectedValues: ["opt1"],
         }),
       );
@@ -373,7 +362,7 @@ describe("component: RichSelectBox", () => {
 
     it("is single selection mode by default", async () => {
       const spy = vi.fn();
-      render(simpleRichSelectBox({ onChange: spy, autosave: false }));
+      render(simpleRichSelectBox({ onChange: spy }));
 
       expect(spy).not.toHaveBeenCalled();
       await user.click(screen.getByTestId("opt1"));
@@ -389,7 +378,6 @@ describe("component: RichSelectBox", () => {
       render(
         simpleRichSelectBox({
           onChange: spy,
-          autosave: false,
         }),
       );
       expect(spy).not.toHaveBeenCalled();
@@ -406,7 +394,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
           }),
         );
@@ -425,7 +412,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
           }),
         );
@@ -444,7 +430,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
             defaultSelectedValues: ["opt1"],
           }),
@@ -462,7 +447,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
             defaultSelectedValues: ["opt1", "opt2"],
           }),
@@ -484,7 +468,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
             defaultSelectedValues: ["opt1"],
           }),
@@ -502,7 +485,6 @@ describe("component: RichSelectBox", () => {
         render(
           simpleRichSelectBox({
             onChange: spy,
-            autosave: false,
             multiple: true,
           }),
         );
@@ -514,18 +496,6 @@ describe("component: RichSelectBox", () => {
         await user.click(screen.getByTestId("box-primary-button"));
         expect(spy).toHaveBeenCalledTimes(0);
       });
-    });
-  });
-
-  describe("autosave=true", () => {
-    it("does not show primary/secondary save/clear buttons %p", () => {
-      render(simpleRichSelectBox({ autosave: true }));
-      expect(
-        screen.queryByTestId("box-primary-button"),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId("box-secondary-button"),
-      ).not.toBeInTheDocument();
     });
   });
 
@@ -568,7 +538,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         controlledRichSelectBox({
-          autosave: false,
           onChange: spy,
           selectedValues: ["opt1"],
         }),
@@ -582,7 +551,6 @@ describe("component: RichSelectBox", () => {
       const spy = vi.fn();
       render(
         controlledRichSelectBox({
-          autosave: false,
           onChange: spy,
           selectedValues: [],
         }),
@@ -600,117 +568,6 @@ describe("component: RichSelectBox", () => {
       await user.click(screen.getByTestId("box-primary-button"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith([]);
-    });
-
-    describe("autosave=true", () => {
-      it("autosave saves selections immediately, uncontrolled single selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectBox({
-            autosave: true,
-            onChange: spy,
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
-      it("autosave saves selections immediately, uncontrolled multiple selection", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectBox({
-            autosave: true,
-            multiple: true,
-            onChange: spy,
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(3);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
-      it("autosave saves selections immediately, controlled, selectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          controlledRichSelectBox({
-            autosave: true,
-            onChange: spy,
-            selectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
-      it("autosave saves selections immediately, controlled, multiple, selectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          controlledRichSelectBox({
-            autosave: true,
-            multiple: true,
-            onChange: spy,
-            selectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(3);
-        expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
-      });
-
-      it("autosave saves selections immediately, uncontrolled, single, defaultSelectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectBox({
-            autosave: true,
-            onChange: spy,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith([]);
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
-
-      it("autosave saves selections immediately, uncontrolled, multiple, defaultSelectedValues not empty", async () => {
-        const spy = vi.fn();
-        render(
-          simpleRichSelectBox({
-            autosave: true,
-            multiple: true,
-            onChange: spy,
-            defaultSelectedValues: ["opt1"],
-          }),
-        );
-        await user.click(screen.getByTestId("opt2"));
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
-        await user.click(screen.getByTestId("opt1"));
-        expect(spy).toHaveBeenCalledTimes(2);
-        expect(spy).toHaveBeenLastCalledWith(["opt2"]);
-      });
     });
   });
 

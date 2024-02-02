@@ -56,8 +56,6 @@ export function convertSelection(
 export type RichSelectBoxProps = {
   /** aria-label for the list box */
   accessibilityLabel: string;
-  /** Automatically saves changes when true, shows save/clear buttons when not true */
-  autosave?: boolean;
   /** Test id for the list box element */
   "data-testid"?: string;
   /** One or more RichSelectList.<Chip|RadioButton|Section|...> components. */
@@ -113,7 +111,6 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBox(props, ref): ReactElement {
     const {
       accessibilityLabel,
-      autosave,
       children,
       "data-testid": dataTestId,
       multiple = false,
@@ -152,7 +149,6 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     const clearChanges = () => setStagedKeys(new Set());
     const stageChanges = (selectedValues: Selection) => {
       setStagedKeys(selectedValues);
-      if (autosave) setSelectedKeys(selectedValues);
     };
 
     // inject method into context so children can disable themselves
@@ -189,53 +185,51 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
           >
             {children}
           </ReactAriaListBox>
-          {!autosave && (
-            <Box
-              backgroundColor="white"
-              display="flex"
-              direction="column"
-              gap={5}
-              marginTop={5}
-              justifyContent="end"
-              position="sticky"
-              dangerouslySetInlineStyle={{
-                __style: {
-                  bottom: 0,
-                },
-              }}
-            >
-              <Box flex="grow">
-                <Divider />
-              </Box>
-              <Box
-                paddingY={5}
-                marginTop={-5}
-                display="flex"
-                justifyContent="end"
-              >
-                <ButtonGroup orientation="horizontal">
-                  <Button
-                    onClick={clearChanges}
-                    color={"secondary"}
-                    text={secondaryButtonText}
-                    accessibilityLabel={secondaryButtonAccessibilityLabel}
-                    data-testid={[dataTestId, "secondary-button"]
-                      .filter(Boolean)
-                      .join("-")}
-                  />
-                  <Button
-                    onClick={saveChanges}
-                    text={primaryButtonText}
-                    accessibilityLabel={primaryButtonAccessibilityLabel}
-                    color="primary"
-                    data-testid={[dataTestId, "primary-button"]
-                      .filter(Boolean)
-                      .join("-")}
-                  />
-                </ButtonGroup>
-              </Box>
+          <Box
+            backgroundColor="white"
+            display="flex"
+            direction="column"
+            gap={5}
+            marginTop={5}
+            justifyContent="end"
+            position="sticky"
+            dangerouslySetInlineStyle={{
+              __style: {
+                bottom: 0,
+              },
+            }}
+          >
+            <Box flex="grow">
+              <Divider />
             </Box>
-          )}
+            <Box
+              paddingY={5}
+              marginTop={-5}
+              display="flex"
+              justifyContent="end"
+            >
+              <ButtonGroup orientation="horizontal">
+                <Button
+                  onClick={clearChanges}
+                  color={"secondary"}
+                  text={secondaryButtonText}
+                  accessibilityLabel={secondaryButtonAccessibilityLabel}
+                  data-testid={[dataTestId, "secondary-button"]
+                    .filter(Boolean)
+                    .join("-")}
+                />
+                <Button
+                  onClick={saveChanges}
+                  text={primaryButtonText}
+                  accessibilityLabel={primaryButtonAccessibilityLabel}
+                  color="primary"
+                  data-testid={[dataTestId, "primary-button"]
+                    .filter(Boolean)
+                    .join("-")}
+                />
+              </ButtonGroup>
+            </Box>
+          </Box>
         </Box>
       </RichSelectItemContext.Provider>
     );
