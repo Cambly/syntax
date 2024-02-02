@@ -86,6 +86,29 @@ type RichSelectBoxContextType = {
 };
 export const RichSelectBoxContext = createContext<RichSelectBoxContextType>({});
 
+/**
+ * [RichSelectBox](https://cambly-syntax.vercel.app/?path=/docs/components-richselectbox--docs) is an element that allows users to select one or multiple options from a list.
+ *
+ * Example Usage:
+ ```
+  <RichSelectBox
+    label="My Label"
+    multiple
+    onChange={() => { ... }}
+    primaryButtonText="Save"
+    primaryButtonAccessibilityLabel="Save"
+    secondaryButtonText="Clear"
+    secondaryButtonAccessibilityLabel="Clear"
+  >
+    <RichSelectBox.Section label="Cities">
+      <RichSelectBox.Chip label="San Francisco" value="sf" />
+      <RichSelectBox.Chip label="New York" value="ny" disabled />
+      <RichSelectBox.Chip label="Tulsa" value="tulsa" />
+      <RichSelectBox.Chip label="Chicago" value="chicago" disabled />
+    </RichSelectBox.Section>
+  </RichSelectBox>
+ ```
+ */
 const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   function RichSelectBox(props, ref): ReactElement {
     const {

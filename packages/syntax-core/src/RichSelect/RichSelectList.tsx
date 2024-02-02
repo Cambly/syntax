@@ -72,7 +72,27 @@ export type RichSelectListProps = Omit<
 };
 
 /**
- * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
+ * [RichSelectList](https://cambly-syntax.vercel.app/?path=/docs/components-richselectlist--docs) is a dropdown menu that allows users to select one or multiple options from a list.
+ *
+ * Example Usage:
+ ```
+  <RichSelectList
+    label="My Label"
+    multiple
+    onChange={() => { ... }}
+    primaryButtonText="Save"
+    primaryButtonAccessibilityLabel="Save"
+    secondaryButtonText="Clear"
+    secondaryButtonAccessibilityLabel="Clear"
+  >
+    <RichSelectList.Section label="Cities">
+      <RichSelectList.Chip label="San Francisco" value="sf" />
+      <RichSelectList.Chip label="New York" value="ny" disabled />
+      <RichSelectList.Chip label="Tulsa" value="tulsa" />
+      <RichSelectList.Chip label="Chicago" value="chicago" disabled />
+    </RichSelectList.Section>
+  </RichSelectList>
+ ```
  */
 function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
