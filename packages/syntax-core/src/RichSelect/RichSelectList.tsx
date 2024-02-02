@@ -96,6 +96,7 @@ export type RichSelectListProps = Omit<
  */
 function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
+    autosave,
     children,
     "data-testid": dataTestId,
     disabled: disabledProp = false,
@@ -132,7 +133,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     (value) => {
       const _value = value === "all" ? "all" : [...value].map(String);
       onChange(_value);
-      overlayHandlerRef.current.close?.();
+      if (!autosave) overlayHandlerRef.current.close?.();
     },
   );
 
@@ -177,6 +178,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 dangerouslySetInlineStyle={{ __style: { paddingBottom: 0 } }}
               >
                 <RichSelectBox
+                  autosave={autosave}
                   selectedValues={selectedKeys}
                   defaultSelectedValues={defaultSelectedKeys}
                   onChange={(selected) => setSelectedKeys(new Set(selected))}

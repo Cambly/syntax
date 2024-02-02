@@ -952,7 +952,6 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
-      await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt2"));
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenLastCalledWith(["opt1", "opt2"]);
@@ -1016,9 +1015,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
-      await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(3);
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
@@ -1038,9 +1035,7 @@ describe("richSelectList", () => {
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenLastCalledWith([]);
-      await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt2"));
-      await user.click(screen.getByTestId("trigger"));
       await user.click(screen.getByTestId("opt1"));
       expect(spy).toHaveBeenCalledTimes(3);
       expect(spy).toHaveBeenLastCalledWith(["opt2", "opt1"]);
