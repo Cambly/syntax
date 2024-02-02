@@ -189,6 +189,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
         <Popover
           ref={overlayHandlerRef}
           disabled={disabled}
+          accessibilityLabel={label}
           content={
             // this Box wrapper is to reapply the padding that was stripped from popover's dialog to show the sticky save/close buttons. Ideally this could be avoided
             <Box
