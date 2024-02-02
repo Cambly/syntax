@@ -11,7 +11,7 @@ type RichSelectRadioButtonProps = RichSelectItemProps & {
 
 export default forwardRef<HTMLDivElement, RichSelectRadioButtonProps>(
   function RichSelectRadioButton(props, ref): ReactElement {
-    const { size = "sm", name, ...otherProps } = props;
+    const { size, name, ...otherProps } = props;
     return (
       <RichSelectItem {...otherProps} ref={ref}>
         {({ isSelected, isFocusVisible, isDisabled }) => (
