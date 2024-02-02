@@ -1,10 +1,15 @@
-import React, { type ReactNode, forwardRef, useReducer } from "react";
+import React, {
+  type ReactNode,
+  forwardRef,
+  useReducer,
+  type AriaAttributes,
+} from "react";
 import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
 
-type TapAreaProps = {
+type TapAreaProps = AriaAttributes & {
   /**
    * The children to be rendered inside the tap area.
    */
@@ -87,6 +92,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       onClick,
       rounding = "none",
       tabIndex = 0,
+      ...accessibilityProps
     }: TapAreaProps,
     ref,
   ) => {
@@ -122,8 +128,9 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
 
     return (
       <div
-        aria-disabled={disabled}
-        aria-label={accessibilityLabel}
+        {...accessibilityProps}
+        aria-disabled={disabled || accessibilityProps["aria-disabled"]}
+        aria-label={accessibilityLabel ?? accessibilityProps["aria-label"]}
         className={classNames(
           styles.tapArea,
           styles[`${disabled ? "disabled" : "enabled"}`],
