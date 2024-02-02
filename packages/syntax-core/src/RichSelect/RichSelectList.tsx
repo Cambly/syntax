@@ -59,7 +59,7 @@ export type RichSelectListProps = Omit<
   /** Text shown below select box */
   helperText?: string;
   /** Text shown above select box */
-  label: string; // also show this inside the popover?
+  label: string;
   /**
    * Text showing in select box if no option has been chosen.
    * There should always have a placeholder unless there is a default option selected
