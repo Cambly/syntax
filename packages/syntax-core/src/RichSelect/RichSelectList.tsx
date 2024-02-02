@@ -149,7 +149,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     <ReactAriaProvider
       values={[
         [RichSelectBoxContext, { autoFocus: true }],
-        [DialogContext, { padding: 0 }],
+        [DialogContext, { padding: autosave ? undefined : 0 }], // this is altering Popover's internal dialog padding to show the sticky save/close buttons. Ideally this could be avoided
       ]}
     >
       <div
@@ -173,9 +173,12 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             ref={overlayHandlerRef}
             disabled={disabled}
             content={
+              // this Box wrapper is to reapply the padding that was stripped from popover's dialog to show the sticky save/close buttons. Ideally this could be avoided
               <Box
-                padding={5}
-                dangerouslySetInlineStyle={{ __style: { paddingBottom: 0 } }}
+                padding={autosave ? undefined : 5}
+                dangerouslySetInlineStyle={
+                  autosave ? undefined : { __style: { paddingBottom: 0 } }
+                }
               >
                 <RichSelectBox
                   autosave={autosave}
