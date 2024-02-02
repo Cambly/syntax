@@ -58,6 +58,10 @@ const Typography = forwardRef<
      */
     "data-testid"?: string;
     /**
+     * The id for the element
+     */
+    id?: string;
+    /**
      * Whether the text should flow inline with other elements.
      *
      * @defaultValue false
@@ -111,6 +115,7 @@ const Typography = forwardRef<
     children,
     color = "gray900",
     "data-testid": dataTestId,
+    id,
     inline = false,
     lineClamp = undefined,
     size = 200,
@@ -125,6 +130,7 @@ const Typography = forwardRef<
 
   return (
     <Tag
+      id={id}
       className={classNames(
         styles.typography,
         styles[align],
