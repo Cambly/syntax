@@ -313,8 +313,8 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
     return (
       <Box display="flex" direction="column" gap={4}>
         <Typography>
-          When `autosave` is false, the user must click the button to commit
-          their changes
+          When `autosave` is false, the user must click the button to save their
+          changes
         </Typography>
         <ControlledRichSelectBox
           multiple
@@ -330,8 +330,8 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
         </ControlledRichSelectBox>
 
         <Typography>
-          When `autosave` is false, the user must click the button to commit
-          their changes
+          When `autosave` is false, the user must click the button to save their
+          changes
         </Typography>
         <ControlledRichSelectBox
           multiple={false}
@@ -348,7 +348,7 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
 
         <Typography>
           When `autosave` is true, the user&apos;s changes are automatically
-          committed
+          saveted
         </Typography>
         <ControlledRichSelectBox
           multiple
@@ -365,7 +365,7 @@ export const Controlled: StoryObj<typeof RichSelectBox> = {
 
         <Typography>
           When `autosave` is true, the user&apos;s changes are automatically
-          committed
+          saveted
         </Typography>
         <ControlledRichSelectBox
           multiple={false}

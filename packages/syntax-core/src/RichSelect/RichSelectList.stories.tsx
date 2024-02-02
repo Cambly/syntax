@@ -271,7 +271,7 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
   ),
 };
 
-export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
+export const NoAutosaveControlled: StoryObj<typeof RichSelectList> = {
   render: () => {
     return (
       <RichSelectList
@@ -279,7 +279,7 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
         label="Label"
         selectedValues={["sf"]}
         placeholderText="Placeholder"
-        helperText="When `autosave` is false, the user must click the button to commit their changes"
+        helperText="When `autosave` is false, the user must click the button to save their changes"
         autosave={false}
         onChange={() => undefined}
         primaryButtonText="Save"
@@ -328,7 +328,7 @@ const ControlledRichSelectList = ({
   );
 };
 
-export const NoAutoCommitControlledMultipleSelect: StoryObj<
+export const NoAutosaveControlledMultipleSelect: StoryObj<
   typeof RichSelectList
 > = {
   render: () => {
@@ -337,7 +337,7 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
         <ControlledRichSelectList
           multiple
           label="Multiple select"
-          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          helperText="When `autosave` is false, the user must click the button to save their changes"
           autosave={false}
         >
           <RichSelectList.Section label="Cities">
@@ -350,7 +350,7 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
         <ControlledRichSelectList
           multiple={false}
           label="Single select"
-          helperText="When `autosave` is false, the user must click the button to commit their changes"
+          helperText="When `autosave` is false, the user must click the button to save their changes"
           autosave={false}
         >
           <RichSelectList.Section label="Cities">
@@ -364,11 +364,11 @@ export const NoAutoCommitControlledMultipleSelect: StoryObj<
   },
 };
 
-export const AutoCommit: StoryObj<typeof RichSelectList> = {
+export const Autosave: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       label="Label"
-      helperText="When `autosave` is true, the user's changes are automatically committed"
+      helperText="When `autosave` is true, the user's changes are automatically saveted"
       autosave
       onChange={() => undefined}
       primaryButtonText="Save"
