@@ -96,25 +96,20 @@ export type RichSelectListProps = Omit<
  */
 function RichSelectList(props: RichSelectListProps): ReactElement {
   const {
-    autosave,
     children,
     "data-testid": dataTestId,
     disabled: disabledProp = false,
     errorText,
     helperText,
-    label = "myLabel",
-    multiple = false,
+    label,
     onChange,
     onClick = NOOP,
     placeholderText,
-    primaryButtonText = "Save",
-    primaryButtonAccessibilityLabel = "Save",
     selectTextValue,
-    secondaryButtonText = "Clear",
-    secondaryButtonAccessibilityLabel = "Clear",
     selectedValues: selectedValuesProp,
     defaultSelectedValues: defaultSelectedValuesProp,
     size = "md",
+    ...richSelectBoxProps
   } = props;
 
   const isHydrated = useIsHydrated();
@@ -185,17 +180,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                   selectedValues={selectedKeys}
                   defaultSelectedValues={defaultSelectedKeys}
                   onChange={(selected) => setSelectedKeys(new Set(selected))}
-                  multiple={multiple}
-                  autosave={autosave}
                   accessibilityLabel={label}
-                  primaryButtonText={primaryButtonText}
-                  primaryButtonAccessibilityLabel={
-                    primaryButtonAccessibilityLabel
-                  }
-                  secondaryButtonText={secondaryButtonText}
-                  secondaryButtonAccessibilityLabel={
-                    secondaryButtonAccessibilityLabel
-                  }
+                  {...richSelectBoxProps}
                 >
                   {children}
                 </RichSelectBox>
