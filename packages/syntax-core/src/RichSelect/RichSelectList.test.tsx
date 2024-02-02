@@ -1153,4 +1153,12 @@ describe("richSelectList", () => {
       expect(spy).toHaveBeenLastCalledWith(["opt1"]);
     });
   });
+
+  it("clicking on label focuses the input", async () => {
+    render(simpleRichSelectList({ helperText: "helper" }));
+    const trigger = screen.getByTestId("trigger");
+    expect(trigger).not.toHaveFocus();
+    await user.click(screen.getByTestId("trigger-label"));
+    expect(trigger).toHaveFocus();
+  });
 });
