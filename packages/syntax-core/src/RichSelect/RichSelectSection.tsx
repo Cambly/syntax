@@ -7,6 +7,7 @@ import {
 import classNames from "classnames";
 import boxStyles from "../Box/Box.module.css";
 import layoutStyles from "../layout.module.css";
+import Typography from "../Typography/Typography";
 
 type RichSelectSectionProps = {
   "data-testid"?: string;
@@ -37,7 +38,7 @@ export default forwardRef<HTMLDivElement, RichSelectSectionProps>(
         )}
       >
         <ReactAriaHeader className={classNames(layoutStyles.fullWidth)}>
-          {label}
+          <Typography>{label}</Typography>
         </ReactAriaHeader>
         <ReactAriaCollection>{children}</ReactAriaCollection>
       </ReactAriaSection>

@@ -8,19 +8,18 @@ import React, {
   useMemo,
 } from "react";
 import { ListBox as ReactAriaListBox } from "react-aria-components";
-import type RichSelectChip from "./RichSelectChip";
-import type RichSelectSection from "./RichSelectSection";
 import { type Key } from "react-aria";
 import { type Selection } from "react-stately";
 import { useControlledState } from "@react-stately/utils";
 import { RichSelectItemContext } from "./RichSelectItem";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Button from "../Button/Button";
-import type RichSelectRadioButton from "./RichSelectRadioButton";
-import richSelectItems from "./richSelectItems";
 import styles from "./RichSelect.module.css";
 import Box from "../Box/Box";
 import Divider from "../Divider/Divider";
+import RichSelectSection from "./RichSelectSection";
+import RichSelectChip from "./RichSelectChip";
+import RichSelectRadioButton from "./RichSelectRadioButton";
 
 type RichSelectChild =
   | ReactElement<typeof RichSelectChip>
@@ -242,4 +241,8 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
   },
 );
 
-export default Object.assign(RichSelectBox, richSelectItems);
+export default Object.assign(RichSelectBox, {
+  Section: RichSelectSection,
+  Chip: RichSelectChip,
+  RadioButton: RichSelectRadioButton,
+});

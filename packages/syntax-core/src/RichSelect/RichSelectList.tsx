@@ -24,10 +24,12 @@ import RichSelectBox, {
   convertSelection,
   type RichSelectBoxProps,
 } from "./RichSelectBox";
-import richSelectItems from "./richSelectItems";
 import TapArea from "../TapArea/TapArea";
 import { type OverlayHandlerRef } from "../react-aria-utils/Triggerable";
 import Box from "../Box/Box";
+import RichSelectSection from "./RichSelectSection";
+import RichSelectChip from "./RichSelectChip";
+import RichSelectRadioButton from "./RichSelectRadioButton";
 
 const NOOP = () => undefined;
 
@@ -248,4 +250,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   );
 }
 
-export default Object.assign(RichSelectList, richSelectItems);
+export default Object.assign(RichSelectList, {
+  Section: RichSelectSection,
+  Chip: RichSelectChip,
+  RadioButton: RichSelectRadioButton,
+});
