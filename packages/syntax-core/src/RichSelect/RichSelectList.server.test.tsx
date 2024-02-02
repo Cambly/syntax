@@ -7,6 +7,10 @@ import { renderToString } from "react-dom/server";
 const defaultRequiredProps = {
   onChange: () => undefined,
   label: "x",
+  primaryButtonText: "Save",
+  primaryButtonAccessibilityLabel: "Save",
+  secondaryButtonText: "Clear",
+  secondaryButtonAccessibilityLabel: "Clear",
 };
 
 describe("richselectbox - server", () => {

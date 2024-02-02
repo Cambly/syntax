@@ -49,6 +49,10 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         multiple
         placeholderText="Placeholder"
         onChange={setValue}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       >
         <RichSelectList.Section label="People">
           <RichSelectList.Chip label="John" value="john" disabled />
@@ -135,6 +139,10 @@ export const VeryLongContent = (): ReactElement => {
         helperText="Helper text"
         placeholderText="Placeholder"
         onChange={() => undefined}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       >
         <RichSelectList.Chip label="John" value="john" disabled />
         <RichSelectList.Chip label="Jane" value="jane" />
@@ -223,6 +231,10 @@ const RichSelectListInteractive = (): ReactElement => {
       selectedValues={selectionValue}
       placeholderText="Placeholder"
       onChange={setSelectionValue}
+      primaryButtonText="Save"
+      primaryButtonAccessibilityLabel="Save"
+      secondaryButtonText="Clear"
+      secondaryButtonAccessibilityLabel="Clear"
     >
       <RichSelectList.Section label="People">
         <RichSelectList.Chip label="New York" value="ny" disabled />
@@ -247,6 +259,10 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
       placeholderText="Placeholder"
       onChange={() => undefined}
       helperText="When radio buttons are used, `multiple` prop should be false"
+      primaryButtonText="Save"
+      primaryButtonAccessibilityLabel="Save"
+      secondaryButtonText="Clear"
+      secondaryButtonAccessibilityLabel="Clear"
     >
       <RichSelectList.RadioButton name="name1" label="Option 1" value="opt1" />
       <RichSelectList.RadioButton name="name1" label="Option 2" value="opt2" />
@@ -266,6 +282,10 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
         helperText="When `autosave` is false, the user must click the button to commit their changes"
         autosave={false}
         onChange={() => undefined}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       >
         <RichSelectList.Section label="People">
           <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -280,7 +300,14 @@ export const NoAutoCommitControlled: StoryObj<typeof RichSelectList> = {
 const ControlledRichSelectList = ({
   selectedValues = [],
   ...props
-}: Omit<RichSelectListProps, "onChange">) => {
+}: Omit<
+  RichSelectListProps,
+  | "onChange"
+  | "primaryButtonText"
+  | "primaryButtonAccessibilityLabel"
+  | "secondaryButtonText"
+  | "secondaryButtonAccessibilityLabel"
+>) => {
   const [value, setValue] = useState<Set<Key> | string[] | "all" | undefined>(
     selectedValues,
   );
@@ -290,6 +317,10 @@ const ControlledRichSelectList = ({
         {...props}
         selectedValues={value}
         onChange={(v) => setValue(v)}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       />
       {!value && <Typography>{`Selected: Nothing selected yet.`}</Typography>}
       {value && <Typography>{`Selected: ${JSON.stringify(value)}`}</Typography>}
@@ -340,6 +371,10 @@ export const AutoCommit: StoryObj<typeof RichSelectList> = {
       helperText="When `autosave` is true, the user's changes are automatically committed"
       autosave
       onChange={() => undefined}
+      primaryButtonText="Save"
+      primaryButtonAccessibilityLabel="Save"
+      secondaryButtonText="Clear"
+      secondaryButtonAccessibilityLabel="Clear"
     >
       <RichSelectList.Section label="Cities">
         <RichSelectList.Chip label="San Francisco" value="sf" />
@@ -352,7 +387,16 @@ export const AutoCommit: StoryObj<typeof RichSelectList> = {
 
 export const ItemAttributeComposition: StoryObj<typeof RichSelectList> = {
   render: () => (
-    <RichSelectList label="Label" multiple autosave onChange={() => undefined}>
+    <RichSelectList
+      label="Label"
+      multiple
+      autosave
+      onChange={() => undefined}
+      primaryButtonText="Save"
+      primaryButtonAccessibilityLabel="Save"
+      secondaryButtonText="Clear"
+      secondaryButtonAccessibilityLabel="Clear"
+    >
       <RichSelectList.Section label="Cities">
         <RichSelectList.Chip label="San Francisco" value="sf" />
         <RichSelectList.Chip label="New York" value="ny" disabled />

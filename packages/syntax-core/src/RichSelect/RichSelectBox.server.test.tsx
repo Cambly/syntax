@@ -7,6 +7,10 @@ import { renderToString } from "react-dom/server";
 const defaultRequiredProps = {
   onChange: () => undefined,
   accessibilityLabel: "x",
+  primaryButtonText: "Save",
+  primaryButtonAccessibilityLabel: "Save",
+  secondaryButtonText: "Clear",
+  secondaryButtonAccessibilityLabel: "Clear",
 };
 
 describe("richselectlist - server", () => {

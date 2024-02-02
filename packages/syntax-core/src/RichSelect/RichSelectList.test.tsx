@@ -20,6 +20,10 @@ const user = userEvent.setup({
 const defaultRequiredProps = {
   onChange: () => undefined,
   label: "x",
+  primaryButtonText: "Save",
+  primaryButtonAccessibilityLabel: "Save",
+  secondaryButtonText: "Clear",
+  secondaryButtonAccessibilityLabel: "Clear",
 };
 
 function simpleRichSelectList(

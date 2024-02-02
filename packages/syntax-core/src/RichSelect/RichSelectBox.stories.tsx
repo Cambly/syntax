@@ -52,6 +52,10 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
         accessibilityLabel="Label"
         multiple
         onChange={setSelectedValues}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       >
         <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="John" value="john" disabled />
@@ -132,7 +136,14 @@ export const VeryLongContent = (): ReactElement => {
   const [selectedValues, setSelectedValues] = useState<string[] | "all">();
   return (
     <Box display="flex" direction="column" maxWidth="50%" gap={2}>
-      <RichSelectBox accessibilityLabel="Label" onChange={setSelectedValues}>
+      <RichSelectBox
+        accessibilityLabel="Label"
+        onChange={setSelectedValues}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
+      >
         <RichSelectBox.Chip label="John" value="john" disabled />
         <RichSelectBox.Chip label="Jane" value="jane" />
         <RichSelectBox.Chip label="Joe" value="joe" />
@@ -220,6 +231,10 @@ const RichSelectBoxInteractive = (): ReactElement => {
         multiple
         selectedValues={selectedValues}
         onChange={setSelectedValues}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       >
         <RichSelectBox.Section label="People">
           <RichSelectBox.Chip label="New York" value="ny" disabled />
@@ -249,6 +264,10 @@ export const RadioButtons: StoryObj<typeof RichSelectBox> = {
       accessibilityLabel="Label"
       defaultSelectedValues={["opt1"]}
       onChange={() => undefined}
+      primaryButtonText="Save"
+      primaryButtonAccessibilityLabel="Save"
+      secondaryButtonText="Clear"
+      secondaryButtonAccessibilityLabel="Clear"
     >
       <RichSelectBox.RadioButton name="name1" label="Option 1" value="opt1" />
       <RichSelectBox.RadioButton name="name1" label="Option 2" value="opt2" />
@@ -260,7 +279,14 @@ export const RadioButtons: StoryObj<typeof RichSelectBox> = {
 const ControlledRichSelectBox = ({
   selectedValues = [],
   ...props
-}: Omit<RichSelectBoxProps, "onChange">) => {
+}: Omit<
+  RichSelectBoxProps,
+  | "onChange"
+  | "primaryButtonText"
+  | "primaryButtonAccessibilityLabel"
+  | "secondaryButtonText"
+  | "secondaryButtonAccessibilityLabel"
+>) => {
   const [value, setValue] = useState<Set<Key> | string[] | "all" | undefined>(
     selectedValues,
   );
@@ -271,6 +297,10 @@ const ControlledRichSelectBox = ({
         data-testid="box"
         selectedValues={value}
         onChange={(v) => setValue(v)}
+        primaryButtonText="Save"
+        primaryButtonAccessibilityLabel="Save"
+        secondaryButtonText="Clear"
+        secondaryButtonAccessibilityLabel="Clear"
       />
       {!value && <Typography>{`Selected: Nothing selected yet.`}</Typography>}
       {value && <Typography>{`Selected: ${JSON.stringify(value)}`}</Typography>}

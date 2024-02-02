@@ -68,14 +68,14 @@ export type RichSelectBoxProps = {
   multiple?: boolean;
   /** The callback to be called when options are selected / committed */
   onChange: (selectedValues: string[] | "all") => void;
-  /** Text for primary button (Save) */
-  primaryButtonText?: string;
-  /** accessibilityLabel for primary Button component (Save) */
-  primaryButtonAccessibilityLabel?: string;
-  /** Text for primary button (Clear) */
-  secondaryButtonText?: string;
-  /** accessibilityLabel for secondary Button component (Clear) */
-  secondaryButtonAccessibilityLabel?: string;
+  /** Text for primary button (Save). Required: string must be translated */
+  primaryButtonText: string;
+  /** accessibilityLabel for primary Button component (Save). Required: string must be translated */
+  primaryButtonAccessibilityLabel: string;
+  /** Text for primary button (Clear). Required: string must be translated */
+  secondaryButtonText: string;
+  /** accessibilityLabel for secondary Button component (Clear). Required: string must be translated */
+  secondaryButtonAccessibilityLabel: string;
   /** Value of the currently selected options */
   selectedValues?: Set<Key> | string[] | "all";
 };
@@ -95,10 +95,10 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
       "data-testid": dataTestId,
       multiple = false,
       onChange,
-      primaryButtonText = "Save",
-      primaryButtonAccessibilityLabel = "Save",
-      secondaryButtonText = "Clear",
-      secondaryButtonAccessibilityLabel = "Clear",
+      primaryButtonText,
+      primaryButtonAccessibilityLabel,
+      secondaryButtonText,
+      secondaryButtonAccessibilityLabel,
       selectedValues: selectedValuesProp,
       defaultSelectedValues: defaultSelectedValuesProp,
     } = props;
