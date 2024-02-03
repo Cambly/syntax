@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.5.0
+
+### Minor Changes
+
+- 027cc02: RichSelectList + RichSelectBox
+
 ## 10.4.0
 
 ### Minor Changes
