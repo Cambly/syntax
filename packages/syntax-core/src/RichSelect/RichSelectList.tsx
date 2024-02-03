@@ -66,7 +66,7 @@ export type RichSelectListProps = Omit<
    */
   placeholderText?: string;
   /** Use to render (override) text shown in the select box */
-  selectTextValue?: (selectedValues?: string[]) => string | undefined;
+  selectTextValue?: (selectedValues?: "all" | string[]) => string | undefined;
   /**
    * Size of the select box
    *
@@ -143,8 +143,12 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
 
   const selectedTextValue = useMemo(() => {
     if (selectTextValue)
-      return selectTextValue([...selectedKeys].map(String)) ?? placeholderText;
-    if (selectedKeys === "all") return "all";
+      return (
+        selectTextValue(
+          selectedKeys === "all" ? "all" : [...selectedKeys].map(String),
+        ) ?? placeholderText
+      );
+    if (selectedKeys === "all") return "All selected";
     if (selectedKeys.size) return `${selectedKeys.size} selected`;
     return placeholderText;
   }, [selectTextValue, selectedKeys, placeholderText]);
