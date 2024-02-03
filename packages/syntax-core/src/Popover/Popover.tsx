@@ -4,15 +4,18 @@ import { mergeProps } from "react-aria";
 import {
   Popover as ReactAriaPopover,
   type PopoverProps as ReactAriaPopoverProps,
-  DialogTrigger as ReactAriaDialogTrigger,
+  MenuTrigger as ReactAriaMenuTrigger,
   composeRenderProps,
 } from "react-aria-components";
-import Triggerable from "../react-aria-utils/Triggerable";
+import Triggerable, {
+  type OverlayHandlerRef,
+} from "../react-aria-utils/Triggerable";
 import OverlayVisibility from "../react-aria-utils/OverlayVisibility";
 import Dialog from "../Dialog/Dialog";
 import ModalDialog from "../Dialog/ModalDialog";
 import boxStyles from "../Box/Box.module.css";
-import styles from "./Popover.module.css";
+import layoutStyles from "../layout.module.css";
+import marginStyles from "../Box/margin.module.css";
 import {
   type Placement,
   syntaxToReactAriaPlacement,
@@ -29,6 +32,8 @@ type PopoverProps = {
   children?: ReactElement;
   /** Content to be shown inside the popover. */
   content: ReactNode;
+  /** If set to true the popover trigger will be disabled */
+  disabled?: boolean;
   /** If set to true the popover be open after mount / the first time it renders */
   initialOpen?: boolean;
   /** Optional boolean to control whether popover content is rendered as a modal */
@@ -73,7 +78,11 @@ export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
               boxStyles.box,
               boxStyles.flex,
               boxStyles.column,
-              styles.popover,
+              layoutStyles.fullMaxWidth,
+              layoutStyles.fullMaxHeight,
+              layoutStyles.visibilityVisible,
+              // workaround react-aria layout bug: containerPadding on right side of window not being applied
+              marginStyles.marginEnd4,
             ]),
           },
           otherProps,
@@ -118,7 +127,7 @@ export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
   </Popover>
  ```
  */
-const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
+const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
   props,
   ref,
 ): ReactElement {
@@ -128,6 +137,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
     accessibilityCloseLabel,
     children,
     content,
+    disabled,
     initialOpen,
     modal: modalProp,
     onOpenChange,
@@ -140,7 +150,6 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   const modalNode = (
     <ModalDialog
-      ref={ref}
       accessibilityLabel={accessibilityLabel}
       accessibilityCloseLabel={accessibilityCloseLabel}
       data-testid={dataTestId}
@@ -155,7 +164,6 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   const popoverNode = (
     <AriaPopover
-      ref={ref}
       placement={syntaxToReactAriaPlacement(placement)}
       onChangeContentVisibility={onChangeContentVisibility}
     >
@@ -167,14 +175,18 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover(
 
   if (!children) return modalNode;
   return (
-    <ReactAriaDialogTrigger
+    <ReactAriaMenuTrigger
       defaultOpen={initialOpen}
       isOpen={open}
       onOpenChange={onOpenChange}
     >
-      {<Triggerable>{children}</Triggerable>}
+      {
+        <Triggerable disabled={disabled} ref={ref}>
+          {children}
+        </Triggerable>
+      }
       {modal ? modalNode : popoverNode}
-    </ReactAriaDialogTrigger>
+    </ReactAriaMenuTrigger>
   );
 });
 

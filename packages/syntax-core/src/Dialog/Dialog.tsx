@@ -1,12 +1,20 @@
-import React, { type ReactNode, forwardRef, type ReactElement } from "react";
+import React, {
+  type ReactNode,
+  forwardRef,
+  type ReactElement,
+  useContext,
+  type ComponentProps,
+} from "react";
 import colorStyles from "../colors/colors.module.css";
 import elevationStyles from "../elevation/elevation.module.css";
+import layoutStyles from "../layout.module.css";
 import paddingStyles from "../Box/padding.module.css";
 import roundingStyles from "../rounding.module.css";
 import boxStyles from "../Box/Box.module.css";
 import styles from "./Dialog.module.css";
 import { Dialog as ReactAriaDialog } from "react-aria-components";
 import classNames from "classnames";
+import type Box from "../Box/Box";
 
 type DialogSize = "sm" | "md" | "lg";
 type DialogRounding = "lg" | "xl";
@@ -33,6 +41,12 @@ const sizeToPadding: Record<DialogSize, 4 | 5 | 6> = {
   lg: 6,
 };
 
+type DialogContextType = {
+  /** padding of dialog content. overrides \"size\" prop's padding" */
+  padding?: ComponentProps<typeof Box>["padding"];
+};
+export const DialogContext = React.createContext<DialogContextType>({});
+
 /**
  * Dialog is a display component for showing content in Popovers, Modals, etc...
  *
@@ -56,6 +70,8 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     size = "md",
   } = props;
 
+  const { padding } = useContext(DialogContext);
+
   return (
     <ReactAriaDialog
       ref={ref}
@@ -71,13 +87,14 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         boxStyles.relative,
         boxStyles.overflowauto,
         colorStyles.whiteBackgroundColor,
-        paddingStyles[`paddingX${sizeToPadding[size]}`],
-        paddingStyles[`paddingY${sizeToPadding[size]}`],
+        paddingStyles[`paddingX${padding ?? sizeToPadding[size]}`],
+        paddingStyles[`paddingY${padding ?? sizeToPadding[size]}`],
         roundingStyles[`rounding${sizeToRounding[size]}`],
         elevationStyles.elevation400BoxShadow,
+        layoutStyles.fullMaxHeight,
+        layoutStyles.visibilityVisible,
         styles.dialog,
       ])}
-      style={{ maxWidth: "100%", maxHeight: "100%" }}
     >
       {children}
     </ReactAriaDialog>
