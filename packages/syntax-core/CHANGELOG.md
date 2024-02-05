@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.5.1
+
+### Patch Changes
+
+- cdf9e65: Patch: RichSelectList -- selectTextValue arg type: `"all" | string[] | undefined`
+
 ## 10.5.0
 
 ### Minor Changes
