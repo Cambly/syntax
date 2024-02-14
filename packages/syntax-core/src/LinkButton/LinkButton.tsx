@@ -127,7 +127,11 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       >
         {StartIcon && (
           <StartIcon
-            className={classNames(buttonStyles.icon, iconSize[size])}
+            className={classNames(
+              buttonStyles.icon,
+              iconSize[size],
+              foregroundColor(color),
+            )}
           />
         )}
         <Typography
@@ -137,7 +141,13 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           <span style={{ fontWeight: 500 }}>{text}</span>
         </Typography>
         {EndIcon && (
-          <EndIcon className={classNames(buttonStyles.icon, iconSize[size])} />
+          <EndIcon
+            className={classNames(
+              buttonStyles.icon,
+              iconSize[size],
+              foregroundColor(color),
+            )}
+          />
         )}
       </a>
     );
