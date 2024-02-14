@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.6.0
+
+### Minor Changes
+
+- f68992a: LinkButton: add color to Icon to fix hover styles
+
 ## 10.5.1
 
 ### Patch Changes
