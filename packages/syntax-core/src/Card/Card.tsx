@@ -1,4 +1,5 @@
 import Box from "../Box/Box";
+import type allColors from "../colors/allColors";
 
 const DeprecatedCardSizes = ["sm", "lg"] as const;
 
@@ -7,6 +8,10 @@ type CardType = {
    * Test id for the button
    */
   "data-testid"?: string;
+  /**
+   * The background color of the box.
+   */
+  backgroundColor?: (typeof allColors)[number];
   /**
    * The child components to render within Card.
    */
@@ -27,6 +32,7 @@ type CardType = {
  * [Card](https://cambly-syntax.vercel.app/?path=/docs/components-card--docs) is a basic container component to apply consistent styling and render child components.
  */
 export default function Card({
+  backgroundColor = "white",
   children,
   size,
   "data-testid": dataTestId,
@@ -44,7 +50,7 @@ export default function Card({
       lgPadding={7}
       maxWidth={size && sizeWidth[size]}
       width="100%"
-      backgroundColor="white"
+      backgroundColor={backgroundColor}
       data-testid={dataTestId}
     >
       {children}
