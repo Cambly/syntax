@@ -10,6 +10,7 @@ type CardType = {
   "data-testid"?: string;
   /**
    * The background color of the box.
+   * @defaultValue `white`
    */
   backgroundColor?: (typeof allColors)[number];
   /**
