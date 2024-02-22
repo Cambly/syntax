@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Card from "./Card";
 import Box from "../Box/Box";
+import allColors from "../colors/allColors";
 import Heading from "../Heading/Heading";
 import Typography from "../Typography/Typography";
 
@@ -11,6 +12,12 @@ export default {
     design: {
       type: "figma",
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1206-4420&t=yFh7Ijhf6PU7Lin3-0",
+    },
+  },
+  argTypes: {
+    backgroundColor: {
+      control: { type: "select" },
+      options: allColors,
     },
   },
   tags: ["autodocs"],
