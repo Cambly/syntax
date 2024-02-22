@@ -132,6 +132,74 @@ describe("tapArea", () => {
     expect(handleLinkClick).toHaveBeenCalledTimes(1);
   });
 
+  it("fires onMouseEnter when hovered over", async () => {
+    const handleMouseEnter = vi.fn();
+    render(
+      <TapArea
+        data-testid="tap-area-testid"
+        onClick={() => {
+          /* empty */
+        }}
+        onMouseEnter={handleMouseEnter}
+      />,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    await userEvent.hover(tapArea);
+    expect(handleMouseEnter).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not fire onMouseEnter when hovered over and the TapArea is disabled", async () => {
+    const handleMouseEnter = vi.fn();
+    render(
+      <TapArea
+        disabled
+        data-testid="tap-area-testid"
+        onClick={() => {
+          /* empty */
+        }}
+        onMouseEnter={handleMouseEnter}
+      />,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    await userEvent.hover(tapArea);
+    expect(handleMouseEnter).toHaveBeenCalledTimes(0);
+  });
+
+  it("fires onMouseLeave when hovered out", async () => {
+    const handleMouseLeave = vi.fn();
+    render(
+      <TapArea
+        data-testid="tap-area-testid"
+        onClick={() => {
+          /* empty */
+        }}
+        onMouseLeave={handleMouseLeave}
+      />,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    await userEvent.hover(tapArea);
+    await userEvent.unhover(tapArea);
+    expect(handleMouseLeave).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not fire onMouseLeave when hovered out and the TapArea is disabled", async () => {
+    const handleMouseLeave = vi.fn();
+    render(
+      <TapArea
+        disabled
+        data-testid="tap-area-testid"
+        onClick={() => {
+          /* empty */
+        }}
+        onMouseLeave={handleMouseLeave}
+      />,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    await userEvent.hover(tapArea);
+    await userEvent.unhover(tapArea);
+    expect(handleMouseLeave).toHaveBeenCalledTimes(0);
+  });
+
   it("only opens link when link is clicked inside in TapArea and event.stopPropagation() is called", async () => {
     const handleTap = vi.fn();
     const handleLinkClick = vi.fn().mockImplementation((event: Event) => {
