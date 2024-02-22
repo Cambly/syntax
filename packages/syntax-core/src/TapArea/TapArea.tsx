@@ -37,6 +37,14 @@ type TapAreaProps = AriaAttributes & {
    */
   onClick: (event: React.SyntheticEvent<HTMLDivElement>) => void;
   /**
+   * The callback to be called when the tap area is hovered
+   */
+  onMouseEnter?: (event: React.SyntheticEvent<HTMLDivElement>) => void;
+  /**
+   * The callback to be called when the tap area is no longer hovered
+   */
+  onMouseLeave?: (event: React.SyntheticEvent<HTMLDivElement>) => void;
+  /**
    * Border radius of the tap area.
    *
    * * `none`: 0px
@@ -90,6 +98,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       disabled: disabledProp = false,
       fullWidth = true,
       onClick,
+      onMouseEnter,
+      onMouseLeave,
       rounding = "none",
       tabIndex = 0,
       ...accessibilityProps
@@ -122,6 +132,22 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       }
     };
 
+    const handleOnMouseEnter: React.MouseEventHandler<HTMLDivElement> = (
+      event,
+    ) => {
+      if (disabled) return;
+      dispatch({ type: "MOUSE_ENTER" });
+      onMouseEnter?.(event);
+    };
+
+    const handleOnMouseLeave: React.MouseEventHandler<HTMLDivElement> = (
+      event,
+    ) => {
+      if (disabled) return;
+      dispatch({ type: "MOUSE_LEAVE" });
+      onMouseLeave?.(event);
+    };
+
     const isHoveredOrFocussed = !disabled && (hovered || focussed);
     const roundingClasses =
       rounding !== "none" && roundingStyles[`rounding${rounding}`];
@@ -141,8 +167,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         data-testid={dataTestId}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        onMouseEnter={() => dispatch({ type: "MOUSE_ENTER" })}
-        onMouseLeave={() => dispatch({ type: "MOUSE_LEAVE" })}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
         onFocus={() => dispatch({ type: "FOCUS" })}
         onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}

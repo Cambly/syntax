@@ -3,6 +3,6 @@
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "ZixuanChen.vitest-explorer"
+    "vitest.explorer"
   ]
 }
