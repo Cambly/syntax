@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.6.1
+
+### Patch Changes
+
+- 7e21add: TapArea: add onMouseEnter and onMouseLeave events
+
 ## 10.6.0
 
 ### Minor Changes
