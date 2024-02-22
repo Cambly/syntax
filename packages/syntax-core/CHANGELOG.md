@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.7.0
+
+### Minor Changes
+
+- ad3982c: Adding background color to Card
+
 ## 10.6.1
 
 ### Patch Changes
