@@ -13,6 +13,7 @@ import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type ButtonProps = {
   /**
@@ -120,6 +121,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const isHydrated = useIsHydrated();
+    const { themeName } = useTheme();
+
+    console.log({ themeName });
 
     return (
       <button
