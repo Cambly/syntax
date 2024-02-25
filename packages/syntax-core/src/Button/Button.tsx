@@ -123,8 +123,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isHydrated = useIsHydrated();
     const { themeName } = useTheme();
 
-    console.log({ themeName });
-
     return (
       <button
         data-testid={dataTestId}
@@ -138,7 +136,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           foregroundColor(color),
           backgroundColor(color),
-          styles[size],
+          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
           {
             [styles.fullWidth]: fullWidth,
             [styles.buttonGap]: size === "lg" || size === "md",
