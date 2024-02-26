@@ -1,7 +1,7 @@
-import { type Color } from "../constants";
+import { type CambioColor, type Color } from "../constants";
 import styles from "./colors.module.css";
 
-export default function foregroundColor(color: (typeof Color)[number]): string {
+export function classicForegroundColor(color: (typeof Color)[number]): string {
   switch (color) {
     case "secondary":
     case "tertiary":
@@ -15,5 +15,23 @@ export default function foregroundColor(color: (typeof Color)[number]): string {
       return styles.whiteColor;
     default:
       return styles.whiteColor;
+  }
+}
+
+export function cambioForegroundColor(
+  color: (typeof CambioColor)[number],
+): string {
+  switch (color) {
+    case "primary":
+    case "quaternary":
+    case "success-primary":
+    case "destructive-primary":
+      return styles.cambioWhiteColor;
+    case "success-secondary":
+      return styles.cambioSuccessColor;
+    case "destructive-secondary":
+      return styles.cambioDestructiveColor;
+    default:
+      return styles.cambioBlackColor;
   }
 }

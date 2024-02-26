@@ -219,3 +219,196 @@
 .yellow900BackgroundColor {
   background-color: var(--color-base-yellow-900);
 }
+
+/* Cambio colors */
+.cambioBlackColor {
+  color: var(--color-cambio-black);
+}
+
+.cambioWhiteColor {
+  color: var(--color-cambio-white);
+}
+
+.cambioGray18Color {
+  color: var(--color-cambio-gray-18);
+}
+
+.cambioGray36Color {
+  color: var(--color-cambio-gray-36);
+}
+
+.cambioGray54Color {
+  color: var(--color-cambio-gray-54);
+}
+
+.cambioGray74Color {
+  color: var(--color-cambio-gray-74);
+}
+
+.cambioGray88Color {
+  color: var(--color-cambio-gray-88);
+}
+
+.cambioGray96Color {
+  color: var(--color-cambio-gray-96);
+}
+
+.cambioDestructiveColor {
+  color: var(--color-cambio-destructive);
+}
+
+.cambioSuccessColor {
+  color: var(--color-cambio-success);
+}
+
+.cambioRedColor {
+  color: var(--color-cambio-red);
+}
+
+.cambioOrangeColor {
+  color: var(--color-cambio-orange);
+}
+
+.cambioTanColor {
+  color: var(--color-cambio-tan);
+}
+
+.cambioCreamColor {
+  color: var(--color-cambio-cream);
+}
+
+.cambioPurpleColor {
+  color: var(--color-cambio-purple);
+}
+
+.cambioLilacColor {
+  color: var(--color-cambio-lilac);
+}
+
+.cambioThistleColor {
+  color: var(--color-cambio-thistle);
+}
+
+.cambioPinkColor {
+  color: var(--color-cambio-pink);
+}
+
+.cambioNavyColor {
+  color: var(--color-cambio-navy);
+}
+
+.cambioTealColor {
+  color: var(--color-cambio-teal);
+}
+
+.cambioSlateColor {
+  color: var(--color-cambio-slate);
+}
+
+.cambioSkyColor {
+  color: var(--color-cambio-sky);
+}
+
+.cambioYellowColor {
+  color: var(--color-cambio-yellow);
+}
+
+.cambioTransparentFullBackgroundColor {
+  background-color: var(--color-cambio-transparent-full);
+}
+
+.cambioTransparentGray54BackgroundColor {
+  background-color: var(--color-cambio-transparent-gray-54);
+}
+
+.cambioBlackBackgroundColor {
+  background-color: var(--color-cambio-black);
+}
+
+.cambioWhiteBackgroundColor {
+  background-color: var(--color-cambio-white);
+}
+
+.cambioGray18BackgroundColor {
+  background-color: var(--color-cambio-gray-18);
+}
+
+.cambioGray36BackgroundColor {
+  background-color: var(--color-cambio-gray-36);
+}
+
+.cambioGray54BackgroundColor {
+  background-color: var(--color-cambio-gray-54);
+}
+
+.cambioGray74BackgroundColor {
+  background-color: var(--color-cambio-gray-74);
+}
+
+.cambioGray88BackgroundColor {
+  background-color: var(--color-cambio-gray-88);
+}
+
+.cambioGray96BackgroundColor {
+  background-color: var(--color-cambio-gray-96);
+}
+
+.cambioDestructiveBackgroundColor {
+  background-color: var(--color-cambio-destructive);
+}
+
+.cambioSuccessBackgroundColor {
+  background-color: var(--color-cambio-success);
+}
+
+.cambioRedBackgroundColor {
+  background-color: var(--color-cambio-red);
+}
+
+.cambioOrangeBackgroundColor {
+  background-color: var(--color-cambio-orange);
+}
+
+.cambioTanBackgroundColor {
+  background-color: var(--color-cambio-tan);
+}
+
+.cambioCreamBackgroundColor {
+  background-color: var(--color-cambio-cream);
+}
+
+.cambioPurpleBackgroundColor {
+  background-color: var(--color-cambio-purple);
+}
+
+.cambioLilacBackgroundColor {
+  background-color: var(--color-cambio-lilac);
+}
+
+.cambioThistleBackgroundColor {
+  background-color: var(--color-cambio-thistle);
+}
+
+.cambioPinkBackgroundColor {
+  background-color: var(--color-cambio-pink);
+}
+
+.cambioNavyBackgroundColor {
+  background-color: var(--color-cambio-navy);
+}
+
+.cambioTealBackgroundColor {
+  background-color: var(--color-cambio-teal);
+}
+
+.cambioSlateBackgroundColor {
+  background-color: var(--color-cambio-slate);
+}
+
+.cambioSkyBackgroundColor {
+  background-color: var(--color-cambio-sky);
+}
+
+.cambioYellowBackgroundColor {
+  background-color: var(--color-cambio-yellow);
+}

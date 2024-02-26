@@ -90,6 +90,12 @@
   border-radius: 100px;
 }
 
+.xlCambio {
+  height: 80px;
+  padding: 0 40px;
+  border-radius: 100px;
+}
+
 .icon {
   color: inherit;
 }
@@ -121,6 +127,18 @@
 
 .secondaryDestructiveBorder {
   border: 1px solid var(--color-base-destructive-300);
+}
+
+.cambioSecondaryBorder {
+  border: 1px solid var(--color-cambio-black);
+}
+
+.cambioSecondaryDestructiveBorder {
+  border: 1px solid var(--color-cambio-destructive);
+}
+
+.cambioSecondarySuccessBorder {
+  border: 1px solid var(--color-cambio-success);
 }
 
 @keyframes syntaxButtonLoadingRotate {

@@ -4,9 +4,9 @@ import { type Size } from "../constants";
 import classNames from "classnames";
 
 const gap = {
-  ["sm"]: styles.smallGap,
-  ["md"]: styles.mediumGap,
-  ["lg"]: styles.largeGap,
+  sm: styles.smallGap,
+  md: styles.mediumGap,
+  lg: styles.largeGap,
 } as const;
 
 /**
@@ -38,10 +38,14 @@ const ButtonGroup = ({
    */
   children?: ReactNode;
 }): ReactElement => {
-  const classnames = classNames(styles.buttonGroup, gap[size], {
-    [styles.horizontal]: orientation === "horizontal",
-    [styles.vertical]: orientation === "vertical",
-  });
+  const classnames = classNames(
+    styles.buttonGroup,
+    size === "xl" ? gap.lg : gap[size],
+    {
+      [styles.horizontal]: orientation === "horizontal",
+      [styles.vertical]: orientation === "vertical",
+    },
+  );
 
   return <div className={classnames}>{children}</div>;
 };
