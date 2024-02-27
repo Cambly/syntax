@@ -8,7 +8,6 @@ import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 
 import buttonStyles from "../Button/Button.module.css";
-import iconSize from "../Button/constants/iconSize";
 import textVariant from "../Button/constants/textVariant";
 
 import styles from "./LinkButton.module.css";
@@ -68,14 +67,6 @@ type LinkButtonProps = {
    */
   fullWidth?: boolean;
   /**
-   * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  startIcon?: React.ComponentType<{ className?: string }>;
-  /**
-   * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  endIcon?: React.ComponentType<{ className?: string }>;
-  /**
    * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
@@ -95,8 +86,6 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       color = "primary",
       size = "md",
       fullWidth = false,
-      startIcon: StartIcon,
-      endIcon: EndIcon,
       onClick,
     }: LinkButtonProps,
     ref,
@@ -125,30 +114,12 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
         )}
         onClick={onClick}
       >
-        {StartIcon && (
-          <StartIcon
-            className={classNames(
-              buttonStyles.icon,
-              iconSize[size],
-              foregroundColor(color),
-            )}
-          />
-        )}
         <Typography
           color={foregroundTypographyColor(color)}
           size={textVariant[size]}
         >
           <span style={{ fontWeight: 500 }}>{text}</span>
         </Typography>
-        {EndIcon && (
-          <EndIcon
-            className={classNames(
-              buttonStyles.icon,
-              iconSize[size],
-              foregroundColor(color),
-            )}
-          />
-        )}
       </a>
     );
   },

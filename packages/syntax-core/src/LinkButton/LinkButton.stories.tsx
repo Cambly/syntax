@@ -1,6 +1,5 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import LinkButton from "./LinkButton";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export default {
   title: "Components/LinkButton",
@@ -95,10 +94,4 @@ export const DestructiveTertiary: StoryObj<typeof LinkButton> = {
 };
 export const Branded: StoryObj<typeof LinkButton> = {
   args: { ...Default.args, color: "branded" },
-};
-export const WithStartIcon: StoryObj<typeof LinkButton> = {
-  args: { ...Default.args, startIcon: FavoriteBorder },
-};
-export const WithEndIcon: StoryObj<typeof LinkButton> = {
-  args: { ...Default.args, endIcon: FavoriteBorder },
 };

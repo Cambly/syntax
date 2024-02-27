@@ -8,7 +8,6 @@ import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 
-import iconSize from "./constants/iconSize";
 import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
@@ -75,14 +74,6 @@ type ButtonProps = {
    */
   fullWidth?: boolean;
   /**
-   * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  startIcon?: React.ComponentType<{ className?: string }>;
-  /**
-   * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   */
-  endIcon?: React.ComponentType<{ className?: string }>;
-  /**
    * The callback to be called when the button is clicked
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -111,8 +102,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled = false,
       loading = false,
       fullWidth = false,
-      startIcon: StartIcon,
-      endIcon: EndIcon,
       onClick,
       tooltip,
       type = "button",
@@ -144,9 +133,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           },
         )}
       >
-        {!loading && StartIcon && (
-          <StartIcon className={classNames(styles.icon, iconSize[size])} />
-        )}
         {((loading && loadingText) || (!loading && text)) && (
           <Box paddingX={1}>
             <Typography
@@ -158,9 +144,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               </span>
             </Typography>
           </Box>
-        )}
-        {!loading && EndIcon && (
-          <EndIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {loading && (
           <svg

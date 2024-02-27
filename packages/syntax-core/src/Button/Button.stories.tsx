@@ -1,6 +1,5 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Button from "./Button";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export default {
   title: "Components/Button",
@@ -79,10 +78,4 @@ export const Inverse: StoryObj<typeof Button> = {
 };
 export const Loading: StoryObj<typeof Button> = {
   args: { ...Default.args, loading: true, loadingText: "Connecting…" },
-};
-export const WithStartIcon: StoryObj<typeof Button> = {
-  args: { ...Default.args, startIcon: FavoriteBorder },
-};
-export const WithEndIcon: StoryObj<typeof Button> = {
-  args: { ...Default.args, endIcon: FavoriteBorder },
 };
