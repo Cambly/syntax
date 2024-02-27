@@ -28,10 +28,4 @@ export const CambioColor = [
   "destructive-secondary",
 ];
 
-export const Size = [
-  "sm",
-  "md",
-  "lg",
-  // xl is Cambio only
-  "xl",
-] as const;
+export const Size = ["sm", "md", "lg"] as const;

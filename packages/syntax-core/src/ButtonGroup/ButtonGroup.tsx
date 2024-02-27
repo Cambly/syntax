@@ -38,14 +38,10 @@ const ButtonGroup = ({
    */
   children?: ReactNode;
 }): ReactElement => {
-  const classnames = classNames(
-    styles.buttonGroup,
-    size === "xl" ? gap.lg : gap[size],
-    {
-      [styles.horizontal]: orientation === "horizontal",
-      [styles.vertical]: orientation === "vertical",
-    },
-  );
+  const classnames = classNames(styles.buttonGroup, gap[size], {
+    [styles.horizontal]: orientation === "horizontal",
+    [styles.vertical]: orientation === "vertical",
+  });
 
   return <div className={classnames}>{children}</div>;
 };

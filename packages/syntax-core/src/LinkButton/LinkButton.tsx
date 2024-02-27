@@ -18,7 +18,6 @@ import {
   cambioForegroundColor,
 } from "../colors/foregroundColor";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import classicSize from "../Button/constants/classicSize";
 
 type LinkButtonProps = {
   /**
@@ -85,7 +84,6 @@ type LinkButtonProps = {
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
-   * * `xl`: 80px
    *
    * @defaultValue "md"
    */
@@ -157,7 +155,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           foregroundColorClass,
           backgroundColorClass,
           themeName === "classic"
-            ? buttonStyles[classicSize(size)]
+            ? buttonStyles[size]
             : buttonStyles[`${size}Cambio`],
           {
             [buttonStyles.fullWidth]: fullWidth,
@@ -184,17 +182,13 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           <StartIcon
             className={classNames(
               buttonStyles.icon,
-              iconSize[classicSize(size)],
+              iconSize[size],
               foregroundColorClass,
             )}
           />
         )}
         <Typography
-          size={
-            themeName === "classic"
-              ? textVariant[classicSize(size)]
-              : textVariant[size]
-          }
+          size={themeName === "classic" ? textVariant[size] : textVariant[size]}
         >
           <span
             // Temporary - until we have cambio colors on Typogrphay
@@ -208,7 +202,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           <EndIcon
             className={classNames(
               buttonStyles.icon,
-              iconSize[classicSize(size)],
+              iconSize[size],
               foregroundColorClass,
             )}
           />

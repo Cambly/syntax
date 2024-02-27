@@ -76,11 +76,6 @@
   width: 64px;
 }
 
-.xlCambio {
-  height: 80px;
-  width: 80px;
-}
-
 .smIcon {
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   height: 16px !important;

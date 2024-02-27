@@ -14,7 +14,6 @@ import {
   classicBackgroundColor,
   cambioBackgroundColor,
 } from "../colors/backgroundColor";
-import classicSize from "../Button/constants/classicSize";
 
 const classicIconSize = {
   sm: styles.smIcon,
@@ -75,7 +74,6 @@ type IconButtonProps = {
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
-   * * `xl`: 80px
    *
    * @defaultValue "md"
    */
@@ -146,9 +144,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           styles.iconButton,
           foregroundColorClass,
           backgroundColorClass,
-          themeName === "classic"
-            ? styles[classicSize(size)]
-            : styles[`${size}Cambio`],
+          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
           {
             [buttonStyles.secondaryBorder]:
               themeName === "classic" && color === "secondary",
@@ -179,7 +175,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         <Icon
           className={
             themeName === "classic"
-              ? classicIconSize[classicSize(size)]
+              ? classicIconSize[size]
               : cambioIconSize[size]
           }
         />

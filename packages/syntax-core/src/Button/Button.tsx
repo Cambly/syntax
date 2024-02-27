@@ -18,7 +18,6 @@ import {
   classicForegroundColor,
   cambioForegroundColor,
 } from "../colors/foregroundColor";
-import classicSize from "./constants/classicSize";
 
 type ButtonProps = {
   /**
@@ -74,7 +73,6 @@ type ButtonProps = {
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
-   * * `xl`: 80px
    *
    * @defaultValue "md"
    */
@@ -174,9 +172,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           foregroundColorClass,
           backgroundColorClass,
-          themeName === "classic"
-            ? styles[classicSize(size)]
-            : styles[`${size}Cambio`],
+          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
           {
             [styles.fullWidth]: fullWidth,
             [styles.buttonGap]:
@@ -197,17 +193,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       >
         {!loading && StartIcon && themeName === "classic" && (
-          <StartIcon
-            className={classNames(styles.icon, iconSize[classicSize(size)])}
-          />
+          <StartIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {((loading && loadingText) || (!loading && text)) && (
           <Box paddingX={1}>
             <Typography
               size={
-                themeName === "classic"
-                  ? textVariant[classicSize(size)]
-                  : textVariant[size]
+                themeName === "classic" ? textVariant[size] : textVariant[size]
               }
             >
               <span
@@ -221,16 +213,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </Box>
         )}
         {!loading && EndIcon && themeName === "classic" && (
-          <EndIcon
-            className={classNames(styles.icon, iconSize[classicSize(size)])}
-          />
+          <EndIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {loading && (
           <svg
             className={classNames(styles.loading, foregroundColorClass)}
             viewBox="22 22 44 44"
-            width={loadingIconSize[classicSize(size)]}
-            height={loadingIconSize[classicSize(size)]}
+            width={loadingIconSize[size]}
+            height={loadingIconSize[size]}
           >
             <circle
               className={styles.loadingCircle}
