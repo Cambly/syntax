@@ -52,7 +52,6 @@ type LinkButtonProps = {
    * * `inverse`
    *
    * Cambio only:
-   * * `quaternary`
    * * `destructive-tertiary`
    * * `success-primary`
    * * `success-secondary`
@@ -63,7 +62,6 @@ type LinkButtonProps = {
     | "primary"
     | "secondary"
     | "tertiary"
-    | "quaternary"
     | "destructive-primary"
     | "destructive-secondary"
     | "destructive-tertiary"
@@ -166,14 +164,6 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
               themeName === "classic" && color === "secondary",
             [buttonStyles.secondaryDestructiveBorder]:
               themeName === "classic" && color === "destructive-secondary",
-            [buttonStyles.cambioSecondaryBorder]:
-              themeName === "cambio" && color === "secondary",
-            [buttonStyles.cambioSecondaryDestructiveBorder]:
-              themeName === "cambio" &&
-              (color === "destructive-secondary" ||
-                color === "destructive-tertiary"),
-            [buttonStyles.cambioSecondarySuccessBorder]:
-              themeName === "cambio" && color === "success-secondary",
           },
         )}
         onClick={onClick}

@@ -23,14 +23,15 @@ export function cambioForegroundColor(
 ): string {
   switch (color) {
     case "primary":
-    case "quaternary":
     case "success-primary":
     case "destructive-primary":
       return styles.cambioWhiteColor;
     case "success-secondary":
-      return styles.cambioSuccessColor;
+    case "success-tertiary":
+      return styles.cambioSuccess900Color;
     case "destructive-secondary":
-      return styles.cambioDestructiveColor;
+    case "destructive-tertiary":
+      return styles.cambioDestructive900Color;
     default:
       return styles.cambioBlackColor;
   }

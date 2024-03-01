@@ -33,13 +33,12 @@ type IconButtonProps = {
    * The color of the button
    *
    * Classic only:
+   * * `destructive-tertiary`
    * * `success-primary`
    * * `success-secondary`
    * * `inverse`
    *
    * Cambio only:
-   * * `quaternary`
-   * * `destructive-tertiary`
    * * `success-primary`
    * * `success-secondary`
    *
@@ -49,7 +48,6 @@ type IconButtonProps = {
     | "primary"
     | "secondary"
     | "tertiary"
-    | "quaternary"
     | "destructive-primary"
     | "destructive-secondary"
     | "destructive-tertiary"
@@ -150,24 +148,10 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               themeName === "classic" && color === "secondary",
             [buttonStyles.secondaryDestructiveBorder]:
               themeName === "classic" && color === "destructive-secondary",
-            [buttonStyles.cambioSecondaryBorder]:
-              themeName === "cambio" && color === "secondary",
-            [buttonStyles.cambioSecondaryDestructiveBorder]:
-              themeName === "cambio" &&
-              (color === "destructive-secondary" ||
-                color === "destructive-tertiary"),
-            [buttonStyles.cambioSecondarySuccessBorder]:
-              themeName === "cambio" && color === "success-secondary",
             [styles.iconButtonNoBorder]:
               (themeName === "classic" &&
                 !["secondary", "destructive-secondary"].includes(color)) ||
-              (themeName === "cambio" &&
-                ![
-                  "secondary",
-                  "destructive-secondary",
-                  "destructive-tertiary",
-                  "success-secondary",
-                ].includes(color)),
+              themeName === "cambio",
           },
         )}
         ref={ref}

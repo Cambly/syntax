@@ -36,15 +36,13 @@ type ButtonProps = {
    * The color of the button
    *
    * Classic only:
-   * * `success-primary`
-   * * `success-secondary`
    * * `inverse`
+   * * `success`
    *
    * Cambio only:
-   * * `quaternary`
-   * * `destructive-tertiary`
    * * `success-primary`
    * * `success-secondary`
+   * * `success-tertiary`
    *
    * @defaultValue "primary"
    */
@@ -52,7 +50,6 @@ type ButtonProps = {
     | "primary"
     | "secondary"
     | "tertiary"
-    | "quaternary"
     | "destructive-primary"
     | "destructive-secondary"
     | "destructive-tertiary"
@@ -60,6 +57,7 @@ type ButtonProps = {
     | "success"
     | "success-primary"
     | "success-secondary"
+    | "success-tertiary"
     | "inverse";
   /**
    * The size of the button
@@ -181,14 +179,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               themeName === "classic" && color === "secondary",
             [styles.secondaryDestructiveBorder]:
               themeName === "classic" && color === "destructive-secondary",
-            [styles.cambioSecondaryBorder]:
-              themeName === "cambio" && color === "secondary",
-            [styles.cambioSecondaryDestructiveBorder]:
-              themeName === "cambio" &&
-              (color === "destructive-secondary" ||
-                color === "destructive-tertiary"),
-            [styles.cambioSecondarySuccessBorder]:
-              themeName === "cambio" && color === "success-secondary",
           },
         )}
       >

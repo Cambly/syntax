@@ -3,7 +3,6 @@ export function classicColor(
     | "primary"
     | "secondary"
     | "tertiary"
-    | "quaternary"
     | "destructive-primary"
     | "destructive-secondary"
     | "destructive-tertiary"
@@ -11,6 +10,7 @@ export function classicColor(
     | "success"
     | "success-primary"
     | "success-secondary"
+    | "success-tertiary"
     | "inverse",
 ):
   | "primary"
@@ -21,11 +21,13 @@ export function classicColor(
   | "branded"
   | "success"
   | "inverse" {
-  if (color === "quaternary") {
-    return "inverse";
-  } else if (color === "destructive-tertiary") {
+  if (color === "destructive-tertiary") {
     return "destructive-secondary";
-  } else if (color === "success-primary" || color === "success-secondary") {
+  } else if (
+    color === "success-primary" ||
+    color === "success-secondary" ||
+    color === "success-tertiary"
+  ) {
     return "success";
   }
   return color;
@@ -36,7 +38,6 @@ export function cambioColor(
     | "primary"
     | "secondary"
     | "tertiary"
-    | "quaternary"
     | "destructive-primary"
     | "destructive-secondary"
     | "destructive-tertiary"
@@ -44,23 +45,25 @@ export function cambioColor(
     | "success"
     | "success-primary"
     | "success-secondary"
+    | "success-tertiary"
     | "inverse",
 ):
   | "primary"
   | "secondary"
   | "tertiary"
-  | "quaternary"
   | "destructive-primary"
   | "destructive-secondary"
+  | "destructive-tertiary"
   | "branded"
   | "success-primary"
-  | "success-secondary" {
+  | "success-secondary"
+  | "success-tertiary" {
   if (color === "success") {
     return "success-primary";
-  } else if (color === "destructive-tertiary") {
-    return "destructive-secondary";
-  } else if (color === "inverse") {
-    return "quaternary";
+  }
+  // TODO - validate with AJ
+  else if (color === "inverse") {
+    return "secondary";
   }
   return color;
 }
