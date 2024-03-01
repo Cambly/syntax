@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.11.0
+
+### Minor Changes
+
+- 0bbf4b1: Add ThemeProvider & styles for Button / IconButton & LinkButton
+
 ## 0.10.1
 
 ### Patch Changes

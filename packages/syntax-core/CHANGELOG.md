@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 10.8.0
+
+### Minor Changes
+
+- 0bbf4b1: Add ThemeProvider & styles for Button / IconButton & LinkButton
+
+### Patch Changes
+
+- Updated dependencies [0bbf4b1]
+  - @cambly/syntax-design-tokens@0.11.0
+
 ## 10.7.0
 
 ### Minor Changes
