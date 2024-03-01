@@ -54,6 +54,7 @@ type IconButtonProps = {
     | "success"
     | "success-primary"
     | "success-secondary"
+    | "success-tertiary"
     | "inverse";
   /**
    * Test id for the button

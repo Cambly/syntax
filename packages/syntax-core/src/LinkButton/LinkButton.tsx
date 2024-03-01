@@ -68,6 +68,7 @@ type LinkButtonProps = {
     | "success"
     | "success-primary"
     | "success-secondary"
+    | "success-tertiary"
     | "inverse";
   /**
    * The size of the button
