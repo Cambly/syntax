@@ -72,6 +72,27 @@
   border-radius: 16px;
 }
 
+.smCambio {
+  min-width: 52px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 100px;
+}
+
+.mdCambio {
+  min-width: 78px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 100px;
+}
+
+.lgCambio {
+  min-width: 104px;
+  height: 64px;
+  padding: 0 32px;
+  border-radius: 100px;
+}
+
 .icon {
   color: inherit;
 }

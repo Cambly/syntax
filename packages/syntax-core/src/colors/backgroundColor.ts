@@ -1,7 +1,7 @@
-import { type Color } from "../constants";
+import { type CambioColor, type Color } from "../constants";
 import styles from "./colors.module.css";
 
-export default function backgroundColor(color: (typeof Color)[number]): string {
+export function classicBackgroundColor(color: (typeof Color)[number]): string {
   switch (color) {
     case "secondary":
       return styles.primary100BackgroundColor;
@@ -20,5 +20,32 @@ export default function backgroundColor(color: (typeof Color)[number]): string {
       return styles.gray60BackgroundColor;
     default:
       return styles.primary700BackgroundColor;
+  }
+}
+
+export function cambioBackgroundColor(
+  color: (typeof CambioColor)[number],
+): string {
+  switch (color) {
+    case "primary":
+      return styles.cambioBlackBackgroundColor;
+    case "secondary":
+      return styles.cambioGray370BackgroundColor;
+    case "tertiary":
+    case "success-tertiary":
+    case "destructive-tertiary":
+      return styles.cambioTransparentFullBackgroundColor;
+    case "success-primary":
+      return styles.cambioSuccess700BackgroundColor;
+    case "success-secondary":
+      return styles.cambioSuccess370BackgroundColor;
+    case "destructive-primary":
+      return styles.cambioDestructive700BackgroundColor;
+    case "destructive-secondary":
+      return styles.cambioDestructive370BackgroundColor;
+    case "branded":
+      return styles.cambioYellow700BackgroundColor;
+    default:
+      return styles.cambioBlackBackgroundColor;
   }
 }

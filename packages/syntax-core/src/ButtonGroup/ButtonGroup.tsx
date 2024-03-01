@@ -4,9 +4,9 @@ import { type Size } from "../constants";
 import classNames from "classnames";
 
 const gap = {
-  ["sm"]: styles.smallGap,
-  ["md"]: styles.mediumGap,
-  ["lg"]: styles.largeGap,
+  sm: styles.smallGap,
+  md: styles.mediumGap,
+  lg: styles.largeGap,
 } as const;
 
 /**

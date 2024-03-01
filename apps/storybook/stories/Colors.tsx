@@ -4,7 +4,10 @@ import variables from "../../../packages/syntax-design-tokens/dist/json/variable
 export default function Colors() {
   const groupColors = Object.entries(variables).reduce(
     (acc, [key, value]) => {
-      if (
+      if (key.includes("cambio")) {
+        // @ts-expect-error
+        acc["Cambio"].push({ key, value });
+      } else if (
         key.includes("black") ||
         key.includes("white") ||
         key.includes("gray")
@@ -25,6 +28,7 @@ export default function Colors() {
       return acc;
     },
     {
+      Cambio: [],
       Grayscale: [],
       Primary: [],
       Destructive: [],
@@ -46,8 +50,15 @@ export default function Colors() {
                   style={{
                     color:
                       [
+                        "color-cambio-white",
+                        "color-cambio-cream",
+                        "color-cambio-pink",
+                        "color-cambio-sky",
+                        "color-cambio-yellow-700",
+                        "color-cambio-transparent-full",
                         "color-base-gray-10",
                         "color-base-gray-30",
+                        "color-base-yellow-700",
                         "color-base-white",
                       ].includes(key) ||
                       (number && parseInt(number) < 400)

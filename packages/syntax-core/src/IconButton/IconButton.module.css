@@ -2,8 +2,11 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  border: none;
   border-radius: 50%;
+}
+
+.iconButtonNoBorder {
+  border: none;
 }
 
 .iconButton:hover {
@@ -58,6 +61,21 @@
   width: 48px;
 }
 
+.smCambio {
+  height: 32px;
+  width: 32px;
+}
+
+.mdCambio {
+  height: 48px;
+  width: 48px;
+}
+
+.lgCambio {
+  height: 64px;
+  width: 64px;
+}
+
 .smIcon {
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   height: 16px !important;
@@ -79,10 +97,30 @@
   width: 24px !important;
 }
 
-.secondaryBorder {
-  border: 1px solid var(--color-base-primary-300);
+.smIconCambio {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 20px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 20px !important;
 }
 
-.secondaryDestructiveBorder {
-  border: 1px solid var(--color-base-destructive-300);
+.mdIconCambio {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 24px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 24px !important;
+}
+
+.lgIconCambio {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 32px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 32px !important;
+}
+
+.xlIconCambio {
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  height: 40px !important;
+  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
+  width: 40px !important;
 }
