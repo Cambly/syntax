@@ -1,5 +1,11 @@
 # @cambly/syntax-tsconfig
 
+## 1.4.1
+
+### Patch Changes
+
+- 888f354: LinkButton / IconButton add missing success-tertiary color option
+
 ## 1.4.0
 
 ### Minor Changes

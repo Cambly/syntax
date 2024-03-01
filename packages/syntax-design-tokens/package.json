@@ -2,7 +2,7 @@
   "name": "@cambly/syntax-design-tokens",
   "description": "Cambly design system tokens",
   "type": "module",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "main": "./dist/js/index.js",
   "types": "./dist/js/index.d.ts",
   "sideEffects": false,

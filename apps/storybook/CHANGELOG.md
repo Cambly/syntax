@@ -1,5 +1,15 @@
 # @syntax/storybook
 
+## 0.13.1
+
+### Patch Changes
+
+- 888f354: LinkButton / IconButton add missing success-tertiary color option
+- Updated dependencies [888f354]
+  - @cambly/syntax-floating-components@0.4.4
+  - @cambly/syntax-design-tokens@0.11.1
+  - @cambly/syntax-core@10.8.1
+
 ## 0.13.0
 
 ### Minor Changes

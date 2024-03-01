@@ -1,5 +1,13 @@
 # @cambly/syntax-core
 
+## 10.8.1
+
+### Patch Changes
+
+- 888f354: LinkButton / IconButton add missing success-tertiary color option
+- Updated dependencies [888f354]
+  - @cambly/syntax-design-tokens@0.11.1
+
 ## 10.8.0
 
 ### Minor Changes
