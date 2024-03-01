@@ -33,14 +33,13 @@ type IconButtonProps = {
    * The color of the button
    *
    * Classic only:
-   * * `destructive-tertiary`
-   * * `success-primary`
-   * * `success-secondary`
    * * `inverse`
+   * * `success`
    *
    * Cambio only:
    * * `success-primary`
    * * `success-secondary`
+   * * `success-tertiary`
    *
    * @defaultValue "primary"
    */

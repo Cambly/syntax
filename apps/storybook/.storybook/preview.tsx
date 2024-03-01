@@ -1,7 +1,6 @@
 import React from "react";
 import { Preview } from "@storybook/react";
 import ThemeProvider from "../../../packages/syntax-core/src/ThemeProvider/ThemeProvider";
-import "@cambly/syntax-design-tokens/dist/css/variables.css";
 
 const preview: Preview = {
   globalTypes: {

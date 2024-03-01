@@ -212,6 +212,14 @@
   background-color: var(--color-base-yellow-700);
 }
 
+.yellow800BackgroundColor {
+  background-color: var(--color-base-yellow-800);
+}
+
+.yellow900BackgroundColor {
+  background-color: var(--color-base-yellow-900);
+}
+
 /* Cambio colors */
 .cambioBlackColor {
   color: var(--color-cambio-black);

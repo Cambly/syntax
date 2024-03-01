@@ -51,15 +51,14 @@ export default function Colors() {
                     color:
                       [
                         "color-cambio-white",
-                        "color-cambio-gray-88",
-                        "color-cambio-gray-96",
                         "color-cambio-cream",
                         "color-cambio-pink",
                         "color-cambio-sky",
-                        "color-cambio-yellow",
+                        "color-cambio-yellow-700",
                         "color-cambio-transparent-full",
                         "color-base-gray-10",
                         "color-base-gray-30",
+                        "color-base-yellow-700",
                         "color-base-white",
                       ].includes(key) ||
                       (number && parseInt(number) < 400)

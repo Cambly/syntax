@@ -47,14 +47,13 @@ type LinkButtonProps = {
    * The color of the button
    *
    * Classic only:
-   * * `success-primary`
-   * * `success-secondary`
    * * `inverse`
+   * * `success`
    *
    * Cambio only:
-   * * `destructive-tertiary`
    * * `success-primary`
    * * `success-secondary`
+   * * `success-tertiary`
    *
    * @defaultValue "primary"
    */

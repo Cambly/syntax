@@ -126,18 +126,6 @@
   border: 1px solid var(--color-base-destructive-300);
 }
 
-.cambioSecondaryBorder {
-  border: 1px solid var(--color-cambio-black);
-}
-
-.cambioSecondaryDestructiveBorder {
-  border: 1px solid var(--color-cambio-destructive);
-}
-
-.cambioSecondarySuccessBorder {
-  border: 1px solid var(--color-cambio-success);
-}
-
 @keyframes syntaxButtonLoadingRotate {
   0% {
     transform-origin: 50% 50%;
