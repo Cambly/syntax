@@ -1,5 +1,13 @@
 # @cambly/syntax-floating-components
 
+## 0.4.4
+
+### Patch Changes
+
+- 888f354: LinkButton / IconButton add missing success-tertiary color option
+- Updated dependencies [888f354]
+  - @cambly/syntax-design-tokens@0.11.1
+
 ## 0.4.3
 
 ### Patch Changes

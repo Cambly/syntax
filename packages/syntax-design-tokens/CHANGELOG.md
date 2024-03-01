@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.11.1
+
+### Patch Changes
+
+- 888f354: LinkButton / IconButton add missing success-tertiary color option
+
 ## 0.11.0
 
 ### Minor Changes
