@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.9.0
+
+### Minor Changes
+
+- e746b49: Typography/Heading: add Cambio styles & options
+
 ## 10.8.1
 
 ### Patch Changes
