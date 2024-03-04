@@ -26,6 +26,9 @@ export default defineConfig({
   skipNodeModulesBundle: true,
   esbuildOptions(options) {
     options.chunkNames = "__chunks/[hash]";
+    options.banner = {
+      js: '"use client"',
+    };
   },
   // ESBuild does not yet support CSS Modules
   // https://github.com/egoist/tsup/issues/536#issuecomment-1302012400
