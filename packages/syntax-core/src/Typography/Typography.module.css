@@ -1,7 +1,30 @@
 .typography {
+  margin: 0;
+}
+
+@font-face {
+  font-family: GT-Super-Text-Medium;
+  font-style: normal;
+  font-weight: 500;
+  src: local("GT-Super-Text-Medium"),
+    /* TODO fix CORS issues and change to url("https://static.cambly.com/fonts/GT-Super-Text-Medium.woff2") */
+      url("https://partners.rebelmouse.com/protocol/GT-Super-Text-Medium.woff2")
+      format("woff2");
+
+  /* TODO enable Most performant option - see https://web.dev/articles/font-best-practices */
+
+  /* font-display: optional; */
+}
+
+.sansSerif {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   margin: 0;
+}
+
+.serif {
+  font-family: GT-Super-Text-Medium, -apple-system, system-ui,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, serif;
 }
 
 /* Sizes */
@@ -31,6 +54,89 @@
 
 .size800 {
   font-size: 64px;
+}
+
+/* Sizes - Cambio sizes are responsive */
+.size100Cambio {
+  font-size: 14px;
+}
+
+.size200Cambio {
+  font-size: 16px;
+}
+
+.size300Cambio {
+  font-size: 18px;
+}
+
+.size400Cambio {
+  font-size: 20px;
+}
+
+.size500Cambio {
+  font-size: 23px;
+}
+
+.size600Cambio {
+  font-size: 26px;
+}
+
+.size700Cambio {
+  font-size: 33px;
+}
+
+.size800Cambio {
+  font-size: 41px;
+}
+
+.size900Cambio {
+  font-size: 46px;
+}
+
+@media (min-width: 480px) {
+  .size100Cambio {
+    font-size: 13px;
+  }
+
+  .size200Cambio {
+    font-size: 16px;
+  }
+
+  .size300Cambio {
+    font-size: 20px;
+  }
+
+  .size400Cambio {
+    font-size: 25px;
+  }
+
+  .size500Cambio {
+    font-size: 31px;
+  }
+
+  .size600Cambio {
+    font-size: 39px;
+  }
+
+  .size700Cambio {
+    font-size: 49px;
+  }
+
+  .size800Cambio {
+    font-size: 61px;
+  }
+
+  .size900Cambio {
+    font-size: 76px;
+  }
+
+  .size1000Cambio {
+    font-size: 95px;
+  }
+
+  .size1100Cambio {
+    font-size: 119px;
+  }
 }
 
 /* Align */
@@ -73,6 +179,18 @@
 
 .heavy {
   font-weight: 860;
+}
+
+.regularCambio {
+  font-weight: 400;
+}
+
+.mediumCambio {
+  font-weight: 510;
+}
+
+.semiBoldCambio {
+  font-weight: 590;
 }
 
 .underline {

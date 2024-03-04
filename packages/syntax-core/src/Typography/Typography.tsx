@@ -1,10 +1,21 @@
 import classNames from "classnames";
 import { forwardRef, type ReactElement, type ReactNode } from "react";
-import { type Color } from "../constants";
 import styles from "./Typography.module.css";
 import colorStyles from "../colors/colors.module.css";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-function textColor(color: (typeof Color)[number]): string {
+function classicTextColor(
+  color:
+    | "gray900"
+    | "gray700"
+    | "primary"
+    | "destructive-primary"
+    | "destructive-darkBackground"
+    | "success"
+    | "success-darkBackground"
+    | "white"
+    | "inherit",
+): string {
   switch (color) {
     case "gray700":
       return colorStyles.gray700Color;
@@ -15,11 +26,70 @@ function textColor(color: (typeof Color)[number]): string {
     case "primary":
       return colorStyles.primary700Color;
     case "destructive-primary":
+    case "destructive-darkBackground":
       return colorStyles.destructive700Color;
     case "success":
       return colorStyles.success700Color;
     default:
       return colorStyles.gray900Color;
+  }
+}
+
+function cambioTextColor(
+  color:
+    | "gray900"
+    | "gray700"
+    | "primary"
+    | "destructive-primary"
+    | "destructive-darkBackground"
+    | "success"
+    | "success-darkBackground"
+    | "white"
+    | "inherit",
+): string {
+  switch (color) {
+    case "gray700":
+      return colorStyles.cambioGray800Color;
+    case "white":
+      return colorStyles.cambioWhiteColor;
+    case "inherit":
+      return colorStyles.inheritColor;
+    case "destructive-primary":
+      return colorStyles.cambioDestructive900Color;
+    case "destructive-darkBackground":
+      return colorStyles.cambioDestructive100Color;
+    case "success":
+      return colorStyles.cambioSuccess900Color;
+    case "success-darkBackground":
+      return colorStyles.cambioSuccess100Color;
+    // primary / gray900
+    default:
+      return colorStyles.cambioBlackColor;
+  }
+}
+
+function classicWeight(
+  weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
+): "regular" | "interactive" | "semiBold" | "bold" | "heavy" {
+  switch (weight) {
+    case "medium":
+      return "regular";
+    default:
+      return weight;
+  }
+}
+
+function cambioWeight(
+  weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
+): "regular" | "medium" | "semiBold" {
+  switch (weight) {
+    case "interactive":
+      return "medium";
+    case "bold":
+    case "heavy":
+      return "regular";
+    default:
+      return weight;
   }
 }
 
@@ -50,13 +120,32 @@ const Typography = forwardRef<
     /**
      * The color of the text.
      *
+     * Cambio only: `success-darkBackground` / `destructive-darkBackground`
+     *
      * @defaultValue "gray900"
      */
-    color?: (typeof Color)[number];
+    color?:
+      | "gray900"
+      | "gray700"
+      | "primary"
+      | "destructive-primary"
+      | "destructive-darkBackground"
+      | "success"
+      | "success-darkBackground"
+      | "white"
+      | "inherit";
     /**
      * Test id for the text
      */
     "data-testid"?: string;
+    /**
+     * Style of the font
+     *
+     * Classic only supports `sans-serif`
+     *
+     * @defaultValue "sans-serif"
+     */
+    fontStyle?: "serif" | "sans-serif";
     /**
      * The id for the element
      */
@@ -74,6 +163,7 @@ const Typography = forwardRef<
     /**
      * Size of the text.
      *
+     * Classic:
      * * `100`: 12px
      * * `200`: 14px
      * * `300`: 16px
@@ -82,9 +172,35 @@ const Typography = forwardRef<
      * * `700`: 40px
      * * `800`: 64px
      *
+     * Cambio Mobile:
+     * * `100`: 14px
+     * * `200`: 16px
+     * * `300`: 18px
+     * * `400`: 20px
+     * * `500`: 23px
+     * * `600`: 26px
+     * * `700`: 29px
+     * * `800`: 33px
+     * * `900`: 37px
+     * * `1000`: 41px
+     * * `1100`: 46px
+     *
+     * Cambio Desktop (viewport width > 480px):
+     * * `100`: 13px
+     * * `200`: 16px
+     * * `300`: 20px
+     * * `400`: 25px
+     * * `500`: 31px
+     * * `600`: 39px
+     * * `700`: 49px
+     * * `800`: 61px
+     * * `900`: 76px
+     * * `1000`: 95px
+     * * `1100`: 119px
+     *
      * @defaultValue 200
      */
-    size?: 100 | 200 | 300 | 500 | 600 | 700 | 800;
+    size?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
     /**
      * The tooltip to be displayed when the user hovers the text
      */
@@ -104,9 +220,27 @@ const Typography = forwardRef<
     /**
      * Indicates the boldness of the text.
      *
+     * Classic:
+     * * `regular`: 400
+     * * `interactive`: 500 (Classic only)
+     * * `semiBold`: 600
+     * * `bold`: 700 (Classic only)
+     * * `heavy`: 860 (Classic only)
+     *
+     * Cambio:
+     * * `regular`: 400
+     * * `medium`: 510
+     * * `semiBold`: 590
+     *
      * @defaultValue "regular"
      */
-    weight?: "regular" | "interactive" | "semiBold" | "bold" | "heavy";
+    weight?:
+      | "regular"
+      | "interactive"
+      | "medium"
+      | "semiBold"
+      | "bold"
+      | "heavy";
   }
 >(function Typography(
   {
@@ -115,6 +249,7 @@ const Typography = forwardRef<
     children,
     color = "gray900",
     "data-testid": dataTestId,
+    fontStyle = "sans-serif",
     id,
     inline = false,
     lineClamp = undefined,
@@ -128,16 +263,45 @@ const Typography = forwardRef<
 ): ReactElement {
   const Tag = as;
 
+  const { themeName } = useTheme();
+
+  const weightStyles =
+    themeName === "classic"
+      ? styles[classicWeight(weight)]
+      : styles[`${cambioWeight(weight)}Cambio`];
+
   return (
     <Tag
       id={id}
       className={classNames(
         styles.typography,
         styles[align],
-        styles[weight],
-        textColor(color),
+        weightStyles,
+        themeName === "cambio" && fontStyle === "serif"
+          ? styles.serif
+          : styles.sansSerif,
+        themeName === "cambio"
+          ? cambioTextColor(color)
+          : classicTextColor(color),
         inline && styles.inline,
-        styles[`size${size}`],
+        themeName === "classic"
+          ? styles[
+              `size${
+                // TypeScript doesn't narrow the type of size with `.includes` so we have to do it manually
+                // https://github.com/microsoft/TypeScript/issues/36275#issuecomment-643376433
+                // One we ship Cambio, we can remove these checks
+                size === 100 ||
+                size === 200 ||
+                size === 300 ||
+                size === 500 ||
+                size === 600 ||
+                size === 700 ||
+                size === 800
+                  ? size
+                  : 200
+              }`
+            ]
+          : styles[`size${size}Cambio`],
         transform === "uppercase" && styles.uppercase,
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,
