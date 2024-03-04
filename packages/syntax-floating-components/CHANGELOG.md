@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.5.0
+
+### Minor Changes
+
+- 1b9c914: Add 'use client' to every Syntax exported JS file
+
 ## 0.4.4
 
 ### Patch Changes

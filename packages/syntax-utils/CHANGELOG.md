@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 1.5.0
+
+### Minor Changes
+
+- 1b9c914: Add 'use client' to every Syntax exported JS file
+
 ## 1.4.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.10.0
+
+### Minor Changes
+
+- 1b9c914: Add 'use client' to every Syntax exported JS file
+
 ## 10.9.0
 
 ### Minor Changes
