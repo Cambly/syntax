@@ -1,6 +1,6 @@
 import { type ReactElement, type ReactNode } from "react";
-import { type Color } from "../constants";
 import Typography from "../Typography/Typography";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 /**
  * [Heading](https://cambly-syntax.vercel.app/?path=/docs/components-heading--docs) enforces a consistent style & accessibility best practices for headings.
@@ -11,6 +11,7 @@ const Heading = ({
   children,
   color = "gray900",
   "data-testid": dataTestId,
+  fontStyle,
   lineClamp,
   size = 500,
 }: {
@@ -37,11 +38,26 @@ const Heading = ({
    *
    * @defaultValue "gray900"
    */
-  color?: (typeof Color)[number];
+  color?:
+    | "gray900"
+    | "gray700"
+    | "primary"
+    | "destructive-primary"
+    | "success"
+    | "white"
+    | "inherit";
   /**
    * Test id for the text.
    */
   "data-testid"?: string;
+  /**
+   * Style of the font
+   *
+   * Classic only supports `sans-serif`
+   *
+   * @defaultValue "sans-serif"
+   */
+  fontStyle?: "serif" | "sans-serif";
   /**
    * The number of lines we should truncate the text at
    */
@@ -49,25 +65,50 @@ const Heading = ({
   /**
    * Size of the text.
    *
+   * Classic:
    * * `500`: 20px
    * * `600`: 28px
    * * `700`: 40px
    * * `800`: 64px
    *
+   * Cambio Mobile:
+   * * `400`: 20px
+   * * `500`: 23px
+   * * `600`: 26px
+   * * `700`: 29px
+   * * `800`: 33px
+   * * `900`: 37px
+   * * `1000`: 41px
+   * * `1100`: 46px
+   *
+   * Cambio Desktop (viewport width > 480px):
+   * * `400`: 25px
+   * * `500`: 31px
+   * * `600`: 39px
+   * * `700`: 49px
+   * * `800`: 61px
+   * * `900`: 76px
+   * * `1000`: 95px
+   * * `1100`: 119px
+   *
    * @defaultValue 500
    */
-  size?: 500 | 600 | 700 | 800;
+  size?: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
 }): ReactElement => {
-  const weight = [700, 800].includes(size) ? "heavy" : "bold";
+  const { themeName } = useTheme();
+  const classicWeight = [700, 800].includes(size) ? "heavy" : "bold";
+  const cambioWeight = fontStyle === "serif" ? "medium" : "regular";
+
   return (
     <Typography
       align={align}
       as={as}
       color={color}
+      fontStyle={fontStyle}
       data-testid={dataTestId}
       lineClamp={lineClamp}
       size={size}
-      weight={weight}
+      weight={themeName === "classic" ? classicWeight : cambioWeight}
     >
       {children}
     </Typography>

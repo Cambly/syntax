@@ -125,7 +125,7 @@ const Checkbox = ({
       />
       <Typography
         size={typographySize[size]}
-        color={error ? "destructive-primary" : "gray800"}
+        color={error ? "destructive-primary" : "gray900"}
       >
         {label}
       </Typography>

@@ -26,6 +26,7 @@ export default {
     color: {
       options: [
         "destructive-primary",
+        "black",
         "gray700",
         "gray900",
         "primary",
@@ -34,9 +35,16 @@ export default {
       ],
       control: { type: "radio" },
     },
-    size: {
-      options: [500, 600, 700, 800],
+    lineClamp: {
+      control: { type: "number", min: 0, max: 10, step: 1 },
+    },
+    fontStyle: {
+      options: ["serif", "sans-serif"],
       control: { type: "radio" },
+    },
+    size: {
+      options: [400, 500, 600, 700, 800, 900, 1000, 1100],
+      control: { type: "select" },
     },
   },
   tags: ["autodocs"],
@@ -51,6 +59,9 @@ export const Default: StoryObj<typeof Heading> = {
 export const Sizes: StoryObj<typeof Heading> = {
   render: (args) => (
     <>
+      <Heading {...args} size={400}>
+        Size 400 (Cambio only)
+      </Heading>
       <Heading {...args} size={500}>
         Size 500
       </Heading>
@@ -62,6 +73,15 @@ export const Sizes: StoryObj<typeof Heading> = {
       </Heading>
       <Heading {...args} size={800}>
         Size 800
+      </Heading>
+      <Heading {...args} size={900}>
+        Size 900 (Cambio only)
+      </Heading>
+      <Heading {...args} size={1000}>
+        Size 1000 (Cambio only)
+      </Heading>
+      <Heading {...args} size={1100}>
+        Size 1100 (Cambio only)
       </Heading>
     </>
   ),

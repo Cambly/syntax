@@ -23,16 +23,22 @@ export default {
     color: {
       options: [
         "destructive-primary",
+        "destructive-darkBackground",
         "gray700",
         "gray900",
         "primary",
         "success",
+        "success-darkBackground",
         "white",
       ],
       control: { type: "radio" },
     },
     children: {
       control: "text",
+    },
+    fontStyle: {
+      options: ["serif", "sans-serif"],
+      control: { type: "radio" },
     },
     inline: {
       control: "boolean",
@@ -41,8 +47,8 @@ export default {
       control: { type: "number", min: 0, max: 10, step: 1 },
     },
     size: {
-      options: [100, 200, 300, 500, 600, 700, 800],
-      control: { type: "radio" },
+      options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100],
+      control: { type: "select" },
     },
     tooltip: {
       control: "text",
@@ -55,7 +61,14 @@ export default {
       control: "boolean",
     },
     weight: {
-      options: ["regular", "interactive", "semiBold", "bold", "heavy"],
+      options: [
+        "regular",
+        "interactive",
+        "medium",
+        "semiBold",
+        "bold",
+        "heavy",
+      ],
       control: { type: "radio" },
     },
   },
@@ -63,62 +76,76 @@ export default {
 } as Meta<typeof Typography>;
 
 export const Default: StoryObj<typeof Typography> = {
-  render: (args) => (
-    <Typography {...args}>{args.children ?? "Default text"}</Typography>
-  ),
+  args: { children: "Default text" },
 };
 
-export const Sizes: StoryObj<typeof Typography> = {
-  render: (args) => (
+export const sizes: StoryObj<typeof Typography> = {
+  render: () => (
     <>
-      <Typography {...args} size={100}>
+      <Typography {...Default.args} size={100}>
         Size 100
       </Typography>
-      <Typography {...args} size={200}>
-        Size 200 (default)
+      <Typography {...Default.args} size={200}>
+        Size 200
       </Typography>
-      <Typography {...args} size={300}>
+      <Typography {...Default.args} size={300}>
         Size 300
       </Typography>
-      <Typography {...args} size={500} weight="bold">
-        Size 500 Bold
+      <Typography {...Default.args} size={400}>
+        Size 400 (Cambio only)
       </Typography>
-      <Typography {...args} size={600} weight="bold">
-        Size 600 Bold
+      <Typography {...Default.args} size={500}>
+        Size 500
       </Typography>
-      <Typography {...args} size={700} weight="heavy">
-        Size 700 Heavy
+      <Typography {...Default.args} size={600}>
+        Size 600
       </Typography>
-      <Typography {...args} size={800} weight="heavy">
-        Size 800 Heavy
+      <Typography {...Default.args} size={700}>
+        Size 700
+      </Typography>
+      <Typography {...Default.args} size={800}>
+        Size 800
+      </Typography>
+      <Typography {...Default.args} size={900}>
+        Size 900 (Cambio only)
+      </Typography>
+      <Typography {...Default.args} size={1000}>
+        Size 1000 (Cambio only)
+      </Typography>
+      <Typography {...Default.args} size={1100}>
+        Size 1100 (Cambio only)
       </Typography>
     </>
   ),
 };
 
-export const Colors: StoryObj<typeof Typography> = {
-  render: (args) => (
+export const colors: StoryObj<typeof Typography> = {
+  render: () => (
     <>
-      <Typography {...args} color="destructive-primary">
+      <Typography {...Default.args} color="destructive-primary">
         Color destructive-primary
       </Typography>
-      <Typography {...args} color="gray700">
+      <Typography {...Default.args} color="destructive-darkBackground">
+        Color destructive-darkBackground (Cambio only)
+      </Typography>
+      <Typography {...Default.args} color="gray700">
         Color gray700
       </Typography>
-      <Typography {...args} color="gray900">
+      <Typography {...Default.args} color="gray900">
         Color gray900 (default)
       </Typography>
-      <Typography {...args} color="primary">
+      <Typography {...Default.args} color="primary">
         Color primary
       </Typography>
-      <Typography {...args} color="success">
+      <Typography {...Default.args} color="success">
         Color success
       </Typography>
-      <div style={{ backgroundColor: "#000" }}>
-        <Typography {...args} color="white">
-          Color white
-        </Typography>
-      </div>
+      <Typography {...Default.args} color="success-darkBackground">
+        Color success-darkBackground (Cambio only)
+      </Typography>
+      <Typography {...Default.args} color="white">
+        Color white
+      </Typography>
     </>
   ),
 };
@@ -161,16 +188,19 @@ export const Weight: StoryObj<typeof Typography> = {
         Weight Regular
       </Typography>
       <Typography {...args} weight="interactive">
-        Weight interactive
+        Weight interactive (classic only)
+      </Typography>
+      <Typography {...args} weight="medium">
+        Weight medium (cambio only)
       </Typography>
       <Typography {...args} weight="semiBold">
         Weight semiBold
       </Typography>
       <Typography {...args} weight="bold">
-        Weight bold
+        Weight bold (classic only)
       </Typography>
       <Typography {...args} weight="heavy">
-        Weight heavy
+        Weight heavy (classic only)
       </Typography>
     </>
   ),
