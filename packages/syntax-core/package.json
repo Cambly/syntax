@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "dev": "tsup --watch",
+    "dev": "NODE_OPTIONS=--max_old_space_size=4096 tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "stylelint": "stylelint \"**/*.css\"",
     "stylelint:fix": "npm run stylelint --fix",

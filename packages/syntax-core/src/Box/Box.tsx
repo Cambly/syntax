@@ -7,6 +7,7 @@ import type allColors from "../colors/allColors";
 import colorStyles from "../colors/colors.module.css";
 import roundingStyles from "../rounding.module.css";
 import { forwardRef } from "react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type AlignItems = "baseline" | "center" | "end" | "start" | "stretch";
 type As =
@@ -353,11 +354,20 @@ type BoxProps = {
   /**
    * Border radius of the box.
    *
+   * Classic:
    * * `none`: 0px
    * * `sm`: 8px
    * * `md`: 12px
    * * `lg`: 16px
    * * `xl`: 24px
+   * * `full`: 999px
+   *
+   * Cambio:
+   * * `none`: 0px
+   * * `sm`: 8px
+   * * `md`: 8px (maps to `sm`)
+   * * `lg`: 8px (maps to `sm`)
+   * * `xl`: 8px (maps to `sm`)
    * * `full`: 999px
    *
    * @defaultValue "none"
@@ -429,6 +439,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
   ref,
 ): ReactElement {
   const { as: BoxElement = "div", children, ...boxProps } = props;
+  const { themeName } = useTheme();
 
   const {
     // Classname
@@ -491,6 +502,11 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     width,
     ...maybePassThroughProps
   } = boxProps;
+
+  const parsedRounding =
+    themeName === "cambio" && rounding && ["md", "lg", "xl"].includes(rounding)
+      ? "sm"
+      : rounding;
 
   const parsedProps = {
     className: classNames(
@@ -575,7 +591,9 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       smJustifyContent && styles[`justifyContent${smJustifyContent}Small`],
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
-      rounding && rounding !== "none" && roundingStyles[`rounding${rounding}`],
+      parsedRounding &&
+        parsedRounding !== "none" &&
+        roundingStyles[`rounding${parsedRounding}`],
       overflow && styles[`overflow${overflow}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],

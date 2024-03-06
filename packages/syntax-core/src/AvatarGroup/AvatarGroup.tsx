@@ -5,8 +5,14 @@ import {
   type ReactElement,
 } from "react";
 import Box from "../Box/Box";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-type Size = "sm" | "md" | "lg" | "xl";
+type Size =
+  | "sm"
+  | "md"
+  | "lg"
+  /* `xl` is deprecated and mapped to `lg` in Cambio */
+  | "xl";
 type Orientation = "standard" | "reverse";
 
 type AvatarGroupContextType = {
@@ -43,10 +49,17 @@ export default function AvatarGroup({
   /**
    * Size of the avatars in the AvatarGroup.
    *
+   * Classic:
    * * `sm`: 24px
    * * `md`: 40px
    * * `lg`: 72px
    * * `xl`: 128px
+   *
+   * Cambio:
+   * * `sm`: 32px
+   * * `md`: 48px
+   * * `lg`: 64px
+   * * `xl`: 64px (deprecated, maps to `lg` in Cambio)
    *
    * @defaultValue `md`
    */
@@ -65,8 +78,11 @@ export default function AvatarGroup({
    */
   children: ReactNode;
 }): ReactElement {
+  const { themeName } = useTheme();
+  const parsedSize = themeName === "cambio" && size === "xl" ? "lg" : size;
+
   return (
-    <AvatarGroupContext.Provider value={{ size, orientation }}>
+    <AvatarGroupContext.Provider value={{ size: parsedSize, orientation }}>
       <Box
         display="flex"
         justifyContent={orientation === "standard" ? "start" : "end"}
