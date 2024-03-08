@@ -2,11 +2,18 @@ import { type ReactElement, type ReactNode } from "react";
 import styles from "./ButtonGroup.module.css";
 import { type Size } from "../constants";
 import classNames from "classnames";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-const gap = {
+const gapClassic = {
   sm: styles.smallGap,
   md: styles.mediumGap,
   lg: styles.largeGap,
+} as const;
+
+const gapCambio = {
+  sm: styles.smallGapCambio,
+  md: styles.mediumGapCambio,
+  lg: styles.largeGapCambio,
 } as const;
 
 /**
@@ -26,9 +33,15 @@ const ButtonGroup = ({
   /**
    * The size of the button group defines the spacing between each button
    *
+   * Classic:
    * * `sm`: 8px
    * * `md`: 12px
    * * `lg`: 16px
+   *
+   * Cambio:
+   * * `sm`: 4px
+   * * `md`: 8px
+   * * `lg`: 12px
    *
    * @defaultValue "md"
    */
@@ -38,10 +51,15 @@ const ButtonGroup = ({
    */
   children?: ReactNode;
 }): ReactElement => {
-  const classnames = classNames(styles.buttonGroup, gap[size], {
-    [styles.horizontal]: orientation === "horizontal",
-    [styles.vertical]: orientation === "vertical",
-  });
+  const { themeName } = useTheme();
+  const classnames = classNames(
+    styles.buttonGroup,
+    themeName === "classic" ? gapClassic[size] : gapCambio[size],
+    {
+      [styles.horizontal]: orientation === "horizontal",
+      [styles.vertical]: orientation === "vertical",
+    },
+  );
 
   return <div className={classnames}>{children}</div>;
 };

@@ -364,10 +364,10 @@ type BoxProps = {
    *
    * Cambio:
    * * `none`: 0px
-   * * `sm`: 8px
-   * * `md`: 8px (maps to `sm`)
-   * * `lg`: 8px (maps to `sm`)
-   * * `xl`: 8px (maps to `sm`)
+   * * `sm`: 4px
+   * * `md`: 8px
+   * * `lg`: 8px (maps to `md`)
+   * * `xl`: 8px (maps to `md`)
    * * `full`: 999px
    *
    * @defaultValue "none"
@@ -426,6 +426,15 @@ type BoxProps = {
    */
   width?: Dimension;
 };
+
+function roundingCambio(
+  rounding: "sm" | "md" | "lg" | "xl" | "full",
+): "sm" | "md" | "full" {
+  if (rounding === "lg" || rounding === "xl") {
+    return "md";
+  }
+  return rounding;
+}
 
 /**
  * [Box](https://cambly-syntax.vercel.app/?path=/docs/components-box--docs) is primitive design component and is used by lots of other components. It keeps details like spacing, borders and colors consistent across all of Syntax.
@@ -503,10 +512,14 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     ...maybePassThroughProps
   } = boxProps;
 
-  const parsedRounding =
-    themeName === "cambio" && rounding && ["md", "lg", "xl"].includes(rounding)
-      ? "sm"
-      : rounding;
+  const classicRoundingStyle =
+    themeName === "classic" && rounding && rounding !== "none"
+      ? roundingStyles[`rounding${rounding}`]
+      : undefined;
+  const cambioRoundingStyles =
+    themeName === "cambio" && rounding && rounding !== "none"
+      ? roundingStyles[`rounding${roundingCambio(rounding)}`]
+      : undefined;
 
   const parsedProps = {
     className: classNames(
@@ -591,9 +604,8 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       smJustifyContent && styles[`justifyContent${smJustifyContent}Small`],
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
-      parsedRounding &&
-        parsedRounding !== "none" &&
-        roundingStyles[`rounding${parsedRounding}`],
+      classicRoundingStyle,
+      cambioRoundingStyles,
       overflow && styles[`overflow${overflow}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],
