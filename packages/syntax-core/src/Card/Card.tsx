@@ -1,8 +1,6 @@
 import Box from "../Box/Box";
 import type allColors from "../colors/allColors";
 
-const DeprecatedCardSizes = ["sm", "lg"] as const;
-
 type CardType = {
   /**
    * Test id for the button
@@ -17,16 +15,6 @@ type CardType = {
    * The child components to render within Card.
    */
   children: JSX.Element;
-  /**
-   * The size of the card
-   *
-   * `sm`: 352px
-   * `lg`: 744px
-   *
-   * @deprecated Card width should be controlled by the parent container
-   * @defaultValue `undefined`
-   */
-  size?: (typeof DeprecatedCardSizes)[number];
 };
 
 /**
@@ -35,21 +23,14 @@ type CardType = {
 export default function Card({
   backgroundColor = "white",
   children,
-  size,
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
-  const sizeWidth = {
-    sm: 352,
-    lg: 744,
-  } as const;
-
   return (
     <Box
       rounding="lg"
       padding={5}
       smPadding={7}
       lgPadding={7}
-      maxWidth={size && sizeWidth[size]}
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}
