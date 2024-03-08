@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.11.0
+
+### Minor Changes
+
+- 5ceb281: Card: remove deprecated size prop
+
 ## 10.10.0
 
 ### Minor Changes
