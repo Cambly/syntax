@@ -18,6 +18,10 @@ export default {
     placeholder: {
       control: "text",
     },
+    size: {
+      options: ["sm", "md", "lg"],
+      control: { type: "radio" },
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof TextArea>;

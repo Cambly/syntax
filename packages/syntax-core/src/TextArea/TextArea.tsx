@@ -5,6 +5,7 @@ import styles from "./TextArea.module.css";
 import textFieldStyles from "../TextField/TextField.module.css";
 import classNames from "classnames";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type TextAreaProps = {
   /**
@@ -83,6 +84,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
     const reactId = useId();
+    const { themeName } = useTheme();
     const inputId = id ?? reactId;
 
     return (
@@ -96,23 +98,45 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             opacity: disabled ? 0.5 : 1,
           },
         }}
+        position={themeName === "cambio" ? "relative" : undefined}
       >
-        <label className={textFieldStyles.label} htmlFor={inputId}>
-          <Box paddingX={1}>
+        <label
+          className={classNames(
+            themeName === "classic"
+              ? textFieldStyles.label
+              : textFieldStyles.labelCambio,
+            themeName === "cambio"
+              ? textFieldStyles[`${size}LabelCambio`]
+              : undefined,
+          )}
+          htmlFor={inputId}
+        >
+          <Box paddingX={themeName === "classic" ? 1 : 3} width="100%">
             <Typography size={100} color="gray700">
               {label}
             </Typography>
           </Box>
         </label>
-        <Typography size={200}>
+        <Typography
+          size={
+            themeName === "cambio" && ["sm", "md"].includes(size) ? 100 : 200
+          }
+        >
           <textarea
             data-testid={dataTestId}
             ref={forwardedRef}
             className={classNames(
               textFieldStyles.textfield,
-              textFieldStyles[size],
-              styles.textarea,
-              styles[size],
+              themeName === "classic"
+                ? textFieldStyles.textfieldClassic
+                : textFieldStyles.textfieldCambio,
+              themeName === "classic"
+                ? textFieldStyles[size]
+                : textFieldStyles[`${size}TextfieldCambio`],
+              themeName === "classic" ? styles.textarea : undefined,
+              themeName === "classic"
+                ? styles[size]
+                : styles[`${size}TextareaCambio`],
               {
                 [textFieldStyles.inputError]: errorText,
               },

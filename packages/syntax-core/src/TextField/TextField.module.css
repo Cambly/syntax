@@ -1,11 +1,20 @@
 .textfield {
   appearance: none;
-  border: 1px solid var(--color-base-gray-700);
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   margin: 0;
   width: 100%;
+}
+
+.textfieldClassic {
+  border: 1px solid var(--color-base-gray-700);
+}
+
+.textfieldCambio {
+  border: 1px solid var(--color-cambio-gray-370);
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 .textfield:focus {
@@ -21,6 +30,25 @@
   cursor: pointer;
 }
 
+.labelCambio {
+  position: absolute;
+  border-radius: 8px;
+  pointer-events: none;
+  width: 100%;
+}
+
+.smLabelCambio {
+  padding: 6px 0 2px;
+}
+
+.mdLabelCambio {
+  padding: 6px 0 2px;
+}
+
+.lgLabelCambio {
+  padding: 12px 0 4px;
+}
+
 .sm {
   border-radius: 12px;
   font-size: 12px;
@@ -28,8 +56,28 @@
   padding-inline-end: 12px;
 }
 
+.smCambio {
+  padding: 24px 12px 12px;
+}
+
+.mdCambio {
+  padding: 24px 12px 12px;
+}
+
+.lgCambio {
+  padding: 28px 12px 12px;
+}
+
+.smTextfieldCambio {
+  font-size: 14px;
+}
+
 .smHeight {
   height: 32px;
+}
+
+.smHeightCambio {
+  height: 48px;
 }
 
 .md {
@@ -43,6 +91,14 @@
   height: 40px;
 }
 
+.mdHeightCambio {
+  height: 48px;
+}
+
+.mdTextfieldCambio {
+  font-size: 14px;
+}
+
 .lg {
   border-radius: 16px;
   font-size: 16px;
@@ -52,6 +108,14 @@
 
 .lgHeight {
   height: 48px;
+}
+
+.lgHeightCambio {
+  height: 64px;
+}
+
+.lgTextfieldCambio {
+  font-size: 14px;
 }
 
 .inputError {

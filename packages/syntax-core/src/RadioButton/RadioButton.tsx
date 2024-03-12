@@ -6,6 +6,9 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import colorStyles from "../colors/colors.module.css";
+import Box from "../Box/Box";
 
 /**
  * [RadioButton](https://cambly-syntax.vercel.app/?path=/docs/components-radiobutton--docs) is a radio button with accompanying text
@@ -77,17 +80,33 @@ const RadioButton = ({
   /** forces focus ring styling */
   dangerouslyForceFocusStyles?: boolean;
 }): ReactElement => {
+  const { themeName } = useTheme();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
 
-  const sharedStyles = classnames(styles.background, styles[size], {
+  const classicStyles = classnames(styles.background, styles[size], {
     [styles.errorBorderColor]: error,
     [styles.borderColor]: !error,
     [focusStyles.accessibilityOutlineFocus]:
       (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
+    [styles.mdCheckedBorder]: checked && size === "md",
+    [styles.smCheckedBorder]: checked && size === "sm",
+    [styles.neutralBorder]: !checked && size === "md",
   });
+
+  const cambioStyles = classnames(
+    styles.background,
+    error
+      ? colorStyles.cambioDestructive370BackgroundColor
+      : colorStyles.cambioGray370BackgroundColor,
+    styles[size],
+    {
+      [focusStyles.accessibilityOutlineFocus]:
+        (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
+    },
+  );
 
   return (
     <label
@@ -101,15 +120,20 @@ const RadioButton = ({
         },
       )}
     >
-      {checked ? (
-        <div
-          className={classnames(sharedStyles, {
-            [styles.mdCheckedBorder]: size === "md",
-            [styles.smCheckedBorder]: size === "sm",
-          })}
+      <div className={themeName === "classic" ? classicStyles : cambioStyles} />
+      {themeName === "cambio" && checked && (
+        <Box
+          backgroundColor="gray900"
+          width={size === "md" ? 12 : 8}
+          height={size === "md" ? 12 : 8}
+          position="absolute"
+          rounding="full"
+          dangerouslySetInlineStyle={{
+            __style: {
+              left: size === "md" ? 6 : 4,
+            },
+          }}
         />
-      ) : (
-        <div className={classnames(sharedStyles, styles.neutralBorder)} />
       )}
       <input
         data-testid={dataTestId}

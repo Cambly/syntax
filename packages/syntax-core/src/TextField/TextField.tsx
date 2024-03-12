@@ -8,6 +8,7 @@ import styles from "./TextField.module.css";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 /**
  * [TextField](https://cambly-syntax.vercel.app/?path=/docs/components-textfield--docs) is a component that allows users to enter text.
@@ -89,7 +90,14 @@ export default function TextField({
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
+  const { themeName } = useTheme();
   const inputId = id ?? reactId;
+
+  const cambioFontSizeMap = {
+    sm: 100,
+    md: 100,
+    lg: 100,
+  } as const;
 
   return (
     <Box
@@ -102,11 +110,21 @@ export default function TextField({
           opacity: disabled ? 0.5 : 1,
         },
       }}
+      position={themeName === "cambio" ? "relative" : undefined}
     >
       {label && (
-        <label className={styles.label} htmlFor={inputId}>
-          <Box paddingX={1}>
-            <Typography size={100} color="gray700">
+        <label
+          className={classNames(
+            themeName === "classic" ? styles.label : styles.labelCambio,
+            themeName === "cambio" ? styles[`${size}LabelCambio`] : undefined,
+          )}
+          htmlFor={inputId}
+        >
+          <Box paddingX={themeName === "classic" ? 1 : 3}>
+            <Typography
+              size={themeName === "classic" ? 100 : cambioFontSizeMap[size]}
+              color="gray700"
+            >
               {label}
             </Typography>
           </Box>
@@ -116,8 +134,16 @@ export default function TextField({
         autoComplete={autoComplete}
         className={classNames(
           styles.textfield,
-          styles[size],
-          styles[`${size}Height`],
+          themeName === "classic"
+            ? styles.textfieldClassic
+            : styles.textfieldCambio,
+          themeName === "classic"
+            ? styles[size]
+            : styles[`${size}TextfieldCambio`],
+          themeName === "cambio" ? styles[`${size}Cambio`] : undefined,
+          themeName === "classic"
+            ? styles[`${size}Height`]
+            : styles[`${size}HeightCambio`],
           {
             [styles.inputError]: errorText,
           },
