@@ -173,7 +173,7 @@ const Typography = forwardRef<
      * * `800`: 64px
      *
      * Cambio Mobile:
-     * * `100`: 14px
+     * * `100`: 13px
      * * `200`: 16px
      * * `300`: 18px
      * * `400`: 20px
