@@ -42,7 +42,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = Omit<RichSelectBoxProps, "id"> & {
+export type RichSelectListProps = RichSelectBoxProps & {
   /** Test id for the select element */
   "data-testid"?: string;
   /**
@@ -202,7 +202,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           )}
         </ReactAriaLabel>
         <Popover
-          accessibilityLabel={inputId}
           ref={overlayHandlerRef}
           disabled={disabled}
           content={
@@ -219,6 +218,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 defaultSelectedValues={defaultSelectedKeys}
                 onChange={(selected) => setSelectedKeys(new Set(selected))}
                 {...richSelectBoxProps}
+                accessibilityLabel={inputId}
               >
                 {children}
               </RichSelectBox>

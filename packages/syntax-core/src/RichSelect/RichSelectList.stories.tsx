@@ -207,7 +207,6 @@ export const Default: StoryObj<typeof RichSelectList> = {
   args: {
     children: renderOptions(),
     helperText: "Helper text",
-    accessibilityLabel: "Label",
     placeholderText: "Placeholder",
     selectedValues: ["opt1"],
   },
