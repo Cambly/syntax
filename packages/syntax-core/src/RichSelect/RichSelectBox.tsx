@@ -148,7 +148,7 @@ const RichSelectBox = forwardRef<HTMLDivElement, RichSelectBoxProps>(
     );
 
     const saveChanges = () => setSelectedKeys(stagedKeys);
-    const clearChanges = () => setStagedKeys(new Set());
+    const clearChanges = () => setSelectedKeys(new Set());
     const stageChanges = (selectedValues: Selection) => {
       setStagedKeys(selectedValues);
       if (autosave) setSelectedKeys(selectedValues);
