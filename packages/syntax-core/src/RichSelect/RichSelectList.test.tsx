@@ -257,7 +257,7 @@ describe("richSelectList", () => {
     expect(opt1).toHaveAttribute("aria-selected", "true");
   });
 
-  it.only("can clear a saved selection", async () => {
+  it("can clear a saved selection", async () => {
     const spy = vi.fn();
     render(
       simpleRichSelectList({
@@ -267,7 +267,6 @@ describe("richSelectList", () => {
     );
     await user.click(screen.getByTestId("trigger"));
     let opt1 = screen.getByTestId("opt1");
-    console.log("opt1", opt1);
     await user.click(opt1);
     await user.click(screen.getByTestId("primary-button"));
     expect(spy).toHaveBeenCalledTimes(1);
