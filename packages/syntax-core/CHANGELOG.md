@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.13.0
+
+### Minor Changes
+
+- adbd975: RichSelectList: color and label updates
+
 ## 10.12.0
 
 ### Minor Changes
