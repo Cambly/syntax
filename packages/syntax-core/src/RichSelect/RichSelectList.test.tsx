@@ -20,6 +20,7 @@ const user = userEvent.setup({
 const defaultRequiredProps = {
   onChange: () => undefined,
   label: "x",
+  accessibilityLabel: "label",
   primaryButtonText: "Save",
   primaryButtonAccessibilityLabel: "Save",
   secondaryButtonText: "Clear",

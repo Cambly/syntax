@@ -45,6 +45,7 @@ export const WhatIfItLookedLikeThis = (): ReactElement => {
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <RichSelectList
         label="Label"
+        accessibilityLabel="Label"
         helperText="Helper text"
         multiple
         placeholderText="Placeholder"
@@ -136,6 +137,7 @@ export const VeryLongContent = (): ReactElement => {
     >
       <RichSelectList
         label="Label"
+        accessibilityLabel="Label"
         helperText="Helper text"
         placeholderText="Placeholder"
         onChange={() => undefined}
@@ -205,7 +207,6 @@ export const Default: StoryObj<typeof RichSelectList> = {
   args: {
     children: renderOptions(),
     helperText: "Helper text",
-    label: "Label",
     placeholderText: "Placeholder",
     selectedValues: ["opt1"],
   },
@@ -226,6 +227,7 @@ const RichSelectListInteractive = (): ReactElement => {
   return (
     <RichSelectList
       label="Label"
+      accessibilityLabel="Label"
       helperText="Helper text"
       multiple
       selectedValues={selectionValue}
@@ -255,6 +257,7 @@ export const RadioButtons: StoryObj<typeof RichSelectList> = {
     <RichSelectList
       multiple={false}
       label="Label"
+      accessibilityLabel="Label"
       selectedValues={["opt1"]}
       placeholderText="Placeholder"
       onChange={() => undefined}
@@ -277,6 +280,7 @@ export const NoAutosaveControlled: StoryObj<typeof RichSelectList> = {
       <RichSelectList
         multiple
         label="Label"
+        accessibilityLabel="Label"
         selectedValues={["sf"]}
         placeholderText="Placeholder"
         helperText="When `autosave` is false, the user must click the button to save their changes"
@@ -337,6 +341,7 @@ export const NoAutosaveControlledMultipleSelect: StoryObj<
         <ControlledRichSelectList
           multiple
           label="Multiple select"
+          accessibilityLabel="Label"
           helperText="When `autosave` is false, the user must click the button to save their changes"
           autosave={false}
         >
@@ -348,6 +353,7 @@ export const NoAutosaveControlledMultipleSelect: StoryObj<
         </ControlledRichSelectList>
 
         <ControlledRichSelectList
+          accessibilityLabel="Label"
           multiple={false}
           label="Single select"
           helperText="When `autosave` is false, the user must click the button to save their changes"
@@ -368,6 +374,7 @@ export const Autosave: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       label="Label"
+      accessibilityLabel="Label"
       helperText="When `autosave` is true, the user's changes are automatically saveted"
       autosave
       onChange={() => undefined}
@@ -389,6 +396,7 @@ export const ItemAttributeComposition: StoryObj<typeof RichSelectList> = {
   render: () => (
     <RichSelectList
       label="Label"
+      accessibilityLabel="Label"
       multiple
       autosave
       onChange={() => undefined}

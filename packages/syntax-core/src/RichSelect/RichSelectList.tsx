@@ -3,6 +3,7 @@ import React, {
   useMemo,
   type SyntheticEvent,
   useRef,
+  useId,
 } from "react";
 import classNames from "classnames";
 import {
@@ -41,10 +42,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = Omit<
-  RichSelectBoxProps,
-  "accessibilityLabel"
-> & {
+export type RichSelectListProps = RichSelectBoxProps & {
   /** Test id for the select element */
   "data-testid"?: string;
   /**
@@ -58,8 +56,12 @@ export type RichSelectListProps = Omit<
   errorText?: string;
   /** Text shown below select box */
   helperText?: string;
+  /**
+   * RichSelectList id, if not provided, a unique id will be generated
+   */
+  id?: string;
   /** Text shown above select box */
-  label: string;
+  label?: string;
   /**
    * Text showing in select box if no option has been chosen.
    * There should always have a placeholder unless there is a default option selected
@@ -107,6 +109,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     errorText,
     helperText,
     label,
+    id,
     onChange,
     onClick = NOOP,
     placeholderText,
@@ -117,6 +120,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     ...richSelectBoxProps
   } = props;
 
+  const reactId = useId();
+  const inputId = id ?? reactId;
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
 
@@ -186,14 +191,19 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             setInteractionModality("keyboard"); // Show the focus ring so the user knows where focus went
           }}
         >
-          <Typography size={100} color="gray700">
-            {label}
-          </Typography>
+          {label && (
+            <label className={styles.label} htmlFor={id}>
+              <Box paddingX={1}>
+                <Typography size={100} color="gray700">
+                  {label}
+                </Typography>
+              </Box>
+            </label>
+          )}
         </ReactAriaLabel>
         <Popover
           ref={overlayHandlerRef}
           disabled={disabled}
-          accessibilityLabel={label}
           content={
             // this Box wrapper is to reapply the padding that was stripped from popover's dialog to show the sticky save/close buttons. Ideally this could be avoided
             <Box
@@ -207,8 +217,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 selectedValues={selectedKeys}
                 defaultSelectedValues={defaultSelectedKeys}
                 onChange={(selected) => setSelectedKeys(new Set(selected))}
-                accessibilityLabel={label}
                 {...richSelectBoxProps}
+                accessibilityLabel={inputId}
               >
                 {children}
               </RichSelectBox>
