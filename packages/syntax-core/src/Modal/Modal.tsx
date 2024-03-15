@@ -8,6 +8,7 @@ import FocusTrap from "./FocusTrap";
 import StopScroll from "./StopScroll";
 import Layer from "./Layer";
 import styles from "./Modal.module.css";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 function XIcon({ color = "#000" }: { color?: string }) {
   return (
@@ -139,12 +140,18 @@ export default function Modal({
    */
   "data-testid"?: string;
 }): ReactElement {
+  const { themeName } = useTheme();
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
         <FocusTrap>
           <div
-            className={styles.backdrop}
+            className={classnames(
+              styles.backdrop,
+              themeName === "classic"
+                ? styles.backdropClassic
+                : styles.backdropCambio,
+            )}
             role="presentation"
             onClick={(e) => e.target === e.currentTarget && onDismiss()}
             onKeyDown={(e) => e.key === "Escape" && onDismiss()}
@@ -164,20 +171,40 @@ export default function Modal({
                 <button
                   aria-label={accessibilityCloseLabel}
                   type="button"
-                  className={classnames(styles.closeButton, {
-                    [styles.closeButtonWithImage]: !!image,
-                  })}
+                  className={classnames(
+                    styles.closeButton,
+                    themeName === "classic"
+                      ? styles.closeButtonClassic
+                      : styles.closeButtonCambio,
+                    {
+                      [styles.closeButtonWithImage]:
+                        !!image && themeName === "classic",
+                    },
+                  )}
                   onClick={onDismiss}
                 >
-                  <XIcon color={image ? "#fff" : "#000"} />
+                  <XIcon
+                    color={image && themeName === "classic" ? "#fff" : "#000"}
+                  />
                 </button>
               </Box>
               {image && <Box maxHeight={200}>{image}</Box>}
-              <Box display="flex" gap={3} direction="column" padding={9}>
-                <Heading as="h1" size={500}>
+              <Box
+                display="flex"
+                gap={3}
+                direction="column"
+                padding={themeName === "classic" ? 9 : 3}
+              >
+                <Heading
+                  as="h1"
+                  size={themeName === "classic" ? 500 : 400}
+                  fontStyle={themeName === "classic" ? "sans-serif" : "serif"}
+                >
                   {header}
                 </Heading>
-                <Box marginBottom={4}>{children}</Box>
+                <Box marginBottom={themeName === "classic" ? 4 : 0}>
+                  {children}
+                </Box>
                 {footer && (
                   <Box
                     display="flex"

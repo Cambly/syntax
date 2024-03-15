@@ -25,7 +25,13 @@ type As =
   | "summary";
 type Dimension = number | string;
 type Direction = "row" | "column";
-type Display = "none" | "flex" | "block" | "inlineBlock" | "visuallyHidden";
+type Display =
+  | "none"
+  | "flex"
+  | "block"
+  | "inlineBlock"
+  | "inlineFlex"
+  | "visuallyHidden";
 type Gap = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type JustifyContent =
   | "start"
@@ -518,7 +524,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       : undefined;
   const cambioRoundingStyles =
     themeName === "cambio" && rounding && rounding !== "none"
-      ? roundingStyles[`rounding${roundingCambio(rounding)}`]
+      ? roundingStyles[`rounding${roundingCambio(rounding)}Cambio`]
       : undefined;
 
   const parsedProps = {

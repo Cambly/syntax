@@ -10,6 +10,17 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=4003-11352&t=t9iBh7rbKNhWCMrt-0",
     },
   },
+  args: {
+    color: "gray900",
+    fontStyle: "sans-serif",
+    size: 500,
+    align: "start",
+    transform: "none",
+    children: "Default text",
+    underline: false,
+    inline: false,
+    lineClamp: 0,
+  },
   argTypes: {
     align: {
       options: ["start", "center", "end", "forceLeft", "forceRight"],

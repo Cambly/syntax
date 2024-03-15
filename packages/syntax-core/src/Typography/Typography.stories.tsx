@@ -10,11 +10,24 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=4003-11352&t=t9iBh7rbKNhWCMrt-0",
     },
   },
+  args: {
+    color: "gray900",
+    fontStyle: "sans-serif",
+    size: 200,
+    align: "start",
+    as: "div",
+    transform: "none",
+    children: "Default text",
+    underline: false,
+    inline: false,
+    lineClamp: 0,
+    weight: "regular",
+    tooltip: "",
+  },
   argTypes: {
     align: {
       options: ["start", "center", "end", "forceLeft", "forceRight"],
       control: { type: "radio" },
-      defaultValue: "start",
     },
     as: {
       options: ["div", "h1", "h2", "h3", "h4", "h5", "h6"],
@@ -48,14 +61,13 @@ export default {
     },
     size: {
       options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100],
-      control: { type: "select" },
+      control: { type: "select", defaultValue: 200 },
     },
     tooltip: {
       control: "text",
     },
     transform: {
       options: ["none", "uppercase"],
-      defaultValue: "none",
     },
     underline: {
       control: "boolean",

@@ -4,6 +4,7 @@ import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type ChipProps = {
   /**
@@ -25,8 +26,12 @@ type ChipProps = {
   /**
    * Size of the chip.
    *
+   * Classic:
    * * `sm`: 32px
    * * `lg`: 48px
+   *
+   * Cambio:
+   * * `sm`: 32px
    *
    * @defaultValue sm
    */
@@ -63,14 +68,26 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     }: ChipProps,
     ref,
   ) => {
+    const { themeName } = useTheme();
+    const transformedSize = themeName === "cambio" ? "sm" : size;
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
 
-    const chipStyles = classnames(styles.chip, styles[size], {
-      [styles.selectedChip]: selected,
-      [styles.disabled]: disabled,
-      [styles.forceFocus]: dangerouslyForceFocusStyles,
-    });
+    const chipStyles = classnames(
+      styles.chip,
+      themeName === "classic" ? styles.chipClassic : styles.chipCambio,
+      styles[transformedSize],
+      {
+        [themeName === "classic"
+          ? styles.selectedChip
+          : styles.selectedChipCambio]: selected,
+        [themeName === "classic"
+          ? styles.deselectedChip
+          : styles.deselectedChipCambio]: !selected,
+        [styles.disabled]: disabled,
+        [styles.forceFocus]: dangerouslyForceFocusStyles,
+      },
+    );
     const iconStyles = classnames(styles.icon, {
       [styles.selectedIcon]: selected,
     });
@@ -92,7 +109,9 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         {Icon && <Icon className={iconStyles} />}
         <Box paddingX={Icon ? 1 : 0}>
           <Typography
-            size={typographySize[size]}
+            size={
+              themeName === "classic" ? typographySize[transformedSize] : 100
+            }
             color={selected ? "white" : "gray900"}
           >
             {text}
