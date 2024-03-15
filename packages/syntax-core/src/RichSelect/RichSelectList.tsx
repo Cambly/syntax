@@ -42,10 +42,7 @@ const iconSize = {
   lg: 24,
 } as const;
 
-export type RichSelectListProps = Omit<
-  RichSelectBoxProps,
-  "accessibilityLabel"
-> & {
+export type RichSelectListProps = Omit<RichSelectBoxProps, "id"> & {
   /** Test id for the select element */
   "data-testid"?: string;
   /**
@@ -59,10 +56,12 @@ export type RichSelectListProps = Omit<
   errorText?: string;
   /** Text shown below select box */
   helperText?: string;
+  /**
+   * RichSelectList id, if not provided, a unique id will be generated
+   */
+  id?: string;
   /** Text shown above select box */
   label?: string;
-  //** */
-  accessibilityLabel: string;
   /**
    * Text showing in select box if no option has been chosen.
    * There should always have a placeholder unless there is a default option selected
@@ -110,7 +109,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     errorText,
     helperText,
     label,
-    accessibilityLabel,
+    id,
     onChange,
     onClick = NOOP,
     placeholderText,
@@ -121,7 +120,8 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     ...richSelectBoxProps
   } = props;
 
-  const id = useId();
+  const reactId = useId();
+  const inputId = id ?? reactId;
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
 
@@ -202,9 +202,9 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           )}
         </ReactAriaLabel>
         <Popover
+          accessibilityLabel={inputId}
           ref={overlayHandlerRef}
           disabled={disabled}
-          accessibilityLabel={accessibilityLabel}
           content={
             // this Box wrapper is to reapply the padding that was stripped from popover's dialog to show the sticky save/close buttons. Ideally this could be avoided
             <Box
@@ -218,7 +218,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 selectedValues={selectedKeys}
                 defaultSelectedValues={defaultSelectedKeys}
                 onChange={(selected) => setSelectedKeys(new Set(selected))}
-                accessibilityLabel={accessibilityLabel}
                 {...richSelectBoxProps}
               >
                 {children}
