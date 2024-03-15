@@ -275,7 +275,7 @@ describe("richSelectList", () => {
     opt1 = screen.getByTestId("opt1"); // opt1 was re-created when overlay re-opened. must get new reference
     expect(opt1).toHaveAttribute("aria-selected", "true");
     await user.click(screen.getByTestId("secondary-button"));
-    expect(spy).toHaveBeenCalledTimes(2); // clearing only stages, does not commit yet
+    expect(spy).toHaveBeenCalledTimes(1); // clearing only stages, does not commit yet
     expect(opt1).toHaveAttribute("aria-selected", "false");
   });
 
