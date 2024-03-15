@@ -72,8 +72,8 @@ export const AriaTooltip = forwardRef<
     boxStyles.box,
     colorStyles.gray900Color,
     colorStyles.gray900BackgroundColor,
+    paddingStyles.paddingX2,
     paddingStyles.paddingY2,
-    paddingStyles.paddingX3,
     roundingStyles.roundingsm,
     styles.tooltip,
   ]);

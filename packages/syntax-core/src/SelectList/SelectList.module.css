@@ -4,13 +4,23 @@
   gap: 8px;
 }
 
+.selectContainerCambio {
+  position: relative;
+}
+
 .opacityOverlay {
   opacity: 0.5;
 }
 
-.outerTextContainer {
-  padding-inline-start: 4px;
-  padding-inline-end: 4px;
+.labelCambio {
+  left: 1px; /* Adjust to 1px border */
+  right: 1px; /* Adjust to 1px border */
+  position: absolute;
+  border-radius: 8px;
+  pointer-events: none;
+  width: 100%;
+  padding-top: 7px;
+  z-index: 1;
 }
 
 .selectWrapper {
@@ -31,8 +41,20 @@
   justify-content: space-between;
   margin: 0;
   outline: 0;
-  padding: 0 36px 0 12px;
   width: 100%;
+}
+
+.selectBoxClassic {
+  border: 1px solid var(--color-base-gray-700);
+  padding: 0 36px 0 12px;
+}
+
+.selectBoxCambio {
+  border: 1px solid var(--color-cambio-gray-370);
+  border-radius: 8px;
+  font-size: 14px;
+  height: 48px;
+  padding: 12px 36px 0 12px;
 }
 
 .selectMouseFocusStyling {
@@ -84,4 +106,9 @@
   color: var(--color-base-destructive-700);
   border-color: var(--color-base-destructive-700);
   background-color: var(--color-base-destructive-100);
+}
+
+.selectErrorCambio {
+  color: var(--color-cambio-destructive-900);
+  border-color: var(--color-cambio-destructive-700);
 }

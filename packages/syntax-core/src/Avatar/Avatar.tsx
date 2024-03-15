@@ -3,6 +3,7 @@ import classNames from "classnames";
 import styles from "./Avatar.module.css";
 import Box from "../Box/Box";
 import { useAvatarGroup } from "../AvatarGroup/AvatarGroup";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const sizeToIconStyles = {
   sm: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
@@ -11,30 +12,51 @@ const sizeToIconStyles = {
   xl: { bottom: 12, marginInlineEnd: 12, height: 16, width: 16 },
 } as const;
 
-const sizeToMargin = {
+const sizeToMarginClassic = {
   sm: -16,
   md: -28,
   lg: -48,
   xl: -88,
 } as const;
 
+const sizeToMarginCambio = {
+  sm: -12,
+  md: -20,
+  lg: -28,
+  xl: -28,
+} as const;
+
 function AvatarInternal({
   accessibilityLabel,
   icon,
+  outline,
   size = "md",
   src,
 }: {
   accessibilityLabel: string;
   icon?: React.ReactElement;
+  outline?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
   src: string;
 }): ReactElement {
+  const { themeName } = useTheme();
+
   return (
-    <div className={classNames(styles.avatar, styles[size])}>
+    <div
+      className={classNames(
+        styles.avatar,
+        themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
+      )}
+    >
       <img
         alt={accessibilityLabel}
         src={src}
-        className={classNames(styles.avatarImage, styles[size])}
+        className={classNames(
+          styles.avatarImage,
+          themeName === "classic" && styles.avatarImageClassic,
+          themeName === "cambio" && outline && styles.avatarImageOutlineCambio,
+          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
+        )}
       />
       {icon && (
         <Box display="flex" position="relative" justifyContent="end">
@@ -81,10 +103,17 @@ const Avatar = ({
   /**
    * Size of the avatar.
    *
+   * Classic:
    * * `sm`: 24px
    * * `md`: 40px
    * * `lg`: 72px
    * * `xl`: 128px
+   *
+   * Cambio:
+   * * `sm`: 32px
+   * * `md`: 48px
+   * * `lg`: 64px
+   * * `xl`: 64px (deprecated, maps to `lg` in Cambio)
    *
    * @defaultValue `md`
    */
@@ -95,6 +124,7 @@ const Avatar = ({
   src: string;
 }): JSX.Element => {
   const avatarGroupContext = useAvatarGroup();
+  const { themeName } = useTheme();
 
   if (avatarGroupContext !== null) {
     return (
@@ -102,7 +132,10 @@ const Avatar = ({
         position="relative"
         dangerouslySetInlineStyle={{
           __style: {
-            marginInlineEnd: sizeToMargin[avatarGroupContext.size],
+            marginInlineEnd:
+              themeName === "cambio"
+                ? sizeToMarginCambio[avatarGroupContext.size]
+                : sizeToMarginClassic[avatarGroupContext.size],
           },
         }}
       >
@@ -116,6 +149,7 @@ const Avatar = ({
           <AvatarInternal
             accessibilityLabel={accessibilityLabel}
             icon={icon}
+            outline={themeName === "cambio"}
             size={avatarGroupContext.size}
             src={src}
           />

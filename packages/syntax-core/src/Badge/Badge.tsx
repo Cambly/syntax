@@ -1,6 +1,7 @@
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Badge.module.css";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const BadgeColor = [
   "gray200",
@@ -47,27 +48,34 @@ const Badge = ({
    * @defaultValue "primary700"
    */
   color?: (typeof BadgeColor)[number];
-}): JSX.Element => (
-  <Box
-    display="inlineBlock"
-    paddingX={2}
-    paddingY={1}
-    rounding="full"
-    backgroundColor={color}
-  >
-    <Typography color={textColorForBackgroundColor(color)} size={100}>
-      <Box display="flex" gap={1} alignItems="center" justifyContent="start">
-        {Icon && <Icon className={styles.icon} />}
-        <Typography
-          color={textColorForBackgroundColor(color)}
-          size={100}
-          weight="bold"
-        >
-          {text}
-        </Typography>
-      </Box>
-    </Typography>
-  </Box>
-);
+}): JSX.Element => {
+  const { themeName } = useTheme();
+
+  return (
+    <Box
+      display={themeName === "classic" ? "inlineBlock" : "inlineFlex"}
+      paddingX={themeName === "classic" ? 2 : 3}
+      paddingY={1}
+      rounding={themeName === "classic" ? "full" : "sm"}
+      backgroundColor={color}
+      alignItems="center"
+      justifyContent="center"
+      height={themeName === "cambio" ? 32 : undefined}
+    >
+      <Typography color={textColorForBackgroundColor(color)}>
+        <Box display="flex" gap={1} alignItems="center" justifyContent="start">
+          {Icon && <Icon className={styles.icon} />}
+          <Typography
+            color={textColorForBackgroundColor(color)}
+            size={100}
+            weight={themeName === "classic" ? "bold" : "medium"}
+          >
+            {text}
+          </Typography>
+        </Box>
+      </Typography>
+    </Box>
+  );
+};
 
 export default Badge;

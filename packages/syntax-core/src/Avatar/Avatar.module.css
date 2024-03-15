@@ -8,7 +8,14 @@
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50%;
+}
+
+.avatarImageClassic {
   border: 2px solid #fff;
+}
+
+.avatarImageOutlineCambio {
+  border: 2px solid var(--color-cambio-gray-100);
 }
 
 .sm {
@@ -29,4 +36,24 @@
 .xl {
   width: 128px;
   height: 129px;
+}
+
+.smCambio {
+  width: 32px;
+  height: 32px;
+}
+
+.mdCambio {
+  width: 48px;
+  height: 48px;
+}
+
+.lgCambio {
+  width: 64px;
+  height: 64px;
+}
+
+.xlCambio {
+  width: 64px;
+  height: 64px;
 }

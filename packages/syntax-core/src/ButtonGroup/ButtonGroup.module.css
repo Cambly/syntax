@@ -21,3 +21,15 @@
 .largeGap {
   gap: 16px;
 }
+
+.smallGapCambio {
+  gap: 4px;
+}
+
+.mediumGapCambio {
+  gap: 8px;
+}
+
+.largeGapCambio {
+  gap: 12px;
+}
