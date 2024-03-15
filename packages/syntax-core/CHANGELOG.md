@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.12.0
+
+### Minor Changes
+
+- cbcfc85: Cambio: add Avatar & AvatarGroup updates
+
 ## 10.11.0
 
 ### Minor Changes
