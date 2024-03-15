@@ -21,6 +21,7 @@
 .selectBox {
   align-items: center;
   appearance: none;
+  background-color: var(--color-base-white);
   border: 1px solid var(--color-base-gray-700);
   cursor: pointer;
   display: flex;
@@ -32,7 +33,6 @@
   outline: 0;
   padding: 0 36px 0 12px;
   width: 100%;
-  background-color: var(--color-base-white);
 }
 
 .selectMouseFocusStyling {
