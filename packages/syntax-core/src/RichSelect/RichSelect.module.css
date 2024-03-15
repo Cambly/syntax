@@ -2,3 +2,7 @@
 .richSelectBox:focus-visible {
   outline: none;
 }
+
+.label {
+  cursor: pointer;
+}
