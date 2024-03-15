@@ -18,3 +18,16 @@
 .roundingfull {
   border-radius: 999px;
 }
+
+/* Cambio */
+.roundingsmCambio {
+  border-radius: 4px;
+}
+
+.roundingmdCambio {
+  border-radius: 8px;
+}
+
+.roundingfullCambio {
+  border-radius: 999px;
+}

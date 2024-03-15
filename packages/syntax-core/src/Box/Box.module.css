@@ -119,6 +119,10 @@
   display: inline-block;
 }
 
+.inlineFlex {
+  display: inline-flex;
+}
+
 .none {
   display: none;
 }
@@ -147,6 +151,10 @@
 
   .inlineBlockSmall {
     display: inline-block;
+  }
+
+  .inlineFlexSmall {
+    display: inline-flex;
   }
 
   .noneSmall {
@@ -178,6 +186,10 @@
 
   .inlineBlockLarge {
     display: inline-block;
+  }
+
+  .inlineFlexLarge {
+    display: inline-flex;
   }
 
   .noneLarge {

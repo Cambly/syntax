@@ -4,6 +4,7 @@ import React, {
   useId,
   useState,
 } from "react";
+import Box from "../Box/Box";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
@@ -15,6 +16,7 @@ import focusStyles from "../Focus.module.css";
 import SelectOption from "./SelectOption";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const iconSize = {
   sm: 20,
@@ -98,6 +100,7 @@ export default function SelectList({
   const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
+  const { themeName } = useTheme();
   const selectId = id ?? reactId;
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
@@ -106,13 +109,19 @@ export default function SelectList({
     <div
       className={classNames(styles.selectContainer, {
         [styles.opacityOverlay]: disabled,
+        [styles.selectContainerCambio]: themeName === "cambio",
       })}
     >
       {label && (
-        <label htmlFor={selectId} className={styles.outerTextContainer}>
-          <Typography size={100} color="gray700">
-            {label}
-          </Typography>
+        <label
+          htmlFor={selectId}
+          className={classNames(themeName === "cambio" && styles.labelCambio)}
+        >
+          <Box paddingX={themeName === "classic" ? 1 : 3}>
+            <Typography size={100} color="gray700">
+              {label}
+            </Typography>
+          </Box>
         </label>
       )}
       <div className={styles.selectWrapper}>
@@ -120,14 +129,23 @@ export default function SelectList({
           id={selectId}
           data-testid={dataTestId}
           disabled={disabled}
-          className={classNames(styles.selectBox, styles[size], {
-            [styles.unselected]: !selectedValue && !errorText,
-            [styles.selected]: selectedValue && !errorText,
-            [styles.selectError]: errorText,
-            [focusStyles.accessibilityOutlineFocus]:
-              isFocused && isFocusVisible, // for focus keyboard
-            [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-          })}
+          className={classNames(
+            styles.selectBox,
+            themeName === "classic"
+              ? styles.selectBoxClassic
+              : styles.selectBoxCambio,
+            themeName === "classic" && styles[size],
+            {
+              [styles.unselected]: !selectedValue && !errorText,
+              [styles.selected]: selectedValue && !errorText,
+              [themeName === "classic"
+                ? styles.selectError
+                : styles.selectErrorCambio]: errorText,
+              [focusStyles.accessibilityOutlineFocus]:
+                isFocused && isFocusVisible, // for focus keyboard
+              [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+            },
+          )}
           onChange={onChange}
           onClick={onClick}
           value={
@@ -148,7 +166,7 @@ export default function SelectList({
             focusable="false"
             aria-hidden="true"
             viewBox="0 0 24 24"
-            width={iconSize[size]}
+            width={themeName === "classic" ? iconSize[size] : 24}
           >
             <path
               fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
@@ -158,14 +176,14 @@ export default function SelectList({
         </div>
       </div>
       {(helperText || errorText) && (
-        <div className={styles.outerTextContainer}>
+        <Box paddingX={themeName === "classic" ? 1 : 0}>
           <Typography
             size={100}
             color={errorText ? "destructive-primary" : "gray700"}
           >
             {errorText ? errorText : helperText}
           </Typography>
-        </div>
+        </Box>
       )}
     </div>
   );

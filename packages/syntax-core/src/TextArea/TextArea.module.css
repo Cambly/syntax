@@ -16,3 +16,15 @@
   padding-bottom: 16px;
   padding-top: 16px;
 }
+
+.textareaCambio {
+  padding: 28px 12px 12px;
+}
+
+.fixTextareaHeight {
+  line-height: 0;
+}
+
+.labelCambio {
+  padding: 12px 0 4px;
+}

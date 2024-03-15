@@ -7,6 +7,7 @@ import type allColors from "../colors/allColors";
 import colorStyles from "../colors/colors.module.css";
 import roundingStyles from "../rounding.module.css";
 import { forwardRef } from "react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type AlignItems = "baseline" | "center" | "end" | "start" | "stretch";
 type As =
@@ -24,7 +25,13 @@ type As =
   | "summary";
 type Dimension = number | string;
 type Direction = "row" | "column";
-type Display = "none" | "flex" | "block" | "inlineBlock" | "visuallyHidden";
+type Display =
+  | "none"
+  | "flex"
+  | "block"
+  | "inlineBlock"
+  | "inlineFlex"
+  | "visuallyHidden";
 type Gap = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type JustifyContent =
   | "start"
@@ -353,11 +360,20 @@ type BoxProps = {
   /**
    * Border radius of the box.
    *
+   * Classic:
    * * `none`: 0px
    * * `sm`: 8px
    * * `md`: 12px
    * * `lg`: 16px
    * * `xl`: 24px
+   * * `full`: 999px
+   *
+   * Cambio:
+   * * `none`: 0px
+   * * `sm`: 4px
+   * * `md`: 8px
+   * * `lg`: 8px (maps to `md`)
+   * * `xl`: 8px (maps to `md`)
    * * `full`: 999px
    *
    * @defaultValue "none"
@@ -417,6 +433,15 @@ type BoxProps = {
   width?: Dimension;
 };
 
+function roundingCambio(
+  rounding: "sm" | "md" | "lg" | "xl" | "full",
+): "sm" | "md" | "full" {
+  if (rounding === "lg" || rounding === "xl") {
+    return "md";
+  }
+  return rounding;
+}
+
 /**
  * [Box](https://cambly-syntax.vercel.app/?path=/docs/components-box--docs) is primitive design component and is used by lots of other components. It keeps details like spacing, borders and colors consistent across all of Syntax.
  *
@@ -429,6 +454,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
   ref,
 ): ReactElement {
   const { as: BoxElement = "div", children, ...boxProps } = props;
+  const { themeName } = useTheme();
 
   const {
     // Classname
@@ -491,6 +517,15 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     width,
     ...maybePassThroughProps
   } = boxProps;
+
+  const classicRoundingStyle =
+    themeName === "classic" && rounding && rounding !== "none"
+      ? roundingStyles[`rounding${rounding}`]
+      : undefined;
+  const cambioRoundingStyles =
+    themeName === "cambio" && rounding && rounding !== "none"
+      ? roundingStyles[`rounding${roundingCambio(rounding)}Cambio`]
+      : undefined;
 
   const parsedProps = {
     className: classNames(
@@ -575,7 +610,8 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       smJustifyContent && styles[`justifyContent${smJustifyContent}Small`],
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
-      rounding && rounding !== "none" && roundingStyles[`rounding${rounding}`],
+      classicRoundingStyle,
+      cambioRoundingStyles,
       overflow && styles[`overflow${overflow}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],

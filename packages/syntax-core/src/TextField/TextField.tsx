@@ -8,6 +8,7 @@ import styles from "./TextField.module.css";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 /**
  * [TextField](https://cambly-syntax.vercel.app/?path=/docs/components-textfield--docs) is a component that allows users to enter text.
@@ -68,9 +69,14 @@ export default function TextField({
   placeholder?: string;
   /**
    * Size of the TextField
+   *
+   * Classic:
    * * `sm`: 32px
    * * `md`: 40px
    * * `lg`: 48px
+   *
+   * Cambio:
+   * * `md`: 48px
    *
    * @defaultValue "md"
    */
@@ -89,6 +95,7 @@ export default function TextField({
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
+  const { themeName } = useTheme();
   const inputId = id ?? reactId;
 
   return (
@@ -102,10 +109,17 @@ export default function TextField({
           opacity: disabled ? 0.5 : 1,
         },
       }}
+      position={themeName === "cambio" ? "relative" : undefined}
     >
       {label && (
-        <label className={styles.label} htmlFor={inputId}>
-          <Box paddingX={1}>
+        <label
+          className={classNames(
+            themeName === "classic" ? styles.label : styles.labelCambio,
+            themeName === "cambio" && styles.labelCambioTextfield,
+          )}
+          htmlFor={inputId}
+        >
+          <Box paddingX={themeName === "classic" ? 1 : 3}>
             <Typography size={100} color="gray700">
               {label}
             </Typography>
@@ -116,10 +130,18 @@ export default function TextField({
         autoComplete={autoComplete}
         className={classNames(
           styles.textfield,
-          styles[size],
-          styles[`${size}Height`],
+          themeName === "classic"
+            ? styles.textfieldClassic
+            : styles.textfieldCambio,
+          themeName === "classic" && styles[size],
+          themeName === "cambio" ? styles[`${size}Cambio`] : undefined,
+          themeName === "classic"
+            ? styles[`${size}Height`]
+            : styles.heightCambio,
           {
-            [styles.inputError]: errorText,
+            [themeName === "classic"
+              ? styles.inputError
+              : styles.inputErrorCambio]: errorText,
           },
         )}
         data-testid={dataTestId}
@@ -131,7 +153,7 @@ export default function TextField({
         value={value}
       />
       {(helperText || errorText) && (
-        <Box paddingX={1}>
+        <Box paddingX={themeName === "classic" ? 1 : 0}>
           <Typography
             size={100}
             color={errorText ? "destructive-primary" : "gray700"}

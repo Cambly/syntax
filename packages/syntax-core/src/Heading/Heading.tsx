@@ -2,6 +2,22 @@ import { type ReactElement, type ReactNode } from "react";
 import Typography from "../Typography/Typography";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
+function cambioWeight({
+  fontStyle,
+  size,
+}: {
+  fontStyle: "serif" | "sans-serif";
+  size: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
+}): "bold" | "medium" | "regular" {
+  if (fontStyle === "serif" && [400, 500].includes(size)) {
+    return "bold";
+  } else if (fontStyle === "serif") {
+    return "medium";
+  } else {
+    return "regular";
+  }
+}
+
 /**
  * [Heading](https://cambly-syntax.vercel.app/?path=/docs/components-heading--docs) enforces a consistent style & accessibility best practices for headings.
  */
@@ -11,7 +27,7 @@ const Heading = ({
   children,
   color = "gray900",
   "data-testid": dataTestId,
-  fontStyle,
+  fontStyle = "sans-serif",
   lineClamp,
   size = 500,
 }: {
@@ -97,7 +113,6 @@ const Heading = ({
 }): ReactElement => {
   const { themeName } = useTheme();
   const classicWeight = [700, 800].includes(size) ? "heavy" : "bold";
-  const cambioWeight = fontStyle === "serif" ? "medium" : "regular";
 
   return (
     <Typography
@@ -108,7 +123,11 @@ const Heading = ({
       data-testid={dataTestId}
       lineClamp={lineClamp}
       size={size}
-      weight={themeName === "classic" ? classicWeight : cambioWeight}
+      weight={
+        themeName === "classic"
+          ? classicWeight
+          : cambioWeight({ fontStyle, size })
+      }
     >
       {children}
     </Typography>
