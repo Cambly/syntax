@@ -81,11 +81,10 @@ function classicWeight(
 
 function cambioWeight(
   weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
-): "regular" | "medium" | "semiBold" {
+): "regular" | "medium" | "semiBold" | "bold" {
   switch (weight) {
     case "interactive":
       return "medium";
-    case "bold":
     case "heavy":
       return "regular";
     default:
@@ -173,7 +172,7 @@ const Typography = forwardRef<
      * * `800`: 64px
      *
      * Cambio Mobile:
-     * * `100`: 13px
+     * * `100`: 14px
      * * `200`: 16px
      * * `300`: 18px
      * * `400`: 20px
@@ -224,13 +223,15 @@ const Typography = forwardRef<
      * * `regular`: 400
      * * `interactive`: 500 (Classic only)
      * * `semiBold`: 600
-     * * `bold`: 700 (Classic only)
+     * * `bold`: 700
      * * `heavy`: 860 (Classic only)
      *
      * Cambio:
      * * `regular`: 400
      * * `medium`: 510
      * * `semiBold`: 590
+     * * `bold`: 710
+     *
      *
      * @defaultValue "regular"
      */

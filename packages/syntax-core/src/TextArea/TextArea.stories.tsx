@@ -50,7 +50,7 @@ export const Default: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault {...args} />,
 };
 
-export const SizeSm: StoryObj<typeof TextArea> = {
+export const SizeSmClassicOnly: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault size="sm" {...args} />,
 };
 
@@ -58,7 +58,7 @@ export const SizeMd: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault size="md" {...args} />,
 };
 
-export const SizeLg: StoryObj<typeof TextArea> = {
+export const SizeLgClassicOnly: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault size="lg" {...args} />,
 };
 
@@ -68,8 +68,4 @@ export const helperText: StoryObj<typeof TextArea> = {
 
 export const ErrorText: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault errorText="This is an error" {...args} />,
-};
-
-export const TypeNumber: StoryObj<typeof TextArea> = {
-  render: (args) => <TextAreaDefault type="number" {...args} />,
 };

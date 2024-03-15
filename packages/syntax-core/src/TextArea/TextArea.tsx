@@ -47,6 +47,8 @@ type TextAreaProps = {
   /**
    * Size of the TextArea. Defines the font size and padding.
    *
+   * Cambio only supports `md`
+   *
    * @defaultValue "md"
    */
   size?: "sm" | "md" | "lg";
@@ -105,9 +107,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             themeName === "classic"
               ? textFieldStyles.label
               : textFieldStyles.labelCambio,
-            themeName === "cambio"
-              ? textFieldStyles[`${size}LabelCambio`]
-              : undefined,
+            themeName === "cambio" && styles.labelCambio,
           )}
           htmlFor={inputId}
         >
@@ -117,41 +117,43 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             </Typography>
           </Box>
         </label>
-        <Typography
-          size={
-            themeName === "cambio" && ["sm", "md"].includes(size) ? 100 : 200
-          }
-        >
-          <textarea
-            data-testid={dataTestId}
-            ref={forwardedRef}
+        <Typography size={themeName === "cambio" ? 100 : 200}>
+          <div
             className={classNames(
-              textFieldStyles.textfield,
-              themeName === "classic"
-                ? textFieldStyles.textfieldClassic
-                : textFieldStyles.textfieldCambio,
-              themeName === "classic"
-                ? textFieldStyles[size]
-                : textFieldStyles[`${size}TextfieldCambio`],
-              themeName === "classic" ? styles.textarea : undefined,
-              themeName === "classic"
-                ? styles[size]
-                : styles[`${size}TextareaCambio`],
-              {
-                [textFieldStyles.inputError]: errorText,
-              },
+              themeName === "cambio" && styles.fixTextareaHeight,
             )}
-            id={inputId}
-            placeholder={placeholder}
-            maxLength={maxLength}
-            onChange={onChange}
-            rows={rows}
-            value={value}
-            disabled={disabled}
-          />
+          >
+            <textarea
+              data-testid={dataTestId}
+              ref={forwardedRef}
+              className={classNames(
+                textFieldStyles.textfield,
+                themeName === "classic"
+                  ? textFieldStyles.textfieldClassic
+                  : textFieldStyles.textfieldCambio,
+                themeName === "classic" && textFieldStyles[size],
+                themeName === "classic" && styles[size],
+                themeName === "classic"
+                  ? styles.textarea
+                  : styles.textareaCambio,
+                {
+                  [themeName === "classic"
+                    ? textFieldStyles.inputError
+                    : textFieldStyles.inputErrorCambio]: errorText,
+                },
+              )}
+              id={inputId}
+              placeholder={placeholder}
+              maxLength={maxLength}
+              onChange={onChange}
+              rows={rows}
+              value={value}
+              disabled={disabled}
+            />
+          </div>
         </Typography>
         {(helperText || errorText) && (
-          <Box paddingX={1}>
+          <Box paddingX={themeName === "classic" ? 1 : 0}>
             <Typography
               size={100}
               color={errorText ? "destructive-primary" : "gray700"}

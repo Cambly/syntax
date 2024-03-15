@@ -69,9 +69,14 @@ export default function TextField({
   placeholder?: string;
   /**
    * Size of the TextField
+   *
+   * Classic:
    * * `sm`: 32px
    * * `md`: 40px
    * * `lg`: 48px
+   *
+   * Cambio:
+   * * `md`: 48px
    *
    * @defaultValue "md"
    */
@@ -93,12 +98,6 @@ export default function TextField({
   const { themeName } = useTheme();
   const inputId = id ?? reactId;
 
-  const cambioFontSizeMap = {
-    sm: 100,
-    md: 100,
-    lg: 100,
-  } as const;
-
   return (
     <Box
       display="flex"
@@ -116,15 +115,12 @@ export default function TextField({
         <label
           className={classNames(
             themeName === "classic" ? styles.label : styles.labelCambio,
-            themeName === "cambio" ? styles[`${size}LabelCambio`] : undefined,
+            themeName === "cambio" && styles.labelCambioTextfield,
           )}
           htmlFor={inputId}
         >
           <Box paddingX={themeName === "classic" ? 1 : 3}>
-            <Typography
-              size={themeName === "classic" ? 100 : cambioFontSizeMap[size]}
-              color="gray700"
-            >
+            <Typography size={100} color="gray700">
               {label}
             </Typography>
           </Box>
@@ -137,15 +133,15 @@ export default function TextField({
           themeName === "classic"
             ? styles.textfieldClassic
             : styles.textfieldCambio,
-          themeName === "classic"
-            ? styles[size]
-            : styles[`${size}TextfieldCambio`],
+          themeName === "classic" && styles[size],
           themeName === "cambio" ? styles[`${size}Cambio`] : undefined,
           themeName === "classic"
             ? styles[`${size}Height`]
-            : styles[`${size}HeightCambio`],
+            : styles.heightCambio,
           {
-            [styles.inputError]: errorText,
+            [themeName === "classic"
+              ? styles.inputError
+              : styles.inputErrorCambio]: errorText,
           },
         )}
         data-testid={dataTestId}
@@ -157,7 +153,7 @@ export default function TextField({
         value={value}
       />
       {(helperText || errorText) && (
-        <Box paddingX={1}>
+        <Box paddingX={themeName === "classic" ? 1 : 0}>
           <Typography
             size={100}
             color={errorText ? "destructive-primary" : "gray700"}

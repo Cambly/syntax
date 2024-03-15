@@ -58,7 +58,7 @@
 
 /* Sizes - Cambio sizes are responsive */
 .size100Cambio {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .size200Cambio {
@@ -95,7 +95,7 @@
 
 @media (min-width: 480px) {
   .size100Cambio {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .size200Cambio {
@@ -191,6 +191,10 @@
 
 .semiBoldCambio {
   font-weight: 590;
+}
+
+.boldCambio {
+  font-weight: 700;
 }
 
 .underline {

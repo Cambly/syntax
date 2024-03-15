@@ -14,7 +14,7 @@
 .textfieldCambio {
   border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .textfield:focus {
@@ -31,22 +31,16 @@
 }
 
 .labelCambio {
+  left: 1px; /* Adjust to 1px border */
+  right: 1px; /* Adjust to 1px border */
   position: absolute;
   border-radius: 8px;
   pointer-events: none;
   width: 100%;
 }
 
-.smLabelCambio {
-  padding: 6px 0 2px;
-}
-
-.mdLabelCambio {
-  padding: 6px 0 2px;
-}
-
-.lgLabelCambio {
-  padding: 12px 0 4px;
+.labelCambioTextfield {
+  padding-top: 7px;
 }
 
 .sm {
@@ -68,16 +62,12 @@
   padding: 28px 12px 12px;
 }
 
-.smTextfieldCambio {
-  font-size: 14px;
+.heightCambio {
+  height: 48px;
 }
 
 .smHeight {
   height: 32px;
-}
-
-.smHeightCambio {
-  height: 48px;
 }
 
 .md {
@@ -91,14 +81,6 @@
   height: 40px;
 }
 
-.mdHeightCambio {
-  height: 48px;
-}
-
-.mdTextfieldCambio {
-  font-size: 14px;
-}
-
 .lg {
   border-radius: 16px;
   font-size: 16px;
@@ -110,14 +92,6 @@
   height: 48px;
 }
 
-.lgHeightCambio {
-  height: 64px;
-}
-
-.lgTextfieldCambio {
-  font-size: 14px;
-}
-
 .inputError {
   color: var(--color-base-destructive-700);
   border-color: var(--color-base-destructive-700);
@@ -126,4 +100,13 @@
 
 .inputError::placeholder {
   color: var(--color-base-destructive-700);
+}
+
+.inputErrorCambio {
+  color: var(--color-cambio-destructive-900);
+  border-color: var(--color-cambio-destructive-700);
+}
+
+.inputErrorCambio::placeholder {
+  color: var(--color-cambio-destructive-900);
 }

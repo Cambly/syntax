@@ -7,17 +7,9 @@
   padding-top: 12px;
 }
 
-.smTextareaCambio {
-  padding: 24px 12px 12px;
-}
-
 .md {
   padding-bottom: 12px;
   padding-top: 12px;
-}
-
-.mdTextareaCambio {
-  padding: 24px 12px 12px;
 }
 
 .lg {
@@ -25,6 +17,14 @@
   padding-top: 16px;
 }
 
-.lgTextareaCambio {
+.textareaCambio {
   padding: 28px 12px 12px;
+}
+
+.fixTextareaHeight {
+  line-height: 0;
+}
+
+.labelCambio {
+  padding: 12px 0 4px;
 }

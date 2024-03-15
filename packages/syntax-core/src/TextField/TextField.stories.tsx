@@ -81,7 +81,7 @@ export const Default: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault {...args} />,
 };
 
-export const SizeSm: StoryObj<typeof TextField> = {
+export const SizeSmClassicOnly: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault size="sm" {...args} />,
 };
 
@@ -89,7 +89,7 @@ export const SizeMd: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault size="md" {...args} />,
 };
 
-export const SizeLg: StoryObj<typeof TextField> = {
+export const SizeLgClassicOnly: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault size="lg" {...args} />,
 };
 

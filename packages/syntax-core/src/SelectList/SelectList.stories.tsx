@@ -59,7 +59,11 @@ export const Error: StoryObj<typeof SelectList> = {
   },
 };
 
-const SelectListInteractive = (): ReactElement => {
+const SelectListInteractive = ({
+  placeholderText = "",
+}: {
+  placeholderText?: string;
+}): ReactElement => {
   const [selectionValue, setSelectionValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectionValue(e.target.value);
@@ -69,7 +73,7 @@ const SelectListInteractive = (): ReactElement => {
       label="Label"
       helperText="Helper text"
       selectedValue={selectionValue}
-      placeholderText="Placeholder"
+      placeholderText={placeholderText}
       onChange={onChange}
     >
       <Options />
@@ -79,4 +83,8 @@ const SelectListInteractive = (): ReactElement => {
 
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
+};
+
+export const InteractiveWithPlaceholder: StoryObj<typeof SelectList> = {
+  render: () => <SelectListInteractive placeholderText="Placeholder" />,
 };
