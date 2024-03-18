@@ -13,7 +13,17 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?type=design&node-id=6156%3A25032&mode=design&t=SSblm5y2vyrOKil1-1",
     },
   },
+  args: {
+    selected: false,
+    text: "text on chip",
+    size: "sm",
+    on: "lightBackground",
+  },
   argTypes: {
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
+    },
     selected: {
       control: "boolean",
     },
@@ -30,8 +40,16 @@ export const Default: StoryObj<typeof Chip> = {
     text: "text on chip",
     selected: false,
   },
-  /* eslint-disable-next-line react/jsx-props-no-spreading */
-  render: ({ ...args }) => <Chip {...args} />,
+  render: (args) => {
+    return (
+      <Box
+        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
+        padding={2}
+      >
+        <Chip {...args} />
+      </Box>
+    );
+  },
 };
 
 const ChipInteractive = () => {

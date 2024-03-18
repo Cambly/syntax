@@ -35,8 +35,16 @@
   background-color: var(--color-cambio-gray-370);
 }
 
+.deselectedChipCambioOnDarkBackground {
+  background-color: var(--color-cambio-gray-870);
+}
+
 .selectedChipCambio {
   background-color: var(--color-cambio-gray-800);
+}
+
+.selectedChipCambioOnDarkBackground {
+  background-color: var(--color-cambio-gray-200);
 }
 
 .icon {

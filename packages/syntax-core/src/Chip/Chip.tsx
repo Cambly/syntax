@@ -1,10 +1,34 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useMemo } from "react";
 import classnames from "classnames";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+
+function typographyColor({
+  themeName,
+  selected,
+  on,
+}: {
+  themeName: "cambio" | "classic";
+  selected: boolean;
+  on: "lightBackground" | "darkBackground";
+}): "white" | "gray900" {
+  if (themeName === "cambio" && on === "darkBackground") {
+    if (selected) {
+      return "gray900";
+    } else {
+      return "white";
+    }
+  } else {
+    if (selected) {
+      return "white";
+    } else {
+      return "gray900";
+    }
+  }
+}
 
 type ChipProps = {
   /**
@@ -41,6 +65,12 @@ type ChipProps = {
    */
   text: string;
   /**
+   * Indicate whether the badge renders on a light or dark background. Changes the color of the chip (Cambio only)
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
+  /**
    * The callback to be called when the chip is clicked
    */
   onChange: React.MouseEventHandler<HTMLButtonElement>;
@@ -62,6 +92,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       "data-testid": dataTestId,
       size = "sm",
       text,
+      on = "lightBackground",
       onChange,
       icon: Icon,
       dangerouslyForceFocusStyles,
@@ -73,6 +104,16 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
 
+    const selectedChipCambioStyle =
+      on === "lightBackground"
+        ? styles.selectedChipCambio
+        : styles.selectedChipCambioOnDarkBackground;
+
+    const deselectedChipCambioStyle =
+      on === "lightBackground"
+        ? styles.deselectedChipCambio
+        : styles.deselectedChipCambioOnDarkBackground;
+
     const chipStyles = classnames(
       styles.chip,
       themeName === "classic" ? styles.chipClassic : styles.chipCambio,
@@ -80,10 +121,10 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       {
         [themeName === "classic"
           ? styles.selectedChip
-          : styles.selectedChipCambio]: selected,
+          : selectedChipCambioStyle]: selected,
         [themeName === "classic"
           ? styles.deselectedChip
-          : styles.deselectedChipCambio]: !selected,
+          : deselectedChipCambioStyle]: !selected,
         [styles.disabled]: disabled,
         [styles.forceFocus]: dangerouslyForceFocusStyles,
       },
@@ -95,6 +136,11 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       ["sm"]: 200,
       ["lg"]: 300,
     } as const;
+
+    const color = useMemo(
+      () => typographyColor({ themeName, selected, on }),
+      [themeName, selected, on],
+    );
 
     return (
       <button
@@ -112,7 +158,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
             size={
               themeName === "classic" ? typographySize[transformedSize] : 100
             }
-            color={selected ? "white" : "gray900"}
+            color={color}
           >
             {text}
           </Typography>
