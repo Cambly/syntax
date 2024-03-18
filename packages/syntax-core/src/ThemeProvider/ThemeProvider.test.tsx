@@ -71,7 +71,7 @@ describe("themeProvider", () => {
     expect(screen.getByTestId("themeprovider-style")).toContainHTML(
       "--color-base-primary-100: #faf4eb;",
     );
-    expect(screen.getByTestId("themeprovider-style")).not.toContainHTML(
+    expect(screen.getByTestId("themeprovider-style")).toContainHTML(
       "elevation",
     );
     expect(screen.getByTestId("themeprovider-style")).toContainHTML("cambio");
