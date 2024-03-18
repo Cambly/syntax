@@ -103,6 +103,12 @@ type LinkButtonProps = {
    */
   endIcon?: React.ComponentType<{ className?: string }>;
   /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
+  /**
    * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
@@ -124,6 +130,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       fullWidth = false,
       startIcon: StartIcon,
       endIcon: EndIcon,
+      on = "lightBackground",
       onClick,
     }: LinkButtonProps,
     ref,
@@ -133,12 +140,12 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     const foregroundColorClass =
       themeName === "classic"
         ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color));
+        : cambioForegroundColor(cambioColor(color), on);
 
     const backgroundColorClass =
       themeName === "classic"
         ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color));
+        : cambioBackgroundColor(cambioColor(color), on);
 
     return (
       <a

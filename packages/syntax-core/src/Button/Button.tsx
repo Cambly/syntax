@@ -108,6 +108,12 @@ type ButtonProps = {
    */
   endIcon?: React.ComponentType<{ className?: string }>;
   /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
+  /**
    * The callback to be called when the button is clicked
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -116,7 +122,7 @@ type ButtonProps = {
    */
   tooltip?: string;
   /**
-   * The type you want to set for the primitive <button/>
+   * The type you want to set for the primitive `<button/>`
    */
   type?: "button" | "submit" | "reset";
 };
@@ -138,6 +144,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       startIcon: StartIcon,
       endIcon: EndIcon,
+      on = "lightBackground",
       onClick,
       tooltip,
       type = "button",
@@ -150,12 +157,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const foregroundColorClass =
       themeName === "classic"
         ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color));
+        : cambioForegroundColor(cambioColor(color), on);
 
     const backgroundColorClass =
       themeName === "classic"
         ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color));
+        : cambioBackgroundColor(cambioColor(color), on);
 
     return (
       <button

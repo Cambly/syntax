@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Button from "./Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/Button",
@@ -10,6 +11,20 @@ export default {
       type: "figma",
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/Cambly-Design-System-(Draft)?node-id=994%3A2346",
     },
+  },
+  args: {
+    text: "Call to action",
+    color: "primary",
+    on: "lightBackground",
+    size: "md",
+    disabled: false,
+    loading: false,
+    fullWidth: false,
+    "data-testid": "",
+    loadingText: "",
+    accessibilityLabel: "",
+    tooltip: "",
+    type: "button",
   },
   argTypes: {
     color: {
@@ -29,6 +44,10 @@ export default {
       ],
       control: { type: "radio" },
     },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
+    },
     size: {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
@@ -43,12 +62,25 @@ export default {
       control: "boolean",
     },
     onClick: { action: "clicked" },
+    type: {
+      options: ["button", "submit", "reset"],
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof Button>;
 
 export const Default: StoryObj<typeof Button> = {
   args: { text: "Call to action" },
+  render: (args) => {
+    return (
+      <Box
+        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
+        padding={2}
+      >
+        <Button {...args} />
+      </Box>
+    );
+  },
 };
 export const Small: StoryObj<typeof Button> = {
   args: { ...Default.args, size: "sm" },

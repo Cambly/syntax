@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Star from "@mui/icons-material/Star";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/IconButton",
@@ -11,6 +12,15 @@ export default {
       type: "figma",
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/Cambly-Design-System?node-id=1007%3A4105",
     },
+  },
+  args: {
+    color: "primary",
+    on: "lightBackground",
+    size: "md",
+    disabled: false,
+    "data-testid": "",
+    accessibilityLabel: "",
+    tooltip: "",
   },
   argTypes: {
     color: {
@@ -37,12 +47,28 @@ export default {
     disabled: {
       control: "boolean",
     },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
+    },
+    onClick: { action: "clicked" },
   },
   tags: ["autodocs"],
 } as Meta<typeof IconButton>;
 
 export const Default: StoryObj<typeof IconButton> = {
   args: { accessibilityLabel: "Star", tooltip: "Demo title", icon: Star },
+
+  render: (args) => {
+    return (
+      <Box
+        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
+        padding={2}
+      >
+        <IconButton {...args} />
+      </Box>
+    );
+  },
 };
 export const Small: StoryObj<typeof IconButton> = {
   args: { ...Default.args, size: "sm" },

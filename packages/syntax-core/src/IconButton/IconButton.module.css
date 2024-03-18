@@ -117,10 +117,3 @@
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   width: 32px !important;
 }
-
-.xlIconCambio {
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 40px !important;
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 40px !important;
-}
