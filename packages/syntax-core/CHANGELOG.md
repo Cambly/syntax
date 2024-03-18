@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.15.0
+
+### Minor Changes
+
+- 36e993a: RichSelectList: fix styling for cambio & classic
+
 ## 10.14.0
 
 ### Minor Changes
