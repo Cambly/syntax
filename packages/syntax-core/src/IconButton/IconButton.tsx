@@ -25,7 +25,6 @@ const cambioIconSize = {
   sm: styles.smIconCambio,
   md: styles.mdIconCambio,
   lg: styles.lgIconCambio,
-  xl: styles.xlIconCambio,
 };
 
 type IconButtonProps = {
@@ -91,6 +90,12 @@ type IconButtonProps = {
    */
   disabled?: boolean;
   /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
+  /**
    * The callback to be called when the button is clicked
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -113,6 +118,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       icon: Icon,
       size = "md",
       tooltip,
+      on = "lightBackground",
       onClick,
     }: IconButtonProps,
     ref,
@@ -123,12 +129,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     const foregroundColorClass =
       themeName === "classic"
         ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color));
+        : cambioForegroundColor(cambioColor(color), on);
 
     const backgroundColorClass =
       themeName === "classic"
         ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color));
+        : cambioBackgroundColor(cambioColor(color), on);
 
     return (
       <button

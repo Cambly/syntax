@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import LinkButton from "./LinkButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/LinkButton",
@@ -11,6 +12,16 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/Cambly-Design-System-(Draft)?node-id=994%3A2346",
     },
   },
+  args: {
+    text: "Call to action",
+    href: "https://www.cambly.com",
+    target: "_blank",
+    color: "primary",
+    on: "lightBackground",
+    size: "md",
+    fullWidth: false,
+    "data-testid": "",
+  },
   argTypes: {
     text: {
       control: { type: "text" },
@@ -19,7 +30,7 @@ export default {
       control: { type: "text" },
     },
     target: {
-      options: ["_blank", "_self", "_parent", "_top", ""],
+      options: ["_blank", "_self", "_parent", "_top", undefined],
       control: { type: "radio" },
     },
     rel: {
@@ -52,6 +63,10 @@ export default {
       ],
       control: { type: "radio" },
     },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
+    },
     size: {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
@@ -67,10 +82,19 @@ export default {
 export const Default: StoryObj<typeof LinkButton> = {
   args: {
     text: "Call to action",
-    href: "https://www.google.com",
+    href: "https://www.cambly.com",
     target: "_blank",
   },
-  render: ({ ...args }) => <LinkButton {...args} />,
+  render: (args) => {
+    return (
+      <Box
+        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
+        padding={2}
+      >
+        <LinkButton {...args} />
+      </Box>
+    );
+  },
 };
 
 export const Small: StoryObj<typeof LinkButton> = {
