@@ -33,6 +33,7 @@ import RichSelectSection from "./RichSelectSection";
 import RichSelectChip from "./RichSelectChip";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 import { useField } from "react-aria";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const NOOP = () => undefined;
 
@@ -61,7 +62,7 @@ export type RichSelectListProps = RichSelectBoxProps & {
    */
   id?: string;
   /** Text shown above select box */
-  label?: string;
+  label: string;
   /**
    * Text showing in select box if no option has been chosen.
    * There should always have a placeholder unless there is a default option selected
@@ -124,6 +125,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   const inputId = id ?? reactId;
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
+  const { themeName } = useTheme();
 
   // passed to popover, which attached open/close methods
   const overlayHandlerRef = useRef<OverlayHandlerRef>({});
@@ -176,31 +178,31 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       <div
         className={classNames(styles.selectContainer, {
           [styles.opacityOverlay]: disabled,
+          [styles.selectContainerCambio]: themeName === "cambio",
         })}
       >
-        <ReactAriaLabel
-          data-testid={[dataTestId, "label"].filter(Boolean).join("-")}
-          className={classNames(
-            styles.selectContainer,
-            styles.outerTextContainer,
-          )}
-          {...labelProps}
-          onClick={() => {
-            if (disabled) return;
-            fieldRef.current?.focus();
-            setInteractionModality("keyboard"); // Show the focus ring so the user knows where focus went
-          }}
-        >
-          {label && (
-            <label className={styles.label} htmlFor={id}>
-              <Box paddingX={1}>
+        {label && (
+          <>
+            <ReactAriaLabel
+              data-testid={[dataTestId, "label"].filter(Boolean).join("-")}
+              className={classNames(
+                themeName === "cambio" && styles.labelCambio,
+              )}
+              {...labelProps}
+              onClick={() => {
+                if (disabled) return;
+                fieldRef.current?.focus();
+                setInteractionModality("keyboard"); // Show the focus ring so the user knows where focus went
+              }}
+            >
+              <Box paddingX={themeName === "classic" ? 1 : 3}>
                 <Typography size={100} color="gray700">
                   {label}
                 </Typography>
               </Box>
-            </label>
-          )}
-        </ReactAriaLabel>
+            </ReactAriaLabel>
+          </>
+        )}
         <Popover
           ref={overlayHandlerRef}
           disabled={disabled}
@@ -235,13 +237,25 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           >
             <div className={styles.selectWrapper}>
               <div
-                className={classNames(styles.selectBox, styles[size], {
-                  [styles.unselected]:
-                    !errorText && selectedKeys !== "all" && !selectedKeys.size,
-                  [styles.selected]:
-                    !errorText && (selectedKeys === "all" || selectedKeys.size),
-                  [styles.selectError]: errorText,
-                })}
+                className={classNames(
+                  styles.selectBox,
+                  themeName === "classic"
+                    ? styles.selectBoxClassic
+                    : styles.selectBoxCambio,
+                  themeName === "classic" && styles[size],
+                  {
+                    [styles.unselected]:
+                      !errorText &&
+                      selectedKeys !== "all" &&
+                      !selectedKeys.size,
+                    [styles.selected]:
+                      !errorText &&
+                      (selectedKeys === "all" || selectedKeys.size),
+                    [themeName === "classic"
+                      ? styles.selectError
+                      : styles.selectErrorCambio]: errorText,
+                  },
+                )}
               >
                 {selectedTextValue}
               </div>
@@ -264,7 +278,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           </TapArea>
         </Popover>
         {(helperText || errorText) && (
-          <div className={styles.outerTextContainer}>
+          <Box paddingX={themeName === "classic" ? 1 : 0}>
             <Typography
               size={100}
               color={errorText ? "destructive-primary" : "gray700"}
@@ -272,7 +286,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             >
               {errorText ? errorText : helperText}
             </Typography>
-          </div>
+          </Box>
         )}
       </div>
     </ReactAriaProvider>
