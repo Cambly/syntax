@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.16.0
+
+### Minor Changes
+
+- 234374f: Cambio: Modal & elevation updates
+
 ## 10.15.0
 
 ### Minor Changes
