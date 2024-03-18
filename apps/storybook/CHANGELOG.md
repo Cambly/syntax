@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.14.0
+
+### Minor Changes
+
+- 36e993a: RichSelectList: fix styling for cambio & classic
+
+### Patch Changes
+
+- Updated dependencies [36e993a]
+  - @cambly/syntax-core@10.15.0
+
 ## 0.13.7
 
 ### Patch Changes
