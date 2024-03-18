@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.14.0
+
+### Minor Changes
+
+- 941041f: Button/Chip/IconButton/LinkButton: add 'on' lightBackground or darkBackground prop (Cambio only)
+
 ## 10.13.0
 
 ### Minor Changes
