@@ -38,13 +38,6 @@
   right: 12px;
 }
 
-.closeButtonCambio {
-  height: 24px;
-  width: 24px;
-  top: 4px;
-  right: 4px;
-}
-
 .closeButton:focus-visible {
   box-shadow: 0 0 0 4px #000;
   outline: solid 2px #fff;
@@ -52,4 +45,8 @@
 
 .closeButtonWithImage {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.closeButtonWithImageCambio {
+  background-color: var(--color-cambio-gray-200);
 }

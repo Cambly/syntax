@@ -9,6 +9,7 @@ import StopScroll from "./StopScroll";
 import Layer from "./Layer";
 import styles from "./Modal.module.css";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import IconButton from "../IconButton/IconButton";
 
 function XIcon({ color = "#000" }: { color?: string }) {
   return (
@@ -17,6 +18,20 @@ function XIcon({ color = "#000" }: { color?: string }) {
         fill="inherit"
         d="M11.25.758a.83.83 0 0 0-1.175 0L6 4.825 1.925.75A.83.83 0 1 0 .75 1.925L4.825 6 .75 10.075a.83.83 0 1 0 1.175 1.175L6 7.175l4.075 4.075a.83.83 0 1 0 1.175-1.175L7.175 6l4.075-4.075a.835.835 0 0 0 0-1.167Z"
       />
+    </svg>
+  );
+}
+
+function XIconCambio({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="currentColor"
+      focusable="false"
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+    >
+      <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
     </svg>
   );
 }
@@ -159,7 +174,7 @@ export default function Modal({
             <Box
               data-testid={dataTestId}
               backgroundColor="white"
-              rounding="xl"
+              rounding={themeName === "classic" ? "xl" : "md"}
               display="flex"
               direction="column"
               minWidth={240}
@@ -168,32 +183,44 @@ export default function Modal({
               dangerouslySetInlineStyle={{ __style: { overflow: "hidden" } }}
             >
               <Box position="relative">
-                <button
-                  aria-label={accessibilityCloseLabel}
-                  type="button"
-                  className={classnames(
-                    styles.closeButton,
-                    themeName === "classic"
-                      ? styles.closeButtonClassic
-                      : styles.closeButtonCambio,
-                    {
-                      [styles.closeButtonWithImage]:
-                        !!image && themeName === "classic",
-                    },
-                  )}
-                  onClick={onDismiss}
-                >
-                  <XIcon
-                    color={image && themeName === "classic" ? "#fff" : "#000"}
-                  />
-                </button>
+                {themeName === "classic" ? (
+                  <button
+                    aria-label={accessibilityCloseLabel}
+                    type="button"
+                    className={classnames(
+                      styles.closeButton,
+                      styles.closeButtonClassic,
+                      {
+                        [styles.closeButtonWithImage]: !!image,
+                      },
+                    )}
+                    onClick={onDismiss}
+                  >
+                    <XIcon color={image ? "#fff" : "#000"} />
+                  </button>
+                ) : (
+                  <Box
+                    position="absolute"
+                    dangerouslySetInlineStyle={{
+                      __style: { top: 4, right: 4 },
+                    }}
+                  >
+                    <IconButton
+                      accessibilityLabel={accessibilityCloseLabel}
+                      color={image ? "primary" : "tertiary"}
+                      on={image ? "darkBackground" : "lightBackground"}
+                      size="sm"
+                      icon={XIconCambio}
+                    />
+                  </Box>
+                )}
               </Box>
               {image && <Box maxHeight={200}>{image}</Box>}
               <Box
                 display="flex"
                 gap={3}
                 direction="column"
-                padding={themeName === "classic" ? 9 : 3}
+                padding={themeName === "classic" ? 9 : 6}
               >
                 <Heading
                   as="h1"

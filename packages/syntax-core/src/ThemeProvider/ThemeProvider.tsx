@@ -90,10 +90,6 @@ function stylesForTheme(themeName: ThemeName) {
               ],
             ];
           }
-          // `elevation` is a classic only concept
-          if (themeName === "cambio" && key.includes("elevation")) {
-            return [null, null];
-          }
           return [key, value];
         })
         .map(([key, value]) => (key && value ? `--${key}: ${value};` : null))
