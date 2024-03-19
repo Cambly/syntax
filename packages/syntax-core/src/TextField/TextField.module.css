@@ -14,7 +14,7 @@
 .textfieldCambio {
   border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .textfield:focus {
@@ -30,19 +30,6 @@
   cursor: pointer;
 }
 
-.labelCambio {
-  left: 1px; /* Adjust to 1px border */
-  right: 1px; /* Adjust to 1px border */
-  position: absolute;
-  border-radius: 8px;
-  pointer-events: none;
-  width: 100%;
-}
-
-.labelCambioTextfield {
-  padding-top: 7px;
-}
-
 .sm {
   border-radius: 12px;
   font-size: 12px;
@@ -50,16 +37,8 @@
   padding-inline-end: 12px;
 }
 
-.smCambio {
-  padding: 24px 12px 12px;
-}
-
 .mdCambio {
-  padding: 24px 12px 12px;
-}
-
-.lgCambio {
-  padding: 28px 12px 12px;
+  padding: 12px;
 }
 
 .heightCambio {

@@ -99,12 +99,10 @@ type ButtonProps = {
   fullWidth?: boolean;
   /**
    * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   * Note: startIcon is not supported in the Cambio theme
    */
   startIcon?: React.ComponentType<{ className?: string }>;
   /**
    * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   * Note: endIcon is not supported in the Cambio theme
    */
   endIcon?: React.ComponentType<{ className?: string }>;
   /**
@@ -189,7 +187,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           },
         )}
       >
-        {!loading && StartIcon && themeName === "classic" && (
+        {!loading && StartIcon && (
           <StartIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {((loading && loadingText) || (!loading && text)) && (
@@ -209,7 +207,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             </Typography>
           </Box>
         )}
-        {!loading && EndIcon && themeName === "classic" && (
+        {!loading && EndIcon && (
           <EndIcon className={classNames(styles.icon, iconSize[size])} />
         )}
         {loading && (

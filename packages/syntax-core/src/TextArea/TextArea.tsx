@@ -102,58 +102,42 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         }}
         position={themeName === "cambio" ? "relative" : undefined}
       >
-        <label
-          className={classNames(
-            themeName === "classic"
-              ? textFieldStyles.label
-              : textFieldStyles.labelCambio,
-            themeName === "cambio" && styles.labelCambio,
-          )}
-          htmlFor={inputId}
-        >
-          <Box paddingX={themeName === "classic" ? 1 : 3} width="100%">
+        <label className={textFieldStyles.label} htmlFor={inputId}>
+          <Box paddingX={1}>
             <Typography size={100} color="gray700">
               {label}
             </Typography>
           </Box>
         </label>
         <Typography size={themeName === "cambio" ? 100 : 200}>
-          <div
+          <textarea
+            data-testid={dataTestId}
+            ref={forwardedRef}
             className={classNames(
-              themeName === "cambio" && styles.fixTextareaHeight,
+              textFieldStyles.textfield,
+              themeName === "classic"
+                ? textFieldStyles.textfieldClassic
+                : textFieldStyles.textfieldCambio,
+              themeName === "classic" && textFieldStyles[size],
+              themeName === "classic" && styles[size],
+              themeName === "classic" ? styles.textarea : styles.textareaCambio,
+              {
+                [themeName === "classic"
+                  ? textFieldStyles.inputError
+                  : textFieldStyles.inputErrorCambio]: errorText,
+              },
             )}
-          >
-            <textarea
-              data-testid={dataTestId}
-              ref={forwardedRef}
-              className={classNames(
-                textFieldStyles.textfield,
-                themeName === "classic"
-                  ? textFieldStyles.textfieldClassic
-                  : textFieldStyles.textfieldCambio,
-                themeName === "classic" && textFieldStyles[size],
-                themeName === "classic" && styles[size],
-                themeName === "classic"
-                  ? styles.textarea
-                  : styles.textareaCambio,
-                {
-                  [themeName === "classic"
-                    ? textFieldStyles.inputError
-                    : textFieldStyles.inputErrorCambio]: errorText,
-                },
-              )}
-              id={inputId}
-              placeholder={placeholder}
-              maxLength={maxLength}
-              onChange={onChange}
-              rows={rows}
-              value={value}
-              disabled={disabled}
-            />
-          </div>
+            id={inputId}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            onChange={onChange}
+            rows={rows}
+            value={value}
+            disabled={disabled}
+          />
         </Typography>
         {(helperText || errorText) && (
-          <Box paddingX={themeName === "classic" ? 1 : 0}>
+          <Box paddingX={1}>
             <Typography
               size={100}
               color={errorText ? "destructive-primary" : "gray700"}

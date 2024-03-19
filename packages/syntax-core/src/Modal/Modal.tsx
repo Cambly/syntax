@@ -136,7 +136,11 @@ export default function Modal({
   /**
    * The size of the card
    *
-   * * `sm`: 400px
+   * Classic:
+   * * `sm`: 400px (Classic only)
+   * * `lg`: 600px
+   *
+   * Cambio:
    * * `lg`: 600px
    *
    *
@@ -177,8 +181,10 @@ export default function Modal({
               rounding={themeName === "classic" ? "xl" : "md"}
               display="flex"
               direction="column"
+              marginStart={4}
+              marginEnd={4}
               minWidth={240}
-              maxWidth={sizeWidth[size]}
+              maxWidth={sizeWidth[themeName === "classic" ? size : "lg"]}
               width="100%"
               dangerouslySetInlineStyle={{ __style: { overflow: "hidden" } }}
             >
@@ -218,13 +224,13 @@ export default function Modal({
               {image && <Box maxHeight={200}>{image}</Box>}
               <Box
                 display="flex"
-                gap={3}
+                gap={themeName === "classic" ? 3 : 4}
                 direction="column"
                 padding={themeName === "classic" ? 9 : 6}
               >
                 <Heading
                   as="h1"
-                  size={themeName === "classic" ? 500 : 400}
+                  size={themeName === "classic" ? 500 : 600}
                   fontStyle={themeName === "classic" ? "sans-serif" : "serif"}
                 >
                   {header}
@@ -237,6 +243,7 @@ export default function Modal({
                     display="flex"
                     direction="column"
                     gap={3}
+                    marginTop={themeName === "classic" ? 0 : 2}
                     smDirection="row"
                     smJustifyContent="end"
                     lgDirection="row"

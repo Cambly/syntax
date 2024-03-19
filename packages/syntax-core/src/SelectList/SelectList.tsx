@@ -113,11 +113,8 @@ export default function SelectList({
       })}
     >
       {label && (
-        <label
-          htmlFor={selectId}
-          className={classNames(themeName === "cambio" && styles.labelCambio)}
-        >
-          <Box paddingX={themeName === "classic" ? 1 : 3}>
+        <label htmlFor={selectId}>
+          <Box paddingX={1}>
             <Typography size={100} color="gray700">
               {label}
             </Typography>
@@ -176,7 +173,7 @@ export default function SelectList({
         </div>
       </div>
       {(helperText || errorText) && (
-        <Box paddingX={themeName === "classic" ? 1 : 0}>
+        <Box paddingX={1}>
           <Typography
             size={100}
             color={errorText ? "destructive-primary" : "gray700"}

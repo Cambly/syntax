@@ -79,3 +79,11 @@
 .mdBorderRadius {
   border-radius: 8px;
 }
+
+.checkmark {
+  fill: var(--color-base-black);
+}
+
+.checkmarkError {
+  fill: var(--color-base-destructive-900);
+}

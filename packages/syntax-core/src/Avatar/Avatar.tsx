@@ -6,6 +6,7 @@ import { useAvatarGroup } from "../AvatarGroup/AvatarGroup";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const sizeToIconStyles = {
+  xs: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
   sm: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
   md: { bottom: 6, marginInlineEnd: 2, height: 8, width: 8 },
   lg: { bottom: 6, marginInlineEnd: 6, height: 12, width: 12 },
@@ -13,6 +14,7 @@ const sizeToIconStyles = {
 } as const;
 
 const sizeToMarginClassic = {
+  xs: -16,
   sm: -16,
   md: -28,
   lg: -48,
@@ -20,8 +22,9 @@ const sizeToMarginClassic = {
 } as const;
 
 const sizeToMarginCambio = {
-  sm: -12,
-  md: -20,
+  xs: -10,
+  sm: -14,
+  md: -22,
   lg: -28,
   xl: -28,
 } as const;
@@ -36,7 +39,7 @@ function AvatarInternal({
   accessibilityLabel: string;
   icon?: React.ReactElement;
   outline?: boolean;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   src: string;
 }): ReactElement {
   const { themeName } = useTheme();
@@ -110,6 +113,7 @@ const Avatar = ({
    * * `xl`: 128px
    *
    * Cambio:
+   * * `xs`: 24px (Cambio only)
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
@@ -117,7 +121,7 @@ const Avatar = ({
    *
    * @defaultValue `md`
    */
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   /**
    * URL of the image to display as the avatar.
    */

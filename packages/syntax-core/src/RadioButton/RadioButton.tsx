@@ -123,7 +123,7 @@ const RadioButton = ({
       <div className={themeName === "classic" ? classicStyles : cambioStyles} />
       {themeName === "cambio" && checked && (
         <Box
-          backgroundColor="gray900"
+          backgroundColor={error ? "destructive900" : "gray900"}
           width={size === "md" ? 12 : 8}
           height={size === "md" ? 12 : 8}
           position="absolute"

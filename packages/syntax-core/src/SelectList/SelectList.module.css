@@ -12,17 +12,6 @@
   opacity: 0.5;
 }
 
-.labelCambio {
-  left: 1px; /* Adjust to 1px border */
-  right: 1px; /* Adjust to 1px border */
-  position: absolute;
-  border-radius: 8px;
-  pointer-events: none;
-  width: 100%;
-  padding-top: 7px;
-  z-index: 1;
-}
-
 .selectWrapper {
   display: flex;
   position: relative;
@@ -55,7 +44,7 @@
   box-sizing: border-box;
   font-size: 14px;
   height: 48px;
-  padding: 12px 36px 0 12px;
+  padding: 12px 36px 12px 12px;
 }
 
 .selectMouseFocusStyling {
