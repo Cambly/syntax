@@ -19,7 +19,7 @@ import SelectList from "./SelectList/SelectList";
 import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
-import ThemeProvider from "./ThemeProvider/ThemeProvider";
+import ThemeProvider, { useTheme } from "./ThemeProvider/ThemeProvider";
 import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
 
@@ -48,4 +48,5 @@ export {
   ThemeProvider,
   Tooltip,
   Typography,
+  useTheme,
 };
