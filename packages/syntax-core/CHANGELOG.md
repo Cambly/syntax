@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.19.0
+
+### Minor Changes
+
+- 64ef7b1: Typography: set line-height to initial
+
 ## 10.18.0
 
 ### Minor Changes
