@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.18.0
+
+### Minor Changes
+
+- 82b2c59: Export useTheme hook
+
 ## 10.17.0
 
 ### Minor Changes
