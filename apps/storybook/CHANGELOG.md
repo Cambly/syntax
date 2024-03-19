@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.16.0
+
+### Minor Changes
+
+- 64ef7b1: Typography: set line-height to initial
+
+### Patch Changes
+
+- Updated dependencies [64ef7b1]
+  - @cambly/syntax-core@10.19.0
+
 ## 0.15.1
 
 ### Patch Changes
