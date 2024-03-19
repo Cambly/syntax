@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.17.0
+
+### Minor Changes
+
+- d373edc: Cambio updates after bug bash: bring back elevation / Avatar & GroupAvatar sizes / Button icons / Form elements regular labels
+
 ## 10.16.0
 
 ### Minor Changes

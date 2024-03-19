@@ -1,5 +1,17 @@
 # @syntax/storybook
 
+## 0.15.0
+
+### Minor Changes
+
+- d373edc: Cambio updates after bug bash: bring back elevation / Avatar & GroupAvatar sizes / Button icons / Form elements regular labels
+
+### Patch Changes
+
+- Updated dependencies [d373edc]
+  - @cambly/syntax-floating-components@0.6.0
+  - @cambly/syntax-core@10.17.0
+
 ## 0.14.1
 
 ### Patch Changes

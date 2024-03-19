@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.6.0
+
+### Minor Changes
+
+- d373edc: Cambio updates after bug bash: bring back elevation / Avatar & GroupAvatar sizes / Button icons / Form elements regular labels
+
 ## 0.5.0
 
 ### Minor Changes
