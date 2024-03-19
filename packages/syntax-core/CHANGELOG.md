@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.20.0
+
+### Minor Changes
+
+- 6a6aba7: Cambio SelectList: update font size
+
 ## 10.19.0
 
 ### Minor Changes
