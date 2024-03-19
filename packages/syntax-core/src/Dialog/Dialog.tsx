@@ -15,6 +15,7 @@ import styles from "./Dialog.module.css";
 import { Dialog as ReactAriaDialog } from "react-aria-components";
 import classNames from "classnames";
 import type Box from "../Box/Box";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type DialogSize = "sm" | "md" | "lg";
 type DialogRounding = "lg" | "xl";
@@ -71,6 +72,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   } = props;
 
   const { padding } = useContext(DialogContext);
+  const { themeName } = useTheme();
 
   return (
     <ReactAriaDialog
@@ -89,7 +91,11 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         colorStyles.whiteBackgroundColor,
         paddingStyles[`paddingX${padding ?? sizeToPadding[size]}`],
         paddingStyles[`paddingY${padding ?? sizeToPadding[size]}`],
-        roundingStyles[`rounding${sizeToRounding[size]}`],
+        roundingStyles[
+          themeName === "classic"
+            ? (`rounding${sizeToRounding[size]}` as const)
+            : "roundingmdCambio"
+        ],
         elevationStyles.elevation400BoxShadow,
         layoutStyles.fullMaxHeight,
         layoutStyles.visibilityVisible,

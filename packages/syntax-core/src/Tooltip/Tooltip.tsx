@@ -22,6 +22,7 @@ import {
   type Placement,
   syntaxToReactAriaPlacement,
 } from "../react-aria-utils/placement";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 function TooltipArrow(props: ReactAriaOverlayArrowProps): ReactElement {
   return (
@@ -68,13 +69,18 @@ export const AriaTooltip = forwardRef<
   { children: childrenProp, onChangeContentVisibility, ...otherProps },
   ref,
 ): ReactElement {
+  const { themeName } = useTheme();
   const className = classNames([
     boxStyles.box,
     colorStyles.gray900Color,
-    colorStyles.gray900BackgroundColor,
+    themeName === "classic"
+      ? colorStyles.gray900BackgroundColor
+      : colorStyles.cambioBlackBackgroundColor,
     paddingStyles.paddingX2,
     paddingStyles.paddingY2,
-    roundingStyles.roundingsm,
+    themeName === "classic"
+      ? roundingStyles.roundingsm
+      : roundingStyles.roundingsmCambio,
     styles.tooltip,
   ]);
   return (

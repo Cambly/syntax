@@ -4,3 +4,10 @@
   padding: 28px;
   border-radius: 24px;
 }
+
+.popoverContentCambio {
+  box-sizing: border-box;
+  background-color: var(--color-base-white);
+  padding: 16px;
+  border-radius: 8px;
+}

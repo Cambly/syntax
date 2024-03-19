@@ -159,6 +159,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
               themeName === "classic" ? typographySize[transformedSize] : 100
             }
             color={color}
+            weight={themeName === "classic" ? "regular" : "medium"}
           >
             {text}
           </Typography>

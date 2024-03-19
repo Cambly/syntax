@@ -18,6 +18,9 @@ export default {
     text: "text on chip",
     size: "sm",
     on: "lightBackground",
+    disabled: false,
+    "data-testid": "",
+    dangerouslyForceFocusStyles: false,
   },
   argTypes: {
     on: {

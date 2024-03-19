@@ -8,6 +8,7 @@ import Box from "../Box/Box";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type Size =
+  | "xs"
   | "sm"
   | "md"
   | "lg"
@@ -56,6 +57,7 @@ export default function AvatarGroup({
    * * `xl`: 128px
    *
    * Cambio:
+   * * `xs`: 24px (Cambio only)
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px

@@ -15,7 +15,12 @@
 }
 
 .avatarImageOutlineCambio {
-  border: 2px solid var(--color-cambio-gray-100);
+  border: 1px solid var(--color-cambio-gray-100);
+}
+
+.xs {
+  width: 24px;
+  height: 24px;
 }
 
 .sm {
@@ -36,6 +41,11 @@
 .xl {
   width: 128px;
   height: 129px;
+}
+
+.xsCambio {
+  width: 24px;
+  height: 24px;
 }
 
 .smCambio {

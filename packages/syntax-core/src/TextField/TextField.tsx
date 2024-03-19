@@ -109,17 +109,10 @@ export default function TextField({
           opacity: disabled ? 0.5 : 1,
         },
       }}
-      position={themeName === "cambio" ? "relative" : undefined}
     >
       {label && (
-        <label
-          className={classNames(
-            themeName === "classic" ? styles.label : styles.labelCambio,
-            themeName === "cambio" && styles.labelCambioTextfield,
-          )}
-          htmlFor={inputId}
-        >
-          <Box paddingX={themeName === "classic" ? 1 : 3}>
+        <label className={styles.label} htmlFor={inputId}>
+          <Box paddingX={1}>
             <Typography size={100} color="gray700">
               {label}
             </Typography>
@@ -134,7 +127,7 @@ export default function TextField({
             ? styles.textfieldClassic
             : styles.textfieldCambio,
           themeName === "classic" && styles[size],
-          themeName === "cambio" ? styles[`${size}Cambio`] : undefined,
+          themeName === "cambio" ? styles.mdCambio : undefined,
           themeName === "classic"
             ? styles[`${size}Height`]
             : styles.heightCambio,
@@ -153,7 +146,7 @@ export default function TextField({
         value={value}
       />
       {(helperText || errorText) && (
-        <Box paddingX={themeName === "classic" ? 1 : 0}>
+        <Box paddingX={1}>
           <Typography
             size={100}
             color={errorText ? "destructive-primary" : "gray700"}

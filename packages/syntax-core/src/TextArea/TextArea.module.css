@@ -18,13 +18,6 @@
 }
 
 .textareaCambio {
-  padding: 28px 12px 12px;
-}
-
-.fixTextareaHeight {
-  line-height: 0;
-}
-
-.labelCambio {
-  padding: 12px 0 4px;
+  display: block; /* Fixes chrome bug https://stackoverflow.com/questions/63430767; */
+  padding: 12px;
 }
