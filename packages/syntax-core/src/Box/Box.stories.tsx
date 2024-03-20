@@ -288,7 +288,7 @@ export const Margin: StoryObj<typeof Box> = {
             alignItems="center"
             justifyContent="center"
           >
-            <Typography color="gray200" tooltip={`${margin * 4}px`}>
+            <Typography tooltip={`${margin * 4}px`}>
               margin=&quot;{margin}&quot;
             </Typography>
           </Box>

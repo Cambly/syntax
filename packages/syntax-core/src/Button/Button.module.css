@@ -47,6 +47,10 @@
   cursor: auto;
 }
 
+.disabledCambioPrimary {
+  opacity: 0.5;
+}
+
 .fullWidth {
   width: 100%;
 }
