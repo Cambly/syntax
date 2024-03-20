@@ -14,6 +14,7 @@ export default {
   argTypes: {
     color: {
       options: [
+        // Classic
         "gray200",
         "gray900",
         "destructive700",
@@ -22,6 +23,17 @@ export default {
         "success700",
         "primary700",
         "purple700",
+        // Cambio
+        "sky",
+        "success300",
+        "destructive300",
+        "orange",
+        "tan",
+        "gray370",
+        "gray870",
+        "lilac",
+        "thistle",
+        "pink",
       ],
       control: { type: "radio" },
     },

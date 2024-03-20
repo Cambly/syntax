@@ -162,6 +162,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ? classicBackgroundColor(classicColor(color))
         : cambioBackgroundColor(cambioColor(color), on);
 
+    const disabledCambioPrimary =
+      themeName === "cambio" && color === "primary" && disabled;
+
     return (
       <button
         data-testid={dataTestId}
@@ -188,7 +191,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       >
         {!loading && StartIcon && (
-          <StartIcon className={classNames(styles.icon, iconSize[size])} />
+          <StartIcon
+            className={classNames(
+              styles.icon,
+              iconSize[size],
+              disabledCambioPrimary && styles.disabledCambioPrimary,
+            )}
+          />
         )}
         {((loading && loadingText) || (!loading && text)) && (
           <Box paddingX={1}>
@@ -198,8 +207,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               }
             >
               <span
-                // Temporary - until we have cambio colors on Typogrphay
-                className={foregroundColorClass}
+                className={classNames(
+                  // Temporary - until we have cambio colors on Typography
+                  foregroundColorClass,
+                  disabledCambioPrimary && styles.disabledCambioPrimary,
+                )}
                 style={{ fontWeight: 500 }}
               >
                 {loading ? loadingText : text}
@@ -208,7 +220,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </Box>
         )}
         {!loading && EndIcon && (
-          <EndIcon className={classNames(styles.icon, iconSize[size])} />
+          <EndIcon
+            className={classNames(
+              styles.icon,
+              iconSize[size],
+              disabledCambioPrimary && styles.disabledCambioPrimary,
+            )}
+          />
         )}
         {loading && (
           <svg

@@ -385,6 +385,10 @@
   background-color: var(--color-cambio-gray-300);
 }
 
+.gray370BackgroundColor {
+  background-color: var(--color-cambio-gray-370);
+}
+
 .cambioGray370BackgroundColor {
   background-color: var(--color-cambio-gray-370);
 }
@@ -395,6 +399,10 @@
 
 .cambioGray800BackgroundColor {
   background-color: var(--color-cambio-gray-800);
+}
+
+.gray870BackgroundColor {
+  background-color: var(--color-cambio-gray-870);
 }
 
 .cambioGray870BackgroundColor {
@@ -453,48 +461,96 @@
   background-color: var(--color-cambio-success-900);
 }
 
+.redBackgroundColor {
+  background-color: var(--color-cambio-red);
+}
+
 .cambioRedBackgroundColor {
   background-color: var(--color-cambio-red);
+}
+
+.orangeBackgroundColor {
+  background-color: var(--color-cambio-orange);
 }
 
 .cambioOrangeBackgroundColor {
   background-color: var(--color-cambio-orange);
 }
 
+.tanBackgroundColor {
+  background-color: var(--color-cambio-tan);
+}
+
 .cambioTanBackgroundColor {
   background-color: var(--color-cambio-tan);
+}
+
+.creamBackgroundColor {
+  background-color: var(--color-cambio-cream);
 }
 
 .cambioCreamBackgroundColor {
   background-color: var(--color-cambio-cream);
 }
 
+.purpleBackgroundColor {
+  background-color: var(--color-cambio-purple);
+}
+
 .cambioPurpleBackgroundColor {
   background-color: var(--color-cambio-purple);
+}
+
+.lilacBackgroundColor {
+  background-color: var(--color-cambio-lilac);
 }
 
 .cambioLilacBackgroundColor {
   background-color: var(--color-cambio-lilac);
 }
 
+.thistleBackgroundColor {
+  background-color: var(--color-cambio-thistle);
+}
+
 .cambioThistleBackgroundColor {
   background-color: var(--color-cambio-thistle);
+}
+
+.pinkBackgroundColor {
+  background-color: var(--color-cambio-pink);
 }
 
 .cambioPinkBackgroundColor {
   background-color: var(--color-cambio-pink);
 }
 
+.navyBackgroundColor {
+  background-color: var(--color-cambio-navy);
+}
+
 .cambioNavyBackgroundColor {
   background-color: var(--color-cambio-navy);
+}
+
+.tealBackgroundColor {
+  background-color: var(--color-cambio-teal);
 }
 
 .cambioTealBackgroundColor {
   background-color: var(--color-cambio-teal);
 }
 
+.slateBackgroundColor {
+  background-color: var(--color-cambio-slate);
+}
+
 .cambioSlateBackgroundColor {
   background-color: var(--color-cambio-slate);
+}
+
+.skyBackgroundColor {
+  background-color: var(--color-cambio-sky);
 }
 
 .cambioSkyBackgroundColor {

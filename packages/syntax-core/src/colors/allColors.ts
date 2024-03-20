@@ -47,6 +47,22 @@ const colors = [
   "yellow700",
   "yellow800",
   "yellow900",
+
+  // Cambio specific colors
+  "gray370",
+  "gray870",
+  "cream",
+  "lilac",
+  "navy",
+  "orange",
+  "pink",
+  "purple",
+  "red",
+  "sky",
+  "slate",
+  "tan",
+  "teal",
+  "thistle",
 ] as const;
 
 export default colors;
