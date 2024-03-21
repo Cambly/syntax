@@ -20,6 +20,7 @@ export default {
     underline: false,
     inline: false,
     lineClamp: 0,
+    "data-testid": "",
   },
   argTypes: {
     align: {

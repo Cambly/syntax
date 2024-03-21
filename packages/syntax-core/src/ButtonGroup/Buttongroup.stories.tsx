@@ -11,6 +11,10 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/Cambly-Design-System?node-id=1007%3A4097",
     },
   },
+  args: {
+    orientation: "horizontal",
+    size: "md",
+  },
   argTypes: {
     orientation: {
       options: ["horizontal", "vertical"],

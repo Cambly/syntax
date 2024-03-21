@@ -23,6 +23,12 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007-4109&t=1jAyqXTkYBP57oZL-0",
     },
   },
+  args: {
+    accessibilityLabel: "",
+    delay: 0,
+    disabled: false,
+    placement: "top",
+  },
   argTypes: {
     accessibilityLabel: {
       control: { type: "string" },

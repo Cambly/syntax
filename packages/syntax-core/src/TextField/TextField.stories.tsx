@@ -11,6 +11,18 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007%3A4103",
     },
   },
+  args: {
+    label: "Label",
+    placeholder: "Placeholder",
+    disabled: false,
+    errorText: "",
+    helperText: "",
+    size: "md",
+    type: "text",
+    "data-testid": "",
+    id: "",
+    value: "",
+  },
   argTypes: {
     autoComplete: {
       options: ["current-password", "new-password", "off", "on", "email"],

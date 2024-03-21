@@ -92,7 +92,7 @@ type BoxProps = {
   /**
    * The underlying DOM element usually set for accessibility or SEO reasons.
    *
-   * @defaultValue "div"
+   * @defaultValue `div`
    */
   as?: As;
   /**

@@ -16,6 +16,11 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007-4102&t=7xGt6S9b6zUUiflR-0",
     },
   },
+  args: {
+    accessibilityLabel: "",
+    size: "md",
+    disabled: false,
+  },
   argTypes: {
     accessibilityLabel: {
       control: "text",
