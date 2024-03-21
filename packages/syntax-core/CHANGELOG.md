@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.22.0
+
+### Minor Changes
+
+- f942ba4: RichSelectList: Update onClick
+
 ## 10.21.0
 
 ### Minor Changes
