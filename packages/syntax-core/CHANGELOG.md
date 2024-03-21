@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.23.0
+
+### Minor Changes
+
+- 0097f95: Stories: add args where possible
+
 ## 10.22.0
 
 ### Minor Changes

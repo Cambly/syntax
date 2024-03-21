@@ -60,7 +60,7 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:10.22.0
+        specifier: workspace:10.23.0
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.11.1
