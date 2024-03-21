@@ -180,6 +180,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           [styles.opacityOverlay]: disabled,
           [styles.selectContainerCambio]: themeName === "cambio",
         })}
+        onClick={onClick}
       >
         {label && (
           <>
