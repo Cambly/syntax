@@ -15,6 +15,13 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1197-6345&viewport=45%2C215%2C0.26&t=Otn1UThmrXufnj46-0",
     },
   },
+  args: {
+    header: "One Button Modal Text",
+    accessibilityCloseLabel: "close modal",
+    size: "sm",
+    zIndex: 0,
+    "data-testid": "",
+  },
   argTypes: {
     onDismiss: {
       control: {},
@@ -48,7 +55,6 @@ const ModalTemplate = ({ ...args }): JSX.Element => {
 
 export const Default: StoryObj<typeof Modal> = {
   args: {
-    header: "One Button Modal Text",
     children: (
       <Typography size={200}>
         Confirmation of the action the user is about to take. This description

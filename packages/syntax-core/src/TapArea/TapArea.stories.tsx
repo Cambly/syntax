@@ -8,6 +8,14 @@ import Typography from "../Typography/Typography";
 export default {
   title: "Components/TapArea",
   component: TapArea,
+  args: {
+    disabled: false,
+    rounding: "none",
+    tabIndex: 0,
+    fullWidth: true,
+    accessibilityLabel: "",
+    "data-testid": "",
+  },
   argTypes: {
     disabled: {
       control: "boolean",

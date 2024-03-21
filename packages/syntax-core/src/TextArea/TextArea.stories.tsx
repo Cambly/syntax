@@ -11,6 +11,19 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007%3A4103",
     },
   },
+  args: {
+    disabled: false,
+    label: "Label",
+    placeholder: "Placeholder",
+    errorText: "",
+    helperText: "",
+    maxLength: 1024,
+    rows: 3,
+    value: "",
+    "data-testid": "",
+    id: "",
+    size: "md",
+  },
   argTypes: {
     disabled: {
       control: "boolean",
@@ -30,7 +43,7 @@ function TextAreaDefault({
   label = "Label",
   placeholder = "Placeholder",
   value: initialValue = "",
-  ...rest
+  ...args
 }) {
   const [value, setValue] = useState("");
   return (
@@ -41,7 +54,7 @@ function TextAreaDefault({
         setValue(event.target.value);
       }}
       value={initialValue || value}
-      {...rest}
+      {...args}
     />
   );
 }

@@ -9,6 +9,27 @@ import Divider from "../Divider/Divider";
 export default {
   title: "Components/Box",
   component: Box,
+  args: {
+    as: "div",
+    children: "Box",
+    gap: 0,
+    height: "",
+    width: "",
+    margin: 0,
+    marginTop: 0,
+    marginEnd: 0,
+    marginBottom: 0,
+    marginStart: 0,
+    padding: 0,
+    paddingX: 0,
+    paddingY: 0,
+    maxHeight: "",
+    maxWidth: "",
+    minHeight: "",
+    minWidth: "",
+    role: "",
+    rounding: "none",
+  },
   argTypes: {
     alignItems: {
       options: ["flexStart", "flexEnd", "center", "baseline", "stretch"],
@@ -124,6 +145,9 @@ export default {
     },
     paddingY: {
       control: { type: "number", min: 0, max: 12, step: 1 },
+    },
+    position: {
+      options: ["absolute", "fixed", "relative", "static", "sticky"],
     },
     id: {
       control: "text",

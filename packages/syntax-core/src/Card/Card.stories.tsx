@@ -14,10 +14,18 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1206-4420&t=yFh7Ijhf6PU7Lin3-0",
     },
   },
+  args: {
+    backgroundColor: "white",
+    "data-testid": "",
+    size: "roomy",
+  },
   argTypes: {
     backgroundColor: {
       control: { type: "select" },
       options: allColors,
+    },
+    size: {
+      options: ["compact", "roomy"],
     },
   },
   tags: ["autodocs"],

@@ -12,6 +12,14 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007-4098&t=XrEtordHSWZfgIGE-0",
     },
   },
+  args: {
+    label: "checkbox label",
+    disabled: false,
+    checked: false,
+    error: false,
+    size: "md",
+    "data-testid": "",
+  },
   argTypes: {
     checked: {
       control: "boolean",
@@ -24,14 +32,13 @@ export default {
       control: "boolean",
     },
     onClick: { action: "clicked" },
+    onChange: { action: "changed" },
     error: { control: "boolean" },
   },
   tags: ["autodocs"],
 } as Meta<typeof Checkbox>;
 
-export const Default: StoryObj<typeof Checkbox> = {
-  args: { label: "checkbox label" },
-};
+export const Default: StoryObj<typeof Checkbox> = {};
 
 const CheckboxInteractive = () => {
   const [isChecked, setIsChecked] = useState(false);

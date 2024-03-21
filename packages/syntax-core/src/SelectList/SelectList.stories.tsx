@@ -13,6 +13,17 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007-4102&t=7xGt6S9b6zUUiflR-0",
     },
   },
+  args: {
+    size: "md",
+    "data-testid": "",
+    label: "Label",
+    placeholderText: "Placeholder",
+    errorText: "",
+    helperText: "Helper text",
+    disabled: false,
+    id: "",
+    selectedValue: "",
+  },
   argTypes: {
     size: {
       options: ["sm", "md", "lg"],
@@ -43,9 +54,6 @@ const Options = () => (
 export const Default: StoryObj<typeof SelectList> = {
   args: {
     children: <Options />,
-    helperText: "Helper text",
-    label: "Label",
-    placeholderText: "Placeholder",
   },
 };
 

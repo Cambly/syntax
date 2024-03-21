@@ -11,6 +11,18 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1007-4104&t=Vt5ql6LLs6d29szu-0",
     },
   },
+  args: {
+    label: "radioButton label",
+    checked: false,
+    disabled: false,
+    error: false,
+    size: "md",
+    "data-testid": "",
+    name: "name",
+    value: "value",
+    id: "",
+    dangerouslyForceFocusStyles: false,
+  },
   argTypes: {
     checked: {
       control: "boolean",
@@ -28,9 +40,7 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof RadioButton>;
 
-export const Default: StoryObj<typeof RadioButton> = {
-  args: { label: "radioButton label" },
-};
+export const Default: StoryObj<typeof RadioButton> = {};
 
 const RadioButtonInteractive = () => {
   const [selectedOption, setSelectedOption] = useState("");
