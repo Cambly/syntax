@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.24.0
+
+### Minor Changes
+
+- e0c8259: LinkButton: show icons in Cambio
+
 ## 10.23.0
 
 ### Minor Changes
