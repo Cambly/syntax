@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.25.0
+
+### Minor Changes
+
+- f9aa886: Modal: add extra focus element check
+
 ## 10.24.0
 
 ### Minor Changes
