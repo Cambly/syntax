@@ -9,7 +9,7 @@ function cambioWeight({
   fontStyle: "serif" | "sans-serif";
   size: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
 }): "bold" | "medium" | "regular" {
-  if (fontStyle === "serif" && [400, 500].includes(size)) {
+  if (fontStyle === "serif" && [400, 500, 600].includes(size)) {
     return "bold";
   } else if (fontStyle === "serif") {
     return "medium";
