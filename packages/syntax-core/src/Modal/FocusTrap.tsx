@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, type ReactElement } from "react";
+import React, { useRef, type ReactElement, useLayoutEffect } from "react";
 
 function queryFocusableAll(el: HTMLDivElement): NodeListOf<HTMLElement> {
   // Focusable, interactive elements that could possibly be in children
@@ -39,7 +39,7 @@ export default function FocusTrap({
   const elRef = useRef<HTMLDivElement | null>(null);
   const previouslyFocusedElRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const { current: element } = elRef;
 
     // Focus the first child element among all the focusable, interactive elements within `children`
