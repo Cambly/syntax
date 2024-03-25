@@ -22,8 +22,8 @@ function queryFocusableAll(el: HTMLDivElement): NodeListOf<HTMLElement> {
   return el.querySelectorAll(selector);
 }
 
-const focusElement = (el: HTMLElement) => {
-  if (typeof el.focus === "function") {
+const focusElement = (el?: HTMLElement) => {
+  if (el && typeof el.focus === "function") {
     el.focus();
   }
 };
