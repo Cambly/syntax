@@ -4,10 +4,6 @@
   gap: 8px;
 }
 
-.selectContainerCambio {
-  position: relative;
-}
-
 .opacityOverlay {
   opacity: 0.5;
 }

@@ -165,8 +165,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           {
             [buttonStyles.fullWidth]: fullWidth,
             [styles.fitContent]: !fullWidth,
-            [buttonStyles.buttonGap]:
-              themeName === "classic" && (size === "lg" || size === "md"),
+            [buttonStyles.buttonGap]: size === "lg" || size === "md",
             [buttonStyles.secondaryBorder]:
               themeName === "classic" && color === "secondary",
             [buttonStyles.secondaryDestructiveBorder]:
@@ -175,7 +174,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
         )}
         onClick={onClick}
       >
-        {StartIcon && themeName === "classic" && (
+        {StartIcon && (
           <StartIcon
             className={classNames(
               buttonStyles.icon,
@@ -195,7 +194,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
             {text}
           </span>
         </Typography>
-        {EndIcon && themeName === "classic" && (
+        {EndIcon && (
           <EndIcon
             className={classNames(
               buttonStyles.icon,
