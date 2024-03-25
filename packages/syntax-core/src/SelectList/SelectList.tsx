@@ -109,7 +109,6 @@ export default function SelectList({
     <div
       className={classNames(styles.selectContainer, {
         [styles.opacityOverlay]: disabled,
-        [styles.selectContainerCambio]: themeName === "cambio",
       })}
     >
       {label && (

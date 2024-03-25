@@ -181,8 +181,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
           {
             [styles.fullWidth]: fullWidth,
-            [styles.buttonGap]:
-              themeName === "classic" && (size === "lg" || size === "md"),
+            [styles.buttonGap]: size === "lg" || size === "md",
             [styles.secondaryBorder]:
               themeName === "classic" && color === "secondary",
             [styles.secondaryDestructiveBorder]:

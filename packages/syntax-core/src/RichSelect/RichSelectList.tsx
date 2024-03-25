@@ -178,7 +178,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       <div
         className={classNames(styles.selectContainer, {
           [styles.opacityOverlay]: disabled,
-          [styles.selectContainerCambio]: themeName === "cambio",
         })}
         onClick={onClick}
       >
@@ -186,9 +185,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           <>
             <ReactAriaLabel
               data-testid={[dataTestId, "label"].filter(Boolean).join("-")}
-              className={classNames(
-                themeName === "cambio" && styles.labelCambio,
-              )}
               {...labelProps}
               onClick={() => {
                 if (disabled) return;
@@ -196,7 +192,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                 setInteractionModality("keyboard"); // Show the focus ring so the user knows where focus went
               }}
             >
-              <Box paddingX={themeName === "classic" ? 1 : 3}>
+              <Box paddingX={1}>
                 <Typography size={100} color="gray700">
                   {label}
                 </Typography>
@@ -279,7 +275,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
           </TapArea>
         </Popover>
         {(helperText || errorText) && (
-          <Box paddingX={themeName === "classic" ? 1 : 0}>
+          <Box paddingX={1}>
             <Typography
               size={100}
               color={errorText ? "destructive-primary" : "gray700"}
