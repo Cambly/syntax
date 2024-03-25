@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.26.0
+
+### Minor Changes
+
+- 150afae: Heading: use bold for 600
+
 ## 10.25.0
 
 ### Minor Changes
