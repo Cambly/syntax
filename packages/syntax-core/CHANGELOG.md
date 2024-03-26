@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.27.0
+
+### Minor Changes
+
+- 5826f55: IconButton: make onClick required & fix modal close issue
+
 ## 10.26.0
 
 ### Minor Changes
