@@ -215,6 +215,7 @@ export default function Modal({
                       accessibilityLabel={accessibilityCloseLabel}
                       color={image ? "primary" : "tertiary"}
                       on={image ? "darkBackground" : "lightBackground"}
+                      onClick={onDismiss}
                       size="sm"
                       icon={XIconCambio}
                     />
