@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.29.0
+
+### Minor Changes
+
+- 3c2e460: Typography: use final font + Modal: fix image size
+
 ## 10.28.0
 
 ### Minor Changes
