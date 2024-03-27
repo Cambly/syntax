@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 10.28.0
+
+### Minor Changes
+
+- 272d75c: Typography: only use GT Super on supported languages
+
+### Patch Changes
+
+- Updated dependencies [272d75c]
+  - @cambly/syntax-design-tokens@0.12.0
+
 ## 10.27.0
 
 ### Minor Changes

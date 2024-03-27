@@ -1,5 +1,16 @@
 # @cambly/syntax-floating-components
 
+## 0.7.0
+
+### Minor Changes
+
+- 272d75c: Typography: only use GT Super on supported languages
+
+### Patch Changes
+
+- Updated dependencies [272d75c]
+  - @cambly/syntax-design-tokens@0.12.0
+
 ## 0.6.0
 
 ### Minor Changes
