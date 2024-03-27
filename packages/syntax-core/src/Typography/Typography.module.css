@@ -8,8 +8,7 @@
   font-style: normal;
   font-weight: 510;
   src: local("GT-Super-Text-Medium"),
-    url("https://static.cambly.com/fonts/gt-super-medium.woff2");
-  font-display: optional;
+    url("https://static.cambly.com/fonts/gt-super-text-medium-converted.woff2");
 }
 
 @font-face {
@@ -17,19 +16,54 @@
   font-style: normal;
   font-weight: 700;
   src: local("GT-Super-Text-Bold"),
-    url("https://static.cambly.com/fonts/gt-super-bold.woff2");
-  font-display: optional;
+    url("https://static.cambly.com/fonts/gt-super-text-bold-converted.woff2");
 }
 
 .sansSerif {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  font-family: var(--syntax-font-sans-serif);
   margin: 0;
 }
 
 .serif {
-  font-family: "GT Super", -apple-system, system-ui, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, serif;
+  font-family: var(
+    --syntax-font-sans-serif
+  ); /* Intentional, the default is still to use sans-serif, we only use serif for certain languages */
+}
+
+/* GT Super only supports certain languages: https://www.grillitype.com/typeface/gt-super */
+
+/* List of languages we use on Cambly and their support for GT Super
+
+* English: ✅
+* Arabic: ❌
+* Azerbaijani: ✅
+* German: ✅
+* Spanish: ✅
+* French: ✅
+* Italian: ✅
+* Japanese: ❌
+* Korean: ❌
+* Polish: ✅
+* Portuguese: ✅
+* Russian: ❌
+* Thai: ❌
+* Turkish: ✅
+* Vietnamese: ❌
+* Simplified Chinese: ❌
+* Traditional Chinese: ❌
+*/
+
+/* stylelint-disable-next-line selector-max-compound-selectors -- only render serif font for certain languages */
+:lang(en) .serif,
+:lang(az) .serif,
+:lang(fr) .serif,
+:lang(de) .serif,
+:lang(es) .serif,
+:lang(it) .serif,
+:lang(pl) .serif,
+:lang(pt) .serif,
+:lang(tr) .serif {
+  font-family: "GT Super", var(--syntax-font-sans-serif);
   -webkit-font-smoothing: antialiased;
 }
 

@@ -1,5 +1,6 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Typography from "./Typography";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/Typography",
@@ -160,6 +161,44 @@ export const colors: StoryObj<typeof Typography> = {
       </Typography>
     </>
   ),
+};
+
+function SerifCharacterSupportExample() {
+  return (
+    <Box display="flex" gap={3} direction="column">
+      <Typography size={200} fontStyle="serif">
+        English: à, é, ñ
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Azerbaijani: ə, ı, ş, ü
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        French: à, â, é, è, ê, ë, î, ï, ô, ö, ù, û, ü, ÿ, ç
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        German: ä, ö, ü, ß
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Spanish: á, é, í, ó, ú, ü, ñ
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Italian: à, è, é, ì, ò, ó, ù
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Polish: ą, ć, ę, ł, ń, ó, ś, ź, ż
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Portuguese: á, â, ã, à, é, ê, í, ó, ô, õ, ú
+      </Typography>
+      <Typography size={200} fontStyle="serif">
+        Turkish: ç, ğ, ı, ö, ş, ü
+      </Typography>
+    </Box>
+  );
+}
+
+export const SerifCharacterSupport: StoryObj<typeof Typography> = {
+  render: () => <SerifCharacterSupportExample />,
 };
 
 export const Inline: StoryObj<typeof Typography> = {
