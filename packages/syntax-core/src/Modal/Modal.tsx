@@ -102,7 +102,9 @@ export default function Modal({
   onDismiss: () => void;
   /**
    * The optional image rendered above the Modal.
-   * Image size should be 400w x 200h.
+   * Image
+   *  * Size should be 600w x 200h
+   *  * Be sure to set width="100%" on the image
    * If images aren't that sized, should ask design to give another image.
    */
   image?: JSX.Element;
@@ -222,7 +224,7 @@ export default function Modal({
                   </Box>
                 )}
               </Box>
-              {image && <Box maxHeight={200}>{image}</Box>}
+              {image && <Box>{image}</Box>}
               <Box
                 display="flex"
                 gap={themeName === "classic" ? 3 : 4}

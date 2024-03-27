@@ -8,7 +8,7 @@
   font-style: normal;
   font-weight: 510;
   src: local("GT-Super-Text-Medium"),
-    url("https://static.cambly.com/fonts/gt-super-text-medium-converted.woff2");
+    url("https://static.cambly.com/fonts/gt-super-text-medium-final.woff2");
 }
 
 @font-face {
@@ -16,7 +16,7 @@
   font-style: normal;
   font-weight: 700;
   src: local("GT-Super-Text-Bold"),
-    url("https://static.cambly.com/fonts/gt-super-text-bold-converted.woff2");
+    url("https://static.cambly.com/fonts/gt-super-text-bold-final.woff2");
 }
 
 .sansSerif {

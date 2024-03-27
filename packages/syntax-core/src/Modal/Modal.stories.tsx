@@ -99,7 +99,13 @@ export const WithImage: StoryObj<typeof Modal> = {
   args: {
     ...Default.args,
     header: "With Image",
-    image: <img src="https://placehold.co/400x200" alt="placeholder image" />,
+    image: (
+      <img
+        src="https://placehold.co/600x200"
+        alt="placeholder image"
+        style={{ width: "100%" }}
+      />
+    ),
   },
   render: function WithImageExample({ ...args }): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
