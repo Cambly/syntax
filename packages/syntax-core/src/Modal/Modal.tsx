@@ -183,10 +183,17 @@ export default function Modal({
               direction="column"
               marginStart={4}
               marginEnd={4}
+              marginTop={8}
+              marginBottom={8}
               minWidth={240}
               maxWidth={sizeWidth[themeName === "classic" ? size : "lg"]}
               width="100%"
-              dangerouslySetInlineStyle={{ __style: { overflow: "hidden" } }}
+              dangerouslySetInlineStyle={{
+                __style: {
+                  overflow: "hidden",
+                  maxHeight: "calc(100vh - 64px)",
+                },
+              }}
             >
               <Box position="relative">
                 {themeName === "classic" ? (
@@ -236,7 +243,11 @@ export default function Modal({
                 >
                   {header}
                 </Heading>
-                <Box marginBottom={themeName === "classic" ? 4 : 0}>
+                <Box
+                  marginBottom={themeName === "classic" ? 4 : 0}
+                  maxHeight={"calc(100vh - 232px)"} // 232x is combined height of header/footer/padding/margin
+                  overflowY="scroll"
+                >
                   {children}
                 </Box>
                 {footer && (
