@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.30.0
+
+### Minor Changes
+
+- a24a643: Modal: add scrollable functionality
+
 ## 10.29.0
 
 ### Minor Changes
