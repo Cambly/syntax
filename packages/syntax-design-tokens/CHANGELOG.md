@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.12.0
+
+### Minor Changes
+
+- 272d75c: Typography: only use GT Super on supported languages
+
 ## 0.11.1
 
 ### Patch Changes
