@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, type ReactElement } from "react";
+import useIsHydrated from "../useIsHydrated";
 
 function queryFocusableAll(el: HTMLDivElement): NodeListOf<HTMLElement> {
   // Focusable, interactive elements that could possibly be in children
@@ -38,6 +39,7 @@ export default function FocusTrap({
 }): ReactElement {
   const elRef = useRef<HTMLDivElement | null>(null);
   const previouslyFocusedElRef = useRef<HTMLElement | null>(null);
+  const isHydrated = useIsHydrated();
 
   useEffect(() => {
     const { current: element } = elRef;
@@ -68,7 +70,7 @@ export default function FocusTrap({
 
       event.stopPropagation();
       event.preventDefault();
-      focusFirstChild();
+      isHydrated && focusFirstChild();
     };
 
     // If an element has focus currently, keep a reference to that element
@@ -84,7 +86,7 @@ export default function FocusTrap({
         focusElement(previouslyFocusedEl);
       }
     };
-  }, [elRef, previouslyFocusedElRef]);
+  }, [isHydrated, elRef, previouslyFocusedElRef]);
 
   return (
     <div data-testid="syntax-focus-trap" ref={elRef}>

@@ -11,16 +11,10 @@ import styles from "./Modal.module.css";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import IconButton from "../IconButton/IconButton";
 
-function XIcon({ color = "#000" }: { color?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill={color}>
-      <path
-        fill="inherit"
-        d="M11.25.758a.83.83 0 0 0-1.175 0L6 4.825 1.925.75A.83.83 0 1 0 .75 1.925L4.825 6 .75 10.075a.83.83 0 1 0 1.175 1.175L6 7.175l4.075 4.075a.83.83 0 1 0 1.175-1.175L7.175 6l4.075-4.075a.835.835 0 0 0 0-1.167Z"
-      />
-    </svg>
-  );
-}
+const sizeWidth = {
+  sm: 600,
+  lg: 600,
+} as const;
 
 function XIconCambio({ className }: { className?: string }) {
   return (
@@ -35,13 +29,6 @@ function XIconCambio({ className }: { className?: string }) {
     </svg>
   );
 }
-
-// Note: Only sm + lg size currently. design thinks there should only be two sizes.
-// If there IS a md size at some point, we should use the "size" const.
-const sizeWidth = {
-  sm: 400,
-  lg: 600,
-} as const;
 
 /**
  * [Modal](https://cambly-syntax.vercel.app/?path=/docs/components-modal--docs) is a dialog that appears on top of the main content and locks user interaction within the modal.
@@ -137,16 +124,12 @@ export default function Modal({
   accessibilityCloseLabel?: string;
   /**
    * The size of the card
-   *
-   * Classic:
-   * * `sm`: 400px (Classic only)
-   * * `lg`: 600px
-   *
-   * Cambio:
+   * * `sm`: 600px (deprecated)
    * * `lg`: 600px
    *
    *
    * @defaultValue sm
+   * @deprecated
    */
   size?: keyof typeof sizeWidth;
   /**
@@ -180,75 +163,47 @@ export default function Modal({
             <Box
               data-testid={dataTestId}
               backgroundColor="white"
-              rounding={themeName === "classic" ? "xl" : "md"}
+              rounding="md"
               display="flex"
-              direction="column"
               marginStart={4}
               marginEnd={4}
               marginTop={8}
               marginBottom={8}
               minWidth={240}
-              maxWidth={sizeWidth[themeName === "classic" ? size : "lg"]}
+              maxHeight="calc(100vh - 64px)"
+              maxWidth={sizeWidth[size]}
+              overflow="hidden"
+              position="relative"
               width="100%"
-              dangerouslySetInlineStyle={{
-                __style: {
-                  overflow: "hidden",
-                  maxHeight: "calc(100vh - 64px)",
-                },
-              }}
             >
-              <Box position="relative">
-                {themeName === "classic" ? (
-                  <button
-                    aria-label={accessibilityCloseLabel}
-                    type="button"
-                    className={classnames(
-                      styles.closeButton,
-                      styles.closeButtonClassic,
-                      {
-                        [styles.closeButtonWithImage]: !!image,
-                      },
-                    )}
-                    onClick={onDismiss}
-                  >
-                    <XIcon color={image ? "#fff" : "#000"} />
-                  </button>
-                ) : (
-                  <Box
-                    position="absolute"
-                    dangerouslySetInlineStyle={{
-                      __style: { top: 4, right: 4 },
-                    }}
-                  >
-                    <IconButton
-                      accessibilityLabel={accessibilityCloseLabel}
-                      color={image ? "primary" : "tertiary"}
-                      on={image ? "darkBackground" : "lightBackground"}
-                      onClick={onDismiss}
-                      size="sm"
-                      icon={XIconCambio}
-                    />
-                  </Box>
-                )}
-              </Box>
-              {image && <Box>{image}</Box>}
               <Box
-                display="flex"
-                gap={themeName === "classic" ? 3 : 4}
-                direction="column"
-                padding={themeName === "classic" ? 9 : 6}
+                position="absolute"
+                dangerouslySetInlineStyle={{
+                  __style: { top: 4, right: 4 },
+                }}
               >
-                <Heading
-                  as="h1"
-                  size={themeName === "classic" ? 500 : 600}
-                  fontStyle={themeName === "classic" ? "sans-serif" : "serif"}
-                >
-                  {header}
-                </Heading>
+                <IconButton
+                  accessibilityLabel={accessibilityCloseLabel}
+                  color={image ? "primary" : "tertiary"}
+                  on={image ? "darkBackground" : "lightBackground"}
+                  onClick={onDismiss}
+                  size="sm"
+                  icon={XIconCambio}
+                />
+              </Box>
+
+              <Box display="flex" direction="column" width="100%">
+                {image && <Box>{image}</Box>}
+                <Box padding={6}>
+                  <Heading as="h1" size={600} fontStyle="serif">
+                    {header}
+                  </Heading>
+                </Box>
                 <Box
-                  marginBottom={themeName === "classic" ? 4 : 0}
-                  maxHeight={"calc(100vh - 232px)"} // 232x is combined height of header/footer/padding/margin
-                  overflowY="scroll"
+                  height="100%"
+                  overflowY="auto"
+                  paddingX={6}
+                  marginBottom={footer ? 0 : 6}
                 >
                   {children}
                 </Box>
@@ -257,11 +212,11 @@ export default function Modal({
                     display="flex"
                     direction="column"
                     gap={3}
-                    marginTop={themeName === "classic" ? 0 : 2}
                     smDirection="row"
                     smJustifyContent="end"
                     lgDirection="row"
                     lgJustifyContent="end"
+                    padding={6}
                   >
                     {footer}
                   </Box>
