@@ -4,6 +4,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import Button from "../Button/Button";
 import Typography from "../Typography/Typography";
 import Modal from "./Modal";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/Modal",
@@ -99,13 +100,7 @@ export const WithImage: StoryObj<typeof Modal> = {
   args: {
     ...Default.args,
     header: "With Image",
-    image: (
-      <img
-        src="https://placehold.co/600x200"
-        alt="placeholder image"
-        style={{ width: "100%" }}
-      />
-    ),
+    image: <img src="https://placehold.co/600x200" alt="placeholder image" />,
   },
   render: function WithImageExample({ ...args }): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -267,6 +262,56 @@ export const NoButtons: StoryObj<typeof Modal> = {
             onDismiss={() => setIsOpen(false)}
             header={args.header}
           />
+        )}
+      </>
+    );
+  },
+};
+
+export const Scrollable: StoryObj<typeof Modal> = {
+  args: {
+    ...Default.args,
+    header: "Scrollable",
+  },
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <Button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
+        />
+        {isOpen && (
+          <Modal
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            footer={
+              <>
+                <Button
+                  text="Cancel"
+                  color="secondary"
+                  onClick={() => {
+                    action("cancel");
+                    setIsOpen(false);
+                  }}
+                />
+                <Button
+                  text="Confirm"
+                  onClick={() => {
+                    action("confirm");
+                    setIsOpen(false);
+                  }}
+                />
+              </>
+            }
+          >
+            <Box height={1800}>
+              {Array(100).fill(<Typography>Content</Typography>)}
+            </Box>
+          </Modal>
         )}
       </>
     );

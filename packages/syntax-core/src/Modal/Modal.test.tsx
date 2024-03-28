@@ -205,7 +205,7 @@ describe("modal", () => {
     );
     expect(screen.getByTestId("modal-sm")).toHaveStyle({
       width: "100%",
-      maxWidth: "400px",
+      maxWidth: "600px",
     });
   });
 
