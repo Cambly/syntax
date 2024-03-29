@@ -16,13 +16,6 @@ import focusStyles from "../Focus.module.css";
 import SelectOption from "./SelectOption";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
-
-const iconSize = {
-  sm: 20,
-  md: 24,
-  lg: 24,
-} as const;
 
 /**
  * [SelectList](https://cambly-syntax.vercel.app/?path=/docs/components-selectlist--docs) is a dropdown menu that allows users to select one option from a list.
@@ -94,13 +87,13 @@ export default function SelectList({
    * * `lg`: 48px
    *
    * @defaultValue "md"
+   * @deprecated we only support `md` size
    */
   size?: "sm" | "md" | "lg";
 }): ReactElement {
   const reactId = useId();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
-  const { themeName } = useTheme();
   const selectId = id ?? reactId;
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
@@ -123,25 +116,17 @@ export default function SelectList({
       <div className={styles.selectWrapper}>
         <select
           id={selectId}
+          data-size={size}
           data-testid={dataTestId}
           disabled={disabled}
-          className={classNames(
-            styles.selectBox,
-            themeName === "classic"
-              ? styles.selectBoxClassic
-              : styles.selectBoxCambio,
-            themeName === "classic" && styles[size],
-            {
-              [styles.unselected]: !selectedValue && !errorText,
-              [styles.selected]: selectedValue && !errorText,
-              [themeName === "classic"
-                ? styles.selectError
-                : styles.selectErrorCambio]: errorText,
-              [focusStyles.accessibilityOutlineFocus]:
-                isFocused && isFocusVisible, // for focus keyboard
-              [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-            },
-          )}
+          className={classNames(styles.selectBox, styles.selectBoxCambio, {
+            [styles.unselected]: !selectedValue && !errorText,
+            [styles.selected]: selectedValue && !errorText,
+            [styles.selectErrorCambio]: errorText,
+            [focusStyles.accessibilityOutlineFocus]:
+              isFocused && isFocusVisible, // for focus keyboard
+            [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+          })}
           onChange={onChange}
           onClick={onClick}
           value={
@@ -162,7 +147,7 @@ export default function SelectList({
             focusable="false"
             aria-hidden="true"
             viewBox="0 0 24 24"
-            width={themeName === "classic" ? iconSize[size] : 24}
+            width={24}
           >
             <path
               fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}

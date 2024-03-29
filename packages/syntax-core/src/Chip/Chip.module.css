@@ -1,4 +1,6 @@
 .chip {
+  border: none;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,43 +9,24 @@
   box-sizing: border-box;
 }
 
-.chipClassic {
-  border: 1px solid var(--color-base-gray-300);
-  border-radius: 1000px;
-}
-
-.chipCambio {
-  border: none;
-  border-radius: 8px;
-}
-
 .disabled {
   filter: opacity(50%);
   cursor: auto;
 }
 
 .deselectedChip {
-  background-color: var(--color-base-gray-200);
-}
-
-.selectedChip {
-  background-color: var(--color-base-primary-800);
-  border: 1px solid var(--color-base-primary-800);
-}
-
-.deselectedChipCambio {
   background-color: var(--color-cambio-gray-370);
 }
 
-.deselectedChipCambioOnDarkBackground {
+.deselectedChipOnDarkBackground {
   background-color: var(--color-cambio-gray-870);
 }
 
-.selectedChipCambio {
+.selectedChip {
   background-color: var(--color-cambio-gray-800);
 }
 
-.selectedChipCambioOnDarkBackground {
+.selectedChipOnDarkBackground {
   background-color: var(--color-cambio-gray-200);
 }
 
@@ -63,12 +46,6 @@
   height: 32px;
   min-width: 40px;
   padding: 8px 12px;
-}
-
-.lg {
-  height: 48px;
-  min-width: 56px;
-  padding: 8px 16px;
 }
 
 .chip:focus-visible,

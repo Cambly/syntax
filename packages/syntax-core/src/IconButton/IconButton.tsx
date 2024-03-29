@@ -1,44 +1,23 @@
 import classNames from "classnames";
-import {
-  classicForegroundColor,
-  cambioForegroundColor,
-} from "../colors/foregroundColor";
+import { cambioForegroundColor } from "../colors/foregroundColor";
 import React, { forwardRef } from "react";
 import { type Size } from "../constants";
 import styles from "./IconButton.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { classicColor, cambioColor } from "../Button/constants/color";
-import buttonStyles from "../Button/Button.module.css";
-import {
-  classicBackgroundColor,
-  cambioBackgroundColor,
-} from "../colors/backgroundColor";
+import { cambioColor } from "../Button/constants/color";
+import { backgroundColor } from "../colors/backgroundColor";
 
-const classicIconSize = {
+const iconSize = {
   sm: styles.smIcon,
   md: styles.mdIcon,
   lg: styles.lgIcon,
-};
-
-const cambioIconSize = {
-  sm: styles.smIconCambio,
-  md: styles.mdIconCambio,
-  lg: styles.lgIconCambio,
 };
 
 type IconButtonProps = {
   /**
    * The color of the button
    *
-   * Classic only:
-   * * `inverse`
-   * * `success`
-   *
-   * Cambio only:
-   * * `success-primary`
-   * * `success-secondary`
-   * * `success-tertiary`
+   * `inverse` and `success` are deprecated
    *
    * @defaultValue "primary"
    */
@@ -61,13 +40,7 @@ type IconButtonProps = {
   "data-testid"?: string;
   /**
    * The size of the button
-   *
-   * Classic:
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * Cambio:
+
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
@@ -90,7 +63,7 @@ type IconButtonProps = {
    */
   disabled?: boolean;
   /**
-   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button
    *
    * @defaulValue `lightBackground`
    */
@@ -124,17 +97,8 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ref,
   ) => {
     const isHydrated = useIsHydrated();
-    const { themeName } = useTheme();
-
-    const foregroundColorClass =
-      themeName === "classic"
-        ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color), on);
-
-    const backgroundColorClass =
-      themeName === "classic"
-        ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color), on);
+    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
+    const backgroundColorClass = backgroundColor(cambioColor(color), on);
 
     return (
       <button
@@ -148,27 +112,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           styles.iconButton,
           foregroundColorClass,
           backgroundColorClass,
-          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
-          {
-            [buttonStyles.secondaryBorder]:
-              themeName === "classic" && color === "secondary",
-            [buttonStyles.secondaryDestructiveBorder]:
-              themeName === "classic" && color === "destructive-secondary",
-            [styles.iconButtonNoBorder]:
-              (themeName === "classic" &&
-                !["secondary", "destructive-secondary"].includes(color)) ||
-              themeName === "cambio",
-          },
+          styles[size],
+          styles.iconButtonNoBorder,
         )}
         ref={ref}
       >
-        <Icon
-          className={
-            themeName === "classic"
-              ? classicIconSize[size]
-              : cambioIconSize[size]
-          }
-        />
+        <Icon className={iconSize[size]} />
       </button>
     );
   },

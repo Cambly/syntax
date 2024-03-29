@@ -52,66 +52,30 @@
 }
 
 .md {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
 }
 
 .lg {
-  height: 48px;
-  width: 48px;
-}
-
-.smCambio {
-  height: 32px;
-  width: 32px;
-}
-
-.mdCambio {
-  height: 48px;
-  width: 48px;
-}
-
-.lgCambio {
   height: 64px;
   width: 64px;
 }
 
 .smIcon {
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 16px !important;
+  height: 20px !important;
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 16px !important;
+  width: 20px !important;
 }
 
 .mdIcon {
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 20px !important;
+  height: 24px !important;
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 20px !important;
+  width: 24px !important;
 }
 
 .lgIcon {
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 24px !important;
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 24px !important;
-}
-
-.smIconCambio {
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 20px !important;
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 20px !important;
-}
-
-.mdIconCambio {
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  height: 24px !important;
-  /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
-  width: 24px !important;
-}
-
-.lgIconCambio {
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   height: 32px !important;
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */

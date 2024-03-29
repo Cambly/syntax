@@ -8,6 +8,7 @@ import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
+import { roundingCambio } from "../Box/Box";
 
 type TapAreaProps = AriaAttributes & {
   /**
@@ -150,7 +151,8 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
 
     const isHoveredOrFocussed = !disabled && (hovered || focussed);
     const roundingClasses =
-      rounding !== "none" && roundingStyles[`rounding${rounding}`];
+      rounding !== "none" &&
+      roundingStyles[`rounding${roundingCambio(rounding)}`];
 
     return (
       <div

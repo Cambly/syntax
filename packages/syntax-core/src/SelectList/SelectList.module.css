@@ -29,11 +29,6 @@
   width: 100%;
 }
 
-.selectBoxClassic {
-  border: 1px solid var(--color-base-gray-700);
-  padding: 0 36px 0 12px;
-}
-
 .selectBoxCambio {
   border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
@@ -68,30 +63,6 @@
 
 .selectBox:disabled {
   cursor: auto;
-}
-
-.sm {
-  border-radius: 12px;
-  font-size: 12px;
-  height: 32px;
-}
-
-.md {
-  border-radius: 12px;
-  font-size: 14px;
-  height: 40px;
-}
-
-.lg {
-  border-radius: 16px;
-  font-size: 16px;
-  height: 48px;
-}
-
-.selectError {
-  color: var(--color-base-destructive-700);
-  border-color: var(--color-base-destructive-700);
-  background-color: var(--color-base-destructive-100);
 }
 
 .selectErrorCambio {

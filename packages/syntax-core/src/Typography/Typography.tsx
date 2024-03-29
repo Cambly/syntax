@@ -2,40 +2,8 @@ import classNames from "classnames";
 import { forwardRef, type ReactElement, type ReactNode } from "react";
 import styles from "./Typography.module.css";
 import colorStyles from "../colors/colors.module.css";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-function classicTextColor(
-  color:
-    | "gray900"
-    | "gray700"
-    | "primary"
-    | "destructive-primary"
-    | "destructive-darkBackground"
-    | "success"
-    | "success-darkBackground"
-    | "white"
-    | "inherit",
-): string {
-  switch (color) {
-    case "gray700":
-      return colorStyles.gray700Color;
-    case "white":
-      return colorStyles.whiteColor;
-    case "inherit":
-      return colorStyles.inheritColor;
-    case "primary":
-      return colorStyles.primary700Color;
-    case "destructive-primary":
-    case "destructive-darkBackground":
-      return colorStyles.destructive700Color;
-    case "success":
-      return colorStyles.success700Color;
-    default:
-      return colorStyles.gray900Color;
-  }
-}
-
-function cambioTextColor(
+function textColor(
   color:
     | "gray900"
     | "gray700"
@@ -68,18 +36,7 @@ function cambioTextColor(
   }
 }
 
-function classicWeight(
-  weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
-): "regular" | "interactive" | "semiBold" | "bold" | "heavy" {
-  switch (weight) {
-    case "medium":
-      return "regular";
-    default:
-      return weight;
-  }
-}
-
-function cambioWeight(
+function convertWeight(
   weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
 ): "regular" | "medium" | "semiBold" | "bold" {
   switch (weight) {
@@ -118,8 +75,6 @@ const Typography = forwardRef<
     children?: ReactNode;
     /**
      * The color of the text.
-     *
-     * Cambio only: `success-darkBackground` / `destructive-darkBackground`
      *
      * @defaultValue "gray900"
      */
@@ -162,16 +117,7 @@ const Typography = forwardRef<
     /**
      * Size of the text.
      *
-     * Classic:
-     * * `100`: 12px
-     * * `200`: 14px
-     * * `300`: 16px
-     * * `500`: 20px
-     * * `600`: 28px
-     * * `700`: 40px
-     * * `800`: 64px
-     *
-     * Cambio Mobile:
+     * Mobile (viewport width <= 480px)::
      * * `100`: 14px
      * * `200`: 16px
      * * `300`: 18px
@@ -184,7 +130,7 @@ const Typography = forwardRef<
      * * `1000`: 41px
      * * `1100`: 46px
      *
-     * Cambio Desktop (viewport width > 480px):
+     * Desktop (viewport width > 480px):
      * * `100`: 13px
      * * `200`: 16px
      * * `300`: 20px
@@ -219,19 +165,12 @@ const Typography = forwardRef<
     /**
      * Indicates the boldness of the text.
      *
-     * Classic:
-     * * `regular`: 400
-     * * `interactive`: 500 (Classic only)
-     * * `semiBold`: 600
-     * * `bold`: 700
-     * * `heavy`: 860 (Classic only)
-     *
-     * Cambio:
      * * `regular`: 400
      * * `medium`: 510
      * * `semiBold`: 590
      * * `bold`: 710
      *
+     * `interactive` and `heavy` are deprecated
      *
      * @defaultValue "regular"
      */
@@ -264,12 +203,7 @@ const Typography = forwardRef<
 ): ReactElement {
   const Tag = as;
 
-  const { themeName } = useTheme();
-
-  const weightStyles =
-    themeName === "classic"
-      ? styles[classicWeight(weight)]
-      : styles[`${cambioWeight(weight)}Cambio`];
+  const weightStyles = styles[`${convertWeight(weight)}`];
 
   return (
     <Tag
@@ -278,31 +212,10 @@ const Typography = forwardRef<
         styles.typography,
         styles[align],
         weightStyles,
-        themeName === "cambio" && fontStyle === "serif"
-          ? styles.serif
-          : styles.sansSerif,
-        themeName === "cambio"
-          ? cambioTextColor(color)
-          : classicTextColor(color),
+        fontStyle === "serif" ? styles.serif : styles.sansSerif,
+        textColor(color),
         inline && styles.inline,
-        themeName === "classic"
-          ? styles[
-              `size${
-                // TypeScript doesn't narrow the type of size with `.includes` so we have to do it manually
-                // https://github.com/microsoft/TypeScript/issues/36275#issuecomment-643376433
-                // One we ship Cambio, we can remove these checks
-                size === 100 ||
-                size === 200 ||
-                size === 300 ||
-                size === 500 ||
-                size === 600 ||
-                size === 700 ||
-                size === 800
-                  ? size
-                  : 200
-              }`
-            ]
-          : styles[`size${size}Cambio`],
+        styles[`size${size}`],
         transform === "uppercase" && styles.uppercase,
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,

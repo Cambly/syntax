@@ -3,23 +3,10 @@ import { Preview } from "@storybook/react";
 import ThemeProvider from "../../../packages/syntax-core/src/ThemeProvider/ThemeProvider";
 
 const preview: Preview = {
-  globalTypes: {
-    theme: {
-      description: "Global theme for components",
-      defaultValue: "classic",
-      toolbar: {
-        title: "Theme",
-        icon: "circlehollow",
-        items: ["classic", "cambio"],
-        dynamicTitle: true,
-      },
-    },
-  },
   decorators: [
-    (Story, context) => {
-      const theme = context.globals.theme;
+    (Story) => {
       return (
-        <ThemeProvider themeName={theme}>
+        <ThemeProvider>
           <Story />
         </ThemeProvider>
       );

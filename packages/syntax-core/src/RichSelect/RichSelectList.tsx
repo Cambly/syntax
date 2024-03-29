@@ -33,15 +33,8 @@ import RichSelectSection from "./RichSelectSection";
 import RichSelectChip from "./RichSelectChip";
 import RichSelectRadioButton from "./RichSelectRadioButton";
 import { useField } from "react-aria";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const NOOP = () => undefined;
-
-const iconSize = {
-  sm: 20,
-  md: 24,
-  lg: 24,
-} as const;
 
 export type RichSelectListProps = RichSelectBoxProps & {
   /** Test id for the select element */
@@ -125,7 +118,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
   const inputId = id ?? reactId;
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
-  const { themeName } = useTheme();
 
   // passed to popover, which attached open/close methods
   const overlayHandlerRef = useRef<OverlayHandlerRef>({});
@@ -228,18 +220,15 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             data-testid={dataTestId}
             disabled={disabled}
             onClick={onClick}
-            rounding={size === "lg" ? "lg" : "md"}
+            rounding="md"
             {...fieldProps}
             ref={fieldRef}
           >
-            <div className={styles.selectWrapper}>
+            <div className={styles.selectWrapper} data-size={size}>
               <div
                 className={classNames(
                   styles.selectBox,
-                  themeName === "classic"
-                    ? styles.selectBoxClassic
-                    : styles.selectBoxCambio,
-                  themeName === "classic" && styles[size],
+                  styles.selectBoxCambio,
                   {
                     [styles.unselected]:
                       !errorText &&
@@ -248,9 +237,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                     [styles.selected]:
                       !errorText &&
                       (selectedKeys === "all" || selectedKeys.size),
-                    [themeName === "classic"
-                      ? styles.selectError
-                      : styles.selectErrorCambio]: errorText,
+                    [styles.selectErrorCambio]: errorText,
                   },
                 )}
               >
@@ -261,7 +248,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                   focusable="false"
                   aria-hidden="true"
                   viewBox="0 0 24 24"
-                  width={iconSize[size]}
+                  width={24}
                 >
                   <path
                     fill={

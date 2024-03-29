@@ -1,19 +1,12 @@
 .textfield {
   appearance: none;
+  border: 1px solid var(--color-cambio-gray-370);
+  border-radius: 8px;
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   margin: 0;
   width: 100%;
-}
-
-.textfieldClassic {
-  border: 1px solid var(--color-base-gray-700);
-}
-
-.textfieldCambio {
-  border: 1px solid var(--color-cambio-gray-370);
-  border-radius: 8px;
   font-size: 16px;
 }
 
@@ -30,62 +23,19 @@
   cursor: pointer;
 }
 
-.sm {
-  border-radius: 12px;
-  font-size: 12px;
-  padding-inline-start: 12px;
-  padding-inline-end: 12px;
-}
-
-.mdCambio {
+.md {
   padding: 12px;
 }
 
-.heightCambio {
-  height: 48px;
-}
-
-.smHeight {
-  height: 32px;
-}
-
-.md {
-  border-radius: 12px;
-  font-size: 14px;
-  padding-inline-start: 12px;
-  padding-inline-end: 12px;
-}
-
-.mdHeight {
-  height: 40px;
-}
-
-.lg {
-  border-radius: 16px;
-  font-size: 16px;
-  padding-inline-start: 16px;
-  padding-inline-end: 16px;
-}
-
-.lgHeight {
+.height {
   height: 48px;
 }
 
 .inputError {
-  color: var(--color-base-destructive-700);
-  border-color: var(--color-base-destructive-700);
-  background-color: var(--color-base-destructive-100);
-}
-
-.inputError::placeholder {
-  color: var(--color-base-destructive-700);
-}
-
-.inputErrorCambio {
   color: var(--color-cambio-destructive-900);
   border-color: var(--color-cambio-destructive-700);
 }
 
-.inputErrorCambio::placeholder {
+.inputError::placeholder {
   color: var(--color-cambio-destructive-900);
 }

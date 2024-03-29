@@ -11,25 +11,13 @@
 }
 
 .smallGap {
-  gap: 8px;
-}
-
-.mediumGap {
-  gap: 12px;
-}
-
-.largeGap {
-  gap: 16px;
-}
-
-.smallGapCambio {
   gap: 4px;
 }
 
-.mediumGapCambio {
+.mediumGap {
   gap: 8px;
 }
 
-.largeGapCambio {
+.largeGap {
   gap: 12px;
 }

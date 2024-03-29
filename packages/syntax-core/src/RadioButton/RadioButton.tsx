@@ -6,7 +6,6 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colorStyles from "../colors/colors.module.css";
 import Box from "../Box/Box";
 
@@ -80,33 +79,10 @@ const RadioButton = ({
   /** forces focus ring styling */
   dangerouslyForceFocusStyles?: boolean;
 }): ReactElement => {
-  const { themeName } = useTheme();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
-
-  const classicStyles = classnames(styles.background, styles[size], {
-    [styles.errorBorderColor]: error,
-    [styles.borderColor]: !error,
-    [focusStyles.accessibilityOutlineFocus]:
-      (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
-    [styles.mdCheckedBorder]: checked && size === "md",
-    [styles.smCheckedBorder]: checked && size === "sm",
-    [styles.neutralBorder]: !checked && size === "md",
-  });
-
-  const cambioStyles = classnames(
-    styles.background,
-    error
-      ? colorStyles.cambioDestructive370BackgroundColor
-      : colorStyles.cambioGray370BackgroundColor,
-    styles[size],
-    {
-      [focusStyles.accessibilityOutlineFocus]:
-        (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
-    },
-  );
 
   return (
     <label
@@ -120,8 +96,20 @@ const RadioButton = ({
         },
       )}
     >
-      <div className={themeName === "classic" ? classicStyles : cambioStyles} />
-      {themeName === "cambio" && checked && (
+      <div
+        className={classnames(
+          styles.background,
+          error
+            ? colorStyles.cambioDestructive370BackgroundColor
+            : colorStyles.cambioGray370BackgroundColor,
+          styles[size],
+          {
+            [focusStyles.accessibilityOutlineFocus]:
+              (isFocused && isFocusVisible) || dangerouslyForceFocusStyles,
+          },
+        )}
+      />
+      {checked && (
         <Box
           backgroundColor={error ? "destructive900" : "gray900"}
           width={size === "md" ? 12 : 8}

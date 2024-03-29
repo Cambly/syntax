@@ -15,10 +15,8 @@ import styles from "./Dialog.module.css";
 import { Dialog as ReactAriaDialog } from "react-aria-components";
 import classNames from "classnames";
 import type Box from "../Box/Box";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type DialogSize = "sm" | "md" | "lg";
-type DialogRounding = "lg" | "xl";
 export type DialogProps = {
   /** Test id for the floating dialog */
   "data-testid"?: string;
@@ -28,12 +26,6 @@ export type DialogProps = {
   children?: ReactNode;
   /** Optional size of the dialog box */
   size?: DialogSize;
-};
-
-const sizeToRounding: Record<DialogSize, DialogRounding> = {
-  sm: "lg",
-  md: "lg",
-  lg: "xl",
 };
 
 const sizeToPadding: Record<DialogSize, 4 | 5 | 6> = {
@@ -72,7 +64,6 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   } = props;
 
   const { padding } = useContext(DialogContext);
-  const { themeName } = useTheme();
 
   return (
     <ReactAriaDialog
@@ -91,11 +82,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         colorStyles.whiteBackgroundColor,
         paddingStyles[`paddingX${padding ?? sizeToPadding[size]}`],
         paddingStyles[`paddingY${padding ?? sizeToPadding[size]}`],
-        roundingStyles[
-          themeName === "classic"
-            ? (`rounding${sizeToRounding[size]}` as const)
-            : "roundingmdCambio"
-        ],
+        roundingStyles.roundingmd,
         elevationStyles.elevation400BoxShadow,
         layoutStyles.fullMaxHeight,
         layoutStyles.visibilityVisible,
