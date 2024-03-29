@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.8.0
+
+### Minor Changes
+
+- 6ab81ed: Cambio: remove useTheme hook & forking logic
+
 ## 0.7.0
 
 ### Minor Changes

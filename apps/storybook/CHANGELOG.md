@@ -1,5 +1,17 @@
 # @syntax/storybook
 
+## 0.17.0
+
+### Minor Changes
+
+- 6ab81ed: Cambio: remove useTheme hook & forking logic
+
+### Patch Changes
+
+- Updated dependencies [6ab81ed]
+  - @cambly/syntax-floating-components@0.8.0
+  - @cambly/syntax-core@10.31.0
+
 ## 0.16.11
 
 ### Patch Changes
