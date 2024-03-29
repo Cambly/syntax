@@ -8,7 +8,6 @@ import styles from "./TextField.module.css";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 /**
  * [TextField](https://cambly-syntax.vercel.app/?path=/docs/components-textfield--docs) is a component that allows users to enter text.
@@ -95,7 +94,6 @@ export default function TextField({
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
-  const { themeName } = useTheme();
   const inputId = id ?? reactId;
 
   return (
@@ -121,22 +119,10 @@ export default function TextField({
       )}
       <input
         autoComplete={autoComplete}
-        className={classNames(
-          styles.textfield,
-          themeName === "classic"
-            ? styles.textfieldClassic
-            : styles.textfieldCambio,
-          themeName === "classic" && styles[size],
-          themeName === "cambio" ? styles.mdCambio : undefined,
-          themeName === "classic"
-            ? styles[`${size}Height`]
-            : styles.heightCambio,
-          {
-            [themeName === "classic"
-              ? styles.inputError
-              : styles.inputErrorCambio]: errorText,
-          },
-        )}
+        className={classNames(styles.textfield, styles.md, styles.height, {
+          [styles.inputError]: errorText,
+        })}
+        data-size={size}
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}

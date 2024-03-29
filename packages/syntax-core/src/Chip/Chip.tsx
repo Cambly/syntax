@@ -4,18 +4,15 @@ import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 function typographyColor({
-  themeName,
   selected,
   on,
 }: {
-  themeName: "cambio" | "classic";
   selected: boolean;
   on: "lightBackground" | "darkBackground";
 }): "white" | "gray900" {
-  if (themeName === "cambio" && on === "darkBackground") {
+  if (on === "darkBackground") {
     if (selected) {
       return "gray900";
     } else {
@@ -50,12 +47,9 @@ type ChipProps = {
   /**
    * Size of the chip.
    *
-   * Classic:
    * * `sm`: 32px
-   * * `lg`: 48px
    *
-   * Cambio:
-   * * `sm`: 32px
+   * `lg` is deprecated
    *
    * @defaultValue sm
    */
@@ -90,7 +84,6 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       disabled: disabledProp = false,
       selected = false,
       "data-testid": dataTestId,
-      size = "sm",
       text,
       on = "lightBackground",
       onChange,
@@ -99,47 +92,32 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     }: ChipProps,
     ref,
   ) => {
-    const { themeName } = useTheme();
-    const transformedSize = themeName === "cambio" ? "sm" : size;
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
 
-    const selectedChipCambioStyle =
+    const selectedChipStyle =
       on === "lightBackground"
-        ? styles.selectedChipCambio
-        : styles.selectedChipCambioOnDarkBackground;
+        ? styles.selectedChip
+        : styles.selectedChipOnDarkBackground;
 
-    const deselectedChipCambioStyle =
+    const deselectedChipStyle =
       on === "lightBackground"
-        ? styles.deselectedChipCambio
-        : styles.deselectedChipCambioOnDarkBackground;
+        ? styles.deselectedChip
+        : styles.deselectedChipOnDarkBackground;
 
-    const chipStyles = classnames(
-      styles.chip,
-      themeName === "classic" ? styles.chipClassic : styles.chipCambio,
-      styles[transformedSize],
-      {
-        [themeName === "classic"
-          ? styles.selectedChip
-          : selectedChipCambioStyle]: selected,
-        [themeName === "classic"
-          ? styles.deselectedChip
-          : deselectedChipCambioStyle]: !selected,
-        [styles.disabled]: disabled,
-        [styles.forceFocus]: dangerouslyForceFocusStyles,
-      },
-    );
+    const chipStyles = classnames(styles.chip, styles.sm, {
+      [selectedChipStyle]: selected,
+      [deselectedChipStyle]: !selected,
+      [styles.disabled]: disabled,
+      [styles.forceFocus]: dangerouslyForceFocusStyles,
+    });
     const iconStyles = classnames(styles.icon, {
       [styles.selectedIcon]: selected,
     });
-    const typographySize = {
-      ["sm"]: 200,
-      ["lg"]: 300,
-    } as const;
 
     const color = useMemo(
-      () => typographyColor({ themeName, selected, on }),
-      [themeName, selected, on],
+      () => typographyColor({ selected, on }),
+      [selected, on],
     );
 
     return (
@@ -154,13 +132,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       >
         {Icon && <Icon className={iconStyles} />}
         <Box paddingX={Icon ? 1 : 0}>
-          <Typography
-            size={
-              themeName === "classic" ? typographySize[transformedSize] : 100
-            }
-            color={color}
-            weight={themeName === "classic" ? "regular" : "medium"}
-          >
+          <Typography size={100} color={color} weight="medium">
             {text}
           </Typography>
         </Box>

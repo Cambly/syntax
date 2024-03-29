@@ -8,16 +8,9 @@ import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { classicColor, cambioColor } from "./constants/color";
-import {
-  classicBackgroundColor,
-  cambioBackgroundColor,
-} from "../colors/backgroundColor";
-import {
-  classicForegroundColor,
-  cambioForegroundColor,
-} from "../colors/foregroundColor";
+import { cambioColor } from "./constants/color";
+import { backgroundColor } from "../colors/backgroundColor";
+import { cambioForegroundColor } from "../colors/foregroundColor";
 
 type ButtonProps = {
   /**
@@ -35,14 +28,7 @@ type ButtonProps = {
   /**
    * The color of the button
    *
-   * Classic only:
-   * * `inverse`
-   * * `success`
-   *
-   * Cambio only:
-   * * `success-primary`
-   * * `success-secondary`
-   * * `success-tertiary`
+   * `inverse` and `success` are deprecated
    *
    * @defaultValue "primary"
    */
@@ -150,20 +136,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const isHydrated = useIsHydrated();
-    const { themeName } = useTheme();
 
-    const foregroundColorClass =
-      themeName === "classic"
-        ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color), on);
-
-    const backgroundColorClass =
-      themeName === "classic"
-        ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color), on);
-
-    const disabledCambioPrimary =
-      themeName === "cambio" && color === "primary" && disabled;
+    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
+    const backgroundColorClass = backgroundColor(cambioColor(color), on);
+    const disabledPrimary = color === "primary" && disabled;
 
     return (
       <button
@@ -178,14 +154,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           foregroundColorClass,
           backgroundColorClass,
-          themeName === "classic" ? styles[size] : styles[`${size}Cambio`],
+          styles[size],
           {
             [styles.fullWidth]: fullWidth,
             [styles.buttonGap]: size === "lg" || size === "md",
-            [styles.secondaryBorder]:
-              themeName === "classic" && color === "secondary",
-            [styles.secondaryDestructiveBorder]:
-              themeName === "classic" && color === "destructive-secondary",
           },
         )}
       >
@@ -194,22 +166,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             className={classNames(
               styles.icon,
               iconSize[size],
-              disabledCambioPrimary && styles.disabledCambioPrimary,
+              disabledPrimary && styles.disabledPrimary,
             )}
           />
         )}
         {((loading && loadingText) || (!loading && text)) && (
           <Box paddingX={1}>
-            <Typography
-              size={
-                themeName === "classic" ? textVariant[size] : textVariant[size]
-              }
-            >
+            <Typography size={textVariant[size]}>
               <span
                 className={classNames(
                   // Temporary - until we have cambio colors on Typography
                   foregroundColorClass,
-                  disabledCambioPrimary && styles.disabledCambioPrimary,
+                  disabledPrimary && styles.disabledPrimary,
                 )}
                 style={{ fontWeight: 500 }}
               >
@@ -223,7 +191,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             className={classNames(
               styles.icon,
               iconSize[size],
-              disabledCambioPrimary && styles.disabledCambioPrimary,
+              disabledPrimary && styles.disabledPrimary,
             )}
           />
         )}

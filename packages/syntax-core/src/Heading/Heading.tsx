@@ -1,8 +1,7 @@
 import { type ReactElement, type ReactNode } from "react";
 import Typography from "../Typography/Typography";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-function cambioWeight({
+function weight({
   fontStyle,
   size,
 }: {
@@ -79,15 +78,9 @@ const Heading = ({
    */
   lineClamp?: number | undefined;
   /**
-   * Size of the text.
+   * Size of the text
    *
-   * Classic:
-   * * `500`: 20px
-   * * `600`: 28px
-   * * `700`: 40px
-   * * `800`: 64px
-   *
-   * Cambio Mobile:
+   * Mobile: (viewport width < 480px):
    * * `400`: 20px
    * * `500`: 23px
    * * `600`: 26px
@@ -97,7 +90,7 @@ const Heading = ({
    * * `1000`: 41px
    * * `1100`: 46px
    *
-   * Cambio Desktop (viewport width > 480px):
+   * Desktop (viewport width >= 480px):
    * * `400`: 25px
    * * `500`: 31px
    * * `600`: 39px
@@ -111,9 +104,6 @@ const Heading = ({
    */
   size?: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
 }): ReactElement => {
-  const { themeName } = useTheme();
-  const classicWeight = [700, 800].includes(size) ? "heavy" : "bold";
-
   return (
     <Typography
       align={align}
@@ -123,11 +113,7 @@ const Heading = ({
       data-testid={dataTestId}
       lineClamp={lineClamp}
       size={size}
-      weight={
-        themeName === "classic"
-          ? classicWeight
-          : cambioWeight({ fontStyle, size })
-      }
+      weight={weight({ fontStyle, size })}
     >
       {children}
     </Typography>

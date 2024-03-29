@@ -1,17 +1,6 @@
 import React, { useMemo } from "react";
 import variables from "@cambly/syntax-design-tokens/dist/json/variables.json";
 
-type ThemeName = "classic" | "cambio";
-
-type Theme = {
-  themeName: ThemeName;
-};
-
-const ThemeContext = React.createContext<Theme>({
-  themeName: "classic",
-});
-ThemeContext.displayName = "ThemeContext";
-
 const classicToCambioKeyLookup = {
   "color-base-black": "color-cambio-black",
   "color-base-destructive-100": "color-cambio-destructive-100",
@@ -63,19 +52,15 @@ const classicToCambioKeyLookup = {
   "color-base-white": "color-cambio-white",
 };
 
-function stylesForTheme(themeName: ThemeName) {
+function stylesForTheme() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const tokenVariables: Record<string, string> = variables;
   return `
     :root {
       ${Object.entries(tokenVariables)
-        .filter(([key]) => {
-          return themeName === "classic" ? !key.includes("cambio") : true;
-        })
         .map(([key, value]) => {
           // Replace classic values with cambio ones if they exist
           if (
-            themeName === "cambio" &&
             classicToCambioKeyLookup[
               key as keyof typeof classicToCambioKeyLookup
             ]
@@ -100,27 +85,19 @@ function stylesForTheme(themeName: ThemeName) {
 }
 
 export default function ThemeProvider({
-  themeName = "classic",
   children,
 }: {
-  themeName: ThemeName;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }): React.ReactElement {
-  const value = useMemo(() => ({ themeName }), [themeName]);
-
-  const innerStyles = useMemo(() => stylesForTheme(themeName), [themeName]);
+  const innerStyles = useMemo(() => stylesForTheme(), []);
 
   return (
-    <ThemeContext.Provider value={value}>
+    <>
       <style
         dangerouslySetInnerHTML={{ __html: innerStyles }}
         data-testid="themeprovider-style"
       ></style>
       {children}
-    </ThemeContext.Provider>
+    </>
   );
-}
-
-export function useTheme(): Theme {
-  return React.useContext(ThemeContext);
 }

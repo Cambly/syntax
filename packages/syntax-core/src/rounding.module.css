@@ -1,33 +1,12 @@
 /* Border Radius */
 .roundingsm {
-  border-radius: 8px;
-}
-
-.roundingmd {
-  border-radius: 12px;
-}
-
-.roundinglg {
-  border-radius: 16px;
-}
-
-.roundingxl {
-  border-radius: 24px;
-}
-
-.roundingfull {
-  border-radius: 999px;
-}
-
-/* Cambio */
-.roundingsmCambio {
   border-radius: 4px;
 }
 
-.roundingmdCambio {
+.roundingmd {
   border-radius: 8px;
 }
 
-.roundingfullCambio {
+.roundingfull {
   border-radius: 999px;
 }

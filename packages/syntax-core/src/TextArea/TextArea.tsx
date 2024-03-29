@@ -5,7 +5,6 @@ import styles from "./TextArea.module.css";
 import textFieldStyles from "../TextField/TextField.module.css";
 import classNames from "classnames";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 type TextAreaProps = {
   /**
@@ -86,7 +85,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const isHydrated = useIsHydrated();
     const disabled = !isHydrated || disabledProp;
     const reactId = useId();
-    const { themeName } = useTheme();
     const inputId = id ?? reactId;
 
     return (
@@ -100,7 +98,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             opacity: disabled ? 0.5 : 1,
           },
         }}
-        position={themeName === "cambio" ? "relative" : undefined}
+        position="relative"
       >
         <label className={textFieldStyles.label} htmlFor={inputId}>
           <Box paddingX={1}>
@@ -109,24 +107,14 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             </Typography>
           </Box>
         </label>
-        <Typography size={themeName === "cambio" ? 100 : 200}>
+        <Typography size={100}>
           <textarea
             data-testid={dataTestId}
+            data-size={size}
             ref={forwardedRef}
-            className={classNames(
-              textFieldStyles.textfield,
-              themeName === "classic"
-                ? textFieldStyles.textfieldClassic
-                : textFieldStyles.textfieldCambio,
-              themeName === "classic" && textFieldStyles[size],
-              themeName === "classic" && styles[size],
-              themeName === "classic" ? styles.textarea : styles.textareaCambio,
-              {
-                [themeName === "classic"
-                  ? textFieldStyles.inputError
-                  : textFieldStyles.inputErrorCambio]: errorText,
-              },
-            )}
+            className={classNames(textFieldStyles.textfield, styles.textarea, {
+              [textFieldStyles.inputError]: errorText,
+            })}
             id={inputId}
             placeholder={placeholder}
             maxLength={maxLength}

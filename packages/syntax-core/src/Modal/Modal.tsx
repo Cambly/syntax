@@ -1,5 +1,4 @@
 import { type ReactElement } from "react";
-import classnames from "classnames";
 
 import Heading from "../Heading/Heading";
 import Box from "../Box/Box";
@@ -8,7 +7,6 @@ import FocusTrap from "./FocusTrap";
 import StopScroll from "./StopScroll";
 import Layer from "./Layer";
 import styles from "./Modal.module.css";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 import IconButton from "../IconButton/IconButton";
 
 const sizeWidth = {
@@ -16,7 +14,7 @@ const sizeWidth = {
   lg: 600,
 } as const;
 
-function XIconCambio({ className }: { className?: string }) {
+function XIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -144,18 +142,12 @@ export default function Modal({
    */
   "data-testid"?: string;
 }): ReactElement {
-  const { themeName } = useTheme();
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
         <FocusTrap>
           <div
-            className={classnames(
-              styles.backdrop,
-              themeName === "classic"
-                ? styles.backdropClassic
-                : styles.backdropCambio,
-            )}
+            className={styles.backdrop}
             role="presentation"
             onClick={(e) => e.target === e.currentTarget && onDismiss()}
             onKeyDown={(e) => e.key === "Escape" && onDismiss()}
@@ -188,7 +180,7 @@ export default function Modal({
                   on={image ? "darkBackground" : "lightBackground"}
                   onClick={onDismiss}
                   size="sm"
-                  icon={XIconCambio}
+                  icon={XIcon}
                 />
               </Box>
 

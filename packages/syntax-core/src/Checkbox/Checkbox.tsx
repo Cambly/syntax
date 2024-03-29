@@ -5,7 +5,6 @@ import styles from "./Checkbox.module.css";
 import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colorStyles from "../colors/colors.module.css";
 
 const typographySize = {
@@ -70,43 +69,10 @@ const Checkbox = ({
    */
   error?: boolean;
 }): ReactElement => {
-  const { themeName } = useTheme();
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const [isFocused, setIsFocused] = useState(false);
   const { isFocusVisible } = useFocusVisible();
-
-  const checkboxStyling = classNames(styles.checkbox, styles[size], {
-    [focusStyles.accessibilityOutlineFocus]: isFocused && isFocusVisible,
-  });
-
-  const classicCheckboxStyling = classNames(
-    checkboxStyling,
-    styles[`${size}BorderRadius`],
-  );
-
-  const cambioCheckboxStyling = classNames(
-    checkboxStyling,
-    styles.cambioCheckbox,
-    error
-      ? colorStyles.cambioDestructive370BackgroundColor
-      : colorStyles.cambioGray370BackgroundColor,
-  );
-
-  const uncheckedStyling =
-    themeName === "classic"
-      ? classNames(classicCheckboxStyling, styles.uncheckedBox, {
-          [styles.uncheckedBorder]: !error,
-          [styles.uncheckedErrorBorder]: error,
-        })
-      : cambioCheckboxStyling;
-  const checkedStyling =
-    themeName === "classic"
-      ? classNames(classicCheckboxStyling, styles.checkedBox, {
-          [styles.checkedNonError]: !error,
-          [styles.checkedError]: error,
-        })
-      : cambioCheckboxStyling;
 
   return (
     <label
@@ -118,16 +84,20 @@ const Checkbox = ({
         },
       )}
     >
-      <div className={checked ? checkedStyling : uncheckedStyling}>
-        {checked && themeName === "classic" && (
-          <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
-            <path
-              fill="#fff"
-              d="m9 16.2-3.5-3.5a.9839.9839 0 0 0-1.4 0c-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4a.9839.9839 0 0 0-1.4 0L9 16.2z"
-            ></path>
-          </svg>
+      <div
+        className={classNames(
+          styles.checkbox,
+          styles[size],
+          {
+            [focusStyles.accessibilityOutlineFocus]:
+              isFocused && isFocusVisible,
+          },
+          error
+            ? colorStyles.cambioDestructive370BackgroundColor
+            : colorStyles.cambioGray370BackgroundColor,
         )}
-        {checked && themeName === "cambio" && (
+      >
+        {checked && (
           <svg aria-hidden="true" viewBox="0 0 24 24" width={iconWidth[size]}>
             <path
               className={error ? styles.checkmarkError : styles.checkmark}

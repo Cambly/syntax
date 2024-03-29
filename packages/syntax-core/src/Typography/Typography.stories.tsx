@@ -248,7 +248,7 @@ export const Weight: StoryObj<typeof Typography> = {
         Weight semiBold
       </Typography>
       <Typography {...args} weight="bold">
-        Weight bold (classic only)
+        Weight bold
       </Typography>
       <Typography {...args} weight="heavy">
         Weight heavy (classic only)

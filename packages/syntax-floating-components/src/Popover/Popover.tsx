@@ -19,7 +19,6 @@ import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 
 import styles from "./Popover.module.css";
 import elevationStyles from "../../../syntax-core/src/elevation/elevation.module.css";
-import { useTheme } from "../../../syntax-core/src/ThemeProvider/ThemeProvider";
 
 type PopoverOptions = {
   /**
@@ -241,7 +240,6 @@ export const PopoverContent = React.forwardRef<
 >(function PopoverContent(props, propRef) {
   const { ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
-  const { themeName } = useTheme();
 
   if (!context.open) return null;
 
@@ -250,9 +248,7 @@ export const PopoverContent = React.forwardRef<
       {...context.getFloatingProps(props)}
       ref={ref}
       className={classNames(
-        themeName === "classic"
-          ? styles.popoverContent
-          : styles.popoverContentCambio,
+        styles.popoverContent,
         elevationStyles.elevation400BoxShadow,
       )}
       style={{

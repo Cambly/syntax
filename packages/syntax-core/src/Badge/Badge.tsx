@@ -1,7 +1,6 @@
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Badge.module.css";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const badgeColorClassic = [
   "gray200",
@@ -46,27 +45,6 @@ const badgeColorClassicToCambio = {
   lilac: "lilac",
   thistle: "thistle",
   pink: "pink",
-} as const;
-
-const badgeColorCambioToClassic = {
-  gray200: "gray200",
-  gray900: "gray900",
-  destructive700: "destructive700",
-  orange700: "orange700",
-  yellow700: "yellow700",
-  success700: "success700",
-  primary700: "primary700",
-  purple700: "purple700",
-  sky: "primary700",
-  success300: "success700",
-  destructive300: "destructive700",
-  orange: "orange700",
-  tan: "yellow700",
-  gray370: "gray200",
-  gray870: "gray900",
-  lilac: "purple700",
-  thistle: "purple700",
-  pink: "purple700",
 } as const;
 
 const textColorForBackgroundColor = (
@@ -138,23 +116,18 @@ const Badge = ({
     | (typeof badgeColorClassic)[number]
     | (typeof badgeColorCambio)[number];
 }): JSX.Element => {
-  const { themeName } = useTheme();
-
-  const mappedColor =
-    themeName === "cambio"
-      ? badgeColorClassicToCambio[color]
-      : badgeColorCambioToClassic[color];
+  const mappedColor = badgeColorClassicToCambio[color];
 
   return (
     <Box
-      display={themeName === "classic" ? "inlineBlock" : "inlineFlex"}
-      paddingX={themeName === "classic" ? 2 : 3}
+      display={"inlineFlex"}
+      paddingX={3}
       paddingY={1}
-      rounding={themeName === "classic" ? "full" : "sm"}
+      rounding={"sm"}
       backgroundColor={mappedColor}
       alignItems="center"
       justifyContent="center"
-      height={themeName === "cambio" ? 32 : undefined}
+      height={32}
     >
       <Typography color={textColorForBackgroundColor(mappedColor)}>
         <Box display="flex" gap={1} alignItems="center" justifyContent="start">
@@ -162,7 +135,7 @@ const Badge = ({
           <Typography
             color={textColorForBackgroundColor(mappedColor)}
             size={100}
-            weight={themeName === "classic" ? "bold" : "medium"}
+            weight="medium"
           >
             {text}
           </Typography>

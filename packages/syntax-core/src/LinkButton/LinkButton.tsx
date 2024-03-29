@@ -7,17 +7,9 @@ import buttonStyles from "../Button/Button.module.css";
 import iconSize from "../Button/constants/iconSize";
 import textVariant from "../Button/constants/textVariant";
 import styles from "./LinkButton.module.css";
-
-import { classicColor, cambioColor } from "../Button/constants/color";
-import {
-  classicBackgroundColor,
-  cambioBackgroundColor,
-} from "../colors//backgroundColor";
-import {
-  classicForegroundColor,
-  cambioForegroundColor,
-} from "../colors/foregroundColor";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { cambioColor } from "../Button/constants/color";
+import { backgroundColor } from "../colors//backgroundColor";
+import { cambioForegroundColor } from "../colors/foregroundColor";
 
 type LinkButtonProps = {
   /**
@@ -46,14 +38,7 @@ type LinkButtonProps = {
   /**
    * The color of the button
    *
-   * Classic only:
-   * * `inverse`
-   * * `success`
-   *
-   * Cambio only:
-   * * `success-primary`
-   * * `success-secondary`
-   * * `success-tertiary`
+   * `inverse` and `success` are deprecated
    *
    * @defaultValue "primary"
    */
@@ -72,13 +57,6 @@ type LinkButtonProps = {
     | "inverse";
   /**
    * The size of the button
-   *
-   * Classic:
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * Cambio:
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
@@ -94,16 +72,14 @@ type LinkButtonProps = {
   fullWidth?: boolean;
   /**
    * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   * Note: startIcon is not supported in the Cambio theme
    */
   startIcon?: React.ComponentType<{ className?: string }>;
   /**
    * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
-   * Note: endIcon is not supported in the Cambio theme
    */
   endIcon?: React.ComponentType<{ className?: string }>;
   /**
-   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button
    *
    * @defaulValue `lightBackground`
    */
@@ -135,17 +111,8 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     }: LinkButtonProps,
     ref,
   ) => {
-    const { themeName } = useTheme();
-
-    const foregroundColorClass =
-      themeName === "classic"
-        ? classicForegroundColor(classicColor(color))
-        : cambioForegroundColor(cambioColor(color), on);
-
-    const backgroundColorClass =
-      themeName === "classic"
-        ? classicBackgroundColor(classicColor(color))
-        : cambioBackgroundColor(cambioColor(color), on);
+    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
+    const backgroundColorClass = backgroundColor(cambioColor(color), on);
 
     return (
       <a
@@ -159,17 +126,11 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           buttonStyles.button,
           foregroundColorClass,
           backgroundColorClass,
-          themeName === "classic"
-            ? buttonStyles[size]
-            : buttonStyles[`${size}Cambio`],
+          buttonStyles[size],
           {
             [buttonStyles.fullWidth]: fullWidth,
             [styles.fitContent]: !fullWidth,
             [buttonStyles.buttonGap]: size === "lg" || size === "md",
-            [buttonStyles.secondaryBorder]:
-              themeName === "classic" && color === "secondary",
-            [buttonStyles.secondaryDestructiveBorder]:
-              themeName === "classic" && color === "destructive-secondary",
           },
         )}
         onClick={onClick}
@@ -183,9 +144,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
             )}
           />
         )}
-        <Typography
-          size={themeName === "classic" ? textVariant[size] : textVariant[size]}
-        >
+        <Typography size={textVariant[size]}>
           <span
             // Temporary - until we have cambio colors on Typogrphay
             className={foregroundColorClass}

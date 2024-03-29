@@ -15,15 +15,12 @@
 }
 
 .checkbox {
+  border-radius: 4px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-}
-
-.cambioCheckbox {
-  border-radius: 4px;
 }
 
 .disabled {
@@ -36,30 +33,6 @@
 
 .cursorEnabled {
   cursor: pointer;
-}
-
-.uncheckedBox {
-  border: 2px solid;
-}
-
-.uncheckedBorder {
-  border-color: var(--color-base-primary-700);
-}
-
-.uncheckedErrorBorder {
-  border-color: var(--color-base-destructive-700);
-}
-
-.checkedBox {
-  color: #fff;
-}
-
-.checkedNonError {
-  background: var(--color-base-primary-700);
-}
-
-.checkedError {
-  background: var(--color-base-destructive-700);
 }
 
 .sm {

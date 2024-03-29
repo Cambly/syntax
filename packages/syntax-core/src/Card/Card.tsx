@@ -1,5 +1,4 @@
 import Box from "../Box/Box";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
 import type allColors from "../colors/allColors";
 
 type CardType = {
@@ -17,7 +16,7 @@ type CardType = {
    */
   children: JSX.Element;
   /**
-   * The size of the card (Cambio only) which specifies the padding and spacing of the card.
+   * The size of the card which specifies the padding and spacing of the card.
    *
    * `compact`: 8px padding
    * `roomy`: 16px padding
@@ -36,15 +35,10 @@ export default function Card({
   size,
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
-  const { themeName } = useTheme();
-
-  const cambioPadding = size === "compact" ? 2 : 4;
-
   return (
     <Box
-      rounding={themeName === "classic" ? "lg" : "md"}
-      padding={themeName === "classic" ? 5 : cambioPadding}
-      smPadding={themeName === "classic" ? 7 : undefined}
+      rounding="md"
+      padding={size === "compact" ? 2 : 4}
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}

@@ -1,17 +1,10 @@
 .backdrop {
+  background-color: var(--color-cambio-gray-870);
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   inset: 0;
-}
-
-.backdropClassic {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.backdropCambio {
-  background-color: var(--color-cambio-gray-870);
 }
 
 .closeButton {
@@ -29,22 +22,7 @@
   border-radius: 50%;
 }
 
-.closeButtonClassic {
-  height: 40px;
-  width: 40px;
-  top: 12px;
-  right: 12px;
-}
-
 .closeButton:focus-visible {
   box-shadow: 0 0 0 4px #000;
   outline: solid 2px #fff;
-}
-
-.closeButtonWithImage {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.closeButtonWithImageCambio {
-  background-color: var(--color-cambio-gray-200);
 }
