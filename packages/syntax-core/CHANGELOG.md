@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.31.0
+
+### Minor Changes
+
+- 6ab81ed: Cambio: remove useTheme hook & forking logic
+
 ## 10.30.0
 
 ### Minor Changes
