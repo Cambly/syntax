@@ -69,12 +69,6 @@ export default function TextField({
   /**
    * Size of the TextField
    *
-   * Classic:
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * Cambio:
    * * `md`: 48px
    *
    * @defaultValue "md"

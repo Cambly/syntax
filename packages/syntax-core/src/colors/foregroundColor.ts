@@ -1,7 +1,7 @@
 import { type CambioColor } from "../constants";
 import styles from "./colors.module.css";
 
-export function cambioForegroundColor(
+export function foregroundColor(
   color: (typeof CambioColor)[number],
   on: "lightBackground" | "darkBackground",
 ): string {
@@ -13,10 +13,10 @@ export function cambioForegroundColor(
         return styles.cambioWhiteColor;
       case "success-secondary":
       case "success-tertiary":
-        return styles.cambioSuccess900Color;
+        return styles.cambioSuccess700Color;
       case "destructive-secondary":
       case "destructive-tertiary":
-        return styles.cambioDestructive900Color;
+        return styles.cambioDestructive700Color;
       default:
         return styles.cambioBlackColor;
     }
@@ -31,10 +31,10 @@ export function cambioForegroundColor(
         return styles.cambioWhiteColor;
       case "success-secondary":
       case "success-tertiary":
-        return styles.cambioSuccess100Color;
+        return styles.cambioSuccess300Color;
       case "destructive-secondary":
       case "destructive-tertiary":
-        return styles.cambioDestructive100Color;
+        return styles.cambioDestructive300Color;
       default: // branded
         return styles.cambioBlackColor;
     }

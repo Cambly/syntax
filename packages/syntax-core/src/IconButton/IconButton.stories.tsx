@@ -31,12 +31,10 @@ export default {
         "destructive-primary",
         "destructive-secondary",
         "destructive-tertiary",
-        "success",
         "success-primary",
         "success-secondary",
         "success-tertiary",
         "branded",
-        "inverse",
       ],
       control: { type: "radio" },
     },
@@ -62,8 +60,15 @@ export const Default: StoryObj<typeof IconButton> = {
   render: (args) => {
     return (
       <Box
-        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
         padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              args.on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
       >
         <IconButton {...args} />
       </Box>
@@ -93,12 +98,6 @@ export const DestructiveSecondary: StoryObj<typeof IconButton> = {
 };
 export const DestructiveTertiary: StoryObj<typeof IconButton> = {
   args: { ...Default.args, color: "destructive-tertiary" },
-};
-export const Success: StoryObj<typeof IconButton> = {
-  args: { ...Default.args, color: "success" },
-};
-export const Inverse: StoryObj<typeof IconButton> = {
-  args: { ...Default.args, color: "inverse" },
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },

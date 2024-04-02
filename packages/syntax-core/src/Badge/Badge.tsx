@@ -120,16 +120,19 @@ const Badge = ({
 
   return (
     <Box
-      display={"inlineFlex"}
-      paddingX={3}
-      paddingY={1}
+      display="inlineFlex"
+      paddingX={2}
       rounding={"sm"}
       backgroundColor={mappedColor}
       alignItems="center"
       justifyContent="center"
-      height={32}
+      minHeight={24}
     >
-      <Typography color={textColorForBackgroundColor(mappedColor)}>
+      <Typography
+        size={100}
+        weight="medium"
+        color={textColorForBackgroundColor(mappedColor)}
+      >
         <Box display="flex" gap={1} alignItems="center" justifyContent="start">
           {Icon && <Icon className={styles.icon} />}
           <Typography

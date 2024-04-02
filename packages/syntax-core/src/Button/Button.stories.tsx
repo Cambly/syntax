@@ -35,12 +35,10 @@ export default {
         "destructive-primary",
         "destructive-secondary",
         "destructive-tertiary",
-        "success",
         "success-primary",
         "success-secondary",
         "success-tertiary",
         "branded",
-        "inverse",
       ],
       control: { type: "radio" },
     },
@@ -74,8 +72,15 @@ export const Default: StoryObj<typeof Button> = {
   render: (args) => {
     return (
       <Box
-        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
         padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              args.on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
       >
         <Button {...args} />
       </Box>
@@ -108,9 +113,6 @@ export const DestructiveTertiary: StoryObj<typeof Button> = {
 };
 export const Branded: StoryObj<typeof Button> = {
   args: { ...Default.args, color: "branded" },
-};
-export const Inverse: StoryObj<typeof Button> = {
-  args: { ...Default.args, color: "inverse" },
 };
 export const Loading: StoryObj<typeof Button> = {
   args: { ...Default.args, loading: true, loadingText: "Connecting…" },

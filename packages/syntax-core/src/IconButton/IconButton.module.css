@@ -5,10 +5,6 @@
   border-radius: 50%;
 }
 
-.iconButtonNoBorder {
-  border: none;
-}
-
 .iconButton:hover {
   background-image: linear-gradient(
     to bottom,
