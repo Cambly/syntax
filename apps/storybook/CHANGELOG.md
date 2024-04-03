@@ -1,5 +1,17 @@
 # @syntax/storybook
 
+## 0.18.0
+
+### Minor Changes
+
+- 2024358: Button/Badge: Cambio updates
+
+### Patch Changes
+
+- Updated dependencies [2024358]
+  - @cambly/syntax-floating-components@0.9.0
+  - @cambly/syntax-core@10.32.0
+
 ## 0.17.0
 
 ### Minor Changes

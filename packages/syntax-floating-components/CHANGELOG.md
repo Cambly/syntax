@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 0.9.0
+
+### Minor Changes
+
+- 2024358: Button/Badge: Cambio updates
+
 ## 0.8.0
 
 ### Minor Changes
