@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import { cambioForegroundColor } from "../colors/foregroundColor";
+import { foregroundColor } from "../colors/foregroundColor";
 import React, { forwardRef } from "react";
 import { type Size } from "../constants";
 import styles from "./IconButton.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { cambioColor } from "../Button/constants/color";
 import { backgroundColor } from "../colors/backgroundColor";
+import { border } from "../colors/border";
 
 const iconSize = {
   sm: styles.smIcon,
@@ -17,8 +17,6 @@ type IconButtonProps = {
   /**
    * The color of the button
    *
-   * `inverse` and `success` are deprecated
-   *
    * @defaultValue "primary"
    */
   color?:
@@ -29,11 +27,9 @@ type IconButtonProps = {
     | "destructive-secondary"
     | "destructive-tertiary"
     | "branded"
-    | "success"
     | "success-primary"
     | "success-secondary"
-    | "success-tertiary"
-    | "inverse";
+    | "success-tertiary";
   /**
    * Test id for the button
    */
@@ -97,8 +93,8 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ref,
   ) => {
     const isHydrated = useIsHydrated();
-    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
-    const backgroundColorClass = backgroundColor(cambioColor(color), on);
+    const foregroundColorClass = foregroundColor(color, on);
+    const backgroundColorClass = backgroundColor(color, on);
 
     return (
       <button
@@ -112,8 +108,8 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           styles.iconButton,
           foregroundColorClass,
           backgroundColorClass,
+          border(color, on),
           styles[size],
-          styles.iconButtonNoBorder,
         )}
         ref={ref}
       >

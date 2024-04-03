@@ -8,9 +8,9 @@ import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { cambioColor } from "./constants/color";
 import { backgroundColor } from "../colors/backgroundColor";
-import { cambioForegroundColor } from "../colors/foregroundColor";
+import { foregroundColor } from "../colors/foregroundColor";
+import { border } from "../colors/border";
 
 type ButtonProps = {
   /**
@@ -28,8 +28,6 @@ type ButtonProps = {
   /**
    * The color of the button
    *
-   * `inverse` and `success` are deprecated
-   *
    * @defaultValue "primary"
    */
   color?:
@@ -40,20 +38,12 @@ type ButtonProps = {
     | "destructive-secondary"
     | "destructive-tertiary"
     | "branded"
-    | "success"
     | "success-primary"
     | "success-secondary"
-    | "success-tertiary"
-    | "inverse";
+    | "success-tertiary";
   /**
    * The size of the button
    *
-   * Classic:
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * Cambio:
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
@@ -137,8 +127,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isHydrated = useIsHydrated();
 
-    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
-    const backgroundColorClass = backgroundColor(cambioColor(color), on);
+    const foregroundColorClass = foregroundColor(color, on);
+    const backgroundColorClass = backgroundColor(color, on);
     const disabledPrimary = color === "primary" && disabled;
 
     return (
@@ -154,6 +144,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           foregroundColorClass,
           backgroundColorClass,
+          border(color, on),
           styles[size],
           {
             [styles.fullWidth]: fullWidth,

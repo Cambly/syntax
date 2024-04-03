@@ -54,12 +54,10 @@ export default {
         "destructive-primary",
         "destructive-secondary",
         "destructive-tertiary",
-        "success",
         "success-primary",
         "success-secondary",
         "success-tertiary",
         "branded",
-        "inverse",
       ],
       control: { type: "radio" },
     },
@@ -88,8 +86,15 @@ export const Default: StoryObj<typeof LinkButton> = {
   render: (args) => {
     return (
       <Box
-        backgroundColor={args.on === "lightBackground" ? "white" : "black"}
         padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              args.on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
       >
         <LinkButton {...args} />
       </Box>

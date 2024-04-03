@@ -7,9 +7,9 @@ import buttonStyles from "../Button/Button.module.css";
 import iconSize from "../Button/constants/iconSize";
 import textVariant from "../Button/constants/textVariant";
 import styles from "./LinkButton.module.css";
-import { cambioColor } from "../Button/constants/color";
 import { backgroundColor } from "../colors//backgroundColor";
-import { cambioForegroundColor } from "../colors/foregroundColor";
+import { foregroundColor } from "../colors/foregroundColor";
+import { border } from "../colors/border";
 
 type LinkButtonProps = {
   /**
@@ -38,8 +38,6 @@ type LinkButtonProps = {
   /**
    * The color of the button
    *
-   * `inverse` and `success` are deprecated
-   *
    * @defaultValue "primary"
    */
   color?:
@@ -50,11 +48,9 @@ type LinkButtonProps = {
     | "destructive-secondary"
     | "destructive-tertiary"
     | "branded"
-    | "success"
     | "success-primary"
     | "success-secondary"
-    | "success-tertiary"
-    | "inverse";
+    | "success-tertiary";
   /**
    * The size of the button
    * * `sm`: 32px
@@ -111,8 +107,8 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     }: LinkButtonProps,
     ref,
   ) => {
-    const foregroundColorClass = cambioForegroundColor(cambioColor(color), on);
-    const backgroundColorClass = backgroundColor(cambioColor(color), on);
+    const foregroundColorClass = foregroundColor(color, on);
+    const backgroundColorClass = backgroundColor(color, on);
 
     return (
       <a
@@ -126,6 +122,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
           buttonStyles.button,
           foregroundColorClass,
           backgroundColorClass,
+          border(color, on),
           buttonStyles[size],
           {
             [buttonStyles.fullWidth]: fullWidth,

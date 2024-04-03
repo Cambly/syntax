@@ -10,19 +10,17 @@ export function backgroundColor(
       case "primary":
         return styles.cambioBlackBackgroundColor;
       case "secondary":
-        return styles.cambioGray370BackgroundColor;
+      case "success-secondary":
+      case "destructive-secondary":
+        return styles.cambioTransparentFullBackgroundColor;
       case "tertiary":
       case "success-tertiary":
       case "destructive-tertiary":
         return styles.cambioTransparentFullBackgroundColor;
       case "success-primary":
         return styles.cambioSuccess700BackgroundColor;
-      case "success-secondary":
-        return styles.cambioSuccess370BackgroundColor;
       case "destructive-primary":
         return styles.cambioDestructive700BackgroundColor;
-      case "destructive-secondary":
-        return styles.cambioDestructive370BackgroundColor;
       case "branded":
         return styles.cambioYellow700BackgroundColor;
       default:
@@ -33,19 +31,17 @@ export function backgroundColor(
       case "primary":
         return styles.cambioGray200BackgroundColor;
       case "secondary":
-        return styles.cambioGray870BackgroundColor;
+      case "success-secondary":
+      case "destructive-secondary":
+        return styles.cambioTransparentFullBackgroundColor;
       case "tertiary":
       case "success-tertiary":
       case "destructive-tertiary":
         return styles.cambioTransparentFullBackgroundColor;
       case "success-primary":
         return styles.cambioSuccess300BackgroundColor;
-      case "success-secondary":
-        return styles.cambioSuccess770BackgroundColor;
       case "destructive-primary":
         return styles.cambioDestructive300BackgroundColor;
-      case "destructive-secondary":
-        return styles.cambioDestructive770BackgroundColor;
       case "branded":
         return styles.cambioYellow700BackgroundColor;
       default:
