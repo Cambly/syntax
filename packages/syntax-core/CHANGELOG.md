@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.32.0
+
+### Minor Changes
+
+- 2024358: Button/Badge: Cambio updates
+
 ## 10.31.0
 
 ### Minor Changes
