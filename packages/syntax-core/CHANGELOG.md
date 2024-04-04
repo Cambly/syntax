@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 10.33.0
+
+### Minor Changes
+
+- ca7a8f2: Modal: Update size of Close (X) Icon from "sm" to "md" (20x20 to 48x48)
+  l
+
 ## 10.32.0
 
 ### Minor Changes
