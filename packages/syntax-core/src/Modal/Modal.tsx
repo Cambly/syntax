@@ -179,7 +179,7 @@ export default function Modal({
                   color={image ? "primary" : "tertiary"}
                   on={image ? "darkBackground" : "lightBackground"}
                   onClick={onDismiss}
-                  size="sm"
+                  size="md"
                   icon={XIcon}
                 />
               </Box>
