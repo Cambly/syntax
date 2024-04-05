@@ -20,7 +20,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "jscodeshift": "0.14.0"
+    "jscodeshift": "0.15.2"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",

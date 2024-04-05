@@ -6,7 +6,7 @@ export default function runJscodeshift(
   files: string[],
 ): ReturnType<typeof Runner.run> {
   return Runner.run(transformerPath, files, {
-    ignorePattern: ["**/node_modules/**", "**/dist/**"],
+    ignorePattern: ["**/node_modules/**", "**/dist/**", "**/*.d.ts"],
     extensions: "tsx,ts,jsx,js",
     parser: "tsx",
     verbose: 2,
