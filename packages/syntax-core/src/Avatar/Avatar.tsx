@@ -9,7 +9,6 @@ const sizeToIconStyles = {
   sm: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
   md: { bottom: 6, marginInlineEnd: 2, height: 8, width: 8 },
   lg: { bottom: 6, marginInlineEnd: 6, height: 12, width: 12 },
-  xl: { bottom: 12, marginInlineEnd: 12, height: 16, width: 16 },
 } as const;
 
 const sizeToMargin = {
@@ -17,7 +16,6 @@ const sizeToMargin = {
   sm: -14,
   md: -22,
   lg: -28,
-  xl: -28,
 } as const;
 
 function AvatarInternal({
@@ -30,7 +28,7 @@ function AvatarInternal({
   accessibilityLabel: string;
   icon?: React.ReactElement;
   outline?: boolean;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg";
   src: string;
 }): ReactElement {
   return (
@@ -93,11 +91,10 @@ const Avatar = ({
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
-   * * `xl`: 64px (deprecated)
    *
    * @defaultValue `md`
    */
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg";
   /**
    * URL of the image to display as the avatar.
    */
