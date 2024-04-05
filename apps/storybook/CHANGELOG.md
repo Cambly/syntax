@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.19.0
+
+### Minor Changes
+
+- de1cd3e: Codemods: add component-remove-prop & component-update-prop-value
+
+### Patch Changes
+
+- Updated dependencies [de1cd3e]
+  - @cambly/syntax-core@10.34.0
+
 ## 0.18.1
 
 ### Patch Changes
