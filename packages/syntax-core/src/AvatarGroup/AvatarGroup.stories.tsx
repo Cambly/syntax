@@ -18,7 +18,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: ["xs", "sm", "md", "lg"],
       control: { type: "radio" },
     },
     orientation: {
@@ -80,7 +80,7 @@ export const Standard: StoryObj<
     size: ComponentProps<typeof Avatar>["size"];
   }
 > = {
-  args: { size: "xl", orientation: "standard" },
+  args: { size: "lg", orientation: "standard" },
   render: (args) => {
     const { size, orientation } = args;
     return (
@@ -118,7 +118,7 @@ export const Reverse: StoryObj<
     size: ComponentProps<typeof Avatar>["size"];
   }
 > = {
-  args: { size: "xl", orientation: "reverse" },
+  args: { size: "lg", orientation: "reverse" },
   render: (args) => {
     const { size, orientation } = args;
     return (

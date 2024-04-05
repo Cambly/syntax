@@ -8,7 +8,6 @@ import classNames from "classnames";
 import styles from "./TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
-import { roundingCambio } from "../Box/Box";
 
 type TapAreaProps = AriaAttributes & {
   /**
@@ -51,13 +50,11 @@ type TapAreaProps = AriaAttributes & {
    * * `none`: 0px
    * * `sm`: 8px
    * * `md`: 12px
-   * * `lg`: 16px
-   * * `xl`: 32px
    * * `full`: 999px
    *
    * @defaultValue "none"
    */
-  rounding?: "xl" | "lg" | "md" | "sm" | "full" | "none";
+  rounding?: "md" | "sm" | "full" | "none";
   /**
    * The tab index of the tap area
    */
@@ -151,8 +148,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
 
     const isHoveredOrFocussed = !disabled && (hovered || focussed);
     const roundingClasses =
-      rounding !== "none" &&
-      roundingStyles[`rounding${roundingCambio(rounding)}`];
+      rounding !== "none" && roundingStyles[`rounding${rounding}`];
 
     return (
       <div

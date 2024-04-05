@@ -6,13 +6,7 @@ import {
 } from "react";
 import Box from "../Box/Box";
 
-type Size =
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  /* `xl` is deprecated */
-  | "xl";
+type Size = "xs" | "sm" | "md" | "lg";
 type Orientation = "standard" | "reverse";
 
 type AvatarGroupContextType = {
@@ -34,7 +28,7 @@ export function useAvatarGroup(): AvatarGroupContextType | null {
  *
  * Usage:
  *
- * <AvatarGroup size="xl" orientation="standard">
+ * <AvatarGroup size="md" orientation="standard">
  *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
  *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
  *   <Avatar accessibilityLabel="Joseph Liotta" src="image.png" />
@@ -53,7 +47,6 @@ export default function AvatarGroup({
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
-   * * `xl`: 64px (deprecated)
    *
    * @defaultValue `md`
    */
@@ -72,10 +65,8 @@ export default function AvatarGroup({
    */
   children: ReactNode;
 }): ReactElement {
-  const parsedSize = size === "xl" ? "lg" : size;
-
   return (
-    <AvatarGroupContext.Provider value={{ size: parsedSize, orientation }}>
+    <AvatarGroupContext.Provider value={{ size, orientation }}>
       <Box
         display="flex"
         justifyContent={orientation === "standard" ? "start" : "end"}
