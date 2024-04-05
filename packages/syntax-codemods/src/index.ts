@@ -6,7 +6,7 @@ import { parseArgs } from "node:util";
 import runJscodeshift from "./run-js-codeshift";
 
 const {
-  values: { codemod, path: inputPath },
+  values: { codemod, path: inputPath, ...remainingArgs },
 } = parseArgs({
   options: {
     codemod: {
@@ -18,6 +18,7 @@ const {
       short: "p",
     },
   },
+  strict: false, // Allow additional arguments to be passed to the codemod
 });
 
 async function init() {
@@ -29,7 +30,11 @@ async function init() {
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".js"))
     .map((dirent) => dirent.name.replace(".js", ""));
 
-  if (!codemod || !availableCodemods.includes(codemod)) {
+  if (
+    !codemod ||
+    typeof codemod !== "string" ||
+    !availableCodemods.includes(codemod)
+  ) {
     throw new Error(
       `Please provide a valid codemod to execute.
 
@@ -38,14 +43,14 @@ ${availableCodemods.join("\n")}`,
     );
   }
 
-  if (!inputPath) {
+  if (!inputPath || typeof inputPath !== "string") {
     throw new Error(`Please provide a path to execute the codemod on.`);
   }
   const resolvedPath = path.resolve(inputPath);
 
   const response = await runJscodeshift(
     path.resolve(path.join(__dirname, "transforms", `${codemod}.js`)),
-    { silent: false, verbose: 2 },
+    { silent: false, verbose: 2, ...remainingArgs },
     [resolvedPath],
   );
 
