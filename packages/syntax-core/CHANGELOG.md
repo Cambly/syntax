@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.34.0
+
+### Minor Changes
+
+- de1cd3e: Codemods: add component-remove-prop & component-update-prop-value
+
 ## 10.33.0
 
 ### Minor Changes
