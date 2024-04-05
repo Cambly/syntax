@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.20.0
+
+### Minor Changes
+
+- b0a342b: Box/Avatar/TapArea: remove deprecated props
+
+### Patch Changes
+
+- Updated dependencies [b0a342b]
+  - @cambly/syntax-core@10.35.0
+
 ## 0.19.0
 
 ### Minor Changes
