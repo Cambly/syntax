@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.35.0
+
+### Minor Changes
+
+- b0a342b: Box/Avatar/TapArea: remove deprecated props
+
 ## 10.34.0
 
 ### Minor Changes
