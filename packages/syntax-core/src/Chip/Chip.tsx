@@ -49,7 +49,7 @@ type ChipProps = {
    */
   text: string;
   /**
-   * Indicate whether the badge renders on a light or dark background. Changes the color of the chip (Cambio only)
+   * Indicate whether the badge renders on a light or dark background. Changes the color of the chip
    *
    * @defaulValue `lightBackground`
    */

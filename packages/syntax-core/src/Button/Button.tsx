@@ -82,7 +82,7 @@ type ButtonProps = {
    */
   endIcon?: React.ComponentType<{ className?: string }>;
   /**
-   * Indicate whether the button renders on a light or dark background. Changes the color of the button (Cambio only)
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button
    *
    * @defaulValue `lightBackground`
    */
@@ -163,14 +163,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {((loading && loadingText) || (!loading && text)) && (
           <Box paddingX={1}>
-            <Typography size={textVariant[size]}>
+            <Typography size={textVariant[size]} weight="medium">
               <span
                 className={classNames(
-                  // Temporary - until we have cambio colors on Typography
                   foregroundColorClass,
                   disabledPrimary && styles.disabledPrimary,
                 )}
-                style={{ fontWeight: 500 }}
               >
                 {loading ? loadingText : text}
               </span>

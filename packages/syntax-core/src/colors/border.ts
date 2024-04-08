@@ -1,9 +1,9 @@
 import classNames from "classnames";
-import { type CambioColor } from "../constants";
+import { type Color } from "../constants";
 import styles from "./colors.module.css";
 
 export function border(
-  color: (typeof CambioColor)[number],
+  color: (typeof Color)[number],
   on: "lightBackground" | "darkBackground",
 ): string | null {
   if (on === "lightBackground") {

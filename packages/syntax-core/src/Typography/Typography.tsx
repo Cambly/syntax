@@ -182,15 +182,13 @@ const Typography = forwardRef<
 ): ReactElement {
   const Tag = as;
 
-  const weightStyles = styles[`${weight}`];
-
   return (
     <Tag
       id={id}
       className={classNames(
         styles.typography,
         styles[align],
-        weightStyles,
+        styles[weight],
         fontStyle === "serif" ? styles.serif : styles.sansSerif,
         textColor(color),
         inline && styles.inline,
