@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.36.0
+
+### Minor Changes
+
+- 77c620e: Badge / Chip / Modal / RichSelectList / SelectList / TextArea / TextField / Typography: Remove classic options
+
 ## 10.35.0
 
 ### Minor Changes
