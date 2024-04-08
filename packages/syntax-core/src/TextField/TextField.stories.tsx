@@ -17,7 +17,6 @@ export default {
     disabled: false,
     errorText: "",
     helperText: "",
-    size: "md",
     type: "text",
     "data-testid": "",
     id: "",
@@ -33,10 +32,6 @@ export default {
     },
     placeholder: {
       control: "text",
-    },
-    size: {
-      options: ["sm", "md", "lg"],
-      control: { type: "radio" },
     },
     type: {
       options: [
@@ -91,18 +86,6 @@ function TextFieldDefault({
 
 export const Default: StoryObj<typeof TextField> = {
   render: (args) => <TextFieldDefault {...args} />,
-};
-
-export const SizeSmClassicOnly: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault size="sm" {...args} />,
-};
-
-export const SizeMd: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault size="md" {...args} />,
-};
-
-export const SizeLgClassicOnly: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault size="lg" {...args} />,
 };
 
 export const helperText: StoryObj<typeof TextField> = {

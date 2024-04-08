@@ -9,11 +9,6 @@ import Layer from "./Layer";
 import styles from "./Modal.module.css";
 import IconButton from "../IconButton/IconButton";
 
-const sizeWidth = {
-  sm: 600,
-  lg: 600,
-} as const;
-
 function XIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -68,7 +63,6 @@ export default function Modal({
   onDismiss,
   footer,
   accessibilityCloseLabel = "close modal",
-  size = "sm",
   zIndex = 1,
   "data-testid": dataTestId,
 }: {
@@ -121,16 +115,6 @@ export default function Modal({
    */
   accessibilityCloseLabel?: string;
   /**
-   * The size of the card
-   * * `sm`: 600px (deprecated)
-   * * `lg`: 600px
-   *
-   *
-   * @defaultValue sm
-   * @deprecated
-   */
-  size?: keyof typeof sizeWidth;
-  /**
    * The z-index for the modal.
    * Typically used if there are other things on the page with higher z-index and you need this overlayed on top.
    *
@@ -163,7 +147,7 @@ export default function Modal({
               marginBottom={8}
               minWidth={240}
               maxHeight="calc(100vh - 64px)"
-              maxWidth={sizeWidth[size]}
+              maxWidth={600}
               overflow="hidden"
               position="relative"
               width="100%"

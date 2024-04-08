@@ -32,7 +32,6 @@ export default function SelectList({
   onClick,
   placeholderText,
   selectedValue = "",
-  size = "md",
 }: {
   /**
    * One or more SelectList.Option components.
@@ -80,16 +79,6 @@ export default function SelectList({
    * Value of the currently selected option
    */
   selectedValue?: string;
-  /**
-   * Size of the select box
-   * * `sm`: 32px
-   * * `md`: 40px
-   * * `lg`: 48px
-   *
-   * @defaultValue "md"
-   * @deprecated we only support `md` size
-   */
-  size?: "sm" | "md" | "lg";
 }): ReactElement {
   const reactId = useId();
   const isHydrated = useIsHydrated();
@@ -116,7 +105,6 @@ export default function SelectList({
       <div className={styles.selectWrapper}>
         <select
           id={selectId}
-          data-size={size}
           data-testid={dataTestId}
           disabled={disabled}
           className={classNames(styles.selectBox, styles.selectBoxCambio, {

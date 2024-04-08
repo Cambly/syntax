@@ -45,16 +45,6 @@ type ChipProps = {
    */
   "data-testid"?: string;
   /**
-   * Size of the chip.
-   *
-   * * `sm`: 32px
-   *
-   * `lg` is deprecated
-   *
-   * @defaultValue sm
-   */
-  size?: "sm" | "lg";
-  /**
    * The text to be displayed on the chip
    */
   text: string;

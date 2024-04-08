@@ -36,19 +36,6 @@ function textColor(
   }
 }
 
-function convertWeight(
-  weight: "regular" | "interactive" | "medium" | "semiBold" | "bold" | "heavy",
-): "regular" | "medium" | "semiBold" | "bold" {
-  switch (weight) {
-    case "interactive":
-      return "medium";
-    case "heavy":
-      return "regular";
-    default:
-      return weight;
-  }
-}
-
 /**
  * [Typography](https://cambly-syntax.vercel.app/?path=/docs/components-typography--docs) is a component that renders text.
  */
@@ -170,17 +157,9 @@ const Typography = forwardRef<
      * * `semiBold`: 590
      * * `bold`: 710
      *
-     * `interactive` and `heavy` are deprecated
-     *
      * @defaultValue "regular"
      */
-    weight?:
-      | "regular"
-      | "interactive"
-      | "medium"
-      | "semiBold"
-      | "bold"
-      | "heavy";
+    weight?: "regular" | "medium" | "semiBold" | "bold";
   }
 >(function Typography(
   {
@@ -203,7 +182,7 @@ const Typography = forwardRef<
 ): ReactElement {
   const Tag = as;
 
-  const weightStyles = styles[`${convertWeight(weight)}`];
+  const weightStyles = styles[`${weight}`];
 
   return (
     <Tag

@@ -44,14 +44,6 @@ type TextAreaProps = {
    */
   placeholder?: string;
   /**
-   * Size of the TextArea. Defines the font size and padding.
-   *
-   * Cambio only supports `md`
-   *
-   * @defaultValue "md"
-   */
-  size?: "sm" | "md" | "lg";
-  /**
    * Number of rows to display
    */
   rows?: number;
@@ -76,7 +68,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       maxLength = 1024,
       placeholder = "",
       rows = 3,
-      size = "md",
       value = "",
       onChange,
     }: TextAreaProps,
@@ -110,7 +101,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <Typography size={100}>
           <textarea
             data-testid={dataTestId}
-            data-size={size}
             ref={forwardedRef}
             className={classNames(textFieldStyles.textfield, styles.textarea, {
               [textFieldStyles.inputError]: errorText,

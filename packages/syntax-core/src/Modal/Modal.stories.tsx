@@ -19,7 +19,6 @@ export default {
   args: {
     header: "One Button Modal Text",
     accessibilityCloseLabel: "close modal",
-    size: "sm",
     zIndex: 0,
     "data-testid": "",
   },
@@ -36,10 +35,6 @@ export default {
       control: { type: "number" },
     },
     image: {},
-    size: {
-      options: ["sm", "lg"],
-      control: { type: "radio" },
-    },
     "data-testid": { control: { type: "text" } },
   },
   tags: ["autodocs"],
