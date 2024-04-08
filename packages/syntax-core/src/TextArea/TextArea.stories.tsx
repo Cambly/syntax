@@ -22,7 +22,6 @@ export default {
     value: "",
     "data-testid": "",
     id: "",
-    size: "md",
   },
   argTypes: {
     disabled: {
@@ -30,10 +29,6 @@ export default {
     },
     placeholder: {
       control: "text",
-    },
-    size: {
-      options: ["sm", "md", "lg"],
-      control: { type: "radio" },
     },
   },
   tags: ["autodocs"],
@@ -61,18 +56,6 @@ function TextAreaDefault({
 
 export const Default: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault {...args} />,
-};
-
-export const SizeSmClassicOnly: StoryObj<typeof TextArea> = {
-  render: (args) => <TextAreaDefault size="sm" {...args} />,
-};
-
-export const SizeMd: StoryObj<typeof TextArea> = {
-  render: (args) => <TextAreaDefault size="md" {...args} />,
-};
-
-export const SizeLgClassicOnly: StoryObj<typeof TextArea> = {
-  render: (args) => <TextAreaDefault size="lg" {...args} />,
 };
 
 export const helperText: StoryObj<typeof TextArea> = {

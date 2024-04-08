@@ -22,7 +22,6 @@ export default function TextField({
   label,
   onChange,
   placeholder = "",
-  size = "md",
   type = "text",
   value = "",
 }: {
@@ -67,14 +66,6 @@ export default function TextField({
    */
   placeholder?: string;
   /**
-   * Size of the TextField
-   *
-   * * `md`: 48px
-   *
-   * @defaultValue "md"
-   */
-  size?: "sm" | "md" | "lg";
-  /**
    * Input type of the TextField
    *
    * See [full list of input types](https://developer.mozilla.org/en-US/docs/Learn/Forms/HTML5_input_types)
@@ -116,7 +107,6 @@ export default function TextField({
         className={classNames(styles.textfield, styles.md, styles.height, {
           [styles.inputError]: errorText,
         })}
-        data-size={size}
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}

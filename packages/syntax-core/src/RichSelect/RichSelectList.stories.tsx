@@ -16,10 +16,6 @@ export default {
     },
   },
   argTypes: {
-    size: {
-      options: ["sm", "md", "lg"],
-      control: { type: "radio" },
-    },
     disabled: {
       control: "boolean",
     },

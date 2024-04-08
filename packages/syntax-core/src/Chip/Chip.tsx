@@ -45,21 +45,11 @@ type ChipProps = {
    */
   "data-testid"?: string;
   /**
-   * Size of the chip.
-   *
-   * * `sm`: 32px
-   *
-   * `lg` is deprecated
-   *
-   * @defaultValue sm
-   */
-  size?: "sm" | "lg";
-  /**
    * The text to be displayed on the chip
    */
   text: string;
   /**
-   * Indicate whether the badge renders on a light or dark background. Changes the color of the chip (Cambio only)
+   * Indicate whether the badge renders on a light or dark background. Changes the color of the chip
    *
    * @defaulValue `lightBackground`
    */

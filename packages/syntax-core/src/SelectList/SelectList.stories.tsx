@@ -14,7 +14,6 @@ export default {
     },
   },
   args: {
-    size: "md",
     "data-testid": "",
     label: "Label",
     placeholderText: "Placeholder",
@@ -25,10 +24,6 @@ export default {
     selectedValue: "",
   },
   argTypes: {
-    size: {
-      options: ["sm", "md", "lg"],
-      control: { type: "radio" },
-    },
     disabled: {
       control: "boolean",
     },

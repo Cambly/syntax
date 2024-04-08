@@ -141,11 +141,10 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
             )}
           />
         )}
-        <Typography size={textVariant[size]}>
+        <Typography size={textVariant[size]} weight="medium">
           <span
             // Temporary - until we have cambio colors on Typogrphay
             className={foregroundColorClass}
-            style={{ fontWeight: 500 }}
           >
             {text}
           </span>

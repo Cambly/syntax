@@ -2,18 +2,7 @@ import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Badge.module.css";
 
-const badgeColorClassic = [
-  "gray200",
-  "gray900",
-  "destructive700",
-  "orange700",
-  "yellow700",
-  "success700",
-  "primary700",
-  "purple700",
-] as const;
-
-const badgeColorCambio = [
+const badgeColor = [
   "sky",
   "success300",
   "destructive300",
@@ -26,34 +15,10 @@ const badgeColorCambio = [
   "pink",
 ] as const;
 
-const badgeColorClassicToCambio = {
-  gray200: "gray370",
-  gray900: "gray870",
-  destructive700: "destructive300",
-  orange700: "orange",
-  yellow700: "tan",
-  success700: "success300",
-  primary700: "sky",
-  purple700: "lilac",
-  sky: "sky",
-  success300: "success300",
-  destructive300: "destructive300",
-  orange: "orange",
-  tan: "tan",
-  gray370: "gray370",
-  gray870: "gray870",
-  lilac: "lilac",
-  thistle: "thistle",
-  pink: "pink",
-} as const;
-
 const textColorForBackgroundColor = (
-  color: (typeof badgeColorClassic)[number] | (typeof badgeColorCambio)[number],
+  color: (typeof badgeColor)[number],
 ): "gray900" | "white" => {
   switch (color) {
-    case "gray200":
-    case "yellow700":
-      return "gray900";
     case "gray370":
     case "destructive300":
     case "orange":
@@ -75,7 +40,7 @@ const textColorForBackgroundColor = (
 const Badge = ({
   icon: Icon,
   text,
-  color = "primary700",
+  color = "sky",
 }: {
   /**
    * The icon to be displayed. Please use a [Material Icon](https://material.io/resources/icons/)
@@ -88,42 +53,16 @@ const Badge = ({
   /**
    * The color of the badge
    *
-   * Classic colors:
-   * * `gray200` => maps to neutralLight in Cambio
-   * * `gray900` => maps to neutralDark in Cambio
-   * * `destructive700` => maps to destructive in Cambio
-   * * `orange700` => maps to orange in Cambio
-   * * `yellow700` => maps to tan in Cambio
-   * * `success700` => maps to success in Cambio
-   * * `primary700` => maps to sky in Cambio
-   * * `purple700` => maps to lilac in Cambio
-   *
-   * Cambio colors:
-   * * `sky`
-   * * `success300`
-   * * `destructive300`
-   * * `orange`
-   * * `tan`
-   * * `gray370`
-   * * `gray870`
-   * * `lilac`
-   * * `thistle`
-   * * `pink`
-   *
-   * @defaultValue "primary700"
+   * @defaultValue "sky"
    */
-  color?:
-    | (typeof badgeColorClassic)[number]
-    | (typeof badgeColorCambio)[number];
+  color?: (typeof badgeColor)[number];
 }): JSX.Element => {
-  const mappedColor = badgeColorClassicToCambio[color];
-
   return (
     <Box
       display="inlineFlex"
       paddingX={2}
       rounding={"sm"}
-      backgroundColor={mappedColor}
+      backgroundColor={color}
       alignItems="center"
       justifyContent="center"
       minHeight={24}
@@ -131,12 +70,12 @@ const Badge = ({
       <Typography
         size={100}
         weight="medium"
-        color={textColorForBackgroundColor(mappedColor)}
+        color={textColorForBackgroundColor(color)}
       >
         <Box display="flex" gap={1} alignItems="center" justifyContent="start">
           {Icon && <Icon className={styles.icon} />}
           <Typography
-            color={textColorForBackgroundColor(mappedColor)}
+            color={textColorForBackgroundColor(color)}
             size={100}
             weight="medium"
           >

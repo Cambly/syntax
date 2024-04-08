@@ -11,19 +11,12 @@ export default {
       url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?type=design&node-id=3953-11313&t=zb8FOHg4yiwNkZZS-0",
     },
   },
+  args: {
+    color: "sky",
+  },
   argTypes: {
     color: {
       options: [
-        // Classic
-        "gray200",
-        "gray900",
-        "destructive700",
-        "orange700",
-        "yellow700",
-        "success700",
-        "primary700",
-        "purple700",
-        // Cambio
         "sky",
         "success300",
         "destructive300",
@@ -47,7 +40,7 @@ export const Default: StoryObj<typeof Badge> = {
 
 export const WithIcon: StoryObj<typeof Badge> = {
   args: {
-    color: "gray200",
+    color: "gray370",
     icon: RepeatIcon,
     text: "Every Wednesday",
   },

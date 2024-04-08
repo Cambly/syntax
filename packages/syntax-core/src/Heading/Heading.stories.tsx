@@ -72,7 +72,7 @@ export const Sizes: StoryObj<typeof Heading> = {
   render: (args) => (
     <>
       <Heading {...args} size={400}>
-        Size 400 (Cambio only)
+        Size 400
       </Heading>
       <Heading {...args} size={500}>
         Size 500
@@ -87,13 +87,13 @@ export const Sizes: StoryObj<typeof Heading> = {
         Size 800
       </Heading>
       <Heading {...args} size={900}>
-        Size 900 (Cambio only)
+        Size 900
       </Heading>
       <Heading {...args} size={1000}>
-        Size 1000 (Cambio only)
+        Size 1000
       </Heading>
       <Heading {...args} size={1100}>
-        Size 1100 (Cambio only)
+        Size 1100
       </Heading>
     </>
   ),

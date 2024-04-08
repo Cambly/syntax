@@ -16,7 +16,6 @@ export default {
   args: {
     selected: false,
     text: "text on chip",
-    size: "sm",
     on: "lightBackground",
     disabled: false,
     "data-testid": "",
@@ -33,7 +32,6 @@ export default {
     text: {
       control: "text",
     },
-    size: { options: ["sm", "lg"], control: { type: "radio" } },
   },
   tags: ["autodocs"],
 } as Meta<typeof Chip>;
@@ -68,14 +66,12 @@ const ChipInteractive = () => {
   return (
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <Chip
-        text="interactive sm chip"
-        size="sm"
+        text="interactive chip"
         onChange={handleSmChange}
         selected={isSmSelected}
       />
       <Chip
-        text="interactive lg chip"
-        size="lg"
+        text="interactive chip"
         onChange={handleLgChange}
         selected={isLgSelected}
       />
@@ -96,15 +92,13 @@ const ChipIconInteractive = () => {
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <Chip
         icon={Star}
-        text="interactive sm chip"
-        size="sm"
+        text="interactive chip"
         onChange={handleSmChange}
         selected={isSmSelected}
       />
       <Chip
         icon={Star}
-        text="interactive lg chip"
-        size="lg"
+        text="interactive chip"
         onChange={handleLgChange}
         selected={isLgSelected}
       />

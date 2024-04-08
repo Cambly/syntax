@@ -1,8 +1,8 @@
-import { type CambioColor } from "../constants";
+import { type Color } from "../constants";
 import styles from "./colors.module.css";
 
 export function backgroundColor(
-  color: (typeof CambioColor)[number],
+  color: (typeof Color)[number],
   on: "lightBackground" | "darkBackground",
 ): string {
   if (on === "lightBackground") {

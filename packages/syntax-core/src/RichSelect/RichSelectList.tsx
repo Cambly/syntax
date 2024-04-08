@@ -63,12 +63,6 @@ export type RichSelectListProps = RichSelectBoxProps & {
   placeholderText?: string;
   /** Use to render (override) text shown in the select box */
   selectTextValue?: (selectedValues?: "all" | string[]) => string | undefined;
-  /**
-   * Size of the select box
-   *
-   * @defaultValue "md"
-   */
-  size?: "sm" | "md" | "lg";
 };
 
 /**
@@ -110,7 +104,6 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     selectTextValue,
     selectedValues: selectedValuesProp,
     defaultSelectedValues: defaultSelectedValuesProp,
-    size = "md",
     ...richSelectBoxProps
   } = props;
 
@@ -224,7 +217,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
             {...fieldProps}
             ref={fieldRef}
           >
-            <div className={styles.selectWrapper} data-size={size}>
+            <div className={styles.selectWrapper}>
               <div
                 className={classNames(
                   styles.selectBox,

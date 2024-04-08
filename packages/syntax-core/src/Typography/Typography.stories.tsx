@@ -74,14 +74,7 @@ export default {
       control: "boolean",
     },
     weight: {
-      options: [
-        "regular",
-        "interactive",
-        "medium",
-        "semiBold",
-        "bold",
-        "heavy",
-      ],
+      options: ["regular", "medium", "semiBold", "bold"],
       control: { type: "radio" },
     },
   },
@@ -105,7 +98,7 @@ export const sizes: StoryObj<typeof Typography> = {
         Size 300
       </Typography>
       <Typography {...Default.args} size={400}>
-        Size 400 (Cambio only)
+        Size 400
       </Typography>
       <Typography {...Default.args} size={500}>
         Size 500
@@ -120,13 +113,13 @@ export const sizes: StoryObj<typeof Typography> = {
         Size 800
       </Typography>
       <Typography {...Default.args} size={900}>
-        Size 900 (Cambio only)
+        Size 900
       </Typography>
       <Typography {...Default.args} size={1000}>
-        Size 1000 (Cambio only)
+        Size 1000
       </Typography>
       <Typography {...Default.args} size={1100}>
-        Size 1100 (Cambio only)
+        Size 1100
       </Typography>
     </>
   ),
@@ -139,7 +132,7 @@ export const colors: StoryObj<typeof Typography> = {
         Color destructive-primary
       </Typography>
       <Typography {...Default.args} color="destructive-darkBackground">
-        Color destructive-darkBackground (Cambio only)
+        Color destructive-darkBackground
       </Typography>
       <Typography {...Default.args} color="gray700">
         Color gray700
@@ -154,7 +147,7 @@ export const colors: StoryObj<typeof Typography> = {
         Color success
       </Typography>
       <Typography {...Default.args} color="success-darkBackground">
-        Color success-darkBackground (Cambio only)
+        Color success-darkBackground
       </Typography>
       <Typography {...Default.args} color="white">
         Color white
@@ -238,20 +231,14 @@ export const Weight: StoryObj<typeof Typography> = {
       <Typography {...args} weight="regular">
         Weight Regular
       </Typography>
-      <Typography {...args} weight="interactive">
-        Weight interactive (classic only)
-      </Typography>
       <Typography {...args} weight="medium">
-        Weight medium (cambio only)
+        Weight medium
       </Typography>
       <Typography {...args} weight="semiBold">
         Weight semiBold
       </Typography>
       <Typography {...args} weight="bold">
         Weight bold
-      </Typography>
-      <Typography {...args} weight="heavy">
-        Weight heavy (classic only)
       </Typography>
     </>
   ),
