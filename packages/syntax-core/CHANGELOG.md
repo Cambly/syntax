@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.37.0
+
+### Minor Changes
+
+- 007acae: Add loading state for LinkButton
+
 ## 10.36.0
 
 ### Minor Changes
