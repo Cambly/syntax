@@ -24,14 +24,6 @@ type CardType = {
    * @defaultValue `roomy`
    */
   size?: "compact" | "roomy";
-  /**
-   * The border color of the box.
-   * This is a passthrough prop directly to the Box component.
-   *
-   * Usage example: `border="1px solid var(--color-base-gray-300)"`
-   * * @defaultValue `none`
-   */
-  border?: string;
 };
 
 /**
