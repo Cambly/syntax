@@ -39,7 +39,7 @@
   transition-duration: 0.2s;
 }
 
-.button:disabled {
+.disabled {
   filter: opacity(50%);
   background-image: none;
   transform: none;

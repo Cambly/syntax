@@ -130,6 +130,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const foregroundColorClass = foregroundColor(color, on);
     const backgroundColorClass = backgroundColor(color, on);
     const disabledPrimary = color === "primary" && disabled;
+    const isDisabled = !isHydrated || disabled || loading;
 
     return (
       <button
@@ -138,7 +139,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-label={accessibilityLabel}
         type={type}
         title={tooltip}
-        disabled={!isHydrated || disabled || loading}
+        disabled={isDisabled}
         onClick={onClick}
         className={classNames(
           styles.button,
@@ -149,6 +150,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {
             [styles.fullWidth]: fullWidth,
             [styles.buttonGap]: size === "lg" || size === "md",
+            [styles.disabled]: isDisabled,
           },
         )}
       >
