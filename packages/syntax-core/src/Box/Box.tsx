@@ -4,6 +4,7 @@ import styles from "./Box.module.css";
 import marginStyles from "./margin.module.css";
 import paddingStyles from "./padding.module.css";
 import type allColors from "../colors/allColors";
+import borderStyles from "../border.module.css";
 import colorStyles from "../colors/colors.module.css";
 import roundingStyles from "../rounding.module.css";
 import { forwardRef } from "react";
@@ -99,13 +100,14 @@ type BoxProps = {
    */
   backgroundColor?: (typeof allColors)[number];
   /**
-   * The border color of the box.
-   * This is a passthrough prop directly to the Box component.
+   * The border styling of the box.
    *
-   * Usage example: `border="1px solid var(--color-base-gray-300)"`
+   * * `primary`: 1px solid var(--color-base-primary)
+   * * `none`: 0px
+   *
    * @defaultValue `none`
    */
-  border?: string;
+  border?: "primary" | "none";
   /**
    * The children to be rendered inside the box.
    */
@@ -589,6 +591,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       lgJustifyContent && styles[`justifyContent${lgJustifyContent}Large`],
       position && position !== "static" && styles[position],
       rounding && rounding !== "none" && roundingStyles[`rounding${rounding}`],
+      border && borderStyles[`border${border}`],
       overflow && styles[`overflow${overflow}`],
       overflowX && styles[`overflowX${overflowX}`],
       overflowY && styles[`overflowY${overflowY}`],
@@ -600,7 +603,6 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       minHeight,
       minWidth,
       width,
-      border,
       ...(dangerouslySetInlineStyle?.__style ?? {}),
     },
   };

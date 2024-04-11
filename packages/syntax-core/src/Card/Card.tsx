@@ -41,7 +41,6 @@ export default function Card({
   backgroundColor = "white",
   children,
   size,
-  border = "none",
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
   return (
@@ -51,9 +50,6 @@ export default function Card({
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}
-      dangerouslySetInlineStyle={{
-        __style: { border: border ? border : "none" },
-      }}
     >
       {children}
     </Box>

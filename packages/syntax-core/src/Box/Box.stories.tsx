@@ -68,6 +68,10 @@ export default {
       control: { type: "select" },
       options: allColors,
     },
+    border: {
+      control: { type: "radio" },
+      options: ["primary", "none"],
+    },
     dangerouslySetInlineStyle: {
       control: { type: "object" },
     },
@@ -171,7 +175,7 @@ export default {
       control: "text",
     },
     rounding: {
-      options: ["none", "sm", "md", "lg", "xl", "full"],
+      options: ["none", "sm", "md", "full"],
       control: { type: "select" },
     },
     children: {
@@ -406,7 +410,7 @@ const roundingLookup = {
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap">
-      {(["sm", "md", "lg", "xl", "full"] as const).map((rounding) => (
+      {(["sm", "md", "full"] as const).map((rounding) => (
         <Box
           key={rounding}
           rounding={rounding}

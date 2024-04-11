@@ -1,0 +1,7 @@
+.borderprimary {
+  border: 1px solid var(--color-gray370);
+}
+
+.bordernone {
+  border: none;
+}
