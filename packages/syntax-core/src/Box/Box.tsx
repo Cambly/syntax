@@ -99,6 +99,14 @@ type BoxProps = {
    */
   backgroundColor?: (typeof allColors)[number];
   /**
+   * The border color of the box.
+   * This is a passthrough prop directly to the Box component.
+   *
+   * Usage example: `border="1px solid var(--color-base-gray-300)"`
+   * @defaultValue `none`
+   */
+  border?: string;
+  /**
    * The children to be rendered inside the box.
    */
   children?: ReactNode;
@@ -441,6 +449,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     lgAlignItems,
     alignSelf,
     backgroundColor,
+    border,
     direction,
     smDirection,
     lgDirection,
@@ -591,6 +600,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
       minHeight,
       minWidth,
       width,
+      border,
       ...(dangerouslySetInlineStyle?.__style ?? {}),
     },
   };

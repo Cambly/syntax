@@ -24,6 +24,14 @@ type CardType = {
    * @defaultValue `roomy`
    */
   size?: "compact" | "roomy";
+  /**
+   * The border color of the box.
+   * This is a passthrough prop directly to the Box component.
+   *
+   * Usage example: `border="1px solid var(--color-base-gray-300)"`
+   * * @defaultValue `none`
+   */
+  border?: string;
 };
 
 /**
@@ -33,6 +41,7 @@ export default function Card({
   backgroundColor = "white",
   children,
   size,
+  border = "none",
   "data-testid": dataTestId,
 }: CardType): JSX.Element {
   return (
@@ -42,6 +51,9 @@ export default function Card({
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}
+      dangerouslySetInlineStyle={{
+        __style: { border: border ? border : "none" },
+      }}
     >
       {children}
     </Box>
