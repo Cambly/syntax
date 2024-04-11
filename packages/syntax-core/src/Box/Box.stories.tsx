@@ -248,9 +248,19 @@ export const BackgroundColor: StoryObj<typeof Box> = {
   ),
 };
 
+export const Border: StoryObj<typeof Box> = {
+  render: () => (
+    <Box display="flex" flexWrap="wrap" gap={4}>
+      <Box border="primary" width={240} padding={2}>
+        <Typography>Border Primary</Typography>
+      </Box>
+    </Box>
+  ),
+};
+
 export const Direction: StoryObj<typeof Box> = {
   render: () => (
-    <>
+    <Box display="flex" direction="column" gap={4}>
       <Typography weight="bold">Direction: row </Typography>
       <Box display="flex">
         <Box height={40} width={40}>
@@ -284,7 +294,7 @@ export const Direction: StoryObj<typeof Box> = {
           <Typography>4</Typography>
         </Box>
       </Box>
-    </>
+    </Box>
   ),
 };
 
