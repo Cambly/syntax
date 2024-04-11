@@ -21,6 +21,7 @@ export default {
     size: "md",
     fullWidth: false,
     "data-testid": "",
+    loading: false,
   },
   argTypes: {
     text: {
@@ -73,6 +74,7 @@ export default {
       control: "boolean",
     },
     onClick: { action: "clicked" },
+    loading: { control: "boolean" },
   },
   tags: ["autodocs"],
 } as Meta<typeof LinkButton>;

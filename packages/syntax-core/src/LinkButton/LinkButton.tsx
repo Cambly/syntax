@@ -6,6 +6,7 @@ import Typography from "../Typography/Typography";
 import buttonStyles from "../Button/Button.module.css";
 import iconSize from "../Button/constants/iconSize";
 import textVariant from "../Button/constants/textVariant";
+import loadingIconSize from "../Button/constants/loadingIconSize";
 import styles from "./LinkButton.module.css";
 import { backgroundColor } from "../colors//backgroundColor";
 import { foregroundColor } from "../colors/foregroundColor";
@@ -61,6 +62,12 @@ type LinkButtonProps = {
    */
   size?: (typeof Size)[number];
   /**
+   * If `true`, the button will be in a loading state
+   *
+   * @defaultValue false
+   */
+  loading?: boolean;
+  /**
    * If `true`, the button will take up the full width of its container
    *
    * @defaultValue false
@@ -99,6 +106,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       "data-testid": dataTestId,
       color = "primary",
       size = "md",
+      loading = false,
       fullWidth = false,
       startIcon: StartIcon,
       endIcon: EndIcon,
@@ -128,11 +136,12 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
             [buttonStyles.fullWidth]: fullWidth,
             [styles.fitContent]: !fullWidth,
             [buttonStyles.buttonGap]: size === "lg" || size === "md",
+            [buttonStyles.disabled]: loading,
           },
         )}
         onClick={onClick}
       >
-        {StartIcon && (
+        {!loading && StartIcon && (
           <StartIcon
             className={classNames(
               buttonStyles.icon,
@@ -141,15 +150,17 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
             )}
           />
         )}
-        <Typography size={textVariant[size]} weight="medium">
-          <span
-            // Temporary - until we have cambio colors on Typogrphay
-            className={foregroundColorClass}
-          >
-            {text}
-          </span>
-        </Typography>
-        {EndIcon && (
+        {!loading && text && (
+          <Typography size={textVariant[size]} weight="medium">
+            <span
+              // Temporary - until we have cambio colors on Typogrphay
+              className={foregroundColorClass}
+            >
+              {text}
+            </span>
+          </Typography>
+        )}
+        {!loading && EndIcon && (
           <EndIcon
             className={classNames(
               buttonStyles.icon,
@@ -157,6 +168,23 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
               foregroundColorClass,
             )}
           />
+        )}
+        {loading && (
+          <svg
+            className={classNames(buttonStyles.loading, foregroundColorClass)}
+            viewBox="22 22 44 44"
+            width={loadingIconSize[size]}
+            height={loadingIconSize[size]}
+          >
+            <circle
+              className={buttonStyles.loadingCircle}
+              cx="44"
+              cy="44"
+              r="20.2"
+              fill="none"
+              strokeWidth="3.6"
+            />
+          </svg>
         )}
       </a>
     );
