@@ -93,8 +93,8 @@ const Checkbox = ({
               isFocused && isFocusVisible,
           },
           error
-            ? colorStyles.cambioDestructive370BackgroundColor
-            : colorStyles.cambioGray370BackgroundColor,
+            ? colorStyles.destructive370BackgroundColor
+            : colorStyles.gray370BackgroundColor,
         )}
       >
         {checked && (

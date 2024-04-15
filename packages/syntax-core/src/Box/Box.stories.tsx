@@ -229,7 +229,7 @@ export const BackgroundColor: StoryObj<typeof Box> = {
           <Box key={color} backgroundColor={color} width={240} padding={2}>
             <Typography
               color={
-                ["gray10", "gray30", "white"].includes(color) ||
+                ["gray10", "gray30", "white", "cream"].includes(color) ||
                 (number && parseInt(number) < 400)
                   ? "gray900"
                   : "white"
@@ -327,7 +327,7 @@ export const Overflow: StoryObj<typeof Box> = {
     <>
       <Typography weight="bold">Overflow: hidden</Typography>
       <Box rounding="full" overflow="hidden" height={80} width={80}>
-        <Box backgroundColor="primary700">
+        <Box backgroundColor="gray370">
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
