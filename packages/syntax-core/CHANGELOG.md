@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 10.38.0
+
+### Minor Changes
+
+- 59cc6ef: Box: Add "primary" border as optional prop
+
 ## 10.37.0
 
 ### Minor Changes
