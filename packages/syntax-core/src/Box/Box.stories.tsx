@@ -68,6 +68,10 @@ export default {
       control: { type: "select" },
       options: allColors,
     },
+    border: {
+      control: { type: "radio" },
+      options: ["primary", "none"],
+    },
     dangerouslySetInlineStyle: {
       control: { type: "object" },
     },
@@ -171,7 +175,7 @@ export default {
       control: "text",
     },
     rounding: {
-      options: ["none", "sm", "md", "lg", "xl", "full"],
+      options: ["none", "sm", "md", "full"],
       control: { type: "select" },
     },
     children: {
@@ -244,9 +248,19 @@ export const BackgroundColor: StoryObj<typeof Box> = {
   ),
 };
 
+export const Border: StoryObj<typeof Box> = {
+  render: () => (
+    <Box display="flex" flexWrap="wrap" gap={4}>
+      <Box border="primary" width={240} padding={2}>
+        <Typography>Border Primary</Typography>
+      </Box>
+    </Box>
+  ),
+};
+
 export const Direction: StoryObj<typeof Box> = {
   render: () => (
-    <>
+    <Box display="flex" direction="column" gap={4}>
       <Typography weight="bold">Direction: row </Typography>
       <Box display="flex">
         <Box height={40} width={40}>
@@ -280,7 +294,7 @@ export const Direction: StoryObj<typeof Box> = {
           <Typography>4</Typography>
         </Box>
       </Box>
-    </>
+    </Box>
   ),
 };
 
@@ -406,7 +420,7 @@ const roundingLookup = {
 export const Rounding: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={4} flexWrap="wrap">
-      {(["sm", "md", "lg", "xl", "full"] as const).map((rounding) => (
+      {(["sm", "md", "full"] as const).map((rounding) => (
         <Box
           key={rounding}
           rounding={rounding}
