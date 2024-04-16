@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 11.2.0
+
+### Minor Changes
+
+- fb7c7f0: Colors: add missing primary colors
+
 ## 11.1.0
 
 ### Minor Changes
