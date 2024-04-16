@@ -135,6 +135,67 @@
   color: var(--color-cambio-sky);
 }
 
+<<<<<<< Updated upstream
+=======
+/* Border Colors */
+.noBorder {
+  border: none;
+}
+
+.blackBorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-black) inset;
+}
+
+.whiteBorderColor {
+  box-shadow: 0 0 0 1px var(--color-base-white) inset;
+}
+
+.success770BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-success-770) inset;
+}
+
+.destructive770BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-destructive-770) inset;
+}
+
+.gray370BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-gray-370) inset;
+}
+
+.success370BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-success-370) inset;
+}
+
+.destructive370BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-destructive-370) inset;
+}
+
+/* Border Colors */
+.primary100BackgroundColor {
+  background-color: var(--color-base-primary-100);
+}
+
+.primary200BackgroundColor {
+  background-color: var(--color-base-primary-200);
+}
+
+.primary300BackgroundColor {
+  background-color: var(--color-base-primary-300);
+}
+
+.primary700BackgroundColor {
+  background-color: var(--color-base-primary-700);
+}
+
+.primary800BackgroundColor {
+  background-color: var(--color-base-primary-800);
+}
+
+.primary900BackgroundColor {
+  background-color: var(--color-base-primary-900);
+}
+
+>>>>>>> Stashed changes
 .yellow700BackgroundColor {
   background-color: var(--color-cambio-yellow-700);
 }
