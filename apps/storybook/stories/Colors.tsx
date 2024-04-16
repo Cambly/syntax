@@ -7,32 +7,16 @@ export default function Colors() {
       if (key.includes("cambio")) {
         // @ts-expect-error
         acc["Cambio"].push({ key, value });
-      } else if (
-        key.includes("black") ||
-        key.includes("white") ||
-        key.includes("gray")
-      ) {
-        // @ts-expect-error
-        acc["Grayscale"].push({ key, value });
-      } else if (key.includes("primary")) {
-        // @ts-expect-error
-        acc["Primary"].push({ key, value });
-      } else if (key.includes("destructive")) {
-        // @ts-expect-error
-        acc["Destructive"].push({ key, value });
       } else {
         // @ts-expect-error
-        acc["Extended Palette"].push({ key, value });
+        acc["Deprecated"].push({ key, value });
       }
 
       return acc;
     },
     {
       Cambio: [],
-      Grayscale: [],
-      Primary: [],
-      Destructive: [],
-      "Extended Palette": [],
+      Deprecated: [],
     },
   );
 

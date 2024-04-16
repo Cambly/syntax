@@ -8,44 +8,44 @@ export function backgroundColor(
   if (on === "lightBackground") {
     switch (color) {
       case "primary":
-        return styles.cambioBlackBackgroundColor;
+        return styles.blackBackgroundColor;
       case "secondary":
       case "success-secondary":
       case "destructive-secondary":
-        return styles.cambioTransparentFullBackgroundColor;
+        return styles.transparentFullBackgroundColor;
       case "tertiary":
       case "success-tertiary":
       case "destructive-tertiary":
-        return styles.cambioTransparentFullBackgroundColor;
+        return styles.transparentFullBackgroundColor;
       case "success-primary":
-        return styles.cambioSuccess700BackgroundColor;
+        return styles.success700BackgroundColor;
       case "destructive-primary":
-        return styles.cambioDestructive700BackgroundColor;
+        return styles.destructive700BackgroundColor;
       case "branded":
-        return styles.cambioYellow700BackgroundColor;
+        return styles.yellow700BackgroundColor;
       default:
-        return styles.cambioBlackBackgroundColor;
+        return styles.blackBackgroundColor;
     }
   } else {
     switch (color) {
       case "primary":
-        return styles.cambioGray200BackgroundColor;
+        return styles.gray200BackgroundColor;
       case "secondary":
       case "success-secondary":
       case "destructive-secondary":
-        return styles.cambioTransparentFullBackgroundColor;
+        return styles.transparentFullBackgroundColor;
       case "tertiary":
       case "success-tertiary":
       case "destructive-tertiary":
-        return styles.cambioTransparentFullBackgroundColor;
+        return styles.transparentFullBackgroundColor;
       case "success-primary":
-        return styles.cambioSuccess300BackgroundColor;
+        return styles.success300BackgroundColor;
       case "destructive-primary":
-        return styles.cambioDestructive300BackgroundColor;
+        return styles.destructive300BackgroundColor;
       case "branded":
-        return styles.cambioYellow700BackgroundColor;
+        return styles.yellow700BackgroundColor;
       default:
-        return styles.cambioWhiteBackgroundColor;
+        return styles.whiteBackgroundColor;
     }
   }
 }

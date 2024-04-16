@@ -17,22 +17,22 @@ function textColor(
 ): string {
   switch (color) {
     case "gray700":
-      return colorStyles.cambioGray800Color;
+      return colorStyles.gray800Color;
     case "white":
-      return colorStyles.cambioWhiteColor;
+      return colorStyles.whiteColor;
     case "inherit":
       return colorStyles.inheritColor;
     case "destructive-primary":
-      return colorStyles.cambioDestructive900Color;
+      return colorStyles.destructive900Color;
     case "destructive-darkBackground":
-      return colorStyles.cambioDestructive100Color;
+      return colorStyles.destructive100Color;
     case "success":
-      return colorStyles.cambioSuccess900Color;
+      return colorStyles.success900Color;
     case "success-darkBackground":
-      return colorStyles.cambioSuccess100Color;
-    // primary / gray900
+      return colorStyles.success100Color;
+    // gray900
     default:
-      return colorStyles.cambioBlackColor;
+      return colorStyles.blackColor;
   }
 }
 
