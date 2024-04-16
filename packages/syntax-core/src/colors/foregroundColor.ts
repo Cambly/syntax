@@ -10,33 +10,33 @@ export function foregroundColor(
       case "primary":
       case "success-primary":
       case "destructive-primary":
-        return styles.whiteColor;
+        return styles.cambioWhiteColor;
       case "success-secondary":
       case "success-tertiary":
-        return styles.success700Color;
+        return styles.cambioSuccess700Color;
       case "destructive-secondary":
       case "destructive-tertiary":
-        return styles.destructive700Color;
+        return styles.cambioDestructive700Color;
       default:
-        return styles.blackColor;
+        return styles.cambioBlackColor;
     }
   } else {
     switch (color) {
       case "primary":
       case "success-primary":
       case "destructive-primary":
-        return styles.blackColor;
+        return styles.cambioBlackColor;
       case "secondary":
       case "tertiary":
-        return styles.whiteColor;
+        return styles.cambioWhiteColor;
       case "success-secondary":
       case "success-tertiary":
-        return styles.success300Color;
+        return styles.cambioSuccess300Color;
       case "destructive-secondary":
       case "destructive-tertiary":
-        return styles.destructive300Color;
+        return styles.cambioDestructive300Color;
       default: // branded
-        return styles.blackColor;
+        return styles.cambioBlackColor;
     }
   }
 }
