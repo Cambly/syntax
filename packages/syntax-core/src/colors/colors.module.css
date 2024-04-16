@@ -135,8 +135,6 @@
   color: var(--color-cambio-sky);
 }
 
-<<<<<<< Updated upstream
-=======
 /* Border Colors */
 .noBorder {
   border: none;
@@ -170,7 +168,7 @@
   box-shadow: 0 0 0 1px var(--color-cambio-destructive-370) inset;
 }
 
-/* Border Colors */
+/* Background Colors */
 .primary100BackgroundColor {
   background-color: var(--color-base-primary-100);
 }
@@ -195,7 +193,6 @@
   background-color: var(--color-base-primary-900);
 }
 
->>>>>>> Stashed changes
 .yellow700BackgroundColor {
   background-color: var(--color-cambio-yellow-700);
 }
