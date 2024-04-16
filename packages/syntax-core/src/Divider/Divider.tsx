@@ -8,7 +8,10 @@ import colorStyles from "../colors/colors.module.css";
 export default function Divider(): React.ReactElement {
   return (
     <hr
-      className={classNames(styles.divider, colorStyles.gray370BackgroundColor)}
+      className={classNames(
+        styles.divider,
+        colorStyles.cambioGray370BackgroundColor,
+      )}
     />
   );
 }

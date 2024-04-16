@@ -341,7 +341,7 @@ export const Overflow: StoryObj<typeof Box> = {
     <>
       <Typography weight="bold">Overflow: hidden</Typography>
       <Box rounding="full" overflow="hidden" height={80} width={80}>
-        <Box backgroundColor="gray370">
+        <Box backgroundColor="primary700">
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
