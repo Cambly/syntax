@@ -1,4 +1,12 @@
 const colors = [
+  // Primary
+  "primary100",
+  "primary200",
+  "primary300",
+  "primary700",
+  "primary800",
+  "primary900",
+
   // Branded
   "yellow700",
 
