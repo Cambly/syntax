@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 11.1.0
+
+### Minor Changes
+
+- cda81fd: Colors: Fix border colors
+
 ## 11.0.0
 
 ### Major Changes
