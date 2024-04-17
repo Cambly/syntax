@@ -100,8 +100,8 @@ const RadioButton = ({
         className={classnames(
           styles.background,
           error
-            ? colorStyles.destructive370BackgroundColor
-            : colorStyles.gray370BackgroundColor,
+            ? colorStyles.cambioDestructive370BackgroundColor
+            : colorStyles.cambioGray370BackgroundColor,
           styles[size],
           {
             [focusStyles.accessibilityOutlineFocus]:
