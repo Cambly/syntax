@@ -61,6 +61,40 @@
 }
 
 /* Background Colors */
+<<<<<<< HEAD
+=======
+.primary100BackgroundColor {
+  background-color: var(--color-base-primary-100);
+}
+
+.primary200BackgroundColor {
+  background-color: var(--color-base-primary-200);
+}
+
+.primary300BackgroundColor {
+  background-color: var(--color-base-primary-300);
+}
+
+.primary700BackgroundColor {
+  background-color: var(--color-base-primary-700);
+}
+
+.primary800BackgroundColor {
+  background-color: var(--color-base-primary-800);
+}
+
+.primary900BackgroundColor {
+  background-color: var(--color-base-primary-900);
+}
+
+.yellow700BackgroundColor {
+  background-color: var(--color-cambio-yellow-700);
+}
+
+.transparentFullBackgroundColor {
+  background-color: var(--color-cambio-transparent-full);
+}
+>>>>>>> main
 
 .blackBackgroundColor {
   background-color: var(--color-base-black);
