@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.0.0
+
+### Major Changes
+
+- b229a31: Colors: Revert back to 10.38 versioning. Too many dependencies in Cambly-Frontend to do auto migration like this.
+
 ## 11.2.0
 
 ### Minor Changes
