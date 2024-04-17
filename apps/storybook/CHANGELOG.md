@@ -1,5 +1,12 @@
 # @syntax/storybook
 
+## 0.20.7
+
+### Patch Changes
+
+- Updated dependencies [b229a31]
+  - @cambly/syntax-core@12.0.0
+
 ## 0.20.6
 
 ### Patch Changes
