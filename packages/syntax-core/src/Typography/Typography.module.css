@@ -65,6 +65,21 @@
 :lang(tr) .serif {
   font-family: "GT Super", var(--syntax-font-sans-serif);
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.03em;
+  line-height: 1.1em;
+}
+
+/* stylelint-disable-next-line selector-max-class, selector-max-compound-selectors, selector-max-specificity -- override styles for serif bold  */
+:lang(en) .serif.bold,
+:lang(az) .serif.bold,
+:lang(fr) .serif.bold,
+:lang(de) .serif.bold,
+:lang(es) .serif.bold,
+:lang(it) .serif.bold,
+:lang(pl) .serif.bold,
+:lang(pt) .serif.bold,
+:lang(tr) .serif.bold {
+  letter-spacing: -0.01em;
 }
 
 /* Sizes are responsive */
