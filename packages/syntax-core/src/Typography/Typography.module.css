@@ -65,6 +65,8 @@
 :lang(tr) .serif {
   font-family: "GT Super", var(--syntax-font-sans-serif);
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.02em;
+  line-height: 1.15em;
 }
 
 /* Sizes are responsive */
