@@ -105,6 +105,28 @@ export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
 };
 
-export const SyntaxIcon: StoryObj<typeof IconButton> = {
+export const SyntaxIcons: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: CalendarBooking },
+  render: (args) => {
+    return (
+      <Box display="flex" gap={4}>
+        {(
+          [
+            "primary",
+            "secondary",
+            "tertiary",
+            "destructive-primary",
+            "destructive-secondary",
+            "destructive-tertiary",
+            "success-primary",
+            "success-secondary",
+            "success-tertiary",
+            "branded",
+          ] as const
+        ).map((color) => (
+          <IconButton {...args} color={color} key={color} />
+        ))}
+      </Box>
+    );
+  },
 };

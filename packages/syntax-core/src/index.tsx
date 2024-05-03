@@ -9,6 +9,7 @@ import Checkbox from "./Checkbox/Checkbox";
 import Chip from "./Chip/Chip";
 import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
+import Icon from "./Icon/Icon";
 import IconButton from "./IconButton/IconButton";
 import LinkButton from "./LinkButton/LinkButton";
 import Modal from "./Modal/Modal";
@@ -35,6 +36,7 @@ export {
   Chip,
   Divider,
   Heading,
+  Icon,
   IconButton,
   LinkButton,
   Modal,

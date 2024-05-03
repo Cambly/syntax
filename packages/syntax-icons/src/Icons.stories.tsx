@@ -1,7 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Box from "../../syntax-core/src/Box/Box";
 import Typography from "../../syntax-core/src/Typography/Typography";
-import Icon from "./Icon";
+import Icon from "../../syntax-core/src/Icon/Icon";
 
 import Accent from "./Accent";
 import Achievement from "./Achievement";

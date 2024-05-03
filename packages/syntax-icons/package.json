@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-icons",
-  "description": "Cambly design system Icon Library",
-  "version": "1.0.0",
+  "description": "Cambly design system icon library",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,8 +12,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "build": "tsup src/*.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/*.tsx --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },

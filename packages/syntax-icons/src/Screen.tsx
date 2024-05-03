@@ -1,15 +1,15 @@
 import { type ComponentProps, forwardRef } from "react";
-import Icon from "./Icon";
+import Icon from "../../syntax-core/src/Icon/Icon";
 
 const Screen = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
->((props, ref) => (
+>(({ color, size }, ref) => (
   <Icon
     ref={ref}
     path="M24 1.2H0V18h9.6l-2.4 2.4v2.4h9.6v-2.4L14.4 18H24V1.2Zm-2.4 14.4H2.4v-12h19.2v12Z"
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
+    color={color}
+    size={size}
   />
 ));
 Screen.displayName = "Screen";
