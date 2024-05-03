@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.1.0
+
+### Minor Changes
+
+- 9409c8a: Heading / Typography: set specific line-height and letter spacing for serif font
+
 ## 12.0.0
 
 ### Major Changes
