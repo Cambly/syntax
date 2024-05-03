@@ -1,5 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Box from "../../syntax-core/src/Box/Box";
+import Typography from "../../syntax-core/src/Typography/Typography";
+import Icon from "./Icon";
 
 import Accent from "./Accent";
 import Achievement from "./Achievement";
@@ -183,7 +185,7 @@ const icons = [
 
 export default {
   title: "Icons/Icons",
-  // component: ,
+  component: Icon,
   parameters: {
     design: {
       type: "figma",
@@ -195,17 +197,34 @@ export default {
       options: ["xs", "sm", "md", "lg"],
       control: { type: "radio" },
     },
+    color: {
+      options: [
+        "black",
+        "gray700",
+        "primary",
+        "destructive-primary",
+        "destructive-darkBackground",
+        "success",
+        "success-darkBackground",
+        "white",
+        "inherit",
+      ],
+      control: { type: "radio" },
+    },
   },
   tags: ["autodocs"],
-} as Meta;
+} as Meta<typeof Icon>;
 
-export const Default: StoryObj = {
-  args: {},
-  render: () => {
+export const Default: StoryObj<typeof Icon> = {
+  args: {
+    size: "lg",
+    color: "primary",
+  },
+  render: ({ size, color }) => {
     return (
       <Box display="flex" flexWrap="wrap" gap={4}>
         {icons.map((icon) => {
-          const Icon = icon.component;
+          const IndIcon = icon.component;
           return (
             <Box
               key={icon.name}
@@ -214,12 +233,15 @@ export const Default: StoryObj = {
               gap={2}
               justifyContent="center"
               alignItems="center"
-              maxWidth={100}
+              maxWidth={150}
               width="100%"
               padding={2}
+              backgroundColor={color === "white" ? "black" : "white"}
             >
-              <Icon size="lg" />
-              <span style={{ fontSize: "12px" }}>{icon.name}</span>
+              <IndIcon size={size} color={color} />
+              <Typography color={color} size={100}>
+                {icon.name}
+              </Typography>
             </Box>
           );
         })}
