@@ -38,7 +38,7 @@ const Icon = forwardRef<
      */
     path: string;
   }
->(({ className, color = "gray900", path, size = "sm" }, ref) => (
+>(({ className, color = "inherit", path, size = "sm" }, ref) => (
   <svg
     className={classnames(
       styles.icon,

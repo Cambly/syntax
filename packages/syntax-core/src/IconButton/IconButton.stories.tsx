@@ -4,6 +4,8 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";
 
+import CalendarBooking from "../../../syntax-icons/src/CalendarBooking";
+
 export default {
   title: "Components/IconButton",
   component: IconButton,
@@ -101,4 +103,8 @@ export const DestructiveTertiary: StoryObj<typeof IconButton> = {
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
+};
+
+export const SyntaxIcon: StoryObj<typeof IconButton> = {
+  args: { ...Default.args, icon: CalendarBooking },
 };
