@@ -9,6 +9,8 @@ import styles from "./Icon.module.css";
 /**
  * [Icon](http://localhost:6006/?path=/docs/icons-icons--docs) is the base component that renders an icon.
  * You shouldn't use this component directly, instead use the specific icon components.
+ * @example
+ * `import { Book } from "@cambly/syntax-icons/Book";`
  */
 const Icon = forwardRef<
   SVGSVGElement,
