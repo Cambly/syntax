@@ -73,8 +73,9 @@ const Triggerable = forwardRef<
         {
           className: styles.trigger,
           style: {
-            display: "inline-block",
-            verticalAlign: "text-top",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           },
         },
       )}
