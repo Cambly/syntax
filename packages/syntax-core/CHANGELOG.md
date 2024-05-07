@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.2.0
+
+### Minor Changes
+
+- 6322c65: Tooltip: trigger isn't centered. apply new stylings to make it centered
+
 ## 12.1.0
 
 ### Minor Changes
