@@ -2,3 +2,7 @@
   display: block; /* Fixes chrome bug https://stackoverflow.com/questions/63430767; */
   padding: 12px;
 }
+
+.resizeNone {
+  resize: none;
+}

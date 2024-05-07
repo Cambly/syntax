@@ -51,6 +51,12 @@ type TextAreaProps = {
    * Value of the TextArea
    */
   value: string;
+  /**
+   * Boolean of whether the TextArea should be resizable
+   *
+   * @default true
+   */
+  resize?: boolean;
 };
 
 /**
@@ -70,6 +76,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 3,
       value = "",
       onChange,
+      resize = true,
     }: TextAreaProps,
     forwardedRef,
   ): ReactElement {
@@ -104,6 +111,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ref={forwardedRef}
             className={classNames(textFieldStyles.textfield, styles.textarea, {
               [textFieldStyles.inputError]: errorText,
+              [styles.resizeNone]: !resize,
             })}
             id={inputId}
             placeholder={placeholder}

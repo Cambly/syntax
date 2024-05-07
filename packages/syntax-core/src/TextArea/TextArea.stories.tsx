@@ -22,6 +22,7 @@ export default {
     value: "",
     "data-testid": "",
     id: "",
+    resize: true,
   },
   argTypes: {
     disabled: {
