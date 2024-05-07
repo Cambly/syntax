@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.4.0
+
+### Minor Changes
+
+- 3654deb: Syntax-Icons: Init base icon package + stories + documentation
+
 ## 12.3.0
 
 ### Minor Changes
