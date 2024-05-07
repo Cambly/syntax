@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.3.0
+
+### Minor Changes
+
+- a91449f: TextArea: Add optional resize prop to allow for no resizing
+
 ## 12.2.0
 
 ### Minor Changes
