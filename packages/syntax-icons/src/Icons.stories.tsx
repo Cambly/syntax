@@ -184,13 +184,17 @@ const cambioIcons = [
 ];
 
 export default {
-  title: "Icons/Icons",
+  title: "Icons",
   component: Icon,
   parameters: {
     design: {
       type: "figma",
-      url: "https://www.figma.com/file/p7LKna9JMU0JEkcKamzs53/%F0%9F%93%90-Syntax?node-id=1206-4420&t=yFh7Ijhf6PU7Lin3-0",
+      url: "https://www.figma.com/file/G3UM2urgAYO2iiNU7nlulI/%F0%9F%9F%A1-Cambio-Syntax?type=design&node-id=3773-8017&mode=design&t=Xxc7MvYNNbA7RoPM-0",
     },
+  },
+  args: {
+    size: "md",
+    color: "primary",
   },
   argTypes: {
     size: {
@@ -247,7 +251,7 @@ const getBackgroundColor = (
 
 export const Default: StoryObj<typeof Icon> = {
   args: {
-    size: "lg",
+    size: "md",
     color: "primary",
   },
   render: ({ size, color }) => {

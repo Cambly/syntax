@@ -4,7 +4,7 @@ import Chip from "./Chip";
 import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";
 
-import Lightbulb from "../../../syntax-icons/src/Lightbulb";
+import HeartFilled from "../../../syntax-icons/src/HeartFilled";
 
 export default {
   title: "Components/Chip",
@@ -121,13 +121,13 @@ const SyntaxIconInteractive = () => {
   return (
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <Chip
-        icon={Lightbulb}
+        icon={HeartFilled}
         text="interactive chip"
         onChange={handleSmChange}
         selected={isSmSelected}
       />
       <Chip
-        icon={Lightbulb}
+        icon={HeartFilled}
         text="interactive chip"
         onChange={handleLgChange}
         selected={isLgSelected}
