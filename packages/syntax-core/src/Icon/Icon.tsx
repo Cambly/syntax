@@ -19,7 +19,7 @@ type IconProps = {
    * * `md`: 24px x 24px
    * * `lg`: 32px x 32px
    *
-   * @defaultValue "sm"
+   * @defaultValue "md"
    */
   size?: "xs" | "sm" | "md" | "lg";
   /**
@@ -35,7 +35,7 @@ type IconProps = {
  * `import { Book } from "@cambly/syntax-icons/Book";`
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = "inherit", path, size = "sm" }: IconProps, ref) => (
+  ({ color = "inherit", path, size = "md" }: IconProps, ref) => (
     <svg
       className={classnames(
         styles.icon,

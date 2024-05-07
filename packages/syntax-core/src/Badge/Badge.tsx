@@ -1,6 +1,8 @@
+import { type ComponentProps } from "react";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Badge.module.css";
+import type InternalIcon from "../Icon/Icon";
 
 const badgeColor = [
   "sky",
@@ -45,7 +47,9 @@ const Badge = ({
   /**
    * The icon to be displayed. Please use a [Material Icon](https://material.io/resources/icons/)
    */
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * The text to display inside the badge
    */
@@ -73,7 +77,7 @@ const Badge = ({
         color={textColorForBackgroundColor(color)}
       >
         <Box display="flex" gap={1} alignItems="center" justifyContent="start">
-          {Icon && <Icon className={styles.icon} />}
+          {Icon && <Icon className={styles.icon} size="xs" />}
           <Typography
             color={textColorForBackgroundColor(color)}
             size={100}

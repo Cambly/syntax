@@ -119,7 +119,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
       >
-        <Icon className={iconSize[size]} />
+        <Icon className={iconSize[size]} size={size} />
       </button>
     );
   },

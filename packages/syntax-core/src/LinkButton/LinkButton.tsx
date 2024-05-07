@@ -1,4 +1,8 @@
-import { forwardRef, type HtmlHTMLAttributes } from "react";
+import {
+  forwardRef,
+  type HtmlHTMLAttributes,
+  type ComponentProps,
+} from "react";
 import classNames from "classnames";
 import React from "react";
 import { type Size } from "../constants";
@@ -11,6 +15,7 @@ import styles from "./LinkButton.module.css";
 import { backgroundColor } from "../colors//backgroundColor";
 import { foregroundColor } from "../colors/foregroundColor";
 import { border } from "../colors/border";
+import type InternalIcon from "../Icon/Icon";
 
 type LinkButtonProps = {
   /**
@@ -76,11 +81,15 @@ type LinkButtonProps = {
   /**
    * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  startIcon?: React.ComponentType<{ className?: string }>;
+  startIcon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  endIcon?: React.ComponentType<{ className?: string }>;
+  endIcon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * Indicate whether the button renders on a light or dark background. Changes the color of the button
    *
@@ -148,6 +157,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
               iconSize[size],
               foregroundColorClass,
             )}
+            size={size}
           />
         )}
         {!loading && text && (
@@ -167,6 +177,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
               iconSize[size],
               foregroundColorClass,
             )}
+            size={size}
           />
         )}
         {loading && (

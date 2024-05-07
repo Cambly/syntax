@@ -3,6 +3,8 @@ import LinkButton from "./LinkButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";
 
+import Pause from "../../../syntax-icons/src/Pause";
+
 export default {
   title: "Components/LinkButton",
   component: LinkButton,
@@ -136,4 +138,13 @@ export const WithStartIcon: StoryObj<typeof LinkButton> = {
 };
 export const WithEndIcon: StoryObj<typeof LinkButton> = {
   args: { ...Default.args, endIcon: FavoriteBorder },
+};
+
+export const WithSyntaxIcons: StoryObj<typeof LinkButton> = {
+  render: () => (
+    <Box display="flex" gap={2}>
+      <LinkButton text="Pause" startIcon={Pause} />
+      <LinkButton text="Pause" endIcon={Pause} />
+    </Box>
+  ),
 };

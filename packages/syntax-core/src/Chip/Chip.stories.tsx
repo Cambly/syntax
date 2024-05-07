@@ -4,6 +4,8 @@ import Chip from "./Chip";
 import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";
 
+import Lightbulb from "../../../syntax-icons/src/Lightbulb";
+
 export default {
   title: "Components/Chip",
   component: Chip,
@@ -106,10 +108,42 @@ const ChipIconInteractive = () => {
   );
 };
 
+const SyntaxIconInteractive = () => {
+  const [isSmSelected, setIsSmSelected] = useState(false);
+  const [isLgSelected, setIsLgSelected] = useState(false);
+  const handleSmChange = () => {
+    setIsSmSelected(!isSmSelected);
+  };
+  const handleLgChange = () => {
+    setIsLgSelected(!isLgSelected);
+  };
+
+  return (
+    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+      <Chip
+        icon={Lightbulb}
+        text="interactive chip"
+        onChange={handleSmChange}
+        selected={isSmSelected}
+      />
+      <Chip
+        icon={Lightbulb}
+        text="interactive chip"
+        onChange={handleLgChange}
+        selected={isLgSelected}
+      />
+    </Box>
+  );
+};
+
 export const Interactive: StoryObj<typeof Chip> = {
   render: () => <ChipInteractive />,
 };
 
 export const IconInteractive: StoryObj<typeof Chip> = {
   render: () => <ChipIconInteractive />,
+};
+
+export const SyntaxIcons: StoryObj<typeof Chip> = {
+  render: () => <SyntaxIconInteractive />,
 };

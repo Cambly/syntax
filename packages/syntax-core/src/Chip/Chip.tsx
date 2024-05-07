@@ -1,9 +1,10 @@
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useMemo, type ComponentProps } from "react";
 import classnames from "classnames";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
+import type InternalIcon from "../Icon/Icon";
 
 function typographyColor({
   selected,
@@ -61,7 +62,9 @@ type ChipProps = {
   /**
    * The icon to be displayed.
    */
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /** forces focus ring styling */
   dangerouslyForceFocusStyles?: boolean;
 };
@@ -120,7 +123,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         aria-pressed={selected}
         onClick={onChange}
       >
-        {Icon && <Icon className={iconStyles} />}
+        {Icon && <Icon className={iconStyles} size="md" />}
         <Box paddingX={Icon ? 1 : 0}>
           <Typography size={100} color={color} weight="medium">
             {text}

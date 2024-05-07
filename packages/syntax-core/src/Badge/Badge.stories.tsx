@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Badge from "./Badge";
 import RepeatIcon from "@mui/icons-material/Repeat";
+import Refresh from "../../../syntax-icons/src/Refresh";
 
 export default {
   title: "Components/Badge",
@@ -36,6 +37,10 @@ export default {
 
 export const Default: StoryObj<typeof Badge> = {
   args: { text: "Call to action" },
+};
+
+export const WithSyntaxIcon: StoryObj<typeof Badge> = {
+  args: { icon: Refresh, text: "Refresh" },
 };
 
 export const WithIcon: StoryObj<typeof Badge> = {
