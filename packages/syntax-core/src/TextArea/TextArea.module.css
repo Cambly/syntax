@@ -3,6 +3,18 @@
   padding: 12px;
 }
 
-.resizeNone {
+.resizenone {
   resize: none;
+}
+
+.resizehorizontal {
+  resize: horizontal;
+}
+
+.resizevertical {
+  resize: vertical;
+}
+
+.resizeboth {
+  resize: both;
 }

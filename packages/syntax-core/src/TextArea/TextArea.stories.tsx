@@ -22,7 +22,7 @@ export default {
     value: "",
     "data-testid": "",
     id: "",
-    resize: true,
+    resize: "none",
   },
   argTypes: {
     disabled: {
@@ -30,6 +30,10 @@ export default {
     },
     placeholder: {
       control: "text",
+    },
+    resize: {
+      options: ["none", "horizontal", "vertical", "both"],
+      control: { type: "radio" },
     },
   },
   tags: ["autodocs"],
