@@ -44,6 +44,16 @@ type TextAreaProps = {
    */
   placeholder?: string;
   /**
+   * Sets which part resizes when the user drags the resize handle.
+   * * `none`: TextArea can not be resized
+   * * `horizontal`: TextArea can only be resized horizontally
+   * * `vertical`: TextArea can only be resized vertically
+   * * `both`: TextArea can be resized horizontally and vertically
+   *
+   * @defaultvalue `none`
+   */
+  resize?: "none" | "horizontal" | "vertical" | "both";
+  /**
    * Number of rows to display
    */
   rows?: number;
@@ -70,6 +80,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 3,
       value = "",
       onChange,
+      resize = "none",
     }: TextAreaProps,
     forwardedRef,
   ): ReactElement {
@@ -102,9 +113,14 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           <textarea
             data-testid={dataTestId}
             ref={forwardedRef}
-            className={classNames(textFieldStyles.textfield, styles.textarea, {
-              [textFieldStyles.inputError]: errorText,
-            })}
+            className={classNames(
+              textFieldStyles.textfield,
+              styles.textarea,
+              styles[`resize${resize}`],
+              {
+                [textFieldStyles.inputError]: errorText,
+              },
+            )}
             id={inputId}
             placeholder={placeholder}
             maxLength={maxLength}
