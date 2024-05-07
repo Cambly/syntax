@@ -44,6 +44,16 @@ type TextAreaProps = {
    */
   placeholder?: string;
   /**
+   * Sets which part resizes when the user drags the resize handle.
+   * * `none`: TextArea can not be resized
+   * * `horizontal`: TextArea can only be resized horizontally
+   * * `vertical`: TextArea can only be resized vertically
+   * * `both`: TextArea can be resized horizontally and vertically
+   *
+   * @defaultvalue `none`
+   */
+  resize?: "none" | "horizontal" | "vertical" | "both";
+  /**
    * Number of rows to display
    */
   rows?: number;
@@ -51,16 +61,6 @@ type TextAreaProps = {
    * Value of the TextArea
    */
   value: string;
-  /**
-   * Sets which part resizes when the user drags the resize handle.
-   * "none" - The user cannot resize the element.
-   * "horizontal" - The user can only resize the element horizontally.
-   * "vertical" - The user can only resize the element vertically.
-   * "both" - The user can resize the element horizontally and vertically.
-   *
-   * @defaultvalue "none"
-   */
-  resize?: "none" | "horizontal" | "vertical" | "both";
 };
 
 /**

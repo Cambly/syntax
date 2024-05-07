@@ -18,11 +18,11 @@ export default {
     errorText: "",
     helperText: "",
     maxLength: 1024,
+    resize: "none",
     rows: 3,
     value: "",
     "data-testid": "",
     id: "",
-    resize: "none",
   },
   argTypes: {
     disabled: {
