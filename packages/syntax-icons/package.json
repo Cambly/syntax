@@ -1,0 +1,34 @@
+{
+  "name": "@cambly/syntax-icons",
+  "description": "Cambly design system icon library",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "Apache-2.0",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/*.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/*.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@cambly/eslint-config-syntax": "workspace:*",
+    "@cambly/syntax-tsconfig": "workspace:*",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "bundle-require": "4.0.1",
+    "eslint": "8.39.0",
+    "react": "18.2.0",
+    "tsup": "6.7.0",
+    "typescript": "5.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

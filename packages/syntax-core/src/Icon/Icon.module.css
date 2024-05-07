@@ -1,0 +1,26 @@
+.icon {
+  display: inline-block;
+  fill: currentcolor;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.iconxs {
+  width: 16px;
+  height: 16px;
+}
+
+.iconsm {
+  width: 20px;
+  height: 20px;
+}
+
+.iconmd {
+  width: 24px;
+  height: 24px;
+}
+
+.iconlg {
+  width: 32px;
+  height: 32px;
+}

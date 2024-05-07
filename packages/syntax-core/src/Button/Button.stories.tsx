@@ -3,6 +3,8 @@ import Button from "./Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";
 
+import Play from "../../../syntax-icons/src/Play";
+
 export default {
   title: "Components/Button",
   component: Button,
@@ -122,4 +124,13 @@ export const WithStartIcon: StoryObj<typeof Button> = {
 };
 export const WithEndIcon: StoryObj<typeof Button> = {
   args: { ...Default.args, endIcon: FavoriteBorder },
+};
+
+export const WithSyntaxIcons: StoryObj<typeof Button> = {
+  render: () => (
+    <Box display="flex" gap={2}>
+      <Button text="Play" startIcon={Play} />
+      <Button text="Play" endIcon={Play} />
+    </Box>
+  ),
 };

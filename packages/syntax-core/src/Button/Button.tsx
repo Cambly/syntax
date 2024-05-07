@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, type ComponentProps } from "react";
 import classNames from "classnames";
 import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
@@ -11,6 +11,7 @@ import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { foregroundColor } from "../colors/foregroundColor";
 import { border } from "../colors/border";
+import type InternalIcon from "../Icon/Icon";
 
 type ButtonProps = {
   /**
@@ -76,11 +77,15 @@ type ButtonProps = {
   /**
    * The icon to be displayed at the start of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  startIcon?: React.ComponentType<{ className?: string }>;
+  startIcon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * The icon to be displayed at the end of the button. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
    */
-  endIcon?: React.ComponentType<{ className?: string }>;
+  endIcon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * Indicate whether the button renders on a light or dark background. Changes the color of the button
    *
@@ -161,6 +166,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
+            size={size}
           />
         )}
         {((loading && loadingText) || (!loading && text)) && (
@@ -184,6 +190,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
+            size={size}
           />
         )}
         {loading && (

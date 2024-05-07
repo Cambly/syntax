@@ -1,11 +1,12 @@
 import classNames from "classnames";
 import { foregroundColor } from "../colors/foregroundColor";
-import React, { forwardRef } from "react";
+import React, { type ComponentProps, forwardRef } from "react";
 import { type Size } from "../constants";
 import styles from "./IconButton.module.css";
 import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
+import type InternalIcon from "../Icon/Icon";
 
 const iconSize = {
   sm: styles.smIcon,
@@ -49,9 +50,14 @@ type IconButtonProps = {
    */
   accessibilityLabel: string;
   /**
-   * The icon to be displayed. Please use a [Rounded Material Icon](https://material.io/resources/icons/?style=round)
+   * The icon to be displayed.
+   *
+   * Deprecated: [Rounded Material Icon](https://material.io/resources/icons/?style=round)
+   * Preferred: Syntax icon
    */
-  icon: React.ComponentType<{ className?: string }>;
+  icon:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /**
    * If `true`, the button will be disabled
    *
@@ -113,7 +119,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
       >
-        <Icon className={iconSize[size]} />
+        <Icon className={iconSize[size]} size={size} />
       </button>
     );
   },
