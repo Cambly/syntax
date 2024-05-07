@@ -92,7 +92,9 @@ import User from "./User";
 import Wifi from "./Wifi";
 import WifiRouter from "./WifiRouter";
 
-const icons = [
+import Repeat from "@mui/icons-material/Repeat";
+
+const cambioIcons = [
   { name: "Accent", component: Accent },
   { name: "Achievement", component: Achievement },
   { name: "AddNew", component: AddNew },
@@ -183,6 +185,8 @@ const icons = [
   { name: "WifiRouter", component: WifiRouter },
 ];
 
+const MUIIcons = [{ name: "Repeat", component: Repeat }];
+
 export default {
   title: "Icons/Icons",
   component: Icon,
@@ -253,7 +257,64 @@ export const Default: StoryObj<typeof Icon> = {
   render: ({ size, color }) => {
     return (
       <Box display="flex" flexWrap="wrap" gap={4}>
-        {icons.map((icon) => {
+        {cambioIcons.map((icon) => {
+          const IndIcon = icon.component;
+          return (
+            <Box
+              key={icon.name}
+              display="flex"
+              direction="column"
+              gap={2}
+              justifyContent="center"
+              alignItems="center"
+              maxWidth={150}
+              width="100%"
+              padding={2}
+              backgroundColor={getBackgroundColor(color)}
+            >
+              <IndIcon size={size} color={color} />
+              <Typography color={color} size={100}>
+                {icon.name}
+              </Typography>
+            </Box>
+          );
+        })}
+        {MUIIcons.map((icon) => {
+          const IndIcon = icon.component;
+          return (
+            <Box
+              key={icon.name}
+              display="flex"
+              direction="column"
+              gap={2}
+              justifyContent="center"
+              alignItems="center"
+              maxWidth={150}
+              width="100%"
+              padding={2}
+              backgroundColor={getBackgroundColor(color)}
+            >
+              <IndIcon />
+              <Typography color={color} size={100}>
+                {icon.name}
+              </Typography>
+            </Box>
+          );
+        })}
+      </Box>
+    );
+  },
+};
+
+export const OfficialCambio: StoryObj<typeof Icon> = {
+  args: {
+    size: "lg",
+    color: "primary",
+  },
+  render: ({ size, color }) => {
+    return (
+      <Box display="flex" flexWrap="wrap" gap={4}>
+        {cambioIcons.map((icon) => {
           const IndIcon = icon.component;
           return (
             <Box
@@ -280,15 +341,11 @@ export const Default: StoryObj<typeof Icon> = {
   },
 };
 
-export const OfficialCambio: StoryObj<typeof Icon> = {
-  args: {
-    size: "lg",
-    color: "primary",
-  },
-  render: ({ size, color }) => {
+export const MUIIconsToBeMigrated: StoryObj<typeof Icon> = {
+  render: () => {
     return (
       <Box display="flex" flexWrap="wrap" gap={4}>
-        {icons.map((icon) => {
+        {MUIIcons.map((icon) => {
           const IndIcon = icon.component;
           return (
             <Box
@@ -301,12 +358,9 @@ export const OfficialCambio: StoryObj<typeof Icon> = {
               maxWidth={150}
               width="100%"
               padding={2}
-              backgroundColor={getBackgroundColor(color)}
             >
-              <IndIcon size={size} color={color} />
-              <Typography color={color} size={100}>
-                {icon.name}
-              </Typography>
+              <IndIcon />
+              <Typography size={100}>{icon.name}</Typography>
             </Box>
           );
         })}
