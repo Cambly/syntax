@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Box from "../../syntax-core/src/Box/Box";
 import Typography from "../../syntax-core/src/Typography/Typography";
+import TapArea from "../../syntax-core/src/TapArea/TapArea";
 import Icon from "../../syntax-core/src/Icon/Icon";
 
 import Accent from "./Accent";
@@ -183,6 +184,16 @@ const cambioIcons = [
   { name: "WifiRouter", component: WifiRouter },
 ];
 
+const copyTextToClipboard = async (iconName: string) => {
+  const importString = `import ${iconName} from "@cambly/syntax-icons/dist/${iconName}";`;
+  try {
+    await window.navigator.clipboard.writeText(importString);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log("Failed to copy: ", err);
+  }
+};
+
 export default {
   title: "Icons",
   component: Icon,
@@ -263,19 +274,31 @@ export const Default: StoryObj<typeof Icon> = {
             <Box
               key={icon.name}
               display="flex"
-              direction="column"
-              gap={2}
-              justifyContent="center"
-              alignItems="center"
               maxWidth={150}
               width="100%"
-              padding={2}
               backgroundColor={getBackgroundColor(color)}
             >
-              <IndIcon size={size} color={color} />
-              <Typography color={color} size={100}>
-                {icon.name}
-              </Typography>
+              <TapArea
+                onClick={() => {
+                  void (async () => {
+                    await copyTextToClipboard(icon.name);
+                  })();
+                }}
+              >
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  direction="column"
+                  padding={2}
+                  gap={2}
+                >
+                  <IndIcon size={size} color={color} />
+                  <Typography color={color} size={100}>
+                    {icon.name}
+                  </Typography>
+                </Box>
+              </TapArea>
             </Box>
           );
         })}
