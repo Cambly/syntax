@@ -32,7 +32,9 @@ type IconProps = {
  * [Icon](http://localhost:6006/?path=/docs/icons-icons--docs) is the base component that renders an icon.
  * You shouldn't use this component directly, instead use the specific icon components.
  * @example
- * `import { Book } from "@cambly/syntax-icons/Book";`
+ * `import Book from "@cambly/syntax-icons/dist/Book";`
+ *
+ * You can click on the icon to copy the import statement!
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
   ({ color = "inherit", path, size = "md" }: IconProps, ref) => (
