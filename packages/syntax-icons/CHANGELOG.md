@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 0.3.0
+
+### Minor Changes
+
+- 0ef8bd3: Icons: Fix package json to remove exports from packagejson
+
 ## 0.2.0
 
 ### Minor Changes
