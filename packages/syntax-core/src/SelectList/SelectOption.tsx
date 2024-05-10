@@ -5,13 +5,20 @@ const SelectOption = ({
   value,
   label,
   disabled = false,
+  accessibilityLabel,
 }: {
+  accessibilityLabel?: string;
   "data-testid"?: string;
   value: string;
   label: string;
   disabled?: boolean;
 }): ReactElement => (
-  <option data-testid={dataTestId} value={value} disabled={disabled}>
+  <option
+    aria-label={accessibilityLabel}
+    data-testid={dataTestId}
+    value={value}
+    disabled={disabled}
+  >
     {label}
   </option>
 );
