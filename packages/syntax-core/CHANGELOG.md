@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.5.0
+
+### Minor Changes
+
+- df7eb58: Checkbox / RadioButton: fix responsiveness + TextField: add maxLength
+
 ## 12.4.0
 
 ### Minor Changes
