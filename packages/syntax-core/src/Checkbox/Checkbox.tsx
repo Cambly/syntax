@@ -6,6 +6,7 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
 import colorStyles from "../colors/colors.module.css";
+import { type ariaProps } from "../ariaProps";
 
 const typographySize = {
   sm: 100,
@@ -28,6 +29,7 @@ const Checkbox = ({
   label,
   error = false,
   onChange,
+  ariaValues,
 }: {
   /**
    * Whether or not the box has been clicked
@@ -68,6 +70,12 @@ const Checkbox = ({
    * @defaultValue false
    */
   error?: boolean;
+  /**
+   * Whether or not there is an error with the input
+   *
+   * @defaultValue false
+   */
+  ariaValues?: ariaProps;
 }): ReactElement => {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -107,6 +115,7 @@ const Checkbox = ({
         )}
       </div>
       <input
+        aria-describedby={ariaValues?.["aria-describedby"]}
         data-testid={dataTestId}
         type="checkbox"
         className={classNames(

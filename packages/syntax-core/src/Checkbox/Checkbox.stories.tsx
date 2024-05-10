@@ -49,7 +49,14 @@ const CheckboxInteractive = ({
   const handleChange = () => {
     setIsChecked(!isChecked);
   };
-  return <Checkbox checked={isChecked} onChange={handleChange} label={label} />;
+  return (
+    <Checkbox
+      ariaValues={{ "aria-describedby": "checkboxes" }}
+      checked={isChecked}
+      onChange={handleChange}
+      label={label}
+    />
+  );
 };
 
 export const Interactive: StoryObj<typeof Checkbox> = {
