@@ -40,18 +40,16 @@ export default {
 
 export const Default: StoryObj<typeof Checkbox> = {};
 
-const CheckboxInteractive = () => {
+const CheckboxInteractive = ({
+  label = "checkbox label",
+}: {
+  label?: string;
+}) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleChange = () => {
     setIsChecked(!isChecked);
   };
-  return (
-    <Checkbox
-      checked={isChecked}
-      onChange={handleChange}
-      label="checkbox label"
-    />
-  );
+  return <Checkbox checked={isChecked} onChange={handleChange} label={label} />;
 };
 
 export const Interactive: StoryObj<typeof Checkbox> = {
@@ -60,7 +58,14 @@ export const Interactive: StoryObj<typeof Checkbox> = {
 
 export const FixDoesNotBlowoutHeight: StoryObj<typeof Checkbox> = {
   render: () => (
-    <Box height="100px" overflowY="auto" padding={3}>
+    <Box
+      display="flex"
+      direction="column"
+      height="100px"
+      overflowY="auto"
+      padding={3}
+      gap={3}
+    >
       <CheckboxInteractive />
       <CheckboxInteractive />
       <CheckboxInteractive />
@@ -81,7 +86,7 @@ export const FixDoesNotBlowoutHeight: StoryObj<typeof Checkbox> = {
       <CheckboxInteractive />
       <CheckboxInteractive />
       <CheckboxInteractive />
-      <CheckboxInteractive />
+      <CheckboxInteractive label="Checkbox with a long label to test the responsive behavior of Checkbox" />
     </Box>
   ),
 };
