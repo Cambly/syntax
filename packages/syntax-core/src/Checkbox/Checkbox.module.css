@@ -16,6 +16,7 @@
 
 .checkbox {
   border-radius: 4px;
+  flex: none;
   position: relative;
   display: flex;
   justify-content: center;

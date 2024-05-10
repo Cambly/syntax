@@ -20,6 +20,7 @@ export default function TextField({
   helperText = "",
   id,
   label,
+  maxLength,
   onChange,
   placeholder = "",
   type = "text",
@@ -57,6 +58,10 @@ export default function TextField({
    * TextField visible label
    */
   label: string;
+  /**
+   * Maximum length of the TextField
+   */
+  maxLength?: number;
   /**
    * The callback to be called the input changes
    */
@@ -110,6 +115,7 @@ export default function TextField({
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}
+        maxLength={maxLength}
         type={type}
         onChange={onChange}
         placeholder={placeholder}

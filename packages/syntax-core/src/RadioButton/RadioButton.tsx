@@ -91,8 +91,6 @@ const RadioButton = ({
         styles[`cursor${disabled ? "Disabled" : "Enabled"}`],
         {
           [styles.disabled]: disabled,
-          [styles.smBase]: size === "sm",
-          [styles.mdBase]: size === "md",
         },
       )}
     >

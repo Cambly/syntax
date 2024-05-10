@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import RadioButton from "./RadioButton";
 import React, { useState } from "react";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/RadioButton",
@@ -48,28 +49,30 @@ const RadioButtonInteractive = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <form style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <RadioButton
-        checked={selectedOption === "mage"}
-        value="mage"
-        onChange={handleChange}
-        name="rpg_class"
-        label="Mage"
-      />
-      <RadioButton
-        checked={selectedOption === "warrior"}
-        value="warrior"
-        onChange={handleChange}
-        name="rpg_class"
-        label="Warrior"
-      />
-      <RadioButton
-        checked={selectedOption === "archer"}
-        value="archer"
-        onChange={handleChange}
-        name="rpg_class"
-        label="Archer"
-      />
+    <form>
+      <Box display="flex" direction="column" gap={3}>
+        <RadioButton
+          checked={selectedOption === "mage"}
+          value="mage"
+          onChange={handleChange}
+          name="rpg_class"
+          label="Label with a lot of text to test the responsive behavior of the component"
+        />
+        <RadioButton
+          checked={selectedOption === "warrior"}
+          value="warrior"
+          onChange={handleChange}
+          name="rpg_class"
+          label="Warrior"
+        />
+        <RadioButton
+          checked={selectedOption === "archer"}
+          value="archer"
+          onChange={handleChange}
+          name="rpg_class"
+          label="Archer"
+        />
+      </Box>
     </form>
   );
 };

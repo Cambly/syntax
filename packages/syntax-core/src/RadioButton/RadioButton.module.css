@@ -28,6 +28,7 @@
 
 .radioStyleOverride {
   margin: 0;
+  flex: none;
   opacity: 0;
 }
 
