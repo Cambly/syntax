@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.7.0
+
+### Minor Changes
+
+- df4e035: RadioButton/Checkbox: Add aria-describedby as a prop on both of those components for accessibility.
+
 ## 12.6.0
 
 ### Minor Changes
