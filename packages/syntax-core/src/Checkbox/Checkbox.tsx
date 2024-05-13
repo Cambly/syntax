@@ -6,7 +6,6 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
 import colorStyles from "../colors/colors.module.css";
-import { type ariaProps } from "../ariaProps";
 
 const typographySize = {
   sm: 100,
@@ -29,7 +28,7 @@ const Checkbox = ({
   label,
   error = false,
   onChange,
-  ariaValues,
+  "aria-describedby": ariaDescribedby,
 }: {
   /**
    * Whether or not the box has been clicked
@@ -71,11 +70,11 @@ const Checkbox = ({
    */
   error?: boolean;
   /**
-   * Whether or not there is an error with the input
+   * The aria-describedby attribute for the checkbox. This aria- prop identifies the element that describes the element on which the attribute is set.
    *
-   * @defaultValue false
+   * @defaultValue undefined
    */
-  ariaValues?: ariaProps;
+  "aria-describedby"?: string;
 }): ReactElement => {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -115,8 +114,8 @@ const Checkbox = ({
         )}
       </div>
       <input
-        aria-describedby={ariaValues?.["aria-describedby"]}
         data-testid={dataTestId}
+        aria-describedby={ariaDescribedby}
         type="checkbox"
         className={classNames(
           styles.inputOverlay,

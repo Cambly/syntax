@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import Checkbox from "./Checkbox";
 import React, { useState } from "react";
 import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/Checkbox",
@@ -19,6 +20,7 @@ export default {
     error: false,
     size: "md",
     "data-testid": "",
+    "aria-describedby": "",
   },
   argTypes: {
     checked: {
@@ -42,8 +44,10 @@ export const Default: StoryObj<typeof Checkbox> = {};
 
 const CheckboxInteractive = ({
   label = "checkbox label",
+  "aria-describedby": ariaDescribedby,
 }: {
   label?: string;
+  "aria-describedby"?: string;
 }) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleChange = () => {
@@ -51,7 +55,7 @@ const CheckboxInteractive = ({
   };
   return (
     <Checkbox
-      ariaValues={{ "aria-describedby": "checkboxes" }}
+      aria-describedby={ariaDescribedby}
       checked={isChecked}
       onChange={handleChange}
       label={label}
@@ -94,6 +98,29 @@ export const FixDoesNotBlowoutHeight: StoryObj<typeof Checkbox> = {
       <CheckboxInteractive />
       <CheckboxInteractive />
       <CheckboxInteractive label="Checkbox with a long label to test the responsive behavior of Checkbox" />
+    </Box>
+  ),
+};
+
+export const Accessibility: StoryObj<typeof Checkbox> = {
+  render: () => (
+    <Box
+      display="flex"
+      direction="column"
+      height="100px"
+      overflowY="auto"
+      padding={3}
+      gap={3}
+    >
+      <CheckboxInteractive aria-describedby="checkboxes" />
+      <CheckboxInteractive aria-describedby="checkboxes" />
+      <CheckboxInteractive aria-describedby="checkboxes" />
+      <CheckboxInteractive aria-describedby="checkboxes" />
+      <CheckboxInteractive aria-describedby="checkboxes" />
+
+      <Box id="checkboxes">
+        <Typography>This is text that describes the checkbox above!</Typography>
+      </Box>
     </Box>
   ),
 };

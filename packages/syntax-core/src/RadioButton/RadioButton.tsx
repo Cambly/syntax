@@ -24,6 +24,7 @@ const RadioButton = ({
   onChange,
   size = "md",
   value,
+  "aria-describedby": ariaDescribedby,
 }: {
   /**
    * Whether or not the radio button is checked
@@ -78,6 +79,12 @@ const RadioButton = ({
   value: string | number;
   /** forces focus ring styling */
   dangerouslyForceFocusStyles?: boolean;
+  /**
+   * The aria-describedby attribute for the RadioButton. This aria- prop identifies the element that describes the element on which the attribute is set.
+   *
+   * @defaultValue undefined
+   */
+  "aria-describedby"?: string;
 }): ReactElement => {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -122,6 +129,7 @@ const RadioButton = ({
         />
       )}
       <input
+        aria-describedby={ariaDescribedby}
         data-testid={dataTestId}
         type="radio"
         id={id}

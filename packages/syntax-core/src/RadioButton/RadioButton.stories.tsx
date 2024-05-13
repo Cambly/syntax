@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import RadioButton from "./RadioButton";
 import React, { useState } from "react";
 import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/RadioButton",
@@ -23,6 +24,7 @@ export default {
     value: "value",
     id: "",
     dangerouslyForceFocusStyles: false,
+    "aria-describedby": "",
   },
   argTypes: {
     checked: {
@@ -43,7 +45,11 @@ export default {
 
 export const Default: StoryObj<typeof RadioButton> = {};
 
-const RadioButtonInteractive = () => {
+const RadioButtonInteractive = ({
+  "aria-describedby": ariaDescribedby,
+}: {
+  "aria-describedby"?: string;
+}) => {
   const [selectedOption, setSelectedOption] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
@@ -52,6 +58,7 @@ const RadioButtonInteractive = () => {
     <form>
       <Box display="flex" direction="column" gap={3}>
         <RadioButton
+          aria-describedby={ariaDescribedby}
           checked={selectedOption === "mage"}
           value="mage"
           onChange={handleChange}
@@ -59,6 +66,7 @@ const RadioButtonInteractive = () => {
           label="Label with a lot of text to test the responsive behavior of the component"
         />
         <RadioButton
+          aria-describedby={ariaDescribedby}
           checked={selectedOption === "warrior"}
           value="warrior"
           onChange={handleChange}
@@ -66,6 +74,7 @@ const RadioButtonInteractive = () => {
           label="Warrior"
         />
         <RadioButton
+          aria-describedby={ariaDescribedby}
           checked={selectedOption === "archer"}
           value="archer"
           onChange={handleChange}
@@ -79,4 +88,17 @@ const RadioButtonInteractive = () => {
 
 export const Interactive: StoryObj<typeof RadioButton> = {
   render: () => <RadioButtonInteractive />,
+};
+
+export const Accessibility: StoryObj<typeof RadioButton> = {
+  render: () => (
+    <Box display="flex" direction="column" gap={4}>
+      <RadioButtonInteractive aria-describedby="radio-buttons" />
+      <Box id="radio-buttons">
+        <Typography>
+          This is a description of the radio buttons above.
+        </Typography>
+      </Box>
+    </Box>
+  ),
 };
