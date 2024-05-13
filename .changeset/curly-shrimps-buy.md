@@ -2,4 +2,4 @@
 "@cambly/syntax-core": minor
 ---
 
-Aria Props - add ariaprops object to checkbox
+RadioButton/Checkbox: Add aria-describedby as a prop on both of those components for accessibility.
