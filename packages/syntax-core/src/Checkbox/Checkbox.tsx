@@ -28,6 +28,7 @@ const Checkbox = ({
   label,
   error = false,
   onChange,
+  "aria-describedby": ariaDescribedby,
 }: {
   /**
    * Whether or not the box has been clicked
@@ -68,6 +69,12 @@ const Checkbox = ({
    * @defaultValue false
    */
   error?: boolean;
+  /**
+   * The aria-describedby attribute for the checkbox. This aria- prop identifies the element that describes the element on which the attribute is set.
+   *
+   * @defaultValue undefined
+   */
+  "aria-describedby"?: string;
 }): ReactElement => {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -108,6 +115,7 @@ const Checkbox = ({
       </div>
       <input
         data-testid={dataTestId}
+        aria-describedby={ariaDescribedby}
         type="checkbox"
         className={classNames(
           styles.inputOverlay,
