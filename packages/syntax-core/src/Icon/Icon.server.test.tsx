@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import Icon from "./Icon";
 import { expect } from "vitest";
-import Accent from "../../../syntax-icons/src/Accent";
+import Accent from "../../../syntax-icons/src/icons/Accent";
 
 describe("icon", () => {
   it("renders base Icon component successfully", () => {

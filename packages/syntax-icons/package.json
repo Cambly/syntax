@@ -12,10 +12,367 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/*.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/*.tsx --format esm,cjs --watch --dts --external react",
+    "build": "tsup src/icons/*.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/icons/*.tsx --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./Accent": {
+      "types": "./dist/Accent.d.ts",
+      "default": "./dist/Accent.js"
+    },
+    "./Achievement": {
+      "types": "./dist/Achievement.d.ts",
+      "default": "./dist/Achievement.js"
+    },
+    "./AddNew": {
+      "types": "./dist/AddNew.d.ts",
+      "default": "./dist/AddNew.js"
+    },
+    "./AddUsers": {
+      "types": "./dist/AddUsers.d.ts",
+      "default": "./dist/AddUsers.js"
+    },
+    "./Alert": {
+      "types": "./dist/Alert.d.ts",
+      "default": "./dist/Alert.js"
+    },
+    "./Bell": {
+      "types": "./dist/Bell.d.ts",
+      "default": "./dist/Bell.js"
+    },
+    "./Book": {
+      "types": "./dist/Book.d.ts",
+      "default": "./dist/Book.js"
+    },
+    "./Calendar": {
+      "types": "./dist/Calendar.d.ts",
+      "default": "./dist/Calendar.js"
+    },
+    "./CalendarBooking": {
+      "types": "./dist/CalendarBooking.d.ts",
+      "default": "./dist/CalendarBooking.js"
+    },
+    "./CameraOff": {
+      "types": "./dist/CameraOff.d.ts",
+      "default": "./dist/CameraOff.js"
+    },
+    "./CameraOn": {
+      "types": "./dist/CameraOn.d.ts",
+      "default": "./dist/CameraOn.js"
+    },
+    "./Certificate": {
+      "types": "./dist/Certificate.d.ts",
+      "default": "./dist/Certificate.js"
+    },
+    "./ChevronDown": {
+      "types": "./dist/ChevronDown.d.ts",
+      "default": "./dist/ChevronDown.js"
+    },
+    "./ChevronLeft": {
+      "types": "./dist/ChevronLeft.d.ts",
+      "default": "./dist/ChevronLeft.js"
+    },
+    "./ChevronRight": {
+      "types": "./dist/ChevronRight.d.ts",
+      "default": "./dist/ChevronRight.js"
+    },
+    "./ChevronUp": {
+      "types": "./dist/ChevronUp.d.ts",
+      "default": "./dist/ChevronUp.js"
+    },
+    "./CircleEnclosedCross": {
+      "types": "./dist/CircleEnclosedCross.d.ts",
+      "default": "./dist/CircleEnclosedCross.js"
+    },
+    "./CircleEnclosedStar": {
+      "types": "./dist/CircleEnclosedStar.d.ts",
+      "default": "./dist/CircleEnclosedStar.js"
+    },
+    "./CircleEnclosedTick": {
+      "types": "./dist/CircleEnclosedTick.d.ts",
+      "default": "./dist/CircleEnclosedTick.js"
+    },
+    "./Clock": {
+      "types": "./dist/Clock.d.ts",
+      "default": "./dist/Clock.js"
+    },
+    "./Cross": {
+      "types": "./dist/Cross.d.ts",
+      "default": "./dist/Cross.js"
+    },
+    "./Education": {
+      "types": "./dist/Education.d.ts",
+      "default": "./dist/Education.js"
+    },
+    "./Exit": {
+      "types": "./dist/Exit.d.ts",
+      "default": "./dist/Exit.js"
+    },
+    "./Eye": {
+      "types": "./dist/Eye.d.ts",
+      "default": "./dist/Eye.js"
+    },
+    "./FlagCheckered": {
+      "types": "./dist/FlagCheckered.d.ts",
+      "default": "./dist/FlagCheckered.js"
+    },
+    "./FlagFilled": {
+      "types": "./dist/FlagFilled.d.ts",
+      "default": "./dist/FlagFilled.js"
+    },
+    "./FlagUnfilled": {
+      "types": "./dist/FlagUnfilled.d.ts",
+      "default": "./dist/FlagUnfilled.js"
+    },
+    "./Globe": {
+      "types": "./dist/Globe.d.ts",
+      "default": "./dist/Globe.js"
+    },
+    "./Graphs": {
+      "types": "./dist/Graphs.d.ts",
+      "default": "./dist/Graphs.js"
+    },
+    "./Hand": {
+      "types": "./dist/Hand.d.ts",
+      "default": "./dist/Hand.js"
+    },
+    "./HangUp": {
+      "types": "./dist/HangUp.d.ts",
+      "default": "./dist/HangUp.js"
+    },
+    "./HeartFilled": {
+      "types": "./dist/HeartFilled.d.ts",
+      "default": "./dist/HeartFilled.js"
+    },
+    "./HeartUnfilled": {
+      "types": "./dist/HeartUnfilled.d.ts",
+      "default": "./dist/HeartUnfilled.js"
+    },
+    "./Help": {
+      "types": "./dist/Help.d.ts",
+      "default": "./dist/Help.js"
+    },
+    "./Home": {
+      "types": "./dist/Home.d.ts",
+      "default": "./dist/Home.js"
+    },
+    "./IdentifyDocument": {
+      "types": "./dist/IdentifyDocument.d.ts",
+      "default": "./dist/IdentifyDocument.js"
+    },
+    "./Information": {
+      "types": "./dist/Information.d.ts",
+      "default": "./dist/Information.js"
+    },
+    "./Joystick": {
+      "types": "./dist/Joystick.d.ts",
+      "default": "./dist/Joystick.js"
+    },
+    "./Keyboard": {
+      "types": "./dist/Keyboard.d.ts",
+      "default": "./dist/Keyboard.js"
+    },
+    "./Leaf": {
+      "types": "./dist/Leaf.d.ts",
+      "default": "./dist/Leaf.js"
+    },
+    "./Lightbulb": {
+      "types": "./dist/Lightbulb.d.ts",
+      "default": "./dist/Lightbulb.js"
+    },
+    "./List": {
+      "types": "./dist/List.d.ts",
+      "default": "./dist/List.js"
+    },
+    "./Location": {
+      "types": "./dist/Location.d.ts",
+      "default": "./dist/Location.js"
+    },
+    "./Menu": {
+      "types": "./dist/Menu.d.ts",
+      "default": "./dist/Menu.js"
+    },
+    "./Message": {
+      "types": "./dist/Message.d.ts",
+      "default": "./dist/Message.js"
+    },
+    "./MicrophoneOff": {
+      "types": "./dist/MicrophoneOff.d.ts",
+      "default": "./dist/MicrophoneOff.js"
+    },
+    "./MicrophoneOn": {
+      "types": "./dist/MicrophoneOn.d.ts",
+      "default": "./dist/MicrophoneOn.js"
+    },
+    "./More": {
+      "types": "./dist/More.d.ts",
+      "default": "./dist/More.js"
+    },
+    "./MultiMediaDocument": {
+      "types": "./dist/MultiMediaDocument.d.ts",
+      "default": "./dist/MultiMediaDocument.js"
+    },
+    "./MultipleUsers": {
+      "types": "./dist/MultipleUsers.d.ts",
+      "default": "./dist/MultipleUsers.js"
+    },
+    "./NewStarter": {
+      "types": "./dist/NewStarter.d.ts",
+      "default": "./dist/NewStarter.js"
+    },
+    "./Pause": {
+      "types": "./dist/Pause.d.ts",
+      "default": "./dist/Pause.js"
+    },
+    "./Pencil": {
+      "types": "./dist/Pencil.d.ts",
+      "default": "./dist/Pencil.js"
+    },
+    "./PhoneOff": {
+      "types": "./dist/PhoneOff.d.ts",
+      "default": "./dist/PhoneOff.js"
+    },
+    "./PhoneOn": {
+      "types": "./dist/PhoneOn.d.ts",
+      "default": "./dist/PhoneOn.js"
+    },
+    "./Play": {
+      "types": "./dist/Play.d.ts",
+      "default": "./dist/Play.js"
+    },
+    "./Progress": {
+      "types": "./dist/Progress.d.ts",
+      "default": "./dist/Progress.js"
+    },
+    "./Refresh": {
+      "types": "./dist/Refresh.d.ts",
+      "default": "./dist/Refresh.js"
+    },
+    "./Safety": {
+      "types": "./dist/Safety.d.ts",
+      "default": "./dist/Safety.js"
+    },
+    "./Screen": {
+      "types": "./dist/Screen.d.ts",
+      "default": "./dist/Screen.js"
+    },
+    "./Search": {
+      "types": "./dist/Search.d.ts",
+      "default": "./dist/Search.js"
+    },
+    "./SearchUsers": {
+      "types": "./dist/SearchUsers.d.ts",
+      "default": "./dist/SearchUsers.js"
+    },
+    "./Send": {
+      "types": "./dist/Send.d.ts",
+      "default": "./dist/Send.js"
+    },
+    "./Settings": {
+      "types": "./dist/Settings.d.ts",
+      "default": "./dist/Settings.js"
+    },
+    "./Shop": {
+      "types": "./dist/Shop.d.ts",
+      "default": "./dist/Shop.js"
+    },
+    "./Shuffle": {
+      "types": "./dist/Shuffle.d.ts",
+      "default": "./dist/Shuffle.js"
+    },
+    "./SideArrow": {
+      "types": "./dist/SideArrow.d.ts",
+      "default": "./dist/SideArrow.js"
+    },
+    "./SquareEnclosedPlus": {
+      "types": "./dist/SquareEnclosedPlus.d.ts",
+      "default": "./dist/SquareEnclosedPlus.js"
+    },
+    "./StarFilled": {
+      "types": "./dist/StarFilled.d.ts",
+      "default": "./dist/StarFilled.js"
+    },
+    "./StarHalfFilled": {
+      "types": "./dist/StarHalfFilled.d.ts",
+      "default": "./dist/StarHalfFilled.js"
+    },
+    "./StarUnfilled": {
+      "types": "./dist/StarUnfilled.d.ts",
+      "default": "./dist/StarUnfilled.js"
+    },
+    "./Stars": {
+      "types": "./dist/Stars.d.ts",
+      "default": "./dist/Stars.js"
+    },
+    "./Subtitles": {
+      "types": "./dist/Subtitles.d.ts",
+      "default": "./dist/Subtitles.js"
+    },
+    "./Suitcase": {
+      "types": "./dist/Suitcase.d.ts",
+      "default": "./dist/Suitcase.js"
+    },
+    "./SuperTutor": {
+      "types": "./dist/SuperTutor.d.ts",
+      "default": "./dist/SuperTutor.js"
+    },
+    "./Sync": {
+      "types": "./dist/Sync.d.ts",
+      "default": "./dist/Sync.js"
+    },
+    "./TeachingCertificate": {
+      "types": "./dist/TeachingCertificate.d.ts",
+      "default": "./dist/TeachingCertificate.js"
+    },
+    "./TextDocument": {
+      "types": "./dist/TextDocument.d.ts",
+      "default": "./dist/TextDocument.js"
+    },
+    "./ThumbsDown": {
+      "types": "./dist/ThumbsDown.d.ts",
+      "default": "./dist/ThumbsDown.js"
+    },
+    "./ThumbsUp": {
+      "types": "./dist/ThumbsUp.d.ts",
+      "default": "./dist/ThumbsUp.js"
+    },
+    "./Timer": {
+      "types": "./dist/Timer.d.ts",
+      "default": "./dist/Timer.js"
+    },
+    "./ToggleSettings": {
+      "types": "./dist/ToggleSettings.d.ts",
+      "default": "./dist/ToggleSettings.js"
+    },
+    "./Translate": {
+      "types": "./dist/Translate.d.ts",
+      "default": "./dist/Translate.js"
+    },
+    "./TwoUsers": {
+      "types": "./dist/TwoUsers.d.ts",
+      "default": "./dist/TwoUsers.js"
+    },
+    "./Type": {
+      "types": "./dist/Type.d.ts",
+      "default": "./dist/Type.js"
+    },
+    "./User": {
+      "types": "./dist/User.d.ts",
+      "default": "./dist/User.js"
+    },
+    "./Wifi": {
+      "types": "./dist/Wifi.d.ts",
+      "default": "./dist/Wifi.js"
+    },
+    "./WifiRouter": {
+      "types": "./dist/WifiRouter.d.ts",
+      "default": "./dist/WifiRouter.js"
+    }
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",

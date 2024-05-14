@@ -4,7 +4,7 @@ import Chip from "./Chip";
 import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";
 
-import HeartFilled from "../../../syntax-icons/src/HeartFilled";
+import HeartFilled from "../../../syntax-icons/src/icons/HeartFilled";
 
 export default {
   title: "Components/Chip",
