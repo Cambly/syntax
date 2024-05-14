@@ -102,13 +102,15 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         }}
         position="relative"
       >
-        <label className={textFieldStyles.label} htmlFor={inputId}>
-          <Box paddingX={1}>
-            <Typography size={100} color="gray700">
-              {label}
-            </Typography>
-          </Box>
-        </label>
+        {label && (
+          <label className={textFieldStyles.label} htmlFor={inputId}>
+            <Box paddingX={1}>
+              <Typography size={100} color="gray700">
+                {label}
+              </Typography>
+            </Box>
+          </label>
+        )}
         <Typography size={100}>
           <textarea
             data-testid={dataTestId}
