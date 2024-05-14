@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Calendar = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M1.2 0v22.8h21.6V0H1.2Zm2.4 20.4V3.6h16.8v16.8H3.6Zm4.8-7.2H6v-2.4h2.4v2.4Zm4.8 0h-2.4v-2.4h2.4v2.4Zm4.8 0h-2.4v-2.4H18v2.4ZM13.2 18h-2.4v-2.4h2.4V18Zm-4.8 0H6v-2.4h2.4V18Zm4.8-9.6h-2.4V6h2.4v2.4Zm4.8 0h-2.4V6H18v2.4Z"
+    path="M2.5 2v20h19V2zm2.111 17.895V5.158H19.39v14.737H4.61Zm4.222-6.316h-2.11v-2.105h2.11zm4.223 0h-2.112v-2.105h2.111zm4.222 0h-2.111v-2.105h2.11zm-4.222 4.21h-2.112v-2.105h2.112zm-4.223 0h-2.11v-2.105h2.11zm4.223-8.42h-2.112V7.262h2.112v2.105Zm4.222 0h-2.111V7.262h2.11v2.105Z"
     color={color}
     size={size}
   />

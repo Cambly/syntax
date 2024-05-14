@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const SquareEnclosedPlus = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M0 0v24h24V0H0Zm19.2 13.2h-6v6h-2.4v-6h-6v-2.4h6v-6h2.4v6h6v2.4Z"
+    path="M3 3v18h18V3zm14.4 9.9h-4.5v4.5h-1.8v-4.5H6.6v-1.8h4.5V6.6h1.8v4.5h4.5z"
     color={color}
     size={size}
   />

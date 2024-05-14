@@ -39,7 +39,7 @@ import HeartFilled from "./icons/HeartFilled";
 import HeartUnfilled from "./icons/HeartUnfilled";
 import Help from "./icons/Help";
 import Home from "./icons/Home";
-import IdentifyDocument from "./icons/IdentifyDocument";
+import IdentifyDocument from "./icons/IdentityDocument";
 import Information from "./icons/Information";
 import Joystick from "./icons/Joystick";
 import Keyboard from "./icons/Keyboard";

@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Joystick = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M13.2 8.4V6.99a3.595 3.595 0 0 0 2.4-3.39 3.6 3.6 0 0 0-7.2 0 3.595 3.595 0 0 0 2.4 3.39V8.4L1.2 12v7.2L12 24l10.8-4.8V12l-9.6-3.6ZM12 16.2l-7.2-3 6-2.4v2.4h2.4v-2.4l6 2.4-7.2 3Z"
+    path="M13 9V7.825A3 3 0 0 0 15 5a3 3 0 1 0-6 0c0 1.306.835 2.413 2 2.825V9l-8 3v6l9 4 9-4v-6zm-1 6.5L6 13l5-2v2h2v-2l5 2z"
     color={color}
     size={size}
   />

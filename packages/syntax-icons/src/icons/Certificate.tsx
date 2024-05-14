@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Certificate = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M22.2 1.2H1.8A1.8 1.8 0 0 0 0 3v14.4a1.8 1.8 0 0 0 1.8 1.8H6V24l6-2.4 6 2.4v-4.8h4.2a1.8 1.8 0 0 0 1.8-1.8V3a1.8 1.8 0 0 0-1.8-1.8Zm-1.8 14.4H3.6v-4.8h16.8v4.8Z"
+    path="M19.65 4.05H4.35A1.35 1.35 0 0 0 3 5.4v10.8c0 .746.604 1.35 1.35 1.35H7.5v3.6l4.5-1.8 4.5 1.8v-3.6h3.15A1.35 1.35 0 0 0 21 16.2V5.4a1.35 1.35 0 0 0-1.35-1.35m-1.35 10.8H5.7v-3.6h12.6z"
     color={color}
     size={size}
   />
