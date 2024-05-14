@@ -3,7 +3,7 @@ import Button from "./Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";
 
-import Play from "../../../syntax-icons/src/Play";
+import Play from "../../../syntax-icons/src/icons/Play";
 
 export default {
   title: "Components/Button",

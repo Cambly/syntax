@@ -1,7 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Badge from "./Badge";
 import RepeatIcon from "@mui/icons-material/Repeat";
-import Refresh from "../../../syntax-icons/src/Refresh";
+import Refresh from "../../../syntax-icons/src/icons/Refresh";
 
 export default {
   title: "Components/Badge",

@@ -3,7 +3,7 @@ import LinkButton from "./LinkButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";
 
-import Pause from "../../../syntax-icons/src/Pause";
+import Pause from "../../../syntax-icons/src/icons/Pause";
 
 export default {
   title: "Components/LinkButton",
