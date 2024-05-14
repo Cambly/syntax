@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 12.8.0
+
+### Minor Changes
+
+- 0d4c595: TextArea: conditionally render label
+
 ## 12.7.0
 
 ### Minor Changes
