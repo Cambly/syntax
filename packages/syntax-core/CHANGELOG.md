@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 13.0.0
+
+### Major Changes
+
+- 1b97183: Icons: fix having to import from /dist
+
 ## 12.8.0
 
 ### Minor Changes
