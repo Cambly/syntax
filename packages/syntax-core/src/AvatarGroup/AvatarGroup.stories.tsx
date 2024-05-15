@@ -18,7 +18,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg", "xl"],
       control: { type: "radio" },
     },
     orientation: {

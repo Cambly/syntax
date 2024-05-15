@@ -6,7 +6,7 @@ import {
 } from "react";
 import Box from "../Box/Box";
 
-type Size = "xs" | "sm" | "md" | "lg";
+type Size = "xs" | "sm" | "md" | "lg" | "xl";
 type Orientation = "standard" | "reverse";
 
 type AvatarGroupContextType = {
@@ -47,6 +47,7 @@ export default function AvatarGroup({
    * * `sm`: 32px
    * * `md`: 48px
    * * `lg`: 64px
+   * * `xl`: 80px
    *
    * @defaultValue `md`
    */
