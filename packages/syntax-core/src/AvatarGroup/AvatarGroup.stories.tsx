@@ -18,7 +18,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg", "xl"],
       control: { type: "radio" },
     },
     orientation: {
@@ -46,7 +46,7 @@ export const Default: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box backgroundColor="gray100">
+      <Box backgroundColor="gray100" padding={4}>
         <AvatarGroup size={size} orientation={orientation}>
           {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
             <Avatar
@@ -84,7 +84,7 @@ export const Standard: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box backgroundColor="gray100">
+      <Box backgroundColor="gray100" padding={4}>
         <AvatarGroup size={size} orientation={orientation}>
           {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
             <Avatar
@@ -122,7 +122,7 @@ export const Reverse: StoryObj<
   render: (args) => {
     const { size, orientation } = args;
     return (
-      <Box backgroundColor="gray100">
+      <Box backgroundColor="gray100" padding={4}>
         <AvatarGroup size={size} orientation={orientation}>
           {defaultAvatars.map(({ src, accessibilityLabel, key }) => (
             <Avatar

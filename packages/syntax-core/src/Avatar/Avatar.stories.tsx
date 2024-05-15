@@ -13,7 +13,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg", "xl"],
       control: { type: "radio" },
     },
   },
@@ -39,6 +39,10 @@ export const Small: StoryObj<typeof Avatar> = {
 };
 export const Large: StoryObj<typeof Avatar> = {
   args: { ...Default.args, size: "lg" },
+};
+
+export const ExtraLarge: StoryObj<typeof Avatar> = {
+  args: { ...Default.args, size: "xl" },
 };
 
 export const IconAvatar: StoryObj<typeof Avatar> = {
