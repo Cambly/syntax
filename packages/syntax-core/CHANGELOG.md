@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 13.1.0
+
+### Minor Changes
+
+- 319720b: Avatar: add xl styling for avatar + avatargroup
+
 ## 13.0.0
 
 ### Major Changes
