@@ -49,6 +49,14 @@
       "types": "./dist/Book.d.ts",
       "default": "./dist/Book.js"
     },
+    "./BookmarkFilled": {
+      "types": "./dist/BookmarkFilled.d.ts",
+      "default": "./dist/BookmarkFilled.js"
+    },
+    "./BookmarkUnfilled": {
+      "types": "./dist/BookmarkUnfilled.d.ts",
+      "default": "./dist/BookmarkUnfilled.js"
+    },
     "./Calendar": {
       "types": "./dist/Calendar.d.ts",
       "default": "./dist/Calendar.js"
@@ -161,9 +169,9 @@
       "types": "./dist/Home.d.ts",
       "default": "./dist/Home.js"
     },
-    "./IdentifyDocument": {
-      "types": "./dist/IdentifyDocument.d.ts",
-      "default": "./dist/IdentifyDocument.js"
+    "./IdentityDocument": {
+      "types": "./dist/IdentityDocument.d.ts",
+      "default": "./dist/IdentityDocument.js"
     },
     "./Information": {
       "types": "./dist/Information.d.ts",
@@ -377,8 +385,11 @@
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",
     "@cambly/syntax-tsconfig": "workspace:*",
-    "@types/react": "18.2.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@types/react-dom": "18.2.1",
+    "@types/react": "18.2.0",
     "bundle-require": "4.0.1",
     "eslint": "8.39.0",
     "react": "18.2.0",

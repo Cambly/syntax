@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Bell = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M15.6 20.4a3.6 3.6 0 0 1-7.2 0h7.2Zm3.6-13.2c-.612-2.693-2.731-3.884-4.8-4.8L13.2 0h-2.4L9.6 2.4c-2.069.916-4.188 2.107-4.8 4.8-.519 2.283-.55 4.8-3.6 8.4L2.4 18h19.2l1.2-2.4c-3.05-3.6-3.08-6.117-3.6-8.4Z"
+    path="M15 19a3 3 0 1 1-6 0zm3-11c-.51-2.244-2.276-3.236-4-4l-1-2h-2l-1 2c-1.724.764-3.49 1.756-4 4-.433 1.903-.458 4-3 7l1 2h16l1-2c-2.542-3-2.567-5.097-3-7"
     color={color}
     size={size}
   />

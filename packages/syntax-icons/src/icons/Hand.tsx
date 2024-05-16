@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Hand = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M18 13.2V0h-3.6l-.6 10.8L12.6 0h-3v10.8l-1.8-9-3 .6.6 9.6L3 4.8 0 6l3 12c1.09 3.454 3.772 6 9 6 4.997 0 6.974-3.72 8.4-6 1.62-2.591 3.6-8.4 3.6-8.4l-3.6-1.8-2.4 5.4Z"
+    path="M17 13V2h-3l-.5 9-1-9H10v9L8.5 3.5 6 4l.5 8-2-6L2 7l2.5 10c.909 2.878 3.143 5 7.5 5 4.164 0 5.812-3.1 7-5 1.35-2.16 3-7 3-7l-3-1.5z"
     color={color}
     size={size}
   />

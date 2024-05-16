@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const SuperTutor = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="m19 2.4.2-2.4H4.8L5 2.4H0l1.2 10.8h4.7l.1 1.2 2.4 2.4h2.4v3.6H8.4L6 24h12l-2.4-3.6h-2.4v-3.6h2.4l2.4-2.4.1-1.2h4.7L24 2.4h-5ZM3.333 10.8l-.666-6H5.2l.5 6H3.333Zm14.967 0 .5-6h2.533l-.666 6H18.3Z"
+    path="M17.833 4 18 2H6l.167 2H2l1 9h3.917L7 14l2 2h2v3H9l-2 3h10l-2-3h-2v-3h2l2-2 .083-1H21l1-9zM4.778 11l-.556-5h2.111l.417 5zm12.472 0 .417-5h2.11l-.555 5z"
     color={color}
     size={size}
   />

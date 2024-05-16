@@ -13,7 +13,8 @@
     "test:watch": "turbo run test:watch",
     "test": "turbo run test",
     "version-packages": "changeset version && pnpm install --no-frozen-lockfile",
-    "generate": "npx tsx './generate-component/' $1"
+    "generate": "npx tsx './generate-component/' $1",
+    "generate-icons": "npx tsx './packages/syntax-icons/src/generate-icons/generateIcons.ts'"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",

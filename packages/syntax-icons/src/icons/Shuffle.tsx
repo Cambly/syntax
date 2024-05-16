@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Shuffle = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="m24 4.8-4.8 4.8-1.8-1.8L19.2 6H2.4v6H0V3.6h19.2l-1.8-1.8L19.2 0 24 4.8ZM4.8 24l1.8-1.8-1.8-1.8H24V12h-2.4v6H4.8l1.8-1.8-1.8-1.8L0 19.2 4.8 24Z"
+    path="m22 6-4 4-1.5-1.5L18 7H4v5H2V5h16l-1.5-1.5L18 2zM6 22l1.5-1.5L6 19h16v-7h-2v5H6l1.5-1.5L6 14l-4 4z"
     color={color}
     size={size}
   />

@@ -1,13 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-
 const Progress = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => (
   <Icon
     ref={ref}
-    path="M21.6 24h-4.8V0h4.8v24ZM14.4 6H9.6v18h4.8V6Zm-7.2 6H2.4v12h4.8V12Z"
+    path="M20 22h-4V2h4zM14 7h-4v15h4zm-6 5H4v10h4z"
     color={color}
     size={size}
   />
