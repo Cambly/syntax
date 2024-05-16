@@ -18,6 +18,11 @@ pnpm start
 
 1. Update `@syntax-icons/svgs` folder with new icons.
 1. Run `pnpm run generate-icons`
+1. If you added a new Icon
+
+- Add it into the `Icons.stories.tsx` and update the array.
+- Update the `syntax-icons/package.json` with the proper export
+
 1. Run `pnpm run changeset`
 
 ## Generate a new React Component
