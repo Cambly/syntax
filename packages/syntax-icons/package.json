@@ -169,9 +169,9 @@
       "types": "./dist/Home.d.ts",
       "default": "./dist/Home.js"
     },
-    "./IdentifyDocument": {
-      "types": "./dist/IdentifyDocument.d.ts",
-      "default": "./dist/IdentifyDocument.js"
+    "./IdentityDocument": {
+      "types": "./dist/IdentityDocument.d.ts",
+      "default": "./dist/IdentityDocument.js"
     },
     "./Information": {
       "types": "./dist/Information.d.ts",
