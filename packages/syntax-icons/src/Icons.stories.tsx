@@ -11,6 +11,8 @@ import AddUsers from "./icons/AddUsers";
 import Alert from "./icons/Alert";
 import Bell from "./icons/Bell";
 import Book from "./icons/Book";
+import BookmarkFilled from "./icons/BookmarkFilled";
+import BookmarkUnfilled from "./icons/BookmarkUnfilled";
 import Calendar from "./icons/Calendar";
 import CalendarBooking from "./icons/CalendarBooking";
 import CameraOff from "./icons/CameraOff";
@@ -101,6 +103,8 @@ const cambioIcons = [
   { name: "Alert", component: Alert },
   { name: "Bell", component: Bell },
   { name: "Book", component: Book },
+  { name: "BookmarkFilled", component: BookmarkFilled },
+  { name: "BookmarkUnfilled", component: BookmarkUnfilled },
   { name: "Calendar", component: Calendar },
   { name: "CalendarBooking", component: CalendarBooking },
   { name: "CameraOff", component: CameraOff },

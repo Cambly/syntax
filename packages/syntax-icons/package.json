@@ -49,6 +49,14 @@
       "types": "./dist/Book.d.ts",
       "default": "./dist/Book.js"
     },
+    "./BookmarkFilled": {
+      "types": "./dist/BookmarkFilled.d.ts",
+      "default": "./dist/BookmarkFilled.js"
+    },
+    "./BookmarkUnfilled": {
+      "types": "./dist/BookmarkUnfilled.d.ts",
+      "default": "./dist/BookmarkUnfilled.js"
+    },
     "./Calendar": {
       "types": "./dist/Calendar.d.ts",
       "default": "./dist/Calendar.js"
