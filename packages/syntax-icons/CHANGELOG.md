@@ -1,5 +1,13 @@
 # @cambly/syntax-icons
 
+## 2.0.0
+
+### Major Changes
+
+- d30e1e7: Icons: add icon generate script.
+  update icons to new ones per design
+  adding 2 new icons
+
 ## 1.0.0
 
 ### Major Changes
