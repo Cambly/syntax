@@ -29,44 +29,38 @@ function getFileName(file: string) {
 }
 
 async function generateIcons() {
-  try {
-    const files = await fs.readdir(BASE_SVG_PATH);
+  const files = await fs.readdir(BASE_SVG_PATH);
 
-    for (const file of files) {
-      if (!file.endsWith(".svg")) continue;
-      // eslint-disable-next-line no-console
-      console.log(`Generating ${getFileName(file)}.tsx ...`);
-      const fileName = await fs.readFile(BASE_SVG_PATH + `/${file}`, "utf8");
-      const jsCode = await transform(
-        fileName,
-        {
-          plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
-          icon: true,
-          typescript: true,
-          template: iconTemplate,
-        },
-        {
-          componentName: getFileName(file),
-        },
-      );
+  for (const file of files) {
+    if (!file.endsWith(".svg")) continue;
+    // eslint-disable-next-line no-console
+    console.log(`Generating ${getFileName(file)}.tsx ...`);
+    const fileName = await fs.readFile(BASE_SVG_PATH + `/${file}`, "utf8");
+    const jsCode = await transform(
+      fileName,
+      {
+        plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+        icon: true,
+        typescript: true,
+        template: iconTemplate,
+      },
+      {
+        componentName: getFileName(file),
+      },
+    );
 
-      await fs.writeFile(
-        path.join(EXPORT_PATH, `${getFileName(file)}.tsx`),
-        jsCode,
-      );
-    }
-  } catch (error) {
-    throw error;
+    await fs.writeFile(
+      path.join(EXPORT_PATH, `${getFileName(file)}.tsx`),
+      jsCode,
+    );
   }
 }
 
 function runPrettier(): void {
-  exec("pnpm format", (error) => {
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`Error: ${error.message}`);
-      return;
-    }
+  exec(`npx prettier ${EXPORT_PATH} --write`, (error, stdout) => {
+    if (error) throw error;
+    // eslint-disable-next-line no-console
+    if (stdout) console.log(`${stdout}`);
     // eslint-disable-next-line no-console
     console.log("Formatted icons with Prettier");
   });

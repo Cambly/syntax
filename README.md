@@ -17,7 +17,7 @@ pnpm start
 ## Syntax-Icons: Generate new Icons:
 
 1. Update `@syntax-icons/svgs` folder with new icons.
-1. Run `pnpm run icons`
+1. Run `pnpm run generate-icons`
 1. Run `pnpm run changeset`
 
 ## Generate a new React Component
