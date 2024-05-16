@@ -21,7 +21,7 @@ pnpm start
 1. If you added a new Icon
 
 - Add it into the `Icons.stories.tsx` and update the array.
-- Update the `syntax-icons/package.json` with the proper export
+- Update the `syntax-icons/package.json` with the proper export.
 
 1. Run `pnpm run changeset`
 
