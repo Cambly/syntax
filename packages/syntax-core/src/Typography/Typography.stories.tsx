@@ -61,7 +61,7 @@ export default {
       control: { type: "number", min: 0, max: 10, step: 1 },
     },
     size: {
-      options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100],
+      options: [0, 100, 200, 300, 400, 700, 900, 1100],
       control: { type: "select", defaultValue: 200 },
     },
     tooltip: {
@@ -88,6 +88,9 @@ export const Default: StoryObj<typeof Typography> = {
 export const sizes: StoryObj<typeof Typography> = {
   render: () => (
     <>
+      <Typography {...Default.args} size={0}>
+        Size 0
+      </Typography>
       <Typography {...Default.args} size={100}>
         Size 100
       </Typography>
@@ -100,23 +103,11 @@ export const sizes: StoryObj<typeof Typography> = {
       <Typography {...Default.args} size={400}>
         Size 400
       </Typography>
-      <Typography {...Default.args} size={500}>
-        Size 500
-      </Typography>
-      <Typography {...Default.args} size={600}>
-        Size 600
-      </Typography>
       <Typography {...Default.args} size={700}>
         Size 700
       </Typography>
-      <Typography {...Default.args} size={800}>
-        Size 800
-      </Typography>
       <Typography {...Default.args} size={900}>
         Size 900
-      </Typography>
-      <Typography {...Default.args} size={1000}>
-        Size 1000
       </Typography>
       <Typography {...Default.args} size={1100}>
         Size 1100
