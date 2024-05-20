@@ -6,6 +6,7 @@ import React, {
   type RefAttributes,
   useContext,
   useRef,
+  type PointerEventHandler,
 } from "react";
 import { mergeProps, useButton, useFocusable, useHover } from "react-aria";
 import { OverlayTriggerStateContext } from "react-aria-components";
@@ -32,9 +33,10 @@ const Triggerable = forwardRef<
   {
     children?: ReactElement | (ReactElement & { ref?: Ref<Element> });
     disabled?: boolean;
+    onChildClick?: (event: React.MouseEvent) => void;
   }
 >(function Triggerable(props, forwardedRef) {
-  const { children, disabled: isDisabled } = props;
+  const { children, disabled: isDisabled, onChildClick } = props;
   const wrapperDomRef = useRef<HTMLElement>(null);
   const childRef = useObjectRef<HTMLElement>(null);
   const hasTabbableChild = useHasTabbableChild(wrapperDomRef);
@@ -44,6 +46,7 @@ const Triggerable = forwardRef<
     { elementType: "span", isDisabled },
     focusableRef,
   );
+  const { onPointerDown, ...otherButtonProps } = buttonProps;
   const { hoverProps } = useHover({ isDisabled });
   // focus handlers are attached to tabbable child if present
   const { onFocus, onBlur, onKeyDown, onKeyUp, ...otherFocusableProps } =
@@ -62,11 +65,17 @@ const Triggerable = forwardRef<
     close: () => overlayTriggerState.close(),
   }));
 
+  const handlePointerDown: PointerEventHandler<HTMLSpanElement> = (event) => {
+    onChildClick?.(event);
+    onPointerDown?.(event);
+  };
+
   return (
     <span
       ref={wrapperDomRef}
+      onPointerDown={handlePointerDown}
       {...mergeProps(
-        buttonProps,
+        otherButtonProps,
         hasTabbableChild ? {} : focusableHandlerProps,
         otherFocusableProps,
         hoverProps,
@@ -80,6 +89,7 @@ const Triggerable = forwardRef<
         },
       )}
       tabIndex={hasTabbableChild ? undefined : 0}
+      onClick={onChildClick}
     >
       {child}
     </span>

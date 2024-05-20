@@ -42,6 +42,8 @@ type PopoverProps = {
   onOpenChange?: (open: boolean) => void;
   /** Optional handler for change of visibility for popover content, for analytics timing */
   onChangeContentVisibility?: (visible: boolean) => void;
+  /** Handle click on a child - React Aria's usePress() automatically swallows onClick events on child components */
+  onChildClick?: (event: React.MouseEvent) => void;
   /** Optional boolean to control open state of popover externally */
   open?: boolean;
   /**
@@ -112,20 +114,6 @@ export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
  * Popover content is hidden by default and shown on click or focus.
  * The content is hidden again when the user mouses out of the trigger element or blurs the trigger element or presses Escape
  *
- * Example Usage:
- ```
-  <Popover
-    placement="bottom-start"
-    initialOpen
-    content={(
-      <Box padding={2} maxWidth={400}>
-        ... some content goes here
-      </Box>
-    )}
-  >
-      <Button text="Trigger me" />
-  </Popover>
- ```
  */
 const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
   props,
@@ -142,6 +130,7 @@ const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
     modal: modalProp,
     onOpenChange,
     onChangeContentVisibility,
+    onChildClick,
     open,
     placement = "bottom",
   } = props;
@@ -181,7 +170,7 @@ const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
       onOpenChange={onOpenChange}
     >
       {
-        <Triggerable disabled={disabled} ref={ref}>
+        <Triggerable disabled={disabled} ref={ref} onChildClick={onChildClick}>
           {children}
         </Triggerable>
       }
