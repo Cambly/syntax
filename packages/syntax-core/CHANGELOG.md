@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 14.1.0
+
+### Minor Changes
+
+- 46e1a77: Added vertical padding to Badge
+
 ## 14.0.0
 
 ### Major Changes
