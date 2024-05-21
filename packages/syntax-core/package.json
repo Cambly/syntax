@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "@cambly/syntax-design-tokens": "workspace:0.12.0",
-    "@react-aria/focus": "^3.16.0",
-    "@react-aria/utils": "^3.23.0",
-    "react-aria": "^3.31.0",
-    "react-aria-components": "^1.0.1"
+    "@react-aria/focus": "3.17.0",
+    "@react-aria/utils": "3.24.0",
+    "react-aria": "3.33.0",
+    "react-aria-components": "1.2.0"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",

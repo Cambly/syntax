@@ -155,11 +155,14 @@ export default {
 export const Default: StoryObj<typeof Popover> = {
   args: {
     placement: "bottom",
+    onChildClick: () => {
+      // eslint-disable-next-line no-console
+      console.log("Child button clicked");
+    },
     children: (
       <IconButton
         accessibilityLabel="Info Icon Button"
         icon={InfoOutlinedIcon}
-        onClick={() => alert("Default button pressed")}
         color="tertiary"
         size="lg"
       />
