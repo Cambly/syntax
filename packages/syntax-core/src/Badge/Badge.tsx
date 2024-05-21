@@ -65,6 +65,7 @@ const Badge = ({
     <Box
       display="inlineFlex"
       paddingX={2}
+      paddingY={1}
       rounding={"sm"}
       backgroundColor={color}
       alignItems="center"
