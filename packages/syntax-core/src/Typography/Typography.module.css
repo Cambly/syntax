@@ -70,8 +70,12 @@
 }
 
 /* Sizes are responsive */
+.size0 {
+  font-size: 12px;
+}
+
 .size100 {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .size200 {
@@ -79,72 +83,37 @@
 }
 
 .size300 {
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .size400 {
-  font-size: 20px;
-}
-
-.size500 {
-  font-size: 23px;
-}
-
-.size600 {
-  font-size: 26px;
+  font-size: 25px;
 }
 
 .size700 {
-  font-size: 33px;
-}
-
-.size800 {
-  font-size: 41px;
+  font-size: 38px;
 }
 
 .size900 {
-  font-size: 46px;
+  font-size: 55px;
 }
 
+.size1100 {
+  font-size: 83px;
+}
+
+/* Only add media queries for sizes that need to change */
 @media (min-width: 480px) {
-  .size100 {
-    font-size: 14px;
-  }
-
-  .size200 {
-    font-size: 16px;
-  }
-
   .size300 {
     font-size: 20px;
-  }
-
-  .size400 {
-    font-size: 25px;
-  }
-
-  .size500 {
-    font-size: 31px;
-  }
-
-  .size600 {
-    font-size: 39px;
   }
 
   .size700 {
     font-size: 49px;
   }
 
-  .size800 {
-    font-size: 61px;
-  }
-
   .size900 {
     font-size: 76px;
-  }
-
-  .size1000 {
-    font-size: 95px;
   }
 
   .size1100 {
