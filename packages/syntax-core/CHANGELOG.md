@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.0.0
+
+### Major Changes
+
+- e97273c: Typography / Heading: sizes update
+
 ## 14.1.0
 
 ### Minor Changes
