@@ -24,6 +24,7 @@ export default function TabInternal({
   selected,
   endContent,
   itemCount,
+  on = "lightBackground",
 }: {
   /**
    * The text to display in the tab.
@@ -48,6 +49,13 @@ export default function TabInternal({
    */
   on?: "lightBackground" | "darkBackground";
 }): ReactElement {
+  function getTextColor() {
+    if (selected) {
+      return on === "lightBackground" ? "primary" : "white";
+    }
+    return "gray700";
+  }
+
   return (
     <Box paddingX={2} display="flex" alignItems="center">
       <Box
@@ -65,7 +73,7 @@ export default function TabInternal({
         <Typography
           size={200}
           weight={selected ? "semiBold" : "regular"}
-          color={selected ? "primary" : "gray700"}
+          color={getTextColor()}
         >
           {text}
         </Typography>

@@ -3,7 +3,6 @@ import Box from "../Box/Box";
 import TabButton from "./TabButton";
 import TabLink from "./TabLink";
 
-// TODO: Add support for dark background
 export default function Tabs({
   children,
   accessibilityLabel,
@@ -17,12 +16,6 @@ export default function Tabs({
    * Accessibility label for the Tabs container.
    */
   accessibilityLabel: string;
-  /**
-   * Indicate whether the Tab renders on a light or dark background.
-   *
-   * @defaulValue `lightBackground`
-   */
-  on?: "lightBackground" | "darkBackground";
 }): JSX.Element {
   return (
     <Box

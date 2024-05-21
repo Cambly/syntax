@@ -9,6 +9,7 @@ export default function TabButton({
   endContent,
   itemCount,
   "data-testid": dataTestId,
+  on,
 }: ComponentProps<typeof TabInternal> & {
   /**
    * The onClick event for the button
@@ -31,6 +32,7 @@ export default function TabButton({
         selected={selected}
         endContent={endContent}
         itemCount={itemCount}
+        on={on}
       />
     </TapArea>
   );

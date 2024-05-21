@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { type ComponentProps, useState } from "react";
 import { type StoryObj, type Meta } from "@storybook/react";
 import Tabs from "./Tabs";
 import Badge from "../Badge/Badge";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/Tabs",
@@ -13,9 +14,23 @@ export default {
     },
   },
   tags: ["autodocs"],
+  args: {
+    on: "lightBackground",
+    accessibilityLabel: "",
+  },
+  argTypes: {
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
+    },
+  },
 } as Meta<typeof Tabs>;
 
-const TabsButtonInteractive = () => {
+const TabsButtonInteractive = ({
+  on,
+}: {
+  on: "lightBackground" | "darkBackground";
+}) => {
   const [selected, setSelected] = useState<
     "Achievements" | "History" | "Quizzes" | "Levels" | "Tabatha" | "Tabathy"
   >("Achievements");
@@ -26,43 +41,65 @@ const TabsButtonInteractive = () => {
         text="Achievements"
         onClick={() => setSelected("Achievements")}
         selected={selected === "Achievements"}
+        on={on}
       />
       <Tabs.Button
         text="History"
         onClick={() => setSelected("History")}
         selected={selected === "History"}
+        on={on}
       />
       <Tabs.Button
         text="Quizzes"
         onClick={() => setSelected("Quizzes")}
         selected={selected === "Quizzes"}
         itemCount={7}
+        on={on}
       />
       <Tabs.Button
         text="Levels"
         onClick={() => setSelected("Levels")}
         selected={selected === "Levels"}
         endContent={<Badge text="New" />}
+        on={on}
       />
       <Tabs.Button
         text="Tabatha"
         onClick={() => setSelected("Tabatha")}
         selected={selected === "Tabatha"}
         itemCount={99}
+        on={on}
       />
       <Tabs.Button
         text="Tabathy"
         onClick={() => setSelected("Tabathy")}
         selected={selected === "Tabathy"}
         itemCount={100}
+        on={on}
       />
     </Tabs>
   );
 };
 
-export const Default: StoryObj<typeof Tabs> = {
-  args: {},
-  render: () => {
-    return <TabsButtonInteractive />;
+export const Default: StoryObj<
+  ComponentProps<typeof Tabs> & { on: "lightBackground" | "darkBackground" }
+> = {
+  args: { accessibilityLabel: "My custom tabs" },
+  render: (args) => {
+    return (
+      <Box
+        padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              args.on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
+      >
+        <TabsButtonInteractive {...args} />
+      </Box>
+    );
   },
 };
