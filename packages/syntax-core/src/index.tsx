@@ -15,7 +15,7 @@ import LinkButton from "./LinkButton/LinkButton";
 import Modal from "./Modal/Modal";
 import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
-import RichSelectList from "./RichSelectList/RichSelectList";
+import RichSelectList from "./RichSelect/RichSelectList";
 import SelectList from "./SelectList/SelectList";
 import Tabs from "./Tabs/Tabs";
 import TapArea from "./TapArea/TapArea";
