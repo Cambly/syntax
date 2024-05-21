@@ -3,7 +3,6 @@ import {
   type HtmlHTMLAttributes,
   type ComponentProps,
 } from "react";
-import React from "react";
 import TabInternal from "./TabInternal";
 
 type TabLinkProps = ComponentProps<typeof TabInternal> & {

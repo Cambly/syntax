@@ -3,6 +3,9 @@ import Box from "../Box/Box";
 import TabButton from "./TabButton";
 import TabLink from "./TabLink";
 
+/**
+ * [Tabs](https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs) are used to organize content into different sections.
+ */
 export default function Tabs({
   children,
   accessibilityLabel,

@@ -56,6 +56,13 @@ export default function TabInternal({
     return "gray700";
   }
 
+  function getBorderColor(): string {
+    if (!selected) {
+      return "none";
+    }
+    return on === "lightBackground" ? "3px solid black" : "3px solid white";
+  }
+
   return (
     <Box paddingX={2} display="flex" alignItems="center">
       <Box
@@ -66,7 +73,7 @@ export default function TabInternal({
         height={56}
         dangerouslySetInlineStyle={{
           __style: {
-            borderBottom: selected ? "3px solid black" : "none",
+            borderBottom: getBorderColor(),
           },
         }}
       >
