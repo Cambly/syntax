@@ -90,7 +90,6 @@ export default function TextField({
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
   const inputId = id ?? reactId;
-  console.log(type, step);
 
   return (
     <Box
