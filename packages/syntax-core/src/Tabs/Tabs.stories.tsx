@@ -60,7 +60,7 @@ const TabsButtonInteractive = ({
         text="Levels"
         onClick={() => setSelected("Levels")}
         selected={selected === "Levels"}
-        endContent={<Badge text="New" />}
+        endContent={<Badge text="BETA" />}
         on={on}
       />
       <Tabs.Button

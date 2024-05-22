@@ -68,14 +68,21 @@ describe("link tabs", () => {
   it("renders successfully with link children", () => {
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Link text="tab 1" selected onClick={vi.fn()} itemCount={10} />
+        <Tabs.Link
+          text="tab 1"
+          href=""
+          selected
+          onClick={vi.fn()}
+          itemCount={10}
+        />
         <Tabs.Link
           text="tab 2"
+          href=""
           selected={false}
           onClick={() => null}
           endContent={<Badge text="New" />}
         />
-        <Tabs.Link text="tab 3" selected={false} onClick={vi.fn()} />
+        <Tabs.Link text="tab 3" href="" selected={false} onClick={vi.fn()} />
       </Tabs>,
     );
     expect(screen).toBeTruthy();
@@ -92,12 +99,23 @@ describe("link tabs", () => {
       <Tabs accessibilityLabel="My custom tabs">
         <Tabs.Link
           text="tab 1"
+          href=""
           selected
           onClick={handleChange}
           data-testid="tab-1"
         />
-        <Tabs.Link text="tab 2" selected={false} onClick={handleChange} />
-        <Tabs.Link text="tab 3" selected={false} onClick={handleChange} />
+        <Tabs.Link
+          text="tab 2"
+          href=""
+          selected={false}
+          onClick={handleChange}
+        />
+        <Tabs.Link
+          text="tab 3"
+          href=""
+          selected={false}
+          onClick={handleChange}
+        />
       </Tabs>,
     );
     const tab = await screen.findByTestId("tab-1");
