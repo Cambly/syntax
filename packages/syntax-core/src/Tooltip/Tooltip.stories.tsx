@@ -273,7 +273,6 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
 export const DarkBackground: StoryObj<typeof Tooltip> = {
   args: {
     content: <Typography color="primary">This is a tooltip content</Typography>,
-    on: "darkBackground",
   },
   render: (props) => (
     <Box
@@ -284,8 +283,8 @@ export const DarkBackground: StoryObj<typeof Tooltip> = {
       backgroundColor="black"
       minHeight="400px"
     >
-      <Tooltip {...props}>
-        <Button text="Trigger me" />
+      <Tooltip {...props} on="darkBackground">
+        <Button text="Trigger me" color="success-primary" />
       </Tooltip>
     </Box>
   ),
