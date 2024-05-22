@@ -13,7 +13,7 @@ export default {
   args: {
     color: "gray900",
     fontStyle: "sans-serif",
-    size: 500,
+    size: 400,
     align: "start",
     transform: "none",
     children: "Default text",
@@ -55,7 +55,7 @@ export default {
       control: { type: "radio" },
     },
     size: {
-      options: [400, 500, 600, 700, 800, 900, 1000, 1100],
+      options: [400, 700, 900, 1100],
       control: { type: "select" },
     },
   },
@@ -74,23 +74,11 @@ export const Sizes: StoryObj<typeof Heading> = {
       <Heading {...args} size={400}>
         Size 400
       </Heading>
-      <Heading {...args} size={500}>
-        Size 500
-      </Heading>
-      <Heading {...args} size={600}>
-        Size 600
-      </Heading>
       <Heading {...args} size={700}>
         Size 700
       </Heading>
-      <Heading {...args} size={800}>
-        Size 800
-      </Heading>
       <Heading {...args} size={900}>
         Size 900
-      </Heading>
-      <Heading {...args} size={1000}>
-        Size 1000
       </Heading>
       <Heading {...args} size={1100}>
         Size 1100

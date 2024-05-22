@@ -1,14 +1,14 @@
-import { type ReactElement, type ReactNode } from "react";
+import { type ComponentProps, type ReactElement, type ReactNode } from "react";
 import Typography from "../Typography/Typography";
 
 function weight({
   fontStyle,
   size,
 }: {
-  fontStyle: "serif" | "sans-serif";
-  size: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
+  fontStyle: ComponentProps<typeof Heading>["fontStyle"];
+  size: ComponentProps<typeof Heading>["size"];
 }): "bold" | "medium" | "regular" {
-  if (fontStyle === "serif" && [400, 500, 600].includes(size)) {
+  if (fontStyle === "serif" && size === 400) {
     return "bold";
   } else if (fontStyle === "serif") {
     return "medium";
@@ -28,7 +28,7 @@ const Heading = ({
   "data-testid": dataTestId,
   fontStyle = "sans-serif",
   lineClamp,
-  size = 500,
+  size = 400,
 }: {
   /**
    * Aligns the text to the left, right, or center of the container.
@@ -81,28 +81,20 @@ const Heading = ({
    * Size of the text
    *
    * Mobile: (viewport width < 480px):
-   * * `400`: 20px
-   * * `500`: 23px
-   * * `600`: 26px
-   * * `700`: 29px
-   * * `800`: 33px
-   * * `900`: 37px
-   * * `1000`: 41px
-   * * `1100`: 46px
+   * * `400`: 25px
+   * * `700`: 38px
+   * * `900`: 55px
+   * * `1100`: 83px
    *
    * Desktop (viewport width >= 480px):
    * * `400`: 25px
-   * * `500`: 31px
-   * * `600`: 39px
    * * `700`: 49px
-   * * `800`: 61px
    * * `900`: 76px
-   * * `1000`: 95px
    * * `1100`: 119px
    *
-   * @defaultValue 500
+   * @defaultValue 400
    */
-  size?: 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
+  size?: 400 | 700 | 900 | 1100;
 }): ReactElement => {
   return (
     <Typography

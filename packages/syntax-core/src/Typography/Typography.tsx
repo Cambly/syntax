@@ -72,34 +72,28 @@ const Typography = forwardRef<
      * Size of the text.
      *
      * Mobile (viewport width <= 480px)::
-     * * `100`: 14px
+     * * `0`: 12px
+     * * `100`: 13px
      * * `200`: 16px
-     * * `300`: 18px
-     * * `400`: 20px
-     * * `500`: 23px
-     * * `600`: 26px
-     * * `700`: 29px
-     * * `800`: 33px
-     * * `900`: 37px
-     * * `1000`: 41px
-     * * `1100`: 46px
+     * * `300`: 19px
+     * * `400`: 25px
+     * * `700`: 38px
+     * * `900`: 55px
+     * * `1100`: 83px
      *
      * Desktop (viewport width > 480px):
+     * * `0`: 12px
      * * `100`: 13px
      * * `200`: 16px
      * * `300`: 20px
      * * `400`: 25px
-     * * `500`: 31px
-     * * `600`: 39px
      * * `700`: 49px
-     * * `800`: 61px
      * * `900`: 76px
-     * * `1000`: 95px
      * * `1100`: 119px
      *
      * @defaultValue 200
      */
-    size?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100;
+    size?: 0 | 100 | 200 | 300 | 400 | 700 | 900 | 1100;
     /**
      * The tooltip to be displayed when the user hovers the text
      */
