@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.1.0
+
+### Minor Changes
+
+- 6b589fb: Package.json: increase memory size for build script
+
 ## 15.0.0
 
 ### Major Changes
