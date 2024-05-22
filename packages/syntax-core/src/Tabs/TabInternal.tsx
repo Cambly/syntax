@@ -26,14 +26,6 @@ const ItemCountIcon = ({
     [selectedItemCountStyle]: selected,
   });
   return (
-    // <Box
-    //   rounding="full"
-    //   display="flex"
-    //   alignItems="center"
-    //   justifyContent="center"
-    //   backgroundColor={on === "lightBackground" ? "black" : "white"}
-    //   padding={1}
-    // >
     <div className={itemCountStyles}>
       <Typography
         color={on === "lightBackground" ? "white" : "primary"}
@@ -43,7 +35,6 @@ const ItemCountIcon = ({
         {itemCount <= 99 ? itemCount : "99+"}
       </Typography>
     </div>
-    // </Box>
   );
 };
 
