@@ -99,7 +99,8 @@ export default function TabInternal({
       paddingY={2}
     >
       <Typography
-        size={200}
+        size={0}
+        transform="uppercase"
         weight={selected ? "semiBold" : "regular"}
         color={textColor({ selected, on })}
       >
