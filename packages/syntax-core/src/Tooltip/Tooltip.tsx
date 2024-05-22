@@ -23,7 +23,13 @@ import {
   syntaxToReactAriaPlacement,
 } from "../react-aria-utils/placement";
 
-function TooltipArrow(props: ReactAriaOverlayArrowProps): ReactElement {
+function TooltipArrow(
+  props: ReactAriaOverlayArrowProps & {
+    on?: "lightBackground" | "darkBackground";
+  },
+): ReactElement {
+  const { on } = props;
+
   return (
     <ReactAriaOverlayArrow {...props}>
       {({ placement }) => {
@@ -35,6 +41,9 @@ function TooltipArrow(props: ReactAriaOverlayArrowProps): ReactElement {
             className={classNames([
               boxStyles.block,
               styles[`arrowPlacement${placement}`],
+              on === "lightBackground"
+                ? colorStyles.cambioBlackColor
+                : colorStyles.cambioWhiteColor,
             ])}
           >
             <svg
@@ -63,20 +72,24 @@ export const AriaTooltip = forwardRef<
   ReactAriaTooltipProps & {
     /** Optional handler for change of visibility for overlaid content, for analytics timing */
     onChangeContentVisibility?: (visible: boolean) => void;
+    on?: "lightBackground" | "darkBackground";
   }
 >(function AriaTooltip(
-  { children: childrenProp, onChangeContentVisibility, ...otherProps },
+  { children: childrenProp, onChangeContentVisibility, on, ...otherProps },
   ref,
 ): ReactElement {
   const className = classNames([
     boxStyles.box,
     colorStyles.gray900Color,
-    colorStyles.cambioBlackBackgroundColor,
+    on === "lightBackground"
+      ? colorStyles.cambioBlackBackgroundColor
+      : colorStyles.cambioWhiteBackgroundColor,
     paddingStyles.paddingX2,
     paddingStyles.paddingY2,
     roundingStyles.roundingsm,
     styles.tooltip,
   ]);
+
   return (
     <ReactAriaTooltip
       ref={ref}
@@ -93,7 +106,7 @@ export const AriaTooltip = forwardRef<
         childrenProp,
         (children, { isEntering, isExiting }) => (
           <>
-            <TooltipArrow />
+            <TooltipArrow on={on} />
             <Typography size={100} color="white">
               {children}
             </Typography>
@@ -140,6 +153,13 @@ type TooltipProps = {
    * @defaultValue "top-end"
    */
   placement?: Placement;
+
+  /**
+   * Indicate whether the tooltip renders on a light or dark background. Changes the color of the tooltip
+   *
+   * @defaultValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
 };
 /**
  * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/components-tooltip--docs) displays contextual information on hover or focus.
@@ -179,6 +199,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
     onOpenChange,
     open,
     placement = "top",
+    on = "lightBackground",
   } = props;
 
   return (
@@ -198,6 +219,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
         aria-label={accessibilityLabel}
         data-testid={dataTestId}
         onChangeContentVisibility={onChangeContentVisibility}
+        on={on}
       >
         {content}
       </AriaTooltip>

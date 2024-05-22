@@ -77,6 +77,11 @@ export default {
         defaultValue: { summary: "top" },
       },
     },
+    on: {
+      control: { type: "radio" },
+      defaultValue: "lightBackground",
+      options: ["lightBackground", "darkBackground"],
+    },
     children: {
       table: { disable: true },
       description:
@@ -261,6 +266,27 @@ export const PlacementOptions: StoryObj<typeof Tooltip> = {
           )}
         </Box>
       ))}
+    </Box>
+  ),
+};
+
+export const DarkBackground: StoryObj<typeof Tooltip> = {
+  args: {
+    content: <Typography color="primary">This is a tooltip content</Typography>,
+    on: "darkBackground",
+  },
+  render: (props) => (
+    <Box
+      display="flex"
+      direction="column"
+      justifyContent="center"
+      gap={8}
+      backgroundColor="black"
+      minHeight="400px"
+    >
+      <Tooltip {...props}>
+        <Button text="Trigger me" />
+      </Tooltip>
     </Box>
   ),
 };
