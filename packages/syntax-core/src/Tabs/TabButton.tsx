@@ -1,6 +1,8 @@
 import { type ReactElement, type ComponentProps } from "react";
+import classnames from "classnames";
 import TapArea from "../TapArea/TapArea";
 import TabInternal from "./TabInternal";
+import styles from "./TabButton.module.css";
 
 export default function TabButton({
   text,
@@ -20,20 +22,32 @@ export default function TabButton({
    */
   "data-testid"?: string;
 }): ReactElement {
+  const unselectedTabStyle = styles.unselectedTab;
+  const selectedTabStyle =
+    on === "lightBackground"
+      ? styles.selectedTabOnLightBackground
+      : styles.selectedTabOnDarkBackground;
+  const tabStyles = classnames(styles.tab, {
+    [unselectedTabStyle]: !selected,
+    [selectedTabStyle]: selected,
+  });
+
   return (
-    <TapArea
-      fullWidth={false}
-      onClick={onClick}
-      rounding="md"
-      data-testid={dataTestId}
-    >
-      <TabInternal
-        text={text}
-        selected={selected}
-        endContent={endContent}
-        itemCount={itemCount}
-        on={on}
-      />
-    </TapArea>
+    <div role="tab" className={tabStyles}>
+      <TapArea
+        fullWidth={false}
+        onClick={onClick}
+        rounding="md"
+        data-testid={dataTestId}
+      >
+        <TabInternal
+          text={text}
+          selected={selected}
+          endContent={endContent}
+          itemCount={itemCount}
+          on={on}
+        />
+      </TapArea>
+    </div>
   );
 }

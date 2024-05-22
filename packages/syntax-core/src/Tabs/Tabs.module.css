@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  width: fit-content;
+  gap: 32px;
+}
+
+.lightBackground {
+  border-bottom: 1px solid var(--color-cambio-gray-370);
+}
+
+.darkBackground {
+  /* TODO: replace with  white-40 */
+  border-bottom: 1px solid var(--color-cambio-white);
+}

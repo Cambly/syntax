@@ -1,7 +1,8 @@
 import { type ReactNode } from "react";
-import Box from "../Box/Box";
+import classnames from "classnames";
 import TabButton from "./TabButton";
 import TabLink from "./TabLink";
+import styles from "./Tabs.module.css";
 
 /**
  * [Tabs](https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs) are used to organize content into different sections.
@@ -9,30 +10,35 @@ import TabLink from "./TabLink";
 export default function Tabs({
   children,
   accessibilityLabel,
+  on = "lightBackground",
 }: {
   /**
    * The Tabs to display. Each Tab should be a `Tabs.Button` or a `Tabs.Link`.
-   * Use `Tabs.Button` for onClicks that don't update the URL, and use `Tabs.Link` when clicking on a tab should update the URL.
+   * Only use `Tabs.Link` for clicking tab that update the URL upon selection. Otherwise, use `Tabs.Button`.
    */
   children: ReactNode;
   /**
    * Accessibility label for the Tabs container.
    */
   accessibilityLabel: string;
+  /**
+   * Indicate whether the Tabs render on a light or dark background.
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
 }): JSX.Element {
   return (
-    <Box
-      display="flex"
-      gap={8}
-      dangerouslySetInlineStyle={{
-        __style: {
-          borderBottom: "1px solid #BEB4ABB2",
-        },
-      }}
+    <div
+      role="tablist"
       aria-label={accessibilityLabel}
+      className={classnames(styles.tabs, {
+        [styles.lightBackground]: on === "lightBackground",
+        [styles.darkBackground]: on === "darkBackground",
+      })}
     >
       {children}
-    </Box>
+    </div>
   );
 }
 

@@ -1,23 +1,64 @@
-import { type ReactElement, type ReactNode } from "react";
+import { type ComponentProps, type ReactElement, type ReactNode } from "react";
+import classnames from "classnames";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
+import styles from "./TabInternal.module.css";
 
-const ItemCountIcon = ({ itemCount }: { itemCount: number }) => {
+const ItemCountIcon = ({
+  itemCount,
+  on,
+  selected,
+}: {
+  itemCount: number;
+  on: ComponentProps<typeof TabInternal>["on"];
+  selected: boolean;
+}) => {
+  const unselectedItemCountStyle =
+    on === "lightBackground"
+      ? styles.unselectedItemCount
+      : styles.unselectedItemCountOnDarkBackground;
+  const selectedItemCountStyle =
+    on === "lightBackground"
+      ? styles.selectedItemCount
+      : styles.selectedItemCountOnDarkBackground;
+  const itemCountStyles = classnames(styles.itemCount, {
+    [unselectedItemCountStyle]: !selected,
+    [selectedItemCountStyle]: selected,
+  });
   return (
-    <Box
-      rounding="full"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      backgroundColor="black"
-      padding={2}
-    >
-      <Typography color="white" weight="semiBold" size={100}>
-        {itemCount < 99 ? itemCount : "99+"}
+    // <Box
+    //   rounding="full"
+    //   display="flex"
+    //   alignItems="center"
+    //   justifyContent="center"
+    //   backgroundColor={on === "lightBackground" ? "black" : "white"}
+    //   padding={1}
+    // >
+    <div className={itemCountStyles}>
+      <Typography
+        color={on === "lightBackground" ? "white" : "primary"}
+        weight="semiBold"
+        size={100}
+      >
+        {itemCount <= 99 ? itemCount : "99+"}
       </Typography>
-    </Box>
+    </div>
+    // </Box>
   );
 };
+
+function textColor({
+  selected,
+  on,
+}: {
+  selected: boolean;
+  on: "lightBackground" | "darkBackground";
+}): ComponentProps<typeof Typography>["color"] {
+  if (selected) {
+    return on === "lightBackground" ? "primary" : "white";
+  }
+  return "gray700";
+}
 
 export default function TabInternal({
   text,
@@ -49,44 +90,25 @@ export default function TabInternal({
    */
   on?: "lightBackground" | "darkBackground";
 }): ReactElement {
-  function getTextColor() {
-    if (selected) {
-      return on === "lightBackground" ? "primary" : "white";
-    }
-    return "gray700";
-  }
-
-  function getBorderColor(): string {
-    if (!selected) {
-      return "none";
-    }
-    return on === "lightBackground" ? "3px solid black" : "3px solid white";
-  }
-
   return (
-    <Box paddingX={2} display="flex" alignItems="center">
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="start"
-        gap={2}
-        height={56}
-        dangerouslySetInlineStyle={{
-          __style: {
-            borderBottom: getBorderColor(),
-          },
-        }}
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="start"
+      gap={2}
+      paddingY={2}
+    >
+      <Typography
+        size={200}
+        weight={selected ? "semiBold" : "regular"}
+        color={textColor({ selected, on })}
       >
-        <Typography
-          size={200}
-          weight={selected ? "semiBold" : "regular"}
-          color={getTextColor()}
-        >
-          {text}
-        </Typography>
-        {itemCount == null && endContent}
-        {itemCount != null && <ItemCountIcon itemCount={itemCount} />}
-      </Box>
+        {text}
+      </Typography>
+      {itemCount == null && endContent}
+      {itemCount != null && (
+        <ItemCountIcon itemCount={itemCount} on={on} selected={selected} />
+      )}
     </Box>
   );
 }

@@ -36,7 +36,7 @@ const TabsButtonInteractive = ({
   >("Achievements");
 
   return (
-    <Tabs accessibilityLabel="My custom tabs">
+    <Tabs accessibilityLabel="My custom tabs" on={on}>
       <Tabs.Button
         text="Achievements"
         onClick={() => setSelected("Achievements")}
@@ -81,6 +81,42 @@ const TabsButtonInteractive = ({
   );
 };
 
+const TabsLinkInteractive = ({
+  on,
+}: {
+  on: "lightBackground" | "darkBackground";
+}) => {
+  const [selected, setSelected] = useState<"Tabrell" | "Tabara" | "Tabson">(
+    "Tabrell",
+  );
+
+  return (
+    <Tabs accessibilityLabel="My custom tabs" on={on}>
+      <Tabs.Link
+        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+        text="Tabrell"
+        onClick={() => setSelected("Tabrell")}
+        selected={selected === "Tabrell"}
+        on={on}
+      />
+      <Tabs.Link
+        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+        text="Tabara"
+        onClick={() => setSelected("Tabara")}
+        selected={selected === "Tabara"}
+        on={on}
+      />
+      <Tabs.Link
+        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+        text="Tabson"
+        onClick={() => setSelected("Tabson")}
+        selected={selected === "Tabson"}
+        on={on}
+      />
+    </Tabs>
+  );
+};
+
 export const Default: StoryObj<
   ComponentProps<typeof Tabs> & { on: "lightBackground" | "darkBackground" }
 > = {
@@ -99,6 +135,29 @@ export const Default: StoryObj<
         }}
       >
         <TabsButtonInteractive {...args} />
+      </Box>
+    );
+  },
+};
+
+export const Link: StoryObj<
+  ComponentProps<typeof Tabs> & { on: "lightBackground" | "darkBackground" }
+> = {
+  args: { accessibilityLabel: "My custom tabs" },
+  render: (args) => {
+    return (
+      <Box
+        padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              args.on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
+      >
+        <TabsLinkInteractive {...args} />
       </Box>
     );
   },

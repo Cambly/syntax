@@ -4,6 +4,8 @@ import {
   type ComponentProps,
 } from "react";
 import TabInternal from "./TabInternal";
+import classnames from "classnames";
+import styles from "./TabLink.module.css";
 
 type TabLinkProps = ComponentProps<typeof TabInternal> & {
   /**
@@ -14,7 +16,7 @@ type TabLinkProps = ComponentProps<typeof TabInternal> & {
    * The link that the Tab should route to.
    *
    */
-  href?: string;
+  href: string;
   /**
    * The target attribute specifies where to open the linked document.
    *
@@ -47,23 +49,35 @@ const TabLink = forwardRef<HTMLAnchorElement, TabLinkProps>(
     }: TabLinkProps,
     ref,
   ) => {
+    const unselectedTabStyle = styles.unselectedTab;
+    const selectedTabStyle =
+      on === "lightBackground"
+        ? styles.selectedTab
+        : styles.selectedTabDarkBackground;
+    const tabStyles = classnames(styles.tab, {
+      [unselectedTabStyle]: !selected,
+      [selectedTabStyle]: selected,
+    });
     return (
-      <a
-        href={href}
-        data-testid={dataTestId}
-        target={target}
-        ref={ref}
-        rel={rel}
-        onClick={onClick}
-      >
-        <TabInternal
-          text={text}
-          selected={selected}
-          endContent={endContent}
-          itemCount={itemCount}
-          on={on}
-        />
-      </a>
+      <div role="tab" className={tabStyles}>
+        <a
+          href={href}
+          data-testid={dataTestId}
+          target={target}
+          ref={ref}
+          rel={rel}
+          onClick={onClick}
+          className={styles.link}
+        >
+          <TabInternal
+            text={text}
+            selected={selected}
+            endContent={endContent}
+            itemCount={itemCount}
+            on={on}
+          />
+        </a>
+      </div>
     );
   },
 );
