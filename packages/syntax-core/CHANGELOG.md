@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.2.0
+
+### Minor Changes
+
+- 1c2c5b1: TextField: Add optional step param for input
+
 ## 15.1.0
 
 ### Minor Changes
