@@ -21,7 +21,7 @@ export default {
     "data-testid": "",
     id: "",
     value: "",
-    step: 0,
+    step: 1,
   },
   argTypes: {
     autoComplete: {
