@@ -3,7 +3,7 @@ import colorStyles from "../colors/colors.module.css";
 export default function textColor(
   color:
     | "gray900"
-    | "gray700"
+    | "gray800"
     | "primary"
     | "destructive-primary"
     | "destructive-darkBackground"
@@ -14,7 +14,7 @@ export default function textColor(
     | "inherit",
 ): string {
   switch (color) {
-    case "gray700":
+    case "gray800":
       return colorStyles.cambioGray800Color;
     case "white":
       return colorStyles.cambioWhiteColor;
