@@ -21,6 +21,7 @@ export default {
     "data-testid": "",
     id: "",
     value: "",
+    step: 1,
   },
   argTypes: {
     autoComplete: {
@@ -89,13 +90,21 @@ export const Default: StoryObj<typeof TextField> = {
 };
 
 export const helperText: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault helperText="Helper text" {...args} />,
+  args: { helperText: "Helper text" },
+  render: (args) => <TextFieldDefault {...args} />,
 };
 
 export const ErrorText: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault errorText="This is an error" {...args} />,
+  args: { errorText: "This is an error" },
+  render: (args) => <TextFieldDefault {...args} />,
 };
 
 export const TypeNumber: StoryObj<typeof TextField> = {
-  render: (args) => <TextFieldDefault type="number" {...args} />,
+  args: { type: "number" },
+  render: (args) => <TextFieldDefault {...args} />,
+};
+
+export const TimeWithStep: StoryObj<typeof TextField> = {
+  args: { step: 900, type: "time" },
+  render: (args) => <TextFieldDefault {...args} />,
 };

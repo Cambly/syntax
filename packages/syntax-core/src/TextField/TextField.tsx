@@ -25,6 +25,7 @@ export default function TextField({
   placeholder = "",
   type = "text",
   value = "",
+  step,
 }: {
   /**
    * The autocomplete attribute specifies whether or not an input field should have autocomplete enabled.
@@ -80,6 +81,10 @@ export default function TextField({
    * Value of the TextField
    */
   value: string;
+  /**
+   * Specified legal number intervals for an input field. Specifically for time or number. If for time, specify in milliseconds. Must be a positive value.
+   */
+  step?: number;
 }): ReactElement {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
@@ -120,6 +125,7 @@ export default function TextField({
         onChange={onChange}
         placeholder={placeholder}
         value={value}
+        step={step}
       />
       {(helperText || errorText) && (
         <Box paddingX={1}>
