@@ -82,7 +82,7 @@ export default function TextField({
    */
   value: string;
   /**
-   * Specified legal number intervals for an input field. Specifically for time or number. If for time specify for milliseconds. Must be a positive value.
+   * Specified legal number intervals for an input field. Specifically for time or number. If for time, specify in milliseconds. Must be a positive value.
    */
   step?: number;
 }): ReactElement {
