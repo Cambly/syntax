@@ -86,11 +86,15 @@
         "800": { "value": "#765F1C" },
         "900": { "value": "#3B3009" }
       },
-      "white": { "value": "#ffffff" }
+      "white": { "value": "#ffffff" },
     },
     "cambio": {
       "black": { "value": "#050500" },
-      "white": { "value": "#ffffff" },
+      "white": {
+        "40" : { "value": "rgba(255, 255, 255, 0.4)" },
+        "70": { "value": "rgba(255, 255, 255, 0.7)" },
+        "100" : { "value": "#ffffff" }
+      },
       "gray": {
         "100": { "value": "#faf4eb" },
         "200": { "value": "#e4dbd3" },

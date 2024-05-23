@@ -260,7 +260,15 @@
 }
 
 .cambioWhiteColor {
-  color: var(--color-cambio-white);
+  color: var(--color-cambio-white-100);
+}
+
+.cambioWhite40Color {
+  color: var(--color-cambio-white-40);
+}
+
+.cambioWhite70Color {
+  color: var(--color-cambio-white-70);
 }
 
 .cambioGray100Color {
@@ -404,7 +412,15 @@
 }
 
 .cambioWhiteBackgroundColor {
-  background-color: var(--color-cambio-white);
+  background-color: var(--color-cambio-white-100);
+}
+
+.cambioWhite40BackgroundColor {
+  background-color: var(--color-cambio-white-40);
+}
+
+.cambioWhite70BackgroundColor {
+  background-color: var(--color-cambio-white-70);
 }
 
 .cambioGray100BackgroundColor {
