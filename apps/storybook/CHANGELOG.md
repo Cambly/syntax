@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.21.0
+
+### Minor Changes
+
+- 2d2891b: add prop on for tooltip
+
+### Patch Changes
+
+- Updated dependencies [2d2891b]
+  - @cambly/syntax-core@15.3.0
+
 ## 0.20.22
 
 ### Patch Changes
