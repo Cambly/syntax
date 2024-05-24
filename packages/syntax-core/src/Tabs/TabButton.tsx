@@ -2,7 +2,8 @@ import { type ReactElement, type ComponentProps } from "react";
 import classnames from "classnames";
 import TapArea from "../TapArea/TapArea";
 import TabInternal from "./TabInternal";
-import styles from "./TabButton.module.css";
+import styles from "./Tabs.module.css";
+import Box from "../Box/Box";
 
 export default function TabButton({
   text,
@@ -22,32 +23,36 @@ export default function TabButton({
    */
   "data-testid"?: string;
 }): ReactElement {
-  const unselectedTabStyle = styles.unselectedTab;
-  const selectedTabStyle =
-    on === "lightBackground"
-      ? styles.selectedTabOnLightBackground
-      : styles.selectedTabOnDarkBackground;
-  const tabStyles = classnames(styles.tab, {
-    [unselectedTabStyle]: !selected,
-    [selectedTabStyle]: selected,
-  });
-
   return (
-    <div role="tab" className={tabStyles}>
-      <TapArea
-        fullWidth={false}
-        onClick={onClick}
-        rounding="md"
-        data-testid={dataTestId}
-      >
-        <TabInternal
-          text={text}
-          selected={selected}
-          endContent={endContent}
-          itemCount={itemCount}
-          on={on}
-        />
-      </TapArea>
+    <div
+      role="tab"
+      className={classnames({
+        [styles.unselectedTab]: !selected,
+        [styles.selectedTabOnLightBackground]:
+          selected && on === "lightBackground",
+        [styles.selectedTabOnDarkBackground]:
+          selected && on === "darkBackground",
+      })}
+      style={{
+        height: "100%",
+      }}
+    >
+      <Box display="flex" direction="row" alignItems="center" height="100%">
+        <TapArea
+          fullWidth={false}
+          onClick={onClick}
+          rounding="md"
+          data-testid={dataTestId}
+        >
+          <TabInternal
+            text={text}
+            selected={selected}
+            endContent={endContent}
+            itemCount={itemCount}
+            on={on}
+          />
+        </TapArea>
+      </Box>
     </div>
   );
 }

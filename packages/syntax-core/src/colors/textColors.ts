@@ -10,6 +10,7 @@ export default function textColor(
     | "success"
     | "success-darkBackground"
     | "white"
+    | "white-secondary"
     | "inherit",
 ): string {
   switch (color) {
@@ -17,6 +18,8 @@ export default function textColor(
       return colorStyles.cambioGray800Color;
     case "white":
       return colorStyles.cambioWhiteColor;
+    case "white-secondary":
+      return colorStyles.cambioWhite70Color;
     case "inherit":
       return colorStyles.inheritColor;
     case "destructive-primary":

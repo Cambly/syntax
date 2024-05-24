@@ -49,7 +49,7 @@ const classicToCambioKeyLookup = {
   "color-base-yellow-700": "color-cambio-yellow-700",
   "color-base-yellow-800": undefined, // Deprecated - to be deleted
   "color-base-yellow-900": undefined, // Deprecated - to be deleted
-  "color-base-white": "color-cambio-white",
+  "color-base-white": "color-cambio-white-100",
 };
 
 function stylesForTheme() {

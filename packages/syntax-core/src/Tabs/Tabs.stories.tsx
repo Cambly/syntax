@@ -125,6 +125,7 @@ export const Default: StoryObj<
     return (
       <Box
         padding={2}
+        width="fit-content"
         dangerouslySetInlineStyle={{
           __style: {
             backgroundImage:

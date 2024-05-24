@@ -8,7 +8,7 @@ describe("button tabs - server", () => {
   it("renders on the server without any errors & is disabled before hydration", () => {
     const renderOnServer = () =>
       renderToString(
-        <Tabs>
+        <Tabs accessibilityLabel="My custom tabs">
           <Tabs.Button text="tab 1" selected onClick={() => null} />
           <Tabs.Button text="tab 2" selected={false} onClick={() => null} />
           <Tabs.Button text="tab 3" selected={false} onClick={() => null} />
@@ -23,7 +23,7 @@ describe("link tabs - server", () => {
   it("renders on the server without any errors & is disabled before hydration", () => {
     const renderOnServer = () =>
       renderToString(
-        <Tabs>
+        <Tabs accessibilityLabel="My custom tabs">
           <Tabs.Link
             text="tab 1"
             href="https://www.google.com"

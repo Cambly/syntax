@@ -5,7 +5,8 @@ import {
 } from "react";
 import TabInternal from "./TabInternal";
 import classnames from "classnames";
-import styles from "./TabLink.module.css";
+import styles from "./Tabs.module.css";
+import Box from "../Box/Box";
 
 type TabLinkProps = ComponentProps<typeof TabInternal> & {
   /**
@@ -49,34 +50,39 @@ const TabLink = forwardRef<HTMLAnchorElement, TabLinkProps>(
     }: TabLinkProps,
     ref,
   ) => {
-    const unselectedTabStyle = styles.unselectedTab;
-    const selectedTabStyle =
-      on === "lightBackground"
-        ? styles.selectedTab
-        : styles.selectedTabDarkBackground;
-    const tabStyles = classnames(styles.tab, {
-      [unselectedTabStyle]: !selected,
-      [selectedTabStyle]: selected,
-    });
     return (
-      <div role="tab" className={tabStyles}>
-        <a
-          href={href}
-          data-testid={dataTestId}
-          target={target}
-          ref={ref}
-          rel={rel}
-          onClick={onClick}
-          className={styles.link}
-        >
-          <TabInternal
-            text={text}
-            selected={selected}
-            endContent={endContent}
-            itemCount={itemCount}
-            on={on}
-          />
-        </a>
+      <div
+        role="tab"
+        className={classnames({
+          [styles.unselectedTab]: !selected,
+          [styles.selectedTabOnLightBackground]:
+            selected && on === "lightBackground",
+          [styles.selectedTabDarkBackground]:
+            selected && on === "darkBackground",
+        })}
+        style={{
+          height: "100%",
+        }}
+      >
+        <Box display="flex" alignItems="center" height="100%">
+          <a
+            href={href}
+            data-testid={dataTestId}
+            target={target}
+            ref={ref}
+            rel={rel}
+            onClick={onClick}
+            className={styles.link}
+          >
+            <TabInternal
+              text={text}
+              selected={selected}
+              endContent={endContent}
+              itemCount={itemCount}
+              on={on}
+            />
+          </a>
+        </Box>
       </div>
     );
   },

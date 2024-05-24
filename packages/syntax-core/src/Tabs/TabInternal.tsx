@@ -2,7 +2,7 @@ import { type ComponentProps, type ReactElement, type ReactNode } from "react";
 import classnames from "classnames";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
-import styles from "./TabInternal.module.css";
+import colorStyles from "../colors/colors.module.css";
 
 const ItemCountIcon = ({
   itemCount,
@@ -13,27 +13,39 @@ const ItemCountIcon = ({
   on: ComponentProps<typeof TabInternal>["on"];
   selected: boolean;
 }) => {
-  const unselectedItemCountStyle =
-    on === "lightBackground"
-      ? styles.unselectedItemCount
-      : styles.unselectedItemCountOnDarkBackground;
-  const selectedItemCountStyle =
-    on === "lightBackground"
-      ? styles.selectedItemCount
-      : styles.selectedItemCountOnDarkBackground;
-  const itemCountStyles = classnames(styles.itemCount, {
-    [unselectedItemCountStyle]: !selected,
-    [selectedItemCountStyle]: selected,
-  });
   return (
-    <div className={itemCountStyles}>
-      <Typography
-        color={on === "lightBackground" ? "white" : "primary"}
-        weight="semiBold"
-        size={100}
+    <div
+      className={classnames({
+        [colorStyles.cambioWhiteBackgroundColor]:
+          on === "darkBackground" && selected,
+        [colorStyles.cambioWhite70BackgroundColor]:
+          on === "darkBackground" && !selected,
+        [colorStyles.cambioBlackBackgroundColor]:
+          on === "lightBackground" && selected,
+        [colorStyles.cambioGray700BackgroundColor]:
+          on === "lightBackground" && !selected,
+      })}
+      style={{
+        width: "100%",
+        height: "100%",
+        borderRadius: 999,
+      }}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        rounding="full"
+        padding={1}
       >
-        {itemCount <= 99 ? itemCount : "99+"}
-      </Typography>
+        <Typography
+          color={on === "lightBackground" ? "white" : "primary"}
+          weight="semiBold"
+          size={100}
+        >
+          {itemCount <= 99 ? itemCount : "99+"}
+        </Typography>
+      </Box>
     </div>
   );
 };
@@ -48,7 +60,7 @@ function textColor({
   if (selected) {
     return on === "lightBackground" ? "primary" : "white";
   }
-  return "gray700";
+  return on === "lightBackground" ? "gray700" : "white-secondary";
 }
 
 export default function TabInternal({

@@ -3,6 +3,7 @@ import classnames from "classnames";
 import TabButton from "./TabButton";
 import TabLink from "./TabLink";
 import styles from "./Tabs.module.css";
+import Box from "../Box/Box";
 
 /**
  * [Tabs](https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs) are used to organize content into different sections.
@@ -32,12 +33,21 @@ export default function Tabs({
     <div
       role="tablist"
       aria-label={accessibilityLabel}
-      className={classnames(styles.tabs, {
-        [styles.lightBackground]: on === "lightBackground",
-        [styles.darkBackground]: on === "darkBackground",
+      className={classnames({
+        [styles.tabContainerlightBackground]: on === "lightBackground",
+        [styles.tabContainerDarkBackground]: on === "darkBackground",
       })}
     >
-      {children}
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="start"
+        width="100%"
+        gap={8}
+        height={56}
+      >
+        {children}
+      </Box>
     </div>
   );
 }
