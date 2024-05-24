@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.3.0
+
+### Minor Changes
+
+- 2d2891b: add prop on for tooltip
+
 ## 15.2.0
 
 ### Minor Changes
