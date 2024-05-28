@@ -11,6 +11,7 @@ export default function TabButton({
   selected,
   endContent,
   itemCount,
+  accessibilityLabel,
   "data-testid": dataTestId,
   on,
 }: ComponentProps<typeof TabInternal> & {
@@ -18,6 +19,10 @@ export default function TabButton({
    * The onClick event for the button
    */
   onClick: () => void;
+  /**
+   * The label to be used for accessibility
+   */
+  accessibilityLabel?: string;
   /**
    * Test id for the button
    */
@@ -43,6 +48,7 @@ export default function TabButton({
           onClick={onClick}
           rounding="md"
           data-testid={dataTestId}
+          accessibilityLabel={accessibilityLabel}
         >
           <TabInternal
             text={text}

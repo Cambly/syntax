@@ -104,7 +104,7 @@ export default function TabInternal({
       <Typography
         size={0}
         transform="uppercase"
-        weight={selected ? "semiBold" : "regular"}
+        weight="semiBold"
         color={textColor({ selected, on })}
       >
         {text}
