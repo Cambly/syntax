@@ -44,6 +44,7 @@ export default {
         "success",
         "success-darkBackground",
         "white",
+        "white-secondary",
       ],
       control: { type: "radio" },
     },

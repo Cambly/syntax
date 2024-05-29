@@ -17,6 +17,7 @@ import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
 import RichSelectList from "./RichSelect/RichSelectList";
 import SelectList from "./SelectList/SelectList";
+import Tabs from "./Tabs/Tabs";
 import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
@@ -44,6 +45,7 @@ export {
   RadioButton,
   RichSelectList,
   SelectList,
+  Tabs,
   TapArea,
   TextArea,
   TextField,

@@ -1,0 +1,29 @@
+.tabContainerlightBackground {
+  border-bottom: 1px solid var(--color-cambio-gray-370);
+}
+
+.tabContainerDarkBackground {
+  border-bottom: 1px solid var(--color-cambio-white-40);
+}
+
+.selectedTabOnLightBackground {
+  border-bottom: 3px solid var(--color-cambio-black);
+}
+
+.selectedTabOnDarkBackground {
+  border-bottom: 3px solid var(--color-cambio-white-100);
+}
+
+.unselectedTab {
+  border-bottom: none;
+}
+
+.link {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.link:focus,
+.link:hover {
+  text-decoration: none;
+}

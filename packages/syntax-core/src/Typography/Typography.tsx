@@ -41,6 +41,7 @@ const Typography = forwardRef<
       | "success"
       | "success-darkBackground"
       | "white"
+      | "white-secondary"
       | "inherit";
     /**
      * Test id for the text
