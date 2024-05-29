@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.4.0
+
+### Minor Changes
+
+- e821649: Add Tabs component
+
 ## 15.3.0
 
 ### Minor Changes
