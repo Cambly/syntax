@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.5.0
+
+### Minor Changes
+
+- 0bd3243: Add menu role to RichSelectList popover
+
 ## 15.4.0
 
 ### Minor Changes
