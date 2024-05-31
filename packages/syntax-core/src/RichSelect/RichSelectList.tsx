@@ -195,6 +195,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
               dangerouslySetInlineStyle={
                 autosave ? undefined : { __style: { paddingBottom: 0 } }
               }
+              role="menu"
             >
               <RichSelectBox
                 autosave={autosave}
