@@ -69,7 +69,7 @@ export const Rounding: StoryObj<typeof Box> = {
           backgroundColor="gray100"
           padding={4}
         >
-          {(["sm", "md", "full"] as const).map((rounding) => (
+          {(["sm", "md", "lg", "xl", "full"] as const).map((rounding) => (
             <TapArea
               key={rounding}
               rounding={rounding}

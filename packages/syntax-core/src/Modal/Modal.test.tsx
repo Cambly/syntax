@@ -213,6 +213,7 @@ describe("modal", () => {
     render(
       <Modal
         data-testid="modal-lg"
+        size="lg"
         header="title"
         onDismiss={() => {
           /* empty */
