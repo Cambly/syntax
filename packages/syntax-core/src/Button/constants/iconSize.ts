@@ -1,9 +1,7 @@
-import styles from "../Button.module.css";
-
 const iconSize = {
-  sm: styles.smIcon,
-  md: styles.mdIcon,
-  lg: styles.lgIcon,
-};
+  sm: 100,
+  md: 200,
+  lg: 300,
+} as const;
 
 export default iconSize;

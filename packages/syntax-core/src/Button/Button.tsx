@@ -163,10 +163,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <StartIcon
             className={classNames(
               styles.icon,
-              iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
-            size={size}
+            size={iconSize[size]}
           />
         )}
         {((loading && loadingText) || (!loading && text)) && (
@@ -187,10 +186,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <EndIcon
             className={classNames(
               styles.icon,
-              iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
-            size={size}
+            size={iconSize[size]}
           />
         )}
         {loading && (
