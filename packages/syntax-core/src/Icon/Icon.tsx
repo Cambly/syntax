@@ -14,14 +14,20 @@ type IconProps = {
   color?: ComponentProps<typeof Typography>["color"];
   /**
    * The size of the Icon.
-   * * `xs`: 16px x 16px
-   * * `sm`: 20px x 20px
-   * * `md`: 24px x 24px
-   * * `lg`: 32px x 32px
+   * * 100: 16px x 16px
+   * * 200: 20px x 20px
+   * * 300: 24px x 24px
+   * * 400: 32px x 32px
+   * * 500: 48px x 48px
+   * * 600: 72px x 72px
+   * * 700: 100px x 100px
+   * * 800: 140px x 140px
+   * * 900: 200px x 200px
+   * * 1000: 280px x 280px
    *
-   * @defaultValue "md"
+   * @defaultValue 200
    */
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: 0 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
   /**
    * The svg path of the icon. You should not use this prop directly, instead use the specific icon components.
    */
@@ -37,7 +43,7 @@ type IconProps = {
  * You can click on the icon to copy the import statement!
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = "inherit", path, size = "md" }: IconProps, ref) => (
+  ({ color = "inherit", path, size = 200 }: IconProps, ref) => (
     <svg
       className={classnames(
         styles.icon,
