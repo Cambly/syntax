@@ -1,5 +1,4 @@
 ---
-"@cambly/syntax-icons": minor
 "@cambly/syntax-core": minor
 ---
 
