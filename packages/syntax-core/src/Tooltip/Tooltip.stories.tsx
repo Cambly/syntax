@@ -147,7 +147,7 @@ export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
     children: <InfoOutlinedIcon />,
     content: (
       <Box maxWidth="400px" display="flex" direction="column" gap={2}>
-        <Typography color="inherit" weight="semiBold" size={400}>
+        <Typography color="inherit" weight="semiBold" size={500}>
           Learn English with Cambly.
           <br />
           We help you progress.
@@ -469,7 +469,7 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
   return (
     <Box paddingY={8} paddingX={4} backgroundColor="gray200">
       <Box display="flex" alignItems="center" direction="column">
-        <Box padding={7} rounding="md" backgroundColor="white" width="100%">
+        <Box padding={7} rounding="xl" backgroundColor="white" width="100%">
           <Box
             display="flex"
             direction="column"

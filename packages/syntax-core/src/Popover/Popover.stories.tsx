@@ -16,7 +16,7 @@ const ContentWithTooltips = () => (
         <InfoOutlinedIcon fontSize="inherit" />
       </Tooltip>
     </Typography>
-    <Typography weight="bold" size={400}>
+    <Typography weight="bold" size={500}>
       30 Minutes x 2{" "}
       <Tooltip content="One 30 minute or two 15 minute lessons, twice per week">
         <InfoOutlinedIcon fontSize="inherit" />

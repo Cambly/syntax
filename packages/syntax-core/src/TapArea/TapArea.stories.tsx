@@ -38,7 +38,7 @@ export const Default: StoryObj<typeof TapArea> = {
     children: (
       <Box display="flex" alignItems="center" gap={4} padding={2}>
         <Avatar accessibilityLabel="Jane" src={image} size="md" />
-        <Typography size={400}>Jane Doe</Typography>
+        <Typography size={500}>Jane Doe</Typography>
       </Box>
     ),
   },
