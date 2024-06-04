@@ -1,5 +1,5 @@
 ---
-"@cambly/syntax-core": minor
+"@cambly/syntax-icons": minor
 ---
 
-Update Icon color prop types, fix internal TypeScript errors
+Update Icon color prop types
