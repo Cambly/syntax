@@ -241,13 +241,11 @@ const getBackgroundColor = (
     | "success"
     | "success-darkBackground"
     | "white"
-    | "white-secondary"
     | "inherit"
     | undefined,
 ) => {
   const listOfLightFontColors = [
     "white",
-    "white-secondary",
     "destructive-darkBackground",
     "success-darkBackground",
   ];
