@@ -152,12 +152,8 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       >
         {!loading && StartIcon && (
           <StartIcon
-            className={classNames(
-              buttonStyles.icon,
-              iconSize[size],
-              foregroundColorClass,
-            )}
-            size={size}
+            className={classNames(buttonStyles.icon, foregroundColorClass)}
+            size={iconSize[size]}
           />
         )}
         {!loading && text && (
@@ -172,12 +168,8 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
         )}
         {!loading && EndIcon && (
           <EndIcon
-            className={classNames(
-              buttonStyles.icon,
-              iconSize[size],
-              foregroundColorClass,
-            )}
-            size={size}
+            className={classNames(buttonStyles.icon, foregroundColorClass)}
+            size={iconSize[size]}
           />
         )}
         {loading && (
