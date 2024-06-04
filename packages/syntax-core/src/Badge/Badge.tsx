@@ -78,7 +78,7 @@ const Badge = ({
         color={textColorForBackgroundColor(color)}
       >
         <Box display="flex" gap={1} alignItems="center" justifyContent="start">
-          {Icon && <Icon className={styles.icon} size="xs" />}
+          {Icon && <Icon className={styles.icon} size={100} />}
           <Typography
             color={textColorForBackgroundColor(color)}
             size={100}
