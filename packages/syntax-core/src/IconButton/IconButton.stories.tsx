@@ -1,7 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import StarFilled from "../../../syntax-icons/src/icons/StarFilled";
+import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";
 
 import CalendarBooking from "../../../syntax-icons/src/icons/CalendarBooking";
@@ -57,7 +57,7 @@ export default {
 } as Meta<typeof IconButton>;
 
 export const Default: StoryObj<typeof IconButton> = {
-  args: { accessibilityLabel: "Star", tooltip: "Demo title", icon: StarFilled },
+  args: { accessibilityLabel: "Star", tooltip: "Demo title", icon: Star },
 
   render: (args) => {
     return (
