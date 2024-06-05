@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 import Box from "../Box/Box";
-import iconSize from "./constants/iconSize";
+import { materialIconSize, internalIconSize } from "./constants/iconSize";
 import textVariant from "./constants/textVariant";
 import loadingIconSize from "./constants/loadingIconSize";
 import styles from "./Button.module.css";
@@ -163,10 +163,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <StartIcon
             className={classNames(
               styles.icon,
-              iconSize[size],
+              materialIconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
-            size={iconSize[size]}
+            size={internalIconSize[size]}
           />
         )}
         {((loading && loadingText) || (!loading && text)) && (
@@ -187,10 +187,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <EndIcon
             className={classNames(
               styles.icon,
-              iconSize[size],
+              materialIconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
-            size={iconSize[size]}
+            size={internalIconSize[size]}
           />
         )}
         {loading && (

@@ -8,7 +8,10 @@ import React from "react";
 import { type Size } from "../constants";
 import Typography from "../Typography/Typography";
 import buttonStyles from "../Button/Button.module.css";
-import iconSize from "../Button/constants/iconSize";
+import {
+  materialIconSize,
+  internalIconSize,
+} from "../Button/constants/iconSize";
 import textVariant from "../Button/constants/textVariant";
 import loadingIconSize from "../Button/constants/loadingIconSize";
 import styles from "./LinkButton.module.css";
@@ -152,8 +155,12 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       >
         {!loading && StartIcon && (
           <StartIcon
-            className={classNames(buttonStyles.icon, foregroundColorClass)}
-            size={iconSize[size]}
+            className={classNames(
+              buttonStyles.icon,
+              materialIconSize[size],
+              foregroundColorClass,
+            )}
+            size={internalIconSize[size]}
           />
         )}
         {!loading && text && (
@@ -168,8 +175,12 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
         )}
         {!loading && EndIcon && (
           <EndIcon
-            className={classNames(buttonStyles.icon, foregroundColorClass)}
-            size={iconSize[size]}
+            className={classNames(
+              buttonStyles.icon,
+              materialIconSize[size],
+              foregroundColorClass,
+            )}
+            size={internalIconSize[size]}
           />
         )}
         {loading && (

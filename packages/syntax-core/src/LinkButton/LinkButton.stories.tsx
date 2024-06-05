@@ -141,10 +141,10 @@ export const WithEndIcon: StoryObj<typeof LinkButton> = {
 };
 
 export const WithSyntaxIcons: StoryObj<typeof LinkButton> = {
-  render: () => (
+  render: (args) => (
     <Box display="flex" gap={2}>
-      <LinkButton text="Pause" startIcon={Pause} />
-      <LinkButton text="Pause" endIcon={Pause} />
+      <LinkButton {...args} text="Pause" startIcon={Pause} />
+      <LinkButton {...args} text="Pause" endIcon={Pause} />
     </Box>
   ),
 };
