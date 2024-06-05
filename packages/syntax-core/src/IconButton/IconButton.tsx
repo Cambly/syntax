@@ -6,13 +6,19 @@ import styles from "./IconButton.module.css";
 import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
-import InternalIcon from "../Icon/Icon";
+import type InternalIcon from "../Icon/Icon";
 
 const iconSize = {
   sm: styles.smIcon,
   md: styles.mdIcon,
   lg: styles.lgIcon,
 };
+
+const internalIconSize = {
+  sm: 200,
+  md: 300,
+  lg: 400,
+} as const;
 
 type IconButtonProps = {
   /**
@@ -102,8 +108,6 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     const foregroundColorClass = foregroundColor(color, on);
     const backgroundColorClass = backgroundColor(color, on);
 
-    console.log(Icon === InternalIcon);
-
     return (
       <button
         aria-label={accessibilityLabel}
@@ -121,7 +125,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
       >
-        <Icon className={iconSize[size]} size={size} />
+        <Icon className={iconSize[size]} size={internalIconSize[size]} />
       </button>
     );
   },
