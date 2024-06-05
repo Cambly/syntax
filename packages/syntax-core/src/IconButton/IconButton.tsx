@@ -8,7 +8,7 @@ import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
 import type InternalIcon from "../Icon/Icon";
 
-const iconSize = {
+const materialIconSize = {
   sm: styles.smIcon,
   md: styles.mdIcon,
   lg: styles.lgIcon,
@@ -125,7 +125,10 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
       >
-        <Icon className={iconSize[size]} size={internalIconSize[size]} />
+        <Icon
+          className={materialIconSize[size]}
+          size={internalIconSize[size]}
+        />
       </button>
     );
   },
