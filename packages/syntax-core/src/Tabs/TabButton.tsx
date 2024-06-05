@@ -13,7 +13,7 @@ export default function TabButton({
   itemCount,
   accessibilityLabel,
   "data-testid": dataTestId,
-  on,
+  on = "lightBackground",
 }: ComponentProps<typeof TabInternal> & {
   /**
    * The onClick event for the button

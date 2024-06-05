@@ -42,7 +42,7 @@ const TabLink = forwardRef<HTMLAnchorElement, TabLinkProps>(
       target,
       rel,
       "data-testid": dataTestId,
-      on,
+      on = "lightBackground",
       onClick,
       selected,
       endContent,
