@@ -163,6 +163,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <StartIcon
             className={classNames(
               styles.icon,
+              iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
             size={iconSize[size]}
@@ -186,6 +187,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <EndIcon
             className={classNames(
               styles.icon,
+              iconSize[size],
               disabledPrimary && styles.disabledPrimary,
             )}
             size={iconSize[size]}
