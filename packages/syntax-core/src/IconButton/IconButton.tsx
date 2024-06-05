@@ -6,7 +6,7 @@ import styles from "./IconButton.module.css";
 import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
-import type InternalIcon from "../Icon/Icon";
+import InternalIcon from "../Icon/Icon";
 
 const iconSize = {
   sm: styles.smIcon,
@@ -101,6 +101,8 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     const isHydrated = useIsHydrated();
     const foregroundColorClass = foregroundColor(color, on);
     const backgroundColorClass = backgroundColor(color, on);
+
+    console.log(Icon === InternalIcon);
 
     return (
       <button
