@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 15.6.0
+
+### Minor Changes
+
+- 97cbbdb: Update Icon color prop types, default Tab Buttons and Tab Link to be on light background
+
 ## 15.5.0
 
 ### Minor Changes

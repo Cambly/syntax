@@ -11,6 +11,7 @@ const defaultRequiredProps = {
   primaryButtonAccessibilityLabel: "Save",
   secondaryButtonText: "Clear",
   secondaryButtonAccessibilityLabel: "Clear",
+  accessibilityLabel: "My Rich Select List",
 };
 
 describe("richselectbox - server", () => {
