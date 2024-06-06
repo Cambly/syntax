@@ -7,18 +7,10 @@ import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
 import type InternalIcon from "../Icon/Icon";
-
-const materialIconSize = {
-  sm: styles.smIcon,
-  md: styles.mdIcon,
-  lg: styles.lgIcon,
-};
-
-const internalIconSize = {
-  sm: 200,
-  md: 300,
-  lg: 400,
-} as const;
+import {
+  materialIconSize,
+  internalIconSize,
+} from "../Button/constants/iconSize";
 
 type IconButtonProps = {
   /**
