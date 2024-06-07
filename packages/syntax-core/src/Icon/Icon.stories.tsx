@@ -9,7 +9,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+      options: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900],
       control: { type: "radio" },
     },
   },
