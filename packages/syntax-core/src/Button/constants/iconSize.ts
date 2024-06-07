@@ -7,7 +7,7 @@ export const materialIconSize = {
 };
 
 export const internalIconSize = {
-  sm: 200,
-  md: 300,
-  lg: 400,
+  sm: 100,
+  md: 200,
+  lg: 300,
 } as const;
