@@ -14,16 +14,16 @@ type IconProps = {
   color?: ComponentProps<typeof Typography>["color"];
   /**
    * The size of the Icon.
-   * * 100: 16px x 16px
-   * * 200: 20px x 20px
-   * * 300: 24px x 24px
-   * * 400: 32px x 32px
-   * * 500: 48px x 48px
-   * * 600: 72px x 72px
-   * * 700: 100px x 100px
-   * * 800: 140px x 140px
-   * * 900: 200px x 200px
-   * * 1000: 280px x 280px
+   * * 0: 16px x 16px
+   * * 100: 20px x 20px
+   * * 200: 24px x 24px
+   * * 300: 28px x 28px
+   * * 400: 48px x 48px
+   * * 500: 72px x 72px
+   * * 600: 100px x 100px
+   * * 700: 140px x 140px
+   * * 800: 200px x 200px
+   * * 9000: 280px x 280px
    *
    * @defaultValue 200
    */
