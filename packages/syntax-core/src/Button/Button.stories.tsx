@@ -127,10 +127,10 @@ export const WithEndIcon: StoryObj<typeof Button> = {
 };
 
 export const WithSyntaxIcons: StoryObj<typeof Button> = {
-  render: () => (
+  render: (args) => (
     <Box display="flex" gap={2}>
-      <Button text="Play" startIcon={Play} />
-      <Button text="Play" endIcon={Play} />
+      <Button {...args} text="Play" startIcon={Play} />
+      <Button {...args} text="Play" endIcon={Play} />
     </Box>
   ),
 };

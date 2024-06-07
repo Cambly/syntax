@@ -123,7 +123,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         aria-pressed={selected}
         onClick={onChange}
       >
-        {Icon && <Icon className={iconStyles} size="sm" />}
+        {Icon && <Icon className={iconStyles} size={100} />}
         <Box paddingX={Icon ? 1 : 0}>
           <Typography size={100} color={color} weight="medium">
             {text}

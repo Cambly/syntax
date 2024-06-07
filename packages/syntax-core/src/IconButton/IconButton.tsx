@@ -7,12 +7,10 @@ import useIsHydrated from "../useIsHydrated";
 import { backgroundColor } from "../colors/backgroundColor";
 import { border } from "../colors/border";
 import type InternalIcon from "../Icon/Icon";
-
-const iconSize = {
-  sm: styles.smIcon,
-  md: styles.mdIcon,
-  lg: styles.lgIcon,
-};
+import {
+  materialIconSize,
+  internalIconSize,
+} from "../Button/constants/iconSize";
 
 type IconButtonProps = {
   /**
@@ -119,7 +117,10 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         ref={ref}
       >
-        <Icon className={iconSize[size]} size={size} />
+        <Icon
+          className={materialIconSize[size]}
+          size={internalIconSize[size]}
+        />
       </button>
     );
   },
