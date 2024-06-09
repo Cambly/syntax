@@ -57,7 +57,7 @@ const TabLink = forwardRef<HTMLAnchorElement, TabLinkProps>(
           [styles.unselectedTab]: !selected,
           [styles.selectedTabOnLightBackground]:
             selected && on === "lightBackground",
-          [styles.selectedTabDarkBackground]:
+          [styles.selectedTabOnDarkBackground]:
             selected && on === "darkBackground",
         })}
         style={{
