@@ -7,7 +7,6 @@ export default function textColor(
     | "primary"
     | "destructive-primary"
     | "destructive-darkBackground"
-    | "destructive700"
     | "success"
     | "success-darkBackground"
     | "white"
