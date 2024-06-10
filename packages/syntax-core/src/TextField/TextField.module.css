@@ -1,6 +1,6 @@
 .textfield {
   appearance: none;
-  border: 2px solid var(--color-cambio-gray-370);
+  border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -33,7 +33,7 @@
 
 .inputError {
   color: var(--color-cambio-destructive-900);
-  border-color: var(--color-cambio-destructive-700);
+  border: 2px solid var(--color-cambio-destructive-700);
 }
 
 .inputError::placeholder {

@@ -131,7 +131,7 @@ export default function TextField({
         <Box paddingX={1}>
           <Typography
             size={100}
-            color={errorText ? "destructive700" : "gray700"}
+            color={errorText ? "destructive-darkBackground" : "gray700"}
           >
             {errorText || helperText}
           </Typography>

@@ -26,13 +26,11 @@ export default function textColor(
     case "destructive-primary":
       return colorStyles.cambioDestructive900Color;
     case "destructive-darkBackground":
-      return colorStyles.cambioDestructive100Color;
+      return colorStyles.cambioDestructive700Color;
     case "success":
       return colorStyles.cambioSuccess900Color;
     case "success-darkBackground":
       return colorStyles.cambioSuccess100Color;
-    case "destructive700":
-      return colorStyles.cambioDestructive700Color;
     // primary / gray900
     default:
       return colorStyles.cambioBlackColor;
