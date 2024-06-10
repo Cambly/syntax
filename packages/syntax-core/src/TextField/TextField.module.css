@@ -1,6 +1,6 @@
 .textfield {
   appearance: none;
-  border: 1px solid var(--color-cambio-gray-370);
+  border: 2px solid var(--color-cambio-gray-370);
   border-radius: 8px;
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
