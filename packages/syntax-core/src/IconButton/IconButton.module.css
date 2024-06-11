@@ -3,6 +3,7 @@
   justify-content: center;
   display: flex;
   border-radius: 50%;
+  flex: none;
 }
 
 .iconButton:hover {
