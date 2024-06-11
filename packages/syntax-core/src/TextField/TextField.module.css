@@ -33,7 +33,7 @@
 
 .inputError {
   color: var(--color-cambio-destructive-900);
-  border-color: var(--color-cambio-destructive-700);
+  border: 2px solid var(--color-cambio-destructive-700);
 }
 
 .inputError::placeholder {
