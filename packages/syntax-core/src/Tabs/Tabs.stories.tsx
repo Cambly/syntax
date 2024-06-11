@@ -3,6 +3,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import Tabs from "./Tabs";
 import Badge from "../Badge/Badge";
 import Box from "../Box/Box";
+import SelectList from "../SelectList/SelectList";
 
 export default {
   title: "Components/Tabs",
@@ -29,7 +30,7 @@ export default {
 const TabsButtonInteractive = ({
   on,
 }: {
-  on: "lightBackground" | "darkBackground";
+  on?: "lightBackground" | "darkBackground";
 }) => {
   const [selected, setSelected] = useState<
     "Achievements" | "History" | "Quizzes" | "Levels" | "Tabatha" | "Tabathy"
@@ -81,45 +82,77 @@ const TabsButtonInteractive = ({
   );
 };
 
-const TabsLinkInteractive = ({
-  on,
-}: {
-  on: "lightBackground" | "darkBackground";
-}) => {
+const TabsLinkInteractive = () => {
   const [selected, setSelected] = useState<"Tabrell" | "Tabara" | "Tabson">(
     "Tabrell",
   );
+  const [on, setOn] = useState<"lightBackground" | "darkBackground">(
+    "lightBackground",
+  );
 
   return (
-    <Tabs accessibilityLabel="My custom tabs" on={on}>
-      <Tabs.Link
-        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
-        text="Tabrell"
-        onClick={() => setSelected("Tabrell")}
-        selected={selected === "Tabrell"}
-        on={on}
-      />
-      <Tabs.Link
-        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
-        text="Tabara"
-        onClick={() => setSelected("Tabara")}
-        selected={selected === "Tabara"}
-        on={on}
-      />
-      <Tabs.Link
-        href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
-        text="Tabson"
-        onClick={() => setSelected("Tabson")}
-        selected={selected === "Tabson"}
-        on={on}
-      />
-    </Tabs>
+    <Box display="flex" direction="column" gap={2}>
+      <SelectList
+        id="on"
+        label="Background"
+        selectedValue={on}
+        onChange={(event) =>
+          setOn(
+            event.target.value === "lightBackground"
+              ? "lightBackground"
+              : "darkBackground",
+          )
+        }
+      >
+        <SelectList.Option
+          value="lightBackground"
+          label="Light"
+        ></SelectList.Option>
+        <SelectList.Option
+          value="darkBackground"
+          label="Dark"
+        ></SelectList.Option>
+      </SelectList>
+      <Box
+        padding={2}
+        dangerouslySetInlineStyle={{
+          __style: {
+            backgroundImage:
+              on === "darkBackground"
+                ? "linear-gradient(0deg, #000, #555 )"
+                : null,
+          },
+        }}
+      >
+        <Tabs accessibilityLabel="My custom tabs" on={on}>
+          <Tabs.Link
+            href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+            text="Tabrell"
+            onClick={() => setSelected("Tabrell")}
+            selected={selected === "Tabrell"}
+            on={on}
+          />
+          <Tabs.Link
+            href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+            text="Tabara"
+            onClick={() => setSelected("Tabara")}
+            selected={selected === "Tabara"}
+            on={on}
+          />
+          <Tabs.Link
+            href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
+            text="Tabson"
+            onClick={() => setSelected("Tabson")}
+            selected={selected === "Tabson"}
+            on={on}
+          />
+        </Tabs>
+      </Box>
+    </Box>
   );
 };
 
-export const Default: StoryObj<
-  ComponentProps<typeof Tabs> & { on: "lightBackground" | "darkBackground" }
-> = {
+export const Default: StoryObj<ComponentProps<typeof Tabs>> = {
   args: { accessibilityLabel: "My custom tabs" },
   render: (args) => {
     return (
@@ -141,25 +174,6 @@ export const Default: StoryObj<
   },
 };
 
-export const Link: StoryObj<
-  ComponentProps<typeof Tabs> & { on: "lightBackground" | "darkBackground" }
-> = {
-  args: { accessibilityLabel: "My custom tabs" },
-  render: (args) => {
-    return (
-      <Box
-        padding={2}
-        dangerouslySetInlineStyle={{
-          __style: {
-            backgroundImage:
-              args.on === "darkBackground"
-                ? "linear-gradient(0deg, #000, #555 )"
-                : null,
-          },
-        }}
-      >
-        <TabsLinkInteractive {...args} />
-      </Box>
-    );
-  },
+export const Link: StoryObj<ComponentProps<typeof Tabs>> = {
+  render: () => <TabsLinkInteractive />,
 };
