@@ -147,7 +147,7 @@ export const LargeTooltipContent: StoryObj<typeof Tooltip> = {
     children: <InfoOutlinedIcon />,
     content: (
       <Box maxWidth="400px" display="flex" direction="column" gap={2}>
-        <Typography color="inherit" weight="semiBold" size={500}>
+        <Typography color="inherit" weight="semiBold" size={400}>
           Learn English with Cambly.
           <br />
           We help you progress.
