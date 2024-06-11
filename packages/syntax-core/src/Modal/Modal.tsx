@@ -138,7 +138,7 @@ export default function Modal({
           >
             <Box
               data-testid={dataTestId}
-              backgroundColor="white"
+              backgroundColor="gray100"
               rounding="md"
               display="flex"
               marginStart={4}
