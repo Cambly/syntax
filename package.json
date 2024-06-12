@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "syntax",
   "scripts": {
     "start": "pnpm run dev",
     "build": "turbo run build",
@@ -30,7 +31,7 @@
     "stylelint": "15.6.0",
     "stylelint-config-css-modules": "4.2.0",
     "stylelint-config-standard": "33.0.0",
-    "turbo": "1.9.0",
+    "turbo": "2.0.3",
     "vite": "4.3.4",
     "vitest": "0.32.4"
   },
