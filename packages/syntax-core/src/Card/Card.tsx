@@ -1,7 +1,8 @@
+import { forwardRef } from "react";
 import Box from "../Box/Box";
 import type allColors from "../colors/allColors";
 
-type CardType = {
+type CardProps = {
   /**
    * Test id for the button
    */
@@ -29,12 +30,17 @@ type CardType = {
 /**
  * [Card](https://cambly-syntax.vercel.app/?path=/docs/components-card--docs) is a basic container component to apply consistent styling and render child components.
  */
-export default function Card({
-  backgroundColor = "white",
-  children,
-  size,
-  "data-testid": dataTestId,
-}: CardType): JSX.Element {
+const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
+  props: CardProps,
+  ref,
+): JSX.Element {
+  const { children, ...cardProps } = props;
+  const {
+    backgroundColor = "white",
+    size = "roomy",
+    "data-testid": dataTestId,
+  } = cardProps;
+
   return (
     <Box
       rounding="md"
@@ -42,8 +48,11 @@ export default function Card({
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}
+      ref={ref}
     >
       {children}
     </Box>
   );
-}
+});
+
+export default Card;
