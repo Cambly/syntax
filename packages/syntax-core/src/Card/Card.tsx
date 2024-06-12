@@ -29,12 +29,6 @@ type CardProps = {
 
 /**
  * [Card](https://cambly-syntax.vercel.app/?path=/docs/components-card--docs) is a basic container component to apply consistent styling and render child components.
- * const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
-  props: BoxProps,
-  ref,
-): ReactElement {
-  const { as: BoxElement = "div", children, ...boxProps } = props;
-
  */
 const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   props: CardProps,
