@@ -1,5 +1,20 @@
 # @cambly/syntax-core
 
+## 16.0.0
+
+### Major Changes
+
+- d5e8dab: Icon: change size values
+
+### Minor Changes
+
+- ddd4776: Tabs.Link: fix selected state on=darkBackground
+- ac4755a: Card: Add ref to card
+- b0bdf62: Icon: update sizes to match Typography scale
+- ba1399d: Modal: convert background from white to gray100
+- c17a851: make red shade for error text and error border (textfield and textarea) the same
+- 7b98b36: IconButton: add flex none to prevent button from ever shrinking
+
 ## 15.6.0
 
 ### Minor Changes
