@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 3.0.0
+
+### Major Changes
+
+- 7d2d9da: Icons: package bump to rebuild lib
+
 ## 2.1.0
 
 ### Minor Changes
