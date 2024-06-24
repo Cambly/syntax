@@ -51,6 +51,9 @@ const colors = [
   "yellow900",
 
   // Cambio specific colors
+  "white40",
+  "white70",
+  "gray270",
   "gray370",
   "gray870",
   "cream",
