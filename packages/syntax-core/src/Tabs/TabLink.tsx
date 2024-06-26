@@ -17,7 +17,7 @@ type TabLinkProps = ComponentProps<typeof TabInternal> & {
    * The link that the Tab should route to.
    *
    */
-  href: string;
+  href?: string;
   /**
    * The target attribute specifies where to open the linked document.
    *
