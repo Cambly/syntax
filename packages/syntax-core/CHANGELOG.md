@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 16.2.0
+
+### Minor Changes
+
+- eebb8a2: TabLink: allow href to be optional
+
 ## 16.1.0
 
 ### Minor Changes
