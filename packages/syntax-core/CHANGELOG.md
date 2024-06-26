@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 16.1.0
+
+### Minor Changes
+
+- 520b615: Update docstring and size types
+
 ## 16.0.0
 
 ### Major Changes
