@@ -76,18 +76,22 @@
 
 .size100 {
   font-size: 13px;
+  line-height: 150%;
 }
 
 .size200 {
   font-size: 16px;
+  line-height: 150%;
 }
 
 .size300 {
   font-size: 19px;
+  line-height: 140%;
 }
 
 .size400 {
   font-size: 25px;
+  line-height: 130%;
 }
 
 .size700 {
