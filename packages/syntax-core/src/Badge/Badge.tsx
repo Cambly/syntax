@@ -31,6 +31,7 @@ const textColorForBackgroundColor = (
     case "thistle":
     case "pink":
     case "lilac":
+    case "cream":
       return "gray900";
     default:
       return "white";
