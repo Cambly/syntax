@@ -28,6 +28,7 @@ export default {
         "lilac",
         "thistle",
         "pink",
+        "cream",
       ],
       control: { type: "radio" },
     },
