@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 16.3.0
+
+### Minor Changes
+
+- bfaca9b: added a color to badge component
+- 6c0db29: Update modal backdrop onClick to onMouseDown
+
+### Patch Changes
+
+- Updated dependencies [a903175]
+  - @cambly/syntax-design-tokens@0.13.0
+
 ## 16.2.0
 
 ### Minor Changes

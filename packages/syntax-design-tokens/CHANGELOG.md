@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.13.0
+
+### Minor Changes
+
+- a903175: Shadows: add basic box shadows
+
 ## 0.12.0
 
 ### Minor Changes
