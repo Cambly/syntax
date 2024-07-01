@@ -1,5 +1,16 @@
 # @syntax/storybook
 
+## 0.21.7
+
+### Patch Changes
+
+- Updated dependencies [bfaca9b]
+- Updated dependencies [a903175]
+- Updated dependencies [6c0db29]
+  - @cambly/syntax-core@16.3.0
+  - @cambly/syntax-design-tokens@0.13.0
+  - @cambly/syntax-floating-components@0.9.1
+
 ## 0.21.6
 
 ### Patch Changes
