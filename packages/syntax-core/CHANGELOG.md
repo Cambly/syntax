@@ -1,5 +1,35 @@
 # @cambly/syntax-core
 
+## 17.0.0
+
+### Major Changes
+
+- 3593816: Update the types for Icon sizing. Remove 0
+
+## 16.3.0
+
+### Minor Changes
+
+- bfaca9b: added a color to badge component
+- 6c0db29: Update modal backdrop onClick to onMouseDown
+
+### Patch Changes
+
+- Updated dependencies [a903175]
+  - @cambly/syntax-design-tokens@0.13.0
+
+## 16.2.0
+
+### Minor Changes
+
+- eebb8a2: TabLink: allow href to be optional
+
+## 16.1.0
+
+### Minor Changes
+
+- 520b615: Update docstring and size types
+
 ## 16.0.0
 
 ### Major Changes

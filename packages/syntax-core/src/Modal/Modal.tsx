@@ -133,7 +133,7 @@ export default function Modal({
           <div
             className={styles.backdrop}
             role="presentation"
-            onClick={(e) => e.target === e.currentTarget && onDismiss()}
+            onMouseDown={(e) => e.target === e.currentTarget && onDismiss()}
             onKeyDown={(e) => e.key === "Escape" && onDismiss()}
           >
             <Box
