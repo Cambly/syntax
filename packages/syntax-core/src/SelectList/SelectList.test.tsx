@@ -12,7 +12,7 @@ const SelectDropdown = ({
 }: {
   selectedValue?: string;
   numberOfOptions: number;
-  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  onClick?: (event: React.SyntheticEvent<HTMLSelectElement>) => void;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) => {
   const options = Array.from({ length: numberOfOptions }, (item, idx) => ({
@@ -47,7 +47,7 @@ const InteractiveSelectDropdown = ({
 }: {
   numberOfOptions: number;
   handleChange: (value: string) => void;
-  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  onClick?: (event: React.SyntheticEvent<HTMLSelectElement>) => void;
 }) => {
   const [selectedValue, setSelectedValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -103,6 +103,12 @@ describe("select", () => {
     );
     await userEvent.click(screen.getByTestId("syntax-select"));
     expect(handleClick).toHaveBeenCalledTimes(1);
+    await userEvent.keyboard("{Enter}");
+    expect(handleClick).toHaveBeenCalledTimes(2);
+    await userEvent.keyboard("{Space}");
+    expect(handleClick).toHaveBeenCalledTimes(3);
+    await userEvent.keyboard(" ");
+    expect(handleClick).toHaveBeenCalledTimes(4);
   });
   it("calls onchange on selecting option", async () => {
     const handleChange = vi.fn();

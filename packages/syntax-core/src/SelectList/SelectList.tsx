@@ -49,7 +49,7 @@ export default function SelectList({
   /**
    * Callback to be called when select is clicked
    */
-  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  onClick?: (event: React.SyntheticEvent<HTMLSelectElement>) => void;
   /**
    * Text shown below select box if there is an input error.
    */
@@ -87,6 +87,15 @@ export default function SelectList({
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLSelectElement> = (
+    event,
+  ) => {
+    if (disabled || onClick == null) return;
+    if (event.key === "Enter" || event.key === " " || event.key === "Space") {
+      onClick(event);
+    }
+  };
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -117,6 +126,7 @@ export default function SelectList({
           })}
           onChange={onChange}
           onClick={onClick}
+          onKeyDown={handleKeyDown}
           value={
             placeholderText && !selectedValue ? placeholderText : selectedValue
           }
