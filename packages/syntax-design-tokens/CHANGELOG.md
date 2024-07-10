@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 0.14.0
+
+### Minor Changes
+
+- 672b74f: Color: gray value updates
+
 ## 0.13.0
 
 ### Minor Changes
