@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 17.1.0
+
+### Minor Changes
+
+- 4dd5ee7: Typography: add paragraph type
+
 ## 17.0.0
 
 ### Major Changes
