@@ -36,7 +36,6 @@
   },
   "packageManager": "pnpm@9.2.0",
   "engines": {
-    "npm": "please-use-pnpm",
-    "pnpm": "9.2.0"
+    "npm": "please-use-pnpm"
   }
 }
