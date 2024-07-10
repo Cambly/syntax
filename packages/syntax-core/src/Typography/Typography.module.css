@@ -76,22 +76,18 @@
 
 .size100 {
   font-size: 13px;
-  line-height: 150%;
 }
 
 .size200 {
   font-size: 16px;
-  line-height: 150%;
 }
 
 .size300 {
   font-size: 19px;
-  line-height: 140%;
 }
 
 .size400 {
   font-size: 25px;
-  line-height: 130%;
 }
 
 .size700 {
@@ -182,4 +178,21 @@
   max-width: 100%;
   overflow: hidden;
   word-break: break-word;
+}
+
+/* Line Height */
+.p100 {
+  line-height: 150%;
+}
+
+.p200 {
+  line-height: 150%;
+}
+
+.p300 {
+  line-height: 140%;
+}
+
+.p400 {
+  line-height: 130%;
 }
