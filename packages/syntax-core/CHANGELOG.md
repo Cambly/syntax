@@ -1,5 +1,20 @@
 # @cambly/syntax-core
 
+## 18.0.0
+
+### Major Changes
+
+- b257c8a: SelectList: call onClick when using certain keyboard inputs
+
+### Minor Changes
+
+- 672b74f: Color: gray value updates
+
+### Patch Changes
+
+- Updated dependencies [672b74f]
+  - @cambly/syntax-design-tokens@0.14.0
+
 ## 17.1.0
 
 ### Minor Changes
