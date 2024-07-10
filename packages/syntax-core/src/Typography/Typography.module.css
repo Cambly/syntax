@@ -179,3 +179,20 @@
   overflow: hidden;
   word-break: break-word;
 }
+
+/* Line Height */
+.p100 {
+  line-height: 150%;
+}
+
+.p200 {
+  line-height: 150%;
+}
+
+.p300 {
+  line-height: 140%;
+}
+
+.p400 {
+  line-height: 130%;
+}

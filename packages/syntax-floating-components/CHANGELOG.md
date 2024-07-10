@@ -1,5 +1,12 @@
 # @cambly/syntax-floating-components
 
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [a903175]
+  - @cambly/syntax-design-tokens@0.13.0
+
 ## 0.9.0
 
 ### Minor Changes

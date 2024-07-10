@@ -22,7 +22,7 @@ const Typography = forwardRef<
      *
      * @defaultValue "div"
      */
-    as?: "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    as?: "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
     /**
      * The text to be rendered
      */
@@ -158,6 +158,7 @@ const Typography = forwardRef<
         transform === "uppercase" && styles.uppercase,
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,
+        as === "p" && styles[`p${size}`],
       )}
       data-testid={dataTestId}
       style={{

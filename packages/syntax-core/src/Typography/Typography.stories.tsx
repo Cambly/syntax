@@ -31,7 +31,7 @@ export default {
       control: { type: "radio" },
     },
     as: {
-      options: ["div", "h1", "h2", "h3", "h4", "h5", "h6"],
+      options: ["div", "h1", "h2", "h3", "h4", "h5", "h6", "p"],
       control: { type: "radio" },
     },
     color: {

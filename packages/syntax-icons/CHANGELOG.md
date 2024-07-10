@@ -1,5 +1,17 @@
 # @cambly/syntax-icons
 
+## 4.0.0
+
+### Major Changes
+
+- 3593816: Update the types for Icon sizing. Remove 0
+
+## 3.0.0
+
+### Major Changes
+
+- 7d2d9da: Icons: package bump to rebuild lib
+
 ## 2.1.0
 
 ### Minor Changes
