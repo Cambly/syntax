@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import SelectList from "./SelectList";
 import React, { useState, type ReactElement } from "react";
 import SelectOption from "./SelectOption";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/SelectList",
@@ -84,8 +85,37 @@ const SelectListInteractive = ({
   );
 };
 
+const SelectListInteractiveDark = ({
+  placeholderText = "",
+}: {
+  placeholderText?: string;
+}): ReactElement => {
+  const [selectionValue, setSelectionValue] = useState("");
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue(e.target.value);
+  };
+  return (
+    <Box backgroundColor="black" padding={4}>
+      <SelectList
+        label="Label"
+        color="clear"
+        helperText="Helper text"
+        selectedValue={selectionValue}
+        placeholderText={placeholderText}
+        onChange={onChange}
+      >
+        <Options />
+      </SelectList>
+    </Box>
+  );
+};
+
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
+};
+
+export const InteractiveDark: StoryObj<typeof SelectList> = {
+  render: () => <SelectListInteractiveDark />,
 };
 
 export const InteractiveWithPlaceholder: StoryObj<typeof SelectList> = {
