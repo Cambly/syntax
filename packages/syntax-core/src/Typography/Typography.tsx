@@ -79,6 +79,7 @@ const Typography = forwardRef<
      * * `300`: 19px
      * * `400`: 25px
      * * `700`: 38px
+     * * `800`: 46px
      * * `900`: 55px
      * * `1100`: 83px
      *
@@ -89,12 +90,13 @@ const Typography = forwardRef<
      * * `300`: 20px
      * * `400`: 25px
      * * `700`: 49px
+     * * `800`: 63px
      * * `900`: 76px
      * * `1100`: 119px
      *
      * @defaultValue 200
      */
-    size?: 0 | 100 | 200 | 300 | 400 | 700 | 900 | 1100;
+    size?: 0 | 100 | 200 | 300 | 400 | 700 | 800 | 900 | 1100;
     /**
      * The tooltip to be displayed when the user hovers the text
      */

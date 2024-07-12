@@ -94,6 +94,10 @@
   font-size: 38px;
 }
 
+.size800 {
+  font-size: 46px;
+}
+
 .size900 {
   font-size: 55px;
 }
@@ -110,6 +114,10 @@
 
   .size700 {
     font-size: 49px;
+  }
+
+  .size800 {
+    font-size: 63px;
   }
 
   .size900 {
