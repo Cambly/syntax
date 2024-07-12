@@ -55,7 +55,7 @@ export default {
       control: { type: "radio" },
     },
     size: {
-      options: [400, 700, 900, 1100],
+      options: [400, 700, 800, 900, 1100],
       control: { type: "select" },
     },
   },

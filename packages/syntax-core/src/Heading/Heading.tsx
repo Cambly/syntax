@@ -83,18 +83,20 @@ const Heading = ({
    * Mobile: (viewport width < 480px):
    * * `400`: 25px
    * * `700`: 38px
+   * * `800`: 46px
    * * `900`: 55px
    * * `1100`: 83px
    *
    * Desktop (viewport width >= 480px):
    * * `400`: 25px
    * * `700`: 49px
+   * * `800`: 63px
    * * `900`: 76px
    * * `1100`: 119px
    *
    * @defaultValue 400
    */
-  size?: 400 | 700 | 900 | 1100;
+  size?: 400 | 700 | 800 | 900 | 1100;
 }): ReactElement => {
   return (
     <Typography
