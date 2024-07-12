@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 18.1.0
+
+### Minor Changes
+
+- 34c091b: SelectList: add clear color
+- 9de0cf6: Typography: add size 800
+
 ## 18.0.0
 
 ### Major Changes
