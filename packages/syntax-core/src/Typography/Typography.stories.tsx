@@ -62,7 +62,7 @@ export default {
       control: { type: "number", min: 0, max: 10, step: 1 },
     },
     size: {
-      options: [0, 100, 200, 300, 400, 700, 900, 1100],
+      options: [0, 100, 200, 300, 400, 700, 800, 900, 1100],
       control: { type: "select", defaultValue: 200 },
     },
     tooltip: {
