@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.2.0
+
+### Minor Changes
+
+- 489e0f9: Heading: add size 800
+
 ## 18.1.0
 
 ### Minor Changes
