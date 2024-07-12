@@ -3,6 +3,7 @@ import React, {
   type ReactNode,
   useId,
   useState,
+  type ComponentProps,
 } from "react";
 import Box from "../Box/Box";
 import classNames from "classnames";
@@ -32,6 +33,7 @@ export default function SelectList({
   onClick,
   placeholderText,
   selectedValue = "",
+  color = "white",
 }: {
   /**
    * One or more SelectList.Option components.
@@ -79,6 +81,11 @@ export default function SelectList({
    * Value of the currently selected option
    */
   selectedValue?: string;
+  /**
+   * Color of the select box
+   * @defaultValue white
+   */
+  color?: "white" | "clear";
 }): ReactElement {
   const reactId = useId();
   const isHydrated = useIsHydrated();
@@ -96,6 +103,14 @@ export default function SelectList({
     }
   };
 
+  const textColor: Record<
+    NonNullable<ComponentProps<typeof SelectList>["color"]>,
+    ComponentProps<typeof Typography>["color"]
+  > = {
+    white: "gray700",
+    clear: "white",
+  };
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -105,7 +120,7 @@ export default function SelectList({
       {label && (
         <label htmlFor={selectId}>
           <Box paddingX={1}>
-            <Typography size={100} color="gray700">
+            <Typography size={100} color={textColor[color]}>
               {label}
             </Typography>
           </Box>
@@ -123,6 +138,7 @@ export default function SelectList({
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
+            [styles[`selectColor${color}`]]: color,
           })}
           onChange={onChange}
           onClick={onClick}
@@ -158,7 +174,7 @@ export default function SelectList({
         <Box paddingX={1}>
           <Typography
             size={100}
-            color={errorText ? "destructive-primary" : "gray700"}
+            color={errorText ? "destructive-primary" : textColor[color]}
           >
             {errorText ? errorText : helperText}
           </Typography>

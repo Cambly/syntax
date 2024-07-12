@@ -16,8 +16,6 @@
 .selectBox {
   align-items: center;
   appearance: none;
-  background-color: var(--color-base-white);
-  border: 1px solid var(--color-base-gray-700);
   cursor: pointer;
   display: flex;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -30,7 +28,6 @@
 }
 
 .selectBoxCambio {
-  border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
   box-sizing: border-box;
   font-size: 16px;
@@ -68,4 +65,17 @@
 .selectErrorCambio {
   color: var(--color-cambio-destructive-900);
   border-color: var(--color-cambio-destructive-700);
+}
+
+/* Color */
+.selectColorwhite {
+  background-color: var(--color-base-white);
+  border: 1px solid var(--color-cambio-gray-370);
+  color: var(--color-base-gray-700);
+}
+
+.selectColorclear {
+  background-color: transparent;
+  border: none;
+  color: var(--color-cambio-white-100);
 }
