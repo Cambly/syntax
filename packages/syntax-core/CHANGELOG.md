@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.3.0
+
+### Minor Changes
+
+- 07d3c67: Button: Update hover, focus, and active state opacity
+
 ## 18.2.0
 
 ### Minor Changes
