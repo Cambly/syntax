@@ -97,7 +97,7 @@ type IconLinkButtonProps = {
 };
 
 /**
- * [IconLinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a "variation" of IconButton that should look identical to IconButton, but should be used to render links instead.
+ * [IconLinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconlinkbutton--docs) is a "variation" of IconButton that should look identical to IconButton, but should be used to render links instead.
  */
 const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
   (
