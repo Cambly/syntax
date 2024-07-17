@@ -17,6 +17,7 @@ export default {
     size: "md",
     "data-testid": "",
     accessibilityLabel: "",
+    loading: false,
   },
   argTypes: {
     color: {
