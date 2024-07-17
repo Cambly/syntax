@@ -6,15 +6,17 @@ import {
 import classNames from "classnames";
 import React from "react";
 import { type Size } from "../constants";
-import buttonStyles from "../Button/Button.module.css";
 import {
   materialIconSize,
   internalIconSize,
 } from "../Button/constants/iconSize";
 import { border } from "../colors/border";
 
-import styles from "./IconLinkButton.module.css";
+import styles from "../IconButton/IconButton.module.css";
 import type InternalIcon from "../Icon/Icon";
+
+import { foregroundColor } from "../colors/foregroundColor";
+import { backgroundColor } from "../colors/backgroundColor";
 
 type IconLinkButtonProps = {
   /**
@@ -62,12 +64,6 @@ type IconLinkButtonProps = {
    */
   size?: (typeof Size)[number];
   /**
-   * If `true`, the button will be in a loading state
-   *
-   * @defaultValue false
-   */
-  loading?: boolean;
-  /**
    * The label to be used for accessibility
    */
   accessibilityLabel: string;
@@ -94,7 +90,7 @@ type IconLinkButtonProps = {
 };
 
 /**
- * [IconLinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a clickable element that is used to perform an action.
+ * [IconLinkButton](https://cambly-syntax.vercel.app/?path=/docs/components-iconbutton--docs) is a "variation" of IconButton that should look identical to IconButton, but should be used to render links instead.
  */
 const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
   (
@@ -111,12 +107,8 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
     }: IconLinkButtonProps,
     ref,
   ) => {
-    const buttonClasses = classNames(
-      buttonStyles.button,
-      styles.iconLinkButton,
-      buttonStyles[size],
-      border(color, on),
-    );
+    const foregroundColorClass = foregroundColor(color, on);
+    const backgroundColorClass = backgroundColor(color, on);
 
     return (
       <a
@@ -125,7 +117,13 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
         target={target}
         rel={rel}
         data-testid={dataTestId}
-        className={buttonClasses}
+        className={classNames(
+          styles.iconButton,
+          foregroundColorClass,
+          backgroundColorClass,
+          border(color, on),
+          styles[size],
+        )}
         onClick={onClick}
       >
         <Icon
