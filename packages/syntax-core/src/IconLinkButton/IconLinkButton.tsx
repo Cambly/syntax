@@ -112,6 +112,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
       on = "lightBackground",
       onClick,
       loading = false,
+      accessibilityLabel,
     }: IconLinkButtonProps,
     ref,
   ) => {
@@ -125,6 +126,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
         target={target}
         rel={rel}
         data-testid={dataTestId}
+        aria-label={accessibilityLabel}
         className={classNames(
           styles.iconLinkButton,
           foregroundColorClass,
