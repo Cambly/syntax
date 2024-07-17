@@ -1,7 +1,7 @@
 @import url("../IconButton/IconButton.module.css");
 
 .iconLinkButton {
-  composes: iconButton;
+  composes: iconButton from "../IconButton/IconButton.module.css";
   text-decoration: none;
 }
 
