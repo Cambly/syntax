@@ -15,7 +15,6 @@ export default {
     color: "primary",
     on: "lightBackground",
     size: "md",
-    disabled: false,
     "data-testid": "",
     accessibilityLabel: "",
   },
@@ -39,9 +38,7 @@ export default {
       options: ["sm", "md", "lg"],
       control: { type: "radio" },
     },
-    disabled: {
-      control: "boolean",
-    },
+
     on: {
       options: ["lightBackground", "darkBackground"],
       control: { type: "radio" },

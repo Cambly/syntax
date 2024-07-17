@@ -12,7 +12,7 @@ import {
 } from "../Button/constants/iconSize";
 import { border } from "../colors/border";
 
-import styles from "../IconButton/IconButton.module.css";
+import styles from "./IconLinkButton.module.css";
 import type InternalIcon from "../Icon/Icon";
 
 import { foregroundColor } from "../colors/foregroundColor";
@@ -64,8 +64,15 @@ type IconLinkButtonProps = {
    */
   size?: (typeof Size)[number];
   /**
+   * If `true`, the button will be in a loading state
+   *
+   * @defaultValue false
+   */
+  loading?: boolean;
+  /**
    * The label to be used for accessibility
    */
+
   accessibilityLabel: string;
 
   /**
@@ -104,6 +111,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
       icon: Icon,
       on = "lightBackground",
       onClick,
+      loading = false,
     }: IconLinkButtonProps,
     ref,
   ) => {
@@ -118,11 +126,14 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
         rel={rel}
         data-testid={dataTestId}
         className={classNames(
-          styles.iconButton,
+          styles.iconLinkButton,
           foregroundColorClass,
           backgroundColorClass,
           border(color, on),
           styles[size],
+          {
+            [styles.disabled]: loading,
+          },
         )}
         onClick={onClick}
       >
