@@ -9,7 +9,8 @@ import Box from "../Box/Box";
 import classNames from "classnames";
 import {
   ColorBaseDestructive700,
-  ColorBaseGray800,
+  ColorBaseGray700,
+  ColorCambioWhite100,
 } from "@cambly/syntax-design-tokens";
 import Typography from "../Typography/Typography";
 import styles from "./SelectList.module.css";
@@ -111,6 +112,18 @@ export default function SelectList({
     clear: "white",
   };
 
+  const getArrowIconColor = () => {
+    if (errorText) {
+      return ColorBaseDestructive700;
+    } else {
+      if (color === "clear") {
+        return ColorCambioWhite100;
+      } else {
+        return ColorBaseGray700;
+      }
+    }
+  };
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -164,7 +177,7 @@ export default function SelectList({
             width={24}
           >
             <path
-              fill={errorText ? ColorBaseDestructive700 : ColorBaseGray800}
+              fill={getArrowIconColor()}
               d="M15.88 9.29 12 13.17 8.12 9.29a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
             />
           </svg>

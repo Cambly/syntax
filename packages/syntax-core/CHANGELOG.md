@@ -1,5 +1,17 @@
 # @cambly/syntax-core
 
+## 18.4.0
+
+### Minor Changes
+
+- fa8015b: SelectList: update arrow icon to be right color for onDark
+
+## 18.3.0
+
+### Minor Changes
+
+- 07d3c67: Button: Update hover, focus, and active state opacity
+
 ## 18.2.0
 
 ### Minor Changes
