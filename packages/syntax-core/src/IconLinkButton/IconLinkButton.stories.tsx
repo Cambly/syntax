@@ -18,6 +18,7 @@ export default {
     "data-testid": "",
     accessibilityLabel: "",
     loading: false,
+    href: "https://www.cambly.com",
   },
   argTypes: {
     color: {
@@ -94,11 +95,13 @@ export const DestructiveSecondary: StoryObj<typeof IconLinkButton> = {
 export const DestructiveTertiary: StoryObj<typeof IconLinkButton> = {
   args: { ...Default.args, color: "destructive-tertiary" },
 };
-export const DifferentIcon: StoryObj<typeof IconLinkButton> = {
+export const DifferentIconMUI: StoryObj<typeof IconLinkButton> = {
+  name: "Different Icon (MUI)",
   args: { ...Default.args, icon: FavoriteBorder },
 };
 
 export const SyntaxIcons: StoryObj<typeof IconLinkButton> = {
+  name: "Different Colors",
   args: { ...Default.args, icon: CalendarBooking },
   render: (args) => {
     return (
