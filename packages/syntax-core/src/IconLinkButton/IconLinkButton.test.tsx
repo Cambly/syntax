@@ -65,8 +65,8 @@ describe("iconLinkButton", () => {
         icon={StarFilled}
       />,
     );
-    const linkButton = await screen.findByTestId("iconlinkbutton-test-id");
-    expect(linkButton).toHaveAttribute("target", "_blank");
+    const iconLinkButton = await screen.findByTestId("iconlinkbutton-test-id");
+    expect(iconLinkButton).toHaveAttribute("target", "_blank");
   });
 
   it("has the correct href", async () => {
@@ -78,8 +78,8 @@ describe("iconLinkButton", () => {
         icon={StarFilled}
       />,
     );
-    const linkButton = await screen.findByTestId("iconlinkbutton-test-id");
-    expect(linkButton).toHaveAttribute("href", "https://www.google.com");
+    const iconLinkButton = await screen.findByTestId("iconlinkbutton-test-id");
+    expect(iconLinkButton).toHaveAttribute("href", "https://www.google.com");
   });
 
   it("allows ref to be set", () => {
