@@ -1,4 +1,4 @@
-@import "../IconButton/IconButton.module.css";
+@import url("../IconButton/IconButton.module.css");
 
 .iconLinkButton {
   composes: iconButton;
