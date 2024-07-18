@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.5.0
+
+### Minor Changes
+
+- dd20304: Button: Update disabled button hover state
+
 ## 18.4.0
 
 ### Minor Changes
