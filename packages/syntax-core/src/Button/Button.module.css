@@ -46,6 +46,13 @@
   cursor: auto;
 }
 
+.disabled:hover {
+  filter: opacity(50%);
+  background-image: none;
+  transform: none;
+  cursor: auto;
+}
+
 .disabledPrimary {
   opacity: 0.5;
 }
