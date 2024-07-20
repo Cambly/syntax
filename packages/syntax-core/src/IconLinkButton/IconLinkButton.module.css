@@ -1,34 +1,3 @@
-@import url("../IconButton/IconButton.module.css");
-
-.iconLinkButton {
-  composes: iconButton from "../IconButton/IconButton.module.css";
-  text-decoration: none;
-}
-
-.sm {
-  composes: sm;
-}
-
-.md {
-  composes: md;
-}
-
-.lg {
-  composes: lg;
-}
-
-.smIcon {
-  composes: smIcon;
-}
-
-.mdIcon {
-  composes: mdIcon;
-}
-
-.lgIcon {
-  composes: lgIcon;
-}
-
 .disabled {
   pointer-events: none;
   cursor: default;

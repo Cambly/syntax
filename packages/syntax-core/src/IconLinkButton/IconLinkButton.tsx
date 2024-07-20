@@ -14,6 +14,7 @@ import { border } from "../colors/border";
 
 import styles from "./IconLinkButton.module.css";
 import type InternalIcon from "../Icon/Icon";
+import iconButtonStyles from "../IconButton/IconButton.module.css";
 
 import { foregroundColor } from "../colors/foregroundColor";
 import { backgroundColor } from "../colors/backgroundColor";
@@ -128,11 +129,11 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
         data-testid={dataTestId}
         aria-label={accessibilityLabel}
         className={classNames(
-          styles.iconLinkButton,
+          iconButtonStyles.iconButton,
           foregroundColorClass,
           backgroundColorClass,
           border(color, on),
-          styles[size],
+          iconButtonStyles[size],
           {
             [styles.disabled]: loading,
           },
