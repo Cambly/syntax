@@ -17,7 +17,7 @@ export default {
     size: "md",
     "data-testid": "",
     accessibilityLabel: "",
-    loading: false,
+    disabled: false,
     href: "https://www.cambly.com",
   },
   argTypes: {

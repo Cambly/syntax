@@ -65,11 +65,11 @@ type IconLinkButtonProps = {
    */
   size?: (typeof Size)[number];
   /**
-   * If `true`, the button will be in a loading state
+   * If `true`, the button will be disabled
    *
    * @defaultValue false
    */
-  loading?: boolean;
+  disabled?: boolean;
   /**
    * The label to be used for accessibility
    */
@@ -112,7 +112,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
       icon: Icon,
       on = "lightBackground",
       onClick,
-      loading = false,
+      disabled = false,
       accessibilityLabel,
     }: IconLinkButtonProps,
     ref,
@@ -135,7 +135,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
           border(color, on),
           iconButtonStyles[size],
           {
-            [styles.disabled]: loading,
+            [styles.disabled]: disabled,
           },
         )}
         onClick={onClick}
