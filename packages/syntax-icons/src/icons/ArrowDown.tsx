@@ -1,12 +1,11 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-const Message = forwardRef<
+const ArrowDown = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => {
-  const path =
-    "M3 4.05v13.5h3.6v3.6h1.8l3.6-3.6h9V4.05zm10.8 8.1H5.7v-1.8h8.1zm4.5-3.6H5.7v-1.8h12.6z";
+  const path = "M20.5 13.5 19 12l-6 6V2h-2v16l-6-6-1.5 1.5L12 22z";
   return <Icon ref={ref} path={path} color={color} size={size} />;
 });
-Message.displayName = "Message";
-export default Message;
+ArrowDown.displayName = "ArrowDown";
+export default ArrowDown;
