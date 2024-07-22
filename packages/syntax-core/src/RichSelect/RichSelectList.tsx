@@ -4,7 +4,6 @@ import React, {
   type SyntheticEvent,
   useRef,
   useId,
-  type ComponentProps,
 } from "react";
 import classNames from "classnames";
 import {
@@ -161,13 +160,10 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       errorMessage: errorText,
     });
 
-  const textColor: Record<
-    NonNullable<ComponentProps<typeof RichSelectList>["color"]>,
-    ComponentProps<typeof Typography>["color"]
-  > = {
+  const textColor = {
     white: "gray700",
     clear: "white",
-  };
+  } as const;
 
   const getArrowIconColor = () => {
     if (errorText) {
