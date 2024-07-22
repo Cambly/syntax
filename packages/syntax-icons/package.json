@@ -53,6 +53,10 @@
       "types": "./dist/ArrowRight.d.ts",
       "default": "./dist/ArrowRight.js"
     },
+    "./ArrowUp": {
+      "types": "./dist/ArrowUp.d.ts",
+      "default": "./dist/ArrowUp.js"
+    },
     "./Bell": {
       "types": "./dist/Bell.d.ts",
       "default": "./dist/Bell.js"
