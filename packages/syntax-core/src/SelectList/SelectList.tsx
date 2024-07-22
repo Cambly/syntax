@@ -3,7 +3,6 @@ import React, {
   type ReactNode,
   useId,
   useState,
-  type ComponentProps,
 } from "react";
 import Box from "../Box/Box";
 import classNames from "classnames";
@@ -104,13 +103,10 @@ export default function SelectList({
     }
   };
 
-  const textColor: Record<
-    NonNullable<ComponentProps<typeof SelectList>["color"]>,
-    ComponentProps<typeof Typography>["color"]
-  > = {
+  const textColor = {
     white: "gray700",
     clear: "white",
-  };
+  } as const;
 
   const getArrowIconColor = () => {
     if (errorText) {

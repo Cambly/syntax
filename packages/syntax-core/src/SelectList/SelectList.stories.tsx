@@ -23,12 +23,19 @@ export default {
     disabled: false,
     id: "",
     selectedValue: "",
+    color: "white",
   },
   argTypes: {
     disabled: {
       control: "boolean",
     },
     onChange: { action: "clicked" },
+    color: {
+      control: {
+        type: "select",
+        options: ["white", "clear"],
+      },
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof SelectList>;

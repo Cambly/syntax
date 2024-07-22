@@ -20,6 +20,12 @@ export default {
       control: "boolean",
     },
     onChange: { action: "clicked" },
+    color: {
+      control: {
+        type: "select",
+        options: ["white", "clear"],
+      },
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof RichSelectList>;
@@ -218,7 +224,11 @@ export const Error: StoryObj<typeof RichSelectList> = {
   },
 };
 
-const RichSelectListInteractive = (): ReactElement => {
+const RichSelectListInteractive = ({
+  color = "white",
+}: {
+  color?: React.ComponentProps<typeof RichSelectList>["color"];
+}): ReactElement => {
   const [selectionValue, setSelectionValue] = useState<string[] | "all">();
   return (
     <RichSelectList
@@ -233,6 +243,7 @@ const RichSelectListInteractive = (): ReactElement => {
       primaryButtonAccessibilityLabel="Save"
       secondaryButtonText="Clear"
       secondaryButtonAccessibilityLabel="Clear"
+      color={color}
     >
       <RichSelectList.Section label="People">
         <RichSelectList.Chip label="New York" value="ny" disabled />
@@ -246,6 +257,14 @@ const RichSelectListInteractive = (): ReactElement => {
 
 export const Interactive: StoryObj<typeof RichSelectList> = {
   render: () => <RichSelectListInteractive />,
+};
+
+export const InteractiveDark: StoryObj<typeof RichSelectList> = {
+  render: () => (
+    <Box backgroundColor="black" padding={4}>
+      <RichSelectListInteractive color="clear" />
+    </Box>
+  ),
 };
 
 export const RadioButtons: StoryObj<typeof RichSelectList> = {
