@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.6.0
+
+### Minor Changes
+
+- 942312d: RichSelectList: add color prop to fix accidental style change
+
 ## 18.5.0
 
 ### Minor Changes
