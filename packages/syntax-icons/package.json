@@ -41,6 +41,18 @@
       "types": "./dist/Alert.d.ts",
       "default": "./dist/Alert.js"
     },
+    "./ArrowDown": {
+      "types": "./dist/ArrowDown.d.ts",
+      "default": "./dist/ArrowDown.js"
+    },
+    "./ArrowLeft": {
+      "types": "./dist/ArrowLeft.d.ts",
+      "default": "./dist/ArrowLeft.js"
+    },
+    "./ArrowRight": {
+      "types": "./dist/ArrowRight.d.ts",
+      "default": "./dist/ArrowRight.js"
+    },
     "./Bell": {
       "types": "./dist/Bell.d.ts",
       "default": "./dist/Bell.js"
