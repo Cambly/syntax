@@ -20,6 +20,12 @@ export default {
       control: "boolean",
     },
     onChange: { action: "clicked" },
+    color: {
+      control: {
+        type: "select",
+        options: ["white", "clear"],
+      },
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof RichSelectList>;
