@@ -26,7 +26,7 @@ const iconTemplate: Template = ({ componentName, jsx }, { tpl }) => {
     SVGSVGElement,
     Omit<ComponentProps<typeof Icon>, "path">
   >(({ color, size }, ref) => {
-    const path = ${jsx.children[0].openingElement.attributes[0].value.value};
+    const path = "${jsx.children[0].openingElement.attributes[0].value.value}";
     return (
       <Icon ref={ref} path={path} color={color} size={size} />
     );
