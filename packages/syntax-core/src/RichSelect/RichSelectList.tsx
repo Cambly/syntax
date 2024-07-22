@@ -206,7 +206,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
               }}
             >
               <Box paddingX={1}>
-                <Typography size={100} color="gray700">
+                <Typography size={100} color={textColor[color]}>
                   {label}
                 </Typography>
               </Box>
