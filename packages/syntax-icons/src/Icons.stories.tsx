@@ -76,6 +76,7 @@ import Send from "./icons/Send";
 import Settings from "./icons/Settings";
 import Shop from "./icons/Shop";
 import Shuffle from "./icons/Shuffle";
+import Speaker from "./icons/Speaker";
 import SquareEnclosedPlus from "./icons/SquareEnclosedPlus";
 import StarFilled from "./icons/StarFilled";
 import StarHalfFilled from "./icons/StarHalfFilled";
@@ -171,6 +172,7 @@ const cambioIcons = [
   { name: "Settings", component: Settings },
   { name: "Shop", component: Shop },
   { name: "Shuffle", component: Shuffle },
+  { name: "Speaker", component: Speaker },
   { name: "SquareEnclosedPlus", component: SquareEnclosedPlus },
   { name: "StarFilled", component: StarFilled },
   { name: "StarHalfFilled", component: StarHalfFilled },

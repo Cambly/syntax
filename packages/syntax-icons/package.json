@@ -309,9 +309,9 @@
       "types": "./dist/Shuffle.d.ts",
       "default": "./dist/Shuffle.js"
     },
-    "./SideArrow": {
-      "types": "./dist/SideArrow.d.ts",
-      "default": "./dist/SideArrow.js"
+    "./Speaker": {
+      "types": "./dist/Speaker.d.ts",
+      "default": "./dist/Speaker.js"
     },
     "./SquareEnclosedPlus": {
       "types": "./dist/SquareEnclosedPlus.d.ts",
