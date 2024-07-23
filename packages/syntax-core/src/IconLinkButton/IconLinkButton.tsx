@@ -12,7 +12,7 @@ import {
 } from "../Button/constants/iconSize";
 import { border } from "../colors/border";
 
-import styles from "./IconLinkButton.module.css";
+import buttonStyles from "../Button/Button.module.css";
 import type InternalIcon from "../Icon/Icon";
 import iconButtonStyles from "../IconButton/IconButton.module.css";
 
@@ -135,7 +135,7 @@ const IconLinkButton = forwardRef<HTMLAnchorElement, IconLinkButtonProps>(
           border(color, on),
           iconButtonStyles[size],
           {
-            [styles.disabled]: disabled,
+            [buttonStyles.disabled]: disabled,
           },
         )}
         onClick={onClick}
