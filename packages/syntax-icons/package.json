@@ -129,6 +129,10 @@
       "types": "./dist/Cross.d.ts",
       "default": "./dist/Cross.js"
     },
+    "./Download": {
+      "types": "./dist/Download.d.ts",
+      "default": "./dist/Download.js"
+    },
     "./Education": {
       "types": "./dist/Education.d.ts",
       "default": "./dist/Education.js"
