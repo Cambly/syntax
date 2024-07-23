@@ -1,5 +1,7 @@
 .disabled {
   pointer-events: none;
-  cursor: default;
   filter: opacity(50%);
+  background-image: none;
+  transform: none;
+  cursor: auto;
 }
