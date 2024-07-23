@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.2.0
+
+### Minor Changes
+
+- 1fb8294: Icons: Add speaker icon
+
 ## 4.1.0
 
 ### Minor Changes
