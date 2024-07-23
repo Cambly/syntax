@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.7.0
+
+### Minor Changes
+
+- aae6c1e: add IconLinkButton
+
 ## 18.6.0
 
 ### Minor Changes
