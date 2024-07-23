@@ -313,10 +313,6 @@
       "types": "./dist/Speaker.d.ts",
       "default": "./dist/Speaker.js"
     },
-    "./SideArrow": {
-      "types": "./dist/SideArrow.d.ts",
-      "default": "./dist/SideArrow.js"
-    },
     "./SquareEnclosedPlus": {
       "types": "./dist/SquareEnclosedPlus.d.ts",
       "default": "./dist/SquareEnclosedPlus.js"
