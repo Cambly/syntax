@@ -11,6 +11,7 @@ import Divider from "./Divider/Divider";
 import Heading from "./Heading/Heading";
 import Icon from "./Icon/Icon";
 import IconButton from "./IconButton/IconButton";
+import IconLinkButton from "./IconLinkButton/IconLinkButton";
 import LinkButton from "./LinkButton/LinkButton";
 import Modal from "./Modal/Modal";
 import Popover from "./Popover/Popover";
@@ -39,6 +40,7 @@ export {
   Heading,
   Icon,
   IconButton,
+  IconLinkButton,
   LinkButton,
   Modal,
   Popover,
