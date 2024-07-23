@@ -309,6 +309,10 @@
       "types": "./dist/Shuffle.d.ts",
       "default": "./dist/Shuffle.js"
     },
+    "./Speaker": {
+      "types": "./dist/Speaker.d.ts",
+      "default": "./dist/Speaker.js"
+    },
     "./SideArrow": {
       "types": "./dist/SideArrow.d.ts",
       "default": "./dist/SideArrow.js"
