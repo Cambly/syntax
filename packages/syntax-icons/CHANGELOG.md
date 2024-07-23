@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.1.0
+
+### Minor Changes
+
+- fa14541: Icons: Add ArrowDown, ArrowLeft, ArrowUp, rename SideArrow to ArrowRight
+
 ## 4.0.0
 
 ### Major Changes
