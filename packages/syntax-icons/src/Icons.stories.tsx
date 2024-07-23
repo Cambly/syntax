@@ -31,6 +31,7 @@ import CircleEnclosedStar from "./icons/CircleEnclosedStar";
 import CircleEnclosedTick from "./icons/CircleEnclosedTick";
 import Clock from "./icons/Clock";
 import Cross from "./icons/Cross";
+import Download from "./icons/Download";
 import Education from "./icons/Education";
 import Exit from "./icons/Exit";
 import Eye from "./icons/Eye";
@@ -127,6 +128,7 @@ const cambioIcons = [
   { name: "CircleEnclosedTick", component: CircleEnclosedTick },
   { name: "Clock", component: Clock },
   { name: "Cross", component: Cross },
+  { name: "Download", component: Download },
   { name: "Education", component: Education },
   { name: "Exit", component: Exit },
   { name: "Eye", component: Eye },
