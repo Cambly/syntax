@@ -60,6 +60,10 @@
   box-shadow: 0 0 0 1px var(--color-cambio-destructive-370) inset;
 }
 
+.cambioGray870BorderColor {
+  box-shadow: 0 0 0 1px var(--color-cambio-gray-870) inset;
+}
+
 /* Background Colors */
 
 .blackBackgroundColor {
