@@ -1,5 +1,6 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Icon from "./Icon";
+import allColors from "../colors/allColors";
 
 export default {
   title: "Components/Icon",
@@ -11,6 +12,10 @@ export default {
     size: {
       options: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900],
       control: { type: "radio" },
+    },
+    color: {
+      control: { type: "select" },
+      options: allColors,
     },
   },
   tags: ["autodocs"],
