@@ -571,6 +571,62 @@
   color: var(--color-cambio-yellow-700);
 }
 
+.gray370Color {
+  color: var(--color-cambio-gray-370);
+}
+
+.gray870Color {
+  color: var(--color-cambio-gray-870);
+}
+
+.redColor {
+  color: var(--color-cambio-red);
+}
+
+.orangeColor {
+  color: var(--color-cambio-orange);
+}
+
+.tanColor {
+  color: var(--color-cambio-tan);
+}
+
+.creamColor {
+  color: var(--color-cambio-cream);
+}
+
+.purpleColor {
+  color: var(--color-cambio-purple);
+}
+
+.lilacColor {
+  color: var(--color-cambio-lilac);
+}
+
+.thistleColor {
+  color: var(--color-cambio-thistle);
+}
+
+.pinkColor {
+  color: var(--color-cambio-pink);
+}
+
+.navyColor {
+  color: var(--color-cambio-navy);
+}
+
+.tealColor {
+  color: var(--color-cambio-teal);
+}
+
+.slateColor {
+  color: var(--color-cambio-slate);
+}
+
+.skyColor {
+  color: var(--color-cambio-sky);
+}
+
 .cambioTransparentFullBackgroundColor {
   background-color: var(--color-cambio-transparent-full);
 }

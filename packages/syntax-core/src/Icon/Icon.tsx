@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentProps } from "react";
+import { forwardRef } from "react";
 import classnames from "classnames";
 import colorStyles from "../colors/colors.module.css";
 import styles from "./Icon.module.css";
