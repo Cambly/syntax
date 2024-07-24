@@ -9,7 +9,7 @@ export function border(
   if (on === "lightBackground") {
     switch (color) {
       case "secondary":
-        return classNames(styles.noBorder, styles.blackBorderColor);
+        return classNames(styles.noBorder, styles.cambioGray870BorderColor);
       case "success-secondary":
         return classNames(styles.noBorder, styles.success770BorderColor);
       case "destructive-secondary":
