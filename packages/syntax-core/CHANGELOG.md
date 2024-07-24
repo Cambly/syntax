@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.8.0
+
+### Minor Changes
+
+- 3add33f: Update border color on secondary button
+
 ## 18.7.0
 
 ### Minor Changes
