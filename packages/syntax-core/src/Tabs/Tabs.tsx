@@ -1,7 +1,5 @@
 import { type ReactNode } from "react";
 import classnames from "classnames";
-import TabButton from "./TabButton";
-import TabLink from "./TabLink";
 import styles from "./Tabs.module.css";
 import Box from "../Box/Box";
 
@@ -14,8 +12,8 @@ export default function Tabs({
   on = "lightBackground",
 }: {
   /**
-   * The Tabs to display. Each Tab should be a `Tabs.Button` or a `Tabs.Link`.
-   * Only use `Tabs.Link` for clicking tab that update the URL upon selection. Otherwise, use `Tabs.Button`.
+   * The Tabs to display. Each Tab should be a `TabButton` or a `TabLink`.
+   * Only use `TabLink` for clicking tab that update the URL upon selection. Otherwise, use `TabButton`.
    */
   children: ReactNode;
   /**
@@ -51,6 +49,3 @@ export default function Tabs({
     </div>
   );
 }
-
-Tabs.Button = TabButton;
-Tabs.Link = TabLink;

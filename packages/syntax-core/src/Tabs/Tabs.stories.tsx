@@ -4,6 +4,8 @@ import Tabs from "./Tabs";
 import Badge from "../Badge/Badge";
 import Box from "../Box/Box";
 import SelectList from "../SelectList/SelectList";
+import TabLink from "../TabLink/TabLink";
+import TabButton from "../TabButton/TabButton";
 
 export default {
   title: "Components/Tabs",
@@ -38,40 +40,40 @@ const TabsButtonInteractive = ({
 
   return (
     <Tabs accessibilityLabel="My custom tabs" on={on}>
-      <Tabs.Button
+      <TabButton
         text="Achievements"
         onClick={() => setSelected("Achievements")}
         selected={selected === "Achievements"}
         on={on}
       />
-      <Tabs.Button
+      <TabButton
         text="History"
         onClick={() => setSelected("History")}
         selected={selected === "History"}
         on={on}
       />
-      <Tabs.Button
+      <TabButton
         text="Quizzes"
         onClick={() => setSelected("Quizzes")}
         selected={selected === "Quizzes"}
         itemCount={7}
         on={on}
       />
-      <Tabs.Button
+      <TabButton
         text="Levels"
         onClick={() => setSelected("Levels")}
         selected={selected === "Levels"}
         endContent={<Badge text="BETA" />}
         on={on}
       />
-      <Tabs.Button
+      <TabButton
         text="Tabatha"
         onClick={() => setSelected("Tabatha")}
         selected={selected === "Tabatha"}
         itemCount={99}
         on={on}
       />
-      <Tabs.Button
+      <TabButton
         text="Tabathy"
         onClick={() => setSelected("Tabathy")}
         selected={selected === "Tabathy"}
@@ -125,21 +127,21 @@ const TabsLinkInteractive = () => {
         }}
       >
         <Tabs accessibilityLabel="My custom tabs" on={on}>
-          <Tabs.Link
+          <TabLink
             href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
             text="Tabrell"
             onClick={() => setSelected("Tabrell")}
             selected={selected === "Tabrell"}
             on={on}
           />
-          <Tabs.Link
+          <TabLink
             href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
             text="Tabara"
             onClick={() => setSelected("Tabara")}
             selected={selected === "Tabara"}
             on={on}
           />
-          <Tabs.Link
+          <TabLink
             href="https://cambly-syntax.vercel.app/?path=/docs/components-tabs--docs"
             text="Tabson"
             onClick={() => setSelected("Tabson")}
