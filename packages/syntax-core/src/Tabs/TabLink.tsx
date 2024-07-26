@@ -53,7 +53,7 @@ const TabLink = forwardRef<HTMLAnchorElement, TabLinkProps>(
     return (
       <div
         role="tab"
-        className={classnames({
+        className={classnames(styles.tab, {
           [styles.unselectedTab]: !selected,
           [styles.selectedTabOnLightBackground]:
             selected && on === "lightBackground",

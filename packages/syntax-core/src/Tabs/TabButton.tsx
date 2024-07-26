@@ -31,7 +31,7 @@ export default function TabButton({
   return (
     <div
       role="tab"
-      className={classnames({
+      className={classnames(styles.tab, {
         [styles.unselectedTab]: !selected,
         [styles.selectedTabOnLightBackground]:
           selected && on === "lightBackground",
