@@ -1,5 +1,15 @@
 # @cambly/syntax-core
 
+## 18.9.0
+
+### Minor Changes
+
+- 47faf30: Typography: update success color to success700
+
+### Patch Changes
+
+- d8ee227: Icon: Added all colors
+
 ## 18.8.0
 
 ### Minor Changes
