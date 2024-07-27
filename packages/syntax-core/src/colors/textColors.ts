@@ -27,7 +27,7 @@ export default function textColor(
     case "destructive-darkBackground":
       return colorStyles.cambioDestructive700Color;
     case "success":
-      return colorStyles.cambioSuccess900Color;
+      return colorStyles.cambioSuccess700Color;
     case "success-darkBackground":
       return colorStyles.cambioSuccess100Color;
     // primary / gray900
