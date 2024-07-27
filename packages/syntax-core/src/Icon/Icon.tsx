@@ -1,9 +1,8 @@
-import { forwardRef, type ComponentProps } from "react";
+import { forwardRef } from "react";
 import classnames from "classnames";
-
+import colorStyles from "../colors/colors.module.css";
 import styles from "./Icon.module.css";
-import textColor from "../colors/textColors";
-import type Typography from "../Typography/Typography";
+import type allColors from "../colors/allColors";
 
 type IconProps = {
   /**
@@ -11,7 +10,7 @@ type IconProps = {
    *
    * @defaultValue "gray900"
    */
-  color?: ComponentProps<typeof Typography>["color"];
+  color?: (typeof allColors)[number];
   /**
    * The size of the Icon.
    * * 100: 16px x 16px
@@ -43,11 +42,11 @@ type IconProps = {
  * You can click on the icon to copy the import statement!
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = "inherit", path, size = 200 }: IconProps, ref) => (
+  ({ color = "gray900", path, size = 200 }: IconProps, ref) => (
     <svg
       className={classnames(
         styles.icon,
-        textColor(color),
+        colorStyles[`${color}Color`],
         styles[`icon${size}`],
       )}
       ref={ref}
