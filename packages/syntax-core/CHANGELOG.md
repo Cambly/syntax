@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.11.0
+
+### Minor Changes
+
+- 2f34c99: Avatar: update icon sizes and layouts
+
 ## 18.10.0
 
 ### Minor Changes
