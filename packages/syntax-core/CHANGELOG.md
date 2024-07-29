@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.10.0
+
+### Minor Changes
+
+- 1e9baf5: Tabs: Update underline styling
+
 ## 18.9.0
 
 ### Minor Changes
