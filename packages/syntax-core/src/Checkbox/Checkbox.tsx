@@ -5,7 +5,6 @@ import styles from "./Checkbox.module.css";
 import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
-import colorStyles from "../colors/colors.module.css";
 
 const typographySize = {
   sm: 100,
@@ -99,9 +98,8 @@ const Checkbox = ({
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible,
           },
-          error
-            ? colorStyles.cambioDestructive370BackgroundColor
-            : colorStyles.cambioGray370BackgroundColor,
+          checked && styles.checkboxChecked,
+          error && styles.checkboxError,
         )}
       >
         {checked && (
@@ -134,7 +132,7 @@ const Checkbox = ({
       />
       <Typography
         size={typographySize[size]}
-        color={error ? "destructive-primary" : "gray900"}
+        color={error ? "destructive-darkBackground" : "primary"}
       >
         {label}
       </Typography>

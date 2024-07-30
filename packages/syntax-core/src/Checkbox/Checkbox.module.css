@@ -15,13 +15,24 @@
 }
 
 .checkbox {
-  border-radius: 4px;
   flex: none;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  border: 1px solid var(--color-cambio-gray-870);
+  border-radius: 4px;
+}
+
+.checkboxChecked {
+  background-color: var(--color-cambio-black);
+  border: 0;
+}
+
+.checkboxError {
+  background-color: var(--color-cambio-destructive-370);
+  border: 0;
 }
 
 .disabled {
@@ -55,7 +66,7 @@
 }
 
 .checkmark {
-  fill: var(--color-base-black);
+  fill: var(--color-base-white);
 }
 
 .checkmarkError {
