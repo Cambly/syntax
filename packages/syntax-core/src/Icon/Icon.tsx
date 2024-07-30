@@ -8,7 +8,7 @@ type IconProps = {
   /**
    * The color of the Icon.
    *
-   * @defaultValue "gray900"
+   * @defaultValue "inherit"
    */
   color?: (typeof allColors)[number];
   /**
@@ -42,7 +42,7 @@ type IconProps = {
  * You can click on the icon to copy the import statement!
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = "gray900", path, size = 200 }: IconProps, ref) => (
+  ({ color = "inherit", path, size = 200 }: IconProps, ref) => (
     <svg
       className={classnames(
         styles.icon,
