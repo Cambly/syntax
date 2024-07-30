@@ -6,7 +6,6 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
-import colorStyles from "../colors/colors.module.css";
 import Box from "../Box/Box";
 
 /**
