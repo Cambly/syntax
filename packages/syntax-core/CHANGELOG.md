@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.11.1
+
+### Patch Changes
+
+- f833c80: Icon: made default color "inherit"
+
 ## 18.11.0
 
 ### Minor Changes
