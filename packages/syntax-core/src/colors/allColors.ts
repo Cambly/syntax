@@ -1,4 +1,5 @@
 const colors = [
+  "inherit",
   "black",
   "destructive100",
   "destructive200",
