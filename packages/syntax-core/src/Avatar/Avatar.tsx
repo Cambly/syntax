@@ -6,8 +6,8 @@ import { useAvatarGroup } from "../AvatarGroup/AvatarGroup";
 
 const sizeToIconStyles = {
   xs: { bottom: 4, marginInlineEnd: 0, height: 8, width: 8 },
-  sm: { bottom: 4, marginInlineEnd: 0, height: 10, width: 10 },
-  md: { bottom: 4, marginInlineEnd: 0, height: 12, width: 12 },
+  sm: { bottom: 4, marginInlineEnd: 0, height: 12, width: 12 },
+  md: { bottom: 4, marginInlineEnd: 0, height: 16, width: 16 },
   lg: { bottom: 4, marginInlineEnd: 0, height: 16, width: 16 },
   xl: { bottom: 4, marginInlineEnd: 4, height: 16, width: 16 },
 } as const;
@@ -15,7 +15,7 @@ const sizeToIconStyles = {
 const sizeToMargin = {
   xs: -10,
   sm: -14,
-  md: -22,
+  md: -24,
   lg: -28,
   xl: -34,
 } as const;
