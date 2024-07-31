@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.3.1
+
+### Patch Changes
+
+- 5f9406f: Icons: Inherit color as default
+
 ## 4.3.0
 
 ### Minor Changes
