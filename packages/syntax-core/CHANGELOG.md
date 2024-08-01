@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.11.2
+
+### Patch Changes
+
+- b215e88: Avatar: update icon sizes and offset for medium and small avatars
+
 ## 18.11.1
 
 ### Patch Changes
