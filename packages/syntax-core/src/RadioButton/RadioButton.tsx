@@ -6,7 +6,6 @@ import focusStyles from "../Focus.module.css";
 import Typography from "../Typography/Typography";
 import useFocusVisible from "../useFocusVisible";
 import useIsHydrated from "../useIsHydrated";
-import colorStyles from "../colors/colors.module.css";
 import Box from "../Box/Box";
 
 /**
@@ -104,9 +103,8 @@ const RadioButton = ({
       <div
         className={classnames(
           styles.background,
-          error
-            ? colorStyles.cambioDestructive370BackgroundColor
-            : colorStyles.cambioGray370BackgroundColor,
+          checked && styles.backgroundChecked,
+          error && styles.backgroundError,
           styles[size],
           {
             [focusStyles.accessibilityOutlineFocus]:
@@ -116,7 +114,7 @@ const RadioButton = ({
       />
       {checked && (
         <Box
-          backgroundColor={error ? "destructive900" : "gray900"}
+          backgroundColor={error ? "destructive900" : "white"}
           width={size === "md" ? 12 : 8}
           height={size === "md" ? 12 : 8}
           position="absolute"
@@ -156,7 +154,7 @@ const RadioButton = ({
       {label && (
         <Typography
           size={size === "md" ? 200 : 100}
-          color={error ? "destructive-primary" : "gray900"}
+          color={error ? "destructive-darkBackground" : "primary"}
         >
           {label}
         </Typography>
