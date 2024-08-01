@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.12.0
+
+### Minor Changes
+
+- 5fc6cc7: Checkbox, RadioButton: Align styling with figma
+
 ## 18.11.2
 
 ### Patch Changes
