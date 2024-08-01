@@ -52,11 +52,6 @@ const ButtonGroup = ({
    */
   lgOrientation?: typeof orientation;
 }): ReactElement => {
-  console.log(
-    smOrientation != null,
-    smOrientation && `orientation${smOrientation}Small`,
-    smOrientation && styles[`orientation${smOrientation}Small`],
-  );
   const classnames = classNames(
     styles.buttonGroup,
     gap[size],
