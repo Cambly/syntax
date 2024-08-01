@@ -21,3 +21,25 @@
 .largeGap {
   gap: 12px;
 }
+
+/* Flex direction (small and up) */
+@media (min-width: 480px) {
+  .orientationhorizontalSmall {
+    flex-direction: row;
+  }
+
+  .orientationverticalSmall {
+    flex-direction: column;
+  }
+}
+
+/* Align items (large and up) */
+@media (min-width: 960px) {
+  .orientationhorizontalLarge {
+    flex-direction: row;
+  }
+
+  .orientationverticalLarge {
+    flex-direction: column;
+  }
+}
