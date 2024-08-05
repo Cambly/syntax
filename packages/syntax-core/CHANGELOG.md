@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 18.13.0
+
+### Minor Changes
+
+- 07f9a40: ButtonGroup: Make responsive
+
 ## 18.12.0
 
 ### Minor Changes
