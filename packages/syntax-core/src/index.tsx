@@ -25,6 +25,7 @@ import TextField from "./TextField/TextField";
 import ThemeProvider from "./ThemeProvider/ThemeProvider";
 import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
+import WordConfetti from "./WordConfetti/WordConfetti";
 
 export {
   Avatar,
@@ -54,4 +55,5 @@ export {
   ThemeProvider,
   Tooltip,
   Typography,
+  WordConfetti,
 };
