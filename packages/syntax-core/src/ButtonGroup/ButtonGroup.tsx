@@ -16,11 +16,17 @@ const ButtonGroup = ({
   orientation = "horizontal",
   size = "md",
   children,
+  smOrientation,
+  lgOrientation,
 }: {
   /**
    * The orientation of the button group
    *
    * @defaultValue "horizontal"
+   *
+   * Responsive props:
+   * `smOrientation`
+   * `lgOrientation`
    */
   orientation?: "horizontal" | "vertical";
   /**
@@ -37,11 +43,25 @@ const ButtonGroup = ({
    * Buttons to be rendered inside the button group
    */
   children?: ReactNode;
+  /**
+   * Bottom margin on sm (480px) or larger viewports.
+   */
+  smOrientation?: typeof orientation;
+  /**
+   * Bottom margin on lg (960px) or larger viewports.
+   */
+  lgOrientation?: typeof orientation;
 }): ReactElement => {
-  const classnames = classNames(styles.buttonGroup, gap[size], {
-    [styles.horizontal]: orientation === "horizontal",
-    [styles.vertical]: orientation === "vertical",
-  });
+  const classnames = classNames(
+    styles.buttonGroup,
+    gap[size],
+    smOrientation != null && styles[`orientation${smOrientation}Small`],
+    lgOrientation != null && styles[`orientation${lgOrientation}Large`],
+    {
+      [styles.horizontal]: orientation === "horizontal",
+      [styles.vertical]: orientation === "vertical",
+    },
+  );
 
   return <div className={classnames}>{children}</div>;
 };
