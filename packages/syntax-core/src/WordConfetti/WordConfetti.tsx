@@ -1,4 +1,4 @@
-import { type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef, useMemo } from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
@@ -66,6 +66,16 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       words,
     } = props;
 
+    const colorOrder: number[] = useMemo(
+      () => words.map(() => Math.floor(Math.random() * 3)),
+      [words],
+    );
+
+    const tiltOrder: number[] = useMemo(
+      () => words.map(() => Math.floor(Math.random() * 9)),
+      [words],
+    );
+
     return (
       <Box
         display="flex"
@@ -76,19 +86,16 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
         gap={gaps[size]}
       >
         {words.map((word, index): ReactNode => {
-          const randomBackgroundColorIndex = Math.floor(Math.random() * 3);
-          const randomDegreeOfTiltIndex = Math.floor(Math.random() * 9);
-
           return (
             <Box
               key={`${word}+${index}`}
-              backgroundColor={
-                themeBackgroundColors[theme][randomBackgroundColorIndex]
-              }
+              backgroundColor={themeBackgroundColors[theme][colorOrder[index]]}
               dangerouslySetInlineStyle={{
                 __style: {
                   padding: paddings[size],
-                  transform: `rotate(${degreeOfTiltOptions[randomDegreeOfTiltIndex]}deg)`,
+                  transform: `rotate(${
+                    degreeOfTiltOptions[tiltOrder[index]]
+                  }deg)`,
                 },
               }}
               width="fit-content"
