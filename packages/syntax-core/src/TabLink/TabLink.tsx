@@ -3,9 +3,9 @@ import {
   type HtmlHTMLAttributes,
   type ComponentProps,
 } from "react";
-import TabInternal from "./TabInternal";
+import TabInternal from "../Tabs/TabInternal";
 import classnames from "classnames";
-import styles from "./Tabs.module.css";
+import styles from "../Tabs/Tabs.module.css";
 import Box from "../Box/Box";
 
 type TabLinkProps = ComponentProps<typeof TabInternal> & {

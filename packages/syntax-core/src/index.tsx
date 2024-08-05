@@ -18,6 +18,8 @@ import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
 import RichSelectList from "./RichSelect/RichSelectList";
 import SelectList from "./SelectList/SelectList";
+import TabButton from "./TabButton/TabButton";
+import TabLink from "./TabLink/TabLink";
 import Tabs from "./Tabs/Tabs";
 import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
@@ -47,6 +49,8 @@ export {
   RadioButton,
   RichSelectList,
   SelectList,
+  TabButton,
+  TabLink,
   Tabs,
   TapArea,
   TextArea,

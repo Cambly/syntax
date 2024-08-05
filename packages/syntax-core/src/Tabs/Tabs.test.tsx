@@ -4,12 +4,14 @@ import userEvent from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 import { createRef } from "react";
 import Badge from "../Badge/Badge";
+import TabButton from "../TabButton/TabButton";
+import TabLink from "../TabLink/TabLink";
 
 describe("tab bar", () => {
   it("sets an accessibility label", async () => {
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Button text="tab 1" selected onClick={vi.fn()} />
+        <TabButton text="tab 1" selected onClick={vi.fn()} />
       </Tabs>,
     );
     const tabBar = await screen.findAllByLabelText("My custom tabs");
@@ -21,19 +23,14 @@ describe("button tabs", () => {
   it("renders successfully with button children", () => {
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Button
-          text="tab 1"
-          selected
-          onClick={() => null}
-          itemCount={10}
-        />
-        <Tabs.Button
+        <TabButton text="tab 1" selected onClick={() => null} itemCount={10} />
+        <TabButton
           text="tab 2"
           selected={false}
           onClick={() => null}
           endContent={<Badge text="New" />}
         />
-        <Tabs.Button text="tab 3" selected={false} onClick={vi.fn()} />
+        <TabButton text="tab 3" selected={false} onClick={vi.fn()} />
       </Tabs>,
     );
     expect(screen).toBeTruthy();
@@ -48,14 +45,14 @@ describe("button tabs", () => {
     const handleChange = vi.fn();
     render(
       <Tabs accessibilityLabel="My tabs">
-        <Tabs.Button
+        <TabButton
           text="tab 1"
           selected
           onClick={handleChange}
           data-testid="tab-1"
         />
-        <Tabs.Button text="tab 2" selected={false} onClick={handleChange} />
-        <Tabs.Button text="tab 3" selected={false} onClick={handleChange} />
+        <TabButton text="tab 2" selected={false} onClick={handleChange} />
+        <TabButton text="tab 3" selected={false} onClick={handleChange} />
       </Tabs>,
     );
     const tab = await screen.findByTestId("tab-1");
@@ -68,21 +65,21 @@ describe("link tabs", () => {
   it("renders successfully with link children", () => {
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Link
+        <TabLink
           text="tab 1"
           href=""
           selected
           onClick={vi.fn()}
           itemCount={10}
         />
-        <Tabs.Link
+        <TabLink
           text="tab 2"
           href=""
           selected={false}
           onClick={() => null}
           endContent={<Badge text="New" />}
         />
-        <Tabs.Link text="tab 3" href="" selected={false} onClick={vi.fn()} />
+        <TabLink text="tab 3" href="" selected={false} onClick={vi.fn()} />
       </Tabs>,
     );
     expect(screen).toBeTruthy();
@@ -97,25 +94,15 @@ describe("link tabs", () => {
     const handleChange = vi.fn();
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Link
+        <TabLink
           text="tab 1"
           href=""
           selected
           onClick={handleChange}
           data-testid="tab-1"
         />
-        <Tabs.Link
-          text="tab 2"
-          href=""
-          selected={false}
-          onClick={handleChange}
-        />
-        <Tabs.Link
-          text="tab 3"
-          href=""
-          selected={false}
-          onClick={handleChange}
-        />
+        <TabLink text="tab 2" href="" selected={false} onClick={handleChange} />
+        <TabLink text="tab 3" href="" selected={false} onClick={handleChange} />
       </Tabs>,
     );
     const tab = await screen.findByTestId("tab-1");
@@ -126,7 +113,7 @@ describe("link tabs", () => {
   it("updates your browser's URL when clicked", async () => {
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Link
+        <TabLink
           text="tab 1"
           href="https://www.google.com"
           selected
@@ -144,7 +131,7 @@ describe("link tabs", () => {
 
     render(
       <Tabs accessibilityLabel="My custom tabs">
-        <Tabs.Link
+        <TabLink
           text="tab 1"
           ref={ref}
           href="https://www.google.com"

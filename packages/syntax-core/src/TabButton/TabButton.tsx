@@ -1,8 +1,8 @@
 import { type ReactElement, type ComponentProps } from "react";
 import classnames from "classnames";
 import TapArea from "../TapArea/TapArea";
-import TabInternal from "./TabInternal";
-import styles from "./Tabs.module.css";
+import TabInternal from "../Tabs/TabInternal";
+import styles from "../Tabs/Tabs.module.css";
 import Box from "../Box/Box";
 
 export default function TabButton({
