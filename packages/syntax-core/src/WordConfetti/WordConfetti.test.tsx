@@ -15,14 +15,13 @@ describe("wordConfetti", () => {
   });
 
   it("renders all words successfully", () => {
-    const { baseElement } = render(
+    render(
       <WordConfetti
         size={300}
         theme="neutral"
         words={["test", "word", "confetti"]}
       />,
     );
-    expect(baseElement).toBeTruthy();
     expect(screen.getByText("confetti")).toBeInTheDocument();
     expect(screen.getByText("test")).toBeInTheDocument();
     expect(screen.getByText("word")).toBeInTheDocument();
