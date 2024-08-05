@@ -1,5 +1,69 @@
 # @syntax/storybook
 
+## 0.21.25
+
+### Patch Changes
+
+- Updated dependencies [07f9a40]
+  - @cambly/syntax-core@18.13.0
+
+## 0.21.24
+
+### Patch Changes
+
+- Updated dependencies [5fc6cc7]
+  - @cambly/syntax-core@18.12.0
+
+## 0.21.23
+
+### Patch Changes
+
+- Updated dependencies [b215e88]
+  - @cambly/syntax-core@18.11.2
+
+## 0.21.22
+
+### Patch Changes
+
+- Updated dependencies [f833c80]
+  - @cambly/syntax-core@18.11.1
+
+## 0.21.21
+
+### Patch Changes
+
+- Updated dependencies [2f34c99]
+  - @cambly/syntax-core@18.11.0
+
+## 0.21.20
+
+### Patch Changes
+
+- Updated dependencies [1e9baf5]
+  - @cambly/syntax-core@18.10.0
+
+## 0.21.19
+
+### Patch Changes
+
+- Updated dependencies [47faf30]
+- Updated dependencies [d8ee227]
+  - @cambly/syntax-core@18.9.0
+
+## 0.21.18
+
+### Patch Changes
+
+- Updated dependencies [3add33f]
+  - @cambly/syntax-core@18.8.0
+
+## 0.21.17
+
+### Patch Changes
+
+- Updated dependencies [aae6c1e]
+  - @cambly/syntax-core@18.7.0
+
 ## 0.21.16
 
 ### Patch Changes

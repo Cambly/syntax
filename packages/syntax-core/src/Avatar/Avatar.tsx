@@ -5,17 +5,17 @@ import Box from "../Box/Box";
 import { useAvatarGroup } from "../AvatarGroup/AvatarGroup";
 
 const sizeToIconStyles = {
-  xs: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
-  sm: { bottom: 6, marginInlineEnd: 2, height: 4, width: 4 },
-  md: { bottom: 6, marginInlineEnd: 2, height: 8, width: 8 },
-  lg: { bottom: 6, marginInlineEnd: 6, height: 12, width: 12 },
-  xl: { bottom: 8, marginInlineEnd: 6, height: 12, width: 12 },
+  xs: { bottom: 4, marginInlineEnd: 0, height: 8, width: 8 },
+  sm: { bottom: 4, marginInlineEnd: 0, height: 12, width: 12 },
+  md: { bottom: 4, marginInlineEnd: 0, height: 16, width: 16 },
+  lg: { bottom: 4, marginInlineEnd: 0, height: 16, width: 16 },
+  xl: { bottom: 4, marginInlineEnd: 4, height: 16, width: 16 },
 } as const;
 
 const sizeToMargin = {
   xs: -10,
   sm: -14,
-  md: -22,
+  md: -24,
   lg: -28,
   xl: -34,
 } as const;
@@ -33,6 +33,17 @@ function AvatarInternal({
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   src: string;
 }): ReactElement {
+  function getBorderSize() {
+    switch (size) {
+      case "xs":
+      case "sm":
+        return 0.5;
+      case "md":
+      case "lg":
+      case "xl":
+        return 1;
+    }
+  }
   return (
     <div className={classNames(styles.avatar, styles[size])}>
       <img
@@ -54,7 +65,7 @@ function AvatarInternal({
             backgroundColor="white"
             dangerouslySetInlineStyle={{
               __style: {
-                border: "1px solid white",
+                border: `${getBorderSize()}px solid white`,
                 ...sizeToIconStyles[size],
               },
             }}

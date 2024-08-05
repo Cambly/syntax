@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-icons",
   "description": "Cambly design system icon library",
-  "version": "4.0.0",
+  "version": "4.3.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -40,6 +40,22 @@
     "./Alert": {
       "types": "./dist/Alert.d.ts",
       "default": "./dist/Alert.js"
+    },
+    "./ArrowDown": {
+      "types": "./dist/ArrowDown.d.ts",
+      "default": "./dist/ArrowDown.js"
+    },
+    "./ArrowLeft": {
+      "types": "./dist/ArrowLeft.d.ts",
+      "default": "./dist/ArrowLeft.js"
+    },
+    "./ArrowRight": {
+      "types": "./dist/ArrowRight.d.ts",
+      "default": "./dist/ArrowRight.js"
+    },
+    "./ArrowUp": {
+      "types": "./dist/ArrowUp.d.ts",
+      "default": "./dist/ArrowUp.js"
     },
     "./Bell": {
       "types": "./dist/Bell.d.ts",
@@ -112,6 +128,10 @@
     "./Cross": {
       "types": "./dist/Cross.d.ts",
       "default": "./dist/Cross.js"
+    },
+    "./Download": {
+      "types": "./dist/Download.d.ts",
+      "default": "./dist/Download.js"
     },
     "./Education": {
       "types": "./dist/Education.d.ts",
@@ -293,9 +313,9 @@
       "types": "./dist/Shuffle.d.ts",
       "default": "./dist/Shuffle.js"
     },
-    "./SideArrow": {
-      "types": "./dist/SideArrow.d.ts",
-      "default": "./dist/SideArrow.js"
+    "./Speaker": {
+      "types": "./dist/Speaker.d.ts",
+      "default": "./dist/Speaker.js"
     },
     "./SquareEnclosedPlus": {
       "types": "./dist/SquareEnclosedPlus.d.ts",

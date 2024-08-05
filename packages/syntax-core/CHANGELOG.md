@@ -1,5 +1,63 @@
 # @cambly/syntax-core
 
+## 18.13.0
+
+### Minor Changes
+
+- 07f9a40: ButtonGroup: Make responsive
+
+## 18.12.0
+
+### Minor Changes
+
+- 5fc6cc7: Checkbox, RadioButton: Align styling with figma
+
+## 18.11.2
+
+### Patch Changes
+
+- b215e88: Avatar: update icon sizes and offset for medium and small avatars
+
+## 18.11.1
+
+### Patch Changes
+
+- f833c80: Icon: made default color "inherit"
+
+## 18.11.0
+
+### Minor Changes
+
+- 2f34c99: Avatar: update icon sizes and layouts
+
+## 18.10.0
+
+### Minor Changes
+
+- 1e9baf5: Tabs: Update underline styling
+
+## 18.9.0
+
+### Minor Changes
+
+- 47faf30: Typography: update success color to success700
+
+### Patch Changes
+
+- d8ee227: Icon: Added all colors
+
+## 18.8.0
+
+### Minor Changes
+
+- 3add33f: Update border color on secondary button
+
+## 18.7.0
+
+### Minor Changes
+
+- aae6c1e: add IconLinkButton
+
 ## 18.6.0
 
 ### Minor Changes

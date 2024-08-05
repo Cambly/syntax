@@ -9,6 +9,10 @@ import Achievement from "./icons/Achievement";
 import AddNew from "./icons/AddNew";
 import AddUsers from "./icons/AddUsers";
 import Alert from "./icons/Alert";
+import ArrowLeft from "./icons/ArrowLeft";
+import ArrowDown from "./icons/ArrowDown";
+import ArrowRight from "./icons/ArrowRight";
+import ArrowUp from "./icons/ArrowUp";
 import Bell from "./icons/Bell";
 import Book from "./icons/Book";
 import BookmarkFilled from "./icons/BookmarkFilled";
@@ -27,6 +31,7 @@ import CircleEnclosedStar from "./icons/CircleEnclosedStar";
 import CircleEnclosedTick from "./icons/CircleEnclosedTick";
 import Clock from "./icons/Clock";
 import Cross from "./icons/Cross";
+import Download from "./icons/Download";
 import Education from "./icons/Education";
 import Exit from "./icons/Exit";
 import Eye from "./icons/Eye";
@@ -72,7 +77,7 @@ import Send from "./icons/Send";
 import Settings from "./icons/Settings";
 import Shop from "./icons/Shop";
 import Shuffle from "./icons/Shuffle";
-import SideArrow from "./icons/SideArrow";
+import Speaker from "./icons/Speaker";
 import SquareEnclosedPlus from "./icons/SquareEnclosedPlus";
 import StarFilled from "./icons/StarFilled";
 import StarHalfFilled from "./icons/StarHalfFilled";
@@ -101,6 +106,10 @@ const cambioIcons = [
   { name: "AddNew", component: AddNew },
   { name: "AddUsers", component: AddUsers },
   { name: "Alert", component: Alert },
+  { name: "ArrowDown", component: ArrowDown },
+  { name: "ArrowLeft", component: ArrowLeft },
+  { name: "ArrowRight", component: ArrowRight },
+  { name: "ArrowUp", component: ArrowUp },
   { name: "Bell", component: Bell },
   { name: "Book", component: Book },
   { name: "BookmarkFilled", component: BookmarkFilled },
@@ -119,6 +128,7 @@ const cambioIcons = [
   { name: "CircleEnclosedTick", component: CircleEnclosedTick },
   { name: "Clock", component: Clock },
   { name: "Cross", component: Cross },
+  { name: "Download", component: Download },
   { name: "Education", component: Education },
   { name: "Exit", component: Exit },
   { name: "Eye", component: Eye },
@@ -164,7 +174,7 @@ const cambioIcons = [
   { name: "Settings", component: Settings },
   { name: "Shop", component: Shop },
   { name: "Shuffle", component: Shuffle },
-  { name: "SideArrow", component: SideArrow },
+  { name: "Speaker", component: Speaker },
   { name: "SquareEnclosedPlus", component: SquareEnclosedPlus },
   { name: "StarFilled", component: StarFilled },
   { name: "StarHalfFilled", component: StarHalfFilled },
@@ -203,12 +213,12 @@ export default {
     },
   },
   args: {
-    size: "md",
+    size: 200,
     color: "primary",
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg"],
+      options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
       control: { type: "radio" },
     },
     color: {
@@ -263,7 +273,7 @@ const getBackgroundColor = (
 
 export const Default: StoryObj<typeof Icon> = {
   args: {
-    size: "md",
+    size: 200,
     color: "primary",
   },
   render: ({ size, color }) => {

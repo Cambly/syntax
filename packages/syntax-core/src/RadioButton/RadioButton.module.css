@@ -45,6 +45,17 @@
 .background {
   position: absolute;
   box-sizing: border-box;
+  border: 1px solid var(--color-cambio-black);
+}
+
+.backgroundChecked {
+  background-color: var(--color-cambio-black);
+  border: 0;
+}
+
+.backgroundError {
+  background-color: var(--color-cambio-destructive-370);
+  border: 0;
 }
 
 .sm {

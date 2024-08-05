@@ -1,5 +1,29 @@
 # @cambly/syntax-icons
 
+## 4.3.1
+
+### Patch Changes
+
+- 5f9406f: Icons: Inherit color as default
+
+## 4.3.0
+
+### Minor Changes
+
+- a7d094f: Bump version to update Icon color's expected props
+
+## 4.2.0
+
+### Minor Changes
+
+- 1fb8294: Icons: Add speaker icon
+
+## 4.1.0
+
+### Minor Changes
+
+- fa14541: Icons: Add ArrowDown, ArrowLeft, ArrowUp, rename SideArrow to ArrowRight
+
 ## 4.0.0
 
 ### Major Changes

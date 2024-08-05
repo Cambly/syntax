@@ -101,3 +101,12 @@ export const Vertical: StoryObj<typeof ButtonGroup> = {
     </ButtonGroup>
   ),
 };
+
+export const Responsive: StoryObj<typeof ButtonGroup> = {
+  render: (args) => (
+    <ButtonGroup {...args} orientation="vertical" smOrientation="horizontal">
+      <Button color="secondary" text="Secondary" onClick={handleClick} />
+      <Button color="primary" text="Primary" onClick={handleClick} />
+    </ButtonGroup>
+  ),
+};
