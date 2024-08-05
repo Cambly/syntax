@@ -2,7 +2,6 @@ import { type ReactNode, forwardRef } from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
-type Dimension = number | string;
 type Direction = "row" | "column";
 type WordConfettiProps = {
   /**
@@ -22,10 +21,6 @@ type WordConfettiProps = {
    * The theme for the background colors of the confetti.
    */
   theme: "neutral" | "cool" | "warm";
-  /**
-   * The width of the box.
-   */
-  width?: Dimension;
   /**
    * The words to display as confetti.
    */
@@ -68,7 +63,6 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       direction = "row",
       size,
       theme,
-      width = "100%",
       words,
     } = props;
 
@@ -77,7 +71,6 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
         display="flex"
         direction={direction}
         flexWrap="wrap"
-        width={width}
         data-testid={dataTestId}
         ref={ref}
         gap={gaps[size]}

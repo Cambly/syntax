@@ -39,9 +39,6 @@ export default {
       options: ["neutral", "cool", "warm"],
       control: { type: "select" },
     },
-    width: {
-      control: "text",
-    },
     words: {
       control: "array",
     },
