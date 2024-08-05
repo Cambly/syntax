@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.0.0
+
+### Major Changes
+
+- 62d2255: Tabs: update Tabs.Link to TabLink and Tabs.Button to TabButton
+
 ## 18.13.0
 
 ### Minor Changes
