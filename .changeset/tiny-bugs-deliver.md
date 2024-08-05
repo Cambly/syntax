@@ -1,5 +1,5 @@
 ---
-"@cambly/syntax-core": major
+"@cambly/syntax-core": minor
 ---
 
 WordConfetti: Implement component
