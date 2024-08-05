@@ -1,31 +1,6 @@
-import { type ReactNode, forwardRef, useMemo } from "react";
+import { type ReactNode, forwardRef, useMemo, type ReactElement } from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
-
-type Direction = "row" | "column";
-type WordConfettiProps = {
-  /**
-   * Test id for the confetti
-   */
-  "data-testid"?: string;
-  /**
-   * The direction to display the words.
-   * @defaultValue row
-   */
-  direction?: Direction;
-  /**
-   * The size of the font in the confetti.
-   */
-  size: 300 | 400 | 700 | 800 | 900 | 1100;
-  /**
-   * The theme for the background colors of the confetti.
-   */
-  theme: "neutral" | "cool" | "warm";
-  /**
-   * The words to display as confetti.
-   */
-  words: string[];
-};
 
 const themeBackgroundColors = {
   neutral: ["pink", "lilac", "thistle"],
@@ -53,6 +28,72 @@ const gaps = {
   1100: 10,
 } as const;
 
+const WordConfetto = ({
+  backgroundColor,
+  key,
+  rotation,
+  size,
+  text,
+}: {
+  backgroundColor:
+    | "pink"
+    | "lilac"
+    | "thistle"
+    | "sky"
+    | "slate"
+    | "teal"
+    | "red"
+    | "tan"
+    | "orange";
+  key: string;
+  rotation: number;
+  size: 300 | 400 | 700 | 800 | 900 | 1100;
+  text: string;
+}): ReactElement => {
+  return (
+    <Box
+      key={key}
+      backgroundColor={backgroundColor}
+      dangerouslySetInlineStyle={{
+        __style: {
+          padding: paddings[size],
+          transform: `rotate(${rotation}deg)`,
+        },
+      }}
+      width="fit-content"
+    >
+      <Typography size={size} weight="bold" fontStyle="serif">
+        {text}
+      </Typography>
+    </Box>
+  );
+};
+
+type Direction = "row" | "column";
+type WordConfettiProps = {
+  /**
+   * Test id for the confetti
+   */
+  "data-testid"?: string;
+  /**
+   * The direction to display the words.
+   * @defaultValue row
+   */
+  direction?: Direction;
+  /**
+   * The size of the font in the confetti.
+   */
+  size: 300 | 400 | 700 | 800 | 900 | 1100;
+  /**
+   * The theme for the background colors of the confetti.
+   */
+  theme: "neutral" | "cool" | "warm";
+  /**
+   * The words to display as confetti.
+   */
+  words: string[];
+};
+
 /**
  * [WordConfetti](https://cambly-syntax.vercel.app/?path=/docs/components-wordconfetti--docs) is a container for displaying words in different color themes and fun offset angles.
  */
@@ -66,14 +107,15 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       words,
     } = props;
 
-    const colorOrder: number[] = useMemo(
-      () => words.map(() => Math.floor(Math.random() * 3)),
-      [words],
-    );
-
-    const tiltOrder: number[] = useMemo(
-      () => words.map(() => Math.floor(Math.random() * 9)),
-      [words],
+    const styledWords = useMemo(
+      () =>
+        words.map((word) => ({
+          text: word,
+          backgroundColor:
+            themeBackgroundColors[theme][Math.floor(Math.random() * 3)],
+          rotation: degreeOfTiltOptions[Math.floor(Math.random() * 9)],
+        })),
+      [theme, words],
     );
 
     return (
@@ -85,27 +127,19 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
         ref={ref}
         gap={gaps[size]}
       >
-        {words.map((word, index): ReactNode => {
-          return (
-            <Box
-              key={`${word}+${index}`}
-              backgroundColor={themeBackgroundColors[theme][colorOrder[index]]}
-              dangerouslySetInlineStyle={{
-                __style: {
-                  padding: paddings[size],
-                  transform: `rotate(${
-                    degreeOfTiltOptions[tiltOrder[index]]
-                  }deg)`,
-                },
-              }}
-              width="fit-content"
-            >
-              <Typography size={size} weight="bold" fontStyle="serif">
-                {word}
-              </Typography>
-            </Box>
-          );
-        })}
+        {styledWords.map(
+          ({ text, backgroundColor, rotation }, index): ReactNode => {
+            return (
+              <WordConfetto
+                backgroundColor={backgroundColor}
+                key={`${text}+${index}`}
+                rotation={rotation}
+                size={size}
+                text={text}
+              />
+            );
+          },
+        )}
       </Box>
     );
   },
