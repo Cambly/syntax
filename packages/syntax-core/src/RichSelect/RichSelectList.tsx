@@ -176,6 +176,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
       }
     }
   };
+  console.log("----", !errorText, selectedKeys === "all" || selectedKeys.size);
 
   return (
     <ReactAriaProvider
@@ -252,7 +253,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
                       !errorText &&
                       selectedKeys !== "all" &&
                       !selectedKeys.size,
-                    [styles.selected]:
+                    [styles.selectMouseFocusStyling]:
                       !errorText &&
                       (selectedKeys === "all" || selectedKeys.size),
                     [styles.selectErrorCambio]: errorText,
