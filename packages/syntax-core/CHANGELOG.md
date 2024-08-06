@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.1.0
+
+### Minor Changes
+
+- 6dcd533: WordConfetti: Implement component
+
 ## 19.0.0
 
 ### Major Changes
