@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import StarFilled from "../../../syntax-icons/src/icons/StarFilled";
+import Message from "../../../syntax-icons/src/icons/Message";
 import allColors from "../colors/allColors";
 import Box from "../Box/Box";
 
@@ -112,7 +113,7 @@ export const DifferentIcon: StoryObj<typeof IconButton> = {
 };
 
 export const IndicatorColors: StoryObj<typeof IconButton> = {
-  args: { ...Default.args, icon: CalendarBooking },
+  args: { ...Default.args, icon: Message },
   render: (args) => {
     return (
       <Box display="flex" gap={4}>

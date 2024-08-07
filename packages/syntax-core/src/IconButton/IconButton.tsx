@@ -19,6 +19,12 @@ const sizeToIndicatorSize = {
   lg: "10px",
 } as const;
 
+const sizeToVerticalOffset = {
+  sm: "-1px",
+  md: "-2px",
+  lg: "-3px",
+} as const;
+
 type Color =
   | "primary"
   | "secondary"
@@ -150,15 +156,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               backgroundColor={indicatorColor}
               width={sizeToIndicatorSize[size]}
               height={sizeToIndicatorSize[size]}
-              // marginBottom="-2px"
               data-testid="indicator"
               rounding="full"
               dangerouslySetInlineStyle={{
                 __style: {
                   border: "1px solid white",
-                  // top: -sizeToIndicatorSize[size] * 2,
-                  // right: -sizeToIndicatorSize[size] * 2,
-                  top: 0,
+                  transform: `translateY(${sizeToVerticalOffset[size]})`,
                 },
               }}
             />
