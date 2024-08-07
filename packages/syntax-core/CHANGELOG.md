@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.1.1
+
+### Patch Changes
+
+- 12e8846: WordConfetti: Fix error with key
+
 ## 19.1.0
 
 ### Minor Changes
