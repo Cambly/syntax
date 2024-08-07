@@ -11,6 +11,25 @@ import {
   materialIconSize,
   internalIconSize,
 } from "../Button/constants/iconSize";
+import Box from "../Box/Box";
+
+const sizeToIndicatorSize = {
+  sm: "6px",
+  md: "8px",
+  lg: "10px",
+} as const;
+
+type Color =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "destructive-primary"
+  | "destructive-secondary"
+  | "destructive-tertiary"
+  | "branded"
+  | "success-primary"
+  | "success-secondary"
+  | "success-tertiary";
 
 type IconButtonProps = {
   /**
@@ -18,17 +37,7 @@ type IconButtonProps = {
    *
    * @defaultValue "primary"
    */
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "destructive-primary"
-    | "destructive-secondary"
-    | "destructive-tertiary"
-    | "branded"
-    | "success-primary"
-    | "success-secondary"
-    | "success-tertiary";
+  color?: Color;
   /**
    * Test id for the button
    */
@@ -69,6 +78,10 @@ type IconButtonProps = {
    */
   on?: "lightBackground" | "darkBackground";
   /**
+   * If specified, will create an indicator (dot) on the top right of the button with the specified color
+   */
+  indicatorColor?: ComponentProps<typeof Box>["backgroundColor"];
+  /**
    * The callback to be called when the button is clicked
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -92,6 +105,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       size = "md",
       tooltip,
       on = "lightBackground",
+      indicatorColor,
       onClick,
     }: IconButtonProps,
     ref,
@@ -121,6 +135,35 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           className={materialIconSize[size]}
           size={internalIconSize[size]}
         />
+        {indicatorColor && (
+          <Box
+            display="flex"
+            position="relative"
+            justifyContent="end"
+            alignItems="end"
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              position="absolute"
+              backgroundColor={indicatorColor}
+              width={sizeToIndicatorSize[size]}
+              height={sizeToIndicatorSize[size]}
+              // marginBottom="-2px"
+              data-testid="indicator"
+              rounding="full"
+              dangerouslySetInlineStyle={{
+                __style: {
+                  border: "1px solid white",
+                  // top: -sizeToIndicatorSize[size] * 2,
+                  // right: -sizeToIndicatorSize[size] * 2,
+                  top: 0,
+                },
+              }}
+            />
+          </Box>
+        )}
       </button>
     );
   },

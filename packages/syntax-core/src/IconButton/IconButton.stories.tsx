@@ -2,6 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react";
 import IconButton from "./IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import StarFilled from "../../../syntax-icons/src/icons/StarFilled";
+import allColors from "../colors/allColors";
 import Box from "../Box/Box";
 
 import CalendarBooking from "../../../syntax-icons/src/icons/CalendarBooking";
@@ -23,6 +24,7 @@ export default {
     "data-testid": "",
     accessibilityLabel: "",
     tooltip: "",
+    indicatorColor: undefined,
   },
   argTypes: {
     color: {
@@ -52,6 +54,10 @@ export default {
       control: { type: "radio" },
     },
     onClick: { action: "clicked" },
+    indicatorColor: {
+      control: { type: "select" },
+      options: allColors,
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof IconButton>;
@@ -103,6 +109,19 @@ export const DestructiveTertiary: StoryObj<typeof IconButton> = {
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
+};
+
+export const IndicatorColors: StoryObj<typeof IconButton> = {
+  args: { ...Default.args, icon: CalendarBooking },
+  render: (args) => {
+    return (
+      <Box display="flex" gap={4}>
+        {allColors.map((color) => (
+          <IconButton {...args} indicatorColor={color} key={color} />
+        ))}
+      </Box>
+    );
+  },
 };
 
 export const SyntaxIcons: StoryObj<typeof IconButton> = {
