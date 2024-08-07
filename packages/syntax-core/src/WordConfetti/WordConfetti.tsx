@@ -30,7 +30,6 @@ const gaps = {
 
 const WordConfetto = ({
   backgroundColor,
-  key,
   rotation,
   size,
   text,
@@ -45,14 +44,12 @@ const WordConfetto = ({
     | "red"
     | "tan"
     | "orange";
-  key: string;
   rotation: number;
   size: 300 | 400 | 700 | 800 | 900 | 1100;
   text: string;
 }): ReactElement => {
   return (
     <Box
-      key={key}
       backgroundColor={backgroundColor}
       dangerouslySetInlineStyle={{
         __style: {
@@ -131,8 +128,8 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
           ({ text, backgroundColor, rotation }, index): ReactNode => {
             return (
               <WordConfetto
-                backgroundColor={backgroundColor}
                 key={`${text}+${index}`}
+                backgroundColor={backgroundColor}
                 rotation={rotation}
                 size={size}
                 text={text}
