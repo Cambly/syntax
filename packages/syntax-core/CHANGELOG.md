@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.2.0
+
+### Minor Changes
+
+- a15f587: Added new IconButton indicatorColor prop
+
 ## 19.1.1
 
 ### Patch Changes
