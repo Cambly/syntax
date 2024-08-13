@@ -8,7 +8,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 # Install node
 nvm install
 # Install dependencies
-npm install -g pnpm@9.2.0
+npm install -g pnpm@9.4.0
 pnpm install
 # Run the dev server
 pnpm start
