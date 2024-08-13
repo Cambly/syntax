@@ -32,6 +32,34 @@ describe("iconButton", () => {
     expect(button).toHaveLength(1);
   });
 
+  it.todo("renders an indicator when the indicator color is specified"),
+    async () => {
+      render(
+        <IconButton
+          onClick={() => {
+            /* empty */
+          }}
+          icon={Star}
+          accessibilityLabel="Star"
+        />,
+      );
+      const indicator = await screen.findAllByTestId("indicator");
+      expect(indicator).toHaveLength(0);
+
+      render(
+        <IconButton
+          onClick={() => {
+            /* empty */
+          }}
+          icon={Star}
+          accessibilityLabel="Star"
+          indicatorColor="black"
+        />,
+      );
+      const indicatorB = await screen.findAllByTestId("indicator");
+      expect(indicatorB).toHaveLength(1);
+    };
+
   it("sets an accessibility label", async () => {
     render(
       <IconButton
@@ -46,7 +74,7 @@ describe("iconButton", () => {
     expect(button).toHaveLength(1);
   });
 
-  it("fires the onClick when clicked", async () => {
+  it("fires the onClick when it is clicked", async () => {
     const handleClick = vi.fn();
     render(
       <IconButton
