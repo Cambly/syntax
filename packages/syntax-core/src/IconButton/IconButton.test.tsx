@@ -74,7 +74,7 @@ describe("iconButton", () => {
     expect(button).toHaveLength(1);
   });
 
-  it("fires the onClick when it is clicked", async () => {
+  it("fires the onClick when clicked", async () => {
     const handleClick = vi.fn();
     render(
       <IconButton
