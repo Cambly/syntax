@@ -4,7 +4,7 @@ const Play = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => {
-  const path = "M4.8 3v18l14.4-9z";
+  const path = "M6.8 3v18l14.4-9z";
   return <Icon ref={ref} path={path} color={color} size={size} />;
 });
 Play.displayName = "Play";

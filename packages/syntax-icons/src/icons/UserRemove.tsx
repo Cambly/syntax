@@ -1,12 +1,12 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
-const Clock = forwardRef<
+const UserRemove = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => {
   const path =
-    "M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2m-1 2h2v7.6l-2 .79zm5.3 13.7L11 12.39l2-.79 4.7 4.7z";
+    "m2 15 3-2 2.5 4 2.5-4 5 3 2 5H2zM7.5 3a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9M22 10h-8v2h8z";
   return <Icon ref={ref} path={path} color={color} size={size} />;
 });
-Clock.displayName = "Clock";
-export default Clock;
+UserRemove.displayName = "UserRemove";
+export default UserRemove;

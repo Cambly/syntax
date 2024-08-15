@@ -73,6 +73,14 @@
       "types": "./dist/BookmarkUnfilled.d.ts",
       "default": "./dist/BookmarkUnfilled.js"
     },
+    "./Cambly": {
+      "types": "./dist/Cambly.d.ts",
+      "default": "./dist/Cambly.js"
+    },
+    "./CameraPhoto": {
+      "types": "./dist/CameraPhoto.d.ts",
+      "default": "./dist/CameraPhoto.js"
+    },
     "./Calendar": {
       "types": "./dist/Calendar.d.ts",
       "default": "./dist/Calendar.js"
@@ -253,6 +261,10 @@
       "types": "./dist/NewStarter.d.ts",
       "default": "./dist/NewStarter.js"
     },
+    "./Paperclip": {
+      "types": "./dist/Paperclip.d.ts",
+      "default": "./dist/Paperclip.js"
+    },
     "./Pause": {
       "types": "./dist/Pause.d.ts",
       "default": "./dist/Pause.js"
@@ -273,6 +285,10 @@
       "types": "./dist/Play.d.ts",
       "default": "./dist/Play.js"
     },
+    "./Privacy": {
+      "types": "./dist/Privacy.d.ts",
+      "default": "./dist/Privacy.js"
+    },
     "./Progress": {
       "types": "./dist/Progress.d.ts",
       "default": "./dist/Progress.js"
@@ -280,6 +296,10 @@
     "./Refresh": {
       "types": "./dist/Refresh.d.ts",
       "default": "./dist/Refresh.js"
+    },
+    "./Rotate": {
+      "types": "./dist/Rotate.d.ts",
+      "default": "./dist/Rotate.js"
     },
     "./Safety": {
       "types": "./dist/Safety.d.ts",
@@ -392,6 +412,18 @@
     "./User": {
       "types": "./dist/User.d.ts",
       "default": "./dist/User.js"
+    },
+    "./UserAdd": {
+      "types": "./dist/UserAdd.d.ts",
+      "default": "./dist/UserAdd.js"
+    },
+    "./UserRemove": {
+      "types": "./dist/UserRemove.d.ts",
+      "default": "./dist/UserRemove.js"
+    },
+    "./UserSearch": {
+      "types": "./dist/UserSearch.d.ts",
+      "default": "./dist/UserSearch.js"
     },
     "./Wifi": {
       "types": "./dist/Wifi.d.ts",

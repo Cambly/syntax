@@ -9,8 +9,8 @@ import Achievement from "./icons/Achievement";
 import AddNew from "./icons/AddNew";
 import AddUsers from "./icons/AddUsers";
 import Alert from "./icons/Alert";
-import ArrowLeft from "./icons/ArrowLeft";
 import ArrowDown from "./icons/ArrowDown";
+import ArrowLeft from "./icons/ArrowLeft";
 import ArrowRight from "./icons/ArrowRight";
 import ArrowUp from "./icons/ArrowUp";
 import Bell from "./icons/Bell";
@@ -19,8 +19,10 @@ import BookmarkFilled from "./icons/BookmarkFilled";
 import BookmarkUnfilled from "./icons/BookmarkUnfilled";
 import Calendar from "./icons/Calendar";
 import CalendarBooking from "./icons/CalendarBooking";
+import Cambly from "./icons/Cambly";
 import CameraOff from "./icons/CameraOff";
 import CameraOn from "./icons/CameraOn";
+import CameraPhoto from "./icons/CameraPhoto";
 import Certificate from "./icons/Certificate";
 import ChevronDown from "./icons/ChevronDown";
 import ChevronLeft from "./icons/ChevronLeft";
@@ -62,13 +64,16 @@ import More from "./icons/More";
 import MultiMediaDocument from "./icons/MultiMediaDocument";
 import MultipleUsers from "./icons/MultipleUsers";
 import NewStarter from "./icons/NewStarter";
+import Paperclip from "./icons/Paperclip";
 import Pause from "./icons/Pause";
 import Pencil from "./icons/Pencil";
 import PhoneOff from "./icons/PhoneOff";
 import PhoneOn from "./icons/PhoneOn";
 import Play from "./icons/Play";
+import Privacy from "./icons/Privacy";
 import Progress from "./icons/Progress";
 import Refresh from "./icons/Refresh";
+import Rotate from "./icons/Rotate";
 import Safety from "./icons/Safety";
 import Screen from "./icons/Screen";
 import Search from "./icons/Search";
@@ -97,6 +102,9 @@ import Translate from "./icons/Translate";
 import TwoUsers from "./icons/TwoUsers";
 import Type from "./icons/Type";
 import User from "./icons/User";
+import UserAdd from "./icons/UserAdd";
+import UserRemove from "./icons/UserRemove";
+import UserSearch from "./icons/UserSearch";
 import Wifi from "./icons/Wifi";
 import WifiRouter from "./icons/WifiRouter";
 
@@ -116,8 +124,10 @@ const cambioIcons = [
   { name: "BookmarkUnfilled", component: BookmarkUnfilled },
   { name: "Calendar", component: Calendar },
   { name: "CalendarBooking", component: CalendarBooking },
+  { name: "Cambly", component: Cambly },
   { name: "CameraOff", component: CameraOff },
   { name: "CameraOn", component: CameraOn },
+  { name: "CameraPhoto", component: CameraPhoto },
   { name: "Certificate", component: Certificate },
   { name: "ChevronDown", component: ChevronDown },
   { name: "ChevronLeft", component: ChevronLeft },
@@ -159,13 +169,16 @@ const cambioIcons = [
   { name: "MultiMediaDocument", component: MultiMediaDocument },
   { name: "MultipleUsers", component: MultipleUsers },
   { name: "NewStarter", component: NewStarter },
+  { name: "Paperclip", component: Paperclip },
   { name: "Pause", component: Pause },
   { name: "Pencil", component: Pencil },
   { name: "PhoneOff", component: PhoneOff },
   { name: "PhoneOn", component: PhoneOn },
   { name: "Play", component: Play },
+  { name: "Privacy", component: Privacy },
   { name: "Progress", component: Progress },
   { name: "Refresh", component: Refresh },
+  { name: "Rotate", component: Rotate },
   { name: "Safety", component: Safety },
   { name: "Screen", component: Screen },
   { name: "Search", component: Search },
@@ -194,6 +207,9 @@ const cambioIcons = [
   { name: "TwoUsers", component: TwoUsers },
   { name: "Type", component: Type },
   { name: "User", component: User },
+  { name: "UserAdd", component: UserAdd },
+  { name: "UserRemove", component: UserRemove },
+  { name: "UserSearch", component: UserSearch },
   { name: "Wifi", component: Wifi },
   { name: "WifiRouter", component: WifiRouter },
 ];
