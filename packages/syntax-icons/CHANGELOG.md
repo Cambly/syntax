@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.4.0
+
+### Minor Changes
+
+- 0a25ce5: Icons: update + add icons
+
 ## 4.3.1
 
 ### Patch Changes
