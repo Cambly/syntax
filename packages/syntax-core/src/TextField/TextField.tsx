@@ -16,6 +16,7 @@ export default function TextField({
   autoComplete,
   "data-testid": dataTestId,
   disabled: disabledProp = false,
+  on = "lightBackground",
   errorText = "",
   helperText = "",
   id,
@@ -43,6 +44,12 @@ export default function TextField({
    * @defaultValue false
    */
   disabled?: boolean;
+  /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
   /**
    * Text shown below TextField if there is an input error.
    */
@@ -90,7 +97,7 @@ export default function TextField({
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
   const inputId = id ?? reactId;
-
+  const textColor = on === "darkBackground" ? "white" : "gray900";
   return (
     <Box
       display="flex"
@@ -106,7 +113,7 @@ export default function TextField({
       {label && (
         <label className={styles.label} htmlFor={inputId}>
           <Box paddingX={1}>
-            <Typography size={100} color="gray700">
+            <Typography size={100} color={textColor}>
               {label}
             </Typography>
           </Box>
@@ -116,6 +123,7 @@ export default function TextField({
         autoComplete={autoComplete}
         className={classNames(styles.textfield, styles.md, styles.height, {
           [styles.inputError]: errorText,
+          [styles.transparent]: on === "darkBackground",
         })}
         data-testid={dataTestId}
         disabled={disabled}
@@ -131,7 +139,7 @@ export default function TextField({
         <Box paddingX={1}>
           <Typography
             size={100}
-            color={errorText ? "destructive-darkBackground" : "gray700"}
+            color={errorText ? "destructive-darkBackground" : textColor}
           >
             {errorText || helperText}
           </Typography>
