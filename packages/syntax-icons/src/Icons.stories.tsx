@@ -3,6 +3,7 @@ import Box from "../../syntax-core/src/Box/Box";
 import Typography from "../../syntax-core/src/Typography/Typography";
 import TapArea from "../../syntax-core/src/TapArea/TapArea";
 import Icon from "../../syntax-core/src/Icon/Icon";
+import allColors from "../../syntax-core/src/colors/allColors";
 
 import Accent from "./icons/Accent";
 import Achievement from "./icons/Achievement";
@@ -230,7 +231,7 @@ export default {
   },
   args: {
     size: 200,
-    color: "primary",
+    color: "inherit",
   },
   argTypes: {
     size: {
@@ -238,39 +239,14 @@ export default {
       control: { type: "radio" },
     },
     color: {
-      options: [
-        "black",
-        "gray700",
-        "gray900",
-        "primary",
-        "destructive-primary",
-        "destructive-darkBackground",
-        "success",
-        "success-darkBackground",
-        "white",
-        "inherit",
-      ],
-      control: { type: "radio" },
+      options: allColors,
+      control: { type: "select" },
     },
   },
   tags: ["autodocs"],
 } as Meta<typeof Icon>;
 
-const getBackgroundColor = (
-  color:
-    | "black"
-    | "gray900"
-    | "gray700"
-    | "primary"
-    | "destructive-primary"
-    | "destructive-darkBackground"
-    | "success"
-    | "success-darkBackground"
-    | "white"
-    | "white-secondary"
-    | "inherit"
-    | undefined,
-) => {
+const getBackgroundColor = (color: (typeof allColors)[number] | undefined) => {
   const listOfLightFontColors = [
     "white",
     "white-secondary",
@@ -287,10 +263,27 @@ const getBackgroundColor = (
   return "white";
 };
 
+const getTextColor = (color: (typeof allColors)[number] | undefined) => {
+  const listOfLightFontColors = [
+    "white",
+    "white-secondary",
+    "destructive-darkBackground",
+    "success-darkBackground",
+  ];
+
+  if (!color) return "primary";
+
+  if (listOfLightFontColors.includes(color)) {
+    return "white";
+  }
+
+  return "primary";
+};
+
 export const Default: StoryObj<typeof Icon> = {
   args: {
     size: 200,
-    color: "primary",
+    color: "inherit",
   },
   render: ({ size, color }) => {
     return (
@@ -321,7 +314,7 @@ export const Default: StoryObj<typeof Icon> = {
                   gap={2}
                 >
                   <IndIcon size={size} color={color} />
-                  <Typography color={color} size={100}>
+                  <Typography color={getTextColor(color)} size={100}>
                     {icon.name}
                   </Typography>
                 </Box>
