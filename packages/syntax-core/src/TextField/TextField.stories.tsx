@@ -1,6 +1,7 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import TextField from "./TextField";
 import React, { useState } from "react";
+import Box from "../Box/Box";
 
 export default {
   title: "Components/TextField",
@@ -83,7 +84,7 @@ function TextFieldDefault({
       dangerouslySetInlineStyle={{
         __style: {
           backgroundImage:
-            args.on === "darkBackground"
+            rest.on === "darkBackground"
               ? "linear-gradient(0deg, #000, #555 )"
               : null,
         },
