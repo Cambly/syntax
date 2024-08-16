@@ -15,6 +15,7 @@ export default {
     label: "Label",
     placeholder: "Placeholder",
     disabled: false,
+    on: "lightBackground",
     errorText: "",
     helperText: "",
     type: "text",
@@ -30,6 +31,10 @@ export default {
     },
     disabled: {
       control: "boolean",
+    },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
     },
     placeholder: {
       control: "text",
@@ -73,15 +78,27 @@ function TextFieldDefault({
 }) {
   const [value, setValue] = useState("");
   return (
-    <TextField
-      label={label}
-      placeholder={placeholder}
-      onChange={(event) => {
-        setValue(event.target.value);
+    <Box
+      padding={2}
+      dangerouslySetInlineStyle={{
+        __style: {
+          backgroundImage:
+            args.on === "darkBackground"
+              ? "linear-gradient(0deg, #000, #555 )"
+              : null,
+        },
       }}
-      value={initialValue || value}
-      {...rest}
-    />
+    >
+      <TextField
+        label={label}
+        placeholder={placeholder}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        value={initialValue || value}
+        {...rest}
+      />
+    </Box>
   );
 }
 
