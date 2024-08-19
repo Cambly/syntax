@@ -98,6 +98,10 @@ export default function TextField({
   const reactId = useId();
   const inputId = id ?? reactId;
   const textColor = on === "darkBackground" ? "white" : "gray900";
+  const errorTextColor =
+    on !== "darkBackground"
+      ? "destructive-lightBackground"
+      : "destructive-darkBackground";
   return (
     <Box
       display="flex"
@@ -121,10 +125,18 @@ export default function TextField({
       )}
       <input
         autoComplete={autoComplete}
-        className={classNames(styles.textfield, styles.md, styles.height, {
-          [styles.inputError]: errorText,
-          [styles.transparent]: on === "darkBackground",
-        })}
+        className={classNames(
+          styles.textfield,
+          styles.md,
+          styles.height,
+          errorText &&
+            (on === "darkBackground"
+              ? styles.transparentInputError
+              : styles.inputError),
+          {
+            [styles.transparent]: on === "darkBackground",
+          },
+        )}
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}
@@ -137,10 +149,7 @@ export default function TextField({
       />
       {(helperText || errorText) && (
         <Box paddingX={1}>
-          <Typography
-            size={100}
-            color={errorText ? "destructive-darkBackground" : textColor}
-          >
+          <Typography size={100} color={errorText ? errorTextColor : textColor}>
             {errorText || helperText}
           </Typography>
         </Box>

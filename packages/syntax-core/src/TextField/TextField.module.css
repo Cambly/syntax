@@ -39,9 +39,18 @@
 
 .inputError {
   color: var(--color-cambio-destructive-900);
-  border: 2px solid var(--color-cambio-destructive-700);
+  border: 1px solid var(--color-cambio-destructive-700);
 }
 
 .inputError::placeholder {
   color: var(--color-cambio-destructive-900);
+}
+
+.transparentInputError {
+  color: var(--color-cambio-destructive-370);
+  border: 1px solid var(--color-cambio-destructive-300);
+}
+
+.transparenInputError::placeholder {
+  color: var(--color-cambio-destructive-370);
 }
