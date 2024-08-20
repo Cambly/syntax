@@ -16,6 +16,7 @@ export default function TextField({
   autoComplete,
   "data-testid": dataTestId,
   disabled: disabledProp = false,
+  on = "lightBackground",
   errorText = "",
   helperText = "",
   id,
@@ -43,6 +44,12 @@ export default function TextField({
    * @defaultValue false
    */
   disabled?: boolean;
+  /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the button
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
   /**
    * Text shown below TextField if there is an input error.
    */
@@ -90,7 +97,11 @@ export default function TextField({
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
   const inputId = id ?? reactId;
-
+  const textColor = on === "darkBackground" ? "white" : "gray900";
+  const errorTextColor =
+    on !== "darkBackground"
+      ? "destructive-lightBackground"
+      : "destructive-darkBackground";
   return (
     <Box
       display="flex"
@@ -106,7 +117,7 @@ export default function TextField({
       {label && (
         <label className={styles.label} htmlFor={inputId}>
           <Box paddingX={1}>
-            <Typography size={100} color="gray700">
+            <Typography size={100} color={textColor}>
               {label}
             </Typography>
           </Box>
@@ -114,9 +125,18 @@ export default function TextField({
       )}
       <input
         autoComplete={autoComplete}
-        className={classNames(styles.textfield, styles.md, styles.height, {
-          [styles.inputError]: errorText,
-        })}
+        className={classNames(
+          styles.textfield,
+          styles.md,
+          styles.height,
+          errorText &&
+            (on === "darkBackground"
+              ? styles.transparentInputError
+              : styles.inputError),
+          {
+            [styles.transparent]: on === "darkBackground",
+          },
+        )}
         data-testid={dataTestId}
         disabled={disabled}
         id={inputId}
@@ -129,10 +149,7 @@ export default function TextField({
       />
       {(helperText || errorText) && (
         <Box paddingX={1}>
-          <Typography
-            size={100}
-            color={errorText ? "destructive-darkBackground" : "gray700"}
-          >
+          <Typography size={100} color={errorText ? errorTextColor : textColor}>
             {errorText || helperText}
           </Typography>
         </Box>

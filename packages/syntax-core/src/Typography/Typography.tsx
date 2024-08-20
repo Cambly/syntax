@@ -38,6 +38,7 @@ const Typography = forwardRef<
       | "primary"
       | "destructive-primary"
       | "destructive-darkBackground"
+      | "destructive-lightBackground"
       | "success"
       | "success-darkBackground"
       | "white"

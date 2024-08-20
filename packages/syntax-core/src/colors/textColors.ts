@@ -6,6 +6,7 @@ export default function textColor(
     | "gray700"
     | "primary"
     | "destructive-primary"
+    | "destructive-lightBackground"
     | "destructive-darkBackground"
     | "success"
     | "success-darkBackground"
@@ -24,8 +25,10 @@ export default function textColor(
       return colorStyles.inheritColor;
     case "destructive-primary":
       return colorStyles.cambioDestructive900Color;
+    case "destructive-lightBackground":
+      return colorStyles.cambioDestructive900Color;
     case "destructive-darkBackground":
-      return colorStyles.cambioDestructive700Color;
+      return colorStyles.cambioDestructive300Color;
     case "success":
       return colorStyles.cambioSuccess700Color;
     case "success-darkBackground":
