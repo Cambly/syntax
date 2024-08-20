@@ -60,7 +60,7 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:19.2.0
+        specifier: workspace:19.2.1
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.14.0
@@ -161,7 +161,7 @@ importers:
         version: 8.8.0(eslint@8.39.0)
       eslint-config-turbo:
         specifier: latest
-        version: 2.0.12(eslint@8.39.0)
+        version: 2.0.14(eslint@8.39.0)
       eslint-plugin-react:
         specifier: 7.32.2
         version: 7.32.2(eslint@8.39.0)
@@ -4137,8 +4137,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-turbo@2.0.12:
-    resolution: {integrity: sha512-3PUzoyeJi2SjsTSjfWgTUIHK7kOqsapDEaOT7sCjFnZXvuhYLKxW37lysjq7+55abGGm0yQTXxNFLjrQKUORag==}
+  eslint-config-turbo@2.0.14:
+    resolution: {integrity: sha512-VkzAH/AR1/fjMsqzuurfWkEgyGVTTzfZQB1umDB8dMWzFhqo8p/2KEWbvRQLEvSFxjVfeJl5ErQAJ7h7DYglxg==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -4213,8 +4213,8 @@ packages:
     peerDependencies:
       eslint: ^7.5.0 || ^8.0.0
 
-  eslint-plugin-turbo@2.0.12:
-    resolution: {integrity: sha512-vXWKer7F0RPTcVy1B+hFTEK4mlEOpouB8MCAFD3WW4C6t98wvuDCsIPjxIldpxg7CnwmRxALpNWgNVkU2LVVEQ==}
+  eslint-plugin-turbo@2.0.14:
+    resolution: {integrity: sha512-E++MSAEeWZTU0FYARrfakMPq+7XeltqeY4JBDQTzbGEWG3kgYJPeYBMWsypcvBujVihQLlMu0S6ImnfV692mHg==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -13925,10 +13925,10 @@ snapshots:
     dependencies:
       eslint: 8.39.0
 
-  eslint-config-turbo@2.0.12(eslint@8.39.0):
+  eslint-config-turbo@2.0.14(eslint@8.39.0):
     dependencies:
       eslint: 8.39.0
-      eslint-plugin-turbo: 2.0.12(eslint@8.39.0)
+      eslint-plugin-turbo: 2.0.14(eslint@8.39.0)
 
   eslint-import-resolver-node@0.3.7:
     dependencies:
@@ -14067,7 +14067,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-turbo@2.0.12(eslint@8.39.0):
+  eslint-plugin-turbo@2.0.14(eslint@8.39.0):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.39.0
