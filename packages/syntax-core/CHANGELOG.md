@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.2.1
+
+### Patch Changes
+
+- 78afe62: # TextField: Add on dark-background
+
 ## 19.2.0
 
 ### Minor Changes
