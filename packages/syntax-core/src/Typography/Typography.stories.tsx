@@ -104,6 +104,9 @@ export const sizes: StoryObj<typeof Typography> = {
       <Typography {...Default.args} size={400}>
         Size 400
       </Typography>
+      <Typography {...Default.args} size={500}>
+        Size 500
+      </Typography>
       <Typography {...Default.args} size={700}>
         Size 700
       </Typography>
