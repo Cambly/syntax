@@ -90,6 +90,10 @@
   font-size: 25px;
 }
 
+.size500 {
+  font-size: 32px;
+}
+
 .size700 {
   font-size: 38px;
 }
@@ -203,4 +207,8 @@
 
 .p400 {
   line-height: 130%;
+}
+
+.p500 {
+  line-height: 115%;
 }
