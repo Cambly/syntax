@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.3.0
+
+### Minor Changes
+
+- b86cb76: Add size 500 typography
+
 ## 19.2.1
 
 ### Patch Changes
