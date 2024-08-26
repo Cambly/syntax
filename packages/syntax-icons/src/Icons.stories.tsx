@@ -25,6 +25,7 @@ import CameraOff from "./icons/CameraOff";
 import CameraOn from "./icons/CameraOn";
 import CameraPhoto from "./icons/CameraPhoto";
 import Certificate from "./icons/Certificate";
+import Checkmark from "./icons/Checkmark";
 import ChevronDown from "./icons/ChevronDown";
 import ChevronLeft from "./icons/ChevronLeft";
 import ChevronRight from "./icons/ChevronRight";
@@ -130,6 +131,7 @@ const cambioIcons = [
   { name: "CameraOn", component: CameraOn },
   { name: "CameraPhoto", component: CameraPhoto },
   { name: "Certificate", component: Certificate },
+  { name: "Checkmark", component: Checkmark },
   { name: "ChevronDown", component: ChevronDown },
   { name: "ChevronLeft", component: ChevronLeft },
   { name: "ChevronRight", component: ChevronRight },
