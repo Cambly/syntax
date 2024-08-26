@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.5.0
+
+### Minor Changes
+
+- 4c642cc: Add checkmark icon
+
 ## 4.4.0
 
 ### Minor Changes
