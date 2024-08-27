@@ -101,10 +101,6 @@
       "types": "./dist/Certificate.d.ts",
       "default": "./dist/Certificate.js"
     },
-    "./Check": {
-      "types": "./dist/Check.d.ts",
-      "default": "./dist/Check.js"
-    },
     "./Checkmark": {
       "types": "./dist/Checkmark.d.ts",
       "default": "./dist/Checkmark.js"

@@ -142,7 +142,6 @@ const cambioIcons = [
   { name: "CameraOn", component: CameraOn },
   { name: "CameraPhoto", component: CameraPhoto },
   { name: "Certificate", component: Certificate },
-  { name: "Check", component: Check },
   { name: "Checkmark", component: Checkmark },
   { name: "ChevronDown", component: ChevronDown },
   { name: "ChevronLeft", component: ChevronLeft },
