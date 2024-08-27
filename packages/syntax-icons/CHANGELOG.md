@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.6.0
+
+### Minor Changes
+
+- 56e8674: External social media icons (USA, Korea, China)
+
 ## 4.5.0
 
 ### Minor Changes
