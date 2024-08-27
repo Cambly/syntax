@@ -42,6 +42,18 @@ describe("textField", () => {
     expect(screen.getByDisplayValue("Value")).toBeInTheDocument();
   });
 
+  it("displays the endBadge", () => {
+    render(
+      <TextField
+        label="TextField label"
+        value=""
+        onChange={() => undefined}
+        endBadge="Minutes"
+      />,
+    );
+    expect(screen.getByText("Minutes")).toBeInTheDocument();
+  });
+
   it("displays the error", () => {
     render(
       <TextField
