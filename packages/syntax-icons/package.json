@@ -61,6 +61,10 @@
       "types": "./dist/Bell.d.ts",
       "default": "./dist/Bell.js"
     },
+    "./Bilibili": {
+      "types": "./dist/Bilibili.d.ts",
+      "default": "./dist/Bilibili.js"
+    },
     "./Book": {
       "types": "./dist/Book.d.ts",
       "default": "./dist/Book.js"
@@ -157,6 +161,10 @@
       "types": "./dist/Eye.d.ts",
       "default": "./dist/Eye.js"
     },
+    "./Facebook": {
+      "types": "./dist/Facebook.d.ts",
+      "default": "./dist/Facebook.js"
+    },
     "./FlagCheckered": {
       "types": "./dist/FlagCheckered.d.ts",
       "default": "./dist/FlagCheckered.js"
@@ -209,9 +217,17 @@
       "types": "./dist/Information.d.ts",
       "default": "./dist/Information.js"
     },
+    "./Instagram": {
+      "types": "./dist/Instagram.d.ts",
+      "default": "./dist/Instagram.js"
+    },
     "./Joystick": {
       "types": "./dist/Joystick.d.ts",
       "default": "./dist/Joystick.js"
+    },
+    "./Kakao": {
+      "types": "./dist/Kakao.d.ts",
+      "default": "./dist/Kakao.js"
     },
     "./Keyboard": {
       "types": "./dist/Keyboard.d.ts",
@@ -260,6 +276,10 @@
     "./MultipleUsers": {
       "types": "./dist/MultipleUsers.d.ts",
       "default": "./dist/MultipleUsers.js"
+    },
+    "./Naver": {
+      "types": "./dist/Naver.d.ts",
+      "default": "./dist/Naver.js"
     },
     "./NewStarter": {
       "types": "./dist/NewStarter.d.ts",
@@ -429,6 +449,14 @@
       "types": "./dist/UserSearch.d.ts",
       "default": "./dist/UserSearch.js"
     },
+    "./Wechat": {
+      "types": "./dist/Wechat.d.ts",
+      "default": "./dist/Wechat.js"
+    },
+    "./Weibo": {
+      "types": "./dist/Weibo.d.ts",
+      "default": "./dist/Weibo.js"
+    },
     "./Wifi": {
       "types": "./dist/Wifi.d.ts",
       "default": "./dist/Wifi.js"
@@ -436,6 +464,18 @@
     "./WifiRouter": {
       "types": "./dist/WifiRouter.d.ts",
       "default": "./dist/WifiRouter.js"
+    },
+    "./X": {
+      "types": "./dist/X.d.ts",
+      "default": "./dist/X.js"
+    },
+    "./Xhs": {
+      "types": "./dist/Xhs.d.ts",
+      "default": "./dist/Xhs.js"
+    },
+    "./Youtube": {
+      "types": "./dist/Youtube.d.ts",
+      "default": "./dist/Youtube.js"
     }
   },
   "devDependencies": {
