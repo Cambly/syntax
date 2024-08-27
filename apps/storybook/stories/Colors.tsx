@@ -51,6 +51,8 @@ export default function Colors() {
                     color:
                       [
                         "color-cambio-white",
+                        "color-cambio-white-40",
+                        "color-cambio-white-70",
                         "color-cambio-cream",
                         "color-cambio-pink",
                         "color-cambio-sky",
