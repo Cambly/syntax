@@ -15,6 +15,7 @@ import ArrowLeft from "./icons/ArrowLeft";
 import ArrowRight from "./icons/ArrowRight";
 import ArrowUp from "./icons/ArrowUp";
 import Bell from "./icons/Bell";
+import Bilibili from "./icons/Bilibili";
 import Book from "./icons/Book";
 import BookmarkFilled from "./icons/BookmarkFilled";
 import BookmarkUnfilled from "./icons/BookmarkUnfilled";
@@ -39,6 +40,7 @@ import Download from "./icons/Download";
 import Education from "./icons/Education";
 import Exit from "./icons/Exit";
 import Eye from "./icons/Eye";
+import Facebook from "./icons/Facebook";
 import FlagCheckered from "./icons/FlagCheckered";
 import FlagFilled from "./icons/FlagFilled";
 import FlagUnfilled from "./icons/FlagUnfilled";
@@ -52,7 +54,9 @@ import Help from "./icons/Help";
 import Home from "./icons/Home";
 import IdentifyDocument from "./icons/IdentityDocument";
 import Information from "./icons/Information";
+import Instagram from "./icons/Instagram";
 import Joystick from "./icons/Joystick";
+import Kakao from "./icons/Kakao";
 import Keyboard from "./icons/Keyboard";
 import Leaf from "./icons/Leaf";
 import Lightbulb from "./icons/Lightbulb";
@@ -65,6 +69,7 @@ import MicrophoneOn from "./icons/MicrophoneOn";
 import More from "./icons/More";
 import MultiMediaDocument from "./icons/MultiMediaDocument";
 import MultipleUsers from "./icons/MultipleUsers";
+import Naver from "./icons/Naver";
 import NewStarter from "./icons/NewStarter";
 import Paperclip from "./icons/Paperclip";
 import Pause from "./icons/Pause";
@@ -107,24 +112,15 @@ import User from "./icons/User";
 import UserAdd from "./icons/UserAdd";
 import UserRemove from "./icons/UserRemove";
 import UserSearch from "./icons/UserSearch";
-import Wifi from "./icons/Wifi";
-import WifiRouter from "./icons/WifiRouter";
-import Instagram from "./icons/Instagram";
-import Xhs from "./icons/Xhs";
 import Wechat from "./icons/Wechat";
 import Weibo from "./icons/Weibo";
+import Wifi from "./icons/Wifi";
+import WifiRouter from "./icons/WifiRouter";
 import X from "./icons/X";
-import Facebook from "./icons/Facebook";
+import Xhs from "./icons/Xhs";
 import Youtube from "./icons/Youtube";
 
 const cambioIcons = [
-  { name: "X", component: X },
-  { name: "Facebook", component: Facebook },
-  { name: "Youtube", component: Youtube },
-  { name: "Instagram", component: Instagram },
-  { name: "Xhs", component: Xhs },
-  { name: "Wechat", component: Wechat },
-  { name: "Weibo", component: Weibo },
   { name: "Accent", component: Accent },
   { name: "Achievement", component: Achievement },
   { name: "AddNew", component: AddNew },
@@ -135,6 +131,7 @@ const cambioIcons = [
   { name: "ArrowRight", component: ArrowRight },
   { name: "ArrowUp", component: ArrowUp },
   { name: "Bell", component: Bell },
+  { name: "Bilibili", component: Bilibili },
   { name: "Book", component: Book },
   { name: "BookmarkFilled", component: BookmarkFilled },
   { name: "BookmarkUnfilled", component: BookmarkUnfilled },
@@ -159,6 +156,7 @@ const cambioIcons = [
   { name: "Education", component: Education },
   { name: "Exit", component: Exit },
   { name: "Eye", component: Eye },
+  { name: "Facebook", component: Facebook },
   { name: "FlagCheckered", component: FlagCheckered },
   { name: "FlagFilled", component: FlagFilled },
   { name: "FlagUnfilled", component: FlagUnfilled },
@@ -172,7 +170,9 @@ const cambioIcons = [
   { name: "Home", component: Home },
   { name: "IdentifyDocument", component: IdentifyDocument },
   { name: "Information", component: Information },
+  { name: "Instagram", component: Instagram },
   { name: "Joystick", component: Joystick },
+  { name: "Kakao", component: Kakao },
   { name: "Keyboard", component: Keyboard },
   { name: "Leaf", component: Leaf },
   { name: "Lightbulb", component: Lightbulb },
@@ -185,6 +185,7 @@ const cambioIcons = [
   { name: "More", component: More },
   { name: "MultiMediaDocument", component: MultiMediaDocument },
   { name: "MultipleUsers", component: MultipleUsers },
+  { name: "Naver", component: Naver },
   { name: "NewStarter", component: NewStarter },
   { name: "Paperclip", component: Paperclip },
   { name: "Pause", component: Pause },
@@ -227,8 +228,13 @@ const cambioIcons = [
   { name: "UserAdd", component: UserAdd },
   { name: "UserRemove", component: UserRemove },
   { name: "UserSearch", component: UserSearch },
+  { name: "Wechat", component: Wechat },
+  { name: "Weibo", component: Weibo },
   { name: "Wifi", component: Wifi },
   { name: "WifiRouter", component: WifiRouter },
+  { name: "X", component: X },
+  { name: "Xhs", component: Xhs },
+  { name: "Youtube", component: Youtube },
 ];
 
 const copyTextToClipboard = async (iconName: string) => {
