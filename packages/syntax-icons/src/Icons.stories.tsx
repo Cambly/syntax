@@ -109,8 +109,22 @@ import UserRemove from "./icons/UserRemove";
 import UserSearch from "./icons/UserSearch";
 import Wifi from "./icons/Wifi";
 import WifiRouter from "./icons/WifiRouter";
+import Instagram from "./icons/Instagram";
+import Xhs from "./icons/Xhs";
+import Wechat from "./icons/Wechat";
+import Weibo from "./icons/Weibo";
+import X from "./icons/X";
+import Facebook from "./icons/Facebook";
+import Youtube from "./icons/Youtube";
 
 const cambioIcons = [
+  { name: "X", component: X },
+  { name: "Facebook", component: Facebook },
+  { name: "Youtube", component: Youtube },
+  { name: "Instagram", component: Instagram },
+  { name: "Xhs", component: Xhs },
+  { name: "Wechat", component: Wechat },
+  { name: "Weibo", component: Weibo },
   { name: "Accent", component: Accent },
   { name: "Achievement", component: Achievement },
   { name: "AddNew", component: AddNew },
