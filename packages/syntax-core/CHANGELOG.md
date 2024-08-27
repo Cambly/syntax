@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 19.4.0
+
+### Minor Changes
+
+- 12b83c9: TextField: Add endBadge prop
+
 ## 19.3.0
 
 ### Minor Changes
