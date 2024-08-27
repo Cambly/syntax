@@ -25,6 +25,7 @@ import CameraOff from "./icons/CameraOff";
 import CameraOn from "./icons/CameraOn";
 import CameraPhoto from "./icons/CameraPhoto";
 import Certificate from "./icons/Certificate";
+import Check from "./icons/Check";
 import Checkmark from "./icons/Checkmark";
 import ChevronDown from "./icons/ChevronDown";
 import ChevronLeft from "./icons/ChevronLeft";
@@ -38,6 +39,16 @@ import Cross from "./icons/Cross";
 import Download from "./icons/Download";
 import Education from "./icons/Education";
 import Exit from "./icons/Exit";
+import ExternalBilibili from "./icons/ExternalBilibili";
+import ExternalFacebook from "./icons/ExternalFacebook";
+import ExternalInstagram from "./icons/ExternalInstagram";
+import ExternalKakao from "./icons/ExternalKakao";
+import ExternalNaver from "./icons/ExternalNaver";
+import ExternalTwitter from "./icons/ExternalTwitter";
+import ExternalWechat from "./icons/ExternalWechat";
+import ExternalWeibo from "./icons/ExternalWeibo";
+import ExternalXhs from "./icons/ExternalXhs";
+import ExternalYoutube from "./icons/ExternalYoutube";
 import Eye from "./icons/Eye";
 import FlagCheckered from "./icons/FlagCheckered";
 import FlagFilled from "./icons/FlagFilled";
@@ -131,6 +142,7 @@ const cambioIcons = [
   { name: "CameraOn", component: CameraOn },
   { name: "CameraPhoto", component: CameraPhoto },
   { name: "Certificate", component: Certificate },
+  { name: "Check", component: Check },
   { name: "Checkmark", component: Checkmark },
   { name: "ChevronDown", component: ChevronDown },
   { name: "ChevronLeft", component: ChevronLeft },
@@ -144,6 +156,16 @@ const cambioIcons = [
   { name: "Download", component: Download },
   { name: "Education", component: Education },
   { name: "Exit", component: Exit },
+  { name: "ExternalBilibili", component: ExternalBilibili },
+  { name: "ExternalFacebook", component: ExternalFacebook },
+  { name: "ExternalInstagram", component: ExternalInstagram },
+  { name: "ExternalKakao", component: ExternalKakao },
+  { name: "ExternalNaver", component: ExternalNaver },
+  { name: "ExternalTwitter", component: ExternalTwitter },
+  { name: "ExternalWechat", component: ExternalWechat },
+  { name: "ExternalWeibo", component: ExternalWeibo },
+  { name: "ExternalXhs", component: ExternalXhs },
+  { name: "ExternalYoutube", component: ExternalYoutube },
   { name: "Eye", component: Eye },
   { name: "FlagCheckered", component: FlagCheckered },
   { name: "FlagFilled", component: FlagFilled },

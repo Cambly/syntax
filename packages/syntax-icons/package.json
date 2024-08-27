@@ -101,6 +101,10 @@
       "types": "./dist/Certificate.d.ts",
       "default": "./dist/Certificate.js"
     },
+    "./Check": {
+      "types": "./dist/Check.d.ts",
+      "default": "./dist/Check.js"
+    },
     "./Checkmark": {
       "types": "./dist/Checkmark.d.ts",
       "default": "./dist/Checkmark.js"
@@ -152,6 +156,46 @@
     "./Exit": {
       "types": "./dist/Exit.d.ts",
       "default": "./dist/Exit.js"
+    },
+    "./ExternalBilibili": {
+      "types": "./dist/ExternalBilibili.d.ts",
+      "default": "./dist/ExternalBilibili.js"
+    },
+    "./ExternalFacebook": {
+      "types": "./dist/ExternalFacebook.d.ts",
+      "default": "./dist/ExternalFacebook.js"
+    },
+    "./ExternalInstagram": {
+      "types": "./dist/ExternalInstagram.d.ts",
+      "default": "./dist/ExternalInstagram.js"
+    },
+    "./ExternalKakao": {
+      "types": "./dist/ExternalKakao.d.ts",
+      "default": "./dist/ExternalKakao.js"
+    },
+    "./ExternalNaver": {
+      "types": "./dist/ExternalNaver.d.ts",
+      "default": "./dist/ExternalNaver.js"
+    },
+    "./ExternalTwitter": {
+      "types": "./dist/ExternalTwitter.d.ts",
+      "default": "./dist/ExternalTwitter.js"
+    },
+    "./ExternalWechat": {
+      "types": "./dist/ExternalWechat.d.ts",
+      "default": "./dist/ExternalWechat.js"
+    },
+    "./ExternalWeibo": {
+      "types": "./dist/ExternalWeibo.d.ts",
+      "default": "./dist/ExternalWeibo.js"
+    },
+    "./ExternalXhs": {
+      "types": "./dist/ExternalXhs.d.ts",
+      "default": "./dist/ExternalXhs.js"
+    },
+    "./ExternalYoutube": {
+      "types": "./dist/ExternalYoutube.d.ts",
+      "default": "./dist/ExternalYoutube.js"
     },
     "./Eye": {
       "types": "./dist/Eye.d.ts",
