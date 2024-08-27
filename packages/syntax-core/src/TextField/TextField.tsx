@@ -8,6 +8,7 @@ import styles from "./TextField.module.css";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 import useIsHydrated from "../useIsHydrated";
+import Badge from "../Badge/Badge";
 
 /**
  * [TextField](https://cambly-syntax.vercel.app/?path=/docs/components-textfield--docs) is a component that allows users to enter text.
@@ -17,6 +18,7 @@ export default function TextField({
   "data-testid": dataTestId,
   disabled: disabledProp = false,
   on = "lightBackground",
+  endBadge,
   errorText = "",
   helperText = "",
   id,
@@ -50,6 +52,10 @@ export default function TextField({
    * @defaulValue `lightBackground`
    */
   on?: "lightBackground" | "darkBackground";
+  /**
+   * Text for endBadge shown at the end of the input field.
+   */
+  endBadge?: string;
   /**
    * Text shown below TextField if there is an input error.
    */
@@ -123,30 +129,48 @@ export default function TextField({
           </Box>
         </label>
       )}
-      <input
-        autoComplete={autoComplete}
-        className={classNames(
-          styles.textfield,
-          styles.md,
-          styles.height,
-          errorText &&
-            (on === "darkBackground"
-              ? styles.transparentInputError
-              : styles.inputError),
-          {
-            [styles.transparent]: on === "darkBackground",
-          },
+      <Box
+        display="flex"
+        position="relative"
+        justifyContent={endBadge ? "end" : "start"}
+      >
+        <input
+          autoComplete={autoComplete}
+          className={classNames(
+            styles.textfield,
+            styles.md,
+            styles.height,
+            errorText &&
+              (on === "darkBackground"
+                ? styles.transparentInputError
+                : styles.inputError),
+            {
+              [styles.transparent]: on === "darkBackground",
+            },
+          )}
+          data-testid={dataTestId}
+          disabled={disabled}
+          id={inputId}
+          maxLength={maxLength}
+          type={type}
+          onChange={onChange}
+          placeholder={placeholder}
+          value={value}
+          step={step}
+        />
+        {endBadge && (
+          <Box
+            position="absolute"
+            dangerouslySetInlineStyle={{ __style: { top: "25%" } }}
+            marginEnd={4}
+          >
+            <Badge
+              text={endBadge}
+              color={on === "lightBackground" ? "gray370" : "gray870"}
+            />
+          </Box>
         )}
-        data-testid={dataTestId}
-        disabled={disabled}
-        id={inputId}
-        maxLength={maxLength}
-        type={type}
-        onChange={onChange}
-        placeholder={placeholder}
-        value={value}
-        step={step}
-      />
+      </Box>
       {(helperText || errorText) && (
         <Box paddingX={1}>
           <Typography size={100} color={errorText ? errorTextColor : textColor}>

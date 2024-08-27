@@ -17,6 +17,7 @@ export default {
     placeholder: "Placeholder",
     disabled: false,
     on: "lightBackground",
+    endBadge: "",
     errorText: "",
     helperText: "",
     type: "text",
@@ -33,6 +34,7 @@ export default {
     disabled: {
       control: "boolean",
     },
+    endBadge: { control: "text" },
     on: {
       options: ["lightBackground", "darkBackground"],
       control: { type: "radio" },
@@ -109,6 +111,11 @@ export const Default: StoryObj<typeof TextField> = {
 
 export const helperText: StoryObj<typeof TextField> = {
   args: { helperText: "Helper text" },
+  render: (args) => <TextFieldDefault {...args} />,
+};
+
+export const EndBadge: StoryObj<typeof TextField> = {
+  args: { endBadge: "Minutes" },
   render: (args) => <TextFieldDefault {...args} />,
 };
 
