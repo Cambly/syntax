@@ -25,7 +25,6 @@ import CameraOff from "./icons/CameraOff";
 import CameraOn from "./icons/CameraOn";
 import CameraPhoto from "./icons/CameraPhoto";
 import Certificate from "./icons/Certificate";
-import Check from "./icons/Check";
 import Checkmark from "./icons/Checkmark";
 import ChevronDown from "./icons/ChevronDown";
 import ChevronLeft from "./icons/ChevronLeft";
