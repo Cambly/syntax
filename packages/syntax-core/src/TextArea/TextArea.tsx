@@ -36,7 +36,7 @@ type TextAreaProps = {
    */
   maxLength?: number;
   /**
-   * Indicate whether the button renders on a light or dark background. Changes the color of the input field and text
+   * Indicate whether the component renders on a light or dark background. Changes the color of the input field and text
    *
    * @defaulValue `lightBackground`
    */

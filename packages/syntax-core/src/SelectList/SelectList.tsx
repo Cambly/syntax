@@ -29,6 +29,7 @@ export default function SelectList({
   helperText,
   id,
   label,
+  on,
   onChange,
   onClick,
   placeholderText,
@@ -48,6 +49,12 @@ export default function SelectList({
    * @defaultValue false
    */
   disabled?: boolean;
+  /**
+   * Indicate whether the component renders on a light or dark background. Changes the color of the text
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
   /**
    * Callback to be called when select is clicked
    */
