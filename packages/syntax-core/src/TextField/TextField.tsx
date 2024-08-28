@@ -47,7 +47,7 @@ export default function TextField({
    */
   disabled?: boolean;
   /**
-   * Indicate whether the button renders on a light or dark background. Changes the color of the button
+   * Indicate whether the button renders on a light or dark background. Changes the color of the input field, text and badge
    *
    * @defaulValue `lightBackground`
    */

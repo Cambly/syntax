@@ -8,17 +8,25 @@
   margin: 0;
   width: 100%;
   font-size: 16px;
-}
-
-.transparent {
-  background: transparent;
-  border: 1px solid var(--color-cambio-white-100);
-  color: var(--color-cambio-white-100);
+  color: var(--color-cambio-gray-700);
 }
 
 .textfield:focus {
   outline: none;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+  color: var(--color-cambio-black);
+}
+
+.transparent {
+  background: transparent;
+  border: 1px solid var(--color-cambio-white-40);
+  color: var(--color-cambio-white-70);
+}
+
+.transparent:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+  color: var(--color-cambio-white-100);
 }
 
 .textfield:disabled {
