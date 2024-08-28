@@ -34,7 +34,6 @@ export default function SelectList({
   onClick,
   placeholderText,
   selectedValue = "",
-  color = "white",
 }: {
   /**
    * One or more SelectList.Option components.
@@ -88,11 +87,6 @@ export default function SelectList({
    * Value of the currently selected option
    */
   selectedValue?: string;
-  /**
-   * Color of the select box
-   * @defaultValue white
-   */
-  color?: "white" | "clear";
 }): ReactElement {
   const reactId = useId();
   const isHydrated = useIsHydrated();
@@ -100,6 +94,11 @@ export default function SelectList({
   const selectId = id ?? reactId;
   const { isFocusVisible } = useFocusVisible();
   const [isFocused, setIsFocused] = useState(false);
+  const textColor = on === "darkBackground" ? "white" : "gray900";
+  const errorTextColor =
+    on !== "darkBackground"
+      ? "destructive-lightBackground"
+      : "destructive-darkBackground";
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLSelectElement> = (
     event,
@@ -110,16 +109,11 @@ export default function SelectList({
     }
   };
 
-  const textColor = {
-    white: "gray700",
-    clear: "white",
-  } as const;
-
   const getArrowIconColor = () => {
     if (errorText) {
       return ColorBaseDestructive700;
     } else {
-      if (color === "clear") {
+      if (on === "darkBackground") {
         return ColorCambioWhite100;
       } else {
         return ColorBaseGray700;
@@ -136,7 +130,7 @@ export default function SelectList({
       {label && (
         <label htmlFor={selectId}>
           <Box paddingX={1}>
-            <Typography size={100} color={textColor[color]}>
+            <Typography size={100} color={textColor}>
               {label}
             </Typography>
           </Box>
@@ -154,7 +148,7 @@ export default function SelectList({
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-            [styles[`selectColor${color}`]]: color,
+            [styles.transparent]: on === "darkBackground",
           })}
           onChange={onChange}
           onClick={onClick}
@@ -188,10 +182,7 @@ export default function SelectList({
       </div>
       {(helperText || errorText) && (
         <Box paddingX={1}>
-          <Typography
-            size={100}
-            color={errorText ? "destructive-primary" : textColor[color]}
-          >
+          <Typography size={100} color={errorText ? errorTextColor : textColor}>
             {errorText ? errorText : helperText}
           </Typography>
         </Box>

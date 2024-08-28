@@ -17,6 +17,7 @@ export default {
   args: {
     "data-testid": "",
     label: "Label",
+    on: "lightBackground",
     placeholderText: "Placeholder",
     errorText: "",
     helperText: "Helper text",
@@ -28,6 +29,10 @@ export default {
   argTypes: {
     disabled: {
       control: "boolean",
+    },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
     },
     onChange: { action: "clicked" },
     color: {
@@ -54,10 +59,42 @@ const Options = () => (
   </>
 );
 
+function SelectListDefault({
+  label = "Label",
+  placeholderText = "Placeholder",
+  selectedValue: initialValue = "",
+  ...rest
+}) {
+  const [value, setValue] = useState("");
+  return (
+    <Box
+      padding={2}
+      dangerouslySetInlineStyle={{
+        __style: {
+          backgroundImage:
+            rest.on === "darkBackground"
+              ? "linear-gradient(0deg, #000, #555 )"
+              : null,
+        },
+      }}
+    >
+      <SelectList
+        label={label}
+        placeholderText={placeholderText}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        selectedValue={initialValue || value}
+        {...rest}
+      >
+        <Options />
+      </SelectList>
+    </Box>
+  );
+}
+
 export const Default: StoryObj<typeof SelectList> = {
-  args: {
-    children: <Options />,
-  },
+  render: (args) => <SelectListDefault {...args} />,
 };
 
 export const Error: StoryObj<typeof SelectList> = {
@@ -68,6 +105,7 @@ export const Error: StoryObj<typeof SelectList> = {
     label: "Label",
     placeholderText: "Placeholder",
   },
+  render: (args) => <SelectListDefault {...args} />,
 };
 
 const SelectListInteractive = ({
@@ -105,11 +143,11 @@ const SelectListInteractiveDark = ({
     <Box backgroundColor="black" padding={4}>
       <SelectList
         label="Label"
-        color="clear"
         helperText="Helper text"
         selectedValue={selectionValue}
         placeholderText={placeholderText}
         onChange={onChange}
+        on="darkBackground"
       >
         <Options />
       </SelectList>
