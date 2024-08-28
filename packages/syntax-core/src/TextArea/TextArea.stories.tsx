@@ -1,4 +1,5 @@
 import { type StoryObj, type Meta } from "@storybook/react";
+import Box from "../Box/Box";
 import TextArea from "./TextArea";
 import React, { useState } from "react";
 
@@ -18,6 +19,7 @@ export default {
     errorText: "",
     helperText: "",
     maxLength: 1024,
+    on: "lightBackground",
     resize: "none",
     rows: 3,
     value: "",
@@ -27,6 +29,10 @@ export default {
   argTypes: {
     disabled: {
       control: "boolean",
+    },
+    on: {
+      options: ["lightBackground", "darkBackground"],
+      control: { type: "radio" },
     },
     placeholder: {
       control: "text",
@@ -47,15 +53,27 @@ function TextAreaDefault({
 }) {
   const [value, setValue] = useState("");
   return (
-    <TextArea
-      label={label}
-      placeholder={placeholder}
-      onChange={(event) => {
-        setValue(event.target.value);
+    <Box
+      padding={2}
+      dangerouslySetInlineStyle={{
+        __style: {
+          backgroundImage:
+            args.on === "darkBackground"
+              ? "linear-gradient(0deg, #000, #555 )"
+              : null,
+        },
       }}
-      value={initialValue || value}
-      {...args}
-    />
+    >
+      <TextArea
+        label={label}
+        placeholder={placeholder}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        value={initialValue || value}
+        {...args}
+      />
+    </Box>
   );
 }
 

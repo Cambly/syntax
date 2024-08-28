@@ -36,6 +36,12 @@ type TextAreaProps = {
    */
   maxLength?: number;
   /**
+   * Indicate whether the button renders on a light or dark background. Changes the color of the input field and text
+   *
+   * @defaulValue `lightBackground`
+   */
+  on?: "lightBackground" | "darkBackground";
+  /**
    * Callback fired when the value is changed.
    */
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -79,6 +85,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       placeholder = "",
       rows = 3,
       value = "",
+      on,
       onChange,
       resize = "none",
     }: TextAreaProps,
@@ -88,6 +95,11 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const disabled = !isHydrated || disabledProp;
     const reactId = useId();
     const inputId = id ?? reactId;
+    const textColor = on === "darkBackground" ? "white" : "gray900";
+    const errorTextColor =
+      on !== "darkBackground"
+        ? "destructive-lightBackground"
+        : "destructive-darkBackground";
 
     return (
       <Box
@@ -105,7 +117,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {label && (
           <label className={textFieldStyles.label} htmlFor={inputId}>
             <Box paddingX={1}>
-              <Typography size={100} color="gray700">
+              <Typography size={100} color={textColor}>
                 {label}
               </Typography>
             </Box>
@@ -119,8 +131,12 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
               textFieldStyles.textfield,
               styles.textarea,
               styles[`resize${resize}`],
+              errorText &&
+                (on === "darkBackground"
+                  ? textFieldStyles.transparentInputError
+                  : textFieldStyles.inputError),
               {
-                [textFieldStyles.inputError]: errorText,
+                [textFieldStyles.transparent]: on === "darkBackground",
               },
             )}
             id={inputId}
@@ -136,7 +152,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           <Box paddingX={1}>
             <Typography
               size={100}
-              color={errorText ? "destructive-darkBackground" : "gray700"}
+              color={errorText ? errorTextColor : textColor}
             >
               {errorText || helperText}
             </Typography>
