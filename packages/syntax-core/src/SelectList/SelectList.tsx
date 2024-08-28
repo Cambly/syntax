@@ -144,7 +144,9 @@ export default function SelectList({
           className={classNames(styles.selectBox, styles.selectBoxCambio, {
             [styles.unselected]: !selectedValue && !errorText,
             [styles.selected]: selectedValue && !errorText,
-            [styles.selectErrorCambio]: errorText,
+            [styles.selectErrorCambio]: errorText && on === "lightBackground",
+            [styles.transparentInputError]:
+              errorText && on === "darkBackground",
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
