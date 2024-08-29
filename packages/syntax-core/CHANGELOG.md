@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.0.0
+
+### Major Changes
+
+- 7ac82e8: TextArea, SelectList: Add on prop and update lightBackground/darkBackground colors
+
 ## 19.4.0
 
 ### Minor Changes
