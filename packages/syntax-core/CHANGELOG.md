@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.1.0
+
+### Minor Changes
+
+- e239b3d: Add yellow badge color
+
 ## 20.0.0
 
 ### Major Changes
