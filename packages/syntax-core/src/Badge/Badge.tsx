@@ -16,6 +16,7 @@ const badgeColor = [
   "thistle",
   "pink",
   "cream",
+  "yellow700",
 ] as const;
 
 const textColorForBackgroundColor = (
@@ -32,6 +33,7 @@ const textColorForBackgroundColor = (
     case "pink":
     case "lilac":
     case "cream":
+    case "yellow700":
       return "gray900";
     default:
       return "white";

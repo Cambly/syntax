@@ -29,6 +29,7 @@ export default {
         "thistle",
         "pink",
         "cream",
+        "yellow700",
       ],
       control: { type: "radio" },
     },
