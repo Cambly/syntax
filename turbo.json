@@ -5,6 +5,10 @@
       "outputs": ["dist/**", "storybook-static/**"],
       "dependsOn": ["^build"]
     },
+    "check-exports": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
     "test": {
       "outputs": ["coverage/**"],
       "dependsOn": ["^build"]

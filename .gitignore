@@ -8,6 +8,7 @@
 dist
 dist-ssr
 node_modules
+packages/**/*.tgz
 public/dist
 server/dist
 storybook-static/

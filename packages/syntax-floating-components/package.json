@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "check-exports": "attw $(pnpm pack) --ignore-rules=cjs-resolves-to-esm",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf *.tgz",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
     "stylelint": "stylelint \"**/*.css\"",

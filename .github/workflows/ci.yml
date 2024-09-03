@@ -10,12 +10,14 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build & Check exports
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - run: pnpm run build
+      - run: |
+          pnpm run build
+          pnpm run check-exports
         env:
           NODE_OPTIONS: --max-old-space-size=8192
 

@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "NODE_OPTIONS=--max_old_space_size=8192 tsup",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "check-exports": "attw $(pnpm pack) --ignore-rules=cjs-resolves-to-esm",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf *.tgz",
     "dev": "NODE_OPTIONS=--max_old_space_size=8192 tsup --watch",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "stylelint": "stylelint \"**/*.css\"",

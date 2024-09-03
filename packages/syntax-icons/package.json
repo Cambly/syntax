@@ -4,7 +4,6 @@
   "version": "4.7.0",
   "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
@@ -13,9 +12,10 @@
   ],
   "scripts": {
     "build": "tsup src/icons/*.tsx --format esm --dts --external react",
+    "check-exports": "attw $(pnpm pack) --ignore-rules=cjs-resolves-to-esm --ignore-rules=no-resolution",
     "dev": "tsup src/icons/*.tsx --format esm --watch --dts --external react",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf *.tgz",
     "test": "vitest run",
     "test:watch": "vitest"
   },
