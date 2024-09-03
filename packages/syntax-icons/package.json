@@ -12,8 +12,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/icons/*.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/icons/*.tsx --format esm,cjs --watch --dts --external react",
+    "build": "tsup src/icons/*.tsx --format esm --dts --external react",
+    "dev": "tsup src/icons/*.tsx --format esm --watch --dts --external react",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "test": "vitest run",

@@ -11,7 +11,7 @@ export default defineConfig({
       .map((name) => `src/transforms/${name}`),
   ],
   external: ["source-map-support", "jscodeshift"],
-  format: ["cjs", "esm"],
+  format: "esm",
   sourcemap: true,
   target: ["node18"],
   dts: true,
