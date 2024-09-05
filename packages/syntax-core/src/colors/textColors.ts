@@ -16,7 +16,7 @@ export default function textColor(
 ): string {
   switch (color) {
     case "gray700":
-      return colorStyles.cambioGray800Color;
+      return colorStyles.cambioGray700Color;
     case "white":
       return colorStyles.cambioWhiteColor;
     case "white-secondary":
