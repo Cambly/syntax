@@ -1,3 +1,4 @@
 .dialog {
+  outline: none;
   min-width: var(--trigger-width);
 }
