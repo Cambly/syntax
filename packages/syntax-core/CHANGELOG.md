@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.2.0
+
+### Minor Changes
+
+- 47da64d: Typography: gray700 was actually using gray 800
+
 ## 20.1.0
 
 ### Minor Changes
