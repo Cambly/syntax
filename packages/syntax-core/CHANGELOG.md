@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.3.0
+
+### Minor Changes
+
+- b420c73: Dialog: remove outline
+
 ## 20.2.0
 
 ### Minor Changes
