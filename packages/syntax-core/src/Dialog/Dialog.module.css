@@ -1,8 +1,4 @@
 .dialog {
-  min-width: var(--trigger-width);
-}
-
-.dialog:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, var(--elevation-400);
+  min-width: var(--trigger-width);
 }
