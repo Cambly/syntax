@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.4.0
+
+### Minor Changes
+
+- 9660a3c: Tabs: Update padding on hover state
+
 ## 20.3.0
 
 ### Minor Changes

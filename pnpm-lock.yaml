@@ -60,7 +60,7 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:20.3.0
+        specifier: workspace:20.4.0
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:0.14.0
@@ -155,7 +155,7 @@ importers:
     dependencies:
       eslint-config-next:
         specifier: latest
-        version: 14.2.8(eslint@8.39.0)(typescript@5.0.4)
+        version: 14.2.9(eslint@8.39.0)(typescript@5.0.4)
       eslint-config-prettier:
         specifier: 8.8.0
         version: 8.8.0(eslint@8.39.0)
@@ -1811,8 +1811,8 @@ packages:
   '@ndelangen/get-tarball@3.0.7':
     resolution: {integrity: sha512-NqGfTZIZpRFef1GoVaShSSRwDC3vde3ThtTeqFdcYd6ipKqnfEVhjK2hUeHjCQUcptyZr2TONqcloFXM+5QBrQ==}
 
-  '@next/eslint-plugin-next@14.2.8':
-    resolution: {integrity: sha512-ue5vcq9Fjk3asACRDrzYjcGMEN7pMMDQ5zUD+FenkqvlPCVUD1x7PxBNOLfPYDZOrk/Vnl4GHmjj2mZDqPW8TQ==}
+  '@next/eslint-plugin-next@14.2.9':
+    resolution: {integrity: sha512-tmLXuDNfPTqoFuSfsd9Q4R96SS/UCKTPtBnnR+cKDcbh8xZU+126vZnRWH1WEpOmS4Vl2Hy/X6SPmgOGZzn+hA==}
 
   '@nicolo-ribaudo/semver-v6@6.3.3':
     resolution: {integrity: sha512-3Yc1fUTs69MG/uZbJlLSI3JISMn2UV2rg+1D/vROUqZyh3l6iYHCs7GMp+M40ZD7yOdDbYjJcU1oTJhrc+dGKg==}
@@ -4122,8 +4122,8 @@ packages:
     engines: {node: '>=6.0'}
     hasBin: true
 
-  eslint-config-next@14.2.8:
-    resolution: {integrity: sha512-gRqxHkSuCrQro6xqXnmXphcq8rdiw7FI+nLXpWmIlp/AfUzHCgXNQE7mOK+oco+SRaJbhqCg/68uRln1qjkF+Q==}
+  eslint-config-next@14.2.9:
+    resolution: {integrity: sha512-aNgGqWBp2KFcuEf9zNqmv+8dBkOrdyOlCIbdtyw7fiCQioLqXNcXmalAyeNtVyE95Kwgg11bgXvuVqdxpbR79g==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -10416,7 +10416,7 @@ snapshots:
       pump: 3.0.0
       tar-fs: 2.1.1
 
-  '@next/eslint-plugin-next@14.2.8':
+  '@next/eslint-plugin-next@14.2.9':
     dependencies:
       glob: 10.3.10
 
@@ -13903,9 +13903,9 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-config-next@14.2.8(eslint@8.39.0)(typescript@5.0.4):
+  eslint-config-next@14.2.9(eslint@8.39.0)(typescript@5.0.4):
     dependencies:
-      '@next/eslint-plugin-next': 14.2.8
+      '@next/eslint-plugin-next': 14.2.9
       '@rushstack/eslint-patch': 1.4.0
       '@typescript-eslint/eslint-plugin': 5.59.2(@typescript-eslint/parser@5.59.2(eslint@8.39.0)(typescript@5.0.4))(eslint@8.39.0)(typescript@5.0.4)
       '@typescript-eslint/parser': 5.59.2(eslint@8.39.0)(typescript@5.0.4)
