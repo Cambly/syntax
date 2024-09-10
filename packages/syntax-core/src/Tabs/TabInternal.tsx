@@ -99,7 +99,7 @@ export default function TabInternal({
       alignItems="center"
       justifyContent="start"
       gap={2}
-      paddingY={2}
+      padding={2}
     >
       <Typography
         size={0}
