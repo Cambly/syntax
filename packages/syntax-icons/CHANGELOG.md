@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 4.7.0
+
+### Minor Changes
+
+- 0abbcd7: Add screen off icon
+
 ## 4.6.0
 
 ### Minor Changes
