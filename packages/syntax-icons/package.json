@@ -353,6 +353,10 @@
       "types": "./dist/Screen.d.ts",
       "default": "./dist/Screen.js"
     },
+    "./ScreenOff": {
+      "types": "./dist/ScreenOff.d.ts",
+      "default": "./dist/ScreenOff.js"
+    },
     "./Search": {
       "types": "./dist/Search.d.ts",
       "default": "./dist/Search.js"
