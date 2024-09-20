@@ -88,6 +88,7 @@ import Refresh from "./icons/Refresh";
 import Rotate from "./icons/Rotate";
 import Safety from "./icons/Safety";
 import Screen from "./icons/Screen";
+import ScreenOff from "./icons/ScreenOff";
 import Search from "./icons/Search";
 import SearchUsers from "./icons/SearchUsers";
 import Send from "./icons/Send";
@@ -204,6 +205,7 @@ const cambioIcons = [
   { name: "Rotate", component: Rotate },
   { name: "Safety", component: Safety },
   { name: "Screen", component: Screen },
+  { name: "ScreenOff", component: ScreenOff },
   { name: "Search", component: Search },
   { name: "SearchUsers", component: SearchUsers },
   { name: "Send", component: Send },
