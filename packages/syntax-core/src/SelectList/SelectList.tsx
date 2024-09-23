@@ -150,7 +150,7 @@ export default function SelectList({
             [focusStyles.accessibilityOutlineFocus]:
               isFocused && isFocusVisible, // for focus keyboard
             [styles.selectMouseFocusStyling]: isFocused && !isFocusVisible, // for focus mouse
-            [styles.transparent]: on === "darkBackground",
+            [styles.darkBackground]: on === "darkBackground",
           })}
           onChange={onChange}
           onClick={onClick}

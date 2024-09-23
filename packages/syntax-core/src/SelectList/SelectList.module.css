@@ -48,13 +48,13 @@
   color: var(--color-base-gray-800);
 }
 
-.transparent {
-  background: transparent;
+.darkBackground {
+  background: var(--color-cambio-gray-900);
   border: 1px solid var(--color-cambio-white-40);
   color: var(--color-cambio-white-70);
 }
 
-.transparent:focus {
+.darkBackground:focus {
   outline: none;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
   color: var(--color-cambio-white-100);
