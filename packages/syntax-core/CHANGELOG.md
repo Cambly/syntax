@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.5.0
+
+### Minor Changes
+
+- 2f60502: SelectList error on windows
+
 ## 20.4.0
 
 ### Minor Changes
