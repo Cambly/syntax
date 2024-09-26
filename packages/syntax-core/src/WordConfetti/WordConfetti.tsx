@@ -1,4 +1,10 @@
-import { type ReactNode, forwardRef, useMemo, type ReactElement } from "react";
+import {
+  type ReactNode,
+  forwardRef,
+  useMemo,
+  type ReactElement,
+  useCallback,
+} from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
@@ -8,7 +14,7 @@ const themeBackgroundColors = {
   warm: ["red", "tan", "orange"],
 } as const;
 
-const degreeOfTiltOptions = [-6, -6, -3, -3, 0, 3, 3, 6, 6];
+const degreeOfTiltOptions = [-6, -3, 0, 3, 6];
 
 const paddings = {
   300: "16px 20px 16px 20px",
@@ -104,15 +110,25 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       words,
     } = props;
 
+    const hashCode = useCallback((string: string) => {
+      let hash = 0;
+      if (string.length === 0) return hash;
+      for (let i = 0; i < string.length; i++) {
+        const char = string.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash |= 0; // Convert to 32bit integer
+      }
+      return Math.abs(hash);
+    }, []);
+
     const styledWords = useMemo(
       () =>
         words.map((word) => ({
           text: word,
-          backgroundColor:
-            themeBackgroundColors[theme][Math.floor(Math.random() * 3)],
-          rotation: degreeOfTiltOptions[Math.floor(Math.random() * 9)],
+          backgroundColor: themeBackgroundColors[theme][hashCode(word) % 3],
+          rotation: degreeOfTiltOptions[hashCode(word) % 5],
         })),
-      [theme, words],
+      [hashCode, theme, words],
     );
 
     return (
