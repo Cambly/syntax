@@ -16,7 +16,7 @@ type IconProps = {
    * * 100: 16px x 16px
    * * 200: 20px x 20px
    * * 300: 24px x 24px
-   * * 400: 28px x 28px
+   * * 400: 32px x 32px
    * * 500: 48px x 48px
    * * 600: 72px x 72px
    * * 700: 100px x 100px
