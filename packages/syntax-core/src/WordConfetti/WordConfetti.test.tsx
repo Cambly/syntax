@@ -26,4 +26,22 @@ describe("wordConfetti", () => {
     expect(screen.getByText("test")).toBeInTheDocument();
     expect(screen.getByText("word")).toBeInTheDocument();
   });
+
+  it("returns a consistent color and tilt for words", () => {
+    render(
+      <WordConfetti
+        size={300}
+        theme="neutral"
+        words={["test", "word", "confetti"]}
+      />,
+    );
+
+    const confetti = screen.getByTestId("confetti");
+    expect(confetti.getAttribute("style")).toMatchInlineSnapshot(
+      `"padding: 16px 20px 16px 20px; transform: rotate(3deg);"`,
+    );
+    expect(confetti.className).toMatchInlineSnapshot(
+      `"_box_b2ac18 _thistleBackgroundColor_0d99d4"`,
+    );
+  });
 });
