@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.6.0
+
+### Minor Changes
+
+- 9917a92: Icon: update sizing
+
 ## 20.5.0
 
 ### Minor Changes
