@@ -1,10 +1,4 @@
-import {
-  type ReactNode,
-  forwardRef,
-  useMemo,
-  type ReactElement,
-  useCallback,
-} from "react";
+import { type ReactNode, forwardRef, useMemo, type ReactElement } from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
@@ -56,6 +50,7 @@ const WordConfetto = ({
 }): ReactElement => {
   return (
     <Box
+      data-testid={text}
       backgroundColor={backgroundColor}
       dangerouslySetInlineStyle={{
         __style: {
@@ -97,6 +92,17 @@ type WordConfettiProps = {
   words: string[];
 };
 
+const hashCode = (string: string): number => {
+  let hash = 0;
+  if (string.length === 0) return hash;
+  for (let i = 0; i < string.length; i++) {
+    const char = string.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};
+
 /**
  * [WordConfetti](https://cambly-syntax.vercel.app/?path=/docs/components-wordconfetti--docs) is a container for displaying words in different color themes and fun offset angles.
  */
@@ -110,17 +116,6 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       words,
     } = props;
 
-    const hashCode = useCallback((string: string) => {
-      let hash = 0;
-      if (string.length === 0) return hash;
-      for (let i = 0; i < string.length; i++) {
-        const char = string.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
-        hash |= 0; // Convert to 32bit integer
-      }
-      return Math.abs(hash);
-    }, []);
-
     const styledWords = useMemo(
       () =>
         words.map((word) => ({
@@ -128,7 +123,7 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
           backgroundColor: themeBackgroundColors[theme][hashCode(word) % 3],
           rotation: degreeOfTiltOptions[hashCode(word) % 5],
         })),
-      [hashCode, theme, words],
+      [theme, words],
     );
 
     return (
