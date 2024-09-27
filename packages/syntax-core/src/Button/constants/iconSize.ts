@@ -8,6 +8,6 @@ export const materialIconSize = {
 
 export const internalIconSize = {
   sm: 100,
-  md: 200,
-  lg: 300,
+  md: 300,
+  lg: 400,
 } as const;
