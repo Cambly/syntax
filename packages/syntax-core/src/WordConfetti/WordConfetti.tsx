@@ -1,4 +1,4 @@
-import { type ReactNode, forwardRef, useMemo, type ReactElement } from "react";
+import { type ReactNode, forwardRef, type ReactElement } from "react";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
@@ -8,7 +8,7 @@ const themeBackgroundColors = {
   warm: ["red", "tan", "orange"],
 } as const;
 
-const degreeOfTiltOptions = [-6, -6, -3, -3, 0, 3, 3, 6, 6];
+const degreeOfTiltOptions = [-6, -3, 0, 3, 6] as const;
 
 const paddings = {
   300: "16px 20px 16px 20px",
@@ -28,28 +28,38 @@ const gaps = {
   1100: 10,
 } as const;
 
+const hashWord = (string: string): number => {
+  let hash = 0;
+  if (string.length === 0) return hash;
+  for (let i = 0; i < string.length; i++) {
+    const char = string.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};
+
 const WordConfetto = ({
-  backgroundColor,
-  rotation,
+  "data-testid": dataTestId,
   size,
   text,
+  theme,
 }: {
-  backgroundColor:
-    | "pink"
-    | "lilac"
-    | "thistle"
-    | "sky"
-    | "slate"
-    | "teal"
-    | "red"
-    | "tan"
-    | "orange";
-  rotation: number;
+  "data-testid"?: string;
   size: 300 | 400 | 700 | 800 | 900 | 1100;
   text: string;
+  theme: "neutral" | "cool" | "warm";
 }): ReactElement => {
+  const hash = hashWord(text);
+  const backgroundColor =
+    themeBackgroundColors[theme][
+      hash % Object.values(themeBackgroundColors[theme]).length
+    ];
+  const rotation = degreeOfTiltOptions[hash % degreeOfTiltOptions.length];
+
   return (
     <Box
+      data-testid={dataTestId}
       backgroundColor={backgroundColor}
       dangerouslySetInlineStyle={{
         __style: {
@@ -104,17 +114,6 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
       words,
     } = props;
 
-    const styledWords = useMemo(
-      () =>
-        words.map((word) => ({
-          text: word,
-          backgroundColor:
-            themeBackgroundColors[theme][Math.floor(Math.random() * 3)],
-          rotation: degreeOfTiltOptions[Math.floor(Math.random() * 9)],
-        })),
-      [theme, words],
-    );
-
     return (
       <Box
         display="flex"
@@ -124,19 +123,17 @@ const WordConfetti = forwardRef<HTMLDivElement, WordConfettiProps>(
         ref={ref}
         gap={gaps[size]}
       >
-        {styledWords.map(
-          ({ text, backgroundColor, rotation }, index): ReactNode => {
-            return (
-              <WordConfetto
-                key={`${text}+${index}`}
-                backgroundColor={backgroundColor}
-                rotation={rotation}
-                size={size}
-                text={text}
-              />
-            );
-          },
-        )}
+        {words.map((word, index): ReactNode => {
+          return (
+            <WordConfetto
+              data-testid={dataTestId ? `${dataTestId}-${index}` : undefined}
+              key={`${word}${index}`}
+              size={size}
+              text={word}
+              theme={theme}
+            />
+          );
+        })}
       </Box>
     );
   },
