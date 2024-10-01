@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 20.7.0
+
+### Minor Changes
+
+- 3c42110: WordConfetti: add hashing function
+
 ## 20.6.0
 
 ### Minor Changes
