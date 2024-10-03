@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 21.0.0
+
+### Major Changes
+
+- a6ca749: ESM only exports
+
+### Patch Changes
+
+- Updated dependencies [a6ca749]
+  - @cambly/syntax-design-tokens@1.0.0
+
 ## 20.7.0
 
 ### Minor Changes
