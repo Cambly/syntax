@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 1.0.0
+
+### Major Changes
+
+- a6ca749: ESM only exports
+
 ## 0.14.0
 
 ### Minor Changes

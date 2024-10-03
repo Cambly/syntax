@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.0.0
+
+### Major Changes
+
+- a6ca749: ESM only exports
+
 ## 4.7.0
 
 ### Minor Changes

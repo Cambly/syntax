@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 1.0.0
+
+### Major Changes
+
+- a6ca749: ESM only exports
+
 ## 0.7.0
 
 ### Minor Changes
