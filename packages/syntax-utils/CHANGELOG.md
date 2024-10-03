@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 2.0.0
+
+### Major Changes
+
+- a6ca749: ESM only exports
+
 ## 1.5.0
 
 ### Minor Changes
