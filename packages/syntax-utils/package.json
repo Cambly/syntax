@@ -4,7 +4,6 @@
   "version": "1.5.0",
   "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
@@ -12,10 +11,11 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "build": "tsup src/index.tsx --format esm --dts --external react",
+    "check-exports": "attw $(pnpm pack) --ignore-rules=cjs-resolves-to-esm",
+    "dev": "tsup src/index.tsx --format esm --watch --dts --external react",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\" --max-warnings 0",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf *.tgz"
   },
   "devDependencies": {
     "@cambly/eslint-config-syntax": "workspace:*",

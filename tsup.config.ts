@@ -17,7 +17,7 @@ export default defineConfig({
       "**/*.test.*",
     ],
   }),
-  format: ["cjs", "esm"],
+  format: "esm",
   external: ["react", "react-dom"],
   noExternal: ["@cambly/syntax-design-tokens"],
   sourcemap: true,

@@ -4,6 +4,7 @@
     "start": "pnpm run dev",
     "build": "turbo run build",
     "changeset": "changeset",
+    "check-exports": "turbo run check-exports",
     "clean": "turbo run clean && rm -rf node_modules",
     "dev": "turbo run dev --no-cache --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -17,6 +18,7 @@
     "generate-icons": "npx tsx './packages/syntax-icons/src/generate-icons/generateIcons.ts'"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.4",
     "@changesets/cli": "2.26.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",

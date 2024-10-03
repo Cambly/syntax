@@ -4,7 +4,6 @@
   "description": "Cambly design system codemods",
   "bin": "./dist/index.js",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
