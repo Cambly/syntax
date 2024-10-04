@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.1.0
+
+### Minor Changes
+
+- 31d4bc9: TapArea: add fullHeight prop
+
 ## 21.0.0
 
 ### Major Changes
