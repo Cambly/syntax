@@ -7,6 +7,11 @@ import ZIndex from "./ZIndex";
 
 [getZIndex](https://cambly-syntax.vercel.app/?path=/docs/z-index--docs) is a utility function that returns a z-index value based on the layer and local layer.
 
+```
+<Navbar zIndex={getZIndex("sticky")} />
+<Modal zIndex={getZIndex("modal")} />
+```
+
 ## Parameters
 
 - `layer`: The layer to get the z-index for.

@@ -1,5 +1,11 @@
 /**
  * [getZIndex](https://cambly-syntax.vercel.app/?path=/docs/ZIndex--docs) is a utility function that returns a z-index value based on the layer and local layer.
+ *
+ * Usage:
+ * ```
+ * <Navbar zIndex={getZIndex("sticky")} />
+ * <Modal zIndex={getZIndex("modal")} />
+ * ```
  */
 export default function getZIndex(
   /**
