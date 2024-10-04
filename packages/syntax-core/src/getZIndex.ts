@@ -1,5 +1,5 @@
 /**
- * [getZIndex](https://cambly-syntax.vercel.app/?path=/docs/ZIndex--docs) is a utility function that returns a z-index value based on the layer and local layer.
+ * [getZIndex](?path=/docs/ZIndex--docs) is a utility function that returns a z-index value based on the layer and local layer.
  *
  * Usage:
  * ```
@@ -11,12 +11,12 @@ export default function getZIndex(
   /**
    * The layer to get the z-index for.
    *
-   * * `base`: 0 // base layer
-   * * `menu`: 10 // example: dropdown menus
-   * * `sticky`: 20 // example: sticky headers
-   * * `fixed`: 30 // example: fixed position elements
-   * * `modal`: 40 // example: modals
-   * * `popup`: 50 // example: tooltips or popovers
+   * * `base`: 0
+   * * `menu`: 10
+   * * `sticky`: 20
+   * * `fixed`: 30
+   * * `modal`: 40
+   * * `popup`: 50
    *
    * @defaultValue `base`
    */
@@ -36,7 +36,7 @@ export default function getZIndex(
     fixed: 30,
     modal: 40,
     popup: 50,
-  };
+  } as const;
 
   return layerIndex[layer] + localLayer;
 }

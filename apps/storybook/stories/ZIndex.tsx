@@ -5,6 +5,8 @@ import Typography from "../../../packages/syntax-core/src/Typography/Typography"
 import Modal from "../../../packages/syntax-core/src/Modal/Modal";
 import getZIndex from "../../../packages/syntax-core/src/getZIndex";
 
+import "@cambly/syntax-design-tokens/dist/css/variables.css";
+
 export default function ZIndex() {
   const [currentZIndex, setCurrentZIndex] = useState(-10);
   const [openModal, setOpenModal] = useState(false);
@@ -34,24 +36,27 @@ export default function ZIndex() {
         display="flex"
         direction="column"
         gap={4}
-        dangerouslySetInlineStyle={{
-          __style: {
-            border: "1px solid black",
-          },
-        }}
+        border="primary"
       >
         <Box position="relative">
           <Box
             position="absolute"
             width="100%"
             height={1000}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            backgroundColor="gray900"
             dangerouslySetInlineStyle={{
               __style: {
-                backgroundColor: "darkgray",
                 zIndex: currentZIndex,
               },
             }}
-          />
+          >
+            <Typography color="white" weight="medium">
+              demonstration layer of z-index: {currentZIndex}
+            </Typography>
+          </Box>
         </Box>
         <Box
           width="100%"
@@ -59,9 +64,9 @@ export default function ZIndex() {
           display="flex"
           justifyContent="center"
           alignItems="center"
+          backgroundColor="sky"
           dangerouslySetInlineStyle={{
             __style: {
-              backgroundColor: "lightblue",
               zIndex: getZIndex("sticky"),
             },
           }}
@@ -76,9 +81,9 @@ export default function ZIndex() {
             display="flex"
             justifyContent="center"
             alignItems="center"
+            backgroundColor="slate"
             dangerouslySetInlineStyle={{
               __style: {
-                backgroundColor: "lightgreen",
                 zIndex: getZIndex("base"),
               },
             }}
@@ -92,9 +97,9 @@ export default function ZIndex() {
             display="flex"
             justifyContent="center"
             alignItems="center"
+            backgroundColor="teal"
             dangerouslySetInlineStyle={{
               __style: {
-                backgroundColor: "#E6E6FA",
                 zIndex: getZIndex("menu"),
               },
             }}
@@ -108,9 +113,9 @@ export default function ZIndex() {
             display="flex"
             justifyContent="center"
             alignItems="center"
+            backgroundColor="lilac"
             dangerouslySetInlineStyle={{
               __style: {
-                backgroundColor: "#FFB6C1",
                 zIndex: getZIndex("fixed"),
               },
             }}
@@ -126,17 +131,16 @@ export default function ZIndex() {
           onDismiss={() => setOpenModal(false)}
           zIndex={getZIndex("modal")}
         >
-          <Box
-            dangerouslySetInlineStyle={{
-              __style: {
-                backgroundColor: "#FFCC99",
-              },
-            }}
-          >
+          <Box>
             <Typography>Theoretical modal content (modal layer)</Typography>
             <Typography>
-              tiny bug on this page, backdrop doesnt show because of no color
-              tokens but this is just used to demonstrate the layers!
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Typography>
           </Box>
         </Modal>
