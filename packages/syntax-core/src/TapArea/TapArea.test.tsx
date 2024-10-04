@@ -56,6 +56,20 @@ describe("tapArea", () => {
     expect(tapArea).toHaveStyle({ width: "100%" });
   });
 
+  it("correctly applies fullHeight when set", async () => {
+    render(
+      <TapArea
+        data-testid="tap-area-testid"
+        onClick={() => {
+          /* empty */
+        }}
+        fullHeight
+      />,
+    );
+    const tapArea = await screen.findByTestId("tap-area-testid");
+    expect(tapArea).toHaveStyle({ height: "100%" });
+  });
+
   it("sets an accessibility label", async () => {
     render(
       <TapArea

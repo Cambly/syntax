@@ -29,6 +29,10 @@ type TapAreaProps = AriaAttributes & {
    */
   disabled?: boolean;
   /**
+   * If `true`, the tap area will be full height
+   */
+  fullHeight?: boolean;
+  /**
    * If `true`, the tap area will be full width
    */
   fullWidth?: boolean;
@@ -94,6 +98,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
       accessibilityLabel,
       "data-testid": dataTestId,
       disabled: disabledProp = false,
+      fullHeight = false,
       fullWidth = true,
       onClick,
       onMouseEnter,
@@ -158,6 +163,7 @@ const TapArea = forwardRef<HTMLDivElement, TapAreaProps>(
         className={classNames(
           styles.tapArea,
           styles[`${disabled ? "disabled" : "enabled"}`],
+          fullHeight && styles.fullHeight,
           fullWidth && styles.fullWidth,
           isHoveredOrFocussed && styles.hoveredOrFocussed,
           roundingClasses,
