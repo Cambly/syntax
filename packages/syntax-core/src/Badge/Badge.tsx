@@ -87,6 +87,7 @@ const Badge = ({
             color={textColorForBackgroundColor(color)}
             size={100}
             weight="medium"
+            transform="uppercase"
           >
             {text}
           </Typography>
