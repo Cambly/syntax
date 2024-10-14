@@ -60,7 +60,7 @@ import HeartFilled from "./icons/HeartFilled";
 import HeartUnfilled from "./icons/HeartUnfilled";
 import Help from "./icons/Help";
 import Home from "./icons/Home";
-import IdentifyDocument from "./icons/IdentityDocument";
+import IdentityDocument from "./icons/IdentityDocument";
 import Information from "./icons/Information";
 import Joystick from "./icons/Joystick";
 import Keyboard from "./icons/Keyboard";
@@ -177,7 +177,7 @@ const cambioIcons = [
   { name: "HeartUnfilled", component: HeartUnfilled },
   { name: "Help", component: Help },
   { name: "Home", component: Home },
-  { name: "IdentifyDocument", component: IdentifyDocument },
+  { name: "IdentityDocument", component: IdentityDocument },
   { name: "Information", component: Information },
   { name: "Joystick", component: Joystick },
   { name: "Keyboard", component: Keyboard },
