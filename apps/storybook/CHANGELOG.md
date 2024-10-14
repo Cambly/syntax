@@ -1,5 +1,11 @@
 # @syntax/storybook
 
+## 0.22.0
+
+### Minor Changes
+
+- 32cb7b9: fix typo for identity document
+
 ## 0.21.42
 
 ### Patch Changes

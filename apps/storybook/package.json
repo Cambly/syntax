@@ -1,6 +1,6 @@
 {
   "name": "@syntax/storybook",
-  "version": "0.21.42",
+  "version": "0.22.0",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider storybook dev -p 6006",
