@@ -171,7 +171,7 @@ export default function Modal({
               <Box display="flex" direction="column" width="100%">
                 {image && <Box>{image}</Box>}
                 <Box padding={6}>
-                  <Heading as="h1" size={700} fontStyle="serif">
+                  <Heading as="h1" size={500} fontStyle="serif">
                     {header}
                   </Heading>
                 </Box>
