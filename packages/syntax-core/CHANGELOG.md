@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.2.0
+
+### Minor Changes
+
+- f261e34: modal: update title size to 500
+
 ## 21.1.0
 
 ### Minor Changes
