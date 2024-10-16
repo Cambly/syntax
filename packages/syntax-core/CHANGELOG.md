@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.3.0
+
+### Minor Changes
+
+- 417c652: Badge: Always capitalize text
+
 ## 21.2.0
 
 ### Minor Changes
