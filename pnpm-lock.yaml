@@ -69,7 +69,7 @@ importers:
         specifier: workspace:1.0.0
         version: link:../../packages/syntax-design-tokens
       '@cambly/syntax-floating-components':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^2.0.0
         version: link:../../packages/syntax-floating-components
       react:
         specifier: 18.2.0

@@ -1,5 +1,11 @@
 # @cambly/syntax-floating-components
 
+## 2.0.0
+
+### Major Changes
+
+- 93ad515: Tooltip: Reconfigure API for easier usage + add zIndex as a prop
+
 ## 1.0.0
 
 ### Major Changes
