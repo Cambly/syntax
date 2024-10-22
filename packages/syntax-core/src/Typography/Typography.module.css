@@ -154,7 +154,7 @@
   text-align: end;
 }
 
-/* Boldness */
+/* Weight */
 
 .regular {
   font-weight: 400;
@@ -211,4 +211,29 @@
 
 .p500 {
   line-height: 115%;
+}
+
+/* White Space */
+.inherit {
+  white-space: inherit;
+}
+
+.normal {
+  white-space: normal;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.pre {
+  white-space: pre;
+}
+
+.preLine {
+  white-space: pre-line;
+}
+
+.preWrap {
+  white-space: pre-wrap;
 }

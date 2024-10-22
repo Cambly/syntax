@@ -127,6 +127,20 @@ const Typography = forwardRef<
      * @defaultValue "regular"
      */
     weight?: "regular" | "medium" | "semiBold" | "bold";
+    /**
+     * Controls how whitespace within the element is handled.
+     *
+     * See: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space
+     *
+     * @defaultValue "inherit"
+     */
+    whiteSpace?:
+      | "inherit"
+      | "normal"
+      | "nowrap"
+      | "pre"
+      | "preLine"
+      | "preWrap";
   }
 >(function Typography(
   {
@@ -144,6 +158,7 @@ const Typography = forwardRef<
     transform = "none",
     underline = false,
     weight = "regular",
+    whiteSpace = "inherit",
   },
   ref,
 ): ReactElement {
@@ -156,6 +171,7 @@ const Typography = forwardRef<
         styles.typography,
         styles[align],
         styles[weight],
+        styles[whiteSpace],
         fontStyle === "serif" ? styles.serif : styles.sansSerif,
         textColor(color),
         inline && styles.inline,
