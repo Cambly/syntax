@@ -57,9 +57,15 @@ type TooltipOptions = {
    * @defaultValue "absolute"
    */
   strategy?: Strategy;
+  /**
+   * The z-index of the tooltip
+   *
+   * @defaultValue 0
+   */
+  zIndex?: number;
 };
 
-export function useTooltip({
+function useTooltip({
   delay = 0,
   initialOpen = false,
   open: controlledOpen,
@@ -67,6 +73,7 @@ export function useTooltip({
   strategy = "absolute",
   onOpen = undefined,
   onClose = undefined,
+  zIndex = 0,
 }: TooltipOptions): UseFloatingReturn & {
   getReferenceProps: (
     userProps?: React.HTMLProps<Element> | undefined,
@@ -80,6 +87,7 @@ export function useTooltip({
   arrowRef: React.MutableRefObject<null>;
   open: boolean;
   setOpen: (open: boolean) => void;
+  zIndex: number;
 } {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
@@ -136,13 +144,14 @@ export function useTooltip({
 
   return React.useMemo(
     () => ({
+      zIndex,
       open,
       setOpen,
       ...interactions,
       ...data,
       arrowRef,
     }),
-    [open, setOpen, interactions, data],
+    [zIndex, open, setOpen, interactions, data],
   );
 }
 
@@ -160,24 +169,36 @@ const useTooltipContext = () => {
   return context;
 };
 
-/**
- * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
- */
-export function Tooltip({
-  children,
-  ...options
-}: { children: React.ReactNode } & TooltipOptions): JSX.Element {
-  // This can accept any props as options, e.g. `placement`,
-  // or other positioning options.
-  const tooltip = useTooltip(options);
-  return (
-    <TooltipContext.Provider value={tooltip}>
-      {children}
-    </TooltipContext.Provider>
-  );
-}
+const TooltipContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLProps<HTMLDivElement>
+>(function TooltipContent(props, propRef) {
+  const { zIndex, context: floatingContext, ...context } = useTooltipContext();
+  const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-export const TooltipTrigger = React.forwardRef<
+  if (!context.open) return null;
+
+  return (
+    <FloatingPortal>
+      <div
+        {...context.getFloatingProps(props)}
+        ref={ref}
+        className={styles.tooltipContent}
+        style={{
+          ...context.floatingStyles,
+          zIndex,
+        }}
+      >
+        <Typography size={100} color="white">
+          {props.children}
+        </Typography>
+        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
+      </div>
+    </FloatingPortal>
+  );
+});
+
+const TooltipTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement>
 >(function TooltipTrigger({ children, ...props }, propRef) {
@@ -207,30 +228,40 @@ export const TooltipTrigger = React.forwardRef<
   }
 });
 
-export const TooltipContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
->(function TooltipContent(props, propRef) {
-  const { context: floatingContext, ...context } = useTooltipContext();
-  const ref = useMergeRefs([context.refs.setFloating, propRef]);
+/**
+ * [Tooltip](https://cambly-syntax.vercel.app/?path=/docs/floating-components-tooltip--docs) displays contextual information on hover or focus.
+ *
+ *
+ * Usage:
+ * ```tsx
+ * <Tooltip content="This is a tooltip">
+ *   <IconButton />
+ * </Tooltip>
+ * ```
+ */
+export function Tooltip({
+  children,
+  content,
+  ...options
+}: {
+  children: React.ReactNode;
+  zIndex?: number;
+  content: string;
+} & TooltipOptions): JSX.Element {
+  // This can accept any props as options, e.g. `placement`,
+  // or other positioning options.
+  const tooltip = useTooltip(options);
 
-  if (!context.open) return null;
+  const value = React.useMemo(() => {
+    return {
+      ...tooltip,
+    };
+  }, [tooltip]);
 
   return (
-    <FloatingPortal>
-      <div
-        {...context.getFloatingProps(props)}
-        ref={ref}
-        className={styles.tooltipContent}
-        style={{
-          ...context.floatingStyles,
-        }}
-      >
-        <Typography size={100} color="white">
-          {props.children}
-        </Typography>
-        <FloatingArrow ref={context.arrowRef} context={floatingContext} />
-      </div>
-    </FloatingPortal>
+    <TooltipContext.Provider value={value}>
+      <TooltipTrigger>{children}</TooltipTrigger>
+      <TooltipContent>{content}</TooltipContent>
+    </TooltipContext.Provider>
   );
-});
+}
