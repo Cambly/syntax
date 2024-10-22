@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.4.0
+
+### Minor Changes
+
+- 377bbd3: Update 700 sizing on typography
+
 ## 21.3.0
 
 ### Minor Changes
