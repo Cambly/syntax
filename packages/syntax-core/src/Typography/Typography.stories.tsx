@@ -154,6 +154,7 @@ export const colors: StoryObj<typeof Typography> = {
 function SerifCharacterSupportExample() {
   return (
     <Box display="flex" gap={3} direction="column">
+      test
       <Typography size={200} fontStyle="serif">
         English: à, é, ñ
       </Typography>
