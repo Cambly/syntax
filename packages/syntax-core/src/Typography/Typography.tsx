@@ -134,13 +134,7 @@ const Typography = forwardRef<
      *
      * @defaultValue "inherit"
      */
-    whiteSpace?:
-      | "inherit"
-      | "normal"
-      | "nowrap"
-      | "pre"
-      | "preLine"
-      | "preWrap";
+    whiteSpace?: "inherit" | "normal" | "nowrap" | "preLine";
   }
 >(function Typography(
   {

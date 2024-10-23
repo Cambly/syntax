@@ -80,7 +80,7 @@ export default {
       control: { type: "radio" },
     },
     whiteSpace: {
-      options: ["inherit", "normal", "nowrap", "pre", "preLine", "preWrap"],
+      options: ["inherit", "normal", "nowrap", "preLine"],
       control: { type: "radio" },
     },
   },
@@ -267,30 +267,10 @@ export const WhiteSpaceNowrap: StoryObj<typeof Typography> = {
   ),
 };
 
-export const WhiteSpacePre: StoryObj<typeof Typography> = {
-  render: (args) => (
-    <>
-      <Typography {...args} whiteSpace="pre">
-        {WHITE_SPACE_SAMPLE}
-      </Typography>
-    </>
-  ),
-};
-
 export const WhiteSpacePreLine: StoryObj<typeof Typography> = {
   render: (args) => (
     <>
       <Typography {...args} whiteSpace="preLine">
-        {WHITE_SPACE_SAMPLE}
-      </Typography>
-    </>
-  ),
-};
-
-export const WhiteSpacePreWrap: StoryObj<typeof Typography> = {
-  render: (args) => (
-    <>
-      <Typography {...args} whiteSpace="preWrap">
         {WHITE_SPACE_SAMPLE}
       </Typography>
     </>

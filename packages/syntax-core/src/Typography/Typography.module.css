@@ -226,14 +226,6 @@
   white-space: nowrap;
 }
 
-.pre {
-  white-space: pre;
-}
-
 .preLine {
   white-space: pre-line;
-}
-
-.preWrap {
-  white-space: pre-wrap;
 }
