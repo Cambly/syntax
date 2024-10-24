@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.5.0
+
+### Minor Changes
+
+- f6cf4fc: Add support to Typography for setting white-space CSS property.
+
 ## 21.4.0
 
 ### Minor Changes
