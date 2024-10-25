@@ -435,11 +435,11 @@
   color: var(--color-cambio-white-100);
 }
 
-.cambioWhite40Color {
+.white40Color {
   color: var(--color-cambio-white-40);
 }
 
-.cambioWhite70Color {
+.white70Color {
   color: var(--color-cambio-white-70);
 }
 
@@ -449,6 +449,10 @@
 
 .cambioGray200Color {
   color: var(--color-cambio-gray-200);
+}
+
+.gray270Color {
+  color: var(--color-cambio-gray-270);
 }
 
 .cambioGray300Color {
@@ -643,11 +647,11 @@
   background-color: var(--color-cambio-white-100);
 }
 
-.cambioWhite40BackgroundColor {
+.white40BackgroundColor {
   background-color: var(--color-cambio-white-40);
 }
 
-.cambioWhite70BackgroundColor {
+.white70BackgroundColor {
   background-color: var(--color-cambio-white-70);
 }
 
@@ -661,6 +665,10 @@
 
 .cambioGray300BackgroundColor {
   background-color: var(--color-cambio-gray-300);
+}
+
+.gray270BackgroundColor {
+  background-color: var(--color-cambio-gray-270);
 }
 
 .gray370BackgroundColor {
