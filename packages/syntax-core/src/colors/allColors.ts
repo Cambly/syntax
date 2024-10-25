@@ -42,8 +42,6 @@ const colors = [
   "success800",
   "success900",
   "white",
-  "white40",
-  "white70",
   "yellow100",
   "yellow200",
   "yellow300",
