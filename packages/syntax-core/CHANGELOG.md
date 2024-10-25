@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.6.0
+
+### Minor Changes
+
+- bd49fae: Popover: add option for optional zIndex
+
 ## 21.5.0
 
 ### Minor Changes
