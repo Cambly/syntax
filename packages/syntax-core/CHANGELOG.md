@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.7.0
+
+### Minor Changes
+
+- 79e17d2: Update color css to support cambio colors
+
 ## 21.6.0
 
 ### Minor Changes
