@@ -12,6 +12,7 @@ import {
   internalIconSize,
 } from "../Button/constants/iconSize";
 import Box from "../Box/Box";
+import { Padding } from "../Box/Box.stories";
 
 const sizeToIndicatorSize = {
   sm: "6px",
@@ -150,8 +151,11 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           >
             <Box
               display="flex"
-              alignItems="center"
-              justifyContent="center"
+              dangerouslySetInlineStyle={{
+                __style: {
+                  padding: "inherit",
+                },
+              }}
               position="absolute"
               backgroundColor={indicatorColor}
               width={sizeToIndicatorSize[size]}
@@ -161,7 +165,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               dangerouslySetInlineStyle={{
                 __style: {
                   border: "1px solid white",
-                  transform: `translateY(${sizeToVerticalOffset[size]})`,
+                  // transform: `translateY(${sizeToVerticalOffset[size]})`,
                 },
               }}
             />
