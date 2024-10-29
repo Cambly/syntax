@@ -18,7 +18,7 @@ const ItemCountIcon = ({
       className={classnames({
         [colorStyles.cambioWhiteBackgroundColor]:
           on === "darkBackground" && selected,
-        [colorStyles.cambioWhite70BackgroundColor]:
+        [colorStyles.white70BackgroundColor]:
           on === "darkBackground" && !selected,
         [colorStyles.cambioBlackBackgroundColor]:
           on === "lightBackground" && selected,
