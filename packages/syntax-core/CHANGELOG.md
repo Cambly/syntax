@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.8.0
+
+### Minor Changes
+
+- 93606b1: Fix typography color-styling
+
 ## 21.7.0
 
 ### Minor Changes
