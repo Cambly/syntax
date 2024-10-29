@@ -69,6 +69,10 @@ export type RichSelectListProps = RichSelectBoxProps & {
    * @defaultValue white
    */
   color?: "white" | "clear";
+  /**
+   * Z-index of the popover
+   */
+  popoverZIndex?: number;
 };
 
 /**
@@ -111,6 +115,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
     selectedValues: selectedValuesProp,
     defaultSelectedValues: defaultSelectedValuesProp,
     color = "white",
+    popoverZIndex,
     ...richSelectBoxProps
   } = props;
 
@@ -212,6 +217,7 @@ function RichSelectList(props: RichSelectListProps): ReactElement {
         <Popover
           ref={overlayHandlerRef}
           disabled={disabled}
+          zIndex={popoverZIndex}
           content={
             // this Box wrapper is to reapply the padding that was stripped from popover's dialog to show the sticky save/close buttons. Ideally this could be avoided
             <Box
