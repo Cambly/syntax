@@ -26,7 +26,7 @@ export default {
         options: ["white", "clear"],
       },
     },
-    popoverZIndex: {
+    zIndex: {
       control: "number",
     },
   },
