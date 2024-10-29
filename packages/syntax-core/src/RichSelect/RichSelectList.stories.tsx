@@ -26,6 +26,9 @@ export default {
         options: ["white", "clear"],
       },
     },
+    popoverZIndex: {
+      control: "number",
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof RichSelectList>;
