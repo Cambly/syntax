@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.9.0
+
+### Minor Changes
+
+- 924906a: Add popoverZINdex prop to rich-select-list
+
 ## 21.8.0
 
 ### Minor Changes
