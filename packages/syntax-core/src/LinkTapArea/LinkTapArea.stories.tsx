@@ -67,3 +67,110 @@ export const Default: StoryObj<typeof LinkTapArea> = {
   },
   render: ({ ...args }) => <LinkTapArea {...args} />,
 };
+
+export const Disabled: StoryObj<typeof Default> = {
+  args: { ...Default.args, disabled: true },
+};
+
+const roundingLookup = {
+  sm: "8px",
+  md: "12px",
+  lg: "16px",
+  xl: "32px",
+  full: "999px",
+} as const;
+
+export const Rounding: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Box display="flex" direction="column" gap={4}>
+        <Typography>Hover to see the rounding effect</Typography>
+
+        <Box
+          display="flex"
+          gap={4}
+          flexWrap="wrap"
+          backgroundColor="gray100"
+          padding={4}
+        >
+          {(["sm", "md", "full"] as const).map((rounding) => (
+            <LinkTapArea
+              key={rounding}
+              href="https://www.cambly.com"
+              rounding={rounding}
+              fullWidth={false}
+              onClick={() => {
+                /* empty */
+              }}
+            >
+              <Box display="flex" alignItems="center" gap={2} padding={2}>
+                <Typography tooltip={`${roundingLookup[rounding]}`}>
+                  rounding=&quot;{rounding}&quot;
+                </Typography>
+              </Box>
+            </LinkTapArea>
+          ))}
+        </Box>
+      </Box>
+    </>
+  ),
+};
+
+export const Colored: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Box display="flex" direction="column" gap={4}>
+        <Typography>Hover to see the overlay</Typography>
+
+        <LinkTapArea
+          fullWidth={false}
+          href="https://www.cambly.com"
+          onClick={() => {
+            /* empty */
+          }}
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={2}
+            padding={2}
+            backgroundColor="purple300"
+          >
+            <Typography>Colored</Typography>
+          </Box>
+        </LinkTapArea>
+      </Box>
+    </>
+  ),
+};
+
+export const NestedLink: StoryObj<typeof Box> = {
+  render: () => (
+    <>
+      <Box display="flex" direction="column" gap={4}>
+        <LinkTapArea
+          fullWidth={false}
+          href="https://www.cambly.com"
+          onClick={() => {
+            /* empty */
+          }}
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={2}
+            padding={2}
+            backgroundColor="purple200"
+          >
+            <Typography>
+              Link:{" "}
+              <a href="https://www.cambly.com/learn" target="_blank">
+                Cambly
+              </a>
+            </Typography>
+          </Box>
+        </LinkTapArea>
+      </Box>
+    </>
+  ),
+};
