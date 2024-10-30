@@ -9,6 +9,7 @@ import tapAreaStyles from "../TapArea/TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
 import useIsHydrated from "../useIsHydrated";
 import classNames from "classnames";
+import styles from "./LinkTapArea.module.css";
 
 type LinkTapAreaProps = AriaAttributes & {
   /**
@@ -170,12 +171,12 @@ const LinkTapArea = forwardRef<HTMLAnchorElement, LinkTapAreaProps>(
       rounding !== "none" && roundingStyles[`rounding${rounding}`];
 
     return (
-      // Chessy LinkTapArea style?
       <a
         {...accessibilityProps}
         aria-disabled={disabled || accessibilityProps["aria-disabled"]}
         aria-label={accessibilityLabel ?? accessibilityProps["aria-label"]}
         className={classNames(
+          styles.linkTapArea,
           tapAreaStyles.tapArea,
           tapAreaStyles[`${disabled ? "disabled" : "enabled"}`],
           fullHeight && tapAreaStyles.fullHeight,

@@ -1,0 +1,14 @@
+.linkTapArea {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.linkTapArea:focus,
+.linkTapArea:hover {
+  text-decoration: none;
+}
+
+/* Chessy: do we need this? */
+.fitContent {
+  width: fit-content;
+}
