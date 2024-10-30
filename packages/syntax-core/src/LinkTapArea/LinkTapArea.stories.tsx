@@ -10,6 +10,8 @@ export default {
   title: "Components/LinkTapArea",
   component: LinkTapArea,
   args: {
+    href: "https://www.cambly.com",
+    target: "_blank",
     disabled: false,
     rounding: "none",
     tabIndex: 0,
@@ -18,6 +20,26 @@ export default {
     "data-testid": "",
   },
   argTypes: {
+    href: {
+      control: { type: "text" },
+    },
+    target: {
+      options: ["_blank", "_self", "_parent", "_top", undefined],
+      control: { type: "radio" },
+    },
+    rel: {
+      options: [
+        "prev",
+        "next",
+        "nofollow",
+        "noreferrer",
+        "search",
+        "tag",
+        "related",
+        "alternate",
+      ],
+      control: { type: "radio" },
+    },
     disabled: {
       control: "boolean",
     },
