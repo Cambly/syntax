@@ -13,6 +13,7 @@ import Icon from "./Icon/Icon";
 import IconButton from "./IconButton/IconButton";
 import IconLinkButton from "./IconLinkButton/IconLinkButton";
 import LinkButton from "./LinkButton/LinkButton";
+import LinkTapArea from "./LinkTapArea/LinkTapArea";
 import Modal from "./Modal/Modal";
 import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
@@ -45,6 +46,7 @@ export {
   IconButton,
   IconLinkButton,
   LinkButton,
+  LinkTapArea,
   Modal,
   Popover,
   RadioButton,
