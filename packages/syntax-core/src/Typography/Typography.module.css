@@ -117,7 +117,7 @@
   }
 
   .size700 {
-    font-size: 49px;
+    font-size: 44px;
   }
 
   .size800 {
@@ -154,7 +154,7 @@
   text-align: end;
 }
 
-/* Boldness */
+/* Weight */
 
 .regular {
   font-weight: 400;
@@ -211,4 +211,21 @@
 
 .p500 {
   line-height: 115%;
+}
+
+/* White Space */
+.inherit {
+  white-space: inherit;
+}
+
+.normal {
+  white-space: normal;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.preLine {
+  white-space: pre-line;
 }

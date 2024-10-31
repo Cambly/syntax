@@ -233,7 +233,14 @@ export const BackgroundColor: StoryObj<typeof Box> = {
           <Box key={color} backgroundColor={color} width={240} padding={2}>
             <Typography
               color={
-                ["gray10", "gray30", "white", "cream"].includes(color) ||
+                [
+                  "gray10",
+                  "gray30",
+                  "white",
+                  "cream",
+                  "white40",
+                  "white70",
+                ].includes(color) ||
                 (number && parseInt(number) < 400)
                   ? "gray900"
                   : "white"

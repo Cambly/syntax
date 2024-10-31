@@ -26,6 +26,9 @@ export default {
         options: ["white", "clear"],
       },
     },
+    zIndex: {
+      control: "number",
+    },
   },
   tags: ["autodocs"],
 } as Meta<typeof RichSelectList>;

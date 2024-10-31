@@ -1,5 +1,53 @@
 # @cambly/syntax-core
 
+## 21.9.0
+
+### Minor Changes
+
+- 924906a: Add popoverZINdex prop to rich-select-list
+
+## 21.8.0
+
+### Minor Changes
+
+- 93606b1: Fix typography color-styling
+
+## 21.7.0
+
+### Minor Changes
+
+- 79e17d2: Update color css to support cambio colors
+
+## 21.6.0
+
+### Minor Changes
+
+- bd49fae: Popover: add option for optional zIndex
+
+## 21.5.0
+
+### Minor Changes
+
+- f6cf4fc: Add support to Typography for setting white-space CSS property.
+
+## 21.4.0
+
+### Minor Changes
+
+- 377bbd3: Update 700 sizing on typography
+
+## 21.3.0
+
+### Minor Changes
+
+- 417c652: Badge: Always capitalize text
+
+## 21.2.0
+
+### Minor Changes
+
+- f261e34: modal: update title size to 500
+
 ## 21.1.0
 
 ### Minor Changes

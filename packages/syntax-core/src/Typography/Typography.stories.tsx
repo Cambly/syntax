@@ -23,6 +23,7 @@ export default {
     inline: false,
     lineClamp: 0,
     weight: "regular",
+    whiteSpace: "inherit",
     tooltip: "",
   },
   argTypes: {
@@ -76,6 +77,10 @@ export default {
     },
     weight: {
       options: ["regular", "medium", "semiBold", "bold"],
+      control: { type: "radio" },
+    },
+    whiteSpace: {
+      options: ["inherit", "normal", "nowrap", "preLine"],
       control: { type: "radio" },
     },
   },
@@ -234,6 +239,39 @@ export const Weight: StoryObj<typeof Typography> = {
       </Typography>
       <Typography {...args} weight="bold">
         Weight bold
+      </Typography>
+    </>
+  ),
+};
+
+const WHITE_SPACE_SAMPLE =
+  "\t\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed nibh consectetur, posuere massa et, ultricies ipsum. Vivamus id placerat erat. Maecenas eleifend dolor vitae lobortis luctus. Nulla facilisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut vel maximus metus, a vestibulum elit. In at tellus luctus, blandit quam non, feugiat enim. In gravida blandit venenatis. Pellentesque sit amet suscipit eros. Sed euismod magna gravida eleifend dictum. Phasellus vitae sapien nec massa vestibulum consectetur vitae eget ipsum. Curabitur ut feugiat quam, ut pulvinar est.\n\n\t\t\tFusce gravida eleifend nibh scelerisque facilisis. Aliquam malesuada, magna ac suscipit finibus, enim turpis dignissim nisl, id bibendum sem risus sed mi. Nunc rutrum diam ut risus accumsan, et tristique metus eleifend. Integer placerat placerat orci vitae ullamcorper. Curabitur gravida ante ut ante auctor, et porttitor justo vulputate. Maecenas vitae nisi viverra, volutpat libero at, aliquet ipsum. Etiam fermentum vitae turpis eu placerat. Etiam vulputate tristique ipsum ut efficitur. Nullam non leo eu justo consectetur volutpat dignissim sit amet arcu. Integer nec velit id mauris cursus bibendum at nec nisl. Maecenas imperdiet gravida felis eget laoreet. Suspendisse potenti. Maecenas tincidunt, nisl non finibus ultricies, tellus tellus efficitur neque, a faucibus sapien turpis ac ipsum.\n\n\t\t\tUt ullamcorper lorem varius risus pellentesque pulvinar. Proin mi velit, auctor non quam id, euismod dignissim lacus. Duis a nulla risus. Nullam vestibulum eu lacus non viverra. Sed rhoncus mi nec orci imperdiet, quis euismod magna consequat. Fusce euismod a magna eget mattis. Aliquam convallis interdum neque in commodo. Quisque mattis neque eget metus condimentum pharetra. Maecenas aliquam maximus molestie. Proin scelerisque sodales dui nec mattis. Donec vehicula purus non tristique semper. Phasellus placerat erat ut quam semper gravida. Aliquam ac metus sit amet arcu scelerisque auctor. Vestibulum gravida mauris id metus viverra pulvinar. Vestibulum tincidunt lobortis vulputate.";
+
+export const WhiteSpaceNormal: StoryObj<typeof Typography> = {
+  render: (args) => (
+    <>
+      <Typography {...args} whiteSpace="normal">
+        {WHITE_SPACE_SAMPLE}
+      </Typography>
+    </>
+  ),
+};
+
+export const WhiteSpaceNowrap: StoryObj<typeof Typography> = {
+  render: (args) => (
+    <>
+      <Typography {...args} whiteSpace="nowrap">
+        {WHITE_SPACE_SAMPLE}
+      </Typography>
+    </>
+  ),
+};
+
+export const WhiteSpacePreLine: StoryObj<typeof Typography> = {
+  render: (args) => (
+    <>
+      <Typography {...args} whiteSpace="preLine">
+        {WHITE_SPACE_SAMPLE}
       </Typography>
     </>
   ),

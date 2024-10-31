@@ -49,12 +49,16 @@ type PopoverProps = {
    * @defaultValue "bottom"
    */
   placement?: Placement;
+  /** Optional z-index of the popover */
+  zIndex?: number;
 };
 
 type AriaPopoverProps = {
   "data-testid"?: string;
   /** Optional handler for change of visibility for overlaid content, for analytics timing */
   onChangeContentVisibility?: (visible: boolean) => void;
+  /** Optional z-index of the popover */
+  zIndex?: number;
 } & ReactAriaPopoverProps;
 /**
  * AriaPopover: This component extends Popover from react-aria-components
@@ -64,12 +68,20 @@ type AriaPopoverProps = {
  */
 export const AriaPopover = forwardRef<HTMLElement, AriaPopoverProps>(
   function AriaPopover(
-    { children: childrenProp, onChangeContentVisibility, ...otherProps },
+    {
+      children: childrenProp,
+      zIndex,
+      onChangeContentVisibility,
+      ...otherProps
+    },
     ref,
   ): ReactElement {
     return (
       <ReactAriaPopover
         ref={ref}
+        style={{
+          zIndex,
+        }}
         {...mergeProps(
           {
             offset: 8,
@@ -144,6 +156,7 @@ const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
     onChangeContentVisibility,
     open,
     placement = "bottom",
+    zIndex,
   } = props;
 
   const modal = !children || modalProp;
@@ -166,6 +179,7 @@ const Popover = forwardRef<OverlayHandlerRef, PopoverProps>(function Popover(
     <AriaPopover
       placement={syntaxToReactAriaPlacement(placement)}
       onChangeContentVisibility={onChangeContentVisibility}
+      zIndex={zIndex}
     >
       <Dialog accessibilityLabel={accessibilityLabel} data-testid={dataTestId}>
         {content}

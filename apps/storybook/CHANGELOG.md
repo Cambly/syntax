@@ -1,5 +1,68 @@
 # @syntax/storybook
 
+## 0.22.9
+
+### Patch Changes
+
+- Updated dependencies [924906a]
+  - @cambly/syntax-core@21.9.0
+
+## 0.22.8
+
+### Patch Changes
+
+- Updated dependencies [93606b1]
+  - @cambly/syntax-core@21.8.0
+
+## 0.22.7
+
+### Patch Changes
+
+- Updated dependencies [79e17d2]
+  - @cambly/syntax-core@21.7.0
+
+## 0.22.6
+
+### Patch Changes
+
+- Updated dependencies [bd49fae]
+  - @cambly/syntax-core@21.6.0
+
+## 0.22.5
+
+### Patch Changes
+
+- Updated dependencies [f6cf4fc]
+  - @cambly/syntax-core@21.5.0
+
+## 0.22.4
+
+### Patch Changes
+
+- Updated dependencies [93ad515]
+  - @cambly/syntax-floating-components@2.0.0
+
+## 0.22.3
+
+### Patch Changes
+
+- Updated dependencies [377bbd3]
+  - @cambly/syntax-core@21.4.0
+
+## 0.22.2
+
+### Patch Changes
+
+- Updated dependencies [417c652]
+  - @cambly/syntax-core@21.3.0
+
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [f261e34]
+  - @cambly/syntax-core@21.2.0
+
 ## 0.22.0
 
 ### Minor Changes

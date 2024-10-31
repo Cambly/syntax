@@ -146,6 +146,11 @@ export default {
         defaultValue: { summary: "bottom" },
       },
     },
+    zIndex: {
+      control: { type: "number" },
+      defaultValue: undefined,
+      description: "Optional z-index of the popover",
+    },
     children: {},
     content: {},
   },
