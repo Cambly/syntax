@@ -7,8 +7,3 @@
 .linkTapArea:hover {
   text-decoration: none;
 }
-
-/* Chessy: do we need this? */
-.fitContent {
-  width: fit-content;
-}
