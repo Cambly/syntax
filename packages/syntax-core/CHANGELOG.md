@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.10.0
+
+### Minor Changes
+
+- 8f641ed: Add LinkTapArea
+
 ## 21.9.0
 
 ### Minor Changes
