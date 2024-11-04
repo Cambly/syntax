@@ -25,6 +25,7 @@ import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
 import ThemeProvider from "./ThemeProvider/ThemeProvider";
+import Toast from "./Toast/Toast";
 import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
 import WordConfetti from "./WordConfetti/WordConfetti";
@@ -57,6 +58,7 @@ export {
   TextArea,
   TextField,
   ThemeProvider,
+  Toast,
   Tooltip,
   Typography,
   WordConfetti,
