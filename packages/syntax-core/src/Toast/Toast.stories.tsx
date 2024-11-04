@@ -15,6 +15,8 @@ export default {
   args: {
     heading: "Attention",
     body: "You're doing great :)",
+    on: "lightBackground",
+    timeout: 5000,
   },
   argTypes: {
     body: {
@@ -35,13 +37,6 @@ export default {
 } as Meta<typeof Toast>;
 
 export const Default: StoryObj<typeof Toast> = {
-  args: {
-    heading: "Attention",
-    body: "You're doing great :)",
-    on: "lightBackground",
-    icon: Alert,
-    timeout: 10000,
-  },
   render: (args) => {
     return (
       <Box
@@ -53,4 +48,8 @@ export const Default: StoryObj<typeof Toast> = {
       </Box>
     );
   },
+};
+
+export const WithSyntaxIcon: StoryObj<typeof Toast> = {
+  args: { icon: Alert },
 };
