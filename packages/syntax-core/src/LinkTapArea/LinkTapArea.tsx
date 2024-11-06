@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import tapAreaStyles from "../TapArea/TapArea.module.css";
 import roundingStyles from "../rounding.module.css";
-import useIsHydrated from "../useIsHydrated";
 import classNames from "classnames";
 import styles from "./LinkTapArea.module.css";
 
@@ -40,12 +39,6 @@ type LinkTapAreaProps = AriaAttributes & {
    */
   "data-testid"?: string;
   /**
-   * If `true`, the tap area will be disabled
-   *
-   * @defaultValue false
-   */
-  disabled?: boolean;
-  /**
    * If `true`, the tap area will be full height
    */
   fullHeight?: boolean;
@@ -54,9 +47,9 @@ type LinkTapAreaProps = AriaAttributes & {
    */
   fullWidth?: boolean;
   /**
-   * The callback to be called when the tap area is clicked
+   * An optional onClick event. This is used for certain wrapper's support (such as react-router-dom).
    */
-  onClick: (event: React.SyntheticEvent<HTMLAnchorElement>) => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   /**
    * The callback to be called when the tap area is hovered
    */
@@ -113,7 +106,6 @@ const LinkTapArea = forwardRef<HTMLAnchorElement, LinkTapAreaProps>(
       rel,
       accessibilityLabel,
       "data-testid": dataTestId,
-      disabled: disabledProp = false,
       fullHeight = false,
       fullWidth = true,
       onClick,
@@ -125,35 +117,14 @@ const LinkTapArea = forwardRef<HTMLAnchorElement, LinkTapAreaProps>(
     }: LinkTapAreaProps,
     ref,
   ) => {
-    const isHydrated = useIsHydrated();
-    const disabled = !isHydrated || disabledProp;
     const [{ hovered, focussed }, dispatch] = useReducer(reducer, {
       hovered: false,
       focussed: false,
     });
-    const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
-      if (disabled) {
-        undefined;
-      } else {
-        event.currentTarget.blur();
-        onClick(event);
-      }
-    };
-
-    const handleKeyDown: React.KeyboardEventHandler<HTMLAnchorElement> = (
-      event,
-    ) => {
-      if (disabled) return;
-      if (event.key === "Enter" || event.key === " " || event.key === "Space") {
-        event.preventDefault();
-        onClick(event);
-      }
-    };
 
     const handleOnMouseEnter: React.MouseEventHandler<HTMLAnchorElement> = (
       event,
     ) => {
-      if (disabled) return;
       dispatch({ type: "MOUSE_ENTER" });
       onMouseEnter?.(event);
     };
@@ -161,24 +132,23 @@ const LinkTapArea = forwardRef<HTMLAnchorElement, LinkTapAreaProps>(
     const handleOnMouseLeave: React.MouseEventHandler<HTMLAnchorElement> = (
       event,
     ) => {
-      if (disabled) return;
       dispatch({ type: "MOUSE_LEAVE" });
       onMouseLeave?.(event);
     };
 
-    const isHoveredOrFocussed = !disabled && (hovered || focussed);
+    const isHoveredOrFocussed = hovered || focussed;
     const roundingClasses =
       rounding !== "none" && roundingStyles[`rounding${rounding}`];
 
     return (
       <a
         {...accessibilityProps}
-        aria-disabled={disabled || accessibilityProps["aria-disabled"]}
+        aria-disabled={accessibilityProps["aria-disabled"]}
         aria-label={accessibilityLabel ?? accessibilityProps["aria-label"]}
         className={classNames(
           styles.linkTapArea,
           tapAreaStyles.tapArea,
-          tapAreaStyles[`${disabled ? "disabled" : "enabled"}`],
+          tapAreaStyles.enabled,
           fullHeight && tapAreaStyles.fullHeight,
           fullWidth && tapAreaStyles.fullWidth,
           isHoveredOrFocussed && tapAreaStyles.hoveredOrFocussed,
@@ -188,17 +158,15 @@ const LinkTapArea = forwardRef<HTMLAnchorElement, LinkTapAreaProps>(
         href={href}
         target={target}
         rel={rel}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
+        onClick={onClick}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
         onFocus={() => dispatch({ type: "FOCUS" })}
         onBlur={() => dispatch({ type: "BLUR" })}
         ref={ref}
-        role="button"
-        tabIndex={disabled ? undefined : tabIndex}
+        tabIndex={tabIndex}
       >
-        {!disabled && (hovered || focussed) && (
+        {(hovered || focussed) && (
           <div className={classNames(tapAreaStyles.overlay, roundingClasses)} />
         )}
         {children}
