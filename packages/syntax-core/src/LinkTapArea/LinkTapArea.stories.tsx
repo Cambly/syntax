@@ -68,10 +68,6 @@ export const Default: StoryObj<typeof LinkTapArea> = {
   render: ({ ...args }) => <LinkTapArea {...args} />,
 };
 
-export const Disabled: StoryObj<typeof Default> = {
-  args: { ...Default.args, disabled: true },
-};
-
 const roundingLookup = {
   sm: "8px",
   md: "12px",

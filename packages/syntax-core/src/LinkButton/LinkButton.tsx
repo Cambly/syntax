@@ -112,9 +112,9 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     {
       text,
-      href,
-      target,
-      rel,
+      // href,
+      // target,
+      // rel,
       "data-testid": dataTestId,
       color = "primary",
       size = "md",

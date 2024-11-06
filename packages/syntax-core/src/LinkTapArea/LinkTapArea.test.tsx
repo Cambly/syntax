@@ -90,20 +90,6 @@ describe("linkTapArea", () => {
     expect(handleTap).toHaveBeenCalledTimes(1);
   });
 
-  it("does not fire the onClick when clicked and the LinkTapArea is disabled", async () => {
-    const handleTap = vi.fn();
-    render(
-      <LinkTapArea
-        disabled
-        data-testid="link-tap-area-testid"
-        onClick={handleTap}
-      />,
-    );
-    const linkTapArea = await screen.findByTestId("link-tap-area-testid");
-    await userEvent.click(linkTapArea);
-    expect(handleTap).toHaveBeenCalledTimes(0);
-  });
-
   it("sets an accessibility label", async () => {
     render(
       <LinkTapArea
