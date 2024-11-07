@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.11.0
+
+### Minor Changes
+
+- 65d44c8: Typography: add word-break: keep-all for korean language
+
 ## 21.10.0
 
 ### Minor Changes
