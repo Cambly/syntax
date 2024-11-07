@@ -229,3 +229,8 @@
 .preLine {
   white-space: pre-line;
 }
+
+:lang(ko),
+.typography {
+  word-break: keep-all;
+}
