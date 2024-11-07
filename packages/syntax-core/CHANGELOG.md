@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.12.0
+
+### Minor Changes
+
+- d41d529: Make LinkTapArea a link instead of a button
+
 ## 21.11.0
 
 ### Minor Changes
