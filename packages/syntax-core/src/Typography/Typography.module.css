@@ -1,5 +1,4 @@
 .typography {
-  word-break: keep-all;
   line-height: initial;
   margin: 0;
 }
@@ -53,10 +52,6 @@
 * Simplified Chinese: ❌
 * Traditional Chinese: ❌
 */
-
-:lang(ko) {
-  word-break: keep-all;
-}
 
 /* stylelint-disable-next-line selector-max-compound-selectors -- only render serif font for certain languages */
 :lang(en) .serif,
@@ -233,4 +228,9 @@
 
 .preLine {
   white-space: pre-line;
+}
+
+:lang(ko),
+.typography {
+  word-break: keep-all;
 }
