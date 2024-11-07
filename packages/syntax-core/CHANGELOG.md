@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.13.0
+
+### Minor Changes
+
+- d48f912: Toast: Add new component
+
 ## 21.12.0
 
 ### Minor Changes
