@@ -3,6 +3,26 @@
   margin: 0;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
+.inline {
+  display: inline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lineClamp {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  word-break: break-word;
+}
+
 @font-face {
   font-family: "GT Super";
   font-style: normal;
@@ -67,6 +87,11 @@
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.02em;
   line-height: 1.15em;
+}
+
+/* stylelint-disable-next-line selector-max-compound-selectors -- https://github.com/w3c/csswg-drafts/issues/4285 */
+:lang(ko) .typography {
+  word-break: keep-all;
 }
 
 /* Sizes are responsive */
@@ -172,26 +197,6 @@
   font-weight: 700;
 }
 
-.underline {
-  text-decoration: underline;
-}
-
-.inline {
-  display: inline;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lineClamp {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  max-width: 100%;
-  overflow: hidden;
-  word-break: break-word;
-}
-
 /* Line Height */
 .p100 {
   line-height: 150%;
@@ -228,9 +233,4 @@
 
 .preLine {
   white-space: pre-line;
-}
-
-:lang(ko),
-.typography {
-  word-break: keep-all;
 }

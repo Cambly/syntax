@@ -279,11 +279,14 @@ export const WhiteSpacePreLine: StoryObj<typeof Typography> = {
 
 export const KoreanWrappingBehavior: StoryObj<typeof Typography> = {
   render: (args) => (
-    <Typography {...args}>
-      실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요
-      실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요
-      실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요
-      실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요
-    </Typography>
+    <html lang="ko">
+      <Typography {...args}>
+        실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을
+        이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인
+        발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을 이루세요
+        실질적인 발전을 이루세요 실질적인 발전을 이루세요 실질적인 발전을
+        이루세요 실질적인 발전을 이루세요
+      </Typography>
+    </html>
   ),
 };
