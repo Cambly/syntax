@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.14.0
+
+### Minor Changes
+
+- 0c3702e: Typography: update class to only apply to the right language
+
 ## 21.13.0
 
 ### Minor Changes
