@@ -1,5 +1,15 @@
 # @syntax/storybook
 
+## 0.22.15
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+- Updated dependencies [122fb5c]
+  - @cambly/syntax-core@21.14.1
+  - @cambly/syntax-design-tokens@1.0.1
+  - @cambly/syntax-floating-components@2.0.1
+
 ## 0.22.14
 
 ### Patch Changes

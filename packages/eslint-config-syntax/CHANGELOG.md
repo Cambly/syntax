@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.4.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+
 ## 1.4.0
 
 ### Minor Changes

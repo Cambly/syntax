@@ -1,5 +1,11 @@
 # @cambly/syntax-codemods
 
+## 1.0.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+
 ## 1.0.0
 
 ### Major Changes
