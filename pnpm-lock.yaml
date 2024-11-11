@@ -63,13 +63,13 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:21.14.0
+        specifier: workspace:21.14.1
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
-        specifier: workspace:1.0.0
+        specifier: workspace:1.0.1
         version: link:../../packages/syntax-design-tokens
       '@cambly/syntax-floating-components':
-        specifier: workspace:^2.0.0
+        specifier: workspace:^2.0.1
         version: link:../../packages/syntax-floating-components
       react:
         specifier: 18.2.0
@@ -210,7 +210,7 @@ importers:
   packages/syntax-core:
     dependencies:
       '@cambly/syntax-design-tokens':
-        specifier: workspace:1.0.0
+        specifier: workspace:1.0.1
         version: link:../syntax-design-tokens
       '@react-aria/focus':
         specifier: ^3.16.0
@@ -271,7 +271,7 @@ importers:
   packages/syntax-floating-components:
     dependencies:
       '@cambly/syntax-design-tokens':
-        specifier: workspace:1.0.0
+        specifier: workspace:1.0.1
         version: link:../syntax-design-tokens
       '@floating-ui/react':
         specifier: ^0.24.0

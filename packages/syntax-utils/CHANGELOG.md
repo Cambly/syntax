@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 2.0.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+
 ## 2.0.0
 
 ### Major Changes

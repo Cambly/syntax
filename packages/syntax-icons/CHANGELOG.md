@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.0.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+
 ## 5.0.0
 
 ### Major Changes
