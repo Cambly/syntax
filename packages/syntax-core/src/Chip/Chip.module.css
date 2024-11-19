@@ -35,7 +35,6 @@
   height: 24px !important;
   /* stylelint-disable-next-line declaration-no-important --  Need to use !important to override MUI icon sizes  */
   width: 24px !important;
-  color: var(--color-base-grey-900);
 }
 
 .selectedIcon {
@@ -46,6 +45,12 @@
   height: 32px;
   min-width: 40px;
   padding: 8px 12px;
+}
+
+.md {
+  height: 48px;
+  min-width: 56px;
+  padding: 8px 16px;
 }
 
 .chip:focus-visible,
