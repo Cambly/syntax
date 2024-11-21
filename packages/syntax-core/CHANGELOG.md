@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.15.0
+
+### Minor Changes
+
+- 34412a3: Chip: Add medium size
+
 ## 21.14.1
 
 ### Patch Changes
