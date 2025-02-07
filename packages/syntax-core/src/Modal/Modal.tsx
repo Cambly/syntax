@@ -152,33 +152,52 @@ export default function Modal({
               position="relative"
               width="100%"
             >
-              <Box
-                position="absolute"
-                dangerouslySetInlineStyle={{
-                  __style: { top: 4, right: 4 },
-                }}
-              >
-                <IconButton
-                  accessibilityLabel={accessibilityCloseLabel}
-                  color={image ? "primary" : "tertiary"}
-                  on={image ? "darkBackground" : "lightBackground"}
-                  onClick={onDismiss}
-                  size="md"
-                  icon={XIcon}
-                />
-              </Box>
+              {image && (
+                <Box
+                  position="absolute"
+                  dangerouslySetInlineStyle={{
+                    __style: { top: 4, right: 4 },
+                  }}
+                >
+                  <IconButton
+                    accessibilityLabel={accessibilityCloseLabel}
+                    color={"primary"}
+                    on={"darkBackground"}
+                    onClick={onDismiss}
+                    size="sm"
+                    icon={XIcon}
+                  />
+                </Box>
+              )}
 
               <Box display="flex" direction="column" width="100%">
                 {image && <Box>{image}</Box>}
-                <Box padding={6}>
-                  <Heading as="h1" size={700} fontStyle="serif">
+                <Box
+                  padding={4}
+                  width="100%"
+                  direction="row"
+                  display="flex"
+                  gap={1}
+                  justifyContent="between"
+                >
+                  <Heading as="h1" size={400}>
                     {header}
                   </Heading>
+                  {!image && (
+                    <IconButton
+                      accessibilityLabel={accessibilityCloseLabel}
+                      color={"tertiary"}
+                      on={"lightBackground"}
+                      onClick={onDismiss}
+                      size="sm"
+                      icon={XIcon}
+                    />
+                  )}
                 </Box>
                 <Box
                   height="100%"
                   overflowY="auto"
-                  paddingX={6}
+                  paddingX={4}
                   marginBottom={footer ? 0 : 6}
                 >
                   {children}
@@ -192,7 +211,7 @@ export default function Modal({
                     smJustifyContent="end"
                     lgDirection="row"
                     lgJustifyContent="end"
-                    padding={6}
+                    padding={4}
                   >
                     {footer}
                   </Box>
