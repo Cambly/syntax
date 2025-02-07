@@ -161,8 +161,8 @@ export default function Modal({
                 >
                   <IconButton
                     accessibilityLabel={accessibilityCloseLabel}
-                    color={"primary"}
-                    on={"darkBackground"}
+                    color="primary"
+                    on="darkBackground"
                     onClick={onDismiss}
                     size="sm"
                     icon={XIcon}
@@ -186,8 +186,8 @@ export default function Modal({
                   {!image && (
                     <IconButton
                       accessibilityLabel={accessibilityCloseLabel}
-                      color={"tertiary"}
-                      on={"lightBackground"}
+                      color="tertiary"
+                      on="lightBackground"
                       onClick={onDismiss}
                       size="sm"
                       icon={XIcon}
