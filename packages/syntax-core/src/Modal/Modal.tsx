@@ -201,7 +201,6 @@ export default function Modal({
                     direction="column"
                     width="100%"
                     paddingX={4}
-                    marginBottom={4}
                   >
                     <Divider />
                   </Box>
@@ -210,7 +209,8 @@ export default function Modal({
                   height="100%"
                   overflowY="auto"
                   paddingX={4}
-                  marginBottom={footer ? 0 : 6}
+                  paddingY={image ? 0 : 4}
+                  marginBottom={image ? 4 : 0}
                 >
                   {children}
                 </Box>
