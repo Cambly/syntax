@@ -8,6 +8,7 @@ import StopScroll from "./StopScroll";
 import Layer from "./Layer";
 import styles from "./Modal.module.css";
 import IconButton from "../IconButton/IconButton";
+import Divider from "../Divider/Divider";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -194,6 +195,17 @@ export default function Modal({
                     />
                   )}
                 </Box>
+                {!image && (
+                  <Box
+                    display="flex"
+                    direction="column"
+                    width="100%"
+                    paddingX={4}
+                    marginBottom={4}
+                  >
+                    <Divider />
+                  </Box>
+                )}
                 <Box
                   height="100%"
                   overflowY="auto"
