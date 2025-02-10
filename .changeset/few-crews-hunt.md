@@ -2,4 +2,4 @@
 "@cambly/syntax-core": minor
 ---
 
-Various styling changes for Modal
+Modal: Heading, Styling, and Divider changes
