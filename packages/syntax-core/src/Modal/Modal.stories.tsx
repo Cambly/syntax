@@ -303,9 +303,7 @@ export const Scrollable: StoryObj<typeof Modal> = {
               </>
             }
           >
-            <Box height={1800}>
-              {Array(100).fill(<Typography>Content</Typography>)}
-            </Box>
+            <Box>{Array(100).fill(<Typography>Content</Typography>)}</Box>
           </Modal>
         )}
       </>
