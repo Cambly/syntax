@@ -1,5 +1,97 @@
 # @cambly/syntax-core
 
+## 21.15.0
+
+### Minor Changes
+
+- 34412a3: Chip: Add medium size
+
+## 21.14.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+- Updated dependencies [122fb5c]
+  - @cambly/syntax-design-tokens@1.0.1
+
+## 21.14.0
+
+### Minor Changes
+
+- 0c3702e: Typography: update class to only apply to the right language
+
+## 21.13.0
+
+### Minor Changes
+
+- d48f912: Toast: Add new component
+
+## 21.12.0
+
+### Minor Changes
+
+- d41d529: Make LinkTapArea a link instead of a button
+
+## 21.11.0
+
+### Minor Changes
+
+- 65d44c8: Typography: add word-break: keep-all for korean language
+
+## 21.10.0
+
+### Minor Changes
+
+- 8f641ed: Add LinkTapArea
+
+## 21.9.0
+
+### Minor Changes
+
+- 924906a: Add popoverZINdex prop to rich-select-list
+
+## 21.8.0
+
+### Minor Changes
+
+- 93606b1: Fix typography color-styling
+
+## 21.7.0
+
+### Minor Changes
+
+- 79e17d2: Update color css to support cambio colors
+
+## 21.6.0
+
+### Minor Changes
+
+- bd49fae: Popover: add option for optional zIndex
+
+## 21.5.0
+
+### Minor Changes
+
+- f6cf4fc: Add support to Typography for setting white-space CSS property.
+
+## 21.4.0
+
+### Minor Changes
+
+- 377bbd3: Update 700 sizing on typography
+
+## 21.3.0
+
+### Minor Changes
+
+- 417c652: Badge: Always capitalize text
+
+## 21.2.0
+
+### Minor Changes
+
+- f261e34: modal: update title size to 500
+
 ## 21.1.0
 
 ### Minor Changes

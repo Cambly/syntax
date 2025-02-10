@@ -20,7 +20,7 @@ export default function textColor(
     case "white":
       return colorStyles.cambioWhiteColor;
     case "white-secondary":
-      return colorStyles.cambioWhite70Color;
+      return colorStyles.white70Color;
     case "inherit":
       return colorStyles.inheritColor;
     case "destructive-primary":

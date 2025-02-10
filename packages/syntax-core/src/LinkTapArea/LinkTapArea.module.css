@@ -1,0 +1,9 @@
+.linkTapArea {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.linkTapArea:focus,
+.linkTapArea:hover {
+  text-decoration: none;
+}

@@ -1,5 +1,126 @@
 # @syntax/storybook
 
+## 0.22.16
+
+### Patch Changes
+
+- Updated dependencies [34412a3]
+  - @cambly/syntax-core@21.15.0
+
+## 0.22.15
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+- Updated dependencies [122fb5c]
+  - @cambly/syntax-core@21.14.1
+  - @cambly/syntax-design-tokens@1.0.1
+  - @cambly/syntax-floating-components@2.0.1
+
+## 0.22.14
+
+### Patch Changes
+
+- Updated dependencies [0c3702e]
+  - @cambly/syntax-core@21.14.0
+
+## 0.22.13
+
+### Patch Changes
+
+- Updated dependencies [d48f912]
+  - @cambly/syntax-core@21.13.0
+
+## 0.22.12
+
+### Patch Changes
+
+- Updated dependencies [d41d529]
+  - @cambly/syntax-core@21.12.0
+
+## 0.22.11
+
+### Patch Changes
+
+- Updated dependencies [65d44c8]
+  - @cambly/syntax-core@21.11.0
+
+## 0.22.10
+
+### Patch Changes
+
+- Updated dependencies [8f641ed]
+  - @cambly/syntax-core@21.10.0
+
+## 0.22.9
+
+### Patch Changes
+
+- Updated dependencies [924906a]
+  - @cambly/syntax-core@21.9.0
+
+## 0.22.8
+
+### Patch Changes
+
+- Updated dependencies [93606b1]
+  - @cambly/syntax-core@21.8.0
+
+## 0.22.7
+
+### Patch Changes
+
+- Updated dependencies [79e17d2]
+  - @cambly/syntax-core@21.7.0
+
+## 0.22.6
+
+### Patch Changes
+
+- Updated dependencies [bd49fae]
+  - @cambly/syntax-core@21.6.0
+
+## 0.22.5
+
+### Patch Changes
+
+- Updated dependencies [f6cf4fc]
+  - @cambly/syntax-core@21.5.0
+
+## 0.22.4
+
+### Patch Changes
+
+- Updated dependencies [93ad515]
+  - @cambly/syntax-floating-components@2.0.0
+
+## 0.22.3
+
+### Patch Changes
+
+- Updated dependencies [377bbd3]
+  - @cambly/syntax-core@21.4.0
+
+## 0.22.2
+
+### Patch Changes
+
+- Updated dependencies [417c652]
+  - @cambly/syntax-core@21.3.0
+
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [f261e34]
+  - @cambly/syntax-core@21.2.0
+
+## 0.22.0
+
+### Minor Changes
+
+- 32cb7b9: fix typo for identity document
+
 ## 0.21.42
 
 ### Patch Changes

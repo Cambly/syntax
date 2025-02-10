@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+import { Tooltip } from "./Tooltip";
 import Button from "../../../syntax-core/src/Button/Button";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -48,7 +48,7 @@ export default {
         defaultValue: { summary: "absolute" },
       },
     },
-    children: {
+    content: {
       control: { type: "text" },
       description: "The string value to show on the tooltip content",
     },
@@ -62,41 +62,39 @@ export const Default: StoryObj<typeof Tooltip> = {
     placement: "right",
     initialOpen: true,
     strategy: "absolute",
-    children: "This is a tooltip",
+    content: "This is a tooltip",
   },
-  render: ({ delay, placement, initialOpen, strategy, children }) => (
+  render: ({ delay, placement, initialOpen, strategy, content }) => (
     <div style={{ margin: "240px" }}>
       <Tooltip
         delay={delay}
         placement={placement}
         initialOpen={initialOpen}
         strategy={strategy}
+        content={content}
       >
-        <TooltipTrigger>
-          <IconButton
-            accessibilityLabel="Info Icon Button"
-            icon={InfoOutlinedIcon}
-            onClick={() => alert("Default button pressed")}
-            color="tertiary"
-            size="lg"
-          />
-        </TooltipTrigger>
-        <TooltipContent>{children}</TooltipContent>
+        <IconButton
+          accessibilityLabel="Info Icon Button"
+          icon={InfoOutlinedIcon}
+          onClick={() => alert("Default button pressed")}
+          color="tertiary"
+          size="lg"
+        />
       </Tooltip>
     </div>
   ),
 };
 
 export const UncontrolledButtonTooltip: StoryObj<typeof Tooltip> = {
+  args: {
+    content: "This is a button",
+  },
   render: () => (
-    <Tooltip>
-      <TooltipTrigger>
-        <Button
-          text="My trigger"
-          onClick={() => alert("UncontrolledButtonTooltip pressed")}
-        />
-      </TooltipTrigger>
-      <TooltipContent>This is a button</TooltipContent>
+    <Tooltip content="This is a button">
+      <Button
+        text="My trigger"
+        onClick={() => alert("UncontrolledButtonTooltip pressed")}
+      />
     </Tooltip>
   ),
 };
@@ -133,27 +131,15 @@ export const ControlledTooltip = (): ReactElement => {
       >
         <Tooltip
           open={open}
+          content="This is really long text"
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
         >
-          <TooltipTrigger>
-            <Button
-              ref={ref}
-              text="My trigger"
-              onClick={() => setOpen((v) => !v)}
-            />
-          </TooltipTrigger>
-          <TooltipContent>
-            <span style={{ display: "block" }}>
-              This is a button and a really long sentence.
-            </span>
-            <a
-              href="http://localhost:6006/?path=/docs/floating-components-tooltip--docs"
-              style={{ textUnderlinePosition: "under", color: "white" }}
-            >
-              Learn more
-            </a>
-          </TooltipContent>
+          <Button
+            ref={ref}
+            text="My trigger"
+            onClick={() => setOpen((v) => !v)}
+          />
         </Tooltip>
       </div>
     </div>
@@ -187,7 +173,7 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
   return (
     <Box paddingY={8} paddingX={4} backgroundColor="gray200">
       <Box display="flex" alignItems="center" direction="column">
-        <Box padding={7} rounding="xl" backgroundColor="white" width="100%">
+        <Box padding={7} rounding="md" backgroundColor="white" width="100%">
           <Box
             display="flex"
             direction="column"
@@ -205,11 +191,8 @@ export const RadioButtonGroupWithTooltips = (): ReactElement => {
                     onChange={(e) => setChoice(Number(e.target.value))}
                     checked={choice === value}
                   />
-                  <Tooltip placement="left">
-                    <TooltipTrigger>
-                      <InfoOutlinedIcon width={20} height={20} />
-                    </TooltipTrigger>
-                    <TooltipContent>{content}</TooltipContent>
+                  <Tooltip placement="left" content={content}>
+                    <InfoOutlinedIcon width={20} height={20} />
                   </Tooltip>
                 </Box>
               ))}

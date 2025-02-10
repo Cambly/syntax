@@ -1,11 +1,11 @@
 {
   "name": "@cambly/eslint-config-syntax",
   "description": "Cambly design system ESLint configuration",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "eslint-config-next": "latest",
+    "eslint-config-next": "^14.2.15",
     "eslint-config-prettier": "8.8.0",
     "eslint-config-turbo": "latest",
     "eslint-plugin-react": "7.32.2"

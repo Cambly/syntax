@@ -3,6 +3,26 @@
   margin: 0;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
+.inline {
+  display: inline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lineClamp {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  word-break: break-word;
+}
+
 @font-face {
   font-family: "GT Super";
   font-style: normal;
@@ -69,6 +89,11 @@
   line-height: 1.15em;
 }
 
+/* stylelint-disable-next-line selector-max-compound-selectors -- https://github.com/w3c/csswg-drafts/issues/4285 */
+:lang(ko) .typography {
+  word-break: keep-all;
+}
+
 /* Sizes are responsive */
 .size0 {
   font-size: 12px;
@@ -117,7 +142,7 @@
   }
 
   .size700 {
-    font-size: 49px;
+    font-size: 44px;
   }
 
   .size800 {
@@ -154,7 +179,7 @@
   text-align: end;
 }
 
-/* Boldness */
+/* Weight */
 
 .regular {
   font-weight: 400;
@@ -170,26 +195,6 @@
 
 .bold {
   font-weight: 700;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.inline {
-  display: inline;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lineClamp {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  max-width: 100%;
-  overflow: hidden;
-  word-break: break-word;
 }
 
 /* Line Height */
@@ -211,4 +216,21 @@
 
 .p500 {
   line-height: 115%;
+}
+
+/* White Space */
+.inherit {
+  white-space: inherit;
+}
+
+.normal {
+  white-space: normal;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.preLine {
+  white-space: pre-line;
 }

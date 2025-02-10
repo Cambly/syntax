@@ -17,6 +17,7 @@ export default {
   },
   args: {
     selected: false,
+    size: "sm",
     text: "text on chip",
     on: "lightBackground",
     disabled: false,
@@ -30,6 +31,10 @@ export default {
     },
     selected: {
       control: "boolean",
+    },
+    size: {
+      options: ["sm", "md"],
+      control: { type: "radio" },
     },
     text: {
       control: "text",

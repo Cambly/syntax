@@ -5,6 +5,12 @@ import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
 import type InternalIcon from "../Icon/Icon";
+import { type Size } from "../constants";
+import textVariant from "../Button/constants/textVariant";
+import {
+  internalIconSize,
+  materialIconSize,
+} from "../Button/constants/iconSize";
 
 function typographyColor({
   selected,
@@ -46,6 +52,15 @@ type ChipProps = {
    */
   "data-testid"?: string;
   /**
+   * The size of the chip
+   *
+   * * `sm`: 32px height
+   * * `md`: 48px height
+   *
+   * @defaultValue "sm"
+   */
+  size?: (typeof Size)[number];
+  /**
    * The text to be displayed on the chip
    */
   text: string;
@@ -76,6 +91,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     {
       disabled: disabledProp = false,
       selected = false,
+      size = "sm",
       "data-testid": dataTestId,
       text,
       on = "lightBackground",
@@ -115,7 +131,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
 
     return (
       <button
-        className={chipStyles}
+        className={classnames(chipStyles, styles[size])}
         disabled={disabled}
         data-testid={dataTestId}
         ref={ref}
@@ -123,9 +139,15 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         aria-pressed={selected}
         onClick={onChange}
       >
-        {Icon && <Icon className={iconStyles} size={100} />}
+        {Icon && (
+          <Icon
+            className={classnames(iconStyles, materialIconSize[size])}
+            color={color}
+            size={internalIconSize[size]}
+          />
+        )}
         <Box paddingX={Icon ? 1 : 0}>
-          <Typography size={100} color={color} weight="medium">
+          <Typography size={textVariant[size]} color={color} weight="medium">
             {text}
           </Typography>
         </Box>

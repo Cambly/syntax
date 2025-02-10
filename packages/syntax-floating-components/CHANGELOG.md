@@ -1,5 +1,19 @@
 # @cambly/syntax-floating-components
 
+## 2.0.1
+
+### Patch Changes
+
+- 122fb5c: Upgrade GitHub actions to v4
+- Updated dependencies [122fb5c]
+  - @cambly/syntax-design-tokens@1.0.1
+
+## 2.0.0
+
+### Major Changes
+
+- 93ad515: Tooltip: Reconfigure API for easier usage + add zIndex as a prop
+
 ## 1.0.0
 
 ### Major Changes

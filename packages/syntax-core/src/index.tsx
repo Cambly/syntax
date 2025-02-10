@@ -13,6 +13,7 @@ import Icon from "./Icon/Icon";
 import IconButton from "./IconButton/IconButton";
 import IconLinkButton from "./IconLinkButton/IconLinkButton";
 import LinkButton from "./LinkButton/LinkButton";
+import LinkTapArea from "./LinkTapArea/LinkTapArea";
 import Modal from "./Modal/Modal";
 import Popover from "./Popover/Popover";
 import RadioButton from "./RadioButton/RadioButton";
@@ -25,6 +26,7 @@ import TapArea from "./TapArea/TapArea";
 import TextArea from "./TextArea/TextArea";
 import TextField from "./TextField/TextField";
 import ThemeProvider from "./ThemeProvider/ThemeProvider";
+import Toast from "./Toast/Toast";
 import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
 import WordConfetti from "./WordConfetti/WordConfetti";
@@ -45,6 +47,7 @@ export {
   IconButton,
   IconLinkButton,
   LinkButton,
+  LinkTapArea,
   Modal,
   Popover,
   RadioButton,
@@ -57,6 +60,7 @@ export {
   TextArea,
   TextField,
   ThemeProvider,
+  Toast,
   Tooltip,
   Typography,
   WordConfetti,
