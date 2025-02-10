@@ -210,6 +210,7 @@ export default function Modal({
                   overflowY="auto"
                   paddingX={4}
                   paddingY={image ? 0 : 4}
+                  marginBottom={image ? 4 : 0}
                 >
                   {children}
                 </Box>

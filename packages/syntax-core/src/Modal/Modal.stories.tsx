@@ -19,7 +19,7 @@ export default {
   args: {
     header: "One Button Modal Text",
     accessibilityCloseLabel: "close modal",
-    zIndex: 0,
+    zIndex: 1,
     "data-testid": "",
   },
   argTypes: {
