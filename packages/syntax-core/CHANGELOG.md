@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.16.0
+
+### Minor Changes
+
+- 51c8e36: Modal: Heading, Styling, and Divider changes
+
 ## 21.15.0
 
 ### Minor Changes
