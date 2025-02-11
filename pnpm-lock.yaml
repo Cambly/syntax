@@ -63,7 +63,7 @@ importers:
   apps/storybook:
     dependencies:
       '@cambly/syntax-core':
-        specifier: workspace:21.15.0
+        specifier: workspace:21.16.0
         version: link:../../packages/syntax-core
       '@cambly/syntax-design-tokens':
         specifier: workspace:1.0.1
@@ -164,7 +164,7 @@ importers:
         version: 8.8.0(eslint@8.39.0)
       eslint-config-turbo:
         specifier: latest
-        version: 2.3.1(eslint@8.39.0)
+        version: 2.4.1(eslint@8.39.0)(turbo@1.9.0)
       eslint-plugin-react:
         specifier: 7.32.2
         version: 7.32.2(eslint@8.39.0)
@@ -1876,6 +1876,7 @@ packages:
   '@mui/base@5.0.0-alpha.128':
     resolution: {integrity: sha512-wub3wxNN+hUp8hzilMlXX3sZrPo75vsy1cXEQpqdTfIFlE9HprP1jlulFiPg5tfPst2OKmygXr2hhmgvAKRrzQ==}
     engines: {node: '>=12.0.0'}
+    deprecated: This package has been replaced by @base-ui-components/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -4439,10 +4440,11 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-turbo@2.3.1:
-    resolution: {integrity: sha512-pxxCLLgnZYCjJoGrzUu3jAcb67bKVykLblyMtgTzHN7DlNu6tnp89K3/5fznc6ALyXwXFp0K+nM+Sxst43oaoA==}
+  eslint-config-turbo@2.4.1:
+    resolution: {integrity: sha512-IFlqpBrWgVG1VJO34H2X2IgxU363CB67Bzsd/MekcD7gPAcRtNIyn8cQXibZL/+jZxdbacp1JLm26iHPg8XqgQ==}
     peerDependencies:
       eslint: '>6.6.0'
+      turbo: '>2.0.0'
 
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -4515,10 +4517,11 @@ packages:
     peerDependencies:
       eslint: ^7.5.0 || ^8.0.0
 
-  eslint-plugin-turbo@2.3.1:
-    resolution: {integrity: sha512-M5MBYBkcQsv11MFHJ+6WpzLpiTBx0OApeUMAHlO4L0eHqQxY03GrmHXjXfozqB+9HwGrW9fqihBzVRllyixJDA==}
+  eslint-plugin-turbo@2.4.1:
+    resolution: {integrity: sha512-sTJZrgn7G1rF7RHZcj367g2cT0+E5v0lt9LD+nBpTnCyDA/yB0PwSm/QM+aXQ39vxuK9sqlUL2LyPXyGFvUXsg==}
     peerDependencies:
       eslint: '>6.6.0'
+      turbo: '>2.0.0'
 
   eslint-plugin-vitest@0.2.6:
     resolution: {integrity: sha512-PnH4qdqzmAYu78kBnSh5Oi6L1jCtc0orJMWxFeM6k6eW2aEmi0c4Y855v6Qh//7ruU3JzN/aeZrBSVBZMP525Q==}
@@ -14572,10 +14575,11 @@ snapshots:
     dependencies:
       eslint: 8.39.0
 
-  eslint-config-turbo@2.3.1(eslint@8.39.0):
+  eslint-config-turbo@2.4.1(eslint@8.39.0)(turbo@1.9.0):
     dependencies:
       eslint: 8.39.0
-      eslint-plugin-turbo: 2.3.1(eslint@8.39.0)
+      eslint-plugin-turbo: 2.4.1(eslint@8.39.0)(turbo@1.9.0)
+      turbo: 1.9.0
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -14716,10 +14720,11 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-turbo@2.3.1(eslint@8.39.0):
+  eslint-plugin-turbo@2.4.1(eslint@8.39.0)(turbo@1.9.0):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.39.0
+      turbo: 1.9.0
 
   eslint-plugin-vitest@0.2.6(eslint@8.39.0)(typescript@5.3.3):
     dependencies:
