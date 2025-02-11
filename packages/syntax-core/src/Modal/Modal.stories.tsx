@@ -19,7 +19,7 @@ export default {
   args: {
     header: "One Button Modal Text",
     accessibilityCloseLabel: "close modal",
-    zIndex: 0,
+    zIndex: 1,
     "data-testid": "",
   },
   argTypes: {
@@ -303,9 +303,56 @@ export const Scrollable: StoryObj<typeof Modal> = {
               </>
             }
           >
-            <Box height={1800}>
-              {Array(100).fill(<Typography>Content</Typography>)}
-            </Box>
+            <Box>{Array(100).fill(<Typography>Content</Typography>)}</Box>
+          </Modal>
+        )}
+      </>
+    );
+  },
+};
+
+export const LongHeader: StoryObj<typeof Modal> = {
+  args: {
+    ...Default.args,
+    header:
+      "Modal title with a really long title and they shouldn’t really be this long but it’s helpful to see how it should operate just in case!",
+  },
+  render: function WithImageExample({ ...args }): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <Button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          text={"Click here to open Modal"}
+        />
+        {isOpen && (
+          <Modal
+            {...args}
+            onDismiss={() => setIsOpen(false)}
+            footer={
+              <>
+                <Button
+                  text="Cancel"
+                  color="secondary"
+                  onClick={() => {
+                    action("cancel");
+                    setIsOpen(false);
+                  }}
+                />
+                <Button
+                  text="Confirm"
+                  onClick={() => {
+                    action("confirm");
+                    setIsOpen(false);
+                  }}
+                />
+              </>
+            }
+          >
+            <Typography>Content</Typography>
           </Modal>
         )}
       </>
