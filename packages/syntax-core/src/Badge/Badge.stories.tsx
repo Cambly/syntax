@@ -59,7 +59,7 @@ export const Multiple: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={1} direction="row">
       <Badge color="yellow700" text="Every Wednesday" />
-      <Badge color="silver" icon={RepeatIcon} text="Every Wednesday" />
+      <Badge color="silver" icon={RepeatIcon} text="Premium" />
     </Box>
   ),
 };
