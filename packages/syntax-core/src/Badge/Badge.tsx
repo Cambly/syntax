@@ -73,7 +73,7 @@ const Badge = ({
       paddingX={2}
       paddingY={1}
       rounding={"sm"}
-      backgroundColor={color === "silver" ? undefined : color}
+      backgroundColor={color !== "silver" ? color : undefined}
       alignItems="center"
       justifyContent="center"
       minHeight={24}
