@@ -50,21 +50,8 @@ const backgroundColorForColor = (
   switch (color) {
     case "silver":
       return undefined;
-    case "gray370":
-    case "destructive300":
-    case "orange":
-    case "tan":
-    case "success300":
-    case "sky":
-    case "thistle":
-    case "pink":
-    case "lilac":
-    case "cream":
-    case "yellow700":
-    case "gray870":
-      return color;
     default:
-      return undefined;
+      return color;
   }
 };
 
@@ -79,18 +66,6 @@ const inlineStylesForColor = (
           linear-gradient(83.45deg, #A9A9A9 2.57%, #E5E2E2 61.77%, #6E6E6E 100.3%) border-box",
         border: "1px solid transparent",
       };
-    case "gray370":
-    case "destructive300":
-    case "orange":
-    case "tan":
-    case "success300":
-    case "sky":
-    case "thistle":
-    case "pink":
-    case "lilac":
-    case "cream":
-    case "yellow700":
-    case "gray870":
     default:
       return {};
   }
