@@ -1,7 +1,8 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Badge from "./Badge";
-import RepeatIcon from "@mui/icons-material/Repeat";
+import Shuffle from "../../../syntax-icons/src/icons/Shuffle";
 import Refresh from "../../../syntax-icons/src/icons/Refresh";
+import Stars from "../../../syntax-icons/src/icons/Stars";
 import Box from "../Box/Box";
 
 export default {
@@ -50,7 +51,7 @@ export const WithSyntaxIcon: StoryObj<typeof Badge> = {
 export const WithIcon: StoryObj<typeof Badge> = {
   args: {
     color: "gray370",
-    icon: RepeatIcon,
+    icon: Shuffle,
     text: "Every Wednesday",
   },
 };
@@ -59,7 +60,7 @@ export const Multiple: StoryObj<typeof Box> = {
   render: () => (
     <Box display="flex" gap={1} direction="row">
       <Badge color="yellow700" text="Every Wednesday" />
-      <Badge color="silver" icon={RepeatIcon} text="Premium" />
+      <Badge color="silver" icon={Stars} text="Premium" />
     </Box>
   ),
 };
