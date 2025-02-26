@@ -62,12 +62,12 @@ export const Default: StoryObj<typeof Chip> = {
 
 const ChipInteractive = () => {
   const [isSmSelected, setIsSmSelected] = useState(false);
-  const [isLgSelected, setIsLgSelected] = useState(false);
+  const [isMdSelected, setIsMdSelected] = useState(false);
   const handleSmChange = () => {
     setIsSmSelected(!isSmSelected);
   };
   const handleLgChange = () => {
-    setIsLgSelected(!isLgSelected);
+    setIsMdSelected(!isMdSelected);
   };
 
   return (
@@ -80,34 +80,36 @@ const ChipInteractive = () => {
       <Chip
         text="interactive chip"
         onChange={handleLgChange}
-        selected={isLgSelected}
+        selected={isMdSelected}
+        size="md"
       />
     </Box>
   );
 };
 const ChipIconInteractive = () => {
   const [isSmSelected, setIsSmSelected] = useState(false);
-  const [isLgSelected, setIsLgSelected] = useState(false);
+  const [isMdSelected, setIsMdSelected] = useState(false);
   const handleSmChange = () => {
     setIsSmSelected(!isSmSelected);
   };
   const handleLgChange = () => {
-    setIsLgSelected(!isLgSelected);
+    setIsMdSelected(!isMdSelected);
   };
 
   return (
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <Chip
-        icon={Star}
+        startIcon={Star}
         text="interactive chip"
         onChange={handleSmChange}
         selected={isSmSelected}
       />
       <Chip
-        icon={Star}
+        startIcon={Star}
         text="interactive chip"
         onChange={handleLgChange}
-        selected={isLgSelected}
+        selected={isMdSelected}
+        size="md"
       />
     </Box>
   );
@@ -115,27 +117,90 @@ const ChipIconInteractive = () => {
 
 const SyntaxIconInteractive = () => {
   const [isSmSelected, setIsSmSelected] = useState(false);
-  const [isLgSelected, setIsLgSelected] = useState(false);
+  const [isMdSelected, setIsMdSelected] = useState(false);
   const handleSmChange = () => {
     setIsSmSelected(!isSmSelected);
   };
   const handleLgChange = () => {
-    setIsLgSelected(!isLgSelected);
+    setIsMdSelected(!isMdSelected);
   };
 
   return (
     <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
       <Chip
-        icon={HeartFilled}
+        startIcon={HeartFilled}
+        endIcon={HeartFilled}
+        text="interactive chip"
+        onChange={handleSmChange}
+        selected={isSmSelected}
+        size="sm"
+      />
+      <Chip
+        startIcon={HeartFilled}
+        endIcon={HeartFilled}
+        text="interactive chip"
+        onChange={handleLgChange}
+        selected={isMdSelected}
+        size="md"
+      />
+    </Box>
+  );
+};
+
+const WithStartIconInteractive = () => {
+  const [isSmSelected, setIsSmSelected] = useState(false);
+  const [isMdSelected, setIsMdSelected] = useState(false);
+  const handleSmChange = () => {
+    setIsSmSelected(!isSmSelected);
+  };
+  const handleLgChange = () => {
+    setIsMdSelected(!isMdSelected);
+  };
+
+  return (
+    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+      <Chip
+        startIcon={HeartFilled}
+        text="interactive chip"
+        onChange={handleSmChange}
+        selected={isSmSelected}
+        size="sm"
+      />
+      <Chip
+        startIcon={HeartFilled}
+        text="interactive chip"
+        onChange={handleLgChange}
+        selected={isMdSelected}
+        size="md"
+      />
+    </Box>
+  );
+};
+
+const WithEndIconInteractive = () => {
+  const [isSmSelected, setIsSmSelected] = useState(false);
+  const [isMdSelected, setIsMdSelected] = useState(false);
+  const handleSmChange = () => {
+    setIsSmSelected(!isSmSelected);
+  };
+  const handleLgChange = () => {
+    setIsMdSelected(!isMdSelected);
+  };
+
+  return (
+    <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+      <Chip
+        endIcon={HeartFilled}
         text="interactive chip"
         onChange={handleSmChange}
         selected={isSmSelected}
       />
       <Chip
-        icon={HeartFilled}
+        endIcon={HeartFilled}
         text="interactive chip"
         onChange={handleLgChange}
-        selected={isLgSelected}
+        selected={isMdSelected}
+        size="md"
       />
     </Box>
   );
@@ -151,4 +216,12 @@ export const IconInteractive: StoryObj<typeof Chip> = {
 
 export const SyntaxIcons: StoryObj<typeof Chip> = {
   render: () => <SyntaxIconInteractive />,
+};
+
+export const WithStartIcon: StoryObj<typeof Chip> = {
+  render: () => <WithStartIconInteractive />,
+};
+
+export const WithEndIcons: StoryObj<typeof Chip> = {
+  render: () => <WithEndIconInteractive />,
 };
