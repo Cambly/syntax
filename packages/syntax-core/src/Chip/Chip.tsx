@@ -1,7 +1,6 @@
 import React, { forwardRef, useMemo, type ComponentProps } from "react";
 import classnames from "classnames";
 import Typography from "../Typography/Typography";
-import Box from "../Box/Box";
 import styles from "./Chip.module.css";
 import useIsHydrated from "../useIsHydrated";
 import type InternalIcon from "../Icon/Icon";
@@ -59,7 +58,7 @@ type ChipProps = {
    *
    * @defaultValue "sm"
    */
-  size?: (typeof Size)[number];
+  size?: (typeof Size)[0 | 1];
   /**
    * The text to be displayed on the chip
    */
@@ -75,9 +74,15 @@ type ChipProps = {
    */
   onChange: React.MouseEventHandler<HTMLButtonElement>;
   /**
-   * The icon to be displayed.
+   * The icon to be displayed at the start of the chip.
    */
-  icon?:
+  startIcon?:
+    | React.ComponentType<{ className?: string }>
+    | React.ComponentType<ComponentProps<typeof InternalIcon>>;
+  /**
+   * The icon to be displayed at the end of the chip.
+   */
+  endIcon?:
     | React.ComponentType<{ className?: string }>
     | React.ComponentType<ComponentProps<typeof InternalIcon>>;
   /** forces focus ring styling */
@@ -96,7 +101,8 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       text,
       on = "lightBackground",
       onChange,
-      icon: Icon,
+      startIcon: StartIcon,
+      endIcon: EndIcon,
       dangerouslyForceFocusStyles,
     }: ChipProps,
     ref,
@@ -139,18 +145,23 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         aria-pressed={selected}
         onClick={onChange}
       >
-        {Icon && (
-          <Icon
+        {StartIcon && (
+          <StartIcon
             className={classnames(iconStyles, materialIconSize[size])}
             color={color}
             size={internalIconSize[size]}
           />
         )}
-        <Box paddingX={Icon ? 1 : 0}>
-          <Typography size={textVariant[size]} color={color} weight="medium">
-            {text}
-          </Typography>
-        </Box>
+        <Typography size={textVariant[size]} color={color} weight="medium">
+          {text}
+        </Typography>
+        {EndIcon && (
+          <EndIcon
+            className={classnames(iconStyles, materialIconSize[size])}
+            color={color}
+            size={internalIconSize[size]}
+          />
+        )}
       </button>
     );
   },
