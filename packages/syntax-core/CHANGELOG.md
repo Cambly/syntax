@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 21.17.0
+
+### Minor Changes
+
+- 0ca5ff7: Badge: add silver colour, change text size to 0
+
 ## 21.16.0
 
 ### Minor Changes
