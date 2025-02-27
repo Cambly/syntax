@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.0.0
+
+### Major Changes
+
+- 30f4b84: Chip: add endIcon, change icon to startIcon, remove lg from available size
+
 ## 21.17.0
 
 ### Minor Changes
