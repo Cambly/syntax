@@ -17,10 +17,13 @@ const badgeColor = [
   "pink",
   "cream",
   "yellow700",
+  "silver",
 ] as const;
 
+type BadgeColor = (typeof badgeColor)[number];
+
 const textColorForBackgroundColor = (
-  color: (typeof badgeColor)[number],
+  color: BadgeColor,
 ): "gray900" | "white" => {
   switch (color) {
     case "gray370":
@@ -33,10 +36,38 @@ const textColorForBackgroundColor = (
     case "pink":
     case "lilac":
     case "cream":
+    case "silver":
     case "yellow700":
       return "gray900";
     default:
       return "white";
+  }
+};
+
+const backgroundColorForColor = (
+  color: BadgeColor,
+): Exclude<BadgeColor, "silver"> | undefined => {
+  switch (color) {
+    case "silver":
+      return undefined;
+    default:
+      return color;
+  }
+};
+
+const inlineStylesForColor = (
+  color: BadgeColor,
+): Record<string, string | number | null> => {
+  switch (color) {
+    case "silver":
+      return {
+        background:
+          "linear-gradient(85deg, #CECECE -8.89%, #EEECEC 38.35%, #FFF 49.64%, #E9E8E8 66.22%) padding-box, \
+          linear-gradient(83.45deg, #A9A9A9 2.57%, #E5E2E2 61.77%, #6E6E6E 100.3%) border-box",
+        border: "1px solid transparent",
+      };
+    default:
+      return {};
   }
 };
 
@@ -71,13 +102,16 @@ const Badge = ({
       paddingX={2}
       paddingY={1}
       rounding={"sm"}
-      backgroundColor={color}
+      backgroundColor={backgroundColorForColor(color)}
       alignItems="center"
       justifyContent="center"
       minHeight={24}
+      dangerouslySetInlineStyle={{
+        __style: inlineStylesForColor(color),
+      }}
     >
       <Typography
-        size={100}
+        size={0}
         weight="medium"
         color={textColorForBackgroundColor(color)}
       >
@@ -85,7 +119,7 @@ const Badge = ({
           {Icon && <Icon className={styles.icon} size={100} />}
           <Typography
             color={textColorForBackgroundColor(color)}
-            size={100}
+            size={0}
             weight="medium"
             transform="uppercase"
           >
