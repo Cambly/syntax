@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.1.0
+
+### Minor Changes
+
+- 698d687: Badge: silver - change padding to account for border
+
 ## 22.0.0
 
 ### Major Changes
