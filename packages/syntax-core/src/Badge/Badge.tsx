@@ -65,6 +65,8 @@ const inlineStylesForColor = (
           "linear-gradient(85deg, #CECECE -8.89%, #EEECEC 38.35%, #FFF 49.64%, #E9E8E8 66.22%) padding-box, \
           linear-gradient(83.45deg, #A9A9A9 2.57%, #E5E2E2 61.77%, #6E6E6E 100.3%) border-box",
         border: "1px solid transparent",
+        paddingTop: "3px",
+        paddingBottom: "3px",
       };
     default:
       return {};
