@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.2.0
+
+### Minor Changes
+
+- 94b5241: RichSelectList: Allow RichSelectItem to be accessed
+
 ## 22.1.0
 
 ### Minor Changes
