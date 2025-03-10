@@ -33,6 +33,7 @@ import Box from "../Box/Box";
 import RichSelectSection from "./RichSelectSection";
 import RichSelectChip from "./RichSelectChip";
 import RichSelectRadioButton from "./RichSelectRadioButton";
+import RichSelectItem from "./RichSelectItem";
 import { useField } from "react-aria";
 
 const NOOP = () => undefined;
@@ -304,4 +305,5 @@ export default Object.assign(RichSelectList, {
   Section: RichSelectSection,
   Chip: RichSelectChip,
   RadioButton: RichSelectRadioButton,
+  Item: RichSelectItem,
 });
