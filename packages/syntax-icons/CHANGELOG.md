@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.0.2
+
+### Patch Changes
+
+- 43d9457: Icons: Add ArrowDropDown icon
+
 ## 5.0.1
 
 ### Patch Changes
