@@ -45,6 +45,10 @@
       "types": "./dist/ArrowDown.d.ts",
       "default": "./dist/ArrowDown.js"
     },
+    "./ArrowDropDown": {
+      "types": "./dist/ArrowDropDown.d.ts",
+      "default": "./dist/ArrowDropDown.js"
+    },
     "./ArrowLeft": {
       "types": "./dist/ArrowLeft.d.ts",
       "default": "./dist/ArrowLeft.js"

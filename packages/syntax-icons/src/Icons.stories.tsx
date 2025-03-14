@@ -11,6 +11,7 @@ import AddNew from "./icons/AddNew";
 import AddUsers from "./icons/AddUsers";
 import Alert from "./icons/Alert";
 import ArrowDown from "./icons/ArrowDown";
+import ArrowDropDown from "./icons/ArrowDropDown";
 import ArrowLeft from "./icons/ArrowLeft";
 import ArrowRight from "./icons/ArrowRight";
 import ArrowUp from "./icons/ArrowUp";
@@ -128,6 +129,7 @@ const cambioIcons = [
   { name: "AddUsers", component: AddUsers },
   { name: "Alert", component: Alert },
   { name: "ArrowDown", component: ArrowDown },
+  { name: "ArrowDropDown", component: ArrowDropDown },
   { name: "ArrowLeft", component: ArrowLeft },
   { name: "ArrowRight", component: ArrowRight },
   { name: "ArrowUp", component: ArrowUp },
