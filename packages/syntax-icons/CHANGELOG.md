@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.1.0
+
+### Minor Changes
+
+- ebb77e9: Add NewTab icon
+
 ## 5.0.2
 
 ### Patch Changes
