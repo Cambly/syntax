@@ -309,6 +309,10 @@
       "types": "./dist/NewStarter.d.ts",
       "default": "./dist/NewStarter.js"
     },
+    "./NewTab": {
+      "types": "./dist/NewTab.d.ts",
+      "default": "./dist/NewTab.js"
+    },
     "./Paperclip": {
       "types": "./dist/Paperclip.d.ts",
       "default": "./dist/Paperclip.js"

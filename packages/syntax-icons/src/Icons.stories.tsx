@@ -77,6 +77,7 @@ import More from "./icons/More";
 import MultiMediaDocument from "./icons/MultiMediaDocument";
 import MultipleUsers from "./icons/MultipleUsers";
 import NewStarter from "./icons/NewStarter";
+import NewTab from "./icons/NewTab";
 import Paperclip from "./icons/Paperclip";
 import Pause from "./icons/Pause";
 import Pencil from "./icons/Pencil";
@@ -195,6 +196,7 @@ const cambioIcons = [
   { name: "MultiMediaDocument", component: MultiMediaDocument },
   { name: "MultipleUsers", component: MultipleUsers },
   { name: "NewStarter", component: NewStarter },
+  { name: "NewTab", component: NewTab },
   { name: "Paperclip", component: Paperclip },
   { name: "Pause", component: Pause },
   { name: "Pencil", component: Pencil },
