@@ -155,6 +155,26 @@ const SelectListInteractiveDark = ({
   );
 };
 
+const SelectListWithRtlDirection = (): ReactElement => {
+  const [selectionValue, setSelectionValue] = useState("");
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue(e.target.value);
+  };
+  return (
+    <div dir="rtl" style={{ padding: 4 }}>
+      <SelectList
+        label="Label"
+        helperText="Helper text"
+        selectedValue={selectionValue}
+        placeholderText="Placeholder"
+        onChange={onChange}
+      >
+        <Options />
+      </SelectList>
+    </div>
+  );
+};
+
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
 };
@@ -165,4 +185,8 @@ export const InteractiveDark: StoryObj<typeof SelectList> = {
 
 export const InteractiveWithPlaceholder: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive placeholderText="Placeholder" />,
+};
+
+export const WithRtlDirection: StoryObj<typeof SelectList> = {
+  render: () => <SelectListWithRtlDirection />,
 };
