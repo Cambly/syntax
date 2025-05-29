@@ -5,6 +5,11 @@
   user-select: none;
 }
 
+/* for rtl */
+:global([dir="rtl"]) .icon {
+  transform: scaleX(-1);
+}
+
 .icon100 {
   width: 16px;
   height: 16px;
