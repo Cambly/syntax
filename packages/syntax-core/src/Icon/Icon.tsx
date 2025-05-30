@@ -31,6 +31,12 @@ type IconProps = {
    * The svg path of the icon. You should not use this prop directly, instead use the specific icon components.
    */
   path?: string;
+  /**
+   * Whether to prevent the icon from being flipped in RTL mode.
+   *
+   * @defaultValue false
+   */
+  noRtlFlip?: boolean;
 };
 
 /**
@@ -42,12 +48,18 @@ type IconProps = {
  * You can click on the icon to copy the import statement!
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = "inherit", path, size = 200 }: IconProps, ref) => (
+  (
+    { color = "inherit", path, size = 200, noRtlFlip = false }: IconProps,
+    ref,
+  ) => (
     <svg
       className={classnames(
         styles.icon,
         colorStyles[`${color}Color`],
         styles[`icon${size}`],
+        {
+          [styles.noRtlFlip]: noRtlFlip,
+        },
       )}
       ref={ref}
       viewBox="0 0 24 24"

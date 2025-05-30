@@ -53,10 +53,27 @@ const IconWithRtlDirection = (): ReactElement => {
   );
 };
 
+const IconWithRtlDirectionNoFlip = (): ReactElement => {
+  return (
+    <div dir="rtl">
+      <Icon
+        size={200}
+        // play
+        path="M6.8 3v18l14.4-9z"
+        noRtlFlip
+      />
+    </div>
+  );
+};
+
 export const WithLtrDirection: StoryObj<typeof Icon> = {
   render: () => <IconWithLtrDirection />,
 };
 
 export const WithRtlDirection: StoryObj<typeof Icon> = {
   render: () => <IconWithRtlDirection />,
+};
+
+export const WithRtlDirectionNoFlip: StoryObj<typeof Icon> = {
+  render: () => <IconWithRtlDirectionNoFlip />,
 };
