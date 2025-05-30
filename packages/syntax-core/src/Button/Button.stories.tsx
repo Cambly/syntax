@@ -137,7 +137,7 @@ export const WithRtlDirection: StoryObj<typeof Button> = {
   },
 };
 
-export const WithRtlDirectionNoFlip: StoryObj<typeof Button> = {
+export const WithRtlDirectionNoMirror: StoryObj<typeof Button> = {
   args: { ...Default.args, endIcon: Play },
   render: (args) => {
     return (

@@ -36,7 +36,7 @@ type IconProps = {
    *
    * @defaultValue false
    */
-  noRtlFlip?: boolean;
+  noRtlMirror?: boolean;
 };
 
 /**
@@ -49,7 +49,7 @@ type IconProps = {
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
   (
-    { color = "inherit", path, size = 200, noRtlFlip = false }: IconProps,
+    { color = "inherit", path, size = 200, noRtlMirror = false }: IconProps,
     ref,
   ) => (
     <svg
@@ -58,7 +58,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>(
         colorStyles[`${color}Color`],
         styles[`icon${size}`],
         {
-          [styles.noRtlFlip]: noRtlFlip,
+          [styles.noRtlMirror]: noRtlMirror,
         },
       )}
       ref={ref}
