@@ -5,7 +5,7 @@ const Play = forwardRef<
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => {
   const path = "M6.8 3v18l14.4-9z";
-  return <Icon ref={ref} path={path} color={color} size={size} noRtlFlip />;
+  return <Icon ref={ref} path={path} color={color} size={size} noRtlMirror />;
 });
 Play.displayName = "Play";
 export default Play;

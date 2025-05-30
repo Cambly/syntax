@@ -6,7 +6,7 @@
 }
 
 /* for rtl */
-:global([dir="rtl"]) .icon:not(.noRtlFlip) {
+:global([dir="rtl"]) .icon:not(.noRtlMirror) {
   transform: scaleX(-1);
 }
 
