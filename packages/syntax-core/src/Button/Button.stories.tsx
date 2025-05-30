@@ -136,6 +136,17 @@ export const WithRtlDirection: StoryObj<typeof Button> = {
     );
   },
 };
+
+export const WithRtlDirectionNoFlip: StoryObj<typeof Button> = {
+  args: { ...Default.args, endIcon: Play },
+  render: (args) => {
+    return (
+      <div dir="rtl">
+        <Button {...args} />
+      </div>
+    );
+  },
+};
 export const WithSyntaxIcons: StoryObj<typeof Button> = {
   render: (args) => (
     <Box display="flex" gap={2}>
