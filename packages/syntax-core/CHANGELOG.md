@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.2.1
+
+### Patch Changes
+
+- c044c20: SelectList: Add document direction support to SelectList
+
 ## 22.2.0
 
 ### Minor Changes
