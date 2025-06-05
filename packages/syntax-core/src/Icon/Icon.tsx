@@ -32,11 +32,10 @@ type IconProps = {
    */
   path?: string;
   /**
-   * Whether to prevent the icon from being flipped in RTL mode.
-   *
+   * Whether to mirror the icon in RTL mode.
    * @defaultValue false
    */
-  noRtlMirror?: boolean;
+  rtlMirror?: boolean;
 };
 
 /**
@@ -49,7 +48,7 @@ type IconProps = {
  */
 const Icon = forwardRef<SVGSVGElement, IconProps>(
   (
-    { color = "inherit", path, size = 200, noRtlMirror = false }: IconProps,
+    { color = "inherit", path, size = 200, rtlMirror = false }: IconProps,
     ref,
   ) => (
     <svg
@@ -58,7 +57,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>(
         colorStyles[`${color}Color`],
         styles[`icon${size}`],
         {
-          [styles.noRtlMirror]: noRtlMirror,
+          [styles.iconRtlMirror]: rtlMirror,
         },
       )}
       ref={ref}
