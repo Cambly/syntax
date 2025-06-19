@@ -1,5 +1,6 @@
 import { type ComponentProps, forwardRef } from "react";
 import Icon from "../../../syntax-core/src/Icon/Icon";
+
 const Accent = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
