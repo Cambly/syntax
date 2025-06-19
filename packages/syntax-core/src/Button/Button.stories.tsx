@@ -4,6 +4,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";
 
 import Play from "../../../syntax-icons/src/icons/Play";
+import Accent from "../../../syntax-icons/src/icons/Accent";
 
 export default {
   title: "Components/Button",
@@ -123,9 +124,29 @@ export const WithStartIcon: StoryObj<typeof Button> = {
   args: { ...Default.args, startIcon: FavoriteBorder },
 };
 export const WithEndIcon: StoryObj<typeof Button> = {
-  args: { ...Default.args, endIcon: FavoriteBorder },
+  args: { ...Default.args, endIcon: Accent },
+};
+export const WithRtlDirection: StoryObj<typeof Button> = {
+  args: { ...Default.args, endIcon: Accent },
+  render: (args) => {
+    return (
+      <div dir="rtl">
+        <Button {...args} />
+      </div>
+    );
+  },
 };
 
+export const WithRtlDirectionNoMirror: StoryObj<typeof Button> = {
+  args: { ...Default.args, endIcon: Play },
+  render: (args) => {
+    return (
+      <div dir="rtl">
+        <Button {...args} />
+      </div>
+    );
+  },
+};
 export const WithSyntaxIcons: StoryObj<typeof Button> = {
   render: (args) => (
     <Box display="flex" gap={2}>
