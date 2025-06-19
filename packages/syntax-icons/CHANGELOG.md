@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.1.1
+
+### Patch Changes
+
+- de17f52: Accent: add extra line
+
 ## 5.1.0
 
 ### Minor Changes
