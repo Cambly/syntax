@@ -33,6 +33,7 @@ export default {
         "cream",
         "yellow700",
         "silver",
+        "blackandwhite",
       ],
       control: { type: "radio" },
     },
@@ -63,7 +64,7 @@ export const Multiple: StoryObj<typeof Box> = {
         <Badge color="yellow700" text="Every Wednesday" />
       </Box>
       <Box width="fit-content" position="relative">
-        <Badge color="silver" icon={Stars} text="Premium" />
+        <Badge color="blackandwhite" icon={Stars} text="Pro" />
       </Box>
     </Box>
   ),
