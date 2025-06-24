@@ -47,7 +47,7 @@ const textColorForBackgroundColor = (
 
 const backgroundColorForColor = (
   color: BadgeColor,
-): Exclude<BadgeColor, "silver"> | undefined => {
+): Exclude<BadgeColor, "silver" | "blackandwhite"> | undefined => {
   switch (color) {
     case "silver":
       return undefined;
