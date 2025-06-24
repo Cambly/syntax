@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.2.3
+
+### Patch Changes
+
+- 9269c14: Added blackandwhite badge color
+
 ## 22.2.2
 
 ### Patch Changes
