@@ -18,6 +18,7 @@ const badgeColor = [
   "cream",
   "yellow700",
   "silver",
+  "blackandwhite",
 ] as const;
 
 type BadgeColor = (typeof badgeColor)[number];
@@ -46,9 +47,11 @@ const textColorForBackgroundColor = (
 
 const backgroundColorForColor = (
   color: BadgeColor,
-): Exclude<BadgeColor, "silver"> | undefined => {
+): Exclude<BadgeColor, "silver" | "blackandwhite"> | undefined => {
   switch (color) {
     case "silver":
+      return undefined;
+    case "blackandwhite":
       return undefined;
     default:
       return color;
@@ -64,6 +67,14 @@ const inlineStylesForColor = (
         background:
           "linear-gradient(85deg, #CECECE -8.89%, #EEECEC 38.35%, #FFF 49.64%, #E9E8E8 66.22%) padding-box, \
           linear-gradient(83.45deg, #A9A9A9 2.57%, #E5E2E2 61.77%, #6E6E6E 100.3%) border-box",
+        border: "1px solid transparent",
+        paddingTop: "3px",
+        paddingBottom: "3px",
+      };
+    case "blackandwhite":
+      return {
+        background:
+          "linear-gradient(65deg, #000 12.53%, #949494 45.45%, #000 81.69%)",
         border: "1px solid transparent",
         paddingTop: "3px",
         paddingBottom: "3px",
