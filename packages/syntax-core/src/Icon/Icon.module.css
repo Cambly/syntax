@@ -5,11 +5,6 @@
   user-select: none;
 }
 
-/* stylelint-disable-next-line selector-max-class, selector-max-specificity, selector-max-compound-selectors -- need to flip icon in rtl */
-:global([dir="rtl"]) .icon.iconRtlMirror {
-  transform: scaleX(-1);
-}
-
 .icon100 {
   width: 16px;
   height: 16px;

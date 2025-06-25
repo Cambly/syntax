@@ -5,7 +5,7 @@ const ChevronRight = forwardRef<
   Omit<ComponentProps<typeof Icon>, "path">
 >(({ color, size }, ref) => {
   const path = "m9.475 21-1.35-1.35 7.65-7.65-7.65-7.65L9.475 3l9 9z";
-  return <Icon ref={ref} path={path} color={color} size={size} rtlMirror />;
+  return <Icon ref={ref} path={path} color={color} size={size} />;
 });
 ChevronRight.displayName = "ChevronRight";
 export default ChevronRight;
