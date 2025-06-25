@@ -7,7 +7,6 @@ import allColors from "../colors/allColors";
 import Box from "../Box/Box";
 
 import CalendarBooking from "../../../syntax-icons/src/icons/CalendarBooking";
-import Accent from "../../../syntax-icons/src/icons/Accent";
 
 export default {
   title: "Components/IconButton",
@@ -111,19 +110,6 @@ export const DestructiveTertiary: StoryObj<typeof IconButton> = {
 };
 export const DifferentIcon: StoryObj<typeof IconButton> = {
   args: { ...Default.args, icon: FavoriteBorder },
-};
-
-export const WithRtlDirection: StoryObj<typeof IconButton> = {
-  args: { ...Default.args, icon: Accent },
-  render: (args) => {
-    return (
-      <div dir="rtl">
-        <Box display="flex" gap={4}>
-          <IconButton {...args} />
-        </Box>
-      </div>
-    );
-  },
 };
 
 export const IndicatorColors: StoryObj<typeof IconButton> = {
