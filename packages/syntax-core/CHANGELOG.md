@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.2.4
+
+### Patch Changes
+
+- f165bc7: Revert icon direction
+
 ## 22.2.3
 
 ### Patch Changes

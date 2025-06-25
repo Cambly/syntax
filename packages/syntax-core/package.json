@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-core",
   "description": "Cambly design system core components",
-  "version": "22.2.3",
+  "version": "22.2.4",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
