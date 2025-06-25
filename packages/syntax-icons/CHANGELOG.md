@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.1.2
+
+### Patch Changes
+
+- f165bc7: Revert icon direction
+
 ## 5.1.1
 
 ### Patch Changes
