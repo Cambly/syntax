@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.3.0
+
+### Minor Changes
+
+- e8b36e9: Add 3 new colours to Badge
+
 ## 22.2.4
 
 ### Patch Changes
