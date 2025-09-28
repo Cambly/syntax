@@ -32,7 +32,7 @@ type IconProps = {
    */
   path?: string;
   /**
-   * Whether to mirror the icon in RTL mode.
+   * Whether to mirror the icon in RTL mode or not.
    * @defaultValue false
    */
   rtlMirror?: boolean;
