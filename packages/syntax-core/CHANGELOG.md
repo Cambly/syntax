@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.3.1
+
+### Patch Changes
+
+- 006f60c0: Icon: Add document direction support to Icon
+
 ## 22.3.0
 
 ### Minor Changes
