@@ -10,6 +10,7 @@ import Achievement from "./icons/Achievement";
 import AddNew from "./icons/AddNew";
 import AddUsers from "./icons/AddUsers";
 import Alert from "./icons/Alert";
+import ArticlePerson from "./icons/ArticlePerson";
 import ArrowDown from "./icons/ArrowDown";
 import ArrowDropDown from "./icons/ArrowDropDown";
 import ArrowLeft from "./icons/ArrowLeft";
@@ -50,6 +51,7 @@ import ExternalWeibo from "./icons/ExternalWeibo";
 import ExternalXhs from "./icons/ExternalXhs";
 import ExternalYoutube from "./icons/ExternalYoutube";
 import Eye from "./icons/Eye";
+import Face from "./icons/Face";
 import FlagCheckered from "./icons/FlagCheckered";
 import FlagFilled from "./icons/FlagFilled";
 import FlagUnfilled from "./icons/FlagUnfilled";
@@ -129,6 +131,7 @@ const cambioIcons = [
   { name: "AddNew", component: AddNew },
   { name: "AddUsers", component: AddUsers },
   { name: "Alert", component: Alert },
+  { name: "ArticlePerson", component: ArticlePerson },
   { name: "ArrowDown", component: ArrowDown },
   { name: "ArrowDropDown", component: ArrowDropDown },
   { name: "ArrowLeft", component: ArrowLeft },
@@ -169,6 +172,7 @@ const cambioIcons = [
   { name: "ExternalXhs", component: ExternalXhs },
   { name: "ExternalYoutube", component: ExternalYoutube },
   { name: "Eye", component: Eye },
+  { name: "Face", component: Face },
   { name: "FlagCheckered", component: FlagCheckered },
   { name: "FlagFilled", component: FlagFilled },
   { name: "FlagUnfilled", component: FlagUnfilled },

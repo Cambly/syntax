@@ -41,6 +41,10 @@
       "types": "./dist/Alert.d.ts",
       "default": "./dist/Alert.js"
     },
+    "./ArticlePerson": {
+      "types": "./dist/ArticlePerson.d.ts",
+      "default": "./dist/ArticlePerson.js"
+    },
     "./ArrowDown": {
       "types": "./dist/ArrowDown.d.ts",
       "default": "./dist/ArrowDown.js"
@@ -200,6 +204,10 @@
     "./Eye": {
       "types": "./dist/Eye.d.ts",
       "default": "./dist/Eye.js"
+    },
+    "./Face": {
+      "types": "./dist/Face.d.ts",
+      "default": "./dist/Face.js"
     },
     "./FlagCheckered": {
       "types": "./dist/FlagCheckered.d.ts",
