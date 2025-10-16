@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.2.0
+
+### Minor Changes
+
+- c71a02a5: Add ArticlePerson and Face icon
+
 ## 5.1.3
 
 ### Patch Changes
