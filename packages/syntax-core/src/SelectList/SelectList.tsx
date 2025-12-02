@@ -73,7 +73,7 @@ export default function SelectList({
   /**
    * Text shown above select box
    */
-  label: string;
+  label: string | ReactElement;
   /**
    * The callback to be called when an option is selected
    */
@@ -121,6 +121,15 @@ export default function SelectList({
     }
   };
 
+  const labelElement =
+    typeof label === "string" ? (
+      <Typography size={100} color={textColor}>
+        {label}
+      </Typography>
+    ) : (
+      label
+    );
+
   return (
     <div
       className={classNames(styles.selectContainer, {
@@ -129,11 +138,7 @@ export default function SelectList({
     >
       {label && (
         <label htmlFor={selectId}>
-          <Box paddingX={1}>
-            <Typography size={100} color={textColor}>
-              {label}
-            </Typography>
-          </Box>
+          <Box paddingX={1}>{labelElement}</Box>
         </label>
       )}
       <div className={styles.selectWrapper}>

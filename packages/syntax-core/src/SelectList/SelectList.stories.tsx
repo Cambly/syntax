@@ -3,6 +3,7 @@ import SelectList from "./SelectList";
 import React, { useState, type ReactElement } from "react";
 import SelectOption from "./SelectOption";
 import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/SelectList",
@@ -175,6 +176,69 @@ const SelectListWithRtlDirection = (): ReactElement => {
   );
 };
 
+const SelectListWithLabelAsReactElement = (): ReactElement => {
+  const [selectionValue, setSelectionValue] = useState("");
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue(e.target.value);
+  };
+  return (
+    <SelectList
+      label={
+        <Box display="flex" gap={1} direction="column">
+          <Typography weight="semiBold" size={200}>
+            Label
+          </Typography>
+          <Typography size={100} color="gray700">
+            Sublabel text
+          </Typography>
+        </Box>
+      }
+      onChange={onChange}
+      selectedValue={selectionValue}
+      placeholderText="Placeholder"
+    >
+      <Options />
+    </SelectList>
+  );
+};
+
+const TwoSelectListsNextToEachOther = (): ReactElement => {
+  const [selectionValue1, setSelectionValue1] = useState("");
+  const [selectionValue2, setSelectionValue2] = useState("");
+  const onChange1 = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue1(e.target.value);
+  };
+  const onChange2 = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue2(e.target.value);
+  };
+  return (
+    <Box
+      display="flex"
+      gap={4}
+      direction="row"
+      justifyContent="between"
+      alignItems="stretch"
+    >
+      <SelectList
+        label="Label"
+        placeholderText="Placeholder"
+        onChange={onChange1}
+        selectedValue={selectionValue1}
+      >
+        <Options />
+      </SelectList>
+      <SelectList
+        label="Label"
+        placeholderText="Placeholder"
+        onChange={onChange2}
+        selectedValue={selectionValue2}
+      >
+        <Options />
+      </SelectList>
+    </Box>
+  );
+};
+
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
 };
@@ -189,4 +253,12 @@ export const InteractiveWithPlaceholder: StoryObj<typeof SelectList> = {
 
 export const WithRtlDirection: StoryObj<typeof SelectList> = {
   render: () => <SelectListWithRtlDirection />,
+};
+
+export const WithLabelAsReactElement: StoryObj<typeof SelectList> = {
+  render: () => <SelectListWithLabelAsReactElement />,
+};
+
+export const WithTwoSelectListsNextToEachOther: StoryObj<typeof SelectList> = {
+  render: () => <TwoSelectListsNextToEachOther />,
 };
