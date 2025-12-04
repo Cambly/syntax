@@ -3,6 +3,7 @@ import SelectList from "./SelectList";
 import React, { useState, type ReactElement } from "react";
 import SelectOption from "./SelectOption";
 import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/SelectList",
@@ -175,6 +176,32 @@ const SelectListWithRtlDirection = (): ReactElement => {
   );
 };
 
+const SelectListWithLabelAsReactElement = (): ReactElement => {
+  const [selectionValue, setSelectionValue] = useState("");
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectionValue(e.target.value);
+  };
+  return (
+    <SelectList
+      label={
+        <Box display="flex" gap={1} direction="column">
+          <Typography weight="semiBold" size={200}>
+            Label
+          </Typography>
+          <Typography size={100} color="gray700">
+            Sublabel text
+          </Typography>
+        </Box>
+      }
+      onChange={onChange}
+      selectedValue={selectionValue}
+      placeholderText="Placeholder"
+    >
+      <Options />
+    </SelectList>
+  );
+};
+
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
 };
@@ -189,4 +216,8 @@ export const InteractiveWithPlaceholder: StoryObj<typeof SelectList> = {
 
 export const WithRtlDirection: StoryObj<typeof SelectList> = {
   render: () => <SelectListWithRtlDirection />,
+};
+
+export const WithLabelAsReactElement: StoryObj<typeof SelectList> = {
+  render: () => <SelectListWithLabelAsReactElement />,
 };
