@@ -202,43 +202,6 @@ const SelectListWithLabelAsReactElement = (): ReactElement => {
   );
 };
 
-const TwoSelectListsNextToEachOther = (): ReactElement => {
-  const [selectionValue1, setSelectionValue1] = useState("");
-  const [selectionValue2, setSelectionValue2] = useState("");
-  const onChange1 = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue1(e.target.value);
-  };
-  const onChange2 = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectionValue2(e.target.value);
-  };
-  return (
-    <Box
-      display="flex"
-      gap={4}
-      direction="row"
-      justifyContent="between"
-      alignItems="stretch"
-    >
-      <SelectList
-        label="Label"
-        placeholderText="Placeholder"
-        onChange={onChange1}
-        selectedValue={selectionValue1}
-      >
-        <Options />
-      </SelectList>
-      <SelectList
-        label="Label"
-        placeholderText="Placeholder"
-        onChange={onChange2}
-        selectedValue={selectionValue2}
-      >
-        <Options />
-      </SelectList>
-    </Box>
-  );
-};
-
 export const Interactive: StoryObj<typeof SelectList> = {
   render: () => <SelectListInteractive />,
 };
@@ -257,8 +220,4 @@ export const WithRtlDirection: StoryObj<typeof SelectList> = {
 
 export const WithLabelAsReactElement: StoryObj<typeof SelectList> = {
   render: () => <SelectListWithLabelAsReactElement />,
-};
-
-export const WithTwoSelectListsNextToEachOther: StoryObj<typeof SelectList> = {
-  render: () => <TwoSelectListsNextToEachOther />,
 };
