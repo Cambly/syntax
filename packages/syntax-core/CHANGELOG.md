@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 22.4.0
+
+### Minor Changes
+
+- 29aa7aa5: Updates to SelectList: allow ReactElement label.
+
 ## 22.3.1
 
 ### Patch Changes
