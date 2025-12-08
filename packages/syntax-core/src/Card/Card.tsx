@@ -20,11 +20,12 @@ type CardProps = {
    * The size of the card which specifies the padding and spacing of the card.
    *
    * `compact`: 8px padding
-   * `roomy`: 16px padding
+   * `medium`: 16px padding
+   * `roomy`: 24px padding
    *
-   * @defaultValue `roomy`
+   * @defaultValue `medium`
    */
-  size?: "compact" | "roomy";
+  size?: "compact" | "medium" | "roomy";
 };
 
 /**
@@ -37,14 +38,19 @@ const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   const { children, ...cardProps } = props;
   const {
     backgroundColor = "white",
-    size = "roomy",
+    size = "medium",
     "data-testid": dataTestId,
   } = cardProps;
+  const getPadding = (paddingSize?: "compact" | "medium" | "roomy") => {
+    if (paddingSize === "compact") return 2;
+    if (paddingSize === "roomy") return 6;
+    return 4;
+  };
 
   return (
     <Box
       rounding="md"
-      padding={size === "compact" ? 2 : 4}
+      padding={getPadding(size)}
       width="100%"
       backgroundColor={backgroundColor}
       data-testid={dataTestId}
