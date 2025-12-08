@@ -41,9 +41,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     size = "medium",
     "data-testid": dataTestId,
   } = cardProps;
-  const getPadding = (size?: "compact" | "medium" | "roomy") => {
-    if (size === "compact") return 2;
-    if (size === "roomy") return 6;
+  const getPadding = (paddingSize?: "compact" | "medium" | "roomy") => {
+    if (paddingSize === "compact") return 2;
+    if (paddingSize === "roomy") return 6;
     return 4;
   };
 
