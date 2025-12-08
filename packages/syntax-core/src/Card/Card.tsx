@@ -38,7 +38,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   const { children, ...cardProps } = props;
   const {
     backgroundColor = "white",
-    size = "roomy",
+    size = "medium",
     "data-testid": dataTestId,
   } = cardProps;
   const getPadding = (size?: "compact" | "medium" | "roomy") => {
