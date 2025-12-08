@@ -17,7 +17,7 @@ export default {
   args: {
     backgroundColor: "white",
     "data-testid": "",
-    size: "roomy",
+    size: "medium",
   },
   argTypes: {
     backgroundColor: {
@@ -25,7 +25,7 @@ export default {
       options: allColors,
     },
     size: {
-      options: ["compact", "roomy"],
+      options: ["compact", "medium", "roomy"],
     },
   },
   tags: ["autodocs"],
