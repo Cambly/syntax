@@ -40,6 +40,12 @@ type ToastProps = {
    * @defaultValue 5000
    */
   timeout?: number;
+  /**
+   * The z-index of the toast
+   *
+   * @defaultValue 0
+   */
+  zIndex?: number;
 };
 /**
  * [Toast](https://cambly-syntax.vercel.app/?path=/docs/components-toast--docs) is a component to display a small, dismissible notification.
@@ -52,6 +58,7 @@ export default function Toast({
   icon: Icon,
   on = "lightBackground",
   timeout = 5000,
+  zIndex = 0,
 }: ToastProps): JSX.Element {
   const [displayToast, setDisplayToast] = useState<boolean>(true);
 
@@ -80,6 +87,7 @@ export default function Toast({
           right: 0,
           bottom: 50,
           boxShadow: "0px 16px 32px 0px rgba(0, 0, 0, 0.25)",
+          zIndex: zIndex,
         },
       }}
       data-testid={dataTestId}
