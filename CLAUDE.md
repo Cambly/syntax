@@ -9,6 +9,7 @@ Syntax is Cambly's design system, built as a monorepo using pnpm workspaces and 
 ## Environment Setup
 
 This project requires specific Node.js and package manager versions:
+
 - Use nvm to install the Node.js version specified in `.nvmrc`
 - Must use pnpm 9.4.0 (`npm install -g pnpm@9.4.0`)
 - Run `pnpm install` to install dependencies
@@ -16,26 +17,31 @@ This project requires specific Node.js and package manager versions:
 ## Common Commands
 
 ### Development
+
 - `pnpm start` or `pnpm dev` - Start Storybook dev server on port 6006
 - `pnpm build` - Build all packages using Turborepo
 - `pnpm test` - Run tests across all packages
 - `pnpm test:watch` - Run tests in watch mode
 
 ### Code Quality
+
 - `pnpm lint` - Run ESLint across all packages
 - `pnpm stylelint` - Run Stylelint on CSS files
 - `pnpm format` - Format all TypeScript, TSX, and Markdown files with Prettier
 - `pnpm check-exports` - Verify package exports using @arethetypeswrong/cli
 
 ### Versioning & Publishing
+
 - `pnpm changeset` - Create a changeset for versioning (required for all PRs that change packages)
 - `pnpm version-packages` - Bump versions based on changesets
 - `pnpm release` - Build and publish packages to npm
 
 ### Component Generation
+
 - `pnpm generate ComponentName` - Scaffold a new component (use StartCase naming)
 
 ### Icon Generation
+
 1. Add SVG files to `packages/syntax-icons/svgs/`
 2. Run `pnpm run generate-icons`
 3. Update `Icons.stories.tsx` array
@@ -49,6 +55,7 @@ This project requires specific Node.js and package manager versions:
 The repository is organized as a pnpm workspace with Turborepo for build orchestration:
 
 **Packages** (`packages/`):
+
 - `syntax-core` - Main component library with React components
 - `syntax-floating-components` - Floating UI components (tooltips, popovers) using @floating-ui/react
 - `syntax-icons` - Icon library with SVG-based React components
@@ -59,6 +66,7 @@ The repository is organized as a pnpm workspace with Turborepo for build orchest
 - `syntax-tsconfig` - Shared TypeScript configurations
 
 **Apps** (`apps/`):
+
 - `storybook` - Storybook documentation and development environment
 
 ### Build System
@@ -76,6 +84,7 @@ The repository is organized as a pnpm workspace with Turborepo for build orchest
 ### Component Structure
 
 Each component in `syntax-core` follows a consistent pattern:
+
 ```
 ComponentName/
 ├── ComponentName.tsx          # Main component implementation
@@ -86,6 +95,7 @@ ComponentName/
 ```
 
 Components use:
+
 - React 18 with forwardRef pattern
 - CSS Modules for styling (processed by custom tsup plugin)
 - TypeScript with strict typing
@@ -112,6 +122,7 @@ Components use:
 ### Package Exports
 
 All packages are published to npm under the `@cambly` scope:
+
 - Main entry points use ESM format
 - Type definitions included via `types` field
 - `sideEffects: false` for optimal tree-shaking

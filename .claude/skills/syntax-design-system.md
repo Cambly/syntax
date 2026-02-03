@@ -13,10 +13,12 @@ npm install @cambly/syntax-core @cambly/syntax-design-tokens @cambly/syntax-icon
 ### Core Components (`@cambly/syntax-core`)
 
 **Layout & Containers:**
+
 - `Box` - Fundamental layout primitive with flexbox, spacing, and styling props
 - `Card` - Content container with elevation and padding variants
 
 **Buttons & Actions:**
+
 - `Button` - Primary action button with multiple color variants
 - `IconButton` - Icon-only button for compact actions
 - `LinkButton` - Button styled as a link
@@ -26,10 +28,12 @@ npm install @cambly/syntax-core @cambly/syntax-design-tokens @cambly/syntax-icon
 - `ButtonGroup` - Groups related buttons
 
 **Typography:**
+
 - `Typography` - Flexible text component with size/weight/color variants
 - `Heading` - Semantic heading component (h1-h6)
 
 **Form Inputs:**
+
 - `TextField` - Single-line text input
 - `TextArea` - Multi-line text input
 - `Checkbox` - Checkbox input with label
@@ -38,6 +42,7 @@ npm install @cambly/syntax-core @cambly/syntax-design-tokens @cambly/syntax-icon
 - `RichSelectList` - Enhanced select with custom styling
 
 **Feedback & Overlays:**
+
 - `Modal` - Dialog overlay for focused interactions
 - `Popover` - Contextual overlay anchored to trigger element
 - `Toast` - Temporary notification message
@@ -45,6 +50,7 @@ npm install @cambly/syntax-core @cambly/syntax-design-tokens @cambly/syntax-icon
 - `Dialog` - Accessible dialog component
 
 **Indicators:**
+
 - `Badge` - Small status or count indicator
 - `Icon` - Icon component (use with @cambly/syntax-icons)
 - `Avatar` - User profile image component
@@ -53,19 +59,24 @@ npm install @cambly/syntax-core @cambly/syntax-design-tokens @cambly/syntax-icon
 - `Divider` - Visual separator
 
 **Navigation:**
+
 - `Tabs` - Tab navigation container
 - `TabButton` - Individual tab button
 - `TabLink` - Individual tab link
 
 **Special:**
+
 - `ThemeProvider` - Theme context provider
 - `WordConfetti` - Celebratory animation effect
 
 ### Floating Components (`@cambly/syntax-floating-components`)
+
 Provides enhanced positioning for tooltips and popovers using Floating UI.
 
 ### Icons (`@cambly/syntax-icons`)
+
 SVG-based icon components. Import specific icons:
+
 ```typescript
 import { IconName } from "@cambly/syntax-icons";
 ```
@@ -77,6 +88,7 @@ import { IconName } from "@cambly/syntax-icons";
 Box is the most versatile component for layout. Use it instead of divs for consistent spacing and responsive design.
 
 **Layout with Flexbox:**
+
 ```typescript
 <Box
   display="flex"
@@ -90,11 +102,12 @@ Box is the most versatile component for layout. Use it instead of divs for consi
 ```
 
 **Responsive Layout:**
+
 ```typescript
 <Box
-  direction="column"           // Mobile: stack vertically
-  smDirection="row"            // Tablet (480px+): horizontal
-  lgDirection="row"            // Desktop (960px+): horizontal
+  direction="column" // Mobile: stack vertically
+  smDirection="row" // Tablet (480px+): horizontal
+  lgDirection="row" // Desktop (960px+): horizontal
   padding={2}
   smPadding={4}
   lgPadding={6}
@@ -104,6 +117,7 @@ Box is the most versatile component for layout. Use it instead of divs for consi
 ```
 
 **Spacing System (0-12 scale):**
+
 ```typescript
 <Box
   margin={4}                   // All sides
@@ -116,6 +130,7 @@ Box is the most versatile component for layout. Use it instead of divs for consi
 ```
 
 **Semantic HTML:**
+
 ```typescript
 <Box as="section" role="main">  // Renders as <section>
 <Box as="nav">                   // Renders as <nav>
@@ -126,17 +141,20 @@ Box is the most versatile component for layout. Use it instead of divs for consi
 Components use consistent size props:
 
 **Button/IconButton/Chip:** `"sm" | "md" | "lg"` (32px, 48px, 64px heights)
+
 ```typescript
 <Button text="Click me" size="md" />
 ```
 
 **Typography/Heading:** `0 | 100 | 200 | 300 | 400 | 500 | 700 | 800 | 900 | 1100`
+
 ```typescript
 <Typography size={400}>Body text</Typography>
 <Heading size={600}>Page title</Heading>
 ```
 
 **Icon:** `100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000`
+
 ```typescript
 <Icon path={iconPath} size={400} />
 ```
@@ -144,6 +162,7 @@ Components use consistent size props:
 ### Color Variants
 
 **Button Colors:**
+
 - `primary` - Main call-to-action (blue)
 - `secondary` - Secondary actions (gray)
 - `tertiary` - Tertiary actions (minimal)
@@ -158,6 +177,7 @@ Components use consistent size props:
 
 **Background Context:**
 Many components accept `on` prop to adjust for light/dark backgrounds:
+
 ```typescript
 <Button text="Click" on="darkBackground" />
 <TextField label="Name" on="lightBackground" />
@@ -165,6 +185,7 @@ Many components accept `on` prop to adjust for light/dark backgrounds:
 
 **Universal Colors:**
 Box, Icon, Typography support 55+ colors:
+
 - Primary palette: `primary`, `primary100`-`primary900`
 - Semantic: `success100`-`success900`, `destructive100`-`destructive900`
 - Neutrals: `gray10`-`gray900`, `white`, `black`
@@ -179,6 +200,7 @@ Box, Icon, Typography support 55+ colors:
 ### Form Patterns
 
 **TextField with validation:**
+
 ```typescript
 <TextField
   label="Email"
@@ -193,6 +215,7 @@ Box, Icon, Typography support 55+ colors:
 ```
 
 **Checkbox with state:**
+
 ```typescript
 <Checkbox
   label="I agree to terms"
@@ -204,33 +227,33 @@ Box, Icon, Typography support 55+ colors:
 ```
 
 **RadioButton group:**
+
 ```typescript
-{options.map(option => (
-  <RadioButton
-    key={option.value}
-    label={option.label}
-    checked={selected === option.value}
-    onChange={() => setSelected(option.value)}
-    name="options"
-  />
-))}
+{
+  options.map((option) => (
+    <RadioButton
+      key={option.value}
+      label={option.label}
+      checked={selected === option.value}
+      onChange={() => setSelected(option.value)}
+      name="options"
+    />
+  ));
+}
 ```
 
 ### Button Patterns
 
 **Button with icons:**
+
 ```typescript
 import { ChevronRightIcon } from "@cambly/syntax-icons";
 
-<Button
-  text="Continue"
-  endIcon={ChevronRightIcon}
-  color="primary"
-  size="lg"
-/>
+<Button text="Continue" endIcon={ChevronRightIcon} color="primary" size="lg" />;
 ```
 
 **Loading state:**
+
 ```typescript
 <Button
   text="Save"
@@ -241,16 +264,17 @@ import { ChevronRightIcon } from "@cambly/syntax-icons";
 ```
 
 **IconButton (icon-only):**
+
 ```typescript
 import { CloseIcon } from "@cambly/syntax-icons";
 
 <IconButton
   icon={CloseIcon}
-  accessibilityLabel="Close dialog"  // Required!
+  accessibilityLabel="Close dialog" // Required!
   color="secondary"
   size="sm"
   onClick={handleClose}
-/>
+/>;
 ```
 
 ### Typography Patterns
@@ -278,12 +302,7 @@ import { CloseIcon } from "@cambly/syntax-icons";
 ### Modal & Dialog Patterns
 
 ```typescript
-<Modal
-  isOpen={isOpen}
-  onDismiss={handleClose}
-  title="Confirm Action"
-  size="md"
->
+<Modal isOpen={isOpen} onDismiss={handleClose} title="Confirm Action" size="md">
   <Box padding={6}>
     <Typography>Are you sure?</Typography>
     <Box display="flex" gap={2} marginTop={4}>
@@ -320,20 +339,23 @@ import { CloseIcon } from "@cambly/syntax-icons";
 ### Required Accessibility Props
 
 **Always provide labels for form inputs:**
+
 ```typescript
 <TextField label="Email" />  // Good
 <Checkbox label="I agree" /> // Good
 ```
 
 **Always provide accessibilityLabel for icon-only buttons:**
+
 ```typescript
 <IconButton
   icon={TrashIcon}
-  accessibilityLabel="Delete item"  // Required for screen readers
+  accessibilityLabel="Delete item" // Required for screen readers
 />
 ```
 
 **Use semantic HTML:**
+
 ```typescript
 <Box as="nav">        // Use semantic elements
 <Box as="main">
@@ -351,10 +373,7 @@ import { CloseIcon } from "@cambly/syntax-icons";
 ```typescript
 // Associate helper text with input
 <Box>
-  <TextField
-    label="Password"
-    aria-describedby="password-help"
-  />
+  <TextField label="Password" aria-describedby="password-help" />
   <Typography id="password-help" size={200}>
     Must be at least 8 characters
   </Typography>
@@ -364,54 +383,63 @@ import { CloseIcon } from "@cambly/syntax-icons";
 ## Common Pitfalls & Solutions
 
 ### ❌ Don't use plain divs for layout
+
 ```typescript
 // Bad
 <div style={{ display: 'flex', gap: '16px' }}>
 ```
 
 ### ✅ Use Box component
+
 ```typescript
 // Good
 <Box display="flex" gap={4}>
 ```
 
 ### ❌ Don't forget accessibilityLabel on IconButton
+
 ```typescript
 // Bad - inaccessible to screen readers
 <IconButton icon={CloseIcon} />
 ```
 
 ### ✅ Always include accessibilityLabel
+
 ```typescript
 // Good
 <IconButton icon={CloseIcon} accessibilityLabel="Close" />
 ```
 
 ### ❌ Don't hardcode pixel values
+
 ```typescript
 // Bad
 <Box style={{ marginTop: '24px' }}>
 ```
 
 ### ✅ Use spacing scale
+
 ```typescript
 // Good - uses design system spacing (0-12 scale)
 <Box marginTop={6}>  // 6 = 24px in the system
 ```
 
 ### ❌ Don't import wrong icon package
+
 ```typescript
 // Bad - wrong import path
 import CloseIcon from "@cambly/syntax-icons/CloseIcon";
 ```
 
 ### ✅ Named imports from package root
+
 ```typescript
 // Good
 import { CloseIcon } from "@cambly/syntax-icons";
 ```
 
 ### ❌ Don't forget background context
+
 ```typescript
 // Bad - button on dark background using default light background styling
 <Box backgroundColor="navy">
@@ -420,6 +448,7 @@ import { CloseIcon } from "@cambly/syntax-icons";
 ```
 
 ### ✅ Use 'on' prop for proper contrast
+
 ```typescript
 // Good
 <Box backgroundColor="navy">
@@ -431,24 +460,13 @@ import { CloseIcon } from "@cambly/syntax-icons";
 
 ```typescript
 // Core components
-import {
-  Box,
-  Button,
-  Typography,
-  TextField
-} from "@cambly/syntax-core";
+import { Box, Button, Typography, TextField } from "@cambly/syntax-core";
 
 // Icons (named imports)
-import {
-  ChevronRightIcon,
-  CloseIcon,
-  CheckIcon
-} from "@cambly/syntax-icons";
+import { ChevronRightIcon, CloseIcon, CheckIcon } from "@cambly/syntax-icons";
 
 // Floating components
-import {
-  FloatingTooltip
-} from "@cambly/syntax-floating-components";
+import { FloatingTooltip } from "@cambly/syntax-floating-components";
 
 // Design tokens (if needed directly)
 import { tokens } from "@cambly/syntax-design-tokens";
@@ -464,12 +482,10 @@ Use Box component's responsive props for mobile-first design:
   direction="column"
   padding={2}
   gap={2}
-
   // Tablet (480px+)
   smDirection="row"
   smPadding={4}
   smGap={3}
-
   // Desktop (960px+)
   lgDirection="row"
   lgPadding={6}
@@ -505,11 +521,7 @@ Wrap your app root with ThemeProvider:
 import { ThemeProvider } from "@cambly/syntax-core";
 
 function App() {
-  return (
-    <ThemeProvider>
-      {/* Your app */}
-    </ThemeProvider>
-  );
+  return <ThemeProvider>{/* Your app */}</ThemeProvider>;
 }
 ```
 
