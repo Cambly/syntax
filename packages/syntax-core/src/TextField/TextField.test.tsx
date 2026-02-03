@@ -137,4 +137,20 @@ describe("textField", () => {
     );
     expect(screen.getByTestId("textfield-test-id")).toBeInTheDocument();
   });
+
+  it("does not add a label if empty string is passed", () => {
+    render(<TextField label="" value="" onChange={() => undefined} />);
+    expect(screen.queryByRole("label")).not.toBeInTheDocument();
+  });
+
+  it("adds a label if a React element is passed", () => {
+    render(
+      <TextField
+        label={<div>Label</div>}
+        value=""
+        onChange={() => undefined}
+      />,
+    );
+    expect(screen.getByText("Label")).toBeInTheDocument();
+  });
 });

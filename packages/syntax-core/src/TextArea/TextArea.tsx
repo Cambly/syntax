@@ -6,7 +6,7 @@ import textFieldStyles from "../TextField/TextField.module.css";
 import classNames from "classnames";
 import useIsHydrated from "../useIsHydrated";
 
-type TextAreaProps = {
+export type TextAreaProps = {
   /**
    * A data-testid to make querying for the TextArea easier.
    */
@@ -30,7 +30,7 @@ type TextAreaProps = {
   /**
    * TextArea visible label
    */
-  label: string;
+  label: string | ReactElement;
   /**
    * Maximum number of characters allowed in the TextArea
    */
@@ -101,6 +101,15 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         ? "destructive-lightBackground"
         : "destructive-darkBackground";
 
+    const labelElement =
+      typeof label === "string" ? (
+        <Typography size={100} color={textColor}>
+          {label}
+        </Typography>
+      ) : (
+        label
+      );
+
     return (
       <Box
         display="flex"
@@ -116,11 +125,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       >
         {label && (
           <label className={textFieldStyles.label} htmlFor={inputId}>
-            <Box paddingX={1}>
-              <Typography size={100} color={textColor}>
-                {label}
-              </Typography>
-            </Box>
+            <Box paddingX={1}>{labelElement}</Box>
           </label>
         )}
         <Typography size={100}>

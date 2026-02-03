@@ -1,7 +1,8 @@
 import { type StoryObj, type Meta } from "@storybook/react";
-import TextField from "./TextField";
+import TextField, { type TextFieldProps } from "./TextField";
 import React, { useState } from "react";
 import Box from "../Box/Box";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/TextField",
@@ -78,7 +79,7 @@ function TextFieldDefault({
   placeholder = "Placeholder",
   value: initialValue = "",
   ...rest
-}) {
+}: Omit<TextFieldProps, "onChange">) {
   const [value, setValue] = useState("");
   return (
     <Box
@@ -132,4 +133,22 @@ export const TypeNumber: StoryObj<typeof TextField> = {
 export const TimeWithStep: StoryObj<typeof TextField> = {
   args: { step: 900, type: "time" },
   render: (args) => <TextFieldDefault {...args} />,
+};
+
+export const WithLabelAsReactElement: StoryObj<typeof TextField> = {
+  render: (args) => (
+    <TextFieldDefault
+      {...args}
+      label={
+        <Box display="flex" gap={1} direction="column">
+          <Typography weight="semiBold" size={200}>
+            Label
+          </Typography>
+          <Typography size={100} color="gray700">
+            Sublabel text
+          </Typography>
+        </Box>
+      }
+    />
+  ),
 };

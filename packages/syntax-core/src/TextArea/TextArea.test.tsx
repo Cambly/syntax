@@ -125,4 +125,16 @@ describe("textArea", () => {
     );
     expect(screen.getByTestId("TextArea-test-id")).toBeInTheDocument();
   });
+
+  it("does not add a label if empty string is passed", () => {
+    render(<TextArea label="" value="" onChange={() => undefined} />);
+    expect(screen.queryByRole("label")).not.toBeInTheDocument();
+  });
+
+  it("adds a label if a React element is passed", () => {
+    render(
+      <TextArea label={<div>Label</div>} value="" onChange={() => undefined} />,
+    );
+    expect(screen.getByText("Label")).toBeInTheDocument();
+  });
 });
