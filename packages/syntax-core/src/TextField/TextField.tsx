@@ -13,23 +13,7 @@ import Badge from "../Badge/Badge";
 /**
  * [TextField](https://cambly-syntax.vercel.app/?path=/docs/components-textfield--docs) is a component that allows users to enter text.
  */
-export default function TextField({
-  autoComplete,
-  "data-testid": dataTestId,
-  disabled: disabledProp = false,
-  on = "lightBackground",
-  endBadge,
-  errorText = "",
-  helperText = "",
-  id,
-  label,
-  maxLength,
-  onChange,
-  placeholder = "",
-  type = "text",
-  value = "",
-  step,
-}: {
+export type TextFieldProps = {
   /**
    * The autocomplete attribute specifies whether or not an input field should have autocomplete enabled.
    *
@@ -71,7 +55,7 @@ export default function TextField({
   /**
    * TextField visible label
    */
-  label: string;
+  label: string | ReactElement;
   /**
    * Maximum length of the TextField
    */
@@ -98,7 +82,25 @@ export default function TextField({
    * Specified legal number intervals for an input field. Specifically for time or number. If for time, specify in milliseconds. Must be a positive value.
    */
   step?: number;
-}): ReactElement {
+};
+
+export default function TextField({
+  autoComplete,
+  "data-testid": dataTestId,
+  disabled: disabledProp = false,
+  on = "lightBackground",
+  endBadge,
+  errorText = "",
+  helperText = "",
+  id,
+  label,
+  maxLength,
+  onChange,
+  placeholder = "",
+  type = "text",
+  value = "",
+  step,
+}: TextFieldProps): ReactElement {
   const isHydrated = useIsHydrated();
   const disabled = !isHydrated || disabledProp;
   const reactId = useId();
@@ -108,6 +110,15 @@ export default function TextField({
     on !== "darkBackground"
       ? "destructive-lightBackground"
       : "destructive-darkBackground";
+
+  const labelElement =
+    typeof label === "string" ? (
+      <Typography size={100} color={textColor}>
+        {label}
+      </Typography>
+    ) : (
+      label
+    );
   return (
     <Box
       display="flex"
@@ -122,11 +133,7 @@ export default function TextField({
     >
       {label && (
         <label className={styles.label} htmlFor={inputId}>
-          <Box paddingX={1}>
-            <Typography size={100} color={textColor}>
-              {label}
-            </Typography>
-          </Box>
+          <Box paddingX={1}>{labelElement}</Box>
         </label>
       )}
       <Box

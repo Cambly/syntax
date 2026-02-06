@@ -1,7 +1,8 @@
 import { type StoryObj, type Meta } from "@storybook/react";
 import Box from "../Box/Box";
-import TextArea from "./TextArea";
+import TextArea, { type TextAreaProps } from "./TextArea";
 import React, { useState } from "react";
+import Typography from "../Typography/Typography";
 
 export default {
   title: "Components/TextArea",
@@ -45,13 +46,14 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof TextArea>;
 
-function TextAreaDefault({
-  label = "Label",
-  placeholder = "Placeholder",
-  value: initialValue = "",
-  ...args
-}) {
-  const [value, setValue] = useState("");
+function TextAreaDefault(props: Omit<TextAreaProps, "onChange">) {
+  const {
+    label = "Label",
+    placeholder = "Placeholder",
+    value: initialValue = "",
+    ...args
+  } = props;
+  const [value, setValue] = useState(initialValue);
   return (
     <Box
       padding={2}
@@ -70,7 +72,7 @@ function TextAreaDefault({
         onChange={(event) => {
           setValue(event.target.value);
         }}
-        value={initialValue || value}
+        value={value}
         {...args}
       />
     </Box>
@@ -87,4 +89,22 @@ export const helperText: StoryObj<typeof TextArea> = {
 
 export const ErrorText: StoryObj<typeof TextArea> = {
   render: (args) => <TextAreaDefault errorText="This is an error" {...args} />,
+};
+
+export const WithLabelAsReactElement: StoryObj<typeof TextArea> = {
+  render: (args) => (
+    <TextAreaDefault
+      {...args}
+      label={
+        <Box display="flex" gap={1} direction="column">
+          <Typography weight="semiBold" size={200}>
+            Label
+          </Typography>
+          <Typography size={100} color="gray700">
+            Sublabel text
+          </Typography>
+        </Box>
+      }
+    />
+  ),
 };
