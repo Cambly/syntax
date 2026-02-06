@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 23.2.0
+
+### Minor Changes
+
+- c5cfcd55: Updates TextField and TextArea to accept a string or ReactElement as a label. This allows for more flexible label typography.
+
 ## 23.1.0
 
 ### Minor Changes
