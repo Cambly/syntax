@@ -119,6 +119,22 @@
   line-height: 1.15em;
 }
 
+/* Garnett only supports Latin-script languages (same set as GT Super) */
+
+/* stylelint-disable-next-line selector-max-compound-selectors -- only render brand font for certain languages */
+:lang(en) .sans-serif-brand,
+:lang(az) .sans-serif-brand,
+:lang(fr) .sans-serif-brand,
+:lang(de) .sans-serif-brand,
+:lang(es) .sans-serif-brand,
+:lang(it) .sans-serif-brand,
+:lang(pl) .sans-serif-brand,
+:lang(pt) .sans-serif-brand,
+:lang(tr) .sans-serif-brand {
+  font-family: var(--syntax-font-sans-serif-brand);
+  -webkit-font-smoothing: antialiased;
+}
+
 /* stylelint-disable-next-line selector-max-compound-selectors -- https://github.com/w3c/csswg-drafts/issues/4285 */
 :lang(ko) .typography {
   word-break: keep-all;
