@@ -7,11 +7,13 @@ function weight({
 }: {
   fontStyle: ComponentProps<typeof Heading>["fontStyle"];
   size: ComponentProps<typeof Heading>["size"];
-}): "bold" | "medium" | "regular" {
+}): "bold" | "semiBold" | "medium" | "regular" {
   if (fontStyle === "serif" && size === 400) {
     return "bold";
   } else if (fontStyle === "serif") {
     return "medium";
+  } else if (fontStyle === "sans-serif-brand") {
+    return "semiBold";
   } else {
     return "regular";
   }
@@ -72,7 +74,7 @@ const Heading = ({
    *
    * @defaultValue "sans-serif"
    */
-  fontStyle?: "serif" | "sans-serif";
+  fontStyle?: "serif" | "sans-serif" | "sans-serif-brand";
   /**
    * The number of lines we should truncate the text at
    */

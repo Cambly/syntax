@@ -39,6 +39,30 @@
     url("https://static.cambly.com/fonts/gt-super-text-bold-final.woff2");
 }
 
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Garnett-Regular"),
+    url("https://static.cambly.com/fonts/Garnett-Regular.woff");
+}
+
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 510;
+  src: local("Garnett-Medium"),
+    url("https://static.cambly.com/fonts/Garnett-Medium.woff");
+}
+
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 590;
+  src: local("Garnett-Semibold"),
+    url("https://static.cambly.com/fonts/Garnett-Semibold.woff");
+}
+
 .sansSerif {
   font-family: var(--syntax-font-sans-serif);
   margin: 0;
@@ -48,6 +72,12 @@
   font-family: var(
     --syntax-font-sans-serif
   ); /* Intentional, the default is still to use sans-serif, we only use serif for certain languages */
+}
+
+.sans-serif-brand {
+  font-family: var(
+    --syntax-font-sans-serif
+  ); /* Intentional, the default is still to use sans-serif, we only use brand for supported languages */
 }
 
 /* GT Super only supports certain languages: https://www.grillitype.com/typeface/gt-super */

@@ -3,6 +3,9 @@
     "font": {
       "sans-serif": {
         "value": "-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      },
+      "sans-serif-brand": {
+        "value": "'Garnett', -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
       }
     }
   }
