@@ -53,7 +53,7 @@ export default {
       control: "text",
     },
     fontStyle: {
-      options: ["serif", "sans-serif"],
+      options: ["serif", "sans-serif", "sans-serif-brand"],
       control: { type: "radio" },
     },
     inline: {
@@ -192,6 +192,44 @@ function SerifCharacterSupportExample() {
 
 export const SerifCharacterSupport: StoryObj<typeof Typography> = {
   render: () => <SerifCharacterSupportExample />,
+};
+
+function SansSerifBrandCharacterSupportExample() {
+  return (
+    <Box display="flex" gap={3} direction="column">
+      <Typography size={200} fontStyle="sans-serif-brand">
+        English: à, é, ñ
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Azerbaijani: ə, ı, ş, ü
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        French: à, â, é, è, ê, ë, î, ï, ô, ö, ù, û, ü, ÿ, ç
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        German: ä, ö, ü, ß
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Spanish: á, é, í, ó, ú, ü, ñ
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Italian: à, è, é, ì, ò, ó, ù
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Polish: ą, ć, ę, ł, ń, ó, ś, ź, ż
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Portuguese: á, â, ã, à, é, ê, í, ó, ô, õ, ú
+      </Typography>
+      <Typography size={200} fontStyle="sans-serif-brand">
+        Turkish: ç, ğ, ı, ö, ş, ü
+      </Typography>
+    </Box>
+  );
+}
+
+export const SansSerifBrandCharacterSupport: StoryObj<typeof Typography> = {
+  render: () => <SansSerifBrandCharacterSupportExample />,
 };
 
 export const Inline: StoryObj<typeof Typography> = {

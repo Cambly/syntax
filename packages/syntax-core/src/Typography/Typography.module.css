@@ -39,6 +39,30 @@
     url("https://static.cambly.com/fonts/gt-super-text-bold-final.woff2");
 }
 
+@font-face {
+  font-family: Garnett;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Garnett-Regular"),
+    url("https://static.cambly.com/fonts/Garnett-Regular.woff");
+}
+
+@font-face {
+  font-family: Garnett;
+  font-style: normal;
+  font-weight: 510;
+  src: local("Garnett-Medium"),
+    url("https://static.cambly.com/fonts/Garnett-Medium.woff");
+}
+
+@font-face {
+  font-family: Garnett;
+  font-style: normal;
+  font-weight: 590;
+  src: local("Garnett-Semibold"),
+    url("https://static.cambly.com/fonts/Garnett-Semibold.woff");
+}
+
 .sansSerif {
   font-family: var(--syntax-font-sans-serif);
   margin: 0;
@@ -48,6 +72,12 @@
   font-family: var(
     --syntax-font-sans-serif
   ); /* Intentional, the default is still to use sans-serif, we only use serif for certain languages */
+}
+
+.sansSerifBrand {
+  font-family: var(
+    --syntax-font-sans-serif
+  ); /* Intentional, the default is still to use sans-serif, we only use brand for supported languages */
 }
 
 /* GT Super only supports certain languages: https://www.grillitype.com/typeface/gt-super */
@@ -87,6 +117,22 @@
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.02em;
   line-height: 1.15em;
+}
+
+/* Garnett only supports Latin-script languages (same set as GT Super) */
+
+/* stylelint-disable-next-line selector-max-compound-selectors -- only render brand font for certain languages */
+:lang(en) .sansSerifBrand,
+:lang(az) .sansSerifBrand,
+:lang(fr) .sansSerifBrand,
+:lang(de) .sansSerifBrand,
+:lang(es) .sansSerifBrand,
+:lang(it) .sansSerifBrand,
+:lang(pl) .sansSerifBrand,
+:lang(pt) .sansSerifBrand,
+:lang(tr) .sansSerifBrand {
+  font-family: var(--syntax-font-sans-serif-brand);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* stylelint-disable-next-line selector-max-compound-selectors -- https://github.com/w3c/csswg-drafts/issues/4285 */

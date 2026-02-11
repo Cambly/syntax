@@ -51,7 +51,7 @@ export default {
       control: { type: "number", min: 0, max: 10, step: 1 },
     },
     fontStyle: {
-      options: ["serif", "sans-serif"],
+      options: ["serif", "sans-serif", "sans-serif-brand"],
       control: { type: "radio" },
     },
     size: {

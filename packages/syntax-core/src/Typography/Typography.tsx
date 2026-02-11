@@ -55,7 +55,7 @@ const Typography = forwardRef<
      *
      * @defaultValue "sans-serif"
      */
-    fontStyle?: "serif" | "sans-serif";
+    fontStyle?: "serif" | "sans-serif" | "sans-serif-brand";
     /**
      * The id for the element
      */
@@ -166,7 +166,11 @@ const Typography = forwardRef<
         styles[align],
         styles[weight],
         styles[whiteSpace],
-        fontStyle === "serif" ? styles.serif : styles.sansSerif,
+        fontStyle === "serif"
+          ? styles.serif
+          : fontStyle === "sans-serif-brand"
+          ? styles.sansSerifBrand
+          : styles.sansSerif,
         textColor(color),
         inline && styles.inline,
         styles[`size${size}`],
