@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-core",
   "description": "Cambly design system core components",
-  "version": "23.2.0",
+  "version": "23.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,7 +22,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cambly/syntax-design-tokens": "workspace:1.0.1",
+    "@cambly/syntax-design-tokens": "workspace:1.1.0",
     "@react-aria/focus": "^3.16.0",
     "@react-aria/utils": "^3.23.0",
     "react-aria": "^3.31.0",

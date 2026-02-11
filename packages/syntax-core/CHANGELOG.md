@@ -1,5 +1,16 @@
 # @cambly/syntax-core
 
+## 23.3.0
+
+### Minor Changes
+
+- 1b9aabb1: Add Garnett as a brand font. Typography and Heading now accept `fontStyle="sans-serif-brand"` which renders text in Garnett for supported Latin-script languages, falling back to the system sans-serif stack for unsupported languages.
+
+### Patch Changes
+
+- Updated dependencies [1b9aabb1]
+  - @cambly/syntax-design-tokens@1.1.0
+
 ## 23.2.0
 
 ### Minor Changes
