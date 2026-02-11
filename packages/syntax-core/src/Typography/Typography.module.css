@@ -40,7 +40,7 @@
 }
 
 @font-face {
-  font-family: "Garnett";
+  font-family: Garnett;
   font-style: normal;
   font-weight: 400;
   src: local("Garnett-Regular"),
@@ -48,7 +48,7 @@
 }
 
 @font-face {
-  font-family: "Garnett";
+  font-family: Garnett;
   font-style: normal;
   font-weight: 510;
   src: local("Garnett-Medium"),
@@ -56,7 +56,7 @@
 }
 
 @font-face {
-  font-family: "Garnett";
+  font-family: Garnett;
   font-style: normal;
   font-weight: 590;
   src: local("Garnett-Semibold"),
@@ -74,7 +74,7 @@
   ); /* Intentional, the default is still to use sans-serif, we only use serif for certain languages */
 }
 
-.sans-serif-brand {
+.sansSerifBrand {
   font-family: var(
     --syntax-font-sans-serif
   ); /* Intentional, the default is still to use sans-serif, we only use brand for supported languages */
@@ -122,15 +122,15 @@
 /* Garnett only supports Latin-script languages (same set as GT Super) */
 
 /* stylelint-disable-next-line selector-max-compound-selectors -- only render brand font for certain languages */
-:lang(en) .sans-serif-brand,
-:lang(az) .sans-serif-brand,
-:lang(fr) .sans-serif-brand,
-:lang(de) .sans-serif-brand,
-:lang(es) .sans-serif-brand,
-:lang(it) .sans-serif-brand,
-:lang(pl) .sans-serif-brand,
-:lang(pt) .sans-serif-brand,
-:lang(tr) .sans-serif-brand {
+:lang(en) .sansSerifBrand,
+:lang(az) .sansSerifBrand,
+:lang(fr) .sansSerifBrand,
+:lang(de) .sansSerifBrand,
+:lang(es) .sansSerifBrand,
+:lang(it) .sansSerifBrand,
+:lang(pl) .sansSerifBrand,
+:lang(pt) .sansSerifBrand,
+:lang(tr) .sansSerifBrand {
   font-family: var(--syntax-font-sans-serif-brand);
   -webkit-font-smoothing: antialiased;
 }

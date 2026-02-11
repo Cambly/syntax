@@ -169,8 +169,8 @@ const Typography = forwardRef<
         fontStyle === "serif"
           ? styles.serif
           : fontStyle === "sans-serif-brand"
-            ? styles["sans-serif-brand"]
-            : styles.sansSerif,
+          ? styles.sansSerifBrand
+          : styles.sansSerif,
         textColor(color),
         inline && styles.inline,
         styles[`size${size}`],
