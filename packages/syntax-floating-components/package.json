@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-floating-components",
   "description": "Cambly floating components",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,7 +22,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cambly/syntax-design-tokens": "workspace:1.0.1",
+    "@cambly/syntax-design-tokens": "workspace:1.1.0",
     "@floating-ui/react": "^0.24.0"
   },
   "devDependencies": {
