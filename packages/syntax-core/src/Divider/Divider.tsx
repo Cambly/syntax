@@ -22,13 +22,20 @@ const dividerColors = [
   "thistle",
 ] as const;
 
+type DividerColors = (typeof dividerColors)[number];
+
 /**
  * [Divider](https://cambly-syntax.vercel.app/?path=/docs/components-divider--docs) is a thin horizontal line to group content in lists and layouts.
  */
 export default function Divider({
   color = "gray370",
 }: {
-  color?: (typeof dividerColors)[number];
+  /**
+   * The color of the divider.
+   *
+   * @defaultValue "gray370"
+   */
+  color?: DividerColors;
 }): React.ReactElement {
   return (
     <hr
