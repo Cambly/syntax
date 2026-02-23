@@ -35,11 +35,11 @@ export default {
       control: { type: "number" },
     },
     image: {},
+    size: {
+      options: ["sm", "md", "lg"],
+      control: { type: "radio" },
+    },
     "data-testid": { control: { type: "text" } },
-  },
-  size: {
-    options: ["sm", "md", "lg"],
-    control: { type: "radio" },
   },
   tags: ["autodocs"],
 } as Meta<typeof Modal>;
