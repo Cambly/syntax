@@ -37,6 +37,10 @@ export default {
     image: {},
     "data-testid": { control: { type: "text" } },
   },
+  size: {
+    options: ["sm", "md", "lg"],
+    control: { type: "radio" },
+  },
   tags: ["autodocs"],
 } as Meta<typeof Modal>;
 
