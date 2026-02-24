@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 23.5.0
+
+### Minor Changes
+
+- b17d24f2: Modal now supports a `size` parameter
+
 ## 23.4.0
 
 ### Minor Changes
