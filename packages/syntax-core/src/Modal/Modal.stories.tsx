@@ -35,6 +35,10 @@ export default {
       control: { type: "number" },
     },
     image: {},
+    size: {
+      options: ["sm", "md", "lg"],
+      control: { type: "radio" },
+    },
     "data-testid": { control: { type: "text" } },
   },
   tags: ["autodocs"],

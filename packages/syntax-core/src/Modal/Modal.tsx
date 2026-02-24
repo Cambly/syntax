@@ -7,6 +7,7 @@ import FocusTrap from "./FocusTrap";
 import StopScroll from "./StopScroll";
 import Layer from "./Layer";
 import styles from "./Modal.module.css";
+import { type Size } from "../constants";
 import IconButton from "../IconButton/IconButton";
 import Divider from "../Divider/Divider";
 
@@ -65,6 +66,7 @@ export default function Modal({
   footer,
   accessibilityCloseLabel = "close modal",
   zIndex = 1,
+  size = "md",
   "data-testid": dataTestId,
 }: {
   /**
@@ -123,10 +125,26 @@ export default function Modal({
    */
   zIndex?: number;
   /**
+   * The size of the modal
+   *
+   * * `sm`: 480px max-width
+   * * `md`: 600px max-width
+   * * `lg`: 800px max-width
+   *
+   * @defaultValue "md"
+   */
+  size?: (typeof Size)[number];
+  /**
    * Test id for the modal
    */
   "data-testid"?: string;
 }): ReactElement {
+  const maxWidthMap = {
+    sm: 480,
+    md: 600,
+    lg: 880,
+  };
+
   return (
     <Layer zIndex={zIndex}>
       <StopScroll>
@@ -148,7 +166,7 @@ export default function Modal({
               marginBottom={8}
               minWidth={240}
               maxHeight="calc(100vh - 64px)"
-              maxWidth={600}
+              maxWidth={maxWidthMap[size]}
               overflow="hidden"
               position="relative"
               width="100%"
