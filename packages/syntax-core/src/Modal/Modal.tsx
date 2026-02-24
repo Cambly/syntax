@@ -142,7 +142,7 @@ export default function Modal({
   const maxWidthMap = {
     sm: 480,
     md: 600,
-    lg: 800,
+    lg: 880,
   };
 
   return (
