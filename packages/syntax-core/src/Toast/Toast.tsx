@@ -35,6 +35,16 @@ type ToastProps = {
    */
   on?: "lightBackground" | "darkBackground";
   /**
+   * Controls whether the toast is visible
+   *
+   * @defaultValue true
+   */
+  open?: boolean;
+  /**
+   * Callback fired when the toast is dismissed by timeout
+   */
+  onDismiss?: () => void;
+  /**
    * The number of milliseconds to wait before automatically dismissing the toast
    *
    * @defaultValue 5000
@@ -57,17 +67,31 @@ export default function Toast({
   heading,
   icon: Icon,
   on = "lightBackground",
+  open = true,
+  onDismiss,
   timeout = 5000,
   zIndex = 0,
 }: ToastProps): JSX.Element {
-  const [displayToast, setDisplayToast] = useState<boolean>(true);
+  const [displayToast, setDisplayToast] = useState<boolean>(open);
 
+  // Sync internal state with open prop
   useEffect(() => {
+    setDisplayToast(open);
+  }, [open]);
+
+  // Auto-dismiss after timeout
+  useEffect(() => {
+    if (!displayToast) {
+      return;
+    }
+
     const timeoutId = setTimeout(() => {
       setDisplayToast(false);
+      onDismiss?.();
     }, timeout);
+
     return () => clearTimeout(timeoutId);
-  }, [timeout]);
+  }, [displayToast, timeout, onDismiss]);
 
   return (
     <Box
