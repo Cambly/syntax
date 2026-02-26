@@ -32,18 +32,11 @@ export default {
   },
   argTypes: {
     alignItems: {
-      options: ["flexStart", "flexEnd", "center", "baseline", "stretch"],
+      options: ["start", "end", "center", "baseline", "stretch"],
       control: { type: "select" },
     },
     alignSelf: {
-      options: [
-        "auto",
-        "flexStart",
-        "flexEnd",
-        "center",
-        "baseline",
-        "stretch",
-      ],
+      options: ["auto", "start", "end", "center", "baseline", "stretch"],
       control: { type: "select" },
     },
     as: {
