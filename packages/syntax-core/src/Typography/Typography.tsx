@@ -18,6 +18,8 @@ type BaseTextColors =
   | "white-secondary"
   | "inherit";
 
+const BaseTypography = baseTypographyFactory<TextColors>();
+
 /**
  * [Typography](https://cambly-syntax.vercel.app/?path=/docs/components-typography--docs) is a component that renders text.
  */
@@ -28,7 +30,6 @@ const Typography = forwardRef<
   props: BaseTypographyProps<BaseTextColors>,
   ref: Ref<HTMLDivElement>,
 ) {
-  const BaseTypography = baseTypographyFactory<TextColors>();
   return <BaseTypography {...props} ref={ref} />;
 });
 

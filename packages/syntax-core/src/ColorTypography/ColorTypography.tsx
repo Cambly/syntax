@@ -17,6 +17,8 @@ type ColorTextColors =
   | "teal"
   | "thistle";
 
+const BaseTypography = baseTypographyFactory<TextColors>();
+
 /**
  * [ColorTypography](https://cambly-syntax.vercel.app/?path=/docs/components-colortypography--docs) is a component that renders text with Cambio colors.
  */
@@ -27,7 +29,6 @@ const ColorTypography = forwardRef<
   props: BaseTypographyProps<ColorTextColors>,
   ref: Ref<HTMLDivElement>,
 ) {
-  const BaseTypography = baseTypographyFactory<TextColors>();
   return <BaseTypography {...props} ref={ref} />;
 });
 
