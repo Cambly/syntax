@@ -74,8 +74,8 @@ export default function textColor(color: TextColors): string {
     case "thistle":
       return colorStyles.cambioThistleColor;
     default:
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars -- exhaustive check
       const _exhaustiveCheck: never = color;
-      throw new Error(`Unhandled color`);
-      return _exhaustiveCheck;
+      return colorStyles.cambioBlackColor;
   }
 }
