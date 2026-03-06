@@ -24,7 +24,7 @@
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
-  background: white;
+  background: #fff;
   color: var(--color-cambio-gray-700);
 }
 
@@ -88,7 +88,7 @@
 
 .segment[data-focused] {
   background-color: var(--color-base-primary-700);
-  color: white;
+  color: #fff;
   border-radius: 2px;
 }
 
@@ -136,9 +136,9 @@
 
 /* Popover container */
 .popover {
-  background: white;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.25);
   padding: 16px;
   outline: none;
   font-family: var(--syntax-font-sans-serif);
@@ -214,14 +214,25 @@
   font-weight: 600;
   color: var(--color-cambio-gray-700);
   text-align: center;
-  padding: 0 0 8px 0;
+  padding: 0 0 8px;
   width: 36px;
 }
 
-/* Calendar day cells */
+/*
+ * Calendar day cells.
+ * CalendarCell applies className to the <div role="button"> element directly,
+ * so all states can be targeted without nested selectors.
+ */
 .cell {
-  text-align: center;
-  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--color-cambio-gray-700);
+  cursor: pointer;
   outline: none;
 }
 
@@ -229,71 +240,30 @@
   visibility: hidden;
 }
 
-/* Selected range: cells in the middle of the range */
+/* Cells within the selected range */
 .cell[data-selected] {
   background-color: var(--color-base-primary-100);
-}
-
-/* Start of selection: remove left rounding on background */
-.cell[data-selection-start] {
-  border-radius: 50% 0 0 50%;
-}
-
-/* End of selection: remove right rounding on background */
-.cell[data-selection-end] {
-  border-radius: 0 50% 50% 0;
-}
-
-/* When start and end are the same cell */
-.cell[data-selection-start][data-selection-end] {
-  border-radius: 50%;
-}
-
-/* The inner button rendered inside CalendarCell */
-.cell :global([data-type="button"]),
-.cell > button,
-.cell [role="button"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 50%;
-  background: none;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--color-cambio-gray-700);
-  outline: none;
-}
-
-.cell[data-selected] > button,
-.cell[data-selected] [role="button"] {
   color: var(--color-base-primary-700);
 }
 
-.cell[data-selection-start] > button,
-.cell[data-selection-start] [role="button"],
-.cell[data-selection-end] > button,
-.cell[data-selection-end] [role="button"] {
+/* Start and end of the selected range */
+.cell[data-selection-start],
+.cell[data-selection-end] {
   background-color: var(--color-base-primary-700);
-  color: white;
+  color: #fff;
 }
 
-.cell[data-focused] > button,
-.cell[data-focused] [role="button"] {
+.cell[data-focused] {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
 }
 
-.cell[data-unavailable] > button,
-.cell[data-unavailable] [role="button"] {
+.cell[data-unavailable] {
   text-decoration: line-through;
   color: var(--color-cambio-gray-370);
   cursor: not-allowed;
 }
 
-.cell[data-disabled] > button,
-.cell[data-disabled] [role="button"] {
+.cell[data-disabled] {
   opacity: 0.4;
   cursor: not-allowed;
 }

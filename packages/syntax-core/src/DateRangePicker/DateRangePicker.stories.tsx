@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { parseDate, getLocalTimeZone, today, isWeekend } from "@internationalized/date";
+import {
+  parseDate,
+  getLocalTimeZone,
+  today,
+  isWeekend,
+} from "@internationalized/date";
 import { useLocale } from "react-aria";
 import type { DateRange, DateValue } from "react-aria-components";
 import Box from "../Box/Box";

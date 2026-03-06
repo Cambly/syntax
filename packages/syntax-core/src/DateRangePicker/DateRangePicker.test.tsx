@@ -18,18 +18,14 @@ describe("dateRangePicker", () => {
   });
 
   it("renders the calendar open button", () => {
-    render(
-      <DateRangePicker label="Date range" onChange={() => undefined} />,
-    );
+    render(<DateRangePicker label="Date range" onChange={() => undefined} />);
     expect(
       screen.getByRole("button", { name: /open calendar/i }),
     ).toBeInTheDocument();
   });
 
   it("opens the calendar popover on button click", async () => {
-    render(
-      <DateRangePicker label="Date range" onChange={() => undefined} />,
-    );
+    render(<DateRangePicker label="Date range" onChange={() => undefined} />);
     const button = screen.getByRole("button", { name: /open calendar/i });
     await userEvent.click(button);
     // Two calendar grids are rendered (current month + next month)
@@ -61,9 +57,7 @@ describe("dateRangePicker", () => {
   });
 
   it("does not display error message when not set", () => {
-    render(
-      <DateRangePicker label="Date range" onChange={() => undefined} />,
-    );
+    render(<DateRangePicker label="Date range" onChange={() => undefined} />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
@@ -124,7 +118,10 @@ describe("dateRangePicker", () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     expect(handleChange).toHaveBeenCalledWith(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      expect.objectContaining({ start: expect.anything(), end: expect.anything() }),
+      expect.objectContaining({
+        start: expect.anything(),
+        end: expect.anything(),
+      }),
     );
   });
 

@@ -147,7 +147,10 @@ export default function DateRangePicker({
         <FieldError className={styles.errorMessage}>{errorMessage}</FieldError>
       )}
       <Popover className={styles.popover}>
-        <RangeCalendar visibleDuration={{ months: 2 }} className={styles.calendar}>
+        <RangeCalendar
+          visibleDuration={{ months: 2 }}
+          className={styles.calendar}
+        >
           <header className={styles.calendarHeader}>
             <Button
               slot="previous"
@@ -175,9 +178,7 @@ export default function DateRangePicker({
                 )}
               </CalendarGridHeader>
               <CalendarGridBody>
-                {(date) => (
-                  <CalendarCell date={date} className={styles.cell} />
-                )}
+                {(date) => <CalendarCell date={date} className={styles.cell} />}
               </CalendarGridBody>
             </CalendarGrid>
             <CalendarGrid offset={NEXT_MONTH} className={styles.calendarGrid}>
@@ -189,9 +190,7 @@ export default function DateRangePicker({
                 )}
               </CalendarGridHeader>
               <CalendarGridBody>
-                {(date) => (
-                  <CalendarCell date={date} className={styles.cell} />
-                )}
+                {(date) => <CalendarCell date={date} className={styles.cell} />}
               </CalendarGridBody>
             </CalendarGrid>
           </div>
