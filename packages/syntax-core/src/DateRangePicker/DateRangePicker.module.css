@@ -1,0 +1,299 @@
+/* Root container */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-family: var(--syntax-font-sans-serif);
+}
+
+/* Label */
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-cambio-gray-700);
+  cursor: default;
+}
+
+/* Input group: wraps both DateInputs + calendar button */
+.group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--color-cambio-gray-370);
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  background: white;
+  color: var(--color-cambio-gray-700);
+}
+
+.group[data-focus-within] {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.group[data-invalid] {
+  border-color: var(--color-cambio-destructive-700);
+}
+
+.group[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Size variants */
+.sm {
+  height: 32px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.md {
+  height: 48px;
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.lg {
+  height: 64px;
+  padding: 0 16px;
+  font-size: 18px;
+}
+
+/* DateInput wrapper */
+.dateInput {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Individual date segment (year, month, day) */
+.segment {
+  padding: 1px 2px;
+  border-radius: 4px;
+  outline: none;
+  caret-color: transparent;
+}
+
+.segment[data-type="literal"] {
+  padding: 0 1px;
+  color: var(--color-cambio-gray-370);
+}
+
+.segment[data-placeholder] {
+  color: var(--color-cambio-gray-370);
+}
+
+.segment[data-focused] {
+  background-color: var(--color-base-primary-700);
+  color: white;
+  border-radius: 2px;
+}
+
+/* Separator between start and end date inputs */
+.separator {
+  flex-shrink: 0;
+  color: var(--color-cambio-gray-370);
+  padding: 0 4px;
+  user-select: none;
+}
+
+/* Calendar open button */
+.calendarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--color-cambio-gray-700);
+  outline: none;
+}
+
+.calendarButton:hover {
+  background-color: var(--color-cambio-gray-10);
+}
+
+.calendarButton[data-focus-visible] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+/* Helper and error text */
+.description {
+  font-size: 14px;
+  color: var(--color-cambio-gray-700);
+}
+
+.errorMessage {
+  font-size: 14px;
+  color: var(--color-cambio-destructive-700);
+}
+
+/* Popover container */
+.popover {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  outline: none;
+  font-family: var(--syntax-font-sans-serif);
+}
+
+/* Calendar */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Calendar header (nav row) */
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.calendarHeading {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-cambio-gray-700);
+}
+
+/* Prev / Next month buttons */
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--color-cambio-gray-700);
+  outline: none;
+  flex-shrink: 0;
+}
+
+.navButton:hover {
+  background-color: var(--color-cambio-gray-10);
+}
+
+.navButton[data-focus-visible] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.navButton[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Two-month grid container */
+.calendarGrids {
+  display: flex;
+  gap: 24px;
+}
+
+/* Individual month grid table */
+.calendarGrid {
+  border-collapse: collapse;
+}
+
+/* Day-of-week header cells */
+.dayHeader {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-cambio-gray-700);
+  text-align: center;
+  padding: 0 0 8px 0;
+  width: 36px;
+}
+
+/* Calendar day cells */
+.cell {
+  text-align: center;
+  padding: 0;
+  outline: none;
+}
+
+.cell[data-outside-month] {
+  visibility: hidden;
+}
+
+/* Selected range: cells in the middle of the range */
+.cell[data-selected] {
+  background-color: var(--color-base-primary-100);
+}
+
+/* Start of selection: remove left rounding on background */
+.cell[data-selection-start] {
+  border-radius: 50% 0 0 50%;
+}
+
+/* End of selection: remove right rounding on background */
+.cell[data-selection-end] {
+  border-radius: 0 50% 50% 0;
+}
+
+/* When start and end are the same cell */
+.cell[data-selection-start][data-selection-end] {
+  border-radius: 50%;
+}
+
+/* The inner button rendered inside CalendarCell */
+.cell :global([data-type="button"]),
+.cell > button,
+.cell [role="button"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-cambio-gray-700);
+  outline: none;
+}
+
+.cell[data-selected] > button,
+.cell[data-selected] [role="button"] {
+  color: var(--color-base-primary-700);
+}
+
+.cell[data-selection-start] > button,
+.cell[data-selection-start] [role="button"],
+.cell[data-selection-end] > button,
+.cell[data-selection-end] [role="button"] {
+  background-color: var(--color-base-primary-700);
+  color: white;
+}
+
+.cell[data-focused] > button,
+.cell[data-focused] [role="button"] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.cell[data-unavailable] > button,
+.cell[data-unavailable] [role="button"] {
+  text-decoration: line-through;
+  color: var(--color-cambio-gray-370);
+  cursor: not-allowed;
+}
+
+.cell[data-disabled] > button,
+.cell[data-disabled] [role="button"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
