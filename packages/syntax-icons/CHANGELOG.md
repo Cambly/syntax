@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.3.0
+
+### Minor Changes
+
+- e80dbf51: added fullscreen and fullscreen exit icons for voice mode
+
 ## 5.2.0
 
 ### Minor Changes
