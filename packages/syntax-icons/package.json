@@ -221,6 +221,14 @@
       "types": "./dist/FlagUnfilled.d.ts",
       "default": "./dist/FlagUnfilled.js"
     },
+    "./Fullscreen": {
+      "types": "./dist/Fullscreen.d.ts",
+      "default": "./dist/Fullscreen.js"
+    },
+    "./FullscreenExit": {
+      "types": "./dist/FullscreenExit.d.ts",
+      "default": "./dist/FullscreenExit.js"
+    },
     "./Globe": {
       "types": "./dist/Globe.d.ts",
       "default": "./dist/Globe.js"

@@ -55,6 +55,8 @@ import Face from "./icons/Face";
 import FlagCheckered from "./icons/FlagCheckered";
 import FlagFilled from "./icons/FlagFilled";
 import FlagUnfilled from "./icons/FlagUnfilled";
+import Fullscreen from "./icons/Fullscreen";
+import FullscreenExit from "./icons/FullscreenExit";
 import Globe from "./icons/Globe";
 import Graphs from "./icons/Graphs";
 import Hand from "./icons/Hand";
@@ -176,6 +178,8 @@ const cambioIcons = [
   { name: "FlagCheckered", component: FlagCheckered },
   { name: "FlagFilled", component: FlagFilled },
   { name: "FlagUnfilled", component: FlagUnfilled },
+  { name: "Fullscreen", component: Fullscreen },
+  { name: "FullscreenExit", component: FullscreenExit },
   { name: "Globe", component: Globe },
   { name: "Graphs", component: Graphs },
   { name: "Hand", component: Hand },
