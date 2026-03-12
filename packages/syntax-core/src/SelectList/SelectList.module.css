@@ -38,6 +38,13 @@
   padding-inline-end: 36px;
 }
 
+/* Color */
+.selectColorwhite {
+  background-color: var(--color-base-white);
+  border: 1px solid var(--color-cambio-gray-370);
+  color: var(--color-base-gray-700);
+}
+
 .selectMouseFocusStyling {
   border: 1px solid var(--color-base-primary-700);
   box-shadow: 0 0 0 1px var(--color-base-primary-700);
@@ -80,13 +87,6 @@
 .selectErrorCambio {
   color: var(--color-cambio-destructive-900);
   border-color: var(--color-cambio-destructive-700);
-}
-
-/* Color */
-.selectColorwhite {
-  background-color: var(--color-base-white);
-  border: 1px solid var(--color-cambio-gray-370);
-  color: var(--color-base-gray-700);
 }
 
 .transparentInputError {

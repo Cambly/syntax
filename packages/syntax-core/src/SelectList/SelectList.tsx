@@ -147,6 +147,7 @@ export default function SelectList({
           data-testid={dataTestId}
           disabled={disabled}
           className={classNames(styles.selectBox, styles.selectBoxCambio, {
+            [styles.selectColorwhite]: on !== "darkBackground",
             [styles.unselected]: !selectedValue && !errorText,
             [styles.selected]: selectedValue && !errorText,
             [styles.selectErrorCambio]: errorText && on === "lightBackground",
