@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 23.5.1
+
+### Patch Changes
+
+- 29741e7f: Fixes incorrect color for primary button on dark background
+
 ## 23.5.0
 
 ### Minor Changes
