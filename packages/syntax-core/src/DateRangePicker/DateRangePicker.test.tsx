@@ -115,14 +115,10 @@ describe("dateRangePicker", () => {
     await userEvent.click(screen.getByRole("button", { name: /March 10/ }));
     await userEvent.click(screen.getByRole("button", { name: /March 15/ }));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    expect(handleChange).toHaveBeenCalledWith(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      expect.objectContaining({
-        start: expect.anything(),
-        end: expect.anything(),
-      }),
-    );
+    expect(handleChange).toHaveBeenCalledWith({
+      start: parseDate("2026-03-10"),
+      end: parseDate("2026-03-15"),
+    });
   });
 
   it("applies data-testid to the group element", () => {

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 100%;
+  width: fit-content;
   font-family: var(--syntax-font-sans-serif);
 }
 
@@ -23,7 +23,6 @@
   border: 1px solid var(--color-cambio-gray-370);
   border-radius: 8px;
   box-sizing: border-box;
-  width: 100%;
   background: #fff;
   color: var(--color-cambio-gray-700);
 }
