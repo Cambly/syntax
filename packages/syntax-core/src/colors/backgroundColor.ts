@@ -29,7 +29,7 @@ export function backgroundColor(
   } else {
     switch (color) {
       case "primary":
-        return styles.cambioGray200BackgroundColor;
+        return styles.cambioGray100BackgroundColor;
       case "secondary":
       case "success-secondary":
       case "destructive-secondary":
