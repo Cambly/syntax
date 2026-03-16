@@ -20,13 +20,13 @@ describe("dateRangePicker", () => {
   it("renders the calendar open button", () => {
     render(<DateRangePicker label="Date range" onChange={() => undefined} />);
     expect(
-      screen.getByRole("button", { name: /open calendar/i }),
+      screen.getByRole("button", { name: /calendar/i }),
     ).toBeInTheDocument();
   });
 
   it("opens the calendar popover on button click", async () => {
     render(<DateRangePicker label="Date range" onChange={() => undefined} />);
-    const button = screen.getByRole("button", { name: /open calendar/i });
+    const button = screen.getByRole("button", { name: /calendar/i });
     await userEvent.click(button);
     // Two calendar grids are rendered (current month + next month)
     expect(screen.getAllByRole("grid")).toHaveLength(2);
@@ -70,7 +70,7 @@ describe("dateRangePicker", () => {
       />,
     );
     expect(
-      screen.getByRole("button", { name: /open calendar/i }),
+      screen.getByRole("button", { name: /calendar/i }),
     ).toBeDisabled();
   });
 
@@ -82,7 +82,7 @@ describe("dateRangePicker", () => {
         onChange={() => undefined}
       />,
     );
-    const button = screen.getByRole("button", { name: /open calendar/i });
+    const button = screen.getByRole("button", { name: /calendar/i });
     await userEvent.click(button);
     expect(screen.queryByRole("grid")).not.toBeInTheDocument();
   });
@@ -107,7 +107,7 @@ describe("dateRangePicker", () => {
 
     // Open the calendar
     await userEvent.click(
-      screen.getByRole("button", { name: /open calendar/i }),
+      screen.getByRole("button", { name: /calendar/i }),
     );
 
     // Click two specific date cells by their accessible label
@@ -163,5 +163,59 @@ describe("dateRangePicker", () => {
       />,
     );
     expect(baseElement).toBeTruthy();
+  });
+
+  it("pads single-digit month and day segments with leading zeros", () => {
+    render(
+      <DateRangePicker
+        label="Date range"
+        value={{
+          start: parseDate("2026-01-05"),
+          end: parseDate("2026-02-03"),
+        }}
+        onChange={() => undefined}
+      />,
+    );
+    // padSegment should ensure "1" → "01", "5" → "05", etc.
+    expect(screen.getAllByText("01")).toHaveLength(1);
+    expect(screen.getAllByText("05")).toHaveLength(1);
+    expect(screen.getAllByText("02")).toHaveLength(1);
+    expect(screen.getAllByText("03")).toHaveLength(1);
+  });
+
+  it("renders with a custom locale", () => {
+    const { baseElement } = render(
+      <DateRangePicker
+        label="日期范围"
+        locale="zh-CN"
+        onChange={() => undefined}
+      />,
+    );
+    expect(baseElement).toBeTruthy();
+    expect(screen.getByText("日期范围")).toBeInTheDocument();
+  });
+
+  it("renders with allowsNonContiguousRanges", () => {
+    const { baseElement } = render(
+      <DateRangePicker
+        label="Date range"
+        allowsNonContiguousRanges
+        isDateUnavailable={(date) => {
+          const jsDate = date.toDate("UTC");
+          return jsDate.getDay() === 0; // Sundays unavailable
+        }}
+        onChange={() => undefined}
+      />,
+    );
+    expect(baseElement).toBeTruthy();
+  });
+
+  it("renders two calendar grids showing two months", async () => {
+    render(<DateRangePicker label="Date range" onChange={() => undefined} />);
+    await userEvent.click(
+      screen.getByRole("button", { name: /calendar/i }),
+    );
+    const grids = screen.getAllByRole("grid");
+    expect(grids).toHaveLength(2);
   });
 });
