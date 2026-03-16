@@ -191,3 +191,86 @@ export const WithUnavailableDates: Story = {
     );
   },
 };
+
+export const MondaysOnly: Story = {
+  render: function MondaysOnlyExample(args) {
+    const isNotMonday = (date: DateValue) => {
+      const jsDate = date.toDate(getLocalTimeZone());
+      return jsDate.getDay() !== 1;
+    };
+    return (
+      <Box padding={2} display="flex" direction="column" gap={4}>
+        <DateRangePicker
+          {...args}
+          label="Mondays only"
+          isDateUnavailable={isNotMonday}
+          allowsNonContiguousRanges
+          description="Only Mondays are available for selection."
+          onChange={() => undefined}
+        />
+      </Box>
+    );
+  },
+};
+
+export const Locales: Story = {
+  render: (args) => (
+    <Box padding={2} display="flex" direction="column" gap={6}>
+      <Box display="flex" direction="column" gap={1}>
+        <Typography size={100} color="gray700">
+          English (en-US)
+        </Typography>
+        <DateRangePicker
+          {...args}
+          label="Date range"
+          locale="en-US"
+          onChange={() => undefined}
+        />
+      </Box>
+      <Box display="flex" direction="column" gap={1}>
+        <Typography size={100} color="gray700">
+          Chinese (zh-CN)
+        </Typography>
+        <DateRangePicker
+          {...args}
+          label="日期范围"
+          locale="zh-CN"
+          onChange={() => undefined}
+        />
+      </Box>
+      <Box display="flex" direction="column" gap={1}>
+        <Typography size={100} color="gray700">
+          Arabic (ar-SA)
+        </Typography>
+        <DateRangePicker
+          {...args}
+          label="نطاق التاريخ"
+          locale="ar-SA"
+          onChange={() => undefined}
+        />
+      </Box>
+      <Box display="flex" direction="column" gap={1}>
+        <Typography size={100} color="gray700">
+          Japanese (ja-JP)
+        </Typography>
+        <DateRangePicker
+          {...args}
+          label="日付範囲"
+          locale="ja-JP"
+          onChange={() => undefined}
+        />
+      </Box>
+      <Box display="flex" direction="column" gap={1}>
+        <Typography size={100} color="gray700">
+          Korean (ko-KR)
+        </Typography>
+        <DateRangePicker
+          {...args}
+          label="날짜 범위"
+          locale="ko-KR"
+          onChange={() => undefined}
+        />
+      </Box>
+    </Box>
+  ),
+};

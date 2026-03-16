@@ -76,6 +76,20 @@
   caret-color: transparent;
 }
 
+/* Fixed min-width per segment to prevent layout shift when values change.
+ * 1ch = width of the character "0" in the current font. */
+.segment[data-type="year"] {
+  min-width: 4ch; /* e.g. "2026" */
+}
+
+.segment[data-type="month"] {
+  min-width: 2ch; /* e.g. "03" */
+}
+
+.segment[data-type="day"] {
+  min-width: 2ch; /* e.g. "15" */
+}
+
 .segment[data-type="literal"] {
   padding: 0 1px;
   color: var(--color-cambio-gray-370);
@@ -133,12 +147,24 @@
   color: var(--color-cambio-destructive-700);
 }
 
-/* Popover container */
+/* Popover container – fixed height to prevent repositioning when switching
+ * between months with 5 and 6 rows.
+ *
+ * 320px ≈ navButton height  32px
+ *        + calendar gap      16px
+ *        + day-of-week header 20px  (12px font + 8px padding)
+ *        + 6 rows × 36px    216px
+ *        + popover padding   32px  (16px × 2)
+ *                           ------
+ *                            316px → rounded to 320px
+ */
 .popover {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.25);
   padding: 16px;
+  height: 320px;
+  overflow: hidden;
   outline: none;
   font-family: var(--syntax-font-sans-serif);
 }
@@ -177,14 +203,15 @@
   border-radius: 50%;
   background: none;
   cursor: pointer;
-  font-size: 20px;
   color: var(--color-cambio-gray-700);
   outline: none;
   flex-shrink: 0;
 }
 
-.navButton:hover {
-  background-color: var(--color-cambio-gray-10);
+/* React Aria uses JS-managed data-hovered instead of CSS :hover
+ * to handle cross-platform differences (e.g. sticky :hover on touch devices). */
+.navButton[data-hovered] {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .navButton[data-focus-visible] {
@@ -196,13 +223,17 @@
   cursor: not-allowed;
 }
 
-/* Two-month grid container */
+/* Two-month grid container.
+ * align-items: flex-start keeps both grids top-aligned so that
+ * matching rows stay on the same horizontal line when the two
+ * months have different row counts (e.g. 5 rows vs 6 rows). */
 .calendarGrids {
   display: flex;
+  align-items: flex-start;
   gap: 24px;
 }
 
-/* Individual month grid table */
+/* Individual month grid table – fixed 6 rows to prevent height shift */
 .calendarGrid {
   border-collapse: collapse;
 }
@@ -233,6 +264,12 @@
   color: var(--color-cambio-gray-700);
   cursor: pointer;
   outline: none;
+}
+
+.cell[data-hovered]:not([data-selected]):not([data-unavailable]):not(
+    [data-disabled]
+  ) {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .cell[data-outside-month] {
