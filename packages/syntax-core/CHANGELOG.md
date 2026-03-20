@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 23.5.2
+
+### Patch Changes
+
+- f0877bed: Apply styles SelectList to match what is expected by the Cambio design system
+
 ## 23.5.1
 
 ### Patch Changes
