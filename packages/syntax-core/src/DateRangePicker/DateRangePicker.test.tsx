@@ -69,9 +69,7 @@ describe("dateRangePicker", () => {
         onChange={() => undefined}
       />,
     );
-    expect(
-      screen.getByRole("button", { name: /calendar/i }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: /calendar/i })).toBeDisabled();
   });
 
   it("does not open calendar when disabled", async () => {
@@ -106,9 +104,7 @@ describe("dateRangePicker", () => {
     render(<DateRangePicker label="Date range" onChange={handleChange} />);
 
     // Open the calendar
-    await userEvent.click(
-      screen.getByRole("button", { name: /calendar/i }),
-    );
+    await userEvent.click(screen.getByRole("button", { name: /calendar/i }));
 
     // Click two specific date cells by their accessible label
     // The calendar shows the current month (March 2026 per test date)
@@ -212,9 +208,7 @@ describe("dateRangePicker", () => {
 
   it("renders two calendar grids showing two months", async () => {
     render(<DateRangePicker label="Date range" onChange={() => undefined} />);
-    await userEvent.click(
-      screen.getByRole("button", { name: /calendar/i }),
-    );
+    await userEvent.click(screen.getByRole("button", { name: /calendar/i }));
     const grids = screen.getAllByRole("grid");
     expect(grids).toHaveLength(2);
   });

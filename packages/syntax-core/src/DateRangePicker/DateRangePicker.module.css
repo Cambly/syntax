@@ -266,8 +266,8 @@
   outline: none;
 }
 
-.cell[data-hovered]:not([data-selected]):not([data-unavailable]):not(
-    [data-disabled]
+.cell:where(
+    [data-hovered]:not([data-selected], [data-unavailable], [data-disabled])
   ) {
   background-color: rgba(0, 0, 0, 0.1);
 }
