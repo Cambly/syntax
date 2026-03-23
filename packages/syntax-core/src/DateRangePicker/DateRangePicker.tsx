@@ -21,6 +21,7 @@ import {
   type DateRange,
 } from "react-aria-components";
 import type { DateSegment as DateSegmentData } from "react-stately";
+import Calendar from "../../../syntax-icons/src/icons/Calendar";
 import ChevronLeft from "../../../syntax-icons/src/icons/ChevronLeft";
 import ChevronRight from "../../../syntax-icons/src/icons/ChevronRight";
 import styles from "./DateRangePicker.module.css";
@@ -163,15 +164,7 @@ export default function DateRangePicker({
             )}
           </DateInput>
           <Button className={styles.calendarButton}>
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              viewBox="0 0 24 24"
-              width={20}
-              height={20}
-            >
-              <path d="M2.5 2v20h19V2zm2.111 17.895V5.158H19.39v14.737H4.61Zm4.222-6.316h-2.11v-2.105h2.11zm4.223 0h-2.112v-2.105h2.111zm4.222 0h-2.111v-2.105h2.11zm-4.222 4.21h-2.112v-2.105h2.112zm-4.223 0h-2.11v-2.105h2.11zm4.223-8.42h-2.112V7.262h2.112v2.105Zm4.222 0h-2.111V7.262h2.11v2.105Z" />
-            </svg>
+            <Calendar size={200} color="gray700" />
           </Button>
         </Group>
         {description && (
