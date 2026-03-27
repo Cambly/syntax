@@ -35,7 +35,14 @@ type ToastProps = {
    */
   on?: "lightBackground" | "darkBackground";
   /**
+   * If true, the toast will not automatically dismiss
+   *
+   * @defaultValue false
+   */
+  persistent?: boolean;
+  /**
    * The number of milliseconds to wait before automatically dismissing the toast
+   * If persistent is true, this prop will be ignored and the toast will not automatically dismiss
    *
    * @defaultValue 5000
    */
@@ -57,17 +64,21 @@ export default function Toast({
   heading,
   icon: Icon,
   on = "lightBackground",
+  persistent = false,
   timeout = 5000,
   zIndex = 0,
 }: ToastProps): JSX.Element {
   const [displayToast, setDisplayToast] = useState<boolean>(true);
 
   useEffect(() => {
+    if (persistent) {
+      return;
+    }
     const timeoutId = setTimeout(() => {
       setDisplayToast(false);
     }, timeout);
     return () => clearTimeout(timeoutId);
-  }, [timeout]);
+  }, [persistent, timeout]);
 
   return (
     <Box

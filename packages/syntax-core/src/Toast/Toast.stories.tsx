@@ -29,6 +29,9 @@ export default {
       options: ["lightBackground", "darkBackground"],
       control: { type: "radio" },
     },
+    persistent: {
+      control: "boolean",
+    },
     timeout: {
       control: "number",
     },
