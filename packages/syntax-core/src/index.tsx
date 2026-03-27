@@ -1,4 +1,5 @@
 import Avatar from "./Avatar/Avatar";
+import DateRangePicker from "./DateRangePicker/DateRangePicker";
 import AvatarGroup from "./AvatarGroup/AvatarGroup";
 import Badge from "./Badge/Badge";
 import Box from "./Box/Box";
@@ -33,6 +34,7 @@ import WordConfetti from "./WordConfetti/WordConfetti";
 
 export {
   Avatar,
+  DateRangePicker,
   AvatarGroup,
   Badge,
   Box,
