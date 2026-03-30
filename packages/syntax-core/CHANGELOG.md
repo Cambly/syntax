@@ -1,5 +1,11 @@
 # @cambly/syntax-core
 
+## 23.7.0
+
+### Minor Changes
+
+- f127ec93: New DateRangePicker component based on ReactAria DateRangePicker.
+
 ## 23.6.0
 
 ### Minor Changes
