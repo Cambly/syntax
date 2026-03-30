@@ -1,0 +1,305 @@
+/* Root container */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: fit-content;
+  font-family: var(--syntax-font-sans-serif);
+}
+
+/* Label */
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-cambio-gray-700);
+  cursor: default;
+}
+
+/* Input group: wraps both DateInputs + calendar button */
+.group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--color-cambio-gray-370);
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #fff;
+  color: var(--color-cambio-gray-700);
+}
+
+.group[data-focus-within] {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.group[data-invalid] {
+  border-color: var(--color-cambio-destructive-700);
+}
+
+.group[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Size variants */
+.sm {
+  height: 32px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.md {
+  height: 48px;
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.lg {
+  height: 64px;
+  padding: 0 16px;
+  font-size: 18px;
+}
+
+/* DateInput wrapper */
+.dateInput {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Individual date segment (year, month, day) */
+.segment {
+  padding: 1px 2px;
+  border-radius: 4px;
+  outline: none;
+  caret-color: transparent;
+}
+
+/* Fixed min-width per segment to prevent layout shift when values change.
+ * 1ch = width of the character "0" in the current font. */
+.segment[data-type="year"] {
+  min-width: 4ch; /* e.g. "2026" */
+}
+
+.segment[data-type="month"] {
+  min-width: 2ch; /* e.g. "03" */
+}
+
+.segment[data-type="day"] {
+  min-width: 2ch; /* e.g. "15" */
+}
+
+.segment[data-type="literal"] {
+  padding: 0 1px;
+  color: var(--color-cambio-gray-370);
+}
+
+.segment[data-placeholder] {
+  color: var(--color-cambio-gray-370);
+}
+
+.segment[data-focused] {
+  background-color: var(--color-base-primary-700);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Separator between start and end date inputs */
+.separator {
+  flex-shrink: 0;
+  color: var(--color-cambio-gray-370);
+  padding: 0 4px;
+  user-select: none;
+}
+
+/* Calendar open button */
+.calendarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--color-cambio-gray-700);
+  outline: none;
+}
+
+.calendarButton:hover {
+  background-color: var(--color-cambio-gray-10);
+}
+
+.calendarButton[data-focus-visible] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+/* Helper and error text */
+.description {
+  font-size: 14px;
+  color: var(--color-cambio-gray-700);
+}
+
+.errorMessage {
+  font-size: 14px;
+  color: var(--color-cambio-destructive-700);
+}
+
+/* Popover container – fixed height to prevent repositioning when switching
+ * between months with 5 and 6 rows.
+ *
+ * 320px ≈ navButton height  32px
+ *        + calendar gap      16px
+ *        + day-of-week header 20px  (12px font + 8px padding)
+ *        + 6 rows × 36px    216px
+ *        + popover padding   32px  (16px × 2)
+ *                           ------
+ *                            316px → rounded to 320px
+ */
+.popover {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  height: 320px;
+  overflow: hidden;
+  outline: none;
+  font-family: var(--syntax-font-sans-serif);
+}
+
+/* Calendar */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Calendar header (nav row) */
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.calendarHeading {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-cambio-gray-700);
+}
+
+/* Prev / Next month buttons */
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  color: var(--color-cambio-gray-700);
+  outline: none;
+  flex-shrink: 0;
+}
+
+/* React Aria uses JS-managed data-hovered instead of CSS :hover
+ * to handle cross-platform differences (e.g. sticky :hover on touch devices). */
+.navButton[data-hovered] {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navButton[data-focus-visible] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.navButton[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Two-month grid container.
+ * align-items: flex-start keeps both grids top-aligned so that
+ * matching rows stay on the same horizontal line when the two
+ * months have different row counts (e.g. 5 rows vs 6 rows). */
+.calendarGrids {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* Individual month grid table – fixed 6 rows to prevent height shift */
+.calendarGrid {
+  border-collapse: collapse;
+}
+
+/* Day-of-week header cells */
+.dayHeader {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-cambio-gray-700);
+  text-align: center;
+  padding: 0 0 8px;
+  width: 36px;
+}
+
+/*
+ * Calendar day cells.
+ * CalendarCell applies className to the <div role="button"> element directly,
+ * so all states can be targeted without nested selectors.
+ */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--color-cambio-gray-700);
+  cursor: pointer;
+  outline: none;
+}
+
+.cell:where(
+    [data-hovered]:not([data-selected], [data-unavailable], [data-disabled])
+  ) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cell[data-outside-month] {
+  visibility: hidden;
+}
+
+/* Cells within the selected range */
+.cell[data-selected] {
+  background-color: var(--color-base-primary-100);
+  color: var(--color-base-primary-700);
+}
+
+/* Start and end of the selected range */
+.cell[data-selection-start],
+.cell[data-selection-end] {
+  background-color: var(--color-base-primary-700);
+  color: #fff;
+}
+
+.cell[data-focused] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.cell[data-unavailable] {
+  text-decoration: line-through;
+  color: var(--color-cambio-gray-370);
+  cursor: not-allowed;
+}
+
+.cell[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
