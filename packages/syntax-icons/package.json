@@ -1,7 +1,7 @@
 {
   "name": "@cambly/syntax-icons",
   "description": "Cambly design system icon library",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -220,6 +220,14 @@
     "./FlagUnfilled": {
       "types": "./dist/FlagUnfilled.d.ts",
       "default": "./dist/FlagUnfilled.js"
+    },
+    "./Fullscreen": {
+      "types": "./dist/Fullscreen.d.ts",
+      "default": "./dist/Fullscreen.js"
+    },
+    "./FullscreenExit": {
+      "types": "./dist/FullscreenExit.d.ts",
+      "default": "./dist/FullscreenExit.js"
     },
     "./Globe": {
       "types": "./dist/Globe.d.ts",

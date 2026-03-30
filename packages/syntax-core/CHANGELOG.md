@@ -1,5 +1,25 @@
 # @cambly/syntax-core
 
+## 23.6.0
+
+### Minor Changes
+
+- 72b82719: Allow persistent toast
+
+  For some features, we may want the toast to stay on the page. For this, we have added a `persistent` prop which ignores the value of `timeout` and causes an early return before the `setTimeout` that calls `setDisplayToast(false)`. Consumers wanting to use the new prop can set `persistent={true}` on their Toast. If the Toast should disappear from the page as before, no change is needed as the prop defaults to false.
+
+## 23.5.2
+
+### Patch Changes
+
+- f0877bed: Apply styles SelectList to match what is expected by the Cambio design system
+
+## 23.5.1
+
+### Patch Changes
+
+- 29741e7f: Fixes incorrect color for primary button on dark background
+
 ## 23.5.0
 
 ### Minor Changes
