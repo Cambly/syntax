@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
-import type { StoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react-vite";
 import { Box, Typography, Button } from "../../../syntax-core/src/index";
-import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./Popover";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
@@ -72,7 +76,13 @@ export const Default: StoryObj<typeof Popover> = {
       </Box>
     ),
   },
-  render: ({ delay, placement, initialOpen, strategy, children }) => (
+  render: ({
+    delay,
+    placement,
+    initialOpen,
+    strategy,
+    children,
+  }: { children: React.ReactNode } & PopoverOptions) => (
     <div style={{ margin: "240px" }}>
       <Popover
         delay={delay}

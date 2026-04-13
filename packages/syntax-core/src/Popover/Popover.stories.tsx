@@ -1,5 +1,5 @@
 import { useState, type ReactElement } from "react";
-import type { StoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react-vite";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 import Button from "../Button/Button";

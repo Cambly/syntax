@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Badge from "./Badge";
 import Shuffle from "../../../syntax-icons/src/icons/Shuffle";
 import Refresh from "../../../syntax-icons/src/icons/Refresh";

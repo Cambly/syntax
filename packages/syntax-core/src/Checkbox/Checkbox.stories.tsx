@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Checkbox from "./Checkbox";
 import React, { useState } from "react";
 import Box from "../Box/Box";

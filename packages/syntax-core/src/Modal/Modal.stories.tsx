@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { action } from "@storybook/addon-actions";
-import { type StoryObj, type Meta } from "@storybook/react";
+import { action } from "storybook/actions";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Button from "../Button/Button";
 import Typography from "../Typography/Typography";
 import Modal from "./Modal";

@@ -5,7 +5,7 @@ import React, {
   useState,
   Fragment,
 } from "react";
-import type { StoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react-vite";
 import Tooltip from "./Tooltip";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";

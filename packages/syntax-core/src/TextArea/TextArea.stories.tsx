@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Box from "../Box/Box";
 import TextArea, { type TextAreaProps } from "./TextArea";
 import React, { useState } from "react";

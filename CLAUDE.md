@@ -142,6 +142,6 @@ All packages are published to npm under the `@cambly` scope:
 - Never commit to `main` without a changeset for package changes
 - Component names must be in StartCase (e.g., `TextField`, not `textField`)
 - All new components need: component file, styles, tests, and Storybook story
-- Storybook runs with `NODE_OPTIONS=--openssl-legacy-provider` flag
+- Storybook uses Vite as its bundler (via `@storybook/react-vite`)
 - Core components depend on `syntax-design-tokens` but it's bundled (not external)
 - The `test` directory at root contains shared test setup

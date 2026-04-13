@@ -1,5 +1,5 @@
 import { type ComponentProps, useState } from "react";
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Tabs from "./Tabs";
 import Badge from "../Badge/Badge";
 import Box from "../Box/Box";
