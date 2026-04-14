@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Toast from "./Toast";
 import Box from "../Box/Box";
 import Alert from "../../../syntax-icons/src/icons/Alert";

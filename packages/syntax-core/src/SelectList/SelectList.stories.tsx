@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import SelectList from "./SelectList";
 import React, { useState, type ReactElement } from "react";
 import SelectOption from "./SelectOption";

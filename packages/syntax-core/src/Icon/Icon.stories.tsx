@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Icon from "./Icon";
 import allColors from "../colors/allColors";
 

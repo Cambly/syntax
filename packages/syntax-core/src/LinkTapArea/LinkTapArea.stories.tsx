@@ -1,5 +1,5 @@
 import React from "react";
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import LinkTapArea from "./LinkTapArea";
 import Box from "../Box/Box";
 import Typography from "../Typography/Typography";

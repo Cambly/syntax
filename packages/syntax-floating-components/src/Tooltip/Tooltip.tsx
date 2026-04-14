@@ -20,7 +20,7 @@ import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 import Typography from "../../../syntax-core/src/Typography/Typography";
 import styles from "./Tooltip.module.css";
 
-type TooltipOptions = {
+export type TooltipOptions = {
   /**
    * How long a user hovers before tooltip shows (in ms)
    *

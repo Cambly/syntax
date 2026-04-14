@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Card from "./Card";
 import Box from "../Box/Box";
 import allColors from "../colors/allColors";

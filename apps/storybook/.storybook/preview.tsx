@@ -1,5 +1,5 @@
 import React from "react";
-import { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react-vite";
 import ThemeProvider from "../../../packages/syntax-core/src/ThemeProvider/ThemeProvider";
 
 const preview: Preview = {
@@ -12,6 +12,8 @@ const preview: Preview = {
       );
     },
   ],
+
+  tags: ["autodocs"],
 };
 
 export default preview;

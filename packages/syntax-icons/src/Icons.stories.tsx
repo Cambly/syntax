@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Box from "../../syntax-core/src/Box/Box";
 import Typography from "../../syntax-core/src/Typography/Typography";
 import TapArea from "../../syntax-core/src/TapArea/TapArea";
@@ -256,6 +256,8 @@ const copyTextToClipboard = async (iconName: string) => {
   await window.navigator.clipboard.writeText(importString);
 };
 
+const sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000] as const;
+
 export default {
   title: "Icons",
   component: Icon,
@@ -271,7 +273,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+      options: sizes,
       control: { type: "radio" },
     },
     color: {
@@ -321,7 +323,13 @@ export const Default: StoryObj<typeof Icon> = {
     size: 200,
     color: "inherit",
   },
-  render: ({ size, color }) => {
+  render: ({
+    size,
+    color,
+  }: {
+    size: (typeof sizes)[number];
+    color: (typeof allColors)[number];
+  }) => {
     return (
       <Box display="flex" flexWrap="wrap" gap={4}>
         {cambioIcons.map((icon) => {

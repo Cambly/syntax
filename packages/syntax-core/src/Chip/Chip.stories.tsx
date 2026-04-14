@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Chip from "./Chip";
 import Star from "@mui/icons-material/Star";
 import Box from "../Box/Box";

@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import LinkButton from "./LinkButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Box from "../Box/Box";

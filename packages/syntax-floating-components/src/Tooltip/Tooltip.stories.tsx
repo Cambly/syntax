@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
-import type { StoryObj, Meta } from "@storybook/react";
-import { Tooltip } from "./Tooltip";
+import type { StoryObj, Meta } from "@storybook/react-vite";
+import { Tooltip, type TooltipOptions } from "./Tooltip";
 import Button from "../../../syntax-core/src/Button/Button";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -64,7 +64,13 @@ export const Default: StoryObj<typeof Tooltip> = {
     strategy: "absolute",
     content: "This is a tooltip",
   },
-  render: ({ delay, placement, initialOpen, strategy, content }) => (
+  render: ({
+    delay,
+    placement,
+    initialOpen,
+    strategy,
+    content,
+  }: TooltipOptions & { content: string }) => (
     <div style={{ margin: "240px" }}>
       <Tooltip
         delay={delay}

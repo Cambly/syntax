@@ -1,4 +1,4 @@
-import { type StoryObj, type Meta } from "@storybook/react";
+import { type StoryObj, type Meta } from "@storybook/react-vite";
 import RichSelectList, { type RichSelectListProps } from "./RichSelectList";
 import React, { useState, type ReactElement } from "react";
 import Box from "../Box/Box.js";
