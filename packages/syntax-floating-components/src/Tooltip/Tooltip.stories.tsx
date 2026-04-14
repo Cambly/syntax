@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react-vite";
-import { Tooltip } from "./Tooltip";
+import { Tooltip, type TooltipOptions } from "./Tooltip";
 import Button from "../../../syntax-core/src/Button/Button";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";

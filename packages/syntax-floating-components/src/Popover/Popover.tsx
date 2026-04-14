@@ -20,7 +20,7 @@ import type { Side, Strategy, UseFloatingReturn } from "@floating-ui/react";
 import styles from "./Popover.module.css";
 import elevationStyles from "../../../syntax-core/src/elevation/elevation.module.css";
 
-type PopoverOptions = {
+export type PopoverOptions = {
   /**
    * How long a user hovers before Popover shows (in ms)
    *
