@@ -1,11 +1,7 @@
 import { useState, useRef, useEffect, type ReactElement } from "react";
 import type { StoryObj, Meta } from "@storybook/react-vite";
 import { Box, Typography, Button } from "../../../syntax-core/src/index";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./Popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
 import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
