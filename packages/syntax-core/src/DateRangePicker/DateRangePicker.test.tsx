@@ -100,20 +100,28 @@ describe("dateRangePicker", () => {
   });
 
   it("calls onChange when a date range is selected", async () => {
+    const now = new Date();
+    const month = now.toLocaleString("en-US", { month: "long" });
+    const year = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+
     const handleChange = vi.fn();
     render(<DateRangePicker label="Date range" onChange={handleChange} />);
 
     // Open the calendar
     await userEvent.click(screen.getByRole("button", { name: /calendar/i }));
 
-    // Click two specific date cells by their accessible label
-    // The calendar shows the current month (March 2026 per test date)
-    await userEvent.click(screen.getByRole("button", { name: /March 10/ }));
-    await userEvent.click(screen.getByRole("button", { name: /March 15/ }));
+    // Click two date cells in the current month
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 10`) }),
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 15`) }),
+    );
 
     expect(handleChange).toHaveBeenCalledWith({
-      start: parseDate("2026-03-10"),
-      end: parseDate("2026-03-15"),
+      start: parseDate(`${year}-${mm}-10`),
+      end: parseDate(`${year}-${mm}-15`),
     });
   });
 
