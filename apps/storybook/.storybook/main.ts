@@ -18,6 +18,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-designs"),
     getAbsolutePath("storybook-addon-rtl"),
     getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-mcp"),
   ],
 
   staticDirs: ["../public"],
