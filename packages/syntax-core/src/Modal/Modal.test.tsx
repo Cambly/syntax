@@ -1,4 +1,5 @@
-import { screen, render } from "@testing-library/react";
+import { createPortal } from "react-dom";
+import { screen, render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 import Modal from "./Modal";
@@ -165,6 +166,87 @@ describe("modal", () => {
     await userEvent.tab();
     const button = screen.getByTestId("should-focus");
     expect(button).toHaveFocus();
+  });
+
+  it("does not bounce focus out of a react-aria overlay portalled outside the modal", () => {
+    // Simulates the DOM react-aria produces for a Popover (e.g. DateRangePicker's
+    // calendar): a sibling portal under document.body whose root carries
+    // `data-trigger`. Without the FocusTrap escape hatch for `[data-trigger]`,
+    // focusing anything inside the portal is bounced back into the Modal, which
+    // breaks react-aria's internal FocusScope (e.g. collapses a date range to a
+    // single day on first click in a DateRangePicker inside a Modal).
+    render(
+      <Modal header="title" onDismiss={() => {}}>
+        <button type="button" data-testid="modal-first-focusable">
+          first focusable
+        </button>
+      </Modal>,
+    );
+
+    const portalHost = document.createElement("div");
+    portalHost.setAttribute("data-trigger", "DateRangePicker");
+    const overlayButton = document.createElement("button");
+    overlayButton.setAttribute("data-testid", "overlay-target");
+    portalHost.appendChild(overlayButton);
+    document.body.appendChild(portalHost);
+
+    try {
+      act(() => {
+        overlayButton.focus();
+      });
+      expect(document.activeElement).toBe(overlayButton);
+    } finally {
+      portalHost.remove();
+    }
+  });
+
+  it("does not bounce focus out of a portalled element with role=dialog", () => {
+    render(
+      <Modal header="title" onDismiss={() => {}}>
+        <button type="button">first focusable</button>
+      </Modal>,
+    );
+
+    const portalHost = document.createElement("div");
+    portalHost.setAttribute("role", "dialog");
+    const dialogButton = document.createElement("button");
+    portalHost.appendChild(dialogButton);
+    document.body.appendChild(portalHost);
+
+    try {
+      act(() => {
+        dialogButton.focus();
+      });
+      expect(document.activeElement).toBe(dialogButton);
+    } finally {
+      portalHost.remove();
+    }
+  });
+
+  it("still bounces focus out of unrelated elements outside the modal", () => {
+    render(
+      <>
+        <Modal
+          header="title"
+          onDismiss={() => {}}
+          accessibilityCloseLabel="close-button"
+        >
+          <button type="button">first focusable</button>
+        </Modal>
+        {createPortal(
+          <button type="button" data-testid="outside-button">
+            outside
+          </button>,
+          document.body,
+        )}
+      </>,
+    );
+
+    const outside = screen.getByTestId("outside-button");
+    act(() => {
+      outside.focus();
+    });
+    expect(document.activeElement).not.toBe(outside);
   });
 
   it("should not tab outside the Modal", async () => {
