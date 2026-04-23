@@ -28,6 +28,7 @@
     "@storybook/addon-mcp": "^0.6.0",
     "@storybook/react-vite": "10.3.5",
     "@vitejs/plugin-react": "4.7.0",
+    "@vueless/storybook-dark-mode": "^10.0.7",
     "eslint-plugin-storybook": "10.3.5",
     "serve": "14.2.0",
     "storybook": "10.3.5",

@@ -19,6 +19,7 @@ const config: StorybookConfig = {
     getAbsolutePath("storybook-addon-rtl"),
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
+    getAbsolutePath("@vueless/storybook-dark-mode"),
   ],
 
   staticDirs: ["../public"],
