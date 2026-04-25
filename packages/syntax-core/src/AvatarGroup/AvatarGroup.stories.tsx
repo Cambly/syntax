@@ -7,7 +7,7 @@ import Box from "../Box/Box";
 import { type ComponentProps } from "react";
 
 export default {
-  title: "Components/AvatarGroup",
+  title: "Data Display/AvatarGroup",
   component: AvatarGroup,
   parameters: {
     layout: "fullscreen",

@@ -5,7 +5,7 @@ import Icon from "./Icon";
 import allColors from "../colors/allColors";
 
 export default {
-  title: "Components/Icon",
+  title: "Data Display/Icon",
   component: Icon,
   args: {
     size: 200,

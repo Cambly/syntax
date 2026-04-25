@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react-vite";
 import WordConfetti from "./WordConfetti";
 
 export default {
-  title: "Components/WordConfetti",
+  title: "Data Display/WordConfetti",
   component: WordConfetti,
   parameters: {
     design: {

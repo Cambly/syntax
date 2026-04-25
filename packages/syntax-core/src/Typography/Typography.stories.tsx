@@ -3,7 +3,7 @@ import Typography from "./Typography";
 import Box from "../Box/Box";
 
 export default {
-  title: "Components/Typography",
+  title: "Foundations/Typography",
   component: Typography,
   parameters: {
     design: {

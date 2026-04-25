@@ -5,7 +5,7 @@ import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
 export default {
-  title: "Components/Checkbox",
+  title: "Inputs/Checkbox",
   component: Checkbox,
   parameters: {
     design: {

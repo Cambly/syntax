@@ -4,7 +4,7 @@ import Box from "../Box/Box";
 import Alert from "../../../syntax-icons/src/icons/Alert";
 
 export default {
-  title: "Components/Toast",
+  title: "Feedback/Toast",
   component: Toast,
   parameters: {
     design: {

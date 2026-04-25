@@ -14,6 +14,34 @@ const preview: Preview = {
   ],
 
   tags: ["autodocs"],
+
+  parameters: {
+    options: {
+      storySort: {
+        method: "alphabetical",
+        order: [
+          "Introduction",
+          "Foundations",
+          "Layout",
+          "Actions",
+          [
+            "Buttons",
+            [
+              "ButtonGroup",
+              "Button",
+              "IconButton",
+              "LinkButton",
+              "IconLinkButton",
+            ],
+          ],
+          "Inputs",
+          "Navigation",
+          "Feedback",
+          "Data Display",
+        ],
+      },
+    },
+  },
 };
 
 export default preview;

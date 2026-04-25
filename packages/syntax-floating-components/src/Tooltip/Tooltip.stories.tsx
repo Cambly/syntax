@@ -8,7 +8,7 @@ import Box from "../../../syntax-core/src/Box/Box";
 import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
 
 export default {
-  title: "Floating-Components/Tooltip",
+  title: "Feedback/Tooltip (Floating UI)",
   component: Tooltip,
   parameters: {
     design: {

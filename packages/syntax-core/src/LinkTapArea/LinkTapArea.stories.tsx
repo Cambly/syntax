@@ -7,7 +7,7 @@ import Avatar from "../Avatar/Avatar";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
 
 export default {
-  title: "Components/LinkTapArea",
+  title: "Actions/LinkTapArea",
   component: LinkTapArea,
   args: {
     href: "https://www.cambly.com",

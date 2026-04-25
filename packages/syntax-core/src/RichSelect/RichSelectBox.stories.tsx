@@ -7,7 +7,7 @@ import Heading from "../Heading/Heading";
 import { type Key } from "react-aria";
 
 export default {
-  title: "Components/RichSelectBox",
+  title: "Inputs/RichSelectBox",
   component: RichSelectBox,
   parameters: {
     design: {

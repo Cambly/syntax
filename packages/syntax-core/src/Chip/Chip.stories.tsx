@@ -7,7 +7,7 @@ import Box from "../Box/Box";
 import HeartFilled from "../../../syntax-icons/src/icons/HeartFilled";
 
 export default {
-  title: "Components/Chip",
+  title: "Inputs/Chip",
   component: Chip,
   parameters: {
     design: {

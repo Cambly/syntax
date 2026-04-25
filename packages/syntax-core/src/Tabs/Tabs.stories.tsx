@@ -8,7 +8,7 @@ import TabLink from "../TabLink/TabLink";
 import TabButton from "../TabButton/TabButton";
 
 export default {
-  title: "Components/Tabs",
+  title: "Navigation/Tabs",
   component: Tabs,
   parameters: {
     design: {
