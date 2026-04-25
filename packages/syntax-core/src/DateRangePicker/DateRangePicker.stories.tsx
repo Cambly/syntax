@@ -13,7 +13,7 @@ import Typography from "../Typography/Typography";
 import DateRangePicker from "./DateRangePicker";
 
 export default {
-  title: "Components/DateRangePicker",
+  title: "Inputs/DateRangePicker",
   component: DateRangePicker,
   parameters: {
     design: {

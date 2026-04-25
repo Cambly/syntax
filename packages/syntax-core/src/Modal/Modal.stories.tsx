@@ -7,7 +7,7 @@ import Modal from "./Modal";
 import Box from "../Box/Box";
 
 export default {
-  title: "Components/Modal",
+  title: "Feedback/Modal",
   component: Modal,
   parameters: {
     layout: "fullscreen",

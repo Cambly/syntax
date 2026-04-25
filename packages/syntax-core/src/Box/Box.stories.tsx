@@ -7,7 +7,7 @@ import Heading from "../Heading/Heading";
 import Divider from "../Divider/Divider";
 
 export default {
-  title: "Components/Box",
+  title: "Layout/Box",
   component: Box,
   args: {
     as: "div",

@@ -6,7 +6,7 @@ import Heading from "../Heading/Heading";
 import Typography from "../Typography/Typography";
 
 export default {
-  title: "Components/Card",
+  title: "Layout/Card",
   component: Card,
   parameters: {
     design: {

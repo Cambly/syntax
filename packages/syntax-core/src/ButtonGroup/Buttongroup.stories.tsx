@@ -3,7 +3,7 @@ import ButtonGroup from "./ButtonGroup";
 import Button from "../Button/Button";
 
 export default {
-  title: "Components/ButtonGroup",
+  title: "Actions/Buttons/ButtonGroup",
   component: ButtonGroup,
   parameters: {
     design: {

@@ -8,7 +8,7 @@ import IconLinkButton from "./IconLinkButton";
 import CalendarBooking from "../../../syntax-icons/src/icons/CalendarBooking";
 
 export default {
-  title: "Components/IconLinkButton",
+  title: "Actions/Buttons/IconLinkButton",
   component: IconLinkButton,
   parameters: {},
   args: {

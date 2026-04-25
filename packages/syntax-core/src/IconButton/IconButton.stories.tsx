@@ -10,7 +10,7 @@ import CalendarBooking from "../../../syntax-icons/src/icons/CalendarBooking";
 import Accent from "../../../syntax-icons/src/icons/Accent";
 
 export default {
-  title: "Components/IconButton",
+  title: "Actions/Buttons/IconButton",
   component: IconButton,
   parameters: {
     design: {

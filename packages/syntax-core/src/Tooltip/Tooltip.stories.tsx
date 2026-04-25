@@ -15,7 +15,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import RadioButton from "../../../syntax-core/src/RadioButton/RadioButton";
 
 export default {
-  title: "Components/Tooltip",
+  title: "Feedback/Tooltip",
   component: Tooltip,
   parameters: {
     design: {

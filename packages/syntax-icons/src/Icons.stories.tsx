@@ -259,7 +259,7 @@ const copyTextToClipboard = async (iconName: string) => {
 const sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000] as const;
 
 export default {
-  title: "Icons",
+  title: "Foundations/Icon Library",
   component: Icon,
   parameters: {
     design: {
