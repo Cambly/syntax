@@ -1,19 +1,31 @@
 import colorStyles from "../colors/colors.module.css";
 
-export default function textColor(
-  color:
-    | "gray900"
-    | "gray700"
-    | "primary"
-    | "destructive-primary"
-    | "destructive-lightBackground"
-    | "destructive-darkBackground"
-    | "success"
-    | "success-darkBackground"
-    | "white"
-    | "white-secondary"
-    | "inherit",
-): string {
+export type TextColors =
+  | "gray700"
+  | "white"
+  | "white-secondary"
+  | "inherit"
+  | "destructive-primary"
+  | "destructive-lightBackground"
+  | "destructive-darkBackground"
+  | "success"
+  | "success-darkBackground"
+  | "gray900"
+  | "primary"
+  | "cream"
+  | "lilac"
+  | "navy"
+  | "orange"
+  | "pink"
+  | "purple"
+  | "red"
+  | "sky"
+  | "slate"
+  | "tan"
+  | "teal"
+  | "thistle";
+
+export default function textColor(color: TextColors): string {
   switch (color) {
     case "gray700":
       return colorStyles.cambioGray700Color;
@@ -33,8 +45,37 @@ export default function textColor(
       return colorStyles.cambioSuccess700Color;
     case "success-darkBackground":
       return colorStyles.cambioSuccess100Color;
-    // primary / gray900
+    case "gray900":
+      return colorStyles.cambioGray900Color;
+    case "primary":
+      return colorStyles.cambioBlackColor;
+    case "cream":
+      return colorStyles.cambioCreamColor;
+    case "lilac":
+      return colorStyles.cambioLilacColor;
+    case "navy":
+      return colorStyles.cambioNavyColor;
+    case "orange":
+      return colorStyles.cambioOrangeColor;
+    case "pink":
+      return colorStyles.cambioPinkColor;
+    case "purple":
+      return colorStyles.cambioPurpleColor;
+    case "red":
+      return colorStyles.cambioRedColor;
+    case "sky":
+      return colorStyles.cambioSkyColor;
+    case "slate":
+      return colorStyles.cambioSlateColor;
+    case "tan":
+      return colorStyles.cambioTanColor;
+    case "teal":
+      return colorStyles.cambioTealColor;
+    case "thistle":
+      return colorStyles.cambioThistleColor;
     default:
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars -- exhaustive check
+      const _exhaustiveCheck: never = color;
       return colorStyles.cambioBlackColor;
   }
 }
