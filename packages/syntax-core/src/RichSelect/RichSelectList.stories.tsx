@@ -6,7 +6,7 @@ import Typography from "../Typography/Typography";
 import { type Key } from "react-aria";
 
 export default {
-  title: "Components/RichSelectList",
+  title: "Inputs/RichSelectList",
   component: RichSelectList,
   parameters: {
     design: {

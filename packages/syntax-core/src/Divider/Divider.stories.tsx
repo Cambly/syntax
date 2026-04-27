@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Divider from "./Divider";
 
 export default {
-  title: "Components/Divider",
+  title: "Layout/Divider",
   component: Divider,
   parameters: {
     design: {

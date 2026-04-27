@@ -6,7 +6,7 @@ import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
 export default {
-  title: "Components/TapArea",
+  title: "Actions/TapArea",
   component: TapArea,
   args: {
     disabled: false,

@@ -95,7 +95,7 @@ const SuperLongContent = () => (
 );
 
 export default {
-  title: "Components/Popover",
+  title: "Feedback/Popover",
   component: Popover,
   argTypes: {
     accessibilityLabel: {

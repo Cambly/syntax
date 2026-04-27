@@ -2,7 +2,7 @@ import { type StoryObj, type Meta } from "@storybook/react-vite";
 import Heading from "./Heading";
 
 export default {
-  title: "Components/Heading",
+  title: "Foundations/Heading",
   component: Heading,
   parameters: {
     design: {

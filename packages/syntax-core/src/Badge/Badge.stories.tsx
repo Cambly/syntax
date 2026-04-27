@@ -6,7 +6,7 @@ import Stars from "../../../syntax-icons/src/icons/Stars";
 import Box from "../Box/Box";
 
 export default {
-  title: "Components/Badge",
+  title: "Data Display/Badge",
   component: Badge,
   parameters: {
     design: {

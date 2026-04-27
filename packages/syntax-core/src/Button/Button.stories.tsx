@@ -7,7 +7,7 @@ import Play from "../../../syntax-icons/src/icons/Play";
 import Accent from "../../../syntax-icons/src/icons/Accent";
 
 export default {
-  title: "Components/Button",
+  title: "Actions/Buttons/Button",
   component: Button,
   parameters: {
     design: {

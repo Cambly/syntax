@@ -11,7 +11,7 @@ import IconButton from "../../../syntax-core/src/IconButton/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default {
-  title: "Floating-Components/Popover",
+  title: "Feedback/Popover (Floating UI)",
   component: Popover,
   parameters: {
     design: {

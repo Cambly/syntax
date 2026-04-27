@@ -3,7 +3,7 @@ import Avatar from "./Avatar";
 import image from "../../../../apps/storybook/assets/images/jane.webp";
 
 export default {
-  title: "Components/Avatar",
+  title: "Data Display/Avatar",
   component: Avatar,
   parameters: {
     design: {

@@ -6,7 +6,7 @@ import Box from "../Box/Box";
 import Pause from "../../../syntax-icons/src/icons/Pause";
 
 export default {
-  title: "Components/LinkButton",
+  title: "Actions/Buttons/LinkButton",
   component: LinkButton,
   parameters: {
     design: {

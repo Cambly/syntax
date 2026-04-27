@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Typography from "../Typography/Typography";
 
 export default {
-  title: "Components/TextArea",
+  title: "Inputs/TextArea",
   component: TextArea,
   parameters: {
     design: {

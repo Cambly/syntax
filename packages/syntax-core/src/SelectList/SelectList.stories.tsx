@@ -6,7 +6,7 @@ import Box from "../Box/Box";
 import Typography from "../Typography/Typography";
 
 export default {
-  title: "Components/SelectList",
+  title: "Inputs/SelectList",
   component: SelectList,
   parameters: {
     design: {
