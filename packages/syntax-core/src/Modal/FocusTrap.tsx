@@ -60,10 +60,25 @@ export default function FocusTrap({
         return;
       }
 
-      // This prevents stack overflow when multiple FocusTraps are rendered
+      // Allow focus to land in:
+      // 1. Other Syntax FocusTraps — prevents stack overflow when two FocusTraps
+      //    are rendered (nested Modals).
+      // 2. react-aria overlays that portal out of the Modal subtree:
+      //    - Popover / DateRangePicker / Select / ComboBox — react-aria marks
+      //      the portal root with `data-trigger`.
+      //    - Dialog / AlertDialog / Menu / Tooltip / ListBox — these carry the
+      //      corresponding ARIA role on their root element.
+      //    These overlays manage their own focus via react-aria's FocusScope.
+      //    Without this escape hatch, every focus event inside the overlay
+      //    would be bounced back into the Modal. The canonical symptom is a
+      //    DateRangePicker inside a Modal where picking one date collapses the
+      //    range to a single day, because the bounce triggers RangeCalendar's
+      //    onBlur-while-anchored path (selectFocusedDate).
       if (
         event.target instanceof Element &&
-        event.target.closest('[data-testid="syntax-focus-trap"]') !== null
+        event.target.closest(
+          '[data-testid="syntax-focus-trap"], [data-trigger], [role="dialog"], [role="alertdialog"], [role="menu"], [role="tooltip"], [role="listbox"]',
+        ) !== null
       ) {
         return;
       }

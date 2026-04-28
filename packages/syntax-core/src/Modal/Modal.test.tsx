@@ -1,6 +1,9 @@
-import { screen, render } from "@testing-library/react";
+import { createPortal } from "react-dom";
+import { screen, render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { parseDate } from "@internationalized/date";
 import { expect, vi } from "vitest";
+import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import Modal from "./Modal";
 
 describe("modal", () => {
@@ -165,6 +168,139 @@ describe("modal", () => {
     await userEvent.tab();
     const button = screen.getByTestId("should-focus");
     expect(button).toHaveFocus();
+  });
+
+  it("does not bounce focus out of a react-aria overlay portalled outside the modal", () => {
+    // Simulates the DOM react-aria produces for a Popover (e.g. DateRangePicker's
+    // calendar): a sibling portal under document.body whose root carries
+    // `data-trigger`. Without the FocusTrap escape hatch for `[data-trigger]`,
+    // focusing anything inside the portal is bounced back into the Modal, which
+    // breaks react-aria's internal FocusScope (e.g. collapses a date range to a
+    // single day on first click in a DateRangePicker inside a Modal).
+    render(
+      <>
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+        >
+          <button type="button">first focusable</button>
+        </Modal>
+        {createPortal(
+          <div data-trigger="DateRangePicker">
+            <button type="button" data-testid="overlay-target">
+              overlay
+            </button>
+          </div>,
+          document.body,
+        )}
+      </>,
+    );
+
+    const overlayButton = screen.getByTestId("overlay-target");
+    act(() => {
+      overlayButton.focus();
+    });
+    expect(overlayButton).toHaveFocus();
+  });
+
+  it("does not bounce focus out of a portalled element with role=dialog", () => {
+    render(
+      <>
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+        >
+          <button type="button">first focusable</button>
+        </Modal>
+        {createPortal(
+          <div role="dialog">
+            <button type="button" data-testid="dialog-target">
+              dialog
+            </button>
+          </div>,
+          document.body,
+        )}
+      </>,
+    );
+
+    const dialogButton = screen.getByTestId("dialog-target");
+    act(() => {
+      dialogButton.focus();
+    });
+    expect(dialogButton).toHaveFocus();
+  });
+
+  it("allows DateRangePicker inside a Modal to select a multi-day range", async () => {
+    // Integration regression test for the original bug: the FocusTrap escape
+    // hatch keys off `data-trigger`, which is a react-aria implementation
+    // detail. The simulated test above fabricates that attribute, so it would
+    // keep passing even if react-aria renamed it. This test renders a real
+    // DateRangePicker inside a Modal and exercises the calendar via the same
+    // user interaction that surfaced the bug, so a react-aria upgrade that
+    // breaks the escape hatch will fail here.
+    const now = new Date();
+    const month = now.toLocaleString("en-US", { month: "long" });
+    const year = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+
+    const handleChange = vi.fn();
+    render(
+      <Modal
+        header="title"
+        onDismiss={() => {
+          /* empty */
+        }}
+      >
+        <DateRangePicker label="Date range" onChange={handleChange} />
+      </Modal>,
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /calendar/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 10`) }),
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 15`) }),
+    );
+
+    // If FocusTrap bounces focus out of the popover, the range collapses to a
+    // single day on the first click and this assertion fails.
+    expect(handleChange).toHaveBeenCalledWith({
+      start: parseDate(`${year}-${mm}-10`),
+      end: parseDate(`${year}-${mm}-15`),
+    });
+  });
+
+  it("still bounces focus out of unrelated elements outside the modal", () => {
+    render(
+      <>
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+          accessibilityCloseLabel="close-button"
+        >
+          <button type="button">first focusable</button>
+        </Modal>
+        {createPortal(
+          <button type="button" data-testid="outside-button">
+            outside
+          </button>,
+          document.body,
+        )}
+      </>,
+    );
+
+    const outside = screen.getByTestId("outside-button");
+    act(() => {
+      outside.focus();
+    });
+    expect(outside).not.toHaveFocus();
   });
 
   it("should not tab outside the Modal", async () => {
