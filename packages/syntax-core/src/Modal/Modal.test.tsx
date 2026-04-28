@@ -1,7 +1,9 @@
 import { createPortal } from "react-dom";
 import { screen, render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { parseDate } from "@internationalized/date";
 import { expect, vi } from "vitest";
+import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import Modal from "./Modal";
 
 describe("modal", () => {
@@ -230,6 +232,47 @@ describe("modal", () => {
       dialogButton.focus();
     });
     expect(dialogButton).toHaveFocus();
+  });
+
+  it("allows DateRangePicker inside a Modal to select a multi-day range", async () => {
+    // Integration regression test for the original bug: the FocusTrap escape
+    // hatch keys off `data-trigger`, which is a react-aria implementation
+    // detail. The simulated test above fabricates that attribute, so it would
+    // keep passing even if react-aria renamed it. This test renders a real
+    // DateRangePicker inside a Modal and exercises the calendar via the same
+    // user interaction that surfaced the bug, so a react-aria upgrade that
+    // breaks the escape hatch will fail here.
+    const now = new Date();
+    const month = now.toLocaleString("en-US", { month: "long" });
+    const year = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+
+    const handleChange = vi.fn();
+    render(
+      <Modal
+        header="title"
+        onDismiss={() => {
+          /* empty */
+        }}
+      >
+        <DateRangePicker label="Date range" onChange={handleChange} />
+      </Modal>,
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /calendar/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 10`) }),
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: new RegExp(`${month} 15`) }),
+    );
+
+    // If FocusTrap bounces focus out of the popover, the range collapses to a
+    // single day on the first click and this assertion fails.
+    expect(handleChange).toHaveBeenCalledWith({
+      start: parseDate(`${year}-${mm}-10`),
+      end: parseDate(`${year}-${mm}-15`),
+    });
   });
 
   it("still bounces focus out of unrelated elements outside the modal", () => {
