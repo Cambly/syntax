@@ -156,6 +156,37 @@ export const colors: StoryObj<typeof Typography> = {
   ),
 };
 
+export const colorsOnDarkBackground: StoryObj<typeof Typography> = {
+  render: () => (
+    <Box backgroundColor="gray900">
+      <Typography {...Default.args} color="destructive-primary">
+        Color destructive-primary
+      </Typography>
+      <Typography {...Default.args} color="destructive-darkBackground">
+        Color destructive-darkBackground
+      </Typography>
+      <Typography {...Default.args} color="gray700">
+        Color gray700
+      </Typography>
+      <Typography {...Default.args} color="gray900">
+        Color gray900 (default)
+      </Typography>
+      <Typography {...Default.args} color="primary">
+        Color primary
+      </Typography>
+      <Typography {...Default.args} color="success">
+        Color success
+      </Typography>
+      <Typography {...Default.args} color="success-darkBackground">
+        Color success-darkBackground
+      </Typography>
+      <Typography {...Default.args} color="white">
+        Color white
+      </Typography>
+    </Box>
+  ),
+};
+
 function SerifCharacterSupportExample() {
   return (
     <Box display="flex" gap={3} direction="column">

@@ -30,6 +30,7 @@ import ThemeProvider from "./ThemeProvider/ThemeProvider";
 import Toast from "./Toast/Toast";
 import Tooltip from "./Tooltip/Tooltip";
 import Typography from "./Typography/Typography";
+import ColorTypography from "./ColorTypography/ColorTypography";
 import WordConfetti from "./WordConfetti/WordConfetti";
 
 export {
@@ -43,6 +44,7 @@ export {
   Card,
   Checkbox,
   Chip,
+  ColorTypography,
   Divider,
   Heading,
   Icon,
