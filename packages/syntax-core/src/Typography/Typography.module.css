@@ -116,7 +116,10 @@
   font-family: "GT Super", var(--syntax-font-sans-serif);
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.02em;
-  line-height: 1.15em;
+
+  /* Read through a custom property so a line-height class can override this
+     without needing a selector above the stylelint specificity cap. */
+  line-height: var(--syntax-typography-line-height, 1.15em);
 }
 
 /* Garnett only supports Latin-script languages (same set as GT Super) */
@@ -262,6 +265,15 @@
 
 .p500 {
   line-height: 115%;
+}
+
+/* Opt-in relaxed line-height for text used as prose regardless of the element,
+   e.g. the `heading/400-medium-paragraph` style. Also sets the custom property
+   so it wins over the serif `line-height` above. */
+.lineHeightParagraph {
+  --syntax-typography-line-height: 150%;
+
+  line-height: 150%;
 }
 
 /* White Space */

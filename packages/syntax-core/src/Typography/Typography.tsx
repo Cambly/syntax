@@ -71,6 +71,15 @@ const Typography = forwardRef<
      */
     lineClamp?: number | undefined;
     /**
+     * The line-height of the text.
+     *
+     * * `default`: `initial`, except for `as="p"` (which uses a per-size line-height) and serif text in a Latin-script locale (115%).
+     * * `paragraph`: 150%, for text used as prose regardless of the element. Combined with `size={400}` and `weight="medium"` this is the `400-medium-paragraph` style.
+     *
+     * @defaultValue "default"
+     */
+    lineHeight?: "default" | "paragraph";
+    /**
      * Size of the text.
      *
      * Mobile (viewport width <= 480px)::
@@ -147,6 +156,7 @@ const Typography = forwardRef<
     id,
     inline = false,
     lineClamp = undefined,
+    lineHeight = "default",
     size = 200,
     tooltip,
     transform = "none",
@@ -178,6 +188,7 @@ const Typography = forwardRef<
         underline && styles.underline,
         lineClamp != null && styles.lineClamp,
         as === "p" && styles[`p${size}`],
+        lineHeight === "paragraph" && styles.lineHeightParagraph,
       )}
       data-testid={dataTestId}
       style={{
