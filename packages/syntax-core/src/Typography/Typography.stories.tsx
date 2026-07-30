@@ -22,6 +22,7 @@ export default {
     underline: false,
     inline: false,
     lineClamp: 0,
+    lineHeight: "default",
     weight: "regular",
     whiteSpace: "inherit",
     tooltip: "",
@@ -61,6 +62,10 @@ export default {
     },
     lineClamp: {
       control: { type: "number", min: 0, max: 10, step: 1 },
+    },
+    lineHeight: {
+      options: ["default", "paragraph"],
+      control: { type: "radio" },
     },
     size: {
       options: [0, 100, 200, 300, 400, 700, 800, 900, 1100],
@@ -123,6 +128,43 @@ export const sizes: StoryObj<typeof Typography> = {
       </Typography>
     </>
   ),
+};
+
+function LineHeightExample() {
+  return (
+    <Box display="flex" gap={6} direction="column" maxWidth={560}>
+      <Box display="flex" gap={2} direction="column">
+        <Typography size={100} color="gray700">
+          400-medium (115%)
+        </Typography>
+        <Typography as="h2" size={400} weight="medium" fontStyle="serif">
+          The quick brown fox jumps over the lazy dog. Typography is the art and
+          technique of arranging type to make written language legible and
+          appealing.
+        </Typography>
+      </Box>
+      <Box display="flex" gap={2} direction="column">
+        <Typography size={100} color="gray700">
+          400-medium-paragraph (150%)
+        </Typography>
+        <Typography
+          as="h2"
+          size={400}
+          weight="medium"
+          fontStyle="serif"
+          lineHeight="paragraph"
+        >
+          The quick brown fox jumps over the lazy dog. Typography is the art and
+          technique of arranging type to make written language legible and
+          appealing.
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+export const lineHeight: StoryObj<typeof Typography> = {
+  render: () => <LineHeightExample />,
 };
 
 export const colors: StoryObj<typeof Typography> = {
