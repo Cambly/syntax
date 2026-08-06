@@ -113,4 +113,48 @@ describe("button", () => {
     );
     expect(screen.getByTestId("button-test-id")).toBeInTheDocument();
   });
+
+  it.each(["sm", "md", "lg"] as const)(
+    "outlines a %s secondary button on a light background in black",
+    (size) => {
+      render(
+        <Button
+          data-testid="button-test-id"
+          color="secondary"
+          size={size}
+          onClick={() => {
+            /* empty */
+          }}
+          text="Continue"
+        />,
+      );
+      expect(screen.getByTestId("button-test-id").className).toContain(
+        "blackBorderColor",
+      );
+    },
+  );
+
+  it.each([
+    ["secondary", "darkBackground", "gray370BorderColor"],
+    ["success-secondary", "lightBackground", "success770BorderColor"],
+    ["destructive-secondary", "lightBackground", "destructive770BorderColor"],
+  ] as const)(
+    "leaves the %s outline on a %s alone",
+    (color, on, expectedBorderClass) => {
+      render(
+        <Button
+          data-testid="button-test-id"
+          color={color}
+          on={on}
+          onClick={() => {
+            /* empty */
+          }}
+          text="Continue"
+        />,
+      );
+      const button = screen.getByTestId("button-test-id");
+      expect(button.className).toContain(expectedBorderClass);
+      expect(button.className).not.toContain("blackBorderColor");
+    },
+  );
 });
