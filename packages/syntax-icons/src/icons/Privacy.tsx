@@ -1,11 +1,46 @@
 import { type ComponentProps, forwardRef } from "react";
-import Icon from "../../../syntax-core/src/Icon/Icon";
+import type Icon from "../../../syntax-core/src/Icon/Icon";
+import styles from "../../../syntax-core/src/Icon/Icon.module.css";
+
+/**
+ * Hand-authored, and excluded from `pnpm generate-icons` via MULTICOLOR_ICONS.
+ *
+ * Privacy is a two-colour toggle: a white half carrying a blue check, and a
+ * blue half carrying a white cross. `Icon` renders a single `<path>` tinted by
+ * `color`, which cannot represent that — flattening the four paths to one
+ * colour gives a solid pill with no check or cross visible.
+ *
+ * This renders its own svg, reusing Icon's size classes so it lays out
+ * identically to the rest of the set. `color` is accepted for API parity but
+ * deliberately ignored: the two brand colours are the icon.
+ */
 const Privacy = forwardRef<
   SVGSVGElement,
   Omit<ComponentProps<typeof Icon>, "path">
->(({ color, size }, ref) => {
-  const path = "#fff";
-  return <Icon ref={ref} path={path} color={color} size={size} />;
-});
+>(({ size = 200 }, ref) => (
+  <svg
+    className={`${styles.icon} ${styles[`icon${size}`]}`}
+    ref={ref}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path fill="#fff" d="M1 11a4 4 0 0 1 4-4h10v10H5a4 4 0 0 1-4-4v-2Z" />
+    <path
+      fill="#06F"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M18.247 6H5.753C2.548 6 0 8.657 0 12s2.548 6 5.753 6h12.494C21.452 18 24 15.343 24 12s-2.63-6-5.753-6ZM.987 12c0-2.743 2.136-4.971 4.766-4.971h8.137l-2.548 9.942H5.753C3.123 16.971.986 14.743.986 12Z"
+    />
+    <path
+      fill="#fff"
+      d="M19.89 9.623a.5.5 0 0 1 0 .658l-1.725 1.808 1.808 1.808a.5.5 0 0 1 0 .658.5.5 0 0 1-.658 0l-1.808-1.808-1.808 1.808a.5.5 0 0 1-.658 0 .5.5 0 0 1 0-.658l1.726-1.808-1.808-1.808a.5.5 0 0 1 0-.658.5.5 0 0 1 .658 0l1.808 1.809 1.808-1.809a.5.5 0 0 1 .658 0Z"
+    />
+    <path
+      fill="#06F"
+      d="M10.11 9.623c.164.165.246.493.082.658L6.74 14.308c-.082.082-.165.165-.247.165a.506.506 0 0 1-.575-.083L4.11 12.582a.5.5 0 0 1 0-.657.5.5 0 0 1 .657 0l1.48 1.397L9.37 9.623c.164-.164.493-.164.74 0Z"
+    />
+  </svg>
+));
+
 Privacy.displayName = "Privacy";
 export default Privacy;
