@@ -3,13 +3,9 @@
 import { type Template } from "@svgr/babel-plugin-transform-svg-component";
 
 /**
- * Pull the `d` attribute off a `<path>` element by name.
- *
- * This used to read `attributes[0]` and assume it was the path data. That is
- * true for a clean single-path SVG, but `privacy.svg` leads with `fill="#fff"`,
- * so the generated component got `const path = "#fff"` and rendered nothing —
- * silently, because a colour string is still a non-empty string. Looking the
- * attribute up by name means a malformed SVG fails the build instead.
+ * Look the `d` attribute up by name. A path can lead with `fill`, and reading
+ * attributes positionally picks up the color instead — still a non-empty
+ * string, so the icon renders nothing rather than failing the build.
  */
 function getPathData(element: any): string | null {
   if (element?.type !== "JSXElement") return null;
@@ -28,12 +24,8 @@ function getPathData(element: any): string | null {
 }
 
 /**
- * Icons that must flip in RTL (anything directional).
- *
- * This used to be applied by hand to the generated files, which meant
- * `pnpm generate-icons` silently stripped it from all nine of them and broke
- * RTL mirroring until someone noticed in review. Keeping the list here makes
- * regeneration idempotent.
+ * Directional icons that must flip in RTL. The template has to emit
+ * `rtlMirror` itself, or regenerating drops it from the generated files.
  */
 const RTL_MIRRORED_ICONS = new Set([
   "Accent",
@@ -53,7 +45,7 @@ const iconTemplate: Template = ({ componentName, jsx }, { tpl }) => {
   );
 
   // Icon renders a single `<path d={path} />` tinted by `color`, so anything
-  // multi-path or multi-colour cannot round-trip through it. Reject it here
+  // multi-path or multicolor cannot round-trip through it. Reject it here
   // rather than emitting a component that renders the wrong thing.
   if (children.length !== 1) {
     throw new Error(
@@ -71,8 +63,6 @@ const iconTemplate: Template = ({ componentName, jsx }, { tpl }) => {
     );
   }
 
-  // `tpl` interpolations are AST placeholders, not raw text, so the rtlMirror
-  // attribute can't be spliced into one shared template — hence two.
   if (RTL_MIRRORED_ICONS.has(componentName)) {
     return tpl`
   import { type ComponentProps, forwardRef } from "react";

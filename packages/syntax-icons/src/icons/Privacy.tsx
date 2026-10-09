@@ -3,16 +3,9 @@ import type Icon from "../../../syntax-core/src/Icon/Icon";
 import styles from "../../../syntax-core/src/Icon/Icon.module.css";
 
 /**
- * Hand-authored, and excluded from `pnpm generate-icons` via MULTICOLOR_ICONS.
- *
- * Privacy is a two-colour toggle: a white half carrying a blue check, and a
- * blue half carrying a white cross. `Icon` renders a single `<path>` tinted by
- * `color`, which cannot represent that — flattening the four paths to one
- * colour gives a solid pill with no check or cross visible.
- *
- * This renders its own svg, reusing Icon's size classes so it lays out
- * identically to the rest of the set. `color` is accepted for API parity but
- * deliberately ignored: the two brand colours are the icon.
+ * A two-color toggle, so it can't be the single tinted `<path>` that `Icon`
+ * renders — hand-authored here, and skipped by MULTICOLOR_ICONS. Reuses Icon's
+ * size classes; `color` is accepted for API parity but ignored.
  */
 const Privacy = forwardRef<
   SVGSVGElement,
