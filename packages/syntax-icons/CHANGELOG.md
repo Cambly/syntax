@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.4.1
+
+### Patch Changes
+
+- ce92fadb: Fix the Privacy icon rendering nothing, and make `generate-icons` idempotent
+
 ## 5.4.0
 
 ### Minor Changes
