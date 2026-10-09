@@ -1,5 +1,11 @@
 # @cambly/syntax-icons
 
+## 5.4.0
+
+### Minor Changes
+
+- f0dd7b4d: Add CalendarCross, Flower, HelpInverted, Stop and WifiOff icons
+
 ## 5.3.0
 
 ### Minor Changes
