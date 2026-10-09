@@ -28,11 +28,25 @@ function getFileName(file: string) {
   return snakeToPascal(file.replace(".svg", ""));
 }
 
+/**
+ * Multicolor icons can't be the single tinted `<path>` that `Icon` renders, so
+ * their components are hand-authored in src/icons/ and skipped here. Keep the
+ * list short: check the icon isn't just un-merged in Figma before adding one.
+ */
+const MULTICOLOR_ICONS = new Set(["Privacy"]);
+
 async function generateIcons() {
   const files = await fs.readdir(BASE_SVG_PATH);
 
   for (const file of files) {
     if (!file.endsWith(".svg")) continue;
+    if (MULTICOLOR_ICONS.has(getFileName(file))) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `Skipping ${getFileName(file)}.tsx (hand-authored, multicolor)`,
+      );
+      continue;
+    }
     // eslint-disable-next-line no-console
     console.log(`Generating ${getFileName(file)}.tsx ...`);
     const fileName = await fs.readFile(BASE_SVG_PATH + `/${file}`, "utf8");
