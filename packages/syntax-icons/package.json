@@ -81,6 +81,10 @@
       "types": "./dist/BookmarkUnfilled.d.ts",
       "default": "./dist/BookmarkUnfilled.js"
     },
+    "./CalendarCross": {
+      "types": "./dist/CalendarCross.d.ts",
+      "default": "./dist/CalendarCross.js"
+    },
     "./Cambly": {
       "types": "./dist/Cambly.d.ts",
       "default": "./dist/Cambly.js"
@@ -221,6 +225,10 @@
       "types": "./dist/FlagUnfilled.d.ts",
       "default": "./dist/FlagUnfilled.js"
     },
+    "./Flower": {
+      "types": "./dist/Flower.d.ts",
+      "default": "./dist/Flower.js"
+    },
     "./Fullscreen": {
       "types": "./dist/Fullscreen.d.ts",
       "default": "./dist/Fullscreen.js"
@@ -256,6 +264,10 @@
     "./Help": {
       "types": "./dist/Help.d.ts",
       "default": "./dist/Help.js"
+    },
+    "./HelpInverted": {
+      "types": "./dist/HelpInverted.d.ts",
+      "default": "./dist/HelpInverted.js"
     },
     "./Home": {
       "types": "./dist/Home.d.ts",
@@ -429,6 +441,10 @@
       "types": "./dist/Stars.d.ts",
       "default": "./dist/Stars.js"
     },
+    "./Stop": {
+      "types": "./dist/Stop.d.ts",
+      "default": "./dist/Stop.js"
+    },
     "./Subtitles": {
       "types": "./dist/Subtitles.d.ts",
       "default": "./dist/Subtitles.js"
@@ -500,6 +516,10 @@
     "./Wifi": {
       "types": "./dist/Wifi.d.ts",
       "default": "./dist/Wifi.js"
+    },
+    "./WifiOff": {
+      "types": "./dist/WifiOff.d.ts",
+      "default": "./dist/WifiOff.js"
     },
     "./WifiRouter": {
       "types": "./dist/WifiRouter.d.ts",

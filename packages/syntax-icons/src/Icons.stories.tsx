@@ -22,6 +22,7 @@ import BookmarkFilled from "./icons/BookmarkFilled";
 import BookmarkUnfilled from "./icons/BookmarkUnfilled";
 import Calendar from "./icons/Calendar";
 import CalendarBooking from "./icons/CalendarBooking";
+import CalendarCross from "./icons/CalendarCross";
 import Cambly from "./icons/Cambly";
 import CameraOff from "./icons/CameraOff";
 import CameraOn from "./icons/CameraOn";
@@ -55,6 +56,7 @@ import Face from "./icons/Face";
 import FlagCheckered from "./icons/FlagCheckered";
 import FlagFilled from "./icons/FlagFilled";
 import FlagUnfilled from "./icons/FlagUnfilled";
+import Flower from "./icons/Flower";
 import Fullscreen from "./icons/Fullscreen";
 import FullscreenExit from "./icons/FullscreenExit";
 import Globe from "./icons/Globe";
@@ -64,6 +66,7 @@ import HangUp from "./icons/HangUp";
 import HeartFilled from "./icons/HeartFilled";
 import HeartUnfilled from "./icons/HeartUnfilled";
 import Help from "./icons/Help";
+import HelpInverted from "./icons/HelpInverted";
 import Home from "./icons/Home";
 import IdentityDocument from "./icons/IdentityDocument";
 import Information from "./icons/Information";
@@ -107,6 +110,7 @@ import StarFilled from "./icons/StarFilled";
 import StarHalfFilled from "./icons/StarHalfFilled";
 import Stars from "./icons/Stars";
 import StarUnfilled from "./icons/StarUnfilled";
+import Stop from "./icons/Stop";
 import Subtitles from "./icons/Subtitles";
 import Suitcase from "./icons/Suitcase";
 import SuperTutor from "./icons/SuperTutor";
@@ -125,6 +129,7 @@ import UserAdd from "./icons/UserAdd";
 import UserRemove from "./icons/UserRemove";
 import UserSearch from "./icons/UserSearch";
 import Wifi from "./icons/Wifi";
+import WifiOff from "./icons/WifiOff";
 import WifiRouter from "./icons/WifiRouter";
 
 const cambioIcons = [
@@ -145,6 +150,7 @@ const cambioIcons = [
   { name: "BookmarkUnfilled", component: BookmarkUnfilled },
   { name: "Calendar", component: Calendar },
   { name: "CalendarBooking", component: CalendarBooking },
+  { name: "CalendarCross", component: CalendarCross },
   { name: "Cambly", component: Cambly },
   { name: "CameraOff", component: CameraOff },
   { name: "CameraOn", component: CameraOn },
@@ -178,6 +184,7 @@ const cambioIcons = [
   { name: "FlagCheckered", component: FlagCheckered },
   { name: "FlagFilled", component: FlagFilled },
   { name: "FlagUnfilled", component: FlagUnfilled },
+  { name: "Flower", component: Flower },
   { name: "Fullscreen", component: Fullscreen },
   { name: "FullscreenExit", component: FullscreenExit },
   { name: "Globe", component: Globe },
@@ -187,6 +194,7 @@ const cambioIcons = [
   { name: "HeartFilled", component: HeartFilled },
   { name: "HeartUnfilled", component: HeartUnfilled },
   { name: "Help", component: Help },
+  { name: "HelpInverted", component: HelpInverted },
   { name: "Home", component: Home },
   { name: "IdentityDocument", component: IdentityDocument },
   { name: "Information", component: Information },
@@ -230,6 +238,7 @@ const cambioIcons = [
   { name: "StarHalfFilled", component: StarHalfFilled },
   { name: "Stars", component: Stars },
   { name: "StarUnfilled", component: StarUnfilled },
+  { name: "Stop", component: Stop },
   { name: "Subtitles", component: Subtitles },
   { name: "Suitcase", component: Suitcase },
   { name: "SuperTutor", component: SuperTutor },
@@ -248,6 +257,7 @@ const cambioIcons = [
   { name: "UserRemove", component: UserRemove },
   { name: "UserSearch", component: UserSearch },
   { name: "Wifi", component: Wifi },
+  { name: "WifiOff", component: WifiOff },
   { name: "WifiRouter", component: WifiRouter },
 ];
 
