@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { screen, render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { parseDate } from "@internationalized/date";
-import { expect, vi } from "vitest";
+import { afterEach, beforeEach, expect, vi } from "vitest";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import Modal from "./Modal";
 
@@ -130,6 +130,103 @@ describe("modal", () => {
       </Modal>,
     );
     expect(baseElement).toHaveStyle({ overflow: "hidden" });
+  });
+
+  describe("scroll lock", () => {
+    // eslint-disable-next-line vitest/no-hooks -- body overflow is global DOM state shared across tests
+    beforeEach(() => {
+      document.body.style.overflow = "";
+    });
+
+    // eslint-disable-next-line vitest/no-hooks -- body overflow is global DOM state shared across tests
+    afterEach(() => {
+      document.body.style.overflow = "";
+    });
+
+    it("restores body scroll when two sibling modals unmount together", () => {
+      const { rerender } = render(
+        <>
+          <Modal
+            header="first"
+            onDismiss={() => {
+              /* empty */
+            }}
+          >
+            <p>first</p>
+          </Modal>
+          <Modal
+            header="second"
+            onDismiss={() => {
+              /* empty */
+            }}
+          >
+            <p>second</p>
+          </Modal>
+        </>,
+      );
+      expect(document.body.style.overflow).toBe("hidden");
+
+      rerender(<></>);
+      expect(document.body.style.overflow).toBe("");
+    });
+
+    it("keeps body scroll locked until the last modal unmounts", () => {
+      const { rerender } = render(
+        <>
+          <Modal
+            header="first"
+            onDismiss={() => {
+              /* empty */
+            }}
+          >
+            <p>first</p>
+          </Modal>
+          <Modal
+            header="second"
+            onDismiss={() => {
+              /* empty */
+            }}
+          >
+            <p>second</p>
+          </Modal>
+        </>,
+      );
+
+      rerender(
+        <>
+          <Modal
+            header="first"
+            onDismiss={() => {
+              /* empty */
+            }}
+          >
+            <p>first</p>
+          </Modal>
+        </>,
+      );
+      expect(document.body.style.overflow).toBe("hidden");
+
+      rerender(<></>);
+      expect(document.body.style.overflow).toBe("");
+    });
+
+    it("restores the inline overflow the body had before the modal opened", () => {
+      document.body.style.overflow = "scroll";
+      const { unmount } = render(
+        <Modal
+          header="title"
+          onDismiss={() => {
+            /* empty */
+          }}
+        >
+          <p>text</p>
+        </Modal>,
+      );
+      expect(document.body.style.overflow).toBe("hidden");
+
+      unmount();
+      expect(document.body.style.overflow).toBe("scroll");
+    });
   });
 
   it("renders FocusTrap succesfully", async () => {
