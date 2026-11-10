@@ -1,5 +1,13 @@
 # @cambly/syntax-floating-components
 
+## 2.0.3
+
+### Patch Changes
+
+- 2a4fd909: Add the `repository` field to package.json and publish with npm provenance via trusted publishing
+- Updated dependencies [2a4fd909]
+  - @cambly/syntax-design-tokens@1.1.1
+
 ## 2.0.2
 
 ### Patch Changes

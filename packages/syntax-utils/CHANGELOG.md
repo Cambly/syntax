@@ -1,5 +1,11 @@
 # @cambly/syntax-utils
 
+## 2.0.2
+
+### Patch Changes
+
+- 2a4fd909: Add the `repository` field to package.json and publish with npm provenance via trusted publishing
+
 ## 2.0.1
 
 ### Patch Changes

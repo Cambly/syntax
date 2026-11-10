@@ -1,7 +1,7 @@
 {
   "name": "@cambly/eslint-config-syntax",
   "description": "Cambly design system ESLint configuration",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "index.js",
   "license": "Apache-2.0",
   "repository": {
