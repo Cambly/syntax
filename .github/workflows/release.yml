@@ -11,11 +11,20 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write # push the release branch and tags
+      pull-requests: write # open the "Version Packages" PR
+      id-token: write # mint the OIDC token for npm trusted publishing
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+      # npm trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
+      # pnpm publish hands the upload to the npm CLI on the PATH.
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@^11.5.1
+        working-directory: ${{ runner.temp }}
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
@@ -48,4 +57,3 @@ jobs:
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOMATION_GITHUB_SECRET }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
