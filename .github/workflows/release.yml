@@ -11,6 +11,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -47,5 +50,5 @@ jobs:
           publish: pnpm run release
           setupGitUser: false
         env:
-          GITHUB_TOKEN: ${{ secrets.AUTOMATION_GITHUB_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
