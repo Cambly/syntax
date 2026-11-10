@@ -7,6 +7,11 @@
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cambly/syntax.git",
+    "directory": "packages/syntax-utils"
+  },
   "files": [
     "dist/**"
   ],
