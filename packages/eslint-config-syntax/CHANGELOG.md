@@ -1,5 +1,11 @@
 # @cambly/eslint-config-syntax
 
+## 1.4.2
+
+### Patch Changes
+
+- 2a4fd909: Add the `repository` field to package.json and publish with npm provenance via trusted publishing
+
 ## 1.4.1
 
 ### Patch Changes

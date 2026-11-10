@@ -1,6 +1,6 @@
 {
   "name": "@cambly/syntax-codemods",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cambly design system codemods",
   "bin": "./dist/index.js",
   "main": "./dist/index.js",

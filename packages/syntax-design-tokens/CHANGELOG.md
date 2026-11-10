@@ -1,5 +1,11 @@
 # @cambly/syntax-design-tokens
 
+## 1.1.1
+
+### Patch Changes
+
+- 2a4fd909: Add the `repository` field to package.json and publish with npm provenance via trusted publishing
+
 ## 1.1.0
 
 ### Minor Changes

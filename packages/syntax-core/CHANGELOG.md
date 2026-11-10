@@ -1,5 +1,12 @@
 # @cambly/syntax-core
 
+## 23.8.2
+
+### Patch Changes
+
+- Updated dependencies [2a4fd909]
+  - @cambly/syntax-design-tokens@1.1.1
+
 ## 23.8.1
 
 ### Patch Changes
